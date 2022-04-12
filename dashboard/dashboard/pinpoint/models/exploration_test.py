@@ -11,6 +11,7 @@ import sys
 import unittest
 
 from dashboard.pinpoint.models import exploration
+from six.moves import range
 
 
 def FindMidpoint(a, b):
@@ -111,7 +112,7 @@ class ExplorationTest(unittest.TestCase):
         levels=2)
     for index, change in results:
       changes.insert(index, change)
-    self.assertEqual(changes, range(11))
+    self.assertEqual(changes, list(range(11)))
 
   def testSpeculateHandleUnknown(self):
     on_unknown_mock = mock.MagicMock()

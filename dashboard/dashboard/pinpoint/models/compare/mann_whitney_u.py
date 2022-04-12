@@ -16,6 +16,7 @@ from __future__ import absolute_import
 
 import itertools
 import math
+from six.moves import range
 
 
 def MannWhitneyU(x, y):
@@ -66,14 +67,14 @@ def _ArgSort(a):
   """Returns the indices that would sort an array.
 
   Ties are given indices in ordinal order."""
-  return sorted(range(len(a)), key=a.__getitem__)
+  return sorted(list(range(len(a))), key=a.__getitem__)
 
 
 def _ArgSortReverse(a):
   """Returns the indices that would sort an array.
 
   Ties are given indices in reverse ordinal order."""
-  return list(reversed(sorted(range(len(a)), key=a.__getitem__, reverse=True)))
+  return list(reversed(sorted(list(range(len(a))), key=a.__getitem__, reverse=True)))
 
 
 def _TieCorrectionFactor(rankvals):
