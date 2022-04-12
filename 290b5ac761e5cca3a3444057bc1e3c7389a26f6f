@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da143f34_0f809335",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-04-12T23:27:09Z",
+      "side": 1,
+      "message": "With this CL I decided to omit all of the files where the only change was adding `from six.moves import range` because those files used `range` as an iterator. I can add those back in if you think it\u0027s better to auto include those. ",
+      "revId": "290b5ac761e5cca3a3444057bc1e3c7389a26f6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
