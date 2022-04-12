@@ -296,6 +296,22 @@ def main(args=None):
           ] + tracing_proto_files,
       },
   ]
+  if args.platform == 'mac' and args.platform_arch == 'arm':
+    protobuf_path = os.path.join(args.api_path_checkout, 'third_party',
+                                 'gae_ts_mon', 'gae_ts_mon', 'protobuf',
+                                 'google')
+    steps.extend([
+        {
+            'name':
+                'Checkout protobuf-3.20.0',
+            'cmd': [
+                'mv',
+                os.path.join(protobuf_path, 'protobuf-3.20.0'),
+                os.path.join(protobuf_path, 'protobuf'),
+            ]
+        }
+    ])
+
   if args.platform == 'android' and args.run_android_tests:
     # On Android, we need to prepare the devices a bit before using them in
     # tests. These steps are not listed as tests above because they aren't
