@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e109b76_a50805e4",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-12T22:36:32Z",
+      "side": 1,
+      "message": "I\u0027m wary of modifying the source tree during the tests. This also doesn\u0027t work on dev machines (unless we add another script or do the move manually).\n\nI\u0027d suggest modifying https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing_project.py;l\u003d84, so that it uses \u0027protobuf\u0027 normally, but uses \u0027protobuf-3.20.0\u0027 on Mac M1.",
+      "range": {
+        "startLine": 308,
+        "startChar": 4,
+        "endLine": 327,
+        "endChar": 6
+      },
+      "revId": "a9afe0023d920c32fc0a7080215c9f92f9b73975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
