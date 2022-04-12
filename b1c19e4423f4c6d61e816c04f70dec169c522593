@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0479ca51_4c33b38a",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_report_events_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-04-12T22:04:46Z",
+      "side": 0,
+      "message": "Nit: Add a bug at the top to delete this class.",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "b1c19e4423f4c6d61e816c04f70dec169c522593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
