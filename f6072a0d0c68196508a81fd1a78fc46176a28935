@@ -16,6 +16,46 @@
       "message": "@bsheedy I tested the script on the TVs in the lab and made a couple more small changes. PTAL again, thanks!",
       "revId": "f6072a0d0c68196508a81fd1a78fc46176a28935",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de33cf0_1b8a0a16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-12T16:07:58Z",
+      "side": 1,
+      "message": "LGTM % nit",
+      "revId": "f6072a0d0c68196508a81fd1a78fc46176a28935",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ba56bf1_f7b9c3f3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-12T16:07:58Z",
+      "side": 1,
+      "message": "I believe you can use `_` for the variable name and pylint won\u0027t complain about unused args.",
+      "range": {
+        "startLine": 167,
+        "startChar": 4,
+        "endLine": 167,
+        "endChar": 15
+      },
+      "revId": "f6072a0d0c68196508a81fd1a78fc46176a28935",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
