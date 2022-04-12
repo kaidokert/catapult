@@ -29,7 +29,8 @@ class ChromeClockSyncError(exceptions.Error):
 
 # TODO(crbug.com/1279968): Workaround to enable streaming for some fuchsia
 # platforms while progress is made on others.
-NON_STREAM_FUCHSIA_BOARDS = ['fuchsia-board-astro', 'fuchsia-board-sherlock']
+#NON_STREAM_FUCHSIA_BOARDS = ['fuchsia-board-astro', 'fuchsia-board-sherlock']
+NON_STREAM_FUCHSIA_BOARDS = []
 
 
 class ChromeTracingAgent(tracing_agent.TracingAgent):
