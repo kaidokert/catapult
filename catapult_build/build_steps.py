@@ -238,7 +238,7 @@ def main(args=None):
 
   protoc_path = 'protoc'
 
-  # TODO(crbug.com/1271700): Remove this condition once protoc mac-arm build is
+  # TODO(crbug.com/1312581): Remove this condition once protoc mac-arm build is
   # released.
   if args.platform == 'mac' and args.platform_arch == 'arm':
     protoc_path = os.path.join(args.api_path_checkout, 'catapult_build', 'bin',
@@ -296,6 +296,36 @@ def main(args=None):
           ] + tracing_proto_files,
       },
   ]
+
+  # TODO(crbug.com/1271700): Remove this block once we only need to use one
+  # version of protobuf. After Python 3 migration, perhaps.
+  if (args.platform == 'mac'
+      and args.platform_arch == 'arm'
+      and args.use_python3):
+    protobuf_path = os.path.join(args.api_path_checkout, 'third_party',
+                                 'gae_ts_mon', 'gae_ts_mon', 'protobuf',
+                                 'google')
+    steps.extend([
+        {
+            'name':
+                'Remove old protobuf version',
+            'cmd': [
+                'rm',
+                '-rf',
+                os.path.join(protobuf_path, 'protobuf'),
+            ],
+        },
+        {
+            'name':
+                'Checkout protobuf-3.20.0',
+            'cmd': [
+                'mv',
+                os.path.join(protobuf_path, 'protobuf-3.20.0'),
+                os.path.join(protobuf_path, 'protobuf'),
+            ]
+        }
+    ])
+
   if args.platform == 'android' and args.run_android_tests:
     # On Android, we need to prepare the devices a bit before using them in
     # tests. These steps are not listed as tests above because they aren't
