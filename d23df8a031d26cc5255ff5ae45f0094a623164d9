@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df0e98e4_4fc3053b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2022-04-12T20:29:13Z",
+      "side": 1,
+      "message": "I also suggest trying out the new symbolize tool for perfetto traces since it is unclear how long the json viewer will continue to work.\ntools/tracing/README.md",
+      "revId": "d23df8a031d26cc5255ff5ae45f0094a623164d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d24cd01_c02fda36",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2022-04-12T20:29:13Z",
+      "side": 1,
+      "message": "hmm it is possible that the arch is arm or arm-v8 etc, and similarly just x86 for 32 bit.\n\nmaybe we could check `\u0027arm\u0027 in architecture` or `\u0027x86\u0027 in architecture`",
+      "revId": "d23df8a031d26cc5255ff5ae45f0094a623164d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
