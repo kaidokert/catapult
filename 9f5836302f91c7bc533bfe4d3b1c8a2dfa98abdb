@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e415e52d_95f85ca3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-04-12T22:16:56Z",
+      "side": 1,
+      "message": "fixers reference - https://python-modernize.readthedocs.io/en/latest/fixers.html\n\nGoing through alphabetically, filters that are skipped over had no changes ",
+      "revId": "9f5836302f91c7bc533bfe4d3b1c8a2dfa98abdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
