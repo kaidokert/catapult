@@ -16,6 +16,23 @@
       "message": "fixers reference - https://python-modernize.readthedocs.io/en/latest/fixers.html\n\nGoing through alphabetically, filters that are skipped over had no changes ",
       "revId": "9f5836302f91c7bc533bfe4d3b1c8a2dfa98abdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b087eef_cf8de270",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-13T16:17:23Z",
+      "side": 1,
+      "message": "LGTM. ",
+      "revId": "9f5836302f91c7bc533bfe4d3b1c8a2dfa98abdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
