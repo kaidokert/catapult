@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "0d2ea6946384d8d7ca7abadb554c3addd96e5096",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e194c03_a8500fb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-04-13T21:09:16Z",
+      "side": 1,
+      "message": "LGTM but please wait for iannucci@\u0027s +1. ",
+      "revId": "0d2ea6946384d8d7ca7abadb554c3addd96e5096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
