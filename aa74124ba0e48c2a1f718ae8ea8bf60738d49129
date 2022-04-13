@@ -16,6 +16,23 @@
       "message": "Cleaning up some useless code that I found while investigating how pageset-repeat works. PTAL.",
       "revId": "aa74124ba0e48c2a1f718ae8ea8bf60738d49129",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cb22fab_86a9daf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-13T15:57:36Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "aa74124ba0e48c2a1f718ae8ea8bf60738d49129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
