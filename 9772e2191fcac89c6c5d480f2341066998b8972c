@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ea54a3f_6d5b46c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2022-04-13T18:28:56Z",
+      "side": 1,
+      "message": "PTAL the gzipped version seems to have worked",
+      "revId": "9772e2191fcac89c6c5d480f2341066998b8972c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
