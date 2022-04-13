@@ -22,6 +22,30 @@
       },
       "revId": "a9afe0023d920c32fc0a7080215c9f92f9b73975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c4c0d0_506eec13",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-13T21:42:23Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "6e109b76_a50805e4",
+      "range": {
+        "startLine": 308,
+        "startChar": 4,
+        "endLine": 327,
+        "endChar": 6
+      },
+      "revId": "a9afe0023d920c32fc0a7080215c9f92f9b73975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
