@@ -10,6 +10,7 @@ try:
   import histogram_pb2
   HAS_PROTO = True
 except ImportError as e:
+  from . import histogram_pb2
   try:
     # crbug/1234919
     # Catapult put the generated histogram_pb2.py in the same source folder,

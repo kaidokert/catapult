@@ -19,7 +19,11 @@ if third_party_dir not in sys.path:  # pragma: no cover
 
 # Add the gae_ts_mon/protobuf directory into the path for the google package, so
 # "import google.protobuf" works.
-protobuf_dir = os.path.join(os.path.dirname(__file__), 'protobuf')
+if sys.version_info[0] < 3:
+  protobuf_dir = os.path.join(os.path.dirname(__file__), 'protobuf-3.20.0')
+else:
+  protobuf_dir = os.path.join(os.path.dirname(__file__), 'protobuf-3.20.0')
+
 google.__path__.append(os.path.join(protobuf_dir, 'google'))
 sys.path.insert(0, protobuf_dir)
 
