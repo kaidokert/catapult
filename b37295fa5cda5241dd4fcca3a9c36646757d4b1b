@@ -16,6 +16,24 @@
       "message": "modernizer updates this file because of zip here, but I\u0027m not sure if it\u0027s needed because this zip is being used as an iterator, so is the import `six.moves import zip` necessary? Most of the files in this CL share the same properties (zip is used as an iterator, import statement is brought in but doesn\u0027t do anything). I wanna know if it\u0027s worth cutting the import statements.\n\nzip python 2 and 3 differences: https://realpython.com/python-zip-function/#:~:text\u003dComparing%20zip%28%29%20in%20Python%203%20and%202,-Python%27s%20zip%28%29%20function",
       "revId": "b37295fa5cda5241dd4fcca3a9c36646757d4b1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e302270d_c78dc797",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/kolmogorov_smirnov.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-13T16:04:50Z",
+      "side": 1,
+      "message": "I think you\u0027re right. If zip is used as iterator, we don\u0027t need to import it again from six. We can only keep those where it is used as a list.",
+      "parentUuid": "b3514bc4_bed88885",
+      "revId": "b37295fa5cda5241dd4fcca3a9c36646757d4b1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
