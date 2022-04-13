@@ -17,9 +17,10 @@ sys.path.insert(0, _TRACING_PATH)
 from tracing import tracing_project
 
 
-def _RunTestsOrDie(top_level_dir):
+def _RunTestsOrDie(top_level_dir, use_protobuf_py3=False):
   path = [_TRACING_PATH]
-  path.extend(tracing_project.GetDependencyPaths())
+  path.extend(tracing_project.GetDependencyPaths(use_protobuf_py3=use_protobuf_py3))
+  print(path)
   exit_code = run_with_typ.Run(top_level_dir, path=path)
   if exit_code:
     sys.exit(exit_code)
@@ -39,7 +40,16 @@ if __name__ == '__main__':
   else:
     install.InstallHooks()
 
+  use_protobuf_py3 = False
+  if '--use-protobuf-py3' in sys.argv:
+    use_protobuf_py3 = True
+    sys.argv.remove('--use-protobuf-py3')
+
   from catapult_build import run_with_typ
-  _RunTestsOrDie(os.path.join(_TRACING_PATH, 'tracing'))
-  _RunTestsOrDie(os.path.join(_TRACING_PATH, 'tracing_build'))
+  _RunTestsOrDie(
+      os.path.join(_TRACING_PATH, 'tracing'),
+      use_protobuf_py3=use_protobuf_py3)
+  _RunTestsOrDie(
+      os.path.join(_TRACING_PATH, 'tracing_build'),
+      use_protobuf_py3=use_protobuf_py3)
   sys.exit(0)
