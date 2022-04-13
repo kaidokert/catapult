@@ -19,7 +19,11 @@ from tracing import tracing_project
 
 def _RunTestsOrDie(top_level_dir):
   path = [_TRACING_PATH]
-  path.extend(tracing_project.GetDependencyPaths())
+  if '--use-protobuf-py3' in sys.argv:
+    path.extend(tracing_project.GetDependencyPaths(use_protobuf_py3=True))
+    sys.argv.remove('--use-protobuf-py3')
+  else:
+    path.extend(tracing_project.GetDependencyPaths())
   exit_code = run_with_typ.Run(top_level_dir, path=path)
   if exit_code:
     sys.exit(exit_code)
