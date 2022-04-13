@@ -296,6 +296,7 @@ def main(args=None):
           ] + tracing_proto_files,
       },
   ]
+
   if args.platform == 'android' and args.run_android_tests:
     # On Android, we need to prepare the devices a bit before using them in
     # tests. These steps are not listed as tests above because they aren't
@@ -376,6 +377,10 @@ def main(args=None):
       step['cmd'] += ['--device=' + args.platform]
     if test.get('additional_args'):
       step['cmd'] += test['additional_args']
+      # TODO(crbug.com/1312581): Remove this block once we only need to use one
+      # version of protobuf. After Python 3 migration, perhaps.
+      if (test['name'] == 'Tracing Python Tests' and args.use_python3):
+        step['cmd'] += ['--use-protobuf-py3']
     if test.get('uses_sandbox_env'):
       step['env']['CHROME_DEVEL_SANDBOX'] = '/opt/chromium/chrome_sandbox'
     if test.get('outputs_presentation_json'):
