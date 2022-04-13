@@ -112,9 +112,8 @@ def GetJobStatusV1(job_id):
 # TODO: Rename to Get().
 def GetJobStatusV2(job_id):
   """Gets the details of a job via buildbucket's API."""
-  body = json.dumps({
-      'id': job_id
-  })
+  body = {'id': job_id}
+  logging.info("bbv2 GetJobStatus body: \n%s\n", json.dumps(body))
   return request.RequestJson(
       API_BASE_URL2 + 'GetBuild', method='POST', body=body)
 
