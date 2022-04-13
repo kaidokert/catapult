@@ -16,6 +16,46 @@
       "message": "With this CL I decided to omit all of the files where the only change was adding `from six.moves import range` because those files used `range` as an iterator. I can add those back in if you think it\u0027s better to auto include those. ",
       "revId": "290b5ac761e5cca3a3444057bc1e3c7389a26f6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0faffc0c_4247aae2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-13T04:59:15Z",
+      "side": 1,
+      "message": "Only one issue with import. Otherwise LGTM.",
+      "revId": "290b5ac761e5cca3a3444057bc1e3c7389a26f6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a90fe0f9_4d39bac2",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-13T04:59:15Z",
+      "side": 1,
+      "message": "range is available in python 2.7 and 3.x. We don\u0027t need to import from six here.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "290b5ac761e5cca3a3444057bc1e3c7389a26f6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
