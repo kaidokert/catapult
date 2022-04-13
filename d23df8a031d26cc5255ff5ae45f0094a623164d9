@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1afc3176_08dfbb11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2022-04-13T19:51:04Z",
+      "side": 1,
+      "message": "only heap profiles are supported in the new viewer. the memory dumps are still SQL only.",
+      "parentUuid": "c6fbb175_dcc4b6a9",
+      "revId": "d23df8a031d26cc5255ff5ae45f0094a623164d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d24cd01_c02fda36",
