@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ac3652_9c3110ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-13T22:22:31Z",
+      "side": 1,
+      "message": "pinpoing :)",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "0d2ea6946384d8d7ca7abadb554c3addd96e5096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0ab42ce2_9ea48cfd",
@@ -31,6 +54,23 @@
       "writtenOn": "2022-04-13T21:09:16Z",
       "side": 1,
       "message": "LGTM but please wait for iannucci@\u0027s +1. ",
+      "revId": "0d2ea6946384d8d7ca7abadb554c3addd96e5096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d440bad_14c41c9d",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-13T22:22:31Z",
+      "side": 1,
+      "message": "I assume you only care about prod builds, so this should be fine. If you also use cr-buildbucket-dev.appspot.com, then the corresponding url would be `https://luci-milo-dev.appspot.com/b/\u003cbuild_id\u003e`",
       "revId": "0d2ea6946384d8d7ca7abadb554c3addd96e5096",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
