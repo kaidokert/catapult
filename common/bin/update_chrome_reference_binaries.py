@@ -66,7 +66,6 @@ _CHANNELS_TO_UPDATE = ['stable', 'canary', 'dev']
 # by each platform on each channel.
 _OMAHA_PLATFORMS = { 'stable':  ['mac_arm64', 'mac', 'linux', 'win',
                                  'win64', 'android'],
-                    'dev':  ['linux'], 'canary': ['mac', 'win']}
 
 
 # All of the information we need to update each platform.
