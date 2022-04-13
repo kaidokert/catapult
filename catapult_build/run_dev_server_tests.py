@@ -189,6 +189,7 @@ def RunTests(args, chrome_path):
     server_process = subprocess.Popen(
         server_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
         bufsize=1)
+    print('Server process command:', ' '.join(server_command))
     time.sleep(1)
     if sys.platform != 'win32':
       output = server_process.stderr.readline()
