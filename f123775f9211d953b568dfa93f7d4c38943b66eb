@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9145d61a_533494d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-14T23:27:34Z",
+      "side": 1,
+      "message": "Fixing issues in Dockerfile for dashboard deployment. PTAL.",
+      "revId": "f123775f9211d953b568dfa93f7d4c38943b66eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
