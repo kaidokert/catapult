@@ -26,6 +26,7 @@ from tracing_build import render_histograms_viewer
 from tracing.value import gtest_json_converter
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
+from io import open
 
 # Maps metric name -> position in the measures tree of the BQ export
 _METRIC_MAP = {
