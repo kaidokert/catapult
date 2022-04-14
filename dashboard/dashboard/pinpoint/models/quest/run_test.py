@@ -177,6 +177,7 @@ class RunTest(quest.Quest):
     Returns a tuple of (relative current working dir, command)."""
     return arguments.get('relative_cwd'), arguments.get('command')
 
+
   @classmethod
   def FromDict(cls, arguments):
     swarming_server = arguments.get('swarming_server')
