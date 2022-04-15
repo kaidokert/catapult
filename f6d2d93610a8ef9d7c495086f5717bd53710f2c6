@@ -33,6 +33,24 @@
       "message": "Should this code remove self._assigned_bots[index] from self._bots at this point?\n\nIs it possible that subsequent calls to this function would randomly choose an element from self._bots that has already been selected for a previous value of index?\n\nAnd if so, is that okay, or should index and swarming bot be 1:1?",
       "revId": "f6d2d93610a8ef9d7c495086f5717bd53710f2c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed297ee_c5dc2893",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-04-15T22:39:20Z",
+      "side": 1,
+      "message": "As of right now, yes (and that does happen, added an example to the CL description). This is because there could be less bots than iterations.\n\nLonger term, we\u0027re discussing how we should handle this in the design doc (shared with you).",
+      "parentUuid": "a0cdd034_537eeeff",
+      "revId": "f6d2d93610a8ef9d7c495086f5717bd53710f2c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
