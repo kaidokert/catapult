@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa4b1c1_cbc833aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-04-15T22:29:57Z",
+      "side": 1,
+      "message": "[drive-by comment]",
+      "revId": "f6d2d93610a8ef9d7c495086f5717bd53710f2c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0cdd034_537eeeff",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-04-15T22:29:57Z",
+      "side": 1,
+      "message": "Should this code remove self._assigned_bots[index] from self._bots at this point?\n\nIs it possible that subsequent calls to this function would randomly choose an element from self._bots that has already been selected for a previous value of index?\n\nAnd if so, is that okay, or should index and swarming bot be 1:1?",
+      "revId": "f6d2d93610a8ef9d7c495086f5717bd53710f2c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
