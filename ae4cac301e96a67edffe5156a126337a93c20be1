@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "ae4cac301e96a67edffe5156a126337a93c20be1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57a95662_5cdda172",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-15T17:41:40Z",
+      "side": 1,
+      "message": "Whoops, I misread the direction of the relation chain here. I\u0027ll have to clean up https://chromium-review.googlesource.com/c/catapult/+/3557818 before we can submit this one.",
+      "revId": "ae4cac301e96a67edffe5156a126337a93c20be1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
