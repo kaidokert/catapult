@@ -212,6 +212,8 @@ class UpdateBuildStatusAction(
     required_keys = {'isolate_server', 'got_revision_cp'}
     missing_keys = required_keys - set(properties)
     if missing_keys:
+      logging.warning('Missing expected keys: %s. Property keys: %s',
+                      missing_keys, set(properties))
       self.task.payload.update({
           'errors': [{
               'reason':
