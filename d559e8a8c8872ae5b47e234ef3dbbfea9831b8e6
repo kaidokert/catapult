@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d74900b_6ae06ada",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-18T07:46:35Z",
+      "side": 1,
+      "message": "This is a high-priority CL to unblock Android WebView bots on perf waterfall. PTAL. I haven\u0027t been able to test it, because the issue doesn\u0027t repro on Pinpoint. But this CL can\u0027t make the situation any worse even if it doesn\u0027t fix the issue.",
+      "revId": "d559e8a8c8872ae5b47e234ef3dbbfea9831b8e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
