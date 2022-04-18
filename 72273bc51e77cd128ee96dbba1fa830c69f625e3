@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ec93e9b_44942a18",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-04-18T18:16:32Z",
+      "side": 1,
+      "message": "This looks correct now! What\u0027s strange is this is what I had the first time around (but with a longer value - maybe it doesn\u0027t display at all if it\u0027s too long?)",
+      "range": {
+        "startLine": 220,
+        "startChar": 27,
+        "endLine": 220,
+        "endChar": 32
+      },
+      "revId": "72273bc51e77cd128ee96dbba1fa830c69f625e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
