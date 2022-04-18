@@ -22,6 +22,30 @@
       },
       "revId": "fcae8647cdeef5ab68935164b7833a653be58e4d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c34e61f_e71e2aaf",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-04-18T17:52:31Z",
+      "side": 1,
+      "message": "Does label\u003d\"...\" instead of placeholder\u003d\"\" work? \n\nIn general, \"placeholder\" usually refers to the low-contrast text that populates a text field until a user enters text into it. \"label\" usually refers to text outside of the input field (also typically gives accessibility hints to screen readers etc).\n\nNot sure why the placeholder text doesn\u0027t appear in the screenshot though. That seems broken, but not as bad as missing a label.",
+      "parentUuid": "ad11394c_ce1225eb",
+      "range": {
+        "startLine": 220,
+        "startChar": 40,
+        "endLine": 220,
+        "endChar": 53
+      },
+      "revId": "fcae8647cdeef5ab68935164b7833a653be58e4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
