@@ -22,6 +22,30 @@
       },
       "revId": "72273bc51e77cd128ee96dbba1fa830c69f625e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11c42e7a_b3b4118f",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-04-18T18:40:51Z",
+      "side": 1,
+      "message": "Well that\u0027s frustrating behavior :/ \n\nGlad it\u0027s working now, regardless.  Note that these Polymer elements are all loonnnng-deprecated, so any quirks in their implementation have zero potential to be addressed. If you hit one that\u0027s a real blocker, we\u0027ll probably have to make some difficult decisions.",
+      "parentUuid": "4ec93e9b_44942a18",
+      "range": {
+        "startLine": 220,
+        "startChar": 27,
+        "endLine": 220,
+        "endChar": 32
+      },
+      "revId": "72273bc51e77cd128ee96dbba1fa830c69f625e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
