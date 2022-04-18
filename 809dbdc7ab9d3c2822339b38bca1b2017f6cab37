@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9650b6d1_f1a454be",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-18T04:41:57Z",
+      "side": 1,
+      "message": "One requirement for Pinpoint is jobs must continue to run smoothly when service version is updated or rolled back. For this reason, new code still needs to initialize self._canonical_executions, in case the server is rolled back, and the object is read by old code that still expects the presence of self._canonical_executions.\n\nThe new code must also handle old objects correctly. So at the beginning of _GetDimensions method, we should check hasattr(self, \u0027_comparison_mode\u0027). We can assume that these three attributes are either all present or all missing.\n\nAfter we\u0027re certain there are no more old jobs left and rollback will not be needed, we can clean up the compatibility code.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 32
+      },
+      "revId": "809dbdc7ab9d3c2822339b38bca1b2017f6cab37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9724bb3_fdc61c99",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-18T04:41:57Z",
+      "side": 1,
+      "message": "Nit: Our convention is to use \u0027 instead of \".",
+      "range": {
+        "startLine": 164,
+        "startChar": 20,
+        "endLine": 164,
+        "endChar": 21
+      },
+      "revId": "809dbdc7ab9d3c2822339b38bca1b2017f6cab37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b09bb4_c2c3ac4d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-18T04:41:57Z",
+      "side": 1,
+      "message": "Nit: Can move this to the beginning of the function, and return self._dimensions. No need to make a copy if we are not modifying it.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 0
+      },
+      "revId": "809dbdc7ab9d3c2822339b38bca1b2017f6cab37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
