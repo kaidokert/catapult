@@ -147,6 +147,13 @@ def _CreateJob(request):
   if batch_id is None or batch_id == '':
     batch_id = str(uuid.uuid4())
 
+  initial_attempt_count = arguments.get('initial_attempt_count')
+  try:
+    initial_attempt_count = int(initial_attempt_count)
+  except ValueError:
+    initial_attempt_count = None
+
+
   # Create job.
   job = job_module.Job.New(
       quests if not use_execution_engine else (),
@@ -164,7 +171,8 @@ def _CreateJob(request):
       priority=priority,
       use_execution_engine=use_execution_engine,
       project=project,
-      batch_id=batch_id)
+      batch_id=batch_id,
+      initial_attempt_count=initial_attempt_count)
 
   if use_execution_engine:
     # TODO(dberris): We need to figure out a way to get the arguments to be more
