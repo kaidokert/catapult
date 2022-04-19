@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3499350_8035f668",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-19T15:20:35Z",
+      "side": 1,
+      "message": "Need to verify this attribute exists, in case the new code is loading a JobState object saved by the previous version of Pinpoint.",
+      "range": {
+        "startLine": 110,
+        "startChar": 37,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "38dc7276163a9063189413af2c2a60ec2f3e44d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
