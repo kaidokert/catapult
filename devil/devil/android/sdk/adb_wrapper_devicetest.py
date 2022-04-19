@@ -58,8 +58,8 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       (res1, code1) = pshell.RunCommand('echo TEST')
       (res2, code2) = pshell.RunCommand('echo TEST2')
       self.assertEqual(len(res1), 1)
-      self.assertEqual(res1[0], 'TEST')
-      self.assertEqual(res2[-1], 'TEST2')
+      self.assertEqual(res1[0], 'TEST\n')
+      self.assertEqual(res2[-1], 'TEST2\n')
       self.assertEqual(code1, 0)
       self.assertEqual(code2, 0)
 
