@@ -61,7 +61,7 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       self.assertEqual(res1[0], 'TEST')
       self.assertEqual(res2[-1], 'TEST2')
       self.assertEqual(code1, 0)
-      self.assertEqual(code2, 0)
+      self.assertEqual(code2, 1)
 
   def testPushLsPull(self):
     path = self._MakeTempFile('foo')
