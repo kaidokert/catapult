@@ -71,6 +71,9 @@ class RunTest(quest.Quest):
     self._assigned_bots = {}
     self._comparison_mode = None
 
+    self._started_changes = set()
+    self._started_tasks = None
+
   def __eq__(self, other):
     return (isinstance(other, type(self))
             and self._swarming_server == other._swarming_server
@@ -82,7 +85,8 @@ class RunTest(quest.Quest):
             and self._relative_cwd == other._relative_cwd
             and self._bots == other._bots
             and self._assigned_bots == other._assigned_bots
-            and self._comparison_mode == other._comparison_mode)
+            and self._comparison_mode == other._comparison_mode
+            and self._started_changes == other._started_changes)
 
   def __str__(self):
     return 'Test'
@@ -116,8 +120,9 @@ class RunTest(quest.Quest):
 
   def _Start(self, change, isolate_server, isolate_hash, extra_args,
              swarming_tags, execution_timeout_secs):
+    self._started_changes.add(change)
     index = self._execution_counts[change]
-    self._execution_counts[change] += 1
+    self._execution_counts[change] += 1 # Shouldn't this fail for A/As?
 
     if self._swarming_tags:
       swarming_tags.update(self._swarming_tags)
@@ -149,12 +154,15 @@ class RunTest(quest.Quest):
     dimensions = self._GetDimensions(index)
 
     return _RunTestExecution(
+        self,
         self._swarming_server,
         dimensions,
         extra_args,
         isolate_server,
         isolate_hash,
         swarming_tags,
+        index,
+        change,
         command=self.command,
         relative_cwd=self.relative_cwd,
         execution_timeout_secs=execution_timeout_secs)
@@ -254,16 +262,20 @@ class RunTest(quest.Quest):
 class _RunTestExecution(execution_module.Execution):
 
   def __init__(self,
+               quest,
                swarming_server,
                dimensions,
                extra_args,
                isolate_server,
                isolate_hash,
                swarming_tags,
+               index,
+               change,
                command=None,
                relative_cwd='out/Release',
                execution_timeout_secs=None):
     super(_RunTestExecution, self).__init__()
+    self._quest = quest
     self._bot_id = None
     self._command = command
     self._dimensions = dimensions
@@ -273,6 +285,8 @@ class _RunTestExecution(execution_module.Execution):
     self._relative_cwd = relative_cwd
     self._swarming_server = swarming_server
     self._swarming_tags = swarming_tags
+    self._index = index
+    self._change = change
     self._execution_timeout_secs = execution_timeout_secs
     self._task_id = None
 
@@ -386,6 +400,24 @@ class _RunTestExecution(execution_module.Execution):
     return '/' in d
 
   def _StartTask(self):
+    if self._quest._comparison_mode != 'try':
+      self._task_id = self._StartTaskReal()
+      return
+
+    if self._quest._started_tasks:
+      self._task_id = self._quest._started_tasks[self._change][self._index]
+      return
+
+    if self._change.variant != 0 or self._change.index != 0:
+      # This task is not responsible for kicking off all other tasks
+      return
+
+    if len(self._quest._started_changes) != 2:
+      return
+
+
+
+  def _StartTaskReal(self): # TODO: Rename StartTask to FindOrStartTask(self)
     """Kick off a Swarming task to run a test."""
     # TODO(fancl): Seperate cas input from isolate (including endpoint and
     # datastore module)
@@ -475,4 +507,4 @@ class _RunTestExecution(execution_module.Execution):
     logging.debug('Requesting swarming task with parameters: %s', body)
     response = swarming.Swarming(self._swarming_server).Tasks().New(body)
     logging.debug('Response: %s', response)
-    self._task_id = response['task_id']
+    return response['task_id']
