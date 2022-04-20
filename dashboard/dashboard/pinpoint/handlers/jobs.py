@@ -8,9 +8,11 @@ from __future__ import absolute_import
 
 import logging
 import json
-import webapp2
+
+from flask import make_response, request
 
 from dashboard.pinpoint.models import job as job_module
+from dashboard.pinpoint.dispatcher_py3 import APP
 from dashboard.common import utils
 
 from google.appengine.datastore import datastore_query
@@ -28,24 +30,20 @@ class Error(Exception):
 class InvalidInput(Error):
   pass
 
-
-class Jobs(webapp2.RequestHandler):
-  """Shows an overview of recent anomalies for perf sheriffing."""
-
-  def get(self):
-    try:
-      self.response.out.write(
-          json.dumps(
-              _GetJobs(
-                  self.request.get_all('o'),
-                  self.request.get_all('filter'),
-                  self.request.get('prev_cursor', ''),
-                  self.request.get('next_cursor', ''),
-              )))
-    except InvalidInput as e:
-      self.response.set_status(400)
-      logging.exception(e)
-      self.response.out.write(json.dumps({'error': str(e)}))
+@APP.route('/api/jobs')
+def jobsHandlerGet():
+  try:
+    return make_response(
+        json.dumps(
+            _GetJobs(
+                request.args.getlist('o'),
+                request.args.getlist('filter'),
+                request.args.get('prev_cursor', ''),
+                request.args.get('next_cursor', ''),
+            )))
+  except InvalidInput as e:
+    logging.exception(e)
+    return make_response(json.dumps({'error': str(e)}), 400)
 
 
 def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):

@@ -13,6 +13,8 @@ import six
 import uuid
 
 from dashboard.api import api_request_handler
+from dashboard.api import api_handler_decorator
+from dashboard.api.api_handler_decorator import request_handler_decorator_factory as handler_decorator
 from dashboard.common import bot_configurations
 from dashboard.common import utils
 from dashboard.pinpoint.models import change
@@ -24,6 +26,10 @@ from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import performance_bisection
 from dashboard.pinpoint.models.tasks import read_value
+from dashboard.pinpoint.dispatcher_py3 import APP
+from dashboard.api import api_auth_flask
+
+from flask import make_response, request
 
 _ERROR_BUG_ID = 'Bug ID must be an integer.'
 _ERROR_TAGS_DICT = 'Tags must be a dict of key/value string pairs.'
@@ -88,9 +94,74 @@ class New(api_request_handler.ApiRequestHandler):
     }
 
 
+def _CheckUser():
+  logging.info('DDEBUG: checking user..')
+  if utils.IsDevAppserver():
+    logging.info('DDEBUG: checking user --- 1')
+    return
+  logging.info('DDEBUG: checking user --- 2')
+  api_auth_flask.Authorize()    # Here we need to update.
+  logging.info('DDEBUG: checking user --- 3')
+  if not utils.IsTryjobUser():
+    logging.info('DDEBUG: checking user --- 4')
+    raise api_handler_decorator.ForbiddenError()
+  logging.info('DDEBUG: done checking user..')
+
+
+@APP.route('/api/new', methods=['POST'])
+@handler_decorator(_CheckUser)
+def newHandlerPost():
+  # TODO(dberris): Validate the inputs based on the type of job requested.
+  job = _CreateJob(request)
+
+  # We apply the cost-based scheduling at job creation time, so that we can
+  # roll out the feature as jobs come along.
+  scheduler.Schedule(job, scheduler.Cost(job))
+
+  job.PostCreationUpdate()
+
+  return {
+      'jobId': job.job_id,
+      'jobUrl': job.url,
+  }
+
+def request_params_mixed(request):
+    """
+    Returns a dictionary where the values are either single
+    values, or a list of values when a key/value appears more than
+    once in this dictionary.  This is similar to the kind of
+    dictionary often used to represent the variables in a web
+    request.
+    """
+    a = request.form
+    logging.info('DEBUG a: %s' % a)
+    it = request.form.items(True)
+    logging.info('DEBUG it: %s' % it)
+    ll = request.form.lists()
+    logging.info('DEBUG ll: %s' % ll)
+    llv = request.form.listvalues()
+    logging.info('DEBUG llv: %s' % llv)
+    result = {}
+    multi = {}
+    for key, value in request.form.items(True):
+      logging.info('DDEBUG: Iter Key %s Value %s' % (key, value))
+      if key in result:
+        # We do this to not clobber any lists that are
+        # *actual* values in this dictionary:
+        if key in multi:
+          result[key].append(value)
+        else:
+          result[key] = [result[key], value]
+          multi[key] = None
+      else:
+        result[key] = value
+    return result
+
 def _CreateJob(request):
   """Creates a new Pinpoint job from WebOb request arguments."""
-  original_arguments = request.params.mixed()
+#   original_arguments = request.params.mixed()
+  original_arguments = request_params_mixed(request)
+  logging.info('DDEBUG: CreateJob %s' % request)
   logging.debug('Received Params: %s', original_arguments)
 
   # This call will fail if some of the required arguments are not in the

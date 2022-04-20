@@ -9,26 +9,26 @@ from __future__ import absolute_import
 import six
 
 from dashboard.api import api_request_handler
+from dashboard.api.api_handler_decorator import request_handler_decorator_factory as handler_decorator
 from dashboard.pinpoint.models import change
+from dashboard.pinpoint.dispatcher_py3 import APP
+from flask import request
 
+def _CheckUser():
+  pass
 
-# pylint: disable=abstract-method
-class Commit(api_request_handler.ApiRequestHandler):
-
-  def _CheckUser(self):
-    pass
-
-  def Post(self, *args, **kwargs):
-    del args, kwargs  # Unused.
-    repository = self.request.get('repository', 'chromium')
-    git_hash = self.request.get('git_hash')
-    try:
-      c = change.Commit.FromDict({
-          'repository': repository,
-          'git_hash': git_hash,
-      })
-      return c.AsDict()
-    except KeyError as e:
-      six.raise_from(
-          api_request_handler.BadRequestError('Unknown git hash: %s' %
-                                              git_hash), e)
+@APP.route('/api/commit', methods=['POST'])
+@handler_decorator(_CheckUser)
+def commitHandlerPost():
+  repository = request.args.get('repository', 'chromium')
+  git_hash = request.args.get('git_hash')
+  try:
+    c = change.Commit.FromDict({
+        'repository': repository,
+        'git_hash': git_hash,
+    })
+    return c.AsDict()
+  except KeyError as e:
+    six.raise_from(
+        api_request_handler.BadRequestError('Unknown git hash: %s' %
+                                            git_hash), e)
