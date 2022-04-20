@@ -30,6 +30,7 @@ _TEST_DATA_DIR = os.path.abspath(
 def _hostAdbPids():
   ps_status, ps_output = cmd_helper.GetCmdStatusAndOutput(
       ['pgrep', '-l', 'adb'])
+  print("hostadbpids output is: %s" % ps_output)
   if ps_status != 0:
     return []
 
@@ -58,12 +59,14 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
   def testStartServer(self):
     # Manually kill off any instances of adb.
     adb_pids = _hostAdbPids()
+    print("HOST ADBS: %s" % adb_pids)
     for p in adb_pids:
       os.kill(p, signal.SIGKILL)
 
     self.assertIsNotNone(
         timeout_retry.WaitFor(
             lambda: not _hostAdbPids(), wait_period=0.1, max_tries=10))
+
 
     # start the adb server
     start_server_status, _ = cmd_helper.GetCmdStatusAndOutput(
@@ -89,6 +92,7 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
 
     adb_pids = _hostAdbPids()
     self.assertEqual(0, len(adb_pids))
+
 
   def testDevices(self):
     devices = adb_wrapper.AdbWrapper.Devices()
@@ -134,6 +138,7 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
       yield path
     finally:
       under_test.Shell('rm -rf %s' % path)
+
 
   def testPush_fileToFile(self):
     under_test = self.getTestInstance()
