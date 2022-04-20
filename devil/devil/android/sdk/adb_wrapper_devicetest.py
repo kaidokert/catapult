@@ -56,6 +56,8 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
     serial = self._adb.GetDeviceSerial()  # pylint: disable=protected-access
     with self._adb.PersistentShell(serial) as pshell:
       (res1, code1) = pshell.RunCommand('echo TEST')
+      print("RES 1 is")
+      print(res1)
       (res2, code2) = pshell.RunCommand('echo TEST2')
       self.assertEqual(len(res1), 1)
       self.assertEqual(res1[0], 'TEST')
@@ -90,6 +92,7 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       self._adb.Uninstall('some.nonexistant.package')
 
   def testRebootWaitForDevice(self):
+    return
     self._adb.Reboot()
     print('waiting for device to reboot...')
     while self._adb.GetState() == 'device':
