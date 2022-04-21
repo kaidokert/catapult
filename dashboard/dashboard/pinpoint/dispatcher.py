@@ -6,41 +6,54 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import webapp2
+from dashboard.common import utils
 
-from dashboard.pinpoint import handlers
+if utils.IsRunningFlask():
+  from flask import Flask
+  APP = Flask(__name__)
 
-_URL_MAPPING = [
-    # Public API.
-    webapp2.Route(r'/api/config', handlers.Config),
-    webapp2.Route(r'/api/commit', handlers.Commit),
-    webapp2.Route(r'/api/commits', handlers.Commits),
-    webapp2.Route(r'/api/generate-results2/<job_id>',
-                  handlers.Results2Generator),
-    webapp2.Route(r'/api/isolate', handlers.Isolate),
-    webapp2.Route(r'/api/isolate/<builder_name>/<git_hash>/<target>',
-                  handlers.CASReference),
-    webapp2.Route(r'/api/cas', handlers.CASReference),
-    webapp2.Route(r'/api/cas/<builder_name>/<git_hash>/<target>',
-                  handlers.CASReference),
-    webapp2.Route(r'/api/job/cancel', handlers.Cancel),
-    webapp2.Route(r'/api/job/<job_id>', handlers.Job),
-    webapp2.Route(r'/api/jobs', handlers.Jobs),
-    webapp2.Route(r'/api/migrate', handlers.Migrate),
-    webapp2.Route(r'/api/new', handlers.New),
-    webapp2.Route(r'/api/results2/<job_id>', handlers.Results2),
-    webapp2.Route(r'/api/stats', handlers.Stats),
-    webapp2.Route(r'/api/queue-stats/<configuration>', handlers.QueueStats),
+  from dashboard.pinpoint import handlers
 
-    # Used internally by Pinpoint. Not accessible from the public API.
-    webapp2.Route(r'/api/run/<job_id>', handlers.Run),
-    webapp2.Route(r'/cron/isolate-cleanup', handlers.IsolateCleanup),
-    webapp2.Route(r'/cron/refresh-jobs', handlers.RefreshJobs),
-    webapp2.Route(r'/cron/fifo-scheduler', handlers.FifoScheduler),
+  @APP.route('/api/jobs')
+  def JobsHandlerGet():
+    return handlers.jobs.JobsHandlerGet()
 
-    # The /_ah/push-handlers/* paths have a special meaning for PubSub
-    # notifications, and is treated especially by the AppEngine environment.
-    webapp2.Route(r'/_ah/push-handlers/task-updates', handlers.TaskUpdates),
-]
+else:
+  import webapp2
 
-APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
+  from dashboard.pinpoint import handlers
+
+  _URL_MAPPING = [
+      # Public API.
+      webapp2.Route(r'/api/config', handlers.Config),
+      webapp2.Route(r'/api/commit', handlers.Commit),
+      webapp2.Route(r'/api/commits', handlers.Commits),
+      webapp2.Route(r'/api/generate-results2/<job_id>',
+                    handlers.Results2Generator),
+      webapp2.Route(r'/api/isolate', handlers.Isolate),
+      webapp2.Route(r'/api/isolate/<builder_name>/<git_hash>/<target>',
+                    handlers.CASReference),
+      webapp2.Route(r'/api/cas', handlers.CASReference),
+      webapp2.Route(r'/api/cas/<builder_name>/<git_hash>/<target>',
+                    handlers.CASReference),
+      webapp2.Route(r'/api/job/cancel', handlers.Cancel),
+      webapp2.Route(r'/api/job/<job_id>', handlers.Job),
+      webapp2.Route(r'/api/jobs', handlers.Jobs),
+      webapp2.Route(r'/api/migrate', handlers.Migrate),
+      webapp2.Route(r'/api/new', handlers.New),
+      webapp2.Route(r'/api/results2/<job_id>', handlers.Results2),
+      webapp2.Route(r'/api/stats', handlers.Stats),
+      webapp2.Route(r'/api/queue-stats/<configuration>', handlers.QueueStats),
+
+      # Used internally by Pinpoint. Not accessible from the public API.
+      webapp2.Route(r'/api/run/<job_id>', handlers.Run),
+      webapp2.Route(r'/cron/isolate-cleanup', handlers.IsolateCleanup),
+      webapp2.Route(r'/cron/refresh-jobs', handlers.RefreshJobs),
+      webapp2.Route(r'/cron/fifo-scheduler', handlers.FifoScheduler),
+
+      # The /_ah/push-handlers/* paths have a special meaning for PubSub
+      # notifications, and is treated especially by the AppEngine environment.
+      webapp2.Route(r'/_ah/push-handlers/task-updates', handlers.TaskUpdates),
+  ]
+
+  APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)

@@ -18,6 +18,27 @@ from dashboard.pinpoint.models import results2 as results2_module
 _SERVICE_ACCOUNT_EMAIL = 'some-service-account@example.com'
 
 
+class JobsTestFlask(test.TestCase):
+
+  @mock.patch.object(utils,
+                     'ServiceAccountEmail', lambda: _SERVICE_ACCOUNT_EMAIL)
+  @mock.patch.object(utils, 'IsStagingEnvironment', lambda: False)
+  @mock.patch.object(utils, 'IsRunningFlask', lambda: True)
+  @mock.patch.object(results2_module, 'GetCachedResults2', return_value="")
+  def testGet_NoUser(self, _):
+    job = job_module.Job.New((), ())
+
+    data = json.loads(self.testapp.get('/api/jobs?o=STATE').body)
+
+    self.assertEqual(1, data['count'])
+    self.assertEqual(1, len(data['jobs']))
+    self.assertEqual(job.AsDict([job_module.OPTION_STATE]), data['jobs'][0])
+    self.assertFalse(data['prev'])
+    self.assertFalse(data['next'])
+    self.assertTrue(data['next_cursor'])
+    self.assertFalse(data['prev_cursor'])
+
+
 class JobsTest(test.TestCase):
 
   @mock.patch.object(utils,
