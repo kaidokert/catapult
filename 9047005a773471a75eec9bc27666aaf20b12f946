@@ -16,6 +16,23 @@
       "message": "Replacing an old link on Pinpoint. PTAL.",
       "revId": "9047005a773471a75eec9bc27666aaf20b12f946",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ebe01b5_81ab25c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-21T21:11:54Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "9047005a773471a75eec9bc27666aaf20b12f946",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
