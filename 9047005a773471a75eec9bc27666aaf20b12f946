@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f35134b_1e8b77dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-21T21:00:48Z",
+      "side": 1,
+      "message": "Replacing an old link on Pinpoint. PTAL.",
+      "revId": "9047005a773471a75eec9bc27666aaf20b12f946",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
