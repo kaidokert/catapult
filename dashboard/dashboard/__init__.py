@@ -75,6 +75,7 @@ DASHBOARD_FILES = [
     'dispatch.yaml',
     'index.yaml',
     'pinpoint.yaml',
+    'pinpoint_py3.yaml',
     'queue.yaml',
     'scripts.yaml',
     'upload-processing.yaml',

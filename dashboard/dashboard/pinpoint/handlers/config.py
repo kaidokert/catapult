@@ -7,16 +7,15 @@ from __future__ import division
 from __future__ import absolute_import
 
 from dashboard.api import api_request_handler
+from dashboard.api.api_handler_decorator import request_handler_decorator_factory as handler_decorator
 from dashboard.common import bot_configurations
+from dashboard.pinpoint.dispatcher_py3 import APP
+from flask import make_response, request
 
+def _CheckUser():
+  pass
 
-# pylint: disable=abstract-method
-class Config(api_request_handler.ApiRequestHandler):
-  """Handler returning site configuration details."""
-
-  def _CheckUser(self):
-    pass
-
-  def Post(self, *args, **kwargs):
-    del args, kwargs  # Unused.
-    return {'configurations': bot_configurations.List()}
+@APP.route('/api/config', methods=['POST'])
+@handler_decorator(_CheckUser)
+def configHandlerPost():
+  return {'configurations': bot_configurations.List()}
