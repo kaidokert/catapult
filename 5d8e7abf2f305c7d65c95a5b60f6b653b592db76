@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f995da1_acec8e19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-22T15:12:23Z",
+      "side": 1,
+      "message": "Just documenting that the recent bug report was resolved by https://chromium-review.googlesource.com/c/catapult/+/3565560\n\nI\u0027m back now, so let\u0027s merge this thing!",
+      "parentUuid": "2593d760_11324584",
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be663418_243773f6",
@@ -266,6 +284,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c7a9b1_593b3eaa",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-22T15:12:23Z",
+      "side": 1,
+      "message": "\u003e I think the \"|| []\" is indeed too clever, but don\u0027t feel strongly about it.  Javascript is weird.  :(\n\nOK, it\u0027s not much worse to have an explicit `if`, so I\u0027ll change it back.\n\n\u003e Also, a question:  This used to be skipped by the early return, but now is not. Do we care?  I do support matching ordering of the HTML, just want to make sure we aren\u0027t regressing anything (I think it\u0027s fine, but would appreciate a double-check on that)\n\nThe list of disabled providers is disconnected from the DnsConfig now, so I think it makes sense for it to be above the early return.",
+      "parentUuid": "58d1e37d_f1e12136",
+      "range": {
+        "startLine": 193,
+        "startChar": 33,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a01a559_888b001c",
@@ -279,6 +321,30 @@
       "writtenOn": "2022-04-01T21:03:45Z",
       "side": 1,
       "message": "As this file is not maintained by native Jacascript speakers, I think this needs a comment.  \"unshift\" is not obviously the same as \"push_front()\" or \"prepend()\".  Or could just use splice(0,0,\u0027nameservers\u0027).  It\u0027s uglier, though.",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 32
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b40dd51e_3025b391",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-22T15:12:23Z",
+      "side": 1,
+      "message": "Just added an end-of-line comment to clarify unshift\u0027s behavior. Thanks! (Honestly, I think splice is even more confusing.)",
+      "parentUuid": "0a01a559_888b001c",
       "range": {
         "startLine": 215,
         "startChar": 4,
