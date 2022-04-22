@@ -12,6 +12,7 @@ import mock
 import unittest
 import logging
 
+from dashboard.pinpoint.models.change import change
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import run_test
 
@@ -122,11 +123,10 @@ class FromDictTest(unittest.TestCase):
                                 _BASE_SWARMING_TAGS, None, None)
     self.assertEqual(quest, expected)
 
-
 class _RunTestExecutionTest(unittest.TestCase):
 
-  def assertNewTaskHasDimensions(self, swarming_tasks_new, patch=None):
-    body = {
+  def GetNewTaskBase(self):
+    return {
         'realm':
             'chrome:pinpoint',
         'name':
@@ -159,6 +159,18 @@ class _RunTestExecutionTest(unittest.TestCase):
             }
         },],
     }
+
+  def assertNewTaskHasDimensionsMulti(self, swarming_tasks_new, patches):
+    tasks = []
+    for p in patches:
+      task = self.GetNewTaskBase()
+      task.update(p)
+      tasks.append(mock.call(task))
+    print(str(tasks))
+    swarming_tasks_new.assert_has_calls(tasks)
+
+  def assertNewTaskHasDimensions(self, swarming_tasks_new, patch=None):
+    body = self.GetNewTaskBase()
     if patch:
       body.update(patch)
     swarming_tasks_new.assert_called_with(body)
@@ -185,7 +197,10 @@ class RunTestFullTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
 
-    execution = quest.Start('change_1', 'isolate server', 'input isolate hash')
+    execution = quest.Start(
+        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+    quest.Start(
+        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
 
     swarming_task_result.assert_not_called()
     swarming_tasks_new.assert_not_called()
@@ -195,7 +210,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     execution.Poll()
 
     swarming_task_result.assert_not_called()
-    self.assertEqual(swarming_tasks_new.call_count, 1)
+    self.assertEqual(swarming_tasks_new.call_count, 2)
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
             'task_slices': [{
@@ -271,12 +286,22 @@ class RunTestFullTest(_RunTestExecutionTest):
             ],
         })
 
+  def testGetABOrderings(self, get_commit, swarming_task_result,
+                         swarming_tasks_new, swarming_bots_list):
+    pass
+
+  @mock.patch('dashboard.pinpoint.models.quest.run_test.RunTest._GetABOrderings'
+             )
   @mock.patch('random.choice')
-  def testBotAllocation(self, random_choice, get_commit, swarming_task_result,
-                        swarming_tasks_new, swarming_bots_list):
+  def testBotAllocationAndScheduling(self, random_choice, get_ab_orderings,
+                                     get_commit, swarming_task_result,
+                                     swarming_tasks_new, swarming_bots_list):
     # Same iteration on different changes should use the same bot
     # Different iterations should use different bots
+    # Ordering of A and B should be "random"
     random_choice.side_effect = ["b", "a", "No more bots"]
+    # List of lists because side_effects returns one list element per call
+    get_ab_orderings.side_effect = [[1, 0]]
     swarming_bots_list.return_value = _BOT_QUERY_4_BOTS
     get_commit.return_value = {'number': 675460}
     # Goes through a full run of two Executions.
@@ -290,114 +315,52 @@ class RunTestFullTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
 
-    execution = quest.Start('change_1', 'isolate server', 'input isolate hash')
+    change_a = change.Change("a", variant=0)
+    change_b = change.Change("b", variant=1)
+    execution = quest.Start(change_a, 'cas_instance', 'hasha/111')
+    quest.Start(change_a, 'cas_instance', 'hasha/111')
+    quest.Start(change_b, 'cas_instance', 'hashb/111')
+    quest.Start(change_b, 'cas_instance', 'hashb/111')
 
     swarming_task_result.assert_not_called()
-    swarming_tasks_new.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
     swarming_tasks_new.return_value = {'task_id': 'task id'}
     execution.Poll()
 
     swarming_task_result.assert_not_called()
-    self.assertEqual(swarming_tasks_new.call_count, 1)
-    self.assertNewTaskHasDimensions(
-        swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
-                'properties': {
-                    'inputs_ref': {
-                        'isolatedserver': 'isolate server',
-                        'isolated': 'input isolate hash'
-                    },
-                    'extra_args': ['arg'],
-                    'dimensions': DIMENSIONS + [{
-                        "key": "id",
-                        "value": "b"
-                    }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
-                }
-            }]
-        })
+    self.assertEqual(swarming_tasks_new.call_count, 4)
 
-    execution = quest.Start('change_1', 'isolate server', 'input isolate hash')
+    def GetPatch(iso_hash, bot):
+      return {
+          'task_slices': [{
+              'expiration_secs': '86400',
+              'properties': {
+                  'cas_input_root': {
+                      'cas_instance': 'cas_instance',
+                      'digest': {
+                          'hash': iso_hash,
+                          'size_bytes': 111,
+                      },
+                  },
+                  'extra_args': ['arg'],
+                  'dimensions': DIMENSIONS + [{
+                      "key": "id",
+                      "value": bot
+                  }],
+                  'execution_timeout_secs': mock.ANY,
+                  'io_timeout_secs': mock.ANY,
+              }
+          }]
+      }
 
-    # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
-    execution.Poll()
+    self.assertNewTaskHasDimensionsMulti(swarming_tasks_new, [
+        GetPatch("hasha", "b"),
+        GetPatch("hashb", "b"),
+        GetPatch("hashb", "a"),
+        GetPatch("hasha", "a")
+    ])
 
-    self.assertNewTaskHasDimensions(
-        swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
-                'properties': {
-                    'inputs_ref': {
-                        'isolatedserver': 'isolate server',
-                        'isolated': 'input isolate hash'
-                    },
-                    'extra_args': ['arg'],
-                    'dimensions': DIMENSIONS + [{
-                        "key": "id",
-                        "value": "a"
-                    }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
-                }
-            }]
-        })
-
-    execution = quest.Start('change_2', 'isolate server', 'input isolate hash')
-
-    # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
-    execution.Poll()
-
-    self.assertNewTaskHasDimensions(
-        swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
-                'properties': {
-                    'inputs_ref': {
-                        'isolatedserver': 'isolate server',
-                        'isolated': 'input isolate hash'
-                    },
-                    'extra_args': ['arg'],
-                    'dimensions': DIMENSIONS + [{
-                        "key": "id",
-                        "value": "b"
-                    }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
-                }
-            }]
-        })
-
-    execution = quest.Start('change_2', 'isolate server', 'input isolate hash')
-
-    # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
-    execution.Poll()
-
-    self.assertNewTaskHasDimensions(
-        swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
-                'properties': {
-                    'inputs_ref': {
-                        'isolatedserver': 'isolate server',
-                        'isolated': 'input isolate hash'
-                    },
-                    'extra_args': ['arg'],
-                    'dimensions': DIMENSIONS + [{
-                        "key": "id",
-                        "value": "a"
-                    }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
-                }
-            }]
-        })
 
   def testSuccess_Cas(self, get_commit, swarming_task_result,
                       swarming_tasks_new, swarming_bots_list):
@@ -414,17 +377,21 @@ class RunTestFullTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
 
-    execution = quest.Start('change_1', 'cas_instance', 'xxxxxxxx/111')
+    execution_a = quest.Start(
+        change.Change("a", variant=0), 'cas_instance', 'xxxxxxxx/111')
+    execution_b = quest.Start(
+        change.Change("b", variant=1), 'cas_instance', 'xxxxxxxx/111')
 
     swarming_task_result.assert_not_called()
     swarming_tasks_new.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
     swarming_tasks_new.return_value = {'task_id': 'task id'}
-    execution.Poll()
+    execution_b.Poll()
+    execution_a.Poll()
 
     swarming_task_result.assert_not_called()
-    self.assertEqual(swarming_tasks_new.call_count, 1)
+    self.assertEqual(swarming_tasks_new.call_count, 2)
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
             'task_slices': [{
@@ -447,15 +414,15 @@ class RunTestFullTest(_RunTestExecutionTest):
                 }
             }]
         })
-    self.assertFalse(execution.completed)
-    self.assertFalse(execution.failed)
+    self.assertFalse(execution_b.completed)
+    self.assertFalse(execution_b.failed)
 
     # Call subsequent Poll()s to check the task status.
     swarming_task_result.return_value = {'state': 'PENDING'}
-    execution.Poll()
+    execution_b.Poll()
 
-    self.assertFalse(execution.completed)
-    self.assertFalse(execution.failed)
+    self.assertFalse(execution_b.completed)
+    self.assertFalse(execution_b.failed)
 
     swarming_task_result.return_value = {
         'bot_id': 'a',
@@ -470,13 +437,13 @@ class RunTestFullTest(_RunTestExecutionTest):
         },
         'state': 'COMPLETED',
     }
-    execution.Poll()
+    execution_b.Poll()
 
-    self.assertTrue(execution.completed)
-    self.assertFalse(execution.failed)
-    self.assertEqual(execution.result_values, ())
+    self.assertTrue(execution_b.completed)
+    self.assertFalse(execution_b.failed)
+    self.assertEqual(execution_b.result_values, ())
     self.assertEqual(
-        execution.result_arguments, {
+        execution_b.result_arguments, {
             'cas_root_ref': {
                 'cas_instance': 'projects/x/instances/default_instance',
                 'digest': {
@@ -486,7 +453,7 @@ class RunTestFullTest(_RunTestExecutionTest):
             }
         })
     self.assertEqual(
-        execution.AsDict(), {
+        execution_b.AsDict(), {
             'completed':
                 True,
             'exception':
@@ -544,7 +511,10 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
-    execution = quest.Start(None, 'isolate server', 'input isolate hash')
+    execution = quest.Start(
+        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+    quest.Start(
+        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
     execution.Poll()
     execution.Poll()
 
@@ -577,7 +547,10 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
-    execution = quest.Start(None, 'isolate server', 'isolate_hash')
+    execution = quest.Start(
+        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+    quest.Start(
+        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
     execution.Poll()
     execution.Poll()
 
@@ -608,10 +581,13 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
-    execution = quest.Start('change_1', 'isolate server', 'input isolate hash')
-    execution.Poll()
+    execution_a = quest.Start(
+        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+    quest.Start(
+        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
+    execution_a.Poll()
     with self.assertRaises(errors.SwarmingExpired):
-      execution.Poll()
+      execution_a.Poll()
 
   def testNoBotsAvailable(self, get_commit, swarming_task_result,
                           swarming_tasks_new, swarming_bots_list):
@@ -652,10 +628,12 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
-    execution_1 = quest.Start('change_1', 'input isolate server',
-                              'input isolate hash')
-    execution_2 = quest.Start('change_2', 'input isolate server',
-                              'input isolate hash')
+    execution_1 = quest.Start(
+        change.Change("a", variant=0), 'input isolate server',
+        'input isolate hash')
+    execution_2 = quest.Start(
+        change.Change("a", variant=1), 'input isolate server',
+        'input isolate hash')
 
     swarming_tasks_new.return_value = {'task_id': 'task id'}
     swarming_task_result.return_value = {'state': 'PENDING'}
