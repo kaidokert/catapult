@@ -395,6 +395,30 @@
       },
       "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "007d1b31_384d39c7",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-22T16:09:36Z",
+      "side": 1,
+      "message": "I always associated JS\u0027s shift/unshift with the shell builtin \"shift\", which pops from the front of argv. No idea whether that\u0027s the original, though!",
+      "parentUuid": "f7d0cd88_8e1d9889",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 32
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
