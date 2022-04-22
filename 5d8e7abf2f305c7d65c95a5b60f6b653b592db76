@@ -371,6 +371,30 @@
       },
       "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7d0cd88_8e1d9889",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-22T15:42:11Z",
+      "side": 1,
+      "message": "\u003e Just added an end-of-line comment to clarify unshift\u0027s behavior. Thanks! (Honestly, I think splice is even more confusing.)\n\nInteresting.  I know \"splice\" has something to do with merging arrays / inserting into arrays (though the second parameter is confusing).  I have no intuitive understanding of what \"shifting\" an array does - probably since shifting is overloaded (bit shifts), while splice is not.",
+      "parentUuid": "b40dd51e_3025b391",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 32
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
