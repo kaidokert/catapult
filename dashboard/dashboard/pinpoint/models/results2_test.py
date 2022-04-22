@@ -832,7 +832,7 @@ def _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
   }
 
   test_execution = run_test._RunTestExecution("fake_server", None, None, None,
-                                              None, None)
+                                              None, None, None, None, None)
   test_execution._task_id = "fake_task"
 
   commit_a = commit.Commit("fakerepo", "fakehashA")
