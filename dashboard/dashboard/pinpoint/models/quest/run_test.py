@@ -65,11 +65,13 @@ class RunTest(quest.Quest):
 
     # We want subsequent executions use the same bot as the first one.
     self._canonical_executions = []
-    self._execution_counts = collections.defaultdict(int)
+    self._execution_counts = collections.defaultdict(int)  # deprecated
 
     self._bots = None
     self._assigned_bots = {}
     self._comparison_mode = None
+
+    self._started_executions = {}
 
   def __eq__(self, other):
     return (isinstance(other, type(self))
@@ -82,7 +84,8 @@ class RunTest(quest.Quest):
             and self._relative_cwd == other._relative_cwd
             and self._bots == other._bots
             and self._assigned_bots == other._assigned_bots
-            and self._comparison_mode == other._comparison_mode)
+            and self._comparison_mode == other._comparison_mode
+            and self._started_executions == other._started_executions)
 
   def __str__(self):
     return 'Test'
@@ -116,8 +119,9 @@ class RunTest(quest.Quest):
 
   def _Start(self, change, isolate_server, isolate_hash, extra_args,
              swarming_tags, execution_timeout_secs):
-    index = self._execution_counts[change]
-    self._execution_counts[change] += 1
+    if change not in self._started_executions:
+      self._started_executions[change] = []
+    index = len(self._started_executions[change])
 
     if self._swarming_tags:
       swarming_tags.update(self._swarming_tags)
@@ -148,16 +152,50 @@ class RunTest(quest.Quest):
 
     dimensions = self._GetDimensions(index)
 
-    return _RunTestExecution(
+    test_execution = _RunTestExecution(
+        self,
         self._swarming_server,
         dimensions,
         extra_args,
         isolate_server,
         isolate_hash,
         swarming_tags,
+        index,
+        change,
         command=self.command,
         relative_cwd=self.relative_cwd,
         execution_timeout_secs=execution_timeout_secs)
+    self._started_executions[change].append(test_execution)
+    return test_execution
+
+  def _StartAllTasks(self):
+    # We need to wait for all of the builds to be complete.
+    if len(self._started_executions.keys()) != 2:
+      return
+    print(str(self._started_executions))
+
+    a_list = self._started_executions[self._started_executions.keys()[0]]
+    b_list = self._started_executions[self._started_executions.keys()[1]]
+    attempt_count = len(a_list)
+    orderings = self._GetABOrderings(attempt_count)
+    for i in range(attempt_count):
+      if orderings[i]:
+        a_list[i]._StartTask()
+        b_list[i]._StartTask()
+      else:
+        b_list[i]._StartTask()
+        a_list[i]._StartTask()
+
+  def _GetABOrderings(self, attempt_count):
+    # Get a list of if a/0 or b/1 should go first, such that
+    # - half of As and half of Bs go first
+    # - which half is random
+    half = int(attempt_count / 2)
+    orderings = [0] * half + [1] * half
+    random.shuffle(orderings)
+    if attempt_count % 2:
+      orderings.append(0)
+    return orderings
 
   def _QueryBots(self):
     # Queries Swarming for the set of bots we can use for this test.
@@ -254,16 +292,20 @@ class RunTest(quest.Quest):
 class _RunTestExecution(execution_module.Execution):
 
   def __init__(self,
+               containing_quest,
                swarming_server,
                dimensions,
                extra_args,
                isolate_server,
                isolate_hash,
                swarming_tags,
+               index,
+               change,
                command=None,
                relative_cwd='out/Release',
                execution_timeout_secs=None):
     super(_RunTestExecution, self).__init__()
+    self._quest = containing_quest
     self._bot_id = None
     self._command = command
     self._dimensions = dimensions
@@ -273,6 +315,8 @@ class _RunTestExecution(execution_module.Execution):
     self._relative_cwd = relative_cwd
     self._swarming_server = swarming_server
     self._swarming_tags = swarming_tags
+    self._index = index
+    self._change = change
     self._execution_timeout_secs = execution_timeout_secs
     self._task_id = None
 
@@ -337,7 +381,7 @@ class _RunTestExecution(execution_module.Execution):
 
   def _Poll(self):
     if not self._task_id:
-      self._StartTask()
+      self._StartTasksIfMasterOrNotTry()
       return
 
     logging.debug('_RunTestExecution Polling swarming: %s', self._task_id)
@@ -384,6 +428,17 @@ class _RunTestExecution(execution_module.Execution):
   @staticmethod
   def _IsCasDigest(d):
     return '/' in d
+
+  def _StartTasksIfMasterOrNotTry(self):
+    if self._quest._comparison_mode != 'try':
+      self._StartTask()
+      return
+
+    if self._change.variant != 0 or self._index != 0:
+      # This task is not responsible for kicking off all other tasks
+      return
+
+    self._quest._StartAllTasks() # This will call _StartTask on all tasks, including this one
 
   def _StartTask(self):
     """Kick off a Swarming task to run a test."""

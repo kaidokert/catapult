@@ -12,6 +12,7 @@ import mock
 import unittest
 import logging
 
+from dashboard.pinpoint.models.change import change
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import run_test
 
@@ -414,17 +415,19 @@ class RunTestFullTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com'))
 
-    execution = quest.Start('change_1', 'cas_instance', 'xxxxxxxx/111')
+    executionA = quest.Start(change.Change("a", variant=0), 'cas_instance', 'xxxxxxxx/111')
+    executionB = quest.Start(change.Change("b", variant=1), 'cas_instance', 'xxxxxxxx/111')
 
     swarming_task_result.assert_not_called()
     swarming_tasks_new.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
     swarming_tasks_new.return_value = {'task_id': 'task id'}
-    execution.Poll()
+    executionB.Poll()
+    executionA.Poll()
 
     swarming_task_result.assert_not_called()
-    self.assertEqual(swarming_tasks_new.call_count, 1)
+    self.assertEqual(swarming_tasks_new.call_count, 2)
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
             'task_slices': [{
@@ -447,15 +450,15 @@ class RunTestFullTest(_RunTestExecutionTest):
                 }
             }]
         })
-    self.assertFalse(execution.completed)
-    self.assertFalse(execution.failed)
+    self.assertFalse(executionB.completed)
+    self.assertFalse(executionB.failed)
 
     # Call subsequent Poll()s to check the task status.
     swarming_task_result.return_value = {'state': 'PENDING'}
-    execution.Poll()
+    executionB.Poll()
 
-    self.assertFalse(execution.completed)
-    self.assertFalse(execution.failed)
+    self.assertFalse(executionB.completed)
+    self.assertFalse(executionB.failed)
 
     swarming_task_result.return_value = {
         'bot_id': 'a',
@@ -470,13 +473,13 @@ class RunTestFullTest(_RunTestExecutionTest):
         },
         'state': 'COMPLETED',
     }
-    execution.Poll()
+    executionB.Poll()
 
-    self.assertTrue(execution.completed)
-    self.assertFalse(execution.failed)
-    self.assertEqual(execution.result_values, ())
+    self.assertTrue(executionB.completed)
+    self.assertFalse(executionB.failed)
+    self.assertEqual(executionB.result_values, ())
     self.assertEqual(
-        execution.result_arguments, {
+        executionB.result_arguments, {
             'cas_root_ref': {
                 'cas_instance': 'projects/x/instances/default_instance',
                 'digest': {
@@ -486,7 +489,7 @@ class RunTestFullTest(_RunTestExecutionTest):
             }
         })
     self.assertEqual(
-        execution.AsDict(), {
+        executionB.AsDict(), {
             'completed':
                 True,
             'exception':
