@@ -16,6 +16,121 @@
       "message": "Tested on staging - see doc for an example run.",
       "revId": "c8a84459498e39872df3634550884814737acd2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54992a1c_4c68c489",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T19:03:33Z",
+      "side": 1,
+      "message": "Not needed. The len function can take a dict as input.",
+      "range": {
+        "startLine": 170,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 42
+      },
+      "revId": "c8a84459498e39872df3634550884814737acd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a78a9746_754749bd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T19:03:33Z",
+      "side": 1,
+      "message": "a_list, b_list \u003d self._started_executions.values()\n\nNote that the original code will fail when we move to Python 3, as the keys() will return an iterator that no longer supports subscripting.",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 73
+      },
+      "revId": "c8a84459498e39872df3634550884814737acd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8296aef5_4495c4e5",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T19:03:33Z",
+      "side": 1,
+      "message": "Use Python\u0027s integer division operator: attempt_count // 2",
+      "range": {
+        "startLine": 189,
+        "startChar": 11,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "c8a84459498e39872df3634550884814737acd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2be3ecfa_d6222d4b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T19:03:33Z",
+      "side": 1,
+      "message": "When this version is first deployed, we want existing Pinpoint jobs to continue running. So I think we need to add\n\n  not hasattr(self, \u0027_quest\u0027) or",
+      "range": {
+        "startLine": 429,
+        "startChar": 6,
+        "endLine": 429,
+        "endChar": 45
+      },
+      "revId": "c8a84459498e39872df3634550884814737acd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b2bf3c_54a79114",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T19:03:33Z",
+      "side": 1,
+      "message": "One of the \"None\" should be moved to the beginning of the list, for the containing_quest parameter.",
+      "range": {
+        "startLine": 835,
+        "startChar": 70,
+        "endLine": 835,
+        "endChar": 74
+      },
+      "revId": "c8a84459498e39872df3634550884814737acd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
