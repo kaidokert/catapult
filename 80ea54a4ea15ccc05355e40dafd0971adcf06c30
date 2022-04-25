@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81300613_10995b1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T22:43:01Z",
+      "side": 1,
+      "message": "LGTM with a nit.\n\nBefore checking in, I\u0027d suggest the following test: On staging, while a previous version of Pinpoint is active, start a Pinpoint A/B test job. While the job is still running builds, update Pinpoint to this version, and ensure the existing job finishes successfully.",
+      "revId": "80ea54a4ea15ccc05355e40dafd0971adcf06c30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdce339f_9f60af05",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-25T22:43:01Z",
+      "side": 1,
+      "message": "Not needed. The // operator always returns an int.",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 15
+      },
+      "revId": "80ea54a4ea15ccc05355e40dafd0971adcf06c30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
