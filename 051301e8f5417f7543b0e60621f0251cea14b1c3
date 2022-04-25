@@ -16,6 +16,24 @@
       "message": "Does the comment here mean _execution_counts is deprecated with this change? \n\nor did the python linter say something about collections.defaultdict (looks deprecated in more recent py3 versions at least)?\n\nIf the former, can this change just remove the field altogether?",
       "revId": "051301e8f5417f7543b0e60621f0251cea14b1c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ef67288_a630ad6f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-04-25T18:06:33Z",
+      "side": 1,
+      "message": "Done (i.e. removed)",
+      "parentUuid": "1c680fa7_6ee18027",
+      "revId": "051301e8f5417f7543b0e60621f0251cea14b1c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
