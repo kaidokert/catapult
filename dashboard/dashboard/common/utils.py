@@ -860,4 +860,4 @@ def GetBuildbucketUrl(build_id):
 
 
 def IsRunningFlask():
-  return False
+  return True
