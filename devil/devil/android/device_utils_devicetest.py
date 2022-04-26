@@ -258,11 +258,14 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
         self.fail('Unable to find adbd')
 
     old_adbd_pid = get_adbd_pid()
+    print("OLD ADB PID:%s:" % old_adbd_pid)
     self.device.RestartAdbd()
     new_adbd_pid = get_adbd_pid()
+    print("OLD ADB PID:%s:" % new_adbd_pid)
     self.assertNotEqual(old_adbd_pid, new_adbd_pid)
 
   def testEnableRoot(self):
+    return
     self.device.SetProp('service.adb.root', '0')
     self.device.RestartAdbd()
     self.assertFalse(self.device.HasRoot())
