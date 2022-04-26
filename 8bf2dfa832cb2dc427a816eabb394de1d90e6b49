@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1ffbc1_a687bf5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-26T22:14:10Z",
+      "side": 1,
+      "message": "What\u0027s the exact error you were seeing? This should be solvable with some minor changes to how the file is opened/read rather than switching the approach used.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "8bf2dfa832cb2dc427a816eabb394de1d90e6b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
