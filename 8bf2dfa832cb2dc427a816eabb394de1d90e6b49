@@ -22,6 +22,30 @@
       },
       "revId": "8bf2dfa832cb2dc427a816eabb394de1d90e6b49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3139d1d_14585168",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-04-27T00:36:13Z",
+      "side": 1,
+      "message": "I was seeing an error similar to https://stackoverflow.com/questions/35330424/pexpect-expect-in-python3-is-throwing-error-as-must-be-in-str-not-bytes. My understanding is once the log file is used, the logs will be in bytes, but that creates a problem for the expect call since it won\u0027t match the line. I tried putting `b\u0027.*password:\u0027` and various other changes but they all didn\u0027t seem to work. I later found out that we could read port directly using pexpect, so I switched to that implementation.",
+      "parentUuid": "ef1ffbc1_a687bf5b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "8bf2dfa832cb2dc427a816eabb394de1d90e6b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
