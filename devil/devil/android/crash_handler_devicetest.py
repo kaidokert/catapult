@@ -28,16 +28,15 @@ from devil.utils import timeout_retry
 class DeviceCrashTest(device_test_case.DeviceTestCase):
   def setUp(self):
     super(DeviceCrashTest, self).setUp()
-    self.device = device_utils.DeviceUtils(self.serial)
+    self.device = device_utils.DeviceUtils(self.serial, persistent_shell=False)
 
-  def testCrashDuringCommand(self):
+  def testCrashDuringCommandPersistentShellOff(self):
     self.device.EnableRoot()
     with device_temp_file.DeviceTempFile(self.device.adb) as trigger_file:
-
       trigger_text = 'hello world'
 
       def victim():
-        trigger_cmd = 'echo -n %s > %s; sleep 20' % (cmd_helper.SingleQuote(
+        trigger_cmd = 'echo -n %s > %s; sleep 30' % (cmd_helper.SingleQuote(
             trigger_text), cmd_helper.SingleQuote(trigger_file.name))
         crash_handler.RetryOnSystemCrash(
             lambda d: d.RunShellCommand(
@@ -72,6 +71,49 @@ class DeviceCrashTest(device_test_case.DeviceTestCase):
         return True
 
     self.assertEqual([True, True], reraiser_thread.RunAsync([crasher, victim]))
+
+  def testCrashDuringCommandPersistentShellOn(self):
+    return
+    self.device = device_utils.DeviceUtils(self.serial, persistent_shell=True)
+    self.device.EnableRoot()
+    with device_temp_file.DeviceTempFile(self.device.adb) as trigger_file:
+      trigger_text = 'hello world'
+
+      def victim():
+        trigger_cmd = 'echo -n %s > %s; sleep 20' % (cmd_helper.SingleQuote(
+            trigger_text), cmd_helper.SingleQuote(trigger_file.name))
+        crash_handler.RetryOnSystemCrash(lambda d: d.RunShellCommand(
+            trigger_cmd,
+            shell=True,
+            check_return=True,
+            retries=1,
+            as_root=True,
+            timeout=180),
+                                         device=self.device)
+        self.assertEqual(
+            trigger_text,
+            self.device.ReadFile(trigger_file.name, retries=0).strip())
+        return True
+
+      def crasher():
+        def ready_to_crash():
+          try:
+            return trigger_text == self.device.ReadFile(trigger_file.name,
+                                                        retries=0).strip()
+          except device_errors.CommandFailedError:
+            return False
+
+        timeout_retry.WaitFor(ready_to_crash, wait_period=2, max_tries=10)
+        if not ready_to_crash():
+          return False
+        self.device.adb.Shell('echo c > /proc/sysrq-trigger',
+                              expect_status=None,
+                              timeout=60,
+                              retries=0)
+        return True
+
+    self.assertRaises(device_errors.AdbShellCommandFailedError,
+                      reraiser_thread.RunAsync([crasher, victim]))
 
 
 if __name__ == '__main__':
