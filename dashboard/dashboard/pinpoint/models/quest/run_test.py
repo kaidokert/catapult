@@ -112,6 +112,7 @@ class RunTest(quest.Quest):
     self._swarming_tags.update(SwarmingTagsFromJob(job))
     self._comparison_mode = job.comparison_mode
     self._attempt_count = job.state.attempt_count
+    self._bots = job.bots
 
   def Start(self, change, isolate_server, isolate_hash):
     return self._Start(change, isolate_server, isolate_hash, self._extra_args,
