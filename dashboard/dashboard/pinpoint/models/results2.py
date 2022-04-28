@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import collections
 import cloudstorage
+import httplib
 import logging
 import os
 import uuid
@@ -218,14 +219,18 @@ def _FetchHistograms(job):
           continue
 
         histogram_sets = None
-        if mode == 'graphjson':
-          histograms = gtest_json_converter.ConvertGtestJson(
-              _JsonFromExecution(execution))
-          histograms.AddSharedDiagnosticToAllHistograms(
-              reserved_infos.LABELS.name, generic_set.GenericSet([str(change)]))
-          histogram_sets = histograms.AsDicts()
-        else:
-          histogram_sets = _JsonFromExecution(execution)
+        try:
+          if mode == 'graphjson':
+            histograms = gtest_json_converter.ConvertGtestJson(
+                _JsonFromExecution(execution))
+            histograms.AddSharedDiagnosticToAllHistograms(
+                reserved_infos.LABELS.name, generic_set.GenericSet([str(change)]))
+            histogram_sets = histograms.AsDicts()
+          else:
+            histogram_sets = _JsonFromExecution(execution)
+        except httplib.HTTPException as e:
+          logging.debug('Failed to pull histograms for change %s attempt %s', change, attempt_number)
+          continue
 
         logging.debug('Found %s histograms for %s', len(histogram_sets), change)
 

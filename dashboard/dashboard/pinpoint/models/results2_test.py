@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import collections
 import datetime
+import httplib
 import itertools
 import logging
 import mock
@@ -410,6 +411,106 @@ class GenerateResults2Test(testing_common.TestCase):
     ])
     job = _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
                        expected_histogram_set)
+
+    expected_rows = [{
+        'job_start_time': _TEST_START_TIME_STR,
+        'batch_id': 'fake_batch_id',
+        'dims': {
+            'device': {
+                'cfg': 'fake_configuration',
+                'swarming_bot_id': 'fake_id',
+                'os': ['os1', 'os2']
+            },
+            'test_info': {
+                'story': 'fake_story',
+                'benchmark': 'fake_benchmark'
+            },
+            'pairing': {
+                'replica': 0,
+                'variant': 0
+            },
+            'checkout': {
+                'repo': 'fakerepo',
+                'git_hash': 'fakehashA',
+                'commit_position': 437745,
+                'commit_created': '2021-12-08 00:00:00.000000',
+                'branch': 'refs/heads/main'
+            }
+        },
+        'measures': {
+            'core_web_vitals': {
+                'timeToFirstContentfulPaint': 11.0,
+                'totalBlockingTime': 33.0,
+                'largestContentfulPaint': 42.0,
+                'overallCumulativeLayoutShift': 22.0
+            },
+            'speedometer2': {},
+            'motionmark': {}
+        },
+        'run_id': 'fake_job_id'
+    }, {
+        'job_start_time': _TEST_START_TIME_STR,
+        'batch_id': 'fake_batch_id',
+        'dims': {
+            'device': {
+                'cfg': 'fake_configuration',
+                'swarming_bot_id': 'fake_id',
+                'os': ['os1', 'os2']
+            },
+            'test_info': {
+                'story': 'fake_story',
+                'benchmark': 'fake_benchmark'
+            },
+            'pairing': {
+                'replica': 0,
+                'variant': 1
+            },
+            'checkout': {
+                'patch_gerrit_revision': 'fake_patch_set',
+                'commit_position': 437745,
+                'commit_created': '2021-12-08 00:00:00.000000',
+                'patch_gerrit_change': 'fake_patch_issue',
+                'repo': 'fakeRepo',
+                'branch': 'refs/heads/main',
+                'git_hash': 'fakehashB'
+            }
+        },
+        'measures': {
+            'core_web_vitals': {
+                'timeToFirstContentfulPaint': 11.0,
+                'totalBlockingTime': 33.0,
+                'largestContentfulPaint': 42.0,
+                'overallCumulativeLayoutShift': 22.0
+            },
+            'speedometer2': {},
+            'motionmark': {}
+        },
+        'run_id': 'fake_job_id'
+    }]
+
+    results2.GenerateResults2(job)
+    self.maxDiff = None
+    self.assertItemsEqual(mock_bqinsert.call_args_list[0][0][3], expected_rows)
+
+  @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
+  @mock.patch.object(results2, '_InsertBQRows')
+  @mock.patch.object(results2.render_histograms_viewer,
+                     'RenderHistogramsViewer')
+  @mock.patch.object(results2, '_JsonFromExecution')
+  @mock.patch.object(swarming, 'Swarming')
+  @mock.patch.object(commit.Commit, 'GetOrCacheCommitInfo')
+  def testTypeDispatch_PushBQ_QueryException(self, mock_commit_info, mock_swarming,
+                                     mock_json, mock_render, mock_bqinsert):
+    expected_histogram_set = histogram_set.HistogramSet([
+        _CreateHistogram('largestContentfulPaint', 42),
+        _CreateHistogram('timeToFirstContentfulPaint', 11),
+        _CreateHistogram('overallCumulativeLayoutShift', 22),
+        _CreateHistogram('totalBlockingTime', 33),
+        _CreateHistogram('someUselessMetric', 42)
+    ])
+    job = _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
+                       expected_histogram_set)
+    mock_json.side_effect = ["", httplib.HTTPException("Fail")]
 
     expected_rows = [{
         'job_start_time': _TEST_START_TIME_STR,
