@@ -16,7 +16,7 @@ from dashboard.pinpoint.handlers import refresh_jobs
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint import test
 
-
+@mock.patch('dashboard.pinpoint.models.job.QueryBots', mock.MagicMock(return_value=["a"]))
 class RefreshJobsTest(test.TestCase):
 
   def setUp(self):
