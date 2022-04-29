@@ -112,6 +112,7 @@ class RunTest(quest.Quest):
     self._swarming_tags.update(SwarmingTagsFromJob(job))
     self._comparison_mode = job.comparison_mode
     self._attempt_count = job.state.attempt_count
+    self._bots = job.bots
 
   def Start(self, change, isolate_server, isolate_hash):
     return self._Start(change, isolate_server, isolate_hash, self._extra_args,
@@ -198,40 +199,13 @@ class RunTest(quest.Quest):
     random.shuffle(orderings)
     return orderings
 
-  def _QueryBots(self):
-    # Queries Swarming for the set of bots we can use for this test.
-    if self._bots:
-      return
-
-    dimensions = {p['key']: p['value'] for p in self._dimensions}
-    results = swarming.Swarming(self._swarming_server).Bots().List(
-        dimensions=dimensions, is_dead='FALSE', quarantined='FALSE')
-    if 'items' in results:
-      self._bots = [i['bot_id'] for i in results['items']]
-
-  def _GetBot(self, index):
-    # Returns the same bot for each index,
-    # a random bot matching _dimensions if index doesn't have an entry yet,
-    # or None if something goes wrong
-
-    if index in self._assigned_bots:
-      return self._assigned_bots[index]
-
-    self._QueryBots()
-
-    if self._bots and len(self._bots) > 0:
-      self._assigned_bots[index] = random.choice(self._bots)
-      return self._assigned_bots[index]
-    else:
-      raise errors.SwarmingNoBots()
-
   def _GetDimensions(self, index):
     # Adds a bot_id to dimensions
     if not hasattr(self, '_comparison_mode') or self._comparison_mode != 'try':
       return self._dimensions
     dimensions = list(self._dimensions)
 
-    bot_id = self._GetBot(index)
+    bot_id = self._bots[index % len(self._bots)]
     if bot_id:
       dimensions.append({'key': 'id', 'value': bot_id})
     return dimensions
