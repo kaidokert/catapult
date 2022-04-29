@@ -33,6 +33,7 @@ DIMENSIONS = [
 
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
+@mock.patch('dashboard.pinpoint.models.job.QueryBots', mock.MagicMock(return_value=["a"]))
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
@@ -517,7 +518,7 @@ AttributeError: 'Namespace' object has no attribute 'benchmark_names'"""
   def testEvaluateHandleFailures_Retry(self, *_):
     self.skipTest('Deferring implementation pending design.')
 
-
+@mock.patch('dashboard.pinpoint.models.job.QueryBots', mock.MagicMock(return_value=["a"]))
 class ValidatorTest(test.TestCase):
 
   def setUp(self):

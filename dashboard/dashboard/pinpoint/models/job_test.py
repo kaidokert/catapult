@@ -84,6 +84,7 @@ def FakeCommitAsDict(commit_self):
 
 @mock.patch.object(job.results2, 'GetCachedResults2',
                    mock.MagicMock(return_value='http://foo'))
+@mock.patch('dashboard.pinpoint.models.job.QueryBots', mock.MagicMock(return_value=["a"]))
 class JobTest(test.TestCase):
 
   @mock.patch.object(
@@ -174,6 +175,7 @@ class RetryTest(test.TestCase):
 @mock.patch('dashboard.pinpoint.models.job_state.JobState.ChangesExamined',
             lambda _: 10)
 @mock.patch('dashboard.common.utils.ServiceAccountHttp', mock.MagicMock())
+@mock.patch('dashboard.pinpoint.models.job.QueryBots', mock.MagicMock(return_value=["a"]))
 class BugCommentTest(test.TestCase):
 
   def setUp(self):
