@@ -56,6 +56,30 @@
       },
       "revId": "cd9dc509de193b5c168c3b75715a4be19e987c56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b9d286f_a9143ed6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-30T02:09:18Z",
+      "side": 1,
+      "message": "Removed. Thanks!",
+      "parentUuid": "577f1476_6b031668",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 29
+      },
+      "revId": "cd9dc509de193b5c168c3b75715a4be19e987c56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
