@@ -16,6 +16,23 @@
       "message": "Example - https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/1429b7ff000000",
       "revId": "86d8f499158a9078d71ad830655a19beb5f2ed47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f16783a9_bc6f282c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-05-02T23:47:18Z",
+      "side": 1,
+      "message": "What would be the effect on bisect? Failing a bisect due to one failed build might be too strict.",
+      "revId": "86d8f499158a9078d71ad830655a19beb5f2ed47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
