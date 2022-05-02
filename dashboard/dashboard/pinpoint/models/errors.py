@@ -11,17 +11,17 @@ Here's the exception hierarchy:
 
   JobError
    +-- FatalError
+   |    +-- BuildFailed
+   |    +-- BuildCancelled
    |    +-- BuildIsolateNotFound
    |    +-- SwarmingExpired
    |    +-- AllRunsFailed
    |    +-- ExecutionEngineErrors
-   +-- InformationalError
-   |    +-- BuildFailed
-   |    +-- BuildCancelled
-   |    +-- BuildNumberExceeded
    |    +-- BuildGerritUrlNotFound
    |    +-- BuildGerritURLInvalid
    |    +-- CancelError
+   +-- InformationalError
+   |    +-- BuildNumberExceeded
    |    +-- SwarmingTaskError
    |    +-- SwarmingTaskFailed
    |    +-- SwarmingNoBots
@@ -92,7 +92,7 @@ class BuildIsolateNotFound(FatalError):
         'to run any tests against this revision.')
 
 
-class BuildFailed(InformationalError):
+class BuildFailed(FatalError):
   category = 'build'
 
   def __init__(self, reason):
@@ -102,25 +102,16 @@ class BuildFailed(InformationalError):
         'revision.' % reason)
 
 
-class BuildCancelled(InformationalError):
+class BuildCancelled(FatalError):
 
   def __init__(self, reason):
     super(BuildCancelled,
           self).__init__('The build was cancelled with reason: %s. "\
         "Pinpoint will be unable to run any tests against this "\
-        "revision.' % reason)
+        "revision.'                    % reason)
 
 
-class BuildNumberExceeded(InformationalError):
-
-  def __init__(self, reason):
-    # pylint: disable=line-too-long
-    super(BuildNumberExceeded,
-          self).__init__('Bisected max number of times: %d. To bisect further, consult '\
-            'https://chromium.googlesource.com/catapult/+/HEAD/dashboard/dashboard/pinpoint/docs/abort_error.md' % reason)
-
-
-class BuildGerritUrlNotFound(InformationalError):
+class BuildGerritUrlNotFound(FatalError):
 
   def __init__(self, reason):
     super(BuildGerritUrlNotFound, self).__init__(
@@ -128,7 +119,7 @@ class BuildGerritUrlNotFound(InformationalError):
         'to run any tests against this revision.' % reason)
 
 
-class BuildGerritURLInvalid(InformationalError):
+class BuildGerritURLInvalid(FatalError):
   category = 'request'
 
   def __init__(self, reason):
@@ -138,7 +129,7 @@ class BuildGerritURLInvalid(InformationalError):
         'c/chromium/src/+/12345' % reason)
 
 
-class CancelError(InformationalError):
+class CancelError(FatalError):
 
   def __init__(self, reason):
     super(CancelError,
@@ -155,6 +146,15 @@ class SwarmingExpired(FatalError):
         'likely due to the bots being overloaded, dead, or misconfigured. '\
         'Pinpoint will stop this job to avoid potentially overloading the '\
         'bots further.')
+
+
+class BuildNumberExceeded(InformationalError):
+
+  def __init__(self, reason):
+    # pylint: disable=line-too-long
+    super(BuildNumberExceeded,
+          self).__init__('Bisected max number of times: %d. To bisect further, consult '\
+            'https://chromium.googlesource.com/catapult/+/HEAD/dashboard/dashboard/pinpoint/docs/abort_error.md' % reason)
 
 
 class SwarmingTaskError(InformationalError):
