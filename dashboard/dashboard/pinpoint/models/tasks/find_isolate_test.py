@@ -25,9 +25,7 @@ class FindIsolateEvaluatorBase(test.TestCase):
   def setUp(self):
     super(FindIsolateEvaluatorBase, self).setUp()
     self.maxDiff = None  # pylint: disable=invalid-name
-    with mock.patch('dashboard.pinpoint.models.job.QueryBots',
-                    mock.MagicMock(return_value=["a"])):
-      self.job = job_module.Job.New((), ())
+    self.job = job_module.Job.New((), ())
     task_module.PopulateTaskGraph(
         self.job,
         find_isolate.CreateGraph(

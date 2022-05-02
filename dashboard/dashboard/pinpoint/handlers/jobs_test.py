@@ -18,8 +18,6 @@ from dashboard.pinpoint.models import results2 as results2_module
 _SERVICE_ACCOUNT_EMAIL = 'some-service-account@example.com'
 
 
-@mock.patch('dashboard.pinpoint.models.job.QueryBots',
-            mock.MagicMock(return_value=["a"]))
 class JobsTest(test.TestCase):
 
   @mock.patch.object(utils,
