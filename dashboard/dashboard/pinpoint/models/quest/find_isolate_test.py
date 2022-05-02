@@ -278,9 +278,9 @@ class BuildTest(_FindIsolateExecutionTest):
 
     # Request a build.
     put.return_value = self.FakePutReturn()
-    execution.Poll()
 
-    self.assertExecutionFailure(execution, errors.BuildGerritUrlNotFound)
+    with self.assertRaises(errors.BuildGerritUrlNotFound):
+      execution.Poll()
 
   def testBuildNoBucket(self, put, _):
     change = change_test.Change(123, 456, patch=True)
@@ -635,9 +635,9 @@ class BuildTest(_FindIsolateExecutionTest):
             'failure_reason': 'BUILD_FAILURE',
         }
     }
-    execution.Poll()
 
-    self.assertExecutionFailure(execution, errors.BuildFailed)
+    with self.assertRaises(errors.BuildFailed):
+      execution.Poll()
 
   @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: True)
   def testBuildFailureV2(self, put, get_job_status):
@@ -653,9 +653,8 @@ class BuildTest(_FindIsolateExecutionTest):
     get_job_status.return_value = {
         'status': 'FAILURE',
     }
-    execution.Poll()
-
-    self.assertExecutionFailure(execution, errors.BuildFailed)
+    with self.assertRaises(errors.BuildFailed):
+      execution.Poll()
 
   @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: False)
   def testBuildCanceled(self, put, get_job_status):
@@ -675,9 +674,9 @@ class BuildTest(_FindIsolateExecutionTest):
             'cancelation_reason': 'TIMEOUT',
         }
     }
-    execution.Poll()
 
-    self.assertExecutionFailure(execution, errors.BuildCancelled)
+    with self.assertRaises(errors.BuildCancelled):
+      execution.Poll()
 
   @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: True)
   def testBuildCanceledV2(self, put, get_job_status):
@@ -697,9 +696,9 @@ class BuildTest(_FindIsolateExecutionTest):
         },
     }
 
-    execution.Poll()
+    with self.assertRaises(errors.BuildCancelled):
+      execution.Poll()
 
-    self.assertExecutionFailure(execution, errors.BuildCancelled)
 
   def testBuildSucceededButIsolateIsMissing(self, put, get_job_status):
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
