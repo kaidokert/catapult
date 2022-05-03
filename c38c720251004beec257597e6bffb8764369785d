@@ -16,6 +16,24 @@
       "message": "Are the _IsTryJob() checks to prevent this from applying to bisect jobs?",
       "revId": "c38c720251004beec257597e6bffb8764369785d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c069d2dc_45b38ae8",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-05-03T22:35:23Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "a376cf1d_233c2261",
+      "revId": "c38c720251004beec257597e6bffb8764369785d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
