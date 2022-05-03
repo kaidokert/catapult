@@ -42,11 +42,12 @@ _PP_TO_PERF_BUILDER_MAP = {
 
 class FindIsolate(quest.Quest):
 
-  def __init__(self, builder, target, bucket, fallback_target=None):
+  def __init__(self, builder, target, bucket, fallback_target, comparison_mode):
     self._builder_name = builder
     self._target = target
     self._bucket = bucket
     self._fallback_target = fallback_target
+    self._comparison_mode = comparison_mode
 
     self._previous_builds = {}
     self._build_tags = collections.OrderedDict()
@@ -94,7 +95,8 @@ class FindIsolate(quest.Quest):
         arguments['builder'],
         arguments['target'],
         arguments['bucket'],
-        fallback_target=arguments.get('fallback_target'))
+        arguments.get('fallback_target'),
+        arguments['comparison_mode'])
 
 
 class _FindIsolateExecution(execution.Execution):
@@ -106,13 +108,15 @@ class _FindIsolateExecution(execution.Execution):
                change,
                previous_builds,
                build_tags,
-               fallback_target=None):
+               fallback_target,
+               comparison_mode):
     super(_FindIsolateExecution, self).__init__()
     self._builder_name = builder_name
     self._target = target
     self._bucket = bucket
     self._change = change
     self._fallback_target = fallback_target
+    self._comparison_mode = comparison_mode
 
     # previous_builds is shared among all Executions of the same Quest.
     self._previous_builds = previous_builds
@@ -217,7 +221,11 @@ class _FindIsolateExecution(execution.Execution):
     if build['status'] != 'COMPLETED':
       return
     if build['result'] == 'FAILURE':
-      raise errors.BuildFailed(build['failure_reason'])
+      reason = build['failure_reason']
+      if self._comparison_mode == 'try':
+        raise errors.BuildFailedFatal(reason)
+      else:
+        raise errors.BuildFailed(reason)
     if build['result'] == 'CANCELED':
       raise errors.BuildCancelled(build['cancelation_reason'])
 

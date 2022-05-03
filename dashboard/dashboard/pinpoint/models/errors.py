@@ -11,10 +11,15 @@ Here's the exception hierarchy:
 
   JobError
    +-- FatalError
-   |    +-- BuildIsolateNotFound
-   |    +-- SwarmingExpired
    |    +-- AllRunsFailed
+   |    +-- BuildCancelledFatal
+   |    +-- BuildFailedFatal
+   |    +-- BuildGerritURLInvalidFatal
+   |    +-- BuildGerritUrlNotFoundFatal
+   |    +-- BuildIsolateNotFound
+   |    +-- CancelErrorFatal
    |    +-- ExecutionEngineErrors
+   |    +-- SwarmingExpired
    +-- InformationalError
    |    +-- BuildFailed
    |    +-- BuildCancelled
@@ -101,6 +106,10 @@ class BuildFailed(InformationalError):
         'Pinpoint will be unable to run any tests against this '\
         'revision.' % reason)
 
+class BuildFailedFatal(BuildFailed, FatalError):
+  def __init__(self, reason):
+    super(BuildFailed, self).__init__(reason)
+
 
 class BuildCancelled(InformationalError):
 
@@ -110,6 +119,9 @@ class BuildCancelled(InformationalError):
         "Pinpoint will be unable to run any tests against this "\
         "revision.' % reason)
 
+class BuildCancelledFatal(BuildCancelled, FatalError):
+  def __init__(self, reason):
+    super(BuildCancelled, self).__init__(reason)
 
 class BuildNumberExceeded(InformationalError):
 
@@ -127,6 +139,9 @@ class BuildGerritUrlNotFound(InformationalError):
         'Unable to find gerrit url for commit %s. Pinpoint will be unable '\
         'to run any tests against this revision.' % reason)
 
+class BuildGerritUrlNotFoundFatal(BuildGerritUrlNotFound, FatalError):
+  def __init__(self, reason):
+    super(BuildGerritUrlNotFound, self).__init(reason)
 
 class BuildGerritURLInvalid(InformationalError):
   category = 'request'
@@ -137,6 +152,9 @@ class BuildGerritURLInvalid(InformationalError):
         'redirected patch URL, ie. https://chromium-review.googlesource.com/'\
         'c/chromium/src/+/12345' % reason)
 
+class BuildGerritURLInvalidFatal(BuildGerritURLInvalid, FatalError):
+  def __init__(self, reason):
+      super(BuildGerritURLInvalid, self).__init__(reason)
 
 class CancelError(InformationalError):
 
@@ -144,6 +162,9 @@ class CancelError(InformationalError):
     super(CancelError,
           self).__init__('Cancellation request failed: {}'.format(reason))
 
+class CancelErrorFatal(CancelError, FatalError):
+  def __init__(self, reason):
+      super(CancelError, self).__init__(reason)
 
 class SwarmingExpired(FatalError):
 
