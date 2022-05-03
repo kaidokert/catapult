@@ -756,7 +756,10 @@ class Job(ndb.Model):
         # ensure the job stops running after a user cancels the job.
         self.cancelled = True
         logging.debug('Pinpoint job forced to stop because job meets cancellation conditions')
-        raise errors.BuildCancelled('Pinpoint Job cancelled')
+        if self.comparison_mode == 'try':
+          raise errors.BuildCancelledFatal('Pinpoint Job cancelled')
+        else:
+          raise errors.BuildCancelled('Pinpoint Job cancelled')
       if self.use_execution_engine:
         # Treat this as if it's a poll, and run the handler here.
         context = task_module.Evaluate(
