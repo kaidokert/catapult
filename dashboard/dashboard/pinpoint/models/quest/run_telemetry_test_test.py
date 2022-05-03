@@ -60,22 +60,6 @@ class StartTest(unittest.TestCase):
                      ['arg', '--results-label', mock.ANY])
     self.assertIn('vpython3', execution.command)
 
-  def testStartPy2(self, get_commit):
-    get_commit.return_value = {'number': 888888}
-    quest = run_telemetry_test.RunTelemetryTest('server',
-                                                run_test_test.DIMENSIONS,
-                                                ['arg'], _BASE_SWARMING_TAGS,
-                                                _TELEMETRY_COMMAND,
-                                                'out/Release')
-    change = mock.MagicMock(spec=change_module.Change)
-    change.base_commit = mock.MagicMock(spec=commit.Commit)
-    change.base_commit.AsDict = mock.MagicMock(
-        return_value={'commit_position': 888888})
-    execution = quest.Start(change, 'https://isolate.server', 'isolate hash')
-    self.assertEqual(execution._extra_args,
-                     ['arg', '--results-label', mock.ANY])
-    self.assertIn('vpython', execution.command)
-
   def testSwarmingTags(self, get_commit):
     get_commit.return_value = {'number': 675460}
     arguments = dict(_BASE_ARGUMENTS)
