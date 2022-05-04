@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8152a85_a296258c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1123071
+      },
+      "writtenOn": "2022-05-04T19:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52f107ec_b094fdfe",
+      "revId": "ba6708dff69bc0cfee69b37323928d749dd50f36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8522a44_6bc6b645",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-04T18:02:27Z",
       "side": 1,
       "message": "nit: \"If isLoadingOutermostMainFrame is available, use it...\"",
+      "range": {
+        "startLine": 324,
+        "startChar": 16,
+        "endLine": 324,
+        "endChar": 43
+      },
+      "revId": "ba6708dff69bc0cfee69b37323928d749dd50f36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dadb1035_4b551251",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1123071
+      },
+      "writtenOn": "2022-05-04T19:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8522a44_6bc6b645",
       "range": {
         "startLine": 324,
         "startChar": 16,
