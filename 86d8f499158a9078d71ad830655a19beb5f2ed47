@@ -51,6 +51,24 @@
       "parentUuid": "f16783a9_bc6f282c",
       "revId": "86d8f499158a9078d71ad830655a19beb5f2ed47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd8fdce_fa1b49d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-05-04T15:51:57Z",
+      "side": 1,
+      "message": "This now only applies to try jobs.",
+      "parentUuid": "1dd149b4_910b532d",
+      "revId": "86d8f499158a9078d71ad830655a19beb5f2ed47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
