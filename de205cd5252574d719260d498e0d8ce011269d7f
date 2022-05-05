@@ -16,6 +16,29 @@
       "message": "Not sure if this is valid, thought I\u0027d check before trying to fix the unit test presubmit checks associated with this change.",
       "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78c5971f_e87dacc2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3878,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-05-05T01:00:18Z",
+      "side": 1,
+      "message": "Is this prop supported on all android versions we care about? (ie: M and above)",
+      "range": {
+        "startLine": 3878,
+        "startChar": 38,
+        "endLine": 3878,
+        "endChar": 49
+      },
+      "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
