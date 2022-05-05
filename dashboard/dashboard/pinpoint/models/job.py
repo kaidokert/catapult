@@ -172,9 +172,9 @@ def QueryBots(dimensions, swarming_server):
   # Queries Swarming for the set of bots we can use for this test.
   query_dimensions = {p['key']: p['value'] for p in dimensions}
   results = swarming.Swarming(swarming_server).Bots().List(
-      dimensions=query_dimensions, is_dead='FALSE', quarantined='FALSE')
+      dimensions=query_dimensions, is_dead='FALSE')
   if 'items' in results:
-    bots = [i['bot_id'] for i in results['items']]
+    bots = [i['bot_id'] for i in results['items'] if "No available devices" not in i['state']]
     random.shuffle(bots)
     return bots
   else:
