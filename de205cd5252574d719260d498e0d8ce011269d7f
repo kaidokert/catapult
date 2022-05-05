@@ -39,6 +39,30 @@
       },
       "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50aa054c_74c9b057",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3878,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-05-05T17:13:36Z",
+      "side": 1,
+      "message": "I tested it on an M (and an L emulator) and it seems to work on both, as the PID changed after the restart.\n\nL device\nroot@generic_x86:/ # ps -C adbd\nUSER     PID   PPID  VSIZE  RSS     WCHAN    PC        NAME\nroot      3639  1     17336  456   ffffffff 0806dc05 S /sbin/adbd\nroot@generic_x86:/ # setprop ctl.restart adbd                                  \nbjoyce@bjoyce:/usr/local/google/code/clankium/src$ adb shell\nroot@generic_x86:/ # ps -C adbd\nUSER     PID   PPID  VSIZE  RSS     WCHAN    PC        NAME\nroot      3670  1     17336  448   ffffffff 0806dc05 S /sbin/adbd\n\nM device\nroot@generic_x86:/ ps\nroot      4127  1     7976   416            0 0808eab6 R /sbin/adbd\nroot@generic_x86:/ # setprop ctl.restart adbd\nadb shell\nroot@generic_x86:/ ps\nroot      4201  1     7976   524            0 0808e495 S /sbin/adbd",
+      "parentUuid": "78c5971f_e87dacc2",
+      "range": {
+        "startLine": 3878,
+        "startChar": 38,
+        "endLine": 3878,
+        "endChar": 49
+      },
+      "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
