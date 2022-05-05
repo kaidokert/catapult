@@ -87,6 +87,30 @@
       },
       "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9535f541_05553b4a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3878,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-05-05T18:59:19Z",
+      "side": 1,
+      "message": "Ya,I didn\u0027t want  to work on it until I made sure this change was valid.",
+      "parentUuid": "4f0465a3_a69f187e",
+      "range": {
+        "startLine": 3878,
+        "startChar": 38,
+        "endLine": 3878,
+        "endChar": 49
+      },
+      "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
