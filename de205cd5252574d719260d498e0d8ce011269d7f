@@ -63,6 +63,30 @@
       },
       "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0465a3_a69f187e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3878,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-05-05T17:28:25Z",
+      "side": 1,
+      "message": "sgtm\n\nThere\u0027s unittests that prob need updating for this?",
+      "parentUuid": "50aa054c_74c9b057",
+      "range": {
+        "startLine": 3878,
+        "startChar": 38,
+        "endLine": 3878,
+        "endChar": 49
+      },
+      "revId": "de205cd5252574d719260d498e0d8ce011269d7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
