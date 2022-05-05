@@ -56,6 +56,30 @@
       },
       "revId": "fa4c5bf5654b09bab8a251508fd469b68490f9be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c0908f_3d12cefb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-05-05T04:25:00Z",
+      "side": 1,
+      "message": "SGTM. Thanks!",
+      "parentUuid": "8d0d442a_7de24d9f",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 0
+      },
+      "revId": "fa4c5bf5654b09bab8a251508fd469b68490f9be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
