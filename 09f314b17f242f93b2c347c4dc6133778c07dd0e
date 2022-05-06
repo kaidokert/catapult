@@ -52,6 +52,24 @@
       "parentUuid": "5d129235_2054e274",
       "revId": "09f314b17f242f93b2c347c4dc6133778c07dd0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "449ca9ba_ad030fd7",
+        "filename": "dashboard/dashboard/services/swarming.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-05-06T18:22:18Z",
+      "side": 1,
+      "message": "If \"bot\" always means \"bot id\" in pinpoint code, this is fine don\u0027t worry about it.",
+      "parentUuid": "bc2dc05c_1149000a",
+      "revId": "09f314b17f242f93b2c347c4dc6133778c07dd0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
