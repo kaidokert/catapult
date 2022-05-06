@@ -24,6 +24,7 @@ class TestPerfControl(device_test_case.DeviceTestCase):
   def testHighPerfMode(self):
     perf = perf_control.PerfControl(self._device)
     try:
+      cpu_info = perf.GetCpuInfo()
       perf.SetPerfProfilingMode()
       cpu_info = perf.GetCpuInfo()
       self.assertEqual(len(perf._cpu_files), len(cpu_info))
@@ -32,6 +33,7 @@ class TestPerfControl(device_test_case.DeviceTestCase):
         self.assertEqual('performance', governor)
     finally:
       perf.SetDefaultPerfMode()
+    sys.exit()
 
 
 if __name__ == '__main__':
