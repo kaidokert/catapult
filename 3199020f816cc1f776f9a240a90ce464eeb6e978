@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0512b533_bbdcdd34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-06T22:56:26Z",
+      "side": 1,
+      "message": "PTAL\n\nAt the very least, doesn\u0027t break anything in Chromium https://chromium-review.googlesource.com/c/chromium/src/+/3632036, although it\u0027s hard to confirm that caching is working as expected on the new platforms since the minidump tests don\u0027t output logs unless a test fails. I can confirm that it\u0027s finding/using the cache on Android in https://chromium-swarm.appspot.com/task?id\u003d5ab420c79ffc1d10, though.",
+      "revId": "3199020f816cc1f776f9a240a90ce464eeb6e978",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
