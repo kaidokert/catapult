@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1524927_307d98fc",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-05-09T17:36:35Z",
+      "side": 1,
+      "message": "Is `--instant` supported on all OS levels? If not, do we need any special exception handling or is adb\u0027s failure message obvious enough?",
+      "range": {
+        "startLine": 995,
+        "startChar": 6,
+        "endLine": 995,
+        "endChar": 29
+      },
+      "revId": "4f0d35116471608e15ee71f9b9b8cbfb9c0bf77a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
