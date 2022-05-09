@@ -901,7 +901,8 @@ class AdbWrapper(object):
               sd_card=False,
               streaming=None,
               timeout=DEFAULT_LONG_TIMEOUT,
-              retries=DEFAULT_RETRIES):
+              retries=DEFAULT_RETRIES,
+              instant_app=False):
     """Install an apk on the device.
 
     Args:
@@ -927,6 +928,8 @@ class AdbWrapper(object):
       cmd.append('-s')
     if allow_downgrade:
       cmd.append('-d')
+    if instant_app:
+      cmd.append('--instant')
     if streaming in (True, False):
       if (du_version.LooseVersion(self.Version()) <
           du_version.LooseVersion('1.0.40')):
@@ -952,7 +955,8 @@ class AdbWrapper(object):
                       partial=False,
                       streaming=None,
                       timeout=DEFAULT_LONG_TIMEOUT,
-                      retries=DEFAULT_RETRIES):
+                      retries=DEFAULT_RETRIES,
+                      instant_app=False):
     """Install an apk with splits on the device.
 
     Args:
@@ -987,6 +991,8 @@ class AdbWrapper(object):
       cmd.append('-s')
     if allow_downgrade:
       cmd.append('-d')
+    if instant_app:
+      cmd.append('--instant')
     if streaming in (True, False):
       if (du_version.LooseVersion(self.Version()) <
           du_version.LooseVersion('1.0.40')):
