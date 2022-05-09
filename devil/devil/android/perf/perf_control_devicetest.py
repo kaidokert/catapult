@@ -22,6 +22,7 @@ class TestPerfControl(device_test_case.DeviceTestCase):
     self._device = device_utils.DeviceUtils(self.serial)
 
   def testHighPerfMode(self):
+    return
     perf = perf_control.PerfControl(self._device)
     try:
       perf.SetPerfProfilingMode()

@@ -25,11 +25,20 @@ from devil.utils import timeout_retry
 
 _TEST_DATA_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), 'test', 'data'))
+# Parameters for for if the adb shell should be persistent or not.
+_ADB_SHELL_PARAM_LIST = [True, False]
 
 
 def _hostAdbPids():
   ps_status, ps_output = cmd_helper.GetCmdStatusAndOutput(
-      ['pgrep', '-l', 'adb'])
+      ['ps', '-ux',])
+  #print(ps_output)
+  ps_status, ps_output = cmd_helper.GetCmdStatusAndOutput(
+      ['ps', '-ef',])
+  #print(ps_output)
+  ps_status, ps_output = cmd_helper.GetCmdStatusAndOutput(
+    ['pgrep', '-l', 'adb'])
+  print(ps_output)
   if ps_status != 0:
     return []
 
@@ -81,6 +90,7 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
       adb_wrapper.AdbWrapper.StartServer()
 
     adb_pids = _hostAdbPids()
+    print(adb_pids)
     self.assertGreaterEqual(len(adb_pids), 1)
 
     kill_server_status, _ = cmd_helper.GetCmdStatusAndOutput(
@@ -88,32 +98,40 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
     self.assertEqual(0, kill_server_status)
 
     adb_pids = _hostAdbPids()
+    print(adb_pids)
     self.assertEqual(0, len(adb_pids))
 
   def testDevices(self):
     devices = adb_wrapper.AdbWrapper.Devices()
     self.assertNotEqual(0, len(devices), 'No devices found.')
 
-  def getTestInstance(self):
+  def getTestInstance(self, persistent_shell=False):
     """Creates a real AdbWrapper instance for testing."""
-    return adb_wrapper.AdbWrapper(self.serial)
+    return adb_wrapper.AdbWrapper(self.serial,
+                                  persistent_shell=persistent_shell)
 
   def testShell(self):
-    under_test = self.getTestInstance()
-    shell_ls_result = under_test.Shell('ls')
-    self.assertIsInstance(shell_ls_result, str)
-    self.assertTrue(bool(shell_ls_result))
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        shell_ls_result = under_test.Shell('ls')
+        self.assertIsInstance(shell_ls_result, str)
+        self.assertTrue(bool(shell_ls_result))
 
   def testShell_failed(self):
-    under_test = self.getTestInstance()
-    with self.assertRaises(device_errors.AdbShellCommandFailedError):
-      under_test.Shell('ls /foo/bar/baz')
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        with self.assertRaises(device_errors.AdbShellCommandFailedError):
+          under_test.Shell('ls /foo/bar/baz')
 
   def testShell_externalStorageDefined(self):
-    under_test = self.getTestInstance()
-    external_storage = under_test.Shell('echo $EXTERNAL_STORAGE')
-    self.assertIsInstance(external_storage, str)
-    self.assertTrue(posixpath.isabs(external_storage))
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        external_storage = under_test.Shell('echo $EXTERNAL_STORAGE')
+        self.assertIsInstance(external_storage, str)
+        self.assertTrue(posixpath.isabs(external_storage))
 
   @contextlib.contextmanager
   def getTestPushDestination(self, under_test):
@@ -136,51 +154,60 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
       under_test.Shell('rm -rf %s' % path)
 
   def testPush_fileToFile(self):
-    under_test = self.getTestInstance()
-    with self.getTestPushDestination(under_test) as push_target_directory:
-      src = os.path.join(_TEST_DATA_DIR, 'push_file.txt')
-      dest = posixpath.join(push_target_directory, 'push_file.txt')
-      with self.assertRaises(device_errors.AdbShellCommandFailedError):
-        under_test.Shell('ls %s' % dest)
-      under_test.Push(src, dest)
-      self.assertEqual(dest, under_test.Shell('ls %s' % dest).strip())
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        with self.getTestPushDestination(under_test) as push_target_directory:
+          src = os.path.join(_TEST_DATA_DIR, 'push_file.txt')
+          dest = posixpath.join(push_target_directory, 'push_file.txt')
+          with self.assertRaises(device_errors.AdbShellCommandFailedError):
+            under_test.Shell('ls %s' % dest)
+          under_test.Push(src, dest)
+          self.assertEqual(dest, under_test.Shell('ls %s' % dest).strip())
 
   def testPush_fileToDirectory(self):
-    under_test = self.getTestInstance()
-    with self.getTestPushDestination(under_test) as push_target_directory:
-      src = os.path.join(_TEST_DATA_DIR, 'push_file.txt')
-      dest = push_target_directory
-      resulting_file = posixpath.join(dest, 'push_file.txt')
-      with self.assertRaises(device_errors.AdbShellCommandFailedError):
-        under_test.Shell('ls %s' % resulting_file)
-      under_test.Push(src, dest)
-      self.assertEqual(resulting_file,
-                       under_test.Shell('ls %s' % resulting_file).strip())
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        with self.getTestPushDestination(under_test) as push_target_directory:
+          src = os.path.join(_TEST_DATA_DIR, 'push_file.txt')
+          dest = push_target_directory
+          resulting_file = posixpath.join(dest, 'push_file.txt')
+          with self.assertRaises(device_errors.AdbShellCommandFailedError):
+            under_test.Shell('ls %s' % resulting_file)
+          under_test.Push(src, dest)
+          self.assertEqual(resulting_file,
+                           under_test.Shell('ls %s' % resulting_file).strip())
 
   def testPush_directoryToDirectory(self):
-    under_test = self.getTestInstance()
-    with self.getTestPushDestination(under_test) as push_target_directory:
-      src = os.path.join(_TEST_DATA_DIR, 'push_directory')
-      dest = posixpath.join(push_target_directory, 'push_directory')
-      with self.assertRaises(device_errors.AdbShellCommandFailedError):
-        under_test.Shell('ls %s' % dest)
-      under_test.Push(src, dest)
-      self.assertEqual(sorted(os.listdir(src)),
-                       sorted(under_test.Shell('ls %s' % dest).strip().split()))
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        with self.getTestPushDestination(under_test) as push_target_directory:
+          src = os.path.join(_TEST_DATA_DIR, 'push_directory')
+          dest = posixpath.join(push_target_directory, 'push_directory')
+          with self.assertRaises(device_errors.AdbShellCommandFailedError):
+            under_test.Shell('ls %s' % dest)
+          under_test.Push(src, dest)
+          self.assertEqual(
+              sorted(os.listdir(src)),
+              sorted(under_test.Shell('ls %s' % dest).strip().split()))
 
   def testPush_directoryToExistingDirectory(self):
-    under_test = self.getTestInstance()
-    with self.getTestPushDestination(under_test) as push_target_directory:
-      src = os.path.join(_TEST_DATA_DIR, 'push_directory')
-      dest = push_target_directory
-      resulting_directory = posixpath.join(dest, 'push_directory')
-      with self.assertRaises(device_errors.AdbShellCommandFailedError):
-        under_test.Shell('ls %s' % resulting_directory)
-      under_test.Shell('mkdir %s' % resulting_directory)
-      under_test.Push(src, dest)
-      self.assertEqual(
-          sorted(os.listdir(src)),
-          sorted(under_test.Shell('ls %s' % resulting_directory).split()))
+    for par in _ADB_SHELL_PARAM_LIST:
+      with unittest.TestCase.subTest(self):
+        under_test = self.getTestInstance(par)
+        with self.getTestPushDestination(under_test) as push_target_directory:
+          src = os.path.join(_TEST_DATA_DIR, 'push_directory')
+          dest = push_target_directory
+          resulting_directory = posixpath.join(dest, 'push_directory')
+          with self.assertRaises(device_errors.AdbShellCommandFailedError):
+            under_test.Shell('ls %s' % resulting_directory)
+          under_test.Shell('mkdir %s' % resulting_directory)
+          under_test.Push(src, dest)
+          self.assertEqual(
+              sorted(os.listdir(src)),
+              sorted(under_test.Shell('ls %s' % resulting_directory).split()))
 
   # TODO(jbudorick): Implement tests for the following:
   # taskset -c

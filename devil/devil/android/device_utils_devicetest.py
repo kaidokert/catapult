@@ -21,6 +21,10 @@ if __name__ == '__main__':
           '..',
       )))
 
+
+import logging
+logger = logging.getLogger(__name__)
+
 from devil.android import device_test_case
 from devil.android import device_utils
 from devil.android.sdk import adb_wrapper
@@ -37,7 +41,7 @@ _SUB_DIR2 = "sub2"
 class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
   def setUp(self):
     super(DeviceUtilsPushDeleteFilesTest, self).setUp()
-    self.adb = adb_wrapper.AdbWrapper(self.serial)
+    self.adb = adb_wrapper.AdbWrapper(self.serial, persistent_shell=True)
     self.adb.WaitForDevice()
     self.device = device_utils.DeviceUtils(
         self.adb, default_timeout=10, default_retries=0)
@@ -258,6 +262,7 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
         self.fail('Unable to find adbd')
 
     old_adbd_pid = get_adbd_pid()
+    logger.error("IN HE RESTART ADB")
     self.device.RestartAdbd()
     new_adbd_pid = get_adbd_pid()
     self.assertNotEqual(old_adbd_pid, new_adbd_pid)
