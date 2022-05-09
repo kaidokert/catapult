@@ -10,7 +10,7 @@ import collections
 import datetime
 import logging
 import re
-import urlparse
+import six.moves.urllib.parse as urlparse
 
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.change import commit_cache
@@ -149,7 +149,7 @@ class GerritPatch(
       KeyError: The patch doesn't have the given revision.
       ValueError: The URL has an unrecognized format.
     """
-    url_parts = urlparse.urlparse(url)
+    url_parts = urlprase.urlparse(url)
     server = urlparse.urlunsplit(
         (url_parts.scheme, url_parts.netloc, '', '', ''))
 
