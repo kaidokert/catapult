@@ -28,12 +28,11 @@ from devil.utils import timeout_retry
 class DeviceCrashTest(device_test_case.DeviceTestCase):
   def setUp(self):
     super(DeviceCrashTest, self).setUp()
-    self.device = device_utils.DeviceUtils(self.serial)
+    self.device = device_utils.DeviceUtils(self.serial, persistent_shell=False)
 
-  def testCrashDuringCommand(self):
+  def testCrashDuringCommandPersistentShellOff(self):
     self.device.EnableRoot()
     with device_temp_file.DeviceTempFile(self.device.adb) as trigger_file:
-
       trigger_text = 'hello world'
 
       def victim():
@@ -72,7 +71,6 @@ class DeviceCrashTest(device_test_case.DeviceTestCase):
         return True
 
     self.assertEqual([True, True], reraiser_thread.RunAsync([crasher, victim]))
-
 
 if __name__ == '__main__':
   device_test_case.PrepareDevices()
