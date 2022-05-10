@@ -46,6 +46,30 @@
       },
       "revId": "4f0d35116471608e15ee71f9b9b8cbfb9c0bf77a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d64b67b_d82cc529",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-05-10T16:12:56Z",
+      "side": 1,
+      "message": "Can you add a brief message to the python docs as well? Something like \"this will throw on older devices which don\u0027t support instantapps\"",
+      "parentUuid": "817d28fe_c9cdb382",
+      "range": {
+        "startLine": 995,
+        "startChar": 6,
+        "endLine": 995,
+        "endChar": 29
+      },
+      "revId": "4f0d35116471608e15ee71f9b9b8cbfb9c0bf77a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
