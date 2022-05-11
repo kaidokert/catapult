@@ -106,6 +106,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dfa3929_4e2432d1",
+        "filename": "dashboard/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-05-11T18:43:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1beb572_41e01a58",
+      "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f617aa4_93220565",
@@ -154,6 +172,24 @@
       "writtenOn": "2022-05-11T18:40:34Z",
       "side": 1,
       "message": "Added clarification. PTAL.",
+      "parentUuid": "011cebe3_92a0a96f",
+      "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eca4f41_908964fa",
+        "filename": "dashboard/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-05-11T18:43:07Z",
+      "side": 1,
+      "message": "If this works as-is then I think that\u0027s actually preferable. Given the headaches I\u0027ve gone through with different projects clobbering each others\u0027s packages in my python path, if we can specify an exact unambiguous path for chromeperf\u0027s python packages, that\u0027s probably better for me at least.",
       "parentUuid": "011cebe3_92a0a96f",
       "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
