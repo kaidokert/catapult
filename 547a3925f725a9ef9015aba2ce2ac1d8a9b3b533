@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f365d5e5_7b7734e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-05-11T18:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbff45a2_71cb1dfe",
+      "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01ebfac9_b04aae8b",
@@ -72,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1beb572_41e01a58",
+        "filename": "dashboard/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-05-11T18:33:41Z",
+      "side": 1,
+      "message": "This is basically the command used by the recipe on Catapult CQ. I think it\u0027s more reliable to use the same method on dev machines as on CQ.",
+      "parentUuid": "01ebfac9_b04aae8b",
+      "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f617aa4_93220565",
         "filename": "dashboard/README.md",
         "patchSetId": 3
@@ -83,6 +119,24 @@
       "writtenOn": "2022-05-11T18:13:42Z",
       "side": 1,
       "message": "Should this be the dev\u0027s entire PYTHONPATH now? How does python find non-google-cloud-sdk packages, do they all need to be relative to the current working dir after running this?",
+      "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "011cebe3_92a0a96f",
+        "filename": "dashboard/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-05-11T18:33:41Z",
+      "side": 1,
+      "message": "My PYTHONPATH was empty before. I can update the text to make it clear that devs should append to existing PYTHONPATH if they have any.",
+      "parentUuid": "2f617aa4_93220565",
       "revId": "547a3925f725a9ef9015aba2ce2ac1d8a9b3b533",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
