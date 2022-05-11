@@ -36,6 +36,29 @@ subprojects which are also hosted in that directory:
 -   `sheriff_config`: A standalone service for managing sheriff configurations
     hosted in git repositories, accessed through luci-config.
 
+## Unit Tests
+
+Before running dashboard unit tests for the first time, please run the following
+command to set up required dependencies. (You can replace `~/chromium/gae_sdk`
+with another location if you prefer.)
+
+```
+echo infra/gae_sdk/python/all latest | cipd ensure -root ~/chromium/gae_sdk -ensure-file -
+```
+
+Then run the following command to update `PYTHONPATH`. It is recommended to add
+this to your `.bashrc` or equivalent.
+
+```
+export PYTHONPATH=~/chromium/gae_sdk
+```
+
+After the above setup, run dashboard unit tests with:
+
+```
+dashboard/bin/run_py_tests
+```
+
 ## Contact
 
 Bugs can be reported on the Chromium issue tracker using the `Speed>Dashboard`
