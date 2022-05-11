@@ -356,11 +356,11 @@ def _JoinLines(lines):
   return ''.join(s for line in lines for s in (line, '\n'))
 
 
-def _CreateAdbWrapper(device):
+def _CreateAdbWrapper(device, **kwargs):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
   else:
-    return adb_wrapper.AdbWrapper(device)
+    return adb_wrapper.AdbWrapper(device, **kwargs)
 
 
 def _FormatPartialOutputError(output):
@@ -444,7 +444,8 @@ class DeviceUtils(object):
                device,
                enable_device_files_cache=False,
                default_timeout=_DEFAULT_TIMEOUT,
-               default_retries=_DEFAULT_RETRIES):
+               default_retries=_DEFAULT_RETRIES,
+               persistent_shell=False):
     """DeviceUtils constructor.
 
     Args:
@@ -459,7 +460,7 @@ class DeviceUtils(object):
     """
     self.adb = None
     if isinstance(device, six.string_types):
-      self.adb = _CreateAdbWrapper(device)
+      self.adb = _CreateAdbWrapper(device, persistent_shell=persistent_shell)
     elif isinstance(device, adb_wrapper.AdbWrapper):
       self.adb = device
     else:
@@ -1528,7 +1529,6 @@ class DeviceUtils(object):
       CommandTimeoutError on timeout.
       DeviceUnreachableError on missing device.
     """
-
     def env_quote(key, value):
       if not DeviceUtils._VALID_SHELL_VARIABLE.match(key):
         raise KeyError('Invalid shell variable name %r' % key)
@@ -3742,6 +3742,7 @@ class DeviceUtils(object):
                      retries=1,
                      enable_usb_resets=False,
                      abis=None,
+                     persistent_shell=False,
                      **kwargs):
     """Returns a list of DeviceUtils instances.
 
@@ -3772,6 +3773,9 @@ class DeviceUtils(object):
           those that appear to be android devices.
       abis: A list of ABIs for which the device needs to support at least one of
           (optional). See devil.android.ndk.abis for valid values.
+      persistent_shell: Makes AdbWrapper pipe commands through a single
+          "adb shell" instead of spawning a new shell each invocation. Can
+          save a lot of time as adb shell startup can be nearly 100ms.
       A device serial, or a list of device serials (optional).
 
     Returns:
@@ -3817,10 +3821,15 @@ class DeviceUtils(object):
         devices = [cls(x, **kwargs) for x in device_arg if not denylisted(x)]
       else:
         devices = []
-        for adb in adb_wrapper.AdbWrapper.Devices():
+        #persistent_shell = True
+        print("USING PERSiSTENT SHELL: %s" % persistent_shell)
+        for adb in adb_wrapper.AdbWrapper.Devices(
+            persistent_shell=persistent_shell):
           serial = adb.GetDeviceSerial()
           if not denylisted(serial):
-            device = cls(_CreateAdbWrapper(adb), **kwargs)
+            device = cls(
+                _CreateAdbWrapper(adb, persistent_shell=persistent_shell),
+                **kwargs)
             supported_abis = device.GetSupportedABIs()
             if not supported_abis:
               supported_abis = [device.GetABI()]
@@ -3878,6 +3887,9 @@ class DeviceUtils(object):
     self.RunShellCommand(['setprop', 'ctl.restart', 'adbd'],
                          check_return=False,
                          as_root=True)
+    # Need to kill persistent shells as the restart kills the connection.
+    logging.error("KILL PERSISTENT ADBS RESTART ADB")
+    self.adb.KillPersistentAdbs()
     self.adb.WaitForDevice()
 
   @decorators.WithTimeoutAndRetriesFromInstance()

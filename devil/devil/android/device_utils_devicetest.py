@@ -21,6 +21,9 @@ if __name__ == '__main__':
           '..',
       )))
 
+import logging
+logger = logging.getLogger(__name__)
+
 from devil.android import device_test_case
 from devil.android import device_utils
 from devil.android.sdk import adb_wrapper
@@ -37,10 +40,31 @@ _SUB_DIR2 = "sub2"
 class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
   def setUp(self):
     super(DeviceUtilsPushDeleteFilesTest, self).setUp()
-    self.adb = adb_wrapper.AdbWrapper(self.serial)
+    self.adb = adb_wrapper.AdbWrapper(self.serial, persistent_shell=True)
     self.adb.WaitForDevice()
     self.device = device_utils.DeviceUtils(
         self.adb, default_timeout=10, default_retries=0)
+
+  def tearDown(self):
+    super(DeviceUtilsPushDeleteFilesTest, self).tearDown()
+    logger.error("tear down here")
+    ps_status, ps_output = cmd_helper.GetCmdStatusAndOutput([
+        'ps',
+        '-ef',
+    ])
+    for ln in ps_output.split('\n'):
+      if 'defunct' or 'adb' in line:
+        #logger.error(ln)
+        pass
+    self.adb.KillPersistentAdbs()
+    ps_status, ps_output = cmd_helper.GetCmdStatusAndOutput([
+        'ps',
+        '-ef',
+    ])
+    for ln in ps_output.split('\n'):
+      if 'defunct' or 'adb' in line:
+        pass
+        #logger.error(ln)
 
   @staticmethod
   def _MakeTempFile(contents):
