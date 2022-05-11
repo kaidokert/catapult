@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2dcb6ae_aa2fc7db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-05-11T18:01:53Z",
+      "side": 1,
+      "message": "Updating dashboard/README.md. PTAL.",
+      "revId": "88d8b10788ded1d13d23966ee2ba505c6a6e717e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
