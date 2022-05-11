@@ -16,6 +16,29 @@
       "message": "Updating dashboard/README.md. PTAL.",
       "revId": "88d8b10788ded1d13d23966ee2ba505c6a6e717e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2feb6eaf_9aa4fb92",
+        "filename": "dashboard/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-05-11T18:04:15Z",
+      "side": 1,
+      "message": "The official docs recommend installing in your home directory. Also, the directory is called google-cloud-sdk by default.",
+      "range": {
+        "startLine": 42,
+        "startChar": 59,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "88d8b10788ded1d13d23966ee2ba505c6a6e717e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
