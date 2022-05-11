@@ -63,6 +63,30 @@
       },
       "revId": "88d8b10788ded1d13d23966ee2ba505c6a6e717e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b016f332_e437cf6f",
+        "filename": "dashboard/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-05-11T18:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2feb6eaf_9aa4fb92",
+      "range": {
+        "startLine": 42,
+        "startChar": 59,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "88d8b10788ded1d13d23966ee2ba505c6a6e717e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
