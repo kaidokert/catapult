@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8e1146_d519a4b0",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-05-11T23:03:25Z",
+      "side": 1,
+      "message": "nit: single quotes for string literals, here and elsewhere",
+      "revId": "6b0b7225a2ce2b8e12b5fd02772965d2f933cd6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
