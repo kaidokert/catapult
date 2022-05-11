@@ -106,8 +106,8 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
         raise InvalidInput('batch_id when specified must not be empty')
       query = query.filter(job_module.Job.batch_id == batch_id)
 
-  if (has_filter or has_batch_filter) and (prev_cursor or next_cursor):
-    raise InvalidInput('pagination not supported for filtered queries')
+  if has_batch_filter and (prev_cursor or next_cursor):
+    raise InvalidInput('pagination not supported for batch-filtered queries')
 
   if has_filter and has_batch_filter:
     raise InvalidInput('batch ids are mutually exclusive with job filters')
@@ -116,8 +116,6 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
   timeout_qo = datastore_query.QueryOptions()
   if has_batch_filter:
     timeout_qo = datastore_query.QueryOptions(deadline=_BATCH_FETCH_TIMEOUT)
-  elif has_filter:
-    page_size = _DEFAULT_FILTERED_JOBS
 
   count_future = query.count_async(limit=_MAX_JOBS_TO_COUNT, options=timeout_qo)
 
