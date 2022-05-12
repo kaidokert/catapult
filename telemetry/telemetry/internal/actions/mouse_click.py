@@ -1,13 +1,14 @@
+#!/usr/bin/env python3
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
 from __future__ import absolute_import
-from telemetry.internal.actions import page_action
-from telemetry.internal.actions import utils
+from __future__ import division
+from __future__ import print_function
 
 
-class MouseClickAction(page_action.ElementPageAction):
+class MouseClickAction(object):
 
   def WillRunAction(self, tab):
     """Load the mouse click JS code prior to running the action."""
