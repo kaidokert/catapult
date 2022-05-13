@@ -22,7 +22,7 @@ else:
 _BATCH_FETCH_TIMEOUT = 200
 _MAX_JOBS_TO_FETCH = 100
 _MAX_JOBS_TO_COUNT = 1000
-_DEFAULT_FILTERED_JOBS = 40
+_DEFAULT_FILTERED_JOBS = 20
 
 
 class Error(Exception):
@@ -70,7 +70,6 @@ else:
 
 def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
   query = job_module.Job.query()
-
   # Query filters should a string as described in https://google.aip.dev/160
   # We implement a simple parser for the query_filter provided, to allow us to
   # support a simple expression language expressed in the AIP.
@@ -117,7 +116,7 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
   timeout_qo = datastore_query.QueryOptions()
   if has_batch_filter:
     timeout_qo = datastore_query.QueryOptions(deadline=_BATCH_FETCH_TIMEOUT)
-  elif has_filter:
+  elif has_filter or has_user_filter:
     page_size = _DEFAULT_FILTERED_JOBS
 
   count_future = query.count_async(limit=_MAX_JOBS_TO_COUNT, options=timeout_qo)
