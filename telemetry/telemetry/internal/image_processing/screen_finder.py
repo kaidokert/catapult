@@ -818,7 +818,7 @@ class ScreenFinder(object):
       if not np.isnan(corner[0]):
         cv2.putText(
             self._frame_debug, str(i), (int(corner[0]), int(corner[1])),
-            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (255, 255, 0), 1, cv2.CV_AA)
+            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (255, 255, 0), 1, cv2.LINE_AA)
         i += 1
     if final_corners is not None:
       for corner in final_corners:
