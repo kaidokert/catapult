@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d31784d6_886922c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-16T22:34:41Z",
+      "side": 1,
+      "message": "PTAL\n\nWorks for me locally, and I\u0027ll be testing in Chromium in https://chromium-review.googlesource.com/c/chromium/src/+/3651402 before submitting here.",
+      "revId": "181e2533d1956b858bba47b76dcf1cb44d2114ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
