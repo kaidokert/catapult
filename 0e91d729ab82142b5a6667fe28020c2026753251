@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9daeb0db_53153464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-05-16T18:52:07Z",
+      "side": 1,
+      "message": "Allow launching pinpoint on local dev servier. Though, we still need other supprots. Should add as needed. PTAL.",
+      "revId": "0e91d729ab82142b5a6667fe28020c2026753251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
