@@ -902,7 +902,8 @@ class AdbWrapper(object):
               streaming=None,
               timeout=DEFAULT_LONG_TIMEOUT,
               retries=DEFAULT_RETRIES,
-              instant_app=False):
+              instant_app=False,
+              force_queryable=False):
     """Install an apk on the device.
 
     Args:
@@ -918,6 +919,9 @@ class AdbWrapper(object):
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
       instant_app (optional): Install the APK as an instant app
+      force_queryable (optional): Allows the installed application to
+        be queryable by all other applications regardless of if they
+        have declared the package as queryable in their manifests
     """
     VerifyLocalFileExists(apk_path)
     cmd = ['install']
@@ -931,6 +935,8 @@ class AdbWrapper(object):
       cmd.append('-d')
     if instant_app:
       cmd.append('--instant')
+    if force_queryable:
+      cmd.append('--force-queryable')
     if streaming in (True, False):
       if (du_version.LooseVersion(self.Version()) <
           du_version.LooseVersion('1.0.40')):
@@ -957,7 +963,8 @@ class AdbWrapper(object):
                       streaming=None,
                       timeout=DEFAULT_LONG_TIMEOUT,
                       retries=DEFAULT_RETRIES,
-                      instant_app=False):
+                      instant_app=False,
+                      force_queryable=False):
     """Install an apk with splits on the device.
 
     Args:
@@ -974,6 +981,9 @@ class AdbWrapper(object):
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
       instant_app (optional): Install the APK as an instant app
+      force_queryable (optional): Allows the installed application to
+        be queryable by all other applications regardless of if they
+        have declared the package as queryable in their manifests
     """
     for path in apk_paths:
       VerifyLocalFileExists(path)
@@ -995,6 +1005,8 @@ class AdbWrapper(object):
       cmd.append('-d')
     if instant_app:
       cmd.append('--instant')
+    if force_queryable:
+      cmd.append('--force-queryable')
     if streaming in (True, False):
       if (du_version.LooseVersion(self.Version()) <
           du_version.LooseVersion('1.0.40')):
