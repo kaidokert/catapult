@@ -26,7 +26,9 @@ _BASE_EXTRA_ARGS = [
     '${ISOLATED_OUTDIR}/webrtc_perf_tests/perf_results.json',
 ]
 _WEBRTCTEST_COMMAND = [
+    'vpython3',
     '../../tools_webrtc/flags_compatibility.py',
+    'vpython3',
     '../../testing/test_env.py',
     os.path.join('.', 'foo_test'),
     '--test_artifacts_dir=${ISOLATED_OUTDIR}',
@@ -51,6 +53,7 @@ class FromDictTest(unittest.TestCase):
     arguments = dict(_BASE_ARGUMENTS)
     arguments['configuration'] = '__android__'
     webrtc_android_command = [
+        'vpython3',
         '../../build/android/test_wrapper/logdog_wrapper.py',
         '--target',
         'foo_test',
