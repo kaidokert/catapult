@@ -25,7 +25,7 @@ import base64
 import pickle
 
 from django.db import models
-from oauth2client.client import Storage as BaseStorage
+from oauth2client.oauth2client.client import Storage as BaseStorage
 
 class CredentialsField(models.Field):
 

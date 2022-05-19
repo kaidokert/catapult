@@ -12,8 +12,13 @@ import os
 import re
 import time
 
-from apiclient import discovery
-from apiclient import errors
+import sys
+print('=== sys ===', sys.path)
+print('=== current dir ===', os.getcwd())
+print('=== ls on current dir ===', os.listdir(os.getcwd()))
+print('=== ls on apiclient ===', os.listdir(os.getcwd() + '/apiclient'))
+from apiclient.apiclient import discovery
+from apiclient.apiclient import errors
 from google.appengine.api import app_identity
 from google.appengine.api import memcache
 from google.appengine.api import oauth
@@ -22,7 +27,7 @@ from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import httplib2
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.common import stored_object
 import six
@@ -73,6 +78,7 @@ _STAGING_APP_ID = 'chromeperf-stage'
 
 
 def IsDevAppserver():
+  print( ' \n\n\n === \n', app_identity.get_application_id())
   return app_identity.get_application_id() == 'None'
 
 
@@ -887,4 +893,7 @@ def RequestParamsMixed(req):
 
 
 def IsRunningFlask():
-  return IsStagingEnvironment()
+  print('================================\n\n\n\n\n\n\n\n')
+  print(IsStagingEnvironment())
+  print(IsDevAppserver())
+  return IsStagingEnvironment() or IsDevAppserver()

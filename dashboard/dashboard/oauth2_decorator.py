@@ -6,7 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-from oauth2client.appengine import OAuth2Decorator
+from oauth2client.oauth2client.appengine import OAuth2Decorator
 
 from dashboard.common import utils
 

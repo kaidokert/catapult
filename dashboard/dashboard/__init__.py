@@ -75,10 +75,12 @@ DASHBOARD_FILES = [
     'dispatch.yaml',
     'index.yaml',
     'pinpoint.yaml',
+    'pinpoint-py3.yaml',
     'queue.yaml',
     'scripts.yaml',
     'upload-processing.yaml',
     'upload.yaml',
+    'requirements.txt',
 ]
 
 TRACING_PATHS = [

@@ -65,7 +65,7 @@ __author__ = 'jcgregorio@google.com (Joe Gregorio)'
 
 import copy
 
-from oauth2client import util
+from oauth2client.oauth2client  import util
 
 
 class Schemas(object):

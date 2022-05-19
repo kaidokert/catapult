@@ -158,7 +158,7 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
   }
 
   # Skip the email replacement workflow in staging environment.
-  if utils.IsStagingEnvironment():
+  if utils.IsStagingEnvironment() or utils.IsRunningFlask():
     for job in jobs:
       result['jobs'].append(job.AsDict(options))
     return result

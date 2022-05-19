@@ -45,15 +45,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.nonmultipart import MIMENonMultipart
 from email.parser import FeedParser
 
-from googleapiclient import mimeparse
-from googleapiclient.errors import BatchError
-from googleapiclient.errors import HttpError
-from googleapiclient.errors import InvalidChunkSizeError
-from googleapiclient.errors import ResumableUploadError
-from googleapiclient.errors import UnexpectedBodyError
-from googleapiclient.errors import UnexpectedMethodError
-from googleapiclient.model import JsonModel
-from oauth2client import util
+from apiclient.googleapiclient import mimeparse
+from apiclient.googleapiclient.errors import BatchError
+from apiclient.googleapiclient.errors import HttpError
+from apiclient.googleapiclient.errors import InvalidChunkSizeError
+from apiclient.googleapiclient.errors import ResumableUploadError
+from apiclient.googleapiclient.errors import UnexpectedBodyError
+from apiclient.googleapiclient.errors import UnexpectedMethodError
+from apiclient.googleapiclient.model import JsonModel
+from oauth2client.oauth2client  import util
 
 
 DEFAULT_CHUNK_SIZE = 512*1024
@@ -942,7 +942,7 @@ class BatchHttpRequest(object):
   """Batches multiple HttpRequest objects into a single HTTP request.
 
   Example:
-    from googleapiclient.http import BatchHttpRequest
+    from apiclient.googleapiclient.http import BatchHttpRequest
 
     def list_animals(request_id, response, exception):
       \"\"\"Do something with the animals list response.\"\"\"

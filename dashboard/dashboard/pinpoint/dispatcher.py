@@ -11,8 +11,10 @@ from dashboard.pinpoint import handlers
 
 if utils.IsRunningFlask():
   from flask import Flask
+  from google.appengine.api import wrap_wsgi_app
 
   APP = Flask(__name__)
+  APP.wsgi_app = wrap_wsgi_app(APP.wsgi_app)
 
   @APP.route('/api/jobs')
   def JobsHandlerGet():
