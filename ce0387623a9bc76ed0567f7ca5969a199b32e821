@@ -16,6 +16,29 @@
       "message": "last time I landed a CL for this bug, Pinpoint bisection stopped working so hoping to get more eyes on it this time around. I\u0027ve verified that this CL can run jobs on staging without issue (https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/14496373000000)\n\nWill still need to verify sorting works on production. ",
       "revId": "ce0387623a9bc76ed0567f7ca5969a199b32e821",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e6f6e80_0bf0db81",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-05-20T18:27:16Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "ce0387623a9bc76ed0567f7ca5969a199b32e821",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
