@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "264e8ba2_0428ba0e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-05-20T20:37:05Z",
+      "side": 1,
+      "message": "Is this flag safe to provide on OS versions before Android 11? If not, please document the supported range of versions. Otherwise this looks good as is.",
+      "range": {
+        "startLine": 1205,
+        "startChar": 6,
+        "endLine": 1207,
+        "endChar": 51
+      },
+      "revId": "2773e1e00ae03d9c3d91c937df469f33f32e583e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
