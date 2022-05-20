@@ -23,8 +23,8 @@ import threading
 
 import keyring
 
-from oauth2client.client import Credentials
-from oauth2client.client import Storage as BaseStorage
+from oauth2client.oauth2client.client import Credentials
+from oauth2client.oauth2client.client import Storage as BaseStorage
 
 
 class Storage(BaseStorage):
@@ -41,7 +41,7 @@ class Storage(BaseStorage):
   manner in which the user is prompted will vary per platform.
 
   Usage:
-    from oauth2client.keyring_storage import Storage
+    from oauth2client.oauth2client.keyring_storage import Storage
 
     s = Storage('name_of_application', 'user1')
     credentials = s.get()

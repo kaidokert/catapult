@@ -12,8 +12,14 @@ import os
 import re
 import time
 
-from apiclient import discovery
-from apiclient import errors
+import sys
+print('=== sys ===', sys.path)
+print('=== current dir ===', os.getcwd())
+print('=== ls on current dir ===', os.listdir(os.getcwd()))
+print('=== ls on apiclient ===', os.listdir(os.getcwd() + '/apiclient'))
+print('=== ls on httplib2 ===', os.listdir(os.getcwd() + '/httplib2'))
+from apiclient.apiclient import discovery
+from apiclient.apiclient import errors
 from google.appengine.api import app_identity
 from google.appengine.api import memcache
 from google.appengine.api import oauth
@@ -22,7 +28,7 @@ from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import httplib2
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.common import stored_object
 import six
@@ -887,4 +893,4 @@ def RequestParamsMixed(req):
 
 
 def IsRunningFlask():
-  return IsStagingEnvironment()
+  return IsStagingEnvironment() or IsDevAppserver()
