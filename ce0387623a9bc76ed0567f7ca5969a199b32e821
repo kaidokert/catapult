@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6283b93_106a3135",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-05-20T18:26:11Z",
+      "side": 1,
+      "message": "last time I landed a CL for this bug, Pinpoint bisection stopped working so hoping to get more eyes on it this time around. I\u0027ve verified that this CL can run jobs on staging without issue (https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/14496373000000)\n\nWill still need to verify sorting works on production. ",
+      "revId": "ce0387623a9bc76ed0567f7ca5969a199b32e821",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
