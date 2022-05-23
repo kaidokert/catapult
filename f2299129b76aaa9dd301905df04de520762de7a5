@@ -22,6 +22,30 @@
       },
       "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e626b7d1_a0bf8e8e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-05-23T23:02:37Z",
+      "side": 1,
+      "message": "I think in the Cast Core model, the idea is that cast core and the runtime allows for discovery, meaning it allows other browsers/devices to cast to the Cast device. Once they actually do so, that\u0027s when the browser window/tab actually appears.",
+      "parentUuid": "bb28902d_6d48bf51",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
