@@ -22,6 +22,30 @@
       },
       "revId": "2773e1e00ae03d9c3d91c937df469f33f32e583e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad29310_d2928dc3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-05-23T10:27:42Z",
+      "side": 1,
+      "message": "It wasn\u0027t. I expected it to throw an error like instant apps throw. It however actually throws a more vague error. For this reason, I introduced an SDK check before it sets this flag.\n\nI also applied this to the instant flag to make things more consistent.\n\nI also added the SDK version requirements to the doc blocks for good measure.",
+      "parentUuid": "264e8ba2_0428ba0e",
+      "range": {
+        "startLine": 1205,
+        "startChar": 6,
+        "endLine": 1207,
+        "endChar": 51
+      },
+      "revId": "2773e1e00ae03d9c3d91c937df469f33f32e583e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
