@@ -46,6 +46,30 @@
       },
       "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40fff02a_e12c1959",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-23T23:08:16Z",
+      "side": 1,
+      "message": "I think things should be renamed to reflect that, then. Maybe have the member variable be `_browser_visible`, and have multiple methods for checking browser status, e.g. `IsInDiscoveryMode` and `IsWindowVisible`.\n\nIf `IsBrowserRunning` should always map to the browser being visible and you\u0027ll never check if it\u0027s in discovery mode, then I think it\u0027s fine to keep it like this, but otherwise I\u0027d add in code to represent the extra states that are possible with cast browsers.",
+      "parentUuid": "e626b7d1_a0bf8e8e",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
