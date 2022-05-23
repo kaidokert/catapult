@@ -124,14 +124,10 @@ class LocalCastBrowserBackend(cast_browser_backend.CastBrowserBackend):
                                                    stdout=subprocess.PIPE,
                                                    stderr=subprocess.STDOUT)
       self._browser_process = self._web_runtime.Start()
-      self._ReadReceiverName()
-      self._WaitForSink()
-      self._casting_tab.action_runner.Navigate('about:blank')
-      self._casting_tab.action_runner.tab.StartTabMirroring(self._receiver_name)
-      self.BindDevToolsClient()
-
     finally:
       os.chdir(original_dir)
+    self._ReadReceiverName()
+    self._WaitForSink()
 
   def Background(self):
     raise NotImplementedError

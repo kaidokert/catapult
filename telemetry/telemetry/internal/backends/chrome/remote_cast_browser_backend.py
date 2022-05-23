@@ -189,9 +189,6 @@ class RemoteCastBrowserBackend(cast_browser_backend.CastBrowserBackend):
     self._browser_process.sendline(' '.join(runtime_command))
     self._SetReceiverName(env_var)
     self._WaitForSink()
-    self._casting_tab.action_runner.Navigate('about:blank')
-    self._casting_tab.action_runner.tab.StartTabMirroring(self._receiver_name)
-    self.BindDevToolsClient()
 
   def GetPid(self):
     return self._browser_process.pid

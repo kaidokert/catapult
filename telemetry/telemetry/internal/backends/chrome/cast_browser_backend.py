@@ -24,6 +24,7 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         supports_extensions=False,
         supports_tab_control=False)
     self._browser_process = None
+    self._browser_running = False
     self._cast_core_process = None
     self._casting_tab = casting_tab
     self._output_dir = cast_platform_backend.output_dir
@@ -49,6 +50,7 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     while (self._receiver_name not in sink_name_list
            and time.time() - start_time < timeout):
       self._casting_tab.action_runner.tab.EnableCast()
+      self._casting_tab.action_runner.tab.SetCastSinkToUse(self._receiver_name)
       sink_name_list = [
           sink['name'] for sink in self._casting_tab\
                                        .action_runner.tab.GetCastSinks()
@@ -61,6 +63,10 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def GetReceiverName(self):
     return self._receiver_name
 
+  def BindDevToolsClient(self):
+    self._browser_running = True
+    super(CastBrowserBackend, self).BindDevToolsClient()
+
   def GetPid(self):
     return self._browser_process.pid
 
@@ -72,9 +78,10 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._cast_core_process:
       self._cast_core_process.kill()
       self._cast_core_process = None
+    self._browser_running = False
 
   def IsBrowserRunning(self):
-    return bool(self._browser_process)
+    return self._browser_running
 
   def GetStandardOutput(self):
     return 'Stdout is not available for Cast browser.'
