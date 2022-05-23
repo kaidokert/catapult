@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98f7e5f0_67e4f6e9",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-05-23T21:23:18Z",
+      "side": 1,
+      "message": "What happens if the number of available bots changes after the job is created, but before it completes (say, some bots chosen for this job become unhealthy after the job starts, so the list of available bots effectively shrinks) ?",
+      "revId": "ed0917917136e26236329370a94178cde7cd2633",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
