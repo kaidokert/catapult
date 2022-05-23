@@ -57,6 +57,6 @@ def _AddTempDirToYamlPathArgs(temp_dir, args):
   ]
   if not yaml_path_args:
     if options.run_pinpoint:
-      temp_dir += '/pinpoint.yaml'
+      temp_dir += '/pinpoint-py3.yaml'
     yaml_path_args = [temp_dir]
   return yaml_path_args + remaining_args
