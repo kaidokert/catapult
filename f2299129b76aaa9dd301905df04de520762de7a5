@@ -70,6 +70,30 @@
       },
       "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcc0f536_d0e07547",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-05-23T23:13:23Z",
+      "side": 1,
+      "message": "Right currently I think there would be no use for IsInDiscoveryMode yet, in the future I can see how we would want to potentially recycle the cast core and runtime process so that start doesn\u0027t require starting up the discovery anew. I think we can add IsInDiscoveryMode when we get there.",
+      "parentUuid": "40fff02a_e12c1959",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
