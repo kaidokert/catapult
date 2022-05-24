@@ -574,6 +574,8 @@ class RunTestFullTest(_RunTestExecutionTest):
     quest.Start('change_1', 'isolate server', 'input isolate hash')
 
 
+@mock.patch('dashboard.services.swarming.IsBotAlive',
+            mock.MagicMock(return_value=True))
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
 class SwarmingTaskStatusTest(_RunTestExecutionTest):
@@ -640,6 +642,8 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
 @mock.patch('dashboard.services.swarming.Task.Result')
 class BotIdHandlingTest(_RunTestExecutionTest):
 
+  @mock.patch('dashboard.services.swarming.IsBotAlive',
+              mock.MagicMock(return_value=True))
   def testExecutionExpired(self, swarming_task_result, swarming_tasks_new):
     # If the Swarming task expires, the bots are overloaded or the dimensions
     # don't correspond to any bot. Raise an error that's fatal to the Job.
@@ -670,6 +674,8 @@ class BotIdHandlingTest(_RunTestExecutionTest):
                 'user@example.com', State(1), ['a']))
     quest.Start('change_1', 'isolate server', 'input isolate hash')
 
+  @mock.patch('dashboard.services.swarming.IsBotAlive',
+              mock.MagicMock(return_value=True))
   def testSimultaneousExecutions(self, swarming_task_result,
                                  swarming_tasks_new):
     quest = run_test.RunTest('server', DIMENSIONS, ['arg'], _BASE_SWARMING_TAGS,
