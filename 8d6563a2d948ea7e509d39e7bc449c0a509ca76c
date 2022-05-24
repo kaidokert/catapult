@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97279f14_82fc8539",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-24T18:08:09Z",
+      "side": 1,
+      "message": "According to the documentation, this is meant to be used as a context manager. If you just want to create a directory, it should be `mkdtemp()`.\n\nAlso, should this get cleaned up at some point?",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "8d6563a2d948ea7e509d39e7bc449c0a509ca76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
