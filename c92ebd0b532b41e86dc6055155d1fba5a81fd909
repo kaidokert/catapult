@@ -63,6 +63,30 @@
       },
       "revId": "c92ebd0b532b41e86dc6055155d1fba5a81fd909",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e401b45e_aaa39c66",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2022-05-24T18:24:29Z",
+      "side": 1,
+      "message": "WebRTC adds a vpython3 before every py script just in case.\nOne vpython3 should be enough here.",
+      "parentUuid": "affcd4d4_224585dd",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "c92ebd0b532b41e86dc6055155d1fba5a81fd909",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
