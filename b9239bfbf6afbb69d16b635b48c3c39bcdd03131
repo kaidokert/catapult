@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e175549b_c7789941",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-05-24T17:04:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aafd6dd1_3e668790",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 34
+      },
+      "revId": "b9239bfbf6afbb69d16b635b48c3c39bcdd03131",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c69e3e8_5101e038",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-24T16:11:06Z",
       "side": 1,
       "message": "I\u0027m confused about the state here. Are these two supposed to be mutually exclusive? I thought the window only became visible once you started casting, but discovery mode was active earlier than that.",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "b9239bfbf6afbb69d16b635b48c3c39bcdd03131",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33000eb9_442e46cc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-05-24T17:04:29Z",
+      "side": 1,
+      "message": "I originally thought that once the window becomes visible we should disallow discovery but from testing overwriting cast is possible so I removed the line to change discovery mode to False.",
+      "parentUuid": "6c69e3e8_5101e038",
       "range": {
         "startLine": 96,
         "startChar": 4,
