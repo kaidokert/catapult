@@ -22,6 +22,30 @@
       },
       "revId": "8d6563a2d948ea7e509d39e7bc449c0a509ca76c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22e2ef8_4a7af4a2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-24T18:20:49Z",
+      "side": 1,
+      "message": "Discussed offline, this is fine.",
+      "parentUuid": "97279f14_82fc8539",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "8d6563a2d948ea7e509d39e7bc449c0a509ca76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
