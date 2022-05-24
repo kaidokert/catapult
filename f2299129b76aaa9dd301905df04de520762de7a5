@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e710a58d_3c55a5f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1330244
+      },
+      "writtenOn": "2022-05-24T00:19:16Z",
+      "side": 1,
+      "message": "I am not clear why I am on this CL\n\nI am neither familiar with nor an OWNER of any code in `//telemetry`, and am only minimally familiar with python as a language\n\nDid you mean to add someone else?",
+      "revId": "f2299129b76aaa9dd301905df04de520762de7a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb28902d_6d48bf51",
