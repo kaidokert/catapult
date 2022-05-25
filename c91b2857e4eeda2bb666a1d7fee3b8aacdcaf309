@@ -22,6 +22,30 @@
       },
       "revId": "c91b2857e4eeda2bb666a1d7fee3b8aacdcaf309",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f94cb4f3_6c198863",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-05-25T19:21:09Z",
+      "side": 0,
+      "message": "oh my bad, I thought this was a typo when I looked at it. :)",
+      "parentUuid": "dfcb1e23_46bffa24",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "c91b2857e4eeda2bb666a1d7fee3b8aacdcaf309",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
