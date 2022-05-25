@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92ae2200_405fa46d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-05-25T17:24:22Z",
+      "side": 1,
+      "message": "If self._bot_id is set, the result from swarming_task.Result() is not the one running on the bot. Do we still need to check the \u0027state\u0027 and else here?",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 345,
+        "endChar": 36
+      },
+      "revId": "ac1eda726cee24596df6927e18d4dfc8ffbaefe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
