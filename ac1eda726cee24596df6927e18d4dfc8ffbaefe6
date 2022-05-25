@@ -22,6 +22,30 @@
       },
       "revId": "ac1eda726cee24596df6927e18d4dfc8ffbaefe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e71cd6_2e052cea",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-05-25T17:32:34Z",
+      "side": 1,
+      "message": "Before the task is allocated to a bot, this field won\u0027t exist in result. After, if self._bot_id is already set, it will match since we requested the already-populated value in the dimensions. Which means yes, we could add a check for if this is already set, I just left it this way because it\u0027s a little cleaner.",
+      "parentUuid": "92ae2200_405fa46d",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 345,
+        "endChar": 36
+      },
+      "revId": "ac1eda726cee24596df6927e18d4dfc8ffbaefe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
