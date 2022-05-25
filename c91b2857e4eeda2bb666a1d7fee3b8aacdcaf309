@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfcb1e23_46bffa24",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-25T16:11:27Z",
+      "side": 0,
+      "message": "Why did you need to switch away from triple equals?",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "c91b2857e4eeda2bb666a1d7fee3b8aacdcaf309",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
