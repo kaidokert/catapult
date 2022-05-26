@@ -21,7 +21,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import httplib2
-from oauth2client import client
+from oauth2client.oauth2client import client
 from six.moves import input  # pylint:disable=redefined-builtin
 
 # See security notes about why the 'secret' doesn't need to be kept secret here:

@@ -35,17 +35,17 @@ import six
 from six.moves import urllib
 
 import httplib2
-from oauth2client import clientsecrets
-from oauth2client import GOOGLE_AUTH_URI
-from oauth2client import GOOGLE_DEVICE_URI
-from oauth2client import GOOGLE_REVOKE_URI
-from oauth2client import GOOGLE_TOKEN_URI
-from oauth2client import util
+from oauth2client.oauth2client import clientsecrets
+from oauth2client.oauth2client import GOOGLE_AUTH_URI
+from oauth2client.oauth2client import GOOGLE_DEVICE_URI
+from oauth2client.oauth2client import GOOGLE_REVOKE_URI
+from oauth2client.oauth2client import GOOGLE_TOKEN_URI
+from oauth2client.oauth2client import util
 
 HAS_OPENSSL = False
 HAS_CRYPTO = False
 try:
-  from oauth2client import crypt
+  from oauth2client.oauth2client import crypt
   HAS_CRYPTO = True
   if crypt.OpenSSLVerifier is not None:
     HAS_OPENSSL = True
@@ -1022,7 +1022,7 @@ class GoogleCredentials(OAuth2Credentials):
   service that requires authentication:
 
       from googleapiclient.discovery import build
-      from oauth2client.client import GoogleCredentials
+      from oauth2client.oauth2client.client import GoogleCredentials
 
       credentials = GoogleCredentials.get_application_default()
       service = build('compute', 'v1', credentials=credentials)
@@ -1319,7 +1319,7 @@ def _get_well_known_file():
 def _get_application_default_credential_from_file(filename):
   """Build the Application Default Credentials from file."""
 
-  from oauth2client import service_account
+  from oauth2client.oauth2client import service_account
 
   # read the credentials from the file
   with open(filename) as file_obj:
@@ -1373,13 +1373,13 @@ def _raise_exception_for_reading_json(credential_file,
 
 
 def _get_application_default_credential_GAE():
-  from oauth2client.appengine import AppAssertionCredentials
+  from oauth2client.oauth2client.appengine import AppAssertionCredentials
 
   return AppAssertionCredentials([])
 
 
 def _get_application_default_credential_GCE():
-  from oauth2client.gce import AppAssertionCredentials
+  from oauth2client.oauth2client.gce import AppAssertionCredentials
 
   return AppAssertionCredentials([])
 

@@ -32,8 +32,8 @@ from six.moves import BaseHTTPServer
 from six.moves import urllib
 from six.moves import input
 
-from oauth2client import client
-from oauth2client import util
+from oauth2client.oauth2client import client
+from oauth2client.oauth2client import util
 
 
 _CLIENT_SECRETS_MESSAGE = """WARNING: Please configure OAuth 2.0
@@ -239,8 +239,8 @@ def message_if_missing(filename):
   return _CLIENT_SECRETS_MESSAGE % filename
 
 try:
-  from oauth2client.old_run import run
-  from oauth2client.old_run import FLAGS
+  from oauth2client.oauth2client.old_run import run
+  from oauth2client.oauth2client.old_run import FLAGS
 except ImportError:
   def run(*args, **kwargs):
     raise NotImplementedError(

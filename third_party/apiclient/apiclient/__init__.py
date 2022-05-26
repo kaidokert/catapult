@@ -1,11 +1,15 @@
 """Retain apiclient as an alias for googleapiclient."""
 
+from __future__ import absolute_import
+
 from six import iteritems
 
-import googleapiclient
+# import apiclient.googleapiclient
+# print('======== PASS =============')
+import apiclient.googleapiclient as googleapiclient
 
 try:
-  import oauth2client
+  import oauth2client.oauth2client
 except ImportError:
   raise RuntimeError(
       'Previous version of google-api-python-client detected; due to a '
@@ -15,14 +19,14 @@ except ImportError:
       '  pip install -I google-api-python-client'
   )
 
-from googleapiclient import channel
-from googleapiclient import discovery
-from googleapiclient import errors
-from googleapiclient import http
-from googleapiclient import mimeparse
-from googleapiclient import model
-from googleapiclient import sample_tools
-from googleapiclient import schema
+from apiclient.googleapiclient import channel
+from apiclient.googleapiclient import discovery
+from apiclient.googleapiclient import errors
+from apiclient.googleapiclient import http
+from apiclient.googleapiclient import mimeparse
+from apiclient.googleapiclient import model
+from apiclient.googleapiclient import sample_tools
+from apiclient.googleapiclient import schema
 
 __version__ = googleapiclient.__version__
 

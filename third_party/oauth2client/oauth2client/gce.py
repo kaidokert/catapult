@@ -23,9 +23,9 @@ import json
 import logging
 from six.moves import urllib
 
-from oauth2client import util
-from oauth2client.client import AccessTokenRefreshError
-from oauth2client.client import AssertionCredentials
+from oauth2client.oauth2client import util
+from oauth2client.oauth2client.client import AccessTokenRefreshError
+from oauth2client.oauth2client.client import AssertionCredentials
 
 logger = logging.getLogger(__name__)
 

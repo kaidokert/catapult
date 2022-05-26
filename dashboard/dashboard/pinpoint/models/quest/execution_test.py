@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import pickle
 import unittest
 
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution

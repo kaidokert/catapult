@@ -35,18 +35,18 @@ from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp.util import run_wsgi_app
-from oauth2client import GOOGLE_AUTH_URI
-from oauth2client import GOOGLE_REVOKE_URI
-from oauth2client import GOOGLE_TOKEN_URI
-from oauth2client import clientsecrets
-from oauth2client import util
-from oauth2client import xsrfutil
-from oauth2client.client import AccessTokenRefreshError
-from oauth2client.client import AssertionCredentials
-from oauth2client.client import Credentials
-from oauth2client.client import Flow
-from oauth2client.client import OAuth2WebServerFlow
-from oauth2client.client import Storage
+from oauth2client.oauth2client import GOOGLE_AUTH_URI
+from oauth2client.oauth2client import GOOGLE_REVOKE_URI
+from oauth2client.oauth2client import GOOGLE_TOKEN_URI
+from oauth2client.oauth2client import clientsecrets
+from oauth2client.oauth2client import util
+from oauth2client.oauth2client import xsrfutil
+from oauth2client.oauth2client.client import AccessTokenRefreshError
+from oauth2client.oauth2client.client import AssertionCredentials
+from oauth2client.oauth2client.client import Credentials
+from oauth2client.oauth2client.client import Flow
+from oauth2client.oauth2client.client import OAuth2WebServerFlow
+from oauth2client.oauth2client.client import Storage
 
 # TODO(dhermes): Resolve import issue.
 # This is a temporary fix for a Google internal issue.
