@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0372298c_88d5f1eb",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-05-26T16:24:47Z",
+      "side": 1,
+      "message": "Seems strange that we\u0027re just now running into this 🤔\n\nlgtm tho",
+      "revId": "db061d39a081275da3523d0e1d0f5a1e46f4d500",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
