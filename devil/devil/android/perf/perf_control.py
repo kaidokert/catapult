@@ -329,16 +329,21 @@ class PerfControl(object):
         'for CPU in %s' % cpu_list,
         'do %s' % cmd, 'echo -n "%~%$?%~%"', 'done'
     ])
+    logger.info('script: %s', script)
     output = self._device.RunShellCommand(
         script, cwd=self._CPU_PATH, check_return=True, as_root=True, shell=True)
+    logger.info('output: %s', output)
     output = '\n'.join(output).split('%~%')
     return zip(self._cpu_files, output[0::2], (int(c) for c in output[1::2]))
 
   def _ConditionallyWriteCpuFiles(self, path, value, cpu_files, condition):
+    logger.info('_ConditionallyWriteCpuFiles(%s, %s, %s)',
+        path, value, cpu_files)
     template = (
         '{condition} && test -e "$CPU/{path}" && echo {value} > "$CPU/{path}"')
     results = self._ForEachCpu(
         template.format(path=path, value=value, condition=condition), cpu_files)
+    logger.info('results: %s', results)
     cpus = ' '.join(cpu for (cpu, _, status) in results if status == 0)
     if cpus:
       logger.info('Successfully set %s to %r on: %s', path, value, cpus)
