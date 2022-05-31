@@ -16,6 +16,40 @@
       "message": "PTAL, should work together with crrev.com/c/3679743.\nIncludes a trick to handle empty devil/bin on non-linux platforms, which won\u0027t fetch the adb dep.",
       "revId": "fa5e61e94aa186fb3eddcabf7b47c52af8ec6859",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "354a68b7_2d6b1443",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-31T17:28:02Z",
+      "side": 1,
+      "message": "LGTM % comment",
+      "revId": "fa5e61e94aa186fb3eddcabf7b47c52af8ec6859",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b457318f_a2d2e2be",
+        "filename": "devil/bin/deps/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-05-31T17:28:02Z",
+      "side": 1,
+      "message": "Might be worth including a note about why this isn\u0027t in the main .gitignore file? I assume this is the workaround for the empty directory you were referring to.",
+      "revId": "fa5e61e94aa186fb3eddcabf7b47c52af8ec6859",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
