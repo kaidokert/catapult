@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4252f5cc_63fe96fa",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-01T01:17:20Z",
+      "side": 1,
+      "message": "I think you can drop `emulator` here and elsewhere to make this more generic. A similar problem can happen with physical devices where they\u0027re labeled as \"unauthorized\" if the user hasn\u0027t clicked the \"trust this computer\" dialog.",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24d270a6_27892990",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-01T01:17:20Z",
+      "side": 1,
+      "message": "Should this throw an error if the retries are exceeded?",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 368,
+        "endChar": 22
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42998617_3d97a0a5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-01T01:17:20Z",
+      "side": 1,
+      "message": "Would it be better to move this logic into the AdbWrapper constructor to avoid calling the protected method?",
+      "range": {
+        "startLine": 369,
+        "startChar": 59,
+        "endLine": 369,
+        "endChar": 93
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
