@@ -60,6 +60,8 @@ logger = logging.getLogger(__name__)
 
 _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
+# Regex to check an emulator device is online.
+_DEVICES_CONNECTED_REGEX = re.compile(r"emulator-\d+.*device")
 # TODO(agrieve): Would be better to make this timeout based off of data size.
 # Needs to be large for remote devices & speed depends on internet connection.
 # Debug Chrome builds can be 200mb+.
@@ -359,8 +361,21 @@ def _JoinLines(lines):
 def _CreateAdbWrapper(device):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
-  else:
-    return adb_wrapper.AdbWrapper(device)
+  # With a persistent shell, it can try to setup when the emulator
+  # is registered, but "offline."
+  # TODO(crbug/1330756): Change to check if persistent_shell=True.
+  elif 'emulator' in device:
+    for _ in range(5):
+      adb_cmd_output = adb_wrapper.AdbWrapper._RunAdbCmd(  # pylint: disable=protected-access
+          ['devices'],
+          timeout=3,
+          retries=_DEFAULT_RETRIES)
+      if _DEVICES_CONNECTED_REGEX.search(adb_cmd_output):
+        break
+      else:
+        time.sleep(3)
+
+  return adb_wrapper.AdbWrapper(device)
 
 
 def _FormatPartialOutputError(output):
