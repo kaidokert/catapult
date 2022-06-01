@@ -85,6 +85,24 @@
       "message": "Might be worth including a note about why this isn\u0027t in the main .gitignore file? I assume this is the workaround for the empty directory you were referring to.",
       "revId": "fa5e61e94aa186fb3eddcabf7b47c52af8ec6859",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d72185c7_b8bf8a0b",
+        "filename": "devil/bin/deps/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2022-06-01T18:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b457318f_a2d2e2be",
+      "revId": "fa5e61e94aa186fb3eddcabf7b47c52af8ec6859",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
