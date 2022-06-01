@@ -40,6 +40,7 @@ WINDOWS_FORBIDDEN_PATH_CHARACTERS = [
 ]
 
 WINDOWS_MAX_PATH = 260
+MAC_MAX_FILE_NAME = 255
 
 class Artifacts(object):
   def __init__(self, output_dir, host, iteration=0, artifacts_base_dir='',
@@ -194,6 +195,18 @@ class Artifacts(object):
     """
     subdir_relative_path = self._host.join(
         self.ArtifactsSubDirectory(), file_relative_path)
+    # Mac has a 255 character limit for any one directory or file name, so if we
+    # detect any cases of those, replace that section of the path with a hash of
+    # that section.
+    if sys.platform == 'darwin':
+      path_pieces = subdir_relative_path.split(self._host.sep)
+      for i, piece in enumerate(path_pieces):
+        if len(piece) <= MAC_MAX_FILE_NAME:
+          continue
+        m = hashlib.sha1()
+        m.update(piece.encode('utf-8'))
+        path_pieces[i] = m.hexdigest()
+      subdir_relative_path = self._host.join(*path_pieces)
     abs_path = self._host.join(self._output_dir, subdir_relative_path)
     # Attempt to work around the 260 character path limit in Windows. This is
     # not guaranteed to solve the issue, but should address the common case of
