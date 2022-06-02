@@ -7,9 +7,9 @@ instance_class: F4_1G
 
 libraries:
 - name: jinja2
-  version: "2.6"
-- name: pycrypto
-  version: "2.6"
+  version: "2.11.3"
+- name: PyCryptodome
+  version: "3.14.1"
 - name: webapp2
   version: "2.5.2"
 
