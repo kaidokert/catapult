@@ -16,6 +16,29 @@
       "message": "Hi Wenbin, is there a bug for removing py2 trybots that I can link to? ",
       "revId": "679dae7b69becb4fd1c7830475464da75396fb6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721204a2_a5048400",
+        "filename": "dependency_manager/dependency_manager/base_config.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-02T16:52:44Z",
+      "side": 1,
+      "message": "Needs () like (dependency, platform)",
+      "range": {
+        "startLine": 157,
+        "startChar": 50,
+        "endLine": 157,
+        "endChar": 70
+      },
+      "revId": "679dae7b69becb4fd1c7830475464da75396fb6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
