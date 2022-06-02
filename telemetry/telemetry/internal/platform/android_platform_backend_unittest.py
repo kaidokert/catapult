@@ -48,7 +48,7 @@ class AndroidPlatformBackendTest(unittest.TestCase):
   @staticmethod
   def CreatePlatformBackendForTest():
     return android_platform_backend.AndroidPlatformBackend(
-        android_device.AndroidDevice('12345'), True)
+        android_device.AndroidDevice('12345'), True, skip_device_check=True)
 
   @decorators.Disabled('chromeos', 'mac', 'win')
   def testGetFriendlyOsVersionNameInPlatformTags(self):

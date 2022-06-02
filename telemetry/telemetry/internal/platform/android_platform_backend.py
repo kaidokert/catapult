@@ -115,11 +115,13 @@ class _VideoRecorder(object):
 
 class AndroidPlatformBackend(
     linux_based_platform_backend.LinuxBasedPlatformBackend):
-  def __init__(self, device, require_root):
+  def __init__(self, device, require_root, skip_device_check=False):
     assert device, (
         'AndroidPlatformBackend can only be initialized from remote device')
     super(AndroidPlatformBackend, self).__init__(device)
-    self._device = device_utils.DeviceUtils(device.device_id)
+    self._device = device_utils.DeviceUtils(
+        device.device_id,
+        skip_device_check=skip_device_check)
     self._can_elevate_privilege = False
     self._require_root = require_root
     if self._require_root:

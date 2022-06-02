@@ -24,29 +24,34 @@ with devil_env.SysPath(devil_env.DEPENDENCY_MANAGER_PATH):
 class GetDevicesTest(unittest.TestCase):
   def testNoSpecs(self):
     devices = [
-        device_utils.DeviceUtils('123'),
-        device_utils.DeviceUtils('456'),
+        device_utils.DeviceUtils('123', skip_device_check=True),
+        device_utils.DeviceUtils('456', skip_device_check=True),
     ]
     with mock.patch(
         'devil.android.device_utils.DeviceUtils.HealthyDevices',
         return_value=devices):
       self.assertEqual(devices, script_common.GetDevices(None, None))
 
-  def testWithDevices(self):
+  @mock.patch('devil.android.sdk.adb_wrapper.AdbWrapper._RunAdbCmd')
+  def testWithDevices(self, mock_adb_run):
+    mock_adb_run.side_effect = [
+        '123 device', '456 device', '456 device', '456 device'
+    ]
     devices = [
-        device_utils.DeviceUtils('123'),
-        device_utils.DeviceUtils('456'),
+        device_utils.DeviceUtils('123', skip_device_check=True),
+        device_utils.DeviceUtils('456', skip_device_check=True),
     ]
     with mock.patch(
         'devil.android.device_utils.DeviceUtils.HealthyDevices',
         return_value=devices):
-      self.assertEqual([device_utils.DeviceUtils('456')],
-                       script_common.GetDevices(['456'], None))
+      self.assertEqual(
+          [device_utils.DeviceUtils('456', skip_device_check=True)],
+          script_common.GetDevices(['456'], None))
 
   def testMissingDevice(self):
     with mock.patch(
         'devil.android.device_utils.DeviceUtils.HealthyDevices',
-        return_value=[device_utils.DeviceUtils('123')]):
+        return_value=[device_utils.DeviceUtils('123', skip_device_check=True)]):
       with self.assertRaises(device_errors.DeviceUnreachableError):
         script_common.GetDevices(['456'], None)
 
