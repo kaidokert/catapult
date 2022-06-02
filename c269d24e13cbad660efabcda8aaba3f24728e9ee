@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a36280_50c1786b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-02T18:38:23Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "c269d24e13cbad660efabcda8aaba3f24728e9ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8d9fd2_89cc3baa",
+        "filename": "third_party/typ/run",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-02T18:38:23Z",
+      "side": 1,
+      "message": "Changed since the left side version didn\u0027t work on my Windows machine, and this appears to be the more platform-agnostic way of getting the home directory.",
+      "range": {
+        "startLine": 92,
+        "startChar": 19,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "c269d24e13cbad660efabcda8aaba3f24728e9ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
