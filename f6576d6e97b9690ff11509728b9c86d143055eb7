@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17f81379_d7cd80ea",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-02T19:05:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4252f5cc_63fe96fa",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24d270a6_27892990",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e11cd7c_946f2784",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-02T19:05:16Z",
+      "side": 1,
+      "message": "Maybe the \"Skip device check\" should be turned off when landing this? Have it set to false and only raise the exception if skip_device_check is false?",
+      "parentUuid": "24d270a6_27892990",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 368,
+        "endChar": 22
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42998617_3d97a0a5",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-06-01T01:17:20Z",
       "side": 1,
       "message": "Would it be better to move this logic into the AdbWrapper constructor to avoid calling the protected method?",
+      "range": {
+        "startLine": 369,
+        "startChar": 59,
+        "endLine": 369,
+        "endChar": 93
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbf5768_85c6956b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-02T19:05:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42998617_3d97a0a5",
       "range": {
         "startLine": 369,
         "startChar": 59,
