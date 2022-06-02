@@ -20,7 +20,7 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
 
 
 def _CreateTestLog(raw_logcat=None):
-  test_adb = adb_wrapper.AdbWrapper('0123456789abcdef')
+  test_adb = adb_wrapper.AdbWrapper('0123456789abcdef', skip_device_check=True)
   test_adb.Logcat = mock.Mock(return_value=(l for l in raw_logcat))
   test_log = logcat_monitor.LogcatMonitor(test_adb, clear=False)
   return test_log
@@ -110,7 +110,8 @@ class LogcatMonitorTest(unittest.TestCase):
         yield line
       finished_lock.acquire()
 
-    test_adb = adb_wrapper.AdbWrapper('0123456789abcdef')
+    test_adb = adb_wrapper.AdbWrapper('0123456789abcdef',
+                                      skip_device_check=True)
     test_adb.Logcat = mock.Mock(return_value=LogGenerator())
     test_log = logcat_monitor.LogcatMonitor(test_adb, clear=False)
     test_log.Start()

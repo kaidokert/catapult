@@ -17,6 +17,7 @@ import os
 import posixpath
 import re
 import subprocess
+import time
 
 import six
 
@@ -45,6 +46,8 @@ _ADB_PROTOCOL_VERSION_RE = re.compile(
     r'Android Debug Bridge version (\d+\.\d+\.\d+)')
 _ADB_RELEASE_VERSION_RE = re.compile(r'Version (\d+\.\d+\.\d+)')
 _EMULATOR_RE = re.compile(r'^emulator-[0-9]+$')
+# Regex to check an emulator device is online.
+_DEVICES_CONNECTED_RE = r"%s.*device"
 _DEVICE_NOT_FOUND_RE = re.compile(r"device '(?P<serial>.+)' not found")
 _READY_STATE = 'device'
 _VERITY_DISABLE_RE = re.compile(r'(V|v)erity (is )?(already )?disabled'
@@ -182,15 +185,35 @@ class AdbWrapper(object):
   _adb_release_version = lazy.WeakConstant(_GetReleaseVersion)
   _adb_sdk_version = lazy.WeakConstant(_GetSdkVersion)
 
-  def __init__(self, device_serial):
+  def __init__(self, device_serial, skip_device_check=False):
     """Initializes the AdbWrapper.
 
     Args:
       device_serial: The device serial number as a string.
+      skip_device_check: Boolean indicating if device status should be verified
+          as online before continuing.
+
+    Raises:
+      device_errors.DeviceUnreachableError: If device status is not online.
     """
     if not device_serial:
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
+    if skip_device_check:
+      return
+
+    connected_device_re = re.compile(_DEVICES_CONNECTED_RE %
+                                     self._device_serial)
+    for _ in range(5):
+      adb_cmd_output = self._RunAdbCmd(['devices'],
+                                       timeout=3,
+                                       retries=DEFAULT_RETRIES)
+      if connected_device_re.search(adb_cmd_output):
+        return
+      else:
+        time.sleep(3)
+
+    raise device_errors.DeviceUnreachableError(device_serial)
 
   class PersistentShell(object):
     '''Class to use persistent shell for ADB.
