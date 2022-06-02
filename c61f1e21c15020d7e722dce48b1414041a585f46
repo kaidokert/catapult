@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79dc8b56_1ddbc257",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-06-02T23:09:35Z",
+      "side": 1,
+      "message": "I\u0027d still need to fix unit tests and deploy on staging to verify nothing crashes (though I\u0027m not sure how much staging actually helps), but this is the rough idea of what I\u0027m trying to do",
+      "revId": "c61f1e21c15020d7e722dce48b1414041a585f46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
