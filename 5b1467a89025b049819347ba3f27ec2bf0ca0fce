@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1172c5_0cc2f8ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-02T22:46:48Z",
+      "side": 1,
+      "message": "Reverted the changes on yaml files as the new versions or new libraries are not supported.",
+      "revId": "5b1467a89025b049819347ba3f27ec2bf0ca0fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
