@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1449bce_0de33a13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-03T19:50:26Z",
+      "side": 1,
+      "message": "PTAL\n\nBlink tests pass locally for me with the changes.\n\nI filed crbug.com/1332629 for the Blink code passing in something that isn\u0027t a Host, hence the need for the `hasattr` check.",
+      "revId": "1767d27274e8f534ff3902f1911bfce401a9ebde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
