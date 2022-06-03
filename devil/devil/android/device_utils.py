@@ -356,11 +356,11 @@ def _JoinLines(lines):
   return ''.join(s for line in lines for s in (line, '\n'))
 
 
-def _CreateAdbWrapper(device):
+def _CreateAdbWrapper(device, skip_device_check=False):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
-  else:
-    return adb_wrapper.AdbWrapper(device)
+
+  return adb_wrapper.AdbWrapper(device, skip_device_check)
 
 
 def _FormatPartialOutputError(output):
@@ -444,7 +444,8 @@ class DeviceUtils(object):
                device,
                enable_device_files_cache=False,
                default_timeout=_DEFAULT_TIMEOUT,
-               default_retries=_DEFAULT_RETRIES):
+               default_retries=_DEFAULT_RETRIES,
+               skip_device_check=False):
     """DeviceUtils constructor.
 
     Args:
@@ -456,10 +457,11 @@ class DeviceUtils(object):
         wait for an operation to complete if no explicit value is provided.
       default_retries: An integer containing the default number or times an
         operation should be retried on failure if no explicit value is provided.
+      skip_device_check: Boolean indicating to check if device is online.
     """
     self.adb = None
     if isinstance(device, six.string_types):
-      self.adb = _CreateAdbWrapper(device)
+      self.adb = _CreateAdbWrapper(device, skip_device_check=skip_device_check)
     elif isinstance(device, adb_wrapper.AdbWrapper):
       self.adb = device
     else:
@@ -3768,6 +3770,7 @@ class DeviceUtils(object):
                      retries=1,
                      enable_usb_resets=False,
                      abis=None,
+                     skip_device_check=False,
                      **kwargs):
     """Returns a list of DeviceUtils instances.
 
@@ -3798,6 +3801,8 @@ class DeviceUtils(object):
           those that appear to be android devices.
       abis: A list of ABIs for which the device needs to support at least one of
           (optional). See devil.android.ndk.abis for valid values.
+      skip_device_check: A boolean indicating if it should verify device is
+          online.
       A device serial, or a list of device serials (optional).
 
     Returns:
@@ -3840,13 +3845,16 @@ class DeviceUtils(object):
 
     def _get_devices():
       if device_arg:
-        devices = [cls(x, **kwargs) for x in device_arg if not denylisted(x)]
+        devices = [
+            cls(x, skip_device_check=skip_device_check, **kwargs)
+            for x in device_arg if not denylisted(x)
+        ]
       else:
         devices = []
         for adb in adb_wrapper.AdbWrapper.Devices():
           serial = adb.GetDeviceSerial()
           if not denylisted(serial):
-            device = cls(_CreateAdbWrapper(adb), **kwargs)
+            device = cls(_CreateAdbWrapper(adb, skip_device_check), **kwargs)
             supported_abis = device.GetSupportedABIs()
             if not supported_abis:
               supported_abis = [device.GetABI()]

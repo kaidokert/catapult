@@ -107,7 +107,7 @@ class BatteryUtilsTest(mock_calls.TestCase):
 class BatteryUtilsInitTest(unittest.TestCase):
   def testInitWithDeviceUtil(self):
     serial = '0fedcba987654321'
-    d = device_utils.DeviceUtils(serial)
+    d = device_utils.DeviceUtils(serial, skip_device_check=True)
     b = battery_utils.BatteryUtils(d)
     self.assertEqual(d, b._device)
 

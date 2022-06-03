@@ -17,6 +17,7 @@ import os
 import posixpath
 import re
 import subprocess
+import time
 
 import six
 
@@ -182,15 +183,30 @@ class AdbWrapper(object):
   _adb_release_version = lazy.WeakConstant(_GetReleaseVersion)
   _adb_sdk_version = lazy.WeakConstant(_GetSdkVersion)
 
-  def __init__(self, device_serial):
+  def __init__(self, device_serial, skip_device_check=False):
     """Initializes the AdbWrapper.
 
     Args:
       device_serial: The device serial number as a string.
+      skip_device_check: Boolean indicating if device status should be verified
+          as online before continuing.
+
+    Raises:
+      device_errors.DeviceUnreachableError: If device status is not online.
     """
     if not device_serial:
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
+    if skip_device_check:
+      return
+
+    for _ in range(5):
+      if self.GetState() == _READY_STATE:
+        return
+      else:
+        time.sleep(3)
+
+    raise device_errors.DeviceUnreachableError(device_serial)
 
   class PersistentShell(object):
     '''Class to use persistent shell for ADB.
