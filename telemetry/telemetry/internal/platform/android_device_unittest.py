@@ -31,7 +31,7 @@ class _BaseAndroidDeviceTest(unittest.TestCase):
         android_device, ['subprocess'])
 
   def _GetMockDeviceUtils(self, device_serial):
-    device = device_utils.DeviceUtils(device_serial)
+    device = device_utils.DeviceUtils(device_serial, skip_device_check=True)
     return device
 
   def tearDown(self):
