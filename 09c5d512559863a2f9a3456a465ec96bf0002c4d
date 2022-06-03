@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c0e116_9cff6ac1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-03T19:33:38Z",
+      "side": 1,
+      "message": "Had to add some changes to telemetry with the raising an error on failure.",
+      "revId": "09c5d512559863a2f9a3456a465ec96bf0002c4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
