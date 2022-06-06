@@ -19,7 +19,8 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
 class AdbWrapperTest(unittest.TestCase):
   def setUp(self):
     self.device_serial = 'ABC12345678'
-    self.adb = adb_wrapper.AdbWrapper(self.device_serial)
+    self.adb = adb_wrapper.AdbWrapper(self.device_serial,
+                                      skip_device_check=True)
 
   def _MockRunDeviceAdbCmd(self, return_value):
     return mock.patch.object(

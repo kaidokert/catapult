@@ -16,6 +16,7 @@ from devil.android import battery_utils
 from devil.android import device_errors
 from devil.android import device_utils
 from devil.android import device_utils_test
+from devil.android.sdk import adb_wrapper
 from devil.utils import mock_calls
 
 with devil_env.SysPath(devil_env.PYMOCK_PATH):
@@ -105,7 +106,11 @@ class BatteryUtilsTest(mock_calls.TestCase):
 
 
 class BatteryUtilsInitTest(unittest.TestCase):
-  def testInitWithDeviceUtil(self):
+  @mock.patch(
+      'devil.android.sdk.adb_wrapper.AdbWrapper.GetState',
+      #pylint:disable=protected-access
+      return_value=adb_wrapper._READY_STATE)
+  def testInitWithDeviceUtil(self, _mock_get_state):
     serial = '0fedcba987654321'
     d = device_utils.DeviceUtils(serial)
     b = battery_utils.BatteryUtils(d)
