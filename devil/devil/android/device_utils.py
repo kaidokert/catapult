@@ -359,8 +359,8 @@ def _JoinLines(lines):
 def _CreateAdbWrapper(device):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
-  else:
-    return adb_wrapper.AdbWrapper(device)
+
+  return adb_wrapper.AdbWrapper(device)
 
 
 def _FormatPartialOutputError(output):

@@ -17,6 +17,7 @@ import os
 import posixpath
 import re
 import subprocess
+import time
 
 import six
 
@@ -182,15 +183,35 @@ class AdbWrapper(object):
   _adb_release_version = lazy.WeakConstant(_GetReleaseVersion)
   _adb_sdk_version = lazy.WeakConstant(_GetSdkVersion)
 
-  def __init__(self, device_serial):
+  def __init__(self, device_serial, skip_device_check=True):
     """Initializes the AdbWrapper.
 
     Args:
       device_serial: The device serial number as a string.
+      skip_device_check: A boolean indicating if checking for device status
+          should be skipped.
+
+    Raises:
+      device_errors.DeviceUnreachableError: If device status is not online.
     """
     if not device_serial:
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
+
+    # TODO(crbug/1330756): This check should be switched to checking for a
+    # persistent shell.
+    if skip_device_check:
+      return
+
+    for _ in range(5):
+      if self.GetState() == _READY_STATE:
+        return
+      else:
+        # Local testing shows it takes 8-9 seconds for device to become active
+        # from an --avd-config emulator.
+        time.sleep(3)
+
+    raise device_errors.DeviceUnreachableError(device_serial)
 
   class PersistentShell(object):
     '''Class to use persistent shell for ADB.

@@ -20,7 +20,7 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
 
 
 def _CreateTestLog(raw_logcat=None):
-  test_adb = adb_wrapper.AdbWrapper('0123456789abcdef')
+  test_adb = adb_wrapper.AdbWrapper('0123456789abcdef', skip_device_check=True)
   test_adb.Logcat = mock.Mock(return_value=(l for l in raw_logcat))
   test_log = logcat_monitor.LogcatMonitor(test_adb, clear=False)
   return test_log
@@ -97,7 +97,11 @@ class LogcatMonitorTest(unittest.TestCase):
     test_log.Close()
 
   @mock.patch('time.sleep', mock.Mock())
-  def testWaitFor_buffering(self):
+  @mock.patch(
+      'devil.android.sdk.adb_wrapper.AdbWrapper.GetState',
+      #pylint:disable=protected-access
+      return_value=adb_wrapper._READY_STATE)
+  def testWaitFor_buffering(self, _mock_get_state):
     # Simulate an adb log stream which does not complete until the test tells it
     # to. This checks that the log matcher can receive individual lines from the
     # log reader thread even if adb is not producing enough output to fill an
