@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2aa059c_7ce575f8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-07T21:05:18Z",
+      "side": 1,
+      "message": "That causes a lot of failed test failures, so I think it\u0027s best to leave as optional right now until the persistent_shell todo is in.",
+      "parentUuid": "8e11cd7c_946f2784",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 368,
+        "endChar": 22
+      },
+      "revId": "f6576d6e97b9690ff11509728b9c86d143055eb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42998617_3d97a0a5",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
