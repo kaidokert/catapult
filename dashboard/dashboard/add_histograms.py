@@ -45,7 +45,7 @@ def _CheckRequest(condition, msg):
     raise api_request_handler.BadRequestError(msg)
 
 
-class DecompressFileWrapper(object):
+class DecompressFileWrapper():
   """A file-like object implementing inline decompression.
 
   This class wraps a file-like object and does chunk-based decoding of the data.

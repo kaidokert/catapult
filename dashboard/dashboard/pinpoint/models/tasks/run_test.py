@@ -192,7 +192,7 @@ class PollSwarmingTaskAction(
 
 # Everything after this point aims to define an evaluator for the 'run_test'
 # tasks.
-class InitiateEvaluator(object):
+class InitiateEvaluator():
 
   def __init__(self, job):
     self.job = job
@@ -250,9 +250,10 @@ class InitiateEvaluator(object):
       return [
           ScheduleTestAction(job=self.job, task=task, properties=properties)
       ]
+    return None
 
 
-class UpdateEvaluator(object):
+class UpdateEvaluator():
 
   def __init__(self, job):
     self.job = job
@@ -282,6 +283,8 @@ class UpdateEvaluator(object):
 class Evaluator(evaluators.SequenceEvaluator):
 
   def __init__(self, job):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Evaluator, self).__init__(
         evaluators=(
             evaluators.FilteringEvaluator(
@@ -357,6 +360,8 @@ def ReportError(task, _, accumulator):
 class Validator(evaluators.FilteringEvaluator):
 
   def __init__(self):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Validator, self).__init__(
         predicate=evaluators.TaskTypeEq('run_test'), delegate=ReportError)
 
@@ -401,6 +406,8 @@ def TestSerializer(task, _, accumulator):
 class Serializer(evaluators.FilteringEvaluator):
 
   def __init__(self):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Serializer, self).__init__(
         predicate=evaluators.TaskTypeEq('run_test'), delegate=TestSerializer)
 

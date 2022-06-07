@@ -21,6 +21,7 @@ def UpdateSysPathIfNeeded():
   _AddToPathIfNeeded(p.catapult_third_party_path)
   _AddToPathIfNeeded(p.catapult_path)
   _AddToPathIfNeeded(p.tracing_root_path)
+  # pylint: disable=import-outside-toplevel
   import tracing_project
   tracing_project.UpdateSysPathIfNeeded()
 
@@ -46,7 +47,7 @@ def _IsFilenameATest(x):
   return False
 
 
-class DashboardProject(object):
+class DashboardProject():
   catapult_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
   catapult_third_party_path = os.path.join(catapult_path, 'third_party')
@@ -73,6 +74,7 @@ class DashboardProject(object):
       self._source_paths.append(self.redux_path)
       self._source_paths.append(self.catapult_third_party_path)
 
+      # pylint: disable=import-outside-toplevel
       import tracing_project as tracing_project_module
       tracing_project = tracing_project_module.TracingProject()
       self._source_paths.extend(tracing_project.source_paths)
