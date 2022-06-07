@@ -265,6 +265,8 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
     # Truncate the "description" property if necessary.
     description = kwargs.get('description') or ''
     kwargs['description'] = description[:_MAX_STRING_LENGTH]
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(TestMetadata, self).__init__(*args, **kwargs)
 
   @ndb.synctasklet
@@ -433,7 +435,8 @@ def GetRowsForTestBeforeAfterRev(test_key, rev, num_rows_before,
   test_key = utils.OldStyleTestKey(test_key)
 
   query_up_to_rev = Row.query(Row.parent_test == test_key, Row.revision <= rev)
-  query_up_to_rev = query_up_to_rev.order(-Row.revision)  # pylint: disable=invalid-unary-operand-type
+  # pylint: disable=invalid-unary-operand-type
+  query_up_to_rev = query_up_to_rev.order(-Row.revision)
   rows_up_to_rev = list(
       reversed(query_up_to_rev.fetch(limit=num_rows_before, batch_size=100)))
 
@@ -448,6 +451,7 @@ def GetLatestRowsForTest(test_key, num_points, keys_only=False):
   """Gets the latest num_points Row entities for a test."""
   test_key = utils.OldStyleTestKey(test_key)
   query = Row.query(Row.parent_test == test_key)
-  query = query.order(-Row.revision)  # pylint: disable=invalid-unary-operand-type
+  # pylint: disable=invalid-unary-operand-type
+  query = query.order(-Row.revision)
 
   return query.fetch(limit=num_points, batch_size=100, keys_only=keys_only)

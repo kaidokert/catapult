@@ -122,7 +122,7 @@ def _CreateHistogram(name='hist',
   return histograms
 
 
-class BufferedFakeFile(object):
+class BufferedFakeFile():
 
   def __init__(self, data=str()):
     self.data = data
@@ -163,6 +163,8 @@ class BufferedFakeFile(object):
 class AddHistogramsBaseTest(testing_common.TestCase):
 
   def setUp(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(AddHistogramsBaseTest, self).setUp()
     app = webapp2.WSGIApplication([
         ('/add_histograms', add_histograms.AddHistogramsHandler),
@@ -1600,6 +1602,8 @@ class AddHistogramsTest(AddHistogramsBaseTest):
 class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
 
   def setUp(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(AddHistogramsUploadCompleteonTokenTest, self).setUp()
 
     self._TrunOnUploadCompletionTokenExperiment()

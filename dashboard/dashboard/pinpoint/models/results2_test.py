@@ -920,7 +920,7 @@ class FakePatch(
     }
 
 
-class _AttemptFake(object):
+class _AttemptFake():
 
   def __init__(self, attempt):
     self._attempt = attempt
@@ -934,7 +934,7 @@ class _AttemptFake(object):
     return '%s' % (self._attempt,)
 
 
-class _JobStateFake(object):
+class _JobStateFake():
 
   def __init__(self, attempts):
     self._attempts = {
@@ -954,12 +954,12 @@ class _JobStateFake(object):
     def Pairwise(iterable):
       a, b = itertools.tee(iterable)
       next(b, None)
-      return itertools.izip(a, b)
+      return zip(a, b)
 
-    return [(a, b) for a, b in Pairwise(list(self._attempts.keys()))]
+    return list(Pairwise(list(self._attempts.keys())))
 
 
-class _JobStub(object):
+class _JobStub():
 
   def __init__(self,
                job_dict,

@@ -33,6 +33,8 @@ _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
                    lambda: _SERVICE_ACCOUNT_EMAIL)
 class GroupReportTestBase(testing_common.TestCase):
   def __init__(self, *args, **kwargs):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(GroupReportTestBase, self).__init__(*args, **kwargs)
     self.fake_issue_tracker = testing_common.FakeIssueTrackerService()
     self.fake_issue_tracker.comments.append({
@@ -47,6 +49,8 @@ class GroupReportTestBase(testing_common.TestCase):
         infos={}, revisions={})
 
   def setUp(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(GroupReportTestBase, self).setUp()
     self.maxDiff = None
     app = webapp2.WSGIApplication([('/alert_groups_update',
@@ -429,8 +433,8 @@ class GroupReportTest(GroupReportTestBase):
         'Chromeperf-Auto-Triaged'
     ])
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected measurements in bot:')
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)
     # Make sure we don't file the issue again for this alert group.
@@ -475,12 +479,12 @@ class GroupReportTest(GroupReportTestBase):
         'Chromeperf-Auto-Triaged'
     ])
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 4 affected measurements in bot:')
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected in test_suite:')
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected in other_test_suite:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 4 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected in test_suite:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected in other_test_suite:')
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)
     # Make sure we don't file the issue again for this alert group.
@@ -555,8 +559,8 @@ class GroupReportTest(GroupReportTestBase):
     self.assertEqual(self.fake_issue_tracker.add_comment_args[0], 12345)
     self.assertItemsEqual(
         self.fake_issue_tracker.add_comment_kwargs['components'], ['Foo>Bar'])
-    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
-                             r'Top 2 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.add_comment_args[1],
+                     r'Top 2 affected measurements in bot:')
 
   def testMultipleAltertsNonoverlapThreshold(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -597,6 +601,8 @@ class GroupReportTest(GroupReportTestBase):
 @mock.patch('dashboard.sheriff_config_client.GetSheriffConfigClient')
 class RecoveredAlertsTests(GroupReportTestBase):
   def __init__(self, *args, **kwargs):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(RecoveredAlertsTests, self).__init__(*args, **kwargs)
     self.anomalies = []
 
@@ -630,8 +636,8 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self.InitAfterMocks()
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected measurements in bot:')
 
   def testClosesIssueOnAllRecovered(self, mock_get_sheriff_client):
     # Ensure that we close the issue if all regressions in the group have been
@@ -640,15 +646,15 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self.InitAfterMocks()
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected measurements in bot:')
     # Mark one of the anomalies recovered.
     recovered_anomaly = self.anomalies[0].get()
     recovered_anomaly.recovered = True
     recovered_anomaly.put()
     self._CallHandler()
     self.assertEqual(self.fake_issue_tracker.issue['state'], 'closed')
-    self.assertRegexpMatches(
+    self.assertRegex(
         self.fake_issue_tracker.add_comment_args[1],
         r'All regressions for this issue have been marked recovered; closing.')
 
@@ -668,11 +674,11 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.add_comment_args[1])
     self.assertEqual(self.fake_issue_tracker.issue["state"], 'open')
-    self.assertRegexpMatches(
+    self.assertRegex(
         self.fake_issue_tracker.add_comment_args[1],
         r'Reopened due to new regressions detected for this alert group:')
-    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
-                             r'test_suite/measurement/other_test_case')
+    self.assertRegex(self.fake_issue_tracker.add_comment_args[1],
+                     r'test_suite/measurement/other_test_case')
 
   def testManualClosedIssuesWithNewRegressions(self, mock_get_sheriff_client):
     # pylint: disable=no-value-for-parameter
@@ -697,8 +703,8 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.add_comment_args[1])
     self.assertEqual(self.fake_issue_tracker.issue["state"], 'closed')
-    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
-                             r'test_suite/measurement/other_test_case')
+    self.assertRegex(self.fake_issue_tracker.add_comment_args[1],
+                     r'test_suite/measurement/other_test_case')
 
   def testStartAutoBisection(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)

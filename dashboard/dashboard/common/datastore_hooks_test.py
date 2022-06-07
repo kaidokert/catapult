@@ -16,7 +16,7 @@ from dashboard.common import utils
 from dashboard.models import graph_data
 
 
-class FakeRequest(object):
+class FakeRequest():
 
   def __init__(self):
     self.registry = {}
@@ -25,6 +25,8 @@ class FakeRequest(object):
 class DatastoreHooksTest(testing_common.TestCase):
 
   def setUp(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(DatastoreHooksTest, self).setUp()
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
@@ -33,6 +35,8 @@ class DatastoreHooksTest(testing_common.TestCase):
     self.PatchDatastoreHooksRequest()
 
   def tearDown(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(DatastoreHooksTest, self).tearDown()
     self.UnsetCurrentUser()
 

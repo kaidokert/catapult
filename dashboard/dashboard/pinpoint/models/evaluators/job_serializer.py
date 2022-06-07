@@ -67,6 +67,8 @@ class Serializer(evaluators.DispatchByTaskType):
   """
 
   def __init__(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Serializer, self).__init__({
         'find_isolate':
             evaluators.SequenceEvaluator(
@@ -89,6 +91,8 @@ class Serializer(evaluators.DispatchByTaskType):
     # single context. This way the transformers can output a canonical set
     # of transformations to build up the (global) context.
     local_context = {}
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Serializer, self).__call__(task, event, local_context)
 
     # What we expect to see in the local context is data in the following
@@ -210,7 +214,7 @@ class Serializer(evaluators.DispatchByTaskType):
             ordered_states[index] = state
 
         # Merge in the comparisons as they appear for the ordered_states.
-        for state, comparison, result in itertools.izip_longest(
+        for state, comparison, result in itertools.zip_longest(
             ordered_states, comparisons or [], result_values or []):
           if state is None:
             continue
@@ -267,11 +271,11 @@ def TaskTransformer(task, _, context):
   }
   """
   if not context:
-    return None
+    return
 
   input_data = context.get(task.id)
   if not input_data:
-    return None
+    return
 
   result = {
       'state': {
@@ -307,10 +311,10 @@ def AnalysisTransformer(task, _, context):
   }
   """
   if not context:
-    return None
+    return
   task_data = context.get(task.id)
   if not task_data:
-    return None
+    return
   result = {
       'set_parameters': {
           'comparison_mode': task_data.get('comparison_mode'),
