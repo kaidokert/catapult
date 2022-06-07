@@ -15,13 +15,14 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 
 
-class MockIssueTrackerService(object):
+class MockIssueTrackerService():
   """A fake version of IssueTrackerService that returns expected data."""
 
   def __init__(self, http=None):
     pass
 
   @classmethod
+  # pylint: disable=keyword-arg-before-vararg
   def List(cls, project='chromium', *unused_args, **unused_kwargs):
     del project
     return {
@@ -104,6 +105,8 @@ class MockIssueTrackerService(object):
 class BugsTest(testing_common.TestCase):
 
   def setUp(self):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(BugsTest, self).setUp()
     self.SetUpApp([
         (r'/api/bugs/p/(.+)/(.+)', bugs.BugsWithProjectHandler),
@@ -118,6 +121,8 @@ class BugsTest(testing_common.TestCase):
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 
   def tearDown(self):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(BugsTest, self).tearDown()
     bugs.issue_tracker_service.IssueTrackerService = self.original_service
 

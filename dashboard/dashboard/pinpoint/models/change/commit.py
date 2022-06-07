@@ -28,7 +28,9 @@ class NonLinearError(Exception):
 
 
 Dep = collections.namedtuple('Dep', ('repository_url', 'git_hash'))
-CommitPositionInfo = collections.namedtuple('CommitPositionInfo', ('branch', 'position'))
+CommitPositionInfo = collections.namedtuple('CommitPositionInfo',
+                                            ('branch', 'position'))
+
 
 def ParseDateWithUTCOffset(date_string):
   # Parsing the utc offset within strptime isn't supported until python 3, so
@@ -60,6 +62,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
   """A git repository pinned to a particular commit."""
 
   def __init__(self, *args, **kwargs):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Commit, self).__init__(*args, **kwargs)
     self._repository_url = None
 
@@ -194,8 +198,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     """
     if isinstance(data, six.string_types):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):
@@ -246,7 +249,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
         result = gitiles_service.CommitInfo(repository_url, git_hash)
         git_hash = result['commit']
     except gitiles_service.NotFoundError as e:
-      raise KeyError(str(e))
+      six.raise_from(KeyError(str(e)), e)
 
     commit = cls(repository, git_hash)
     commit._repository_url = repository_url
