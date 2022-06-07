@@ -16,7 +16,7 @@ from dashboard.models import internal_only_model
 _MEMCACHE_TIMEOUT = 60 * 10
 
 
-class State(object):
+class State():
   PENDING = 0
   PROCESSING = 1
   FAILED = 2

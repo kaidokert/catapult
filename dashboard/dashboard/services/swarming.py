@@ -19,7 +19,7 @@ from dashboard.services import request
 _API_PATH = '_ah/api/swarming/v1'
 
 
-class Swarming(object):
+class Swarming():
 
   def __init__(self, server):
     self._server = server
@@ -37,7 +37,7 @@ class Swarming(object):
     return Tasks(self._server)
 
 
-class Bot(object):
+class Bot():
 
   def __init__(self, server, bot_id):
     self._server = server
@@ -59,7 +59,7 @@ class Bot(object):
     return request.RequestJson(url, **kwargs)
 
 
-class Bots(object):
+class Bots():
 
   def __init__(self, server):
     self._server = server
@@ -85,7 +85,7 @@ class Bots(object):
         quarantined=quarantined)
 
 
-class Task(object):
+class Task():
 
   def __init__(self, server, task_id):
     self._server = server
@@ -120,7 +120,7 @@ class Task(object):
     return request.RequestJson(url, **kwargs)
 
 
-class Tasks(object):
+class Tasks():
 
   def __init__(self, server):
     self._server = server
@@ -153,8 +153,7 @@ def GetAliveBotsByDimensions(dimensions, swarming_server):
     bots = [i['bot_id'] for i in results['items']]
     random.shuffle(bots)
     return bots
-  else:
-    return []
+  return []
 
 
 def IsBotAlive(bot_id, swarming_server):

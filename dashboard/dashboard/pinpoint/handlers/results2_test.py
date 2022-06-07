@@ -18,6 +18,8 @@ from dashboard.pinpoint import test
 class _Results2Test(test.TestCase):
 
   def setUp(self):
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(_Results2Test, self).setUp()
 
     self._job_from_id = mock.MagicMock()
@@ -94,11 +96,11 @@ class Results2GeneratorPostTest(_Results2Test):
     self.assertIn('foo', response.body)
 
 
-class _TaskStub(object):
+class _TaskStub():
   pass
 
 
-class _JobStub(object):
+class _JobStub():
 
   def __init__(self, job_id, started=True, task=None):
     self.job_id = job_id
