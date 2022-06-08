@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dac59412_dda9ff94",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-06-08T21:31:30Z",
+      "side": 1,
+      "message": "setting improvement direction here in case things get messed up if they\u0027re executed inside the deferred block",
+      "revId": "b54d0ccadc27992b8e71291040ab7758de8099ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
