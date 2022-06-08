@@ -632,12 +632,9 @@ class Job(ndb.Model):
           _retry_options=RETRY_OPTIONS)
       return
 
-    # Determine direction of improvement
-    improvement_dir = self._GetImprovementDirection()
-
     # Collect the result values for each of the differences
     bug_update_builder = job_bug_update.DifferencesFoundBugUpdateBuilder(
-        self.state.metric, improvement_dir)
+        self.state.metric)
     bug_update_builder.SetExaminedCount(changes_examined)
     for change_a, change_b in differences:
       values_a = result_values[change_a]
@@ -651,6 +648,7 @@ class Job(ndb.Model):
         self.tags,
         self.url,
         self.project,
+        self._GetImprovementDirection(),
         _retry_options=RETRY_OPTIONS)
 
   def _UpdateGerritIfNeeded(self, success=True):
