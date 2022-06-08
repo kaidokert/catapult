@@ -21,7 +21,7 @@ MAX_DISCOVERY_RETRIES = 3
 MAX_REQUEST_RETRIES = 5
 
 
-class IssueTrackerService(object):
+class IssueTrackerService():
   """Class for updating bug issues."""
 
   def __init__(self, http):

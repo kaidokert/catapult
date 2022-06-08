@@ -124,7 +124,7 @@ class BuildbucketServiceTest(unittest.TestCase):
     self._AssertRequestV2MadeOnce('GetBuild', method='POST', body=expected_body)
 
 
-class FakeJob(object):
+class FakeJob():
 
   def GetBuildParameters(self):
     return _BUILD_PARAMETERS
