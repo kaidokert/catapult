@@ -34,6 +34,24 @@
       "parentUuid": "60b6ba89_0fb991a8",
       "revId": "bb47e2d0df4e9f12833b589bcf8d5ad2f7243680",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f041838_a7582298",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-06-08T14:34:10Z",
+      "side": 1,
+      "message": "Do you mean push this CL to main but test it without setting the traffic to 100%? \n\nWe can try it, I\u0027ve been having trouble with testing code in job_bug_update because it\u0027s being executed inside of the deferred.defer block",
+      "parentUuid": "75598f81_e580c45d",
+      "revId": "bb47e2d0df4e9f12833b589bcf8d5ad2f7243680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
