@@ -16,6 +16,24 @@
       "message": "I was not able to verify that this worked on staging. The issue with staging is that it\u0027s difficult for it to finish a bisection with multiple culprits because there are multiple transient issues that can prevent a job from finishing. The longer something runs, the less likely it is for the job to finish. \n\nI was able to confirm that this code is able to run a bisection all the way through, so let\u0027s land this and see if it works on production? Might be more convenient this way. ",
       "revId": "bb47e2d0df4e9f12833b589bcf8d5ad2f7243680",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75598f81_e580c45d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-06-08T13:49:05Z",
+      "side": 1,
+      "message": "How about taking a snapshot with the debugger in _OrderedDifferencesByDelta, and checking improvement_dir is set right?",
+      "parentUuid": "60b6ba89_0fb991a8",
+      "revId": "bb47e2d0df4e9f12833b589bcf8d5ad2f7243680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
