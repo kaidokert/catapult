@@ -16,6 +16,29 @@
       "message": "setting improvement direction here in case things get messed up if they\u0027re executed inside the deferred block",
       "revId": "b54d0ccadc27992b8e71291040ab7758de8099ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acbac568_14779bac",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-06-08T21:35:41Z",
+      "side": 1,
+      "message": "nit - be consistent with improvement_dir vs. improve_dir",
+      "range": {
+        "startLine": 652,
+        "startChar": 8,
+        "endLine": 652,
+        "endChar": 19
+      },
+      "revId": "b54d0ccadc27992b8e71291040ab7758de8099ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
