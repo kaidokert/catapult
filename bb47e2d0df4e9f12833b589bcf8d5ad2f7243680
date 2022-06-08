@@ -52,6 +52,24 @@
       "parentUuid": "75598f81_e580c45d",
       "revId": "bb47e2d0df4e9f12833b589bcf8d5ad2f7243680",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f76427c1_71a09128",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-06-08T14:44:43Z",
+      "side": 1,
+      "message": "You can do this on staging too (select Chrome Performance - Staging at the top of the debugger).\n\nSeems like a snapshot should still work in a defer block (or, why wouldn\u0027t it?)",
+      "parentUuid": "8f041838_a7582298",
+      "revId": "bb47e2d0df4e9f12833b589bcf8d5ad2f7243680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
