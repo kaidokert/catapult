@@ -50,6 +50,24 @@
       "message": "John, you’re a catapult/telemetry owner. Could you please review this or help us find a reviewer? Thank you!",
       "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b09fadbe_ff05ab37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1465837
+      },
+      "writtenOn": "2022-06-09T12:56:02Z",
+      "side": 1,
+      "message": "Yeah, no worries, you just happened to win the random pick lottery. 😊\n\nThanks Matthias for tagging John for review.",
+      "parentUuid": "0ba01299_c9a6e2c3",
+      "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
