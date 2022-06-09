@@ -68,6 +68,23 @@
       "parentUuid": "0ba01299_c9a6e2c3",
       "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76993fae_caa4a403",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1465837
+      },
+      "writtenOn": "2022-06-09T13:10:02Z",
+      "side": 1,
+      "message": "59 would be _strictly_ safer, as there were some pre-release versions of 58 w/ a branch number lower than 3029. But I\u0027m not sure how concerned we should be about a handful of pre-release versions that are more than 5 years old, and if it\u0027s worth changing the min-supported version for that.",
+      "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
