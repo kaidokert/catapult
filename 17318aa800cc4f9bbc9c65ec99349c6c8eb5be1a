@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfcafe8d_cae1938e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1465837
+      },
+      "writtenOn": "2022-06-09T00:26:12Z",
+      "side": 1,
+      "message": "PTAL, thanks - happy to chat over GVC about the proposed fix and the urgency here.",
+      "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
