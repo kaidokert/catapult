@@ -33,6 +33,23 @@
       "message": "Can you please get an LGTM from a teammate first? - I\u0027m not familiar with the code and just happened to be on the owners list.",
       "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2a41c6c_a3069557",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1214214
+      },
+      "writtenOn": "2022-06-09T07:27:47Z",
+      "side": 1,
+      "message": "John, you’re a catapult/telemetry owner. Could you please review this or help us find a reviewer? Thank you!",
+      "revId": "17318aa800cc4f9bbc9c65ec99349c6c8eb5be1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
