@@ -23,7 +23,7 @@ import itertools
 ###################
 
 
-class Not(object):
+class Not():
 
   def __init__(self, filter_):
     self._filter = filter_
@@ -32,7 +32,7 @@ class Not(object):
     return not self._filter(*args)
 
 
-class All(object):
+class All():
 
   def __init__(self, *filters):
     self._filters = filters
@@ -41,7 +41,7 @@ class All(object):
     return all(f(*args) for f in self._filters)
 
 
-class Any(object):
+class Any():
 
   def __init__(self, *filters):
     self._filters = filters
@@ -50,7 +50,7 @@ class Any(object):
     return any(f(*args) for f in self._filters)
 
 
-class TaskTypeEq(object):
+class TaskTypeEq():
 
   def __init__(self, task_type_filter):
     self._task_type_filter = task_type_filter
@@ -59,7 +59,7 @@ class TaskTypeEq(object):
     return task.task_type == self._task_type_filter
 
 
-class TaskStatusIn(object):
+class TaskStatusIn():
 
   def __init__(self, include_types):
     self._include_types = include_types
@@ -68,7 +68,7 @@ class TaskStatusIn(object):
     return task.status in self._include_types
 
 
-class TaskIsEventTarget(object):
+class TaskIsEventTarget():
 
   def __call__(self, task, event, _):
     return event.target_task is None or event.target_task == task.id
@@ -78,7 +78,7 @@ class TaskIsEventTarget(object):
 ######################
 
 
-class NoopEvaluator(object):
+class NoopEvaluator():
 
   def __call__(self, *_):
     return None
@@ -87,7 +87,7 @@ class NoopEvaluator(object):
     return 'NoopEvaluator()'
 
 
-class TaskPayloadLiftingEvaluator(object):
+class TaskPayloadLiftingEvaluator():
   """An evaluator that copies task payload and status to the accumulator.
 
   A common pattern in evaluators in Pinpoint is lifting, or copying, the task's
@@ -131,7 +131,8 @@ class TaskPayloadLiftingEvaluator(object):
     accumulator.update({task.id: update})
     return None
 
-
+# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
+# pylint: disable=useless-object-inheritance
 class SequenceEvaluator(object):
 
   def __init__(self, evaluators):
@@ -150,7 +151,8 @@ class SequenceEvaluator(object):
         for evaluator in self._evaluators
     ])
 
-
+# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
+# pylint: disable=useless-object-inheritance
 class FilteringEvaluator(object):
 
   def __init__(self, predicate, delegate, alternative=None):
@@ -168,7 +170,8 @@ class FilteringEvaluator(object):
       return self._delegate(*args)
     return self._alternative(*args)
 
-
+# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
+# pylint: disable=useless-object-inheritance
 class DispatchEvaluatorBase(object):
 
   def __init__(self, evaluator_map, default_evaluator=None):
@@ -223,5 +226,7 @@ class Selector(FilteringEvaluator):
         matches |= predicate(task, event, accumulator)
       return matches
 
+    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(Selector, self).__init__(
         predicate=Predicate, delegate=TaskPayloadLiftingEvaluator(**kwargs))

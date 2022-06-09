@@ -26,7 +26,7 @@ def TableRowDescriptors(table_row):
         yield descriptor.Descriptor(test_suite, table_row['measurement'], bot)
 
 
-class ReportQuery(object):
+class ReportQuery():
   """Take a template and revisions. Return a report.
 
   Templates look like this: {
@@ -285,7 +285,8 @@ class ReportQuery(object):
     query = graph_data.Row.query(graph_data.Row.parent_test == test_key)
     if rev != 'latest':
       query = query.filter(graph_data.Row.revision <= rev)
-    query = query.order(-graph_data.Row.revision)  # pylint: disable=invalid-unary-operand-type
+    # pylint: disable=invalid-unary-operand-type
+    query = query.order(-graph_data.Row.revision)
     data_row = yield query.get_async()
     raise ndb.Return(data_row)
 

@@ -61,10 +61,7 @@ def ComputeLabelUpdates(labels):
         label in label_set for label_set in _LABEL_EXCLUSION_SETS)
     if found_in_sets > 1:
       raise ValueError(
-          'label "%s" is found in %s label sets',
-          label,
-          found_in_sets,
-      )
+          'label "%s" is found in %s label sets' % (label, found_in_sets),)
 
   for label_set in _LABEL_EXCLUSION_SETS:
     label_updates |= set('-' + l for l in label_set)
@@ -73,7 +70,7 @@ def ComputeLabelUpdates(labels):
   return list(label_updates)
 
 
-class JobUpdateBuilder(object):
+class JobUpdateBuilder():
   """Builder for job issue updates.
 
   The builder lets us collect the useful information for filing an update on an
@@ -106,7 +103,7 @@ class JobUpdateBuilder(object):
     return _BugUpdateInfo(comment_text, None, None, labels, None)
 
 
-class DifferencesFoundBugUpdateBuilder(object):
+class DifferencesFoundBugUpdateBuilder():
   """Builder for bug updates about differences found in a metric.
 
   Accumulate the found differences into this with AddDifference(), then call
@@ -279,7 +276,7 @@ class DifferencesFoundBugUpdateBuilder(object):
     return owner, cc_list, why_text
 
 
-class _Difference(object):
+class _Difference():
 
   # Define this as a class attribute so that accessing it never fails with
   # AttributeError, even if working with a serialized version of _Difference

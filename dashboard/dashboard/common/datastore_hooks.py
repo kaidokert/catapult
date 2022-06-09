@@ -110,28 +110,27 @@ def _IsServicingPrivilegedRequest():
     if allowlist and hasattr(flask_request, 'remote_addr'):
       return flask_request.remote_addr in allowlist
     return False
-  else:
-    try:
-      request = webapp2.get_request()
-    except AssertionError:
-      # This happens in unit tests, when code gets called outside of a request.
-      return False
-    path = getattr(request, 'path', '')
-    if path.startswith('/mapreduce'):
-      return True
-    if path.startswith('/_ah/queue/deferred'):
-      return True
-    if path.startswith('/_ah/pipeline/'):
-      return True
-    if request.registry.get('privileged', False):
-      return True
-    if request.registry.get('single_privileged', False):
-      request.registry['single_privileged'] = False
-      return True
-    allowlist = utils.GetIpAllowlist()
-    if allowlist and hasattr(request, 'remote_addr'):
-      return request.remote_addr in allowlist
+  try:
+    request = webapp2.get_request()
+  except AssertionError:
+    # This happens in unit tests, when code gets called outside of a request.
     return False
+  path = getattr(request, 'path', '')
+  if path.startswith('/mapreduce'):
+    return True
+  if path.startswith('/_ah/queue/deferred'):
+    return True
+  if path.startswith('/_ah/pipeline/'):
+    return True
+  if request.registry.get('privileged', False):
+    return True
+  if request.registry.get('single_privileged', False):
+    request.registry['single_privileged'] = False
+    return True
+  allowlist = utils.GetIpAllowlist()
+  if allowlist and hasattr(request, 'remote_addr'):
+    return request.remote_addr in allowlist
+  return False
 
 
 def IsUnalteredQueryPermitted():
