@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce92f8b7_39daa2e2",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-09T00:01:58Z",
+      "side": 1,
+      "message": "suggestion: this could just be `self.is_ready`. I think you could then update the tests to mock that property instead, which would avoid the need for `pylint:disable\u003dprotected-access`",
+      "range": {
+        "startLine": 197,
+        "startChar": 9,
+        "endLine": 197,
+        "endChar": 40
+      },
+      "revId": "4c4831bfebf97ab160e58f7ac9e3880f7553c573",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
