@@ -22,6 +22,30 @@
       },
       "revId": "efa660a0cea4620b5e473bb1e8a1733d600e44cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edccf2e1_ae446f79",
+        "filename": "dashboard/bq_export/bq_export/export_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-10T18:47:33Z",
+      "side": 1,
+      "message": "cool, will do",
+      "parentUuid": "ddc7c2e4_9e8b0768",
+      "range": {
+        "startLine": 49,
+        "startChar": 24,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "efa660a0cea4620b5e473bb1e8a1733d600e44cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
