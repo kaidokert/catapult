@@ -62,6 +62,8 @@ class Timeseries2Handler(api_request_handler.ApiRequestHandler):
     return result
 
 
+# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
+# pylint: disable=useless-object-inheritance
 class TimeseriesQuery(object):
 
   def __init__(self,
@@ -306,13 +308,14 @@ class TimeseriesQuery(object):
         query = query.filter(graph_data.Row.revision >= self._min_revision)
       if self._max_revision:
         query = query.filter(graph_data.Row.revision <= self._max_revision)
-      query = query.order(-graph_data.Row.revision)  # pylint: disable=invalid-unary-operand-type
+      # pylint: disable=invalid-unary-operand-type
+      query = query.order(-graph_data.Row.revision)
     elif self._min_timestamp or self._max_timestamp:
       if self._min_timestamp:
         query = query.filter(graph_data.Row.timestamp >= self._min_timestamp)
       if self._max_timestamp:
         query = query.filter(graph_data.Row.timestamp <= self._max_timestamp)
-      query = query.order(-graph_data.Row.timestamp)  # pylint: disable=invalid-unary-operand-type
+      query = query.order(-graph_data.Row.timestamp)
     else:
       query = query.order(-graph_data.Row.revision)  # pylint: disable=invalid-unary-operand-type
     return query
