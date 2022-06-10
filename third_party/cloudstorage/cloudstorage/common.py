@@ -48,6 +48,7 @@ from email import utils as email_utils
 import logging
 import os
 import re
+import six
 
 try:
   from google.appengine.api import runtime

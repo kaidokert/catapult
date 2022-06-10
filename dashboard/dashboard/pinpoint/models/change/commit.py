@@ -10,7 +10,9 @@ import collections
 import datetime
 import re
 
-from depot_tools import gclient_eval
+import sys
+print(" == sys.path change/commit.py === ", sys.path)
+from depot_tools.depot_tools import gclient_eval
 from google.appengine.ext import deferred
 
 from dashboard.pinpoint.models.change import commit_cache
@@ -59,9 +61,14 @@ def ParseDateWithUTCOffset(date_string):
 class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
   """A git repository pinned to a particular commit."""
 
-  def __init__(self, *args, **kwargs):
-    super(Commit, self).__init__(*args, **kwargs)
+#   def __init__(self, *args, **kwargs):
+#     super(Commit, self).__init__(*args, **kwargs)
+#     self._repository_url = None
+
+  def __new__(cls, *args, **kwargs):
+    self = super(Commit, cls).__new__(cls, *args, **kwargs)
     self._repository_url = None
+    return self
 
   def __str__(self):
     """Returns an informal short string representation of this Commit."""

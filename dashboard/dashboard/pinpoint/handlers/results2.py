@@ -30,6 +30,7 @@ if utils.IsRunningFlask():
         return make_response(json.dumps({'status': 'job-incomplete'}))
 
       url = results2.GetCachedResults2(job)
+      print(' ++++ result2 url: ', url)
       if url:
         return make_response(
             json.dumps({
@@ -39,8 +40,10 @@ if utils.IsRunningFlask():
             }))
 
       if results2.ScheduleResults2Generation(job):
+        print(' ++++ result2 pending')
         return make_response(json.dumps({'status': 'pending'}))
 
+      print(' ++++ result2 failed')
       return make_response(json.dumps({'status': 'failed'}))
 
     except results2.Results2Error as e:
@@ -88,10 +91,12 @@ if utils.IsRunningFlask():
       job = job_module.JobFromId(job_id)
       if not job:
         logging.debug('No job [%s]', job_id)
+        print(' +++ Results2GeneratorHandler No job [%s]', job_id)
         raise results2.Results2Error('Error: Unknown job %s' % job_id)
       results2.GenerateResults2(job)
       return make_response('', 200)
     except results2.Results2Error as e:
+      print(' +++ Results2GeneratorHandler error')
       return make_response(str(e), 400)
 else:
 

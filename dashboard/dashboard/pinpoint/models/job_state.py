@@ -320,13 +320,17 @@ class JobState(object):
 
     attempt_count = (len(attempts_a) + len(attempts_b)) // 2
 
-    executions_by_quest_a = _ExecutionsPerQuest(attempts_a)
-    executions_by_quest_b = _ExecutionsPerQuest(attempts_b)
+    try:
+      executions_by_quest_a = _ExecutionsPerQuest(attempts_a)
+      executions_by_quest_b = _ExecutionsPerQuest(attempts_b)
+    except:
+      print('Error on _ExecutionsPerQuest')
+      return compare.UNKNOWN
 
     any_unknowns = False
     for quest in self._quests:
-      executions_a = executions_by_quest_a[quest]
-      executions_b = executions_by_quest_b[quest]
+      executions_a = executions_by_quest_a[str(quest)]
+      executions_b = executions_by_quest_b[str(quest)]
 
       # Compare exceptions.
       exceptions_a = tuple(
@@ -434,7 +438,14 @@ def _ExecutionsPerQuest(attempts):
   executions = collections.defaultdict(list)
   for attempt in attempts:
     for quest, execution in zip(attempt.quests, attempt.executions):
-      executions[quest].append(execution)
+      print('^^^ quest and execution :', type(quest), type(execution))
+      print('^^^ quest :', quest)
+
+      try:
+        executions[str(quest)].append(execution)
+      except TypeError as e:
+        print('issue on quest: ', quest)
+        print(e)
   return executions
 
 

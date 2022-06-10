@@ -52,8 +52,8 @@ if utils.IsRunningFlask():
       TypeError: The wrong parameters are present.
       ValueError: The parameters have invalid values.
     """
-    given_parameters = parameters.keys()
-    expected_parameters = validators.keys()
+    given_parameters = set(parameters.keys())
+    expected_parameters = set(validators.keys())
 
     if given_parameters != expected_parameters:
       logging.info('Unexpected request parameters. Given: %s. Expected: %s',
@@ -62,6 +62,8 @@ if utils.IsRunningFlask():
         raise TypeError('Unknown parameter: %s' % given_parameters -
                         expected_parameters)
       if expected_parameters - given_parameters:
+        print('expected: ', expected_parameters)
+        print('given: ', given_parameters)
         raise TypeError('Missing parameter: %s' % expected_parameters -
                         given_parameters)
 
@@ -84,10 +86,13 @@ if utils.IsRunningFlask():
           'isolate_server': str,
           'isolate_map': json.loads
       }
-      try:
-        validated_parameters = _ValidateParameters(request.form, validators)
-      except (KeyError, TypeError, ValueError) as e:
-        return make_response(json.dumps({'error': str(e)}), 400)
+#       try:
+#         validated_parameters = _ValidateParameters(request.form, validators)
+#       except (KeyError, TypeError, ValueError) as e:
+#         return make_response(json.dumps({'error': str(e)}), 400)
+
+      print('isoalte form: ', type(request.form))
+      validated_parameters = _ValidateParameters(request.form, validators)
 
       # Put information into the datastore.
       isolate_infos = [

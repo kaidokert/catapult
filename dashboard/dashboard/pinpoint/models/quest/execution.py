@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import traceback
 
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.pinpoint.models import errors
 import six
@@ -133,7 +133,7 @@ class Execution(object):
       tb = traceback.format_exc()
       if hasattr(e, 'task_output'):
         tb += '\n%s' % getattr(e, 'task_output')
-      self._exception = {'message': e.message, 'traceback': tb}
+      self._exception = {'message': str(e), 'traceback': tb}
     except:
       # All other exceptions must be propagated.
       raise

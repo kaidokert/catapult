@@ -12,8 +12,15 @@ import os
 import re
 import time
 
-from apiclient import discovery
-from apiclient import errors
+import sys
+print('=== sys ===', sys.path)
+print('=== current dir ===', os.getcwd())
+print('=== ls on current dir ===', os.listdir(os.getcwd()))
+print('=== ls on apiclient ===', os.listdir(os.getcwd() + '/apiclient'))
+print('=== ls on httplib2 ===', os.listdir(os.getcwd() + '/httplib2'))
+print('=== ls on oauth2client ===', os.listdir(os.getcwd() + '/oauth2client'))
+from apiclient.apiclient import discovery
+from apiclient.apiclient import errors
 from google.appengine.api import app_identity
 from google.appengine.api import memcache
 from google.appengine.api import oauth
@@ -22,7 +29,7 @@ from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import httplib2
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.common import stored_object
 import six
@@ -104,7 +111,29 @@ def GetEmail():
     OAuthRequestError: The request was not a valid OAuth request.
     OAuthServiceFailureError: An unknown error occurred.
   """
+#   request_uri = os.environ.get('REQUEST_URI', '')
   request_uri = os.environ.get('PATH_INFO', '')
+
+  print('*** EMAIL DEBUG *** request_uri: ', os.environ.get('REQUEST_URI', ''))
+  print('*** EMAIL DEBUG *** raw_uri: ', os.environ.get('RAW_URI', ''))
+  try:
+    print('*** EMAIL DEBUG *** TRY GET USER')
+    user = oauth.get_current_user(OAUTH_SCOPES)
+    print('*** EMAIL DEBUG *** GET USER: ', user)
+  except:
+    print('*** EMAIL DEBUG *** FAILED TO GET USER')
+    pass
+  try:
+    print('*** EMAIL DEBUG *** TRY GET USER 2')
+    if six.PY2:
+      user = users.get_current_user()
+    else:
+      user = users.GetCurrentUser()
+    print('*** EMAIL DEBUG *** GET USER 2: ', user)
+  except:
+    print('*** EMAIL DEBUG *** FAILED TO GET USER 2')
+    pass
+
   if any(request_uri.startswith(e) for e in OAUTH_ENDPOINTS):
     # Prevent a CSRF whereby a malicious site posts an api request without an
     # Authorization header (so oauth.get_current_user() is None), but while the
@@ -112,10 +141,12 @@ def GetEmail():
     # return a non-None user.
     if 'HTTP_AUTHORIZATION' not in os.environ:
       # The user is not signed in. Avoid raising OAuthRequestError.
+      print('*** EMAIL DEBUG *** NO HTTP AUTH IN OS.ENV')
       return None
     user = oauth.get_current_user(OAUTH_SCOPES)
   else:
     user = users.get_current_user()
+  print('*** EMAIL DEBUG *** user? ', user)
   return user.email() if user else None
 
 
@@ -675,9 +706,11 @@ def IsValidSheriffUser():
 def IsTryjobUser():
   email = GetEmail()
   try:
+    print('*** EMAIL DEBUG *** IsTryjobUser: ', email)
     return bool(email) and IsGroupMember(
         identity=email, group='project-pinpoint-tryjob-access')
   except GroupMemberAuthFailed:
+    print('*** EMAIL DEBUG *** GroupMemberAuthFailed ')
     return False
 
 

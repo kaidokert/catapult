@@ -5,7 +5,14 @@
 from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
-
+import sys
+import os
+print('\n Entry in Dispatcher \n', sys.path)
+import dashboard
+# for library_dir in dashboard.THIRD_PARTY_LIBRARIES:
+#   if os.path.exists(library_dir):
+#     sys.path.append(os.path.join(os.getcwd(), library_dir))
+print('\n AFTWR ADD in Dispatcher \n', sys.path)
 from dashboard.common import utils
 from dashboard.pinpoint import handlers
 
@@ -13,7 +20,6 @@ if utils.IsRunningFlask():
   from flask import Flask
   APP = Flask(__name__)
 
-  import sys
   if sys.version_info.major == 3:
     from google.appengine.api import wrap_wsgi_app
     APP.wsgi_app = wrap_wsgi_app(APP.wsgi_app)

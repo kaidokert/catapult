@@ -25,7 +25,9 @@ __all__ = ['ReadBuffer',
 
 import collections
 import os
+import six
 import six.moves.urllib.parse
+# import urlparse
 
 from . import api_utils
 from . import common
@@ -751,8 +753,9 @@ class StreamingBuffer(object):
       TypeError: if data is not of type str.
     """
     self._check_open()
-    if not isinstance(data, str):
-      raise TypeError('Expected str but got %s.' % type(data))
+    if not isinstance(data, six.binary_type):
+#     if not isinstance(data, six.text_type):
+      raise TypeError('Expected binary but got %s.' % type(data))
     if not data:
       return
     self._buffer.append(data)
@@ -835,7 +838,7 @@ class StreamingBuffer(object):
           tmp_buffer.append(head)
           tmp_buffer_len += len(head)
 
-      data = ''.join(tmp_buffer)
+      data = b''.join(tmp_buffer)
       file_len = '*'
       if finish and not self._buffered:
         file_len = self._written + len(data)

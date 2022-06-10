@@ -19,7 +19,7 @@ from google.appengine.api import urlfetch_errors
 from dashboard.common import utils
 
 _CACHE_DURATION = 60 * 60 * 24 * 7  # 1 week.
-_VULNERABILITY_PREFIX = ")]}'\n"
+_VULNERABILITY_PREFIX = b")]}'\n"
 
 
 class RequestError(http_client.HTTPException):
@@ -122,6 +122,7 @@ def _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs):
   else:
     http = httplib2.Http(timeout=60)
   logging.info('url: %s; use_auth: %s; kwargs: %s', url, use_auth, kwargs)
+  print('url: %s; use_auth: %s; kwargs: %s', url, use_auth, kwargs)
 
   response, content = http.request(url, **kwargs)
 

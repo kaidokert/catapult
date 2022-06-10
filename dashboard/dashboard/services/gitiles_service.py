@@ -31,6 +31,7 @@ def CommitInfo(repository_url, git_hash):
   """
   # TODO: Update the docstrings in this file.
   url = '%s/+/%s?format=JSON' % (repository_url, git_hash)
+  print('@@@@ CommitInfo DEBUG @@@@ ', url)
   return request.RequestJson(
       url,
       use_cache=IsHash(git_hash),

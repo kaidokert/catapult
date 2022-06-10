@@ -7,7 +7,8 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
-import cloudstorage
+import cloudstorage.cloudstorage as cloudstorage
+# import cloudstorage
 import logging
 import os
 import uuid
@@ -21,7 +22,7 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models.quest import read_value
 from dashboard.pinpoint.models.quest import run_test
 from dashboard.services import swarming
-from oauth2client import client
+from oauth2client.oauth2client import client
 from tracing_build import render_histograms_viewer
 from tracing.value import gtest_json_converter
 from tracing.value.diagnostics import generic_set
@@ -122,6 +123,7 @@ def GetCachedResults2(job):
 
 def ScheduleResults2Generation(job):
   logging.debug('Job [%s]: ScheduleResults2Generation', job.job_id)
+  print(' +++ Job [%s]: ScheduleResults2Generation', job.job_id)
   try:
     # Don't want several tasks creating results2, so create task with specific
     # name to deduplicate.
@@ -131,8 +133,10 @@ def ScheduleResults2Generation(job):
         url='/api/generate-results2/' + job.job_id,
         name=task_name)
   except taskqueue.TombstonedTaskError:
+    print(' +++ TombstonedTaskError')
     return False
   except taskqueue.TaskAlreadyExistsError:
+    print(' +++ TaskAlreadyExistsError')
     pass
   return True
 
@@ -140,10 +144,15 @@ def ScheduleResults2Generation(job):
 def GenerateResults2(job):
   """ Generates a results2.html and also adds results to BigQuery. """
   logging.debug('Job [%s]: GenerateResults2', job.job_id)
+  print(' +++ Job [%s]: GenerateResults2', job.job_id)
 
   vulcanized_html = _ReadVulcanizedHistogramsViewer()
 
+  print(' +++ GenerateResults2 - 1')
+
   CachedResults2(job_id=job.job_id).put()
+
+  print(' +++ GenerateResults2 - 2')
 
   filename = _GetCloudStorageName(job.job_id)
   gcs_file = _GcsFileStream(
@@ -152,11 +161,15 @@ def GenerateResults2(job):
       content_type='text/html',
       retry_params=cloudstorage.RetryParams(backoff_factor=1.1))
 
+  print(' +++ GenerateResults2 - 3')
+
   render_histograms_viewer.RenderHistogramsViewer(
       [h.histogram for h in _FetchHistograms(job)],
       gcs_file,
       reset_results=True,
       vulcanized_html=vulcanized_html)
+
+  print(' +++ GenerateResults2 - 4')
 
   gcs_file.close()
   logging.debug('Generated %s; see https://storage.cloud.google.com%s',
