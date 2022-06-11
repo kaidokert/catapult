@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da7039f7_1835f3c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-06-11T00:14:54Z",
+      "side": 1,
+      "message": "LGTM with some comments.",
+      "revId": "a48a7faead8f399e4a2628e3ccb1296fbec26807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9446c68_3e0597e9",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-06-11T00:14:54Z",
+      "side": 1,
+      "message": "I think we can just get rid of this function. Its only purpose is to initialize self._repository_url, which is only used by the repository_url property. But the code for that property uses getattr with default, so self._repository_url doesn\u0027t need to be set during construction.\n\nI\u0027m a little nervous with overriding either __new__ or __init__ in a namedtuple, as I can\u0027t find any official documentation on the proper way to do it, only some third-party posts.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 15
+      },
+      "revId": "a48a7faead8f399e4a2628e3ccb1296fbec26807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a27e093_b995d4ef",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-06-11T00:14:54Z",
+      "side": 1,
+      "message": "Suggestion: j.priority or 0",
+      "range": {
+        "startLine": 206,
+        "startChar": 33,
+        "endLine": 206,
+        "endChar": 64
+      },
+      "revId": "a48a7faead8f399e4a2628e3ccb1296fbec26807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
