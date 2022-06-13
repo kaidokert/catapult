@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0662bf0a_9c67daf9",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-13T05:29:49Z",
+      "side": 1,
+      "message": "Thanks for looking into it. I really think it is a good idea. Though, pylint raises a warning as:\nW: 75, 6: Attribute \u0027_repository_url\u0027 defined outside __init__ (attribute-defined-outside-init)\n\nThe reason behind could be that future references of _repository_url may be risky.",
+      "parentUuid": "c9446c68_3e0597e9",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 15
+      },
+      "revId": "a48a7faead8f399e4a2628e3ccb1296fbec26807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a27e093_b995d4ef",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 6
@@ -54,6 +78,30 @@
       "writtenOn": "2022-06-11T00:14:54Z",
       "side": 1,
       "message": "Suggestion: j.priority or 0",
+      "range": {
+        "startLine": 206,
+        "startChar": 33,
+        "endLine": 206,
+        "endChar": 64
+      },
+      "revId": "a48a7faead8f399e4a2628e3ccb1296fbec26807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0c0b00a_c37a0a03",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-13T05:29:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a27e093_b995d4ef",
       "range": {
         "startLine": 206,
         "startChar": 33,
