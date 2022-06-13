@@ -22,6 +22,30 @@
       },
       "revId": "9717ac905b71407e8c66dfb00e9c86abb70cbf8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c316a5bf_bd7e0c24",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-06-13T18:10:50Z",
+      "side": 0,
+      "message": "If pylint complains, I think the best workaround is to remove \"return False\" from above the \"else\" and from the end of the else clause. Then put a shared \"return False\" at the end of the function.",
+      "parentUuid": "b0482394_cccb9203",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 6
+      },
+      "revId": "9717ac905b71407e8c66dfb00e9c86abb70cbf8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
