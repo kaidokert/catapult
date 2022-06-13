@@ -1,0 +1,14 @@
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository", "new_git_repository")
+
+git_repository(
+    name = "io_bazel_rules_appengine",
+    branch = "master",
+    remote = "https://github.com/bazelbuild/rules_appengine.git",
+)
+
+load("@io_bazel_rules_appengine//appengine:py_appengine.bzl", "py_appengine_repositories")
+load("@io_bazel_rules_appengine//appengine:sdk.bzl", "appengine_repositories")
+
+appengine_repositories()
+
+py_appengine_repositories()
