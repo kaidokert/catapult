@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b9368c9_8336c9f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-13T18:00:55Z",
+      "side": 1,
+      "message": "This CL is huge. Would you break it down into at least two? One with all those comments, and another with code related change. In case revert is needed for any code changes, we don\u0027t need to redo all comments in the reland. ",
+      "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fcb4bd8_c4365511",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-13T18:00:55Z",
+      "side": 1,
+      "message": "Why do we want to change the scope here?",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 48
+      },
+      "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

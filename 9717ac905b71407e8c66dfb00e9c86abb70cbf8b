@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0482394_cccb9203",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-13T18:00:55Z",
+      "side": 0,
+      "message": "This condition is added for the ongoing python 3 migration. If pylink does not complain, I would like to keep it; otherwise, would you help to add a comment like \"Running on Webapp2 instead of Flask\" before the try?",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 6
+      },
+      "revId": "9717ac905b71407e8c66dfb00e9c86abb70cbf8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
