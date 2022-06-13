@@ -5,11 +5,12 @@
 import json
 import logging
 import re
+import six
 
-_DATA_START = '<div id="histogram-json-data" style="display:none;"><!--'
-_DATA_SEPARATOR = '--><!--'
-_DATA_END_OLD = '--!></div>'
-_DATA_END = '--></div>'
+_DATA_START = b'<div id="histogram-json-data" style="display:none;"><!--'
+_DATA_SEPARATOR = b'--><!--'
+_DATA_END_OLD = b'--!></div>'
+_DATA_END = b'--></div>'
 
 
 def ExtractJSON(results_html):
@@ -78,18 +79,18 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
 
   chunk_size = 0
   for histogram in histogram_dicts:
-    output_stream.write('\n')
+    output_stream.write(b'\n')
     # No escaping is necessary since the data is stored inside an html comment.
     # This assumes that {hist_json} doesn't contain an html comment itself.
     hist_json = json.dumps(histogram, separators=(',', ':'))
-    output_stream.write(hist_json)
+    output_stream.write(six.ensure_binary(hist_json))
     chunk_size += len(hist_json) + 1
     # Start a new comment after {max_chunk_size_hint_bytes} to avoid hitting
     # V8's max string length. Each comment can be read as individual string.
     if chunk_size > max_chunk_size_hint_bytes:
-      output_stream.write('\n%s' % _DATA_SEPARATOR)
+      output_stream.write(b'\n%s' % _DATA_SEPARATOR)
       chunk_size = 0
-  output_stream.write('\n%s\n' % _DATA_END)
+  output_stream.write(b'\n%s\n' % _DATA_END)
 
   # If the output file already existed and was longer than the new contents,
   # discard the old contents after this point.
