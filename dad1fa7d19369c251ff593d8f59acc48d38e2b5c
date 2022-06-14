@@ -63,6 +63,30 @@
       },
       "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d4b5677_6e03e146",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-14T18:44:32Z",
+      "side": 1,
+      "message": "As mentioned in: https://pylint.pycqa.org/en/latest/user_guide/messages/message_control.html#block-disables\nLooks like \u0027disable-next\u0027 should be used to only apply to the following line.",
+      "parentUuid": "ee92de56_c8b6990c",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 48
+      },
+      "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
