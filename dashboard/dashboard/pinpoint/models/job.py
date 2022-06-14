@@ -13,11 +13,32 @@ import sys
 import traceback
 import uuid
 
-from google.appengine.api import datastore_errors
-from google.appengine.api import taskqueue
-from google.appengine.ext import deferred
-from google.appengine.ext import ndb
-from google.appengine.runtime import apiproxy_errors
+# print(sys.path)
+try:
+  # print('use py2 path')
+  print('add google-cloud-sdk paths')
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/google-cloud-sdk/platform/google_appengine/python27/sdk/') # pylint: disable=line-too-long
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/Projects/gcloud/platform/google_appengine/')
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/Projects/gcloud/platform/google_appengine/python27/sdk/') # pylint: disable=line-too-long
+  # this works locally, but doesn't do anything otherwise
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/google-cloud-sdk/platform/google_appengine/')
+  sys.path.insert(0, '/usr/lib/google-cloud-sdk/platform/google_appengine')
+  from google.appengine.api import datastore_errors
+  from google.appengine.api import taskqueue
+  from google.appengine.ext import deferred
+  from google.appengine.ext import ndb
+  from google.appengine.runtime import apiproxy_errors
+except ImportError as e:
+  logging.error('imports do not work %s', e)
+  logging.error(sys.path)
+  print('job.py import did not work')
+  print(sys.path)
+  from google.appengine.api import datastore_errors
+  from google.appengine.api import taskqueue
+  from google.appengine.ext import deferred
+  from google.appengine.ext import ndb
+  from google.appengine.runtime import apiproxy_errors
+
 
 from dashboard.common import datastore_hooks
 from dashboard.common import utils
@@ -38,7 +59,6 @@ from dashboard.pinpoint.models.tasks import evaluator as task_evaluator
 from dashboard.services import gerrit_service
 from dashboard.services import issue_tracker_service
 from dashboard.services import swarming
-
 
 # We want this to be fast to minimize overhead while waiting for tasks to
 # finish, but don't want to consume too many resources.
