@@ -39,6 +39,30 @@
       },
       "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee92de56_c8b6990c",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-14T17:22:35Z",
+      "side": 1,
+      "message": "the scope is not changed here I think, it still only applies to the following line. \nJust fixing the line length",
+      "parentUuid": "1fcb4bd8_c4365511",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 48
+      },
+      "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
