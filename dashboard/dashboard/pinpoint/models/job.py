@@ -13,11 +13,31 @@ import sys
 import traceback
 import uuid
 
-from google.appengine.api import datastore_errors
-from google.appengine.api import taskqueue
-from google.appengine.ext import deferred
-from google.appengine.ext import ndb
-from google.appengine.runtime import apiproxy_errors
+# print(sys.path)
+try:
+  # print('use py2 path')
+  print('add google-cloud-sdk paths')
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/google-cloud-sdk/platform/google_appengine/python27/sdk/')
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/Projects/gcloud/platform/google_appengine/')
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/Projects/gcloud/platform/google_appengine/python27/sdk/')
+  # this works locally, but doesn't do anything otherwise
+  sys.path.insert(0, '/usr/local/google/home/sunxiaodi/google-cloud-sdk/platform/google_appengine/') 
+  sys.path.insert(0, '/usr/lib/google-cloud-sdk/platform/google_appengine')
+  # sys.path=['/workspace/tracing/third_party/symbols', '/workspace/third_party/pyfakefs', '/workspace/third_party/mox3', '/workspace/dependency_manager', '/workspace/devil', '/workspace/common/py_utils', '/workspace/third_party/Paste', '/workspace/third_party/WebOb', '/workspace/third_party/vinn', '/workspace/common/py_vulcanize', '/workspace', '/workspace/third_party/gae_ts_mon/gae_ts_mon/protobuf', '/workspace/third_party/gae_ts_mon/gae_ts_mon/third_party', '/workspace/dashboard/dashboard/sheriff_config', '/workspace/devil/devil', '/workspace/common/py_utils/py_utils', '/workspace/tracing', '/workspace/dashboard', '/workspace/third_party/httplib2/python2/httplib2', '/workspace/third_party/werkzeug', '/workspace/third_party/webtest', '/workspace/third_party/webapp2', '/workspace/third_party/urllib3', '/workspace/third_party/uritemplate', '/workspace/third_party/six', '/workspace/third_party/rsa', '/workspace/third_party/requests_toolbelt', '/workspace/third_party/requests', '/workspace/third_party/redux/redux.min.js', '/workspace/third_party/pyparsing', '/workspace/third_party/pyasn1_modules', '/workspace/third_party/pyasn1', '/workspace/third_party/polymer2/bower_components/chopsui', '/workspace/third_party/polymer2/bower_components', '/workspace/third_party/polymer-svg-template', '/workspace/third_party/polymer', '/workspace/third_party/pipeline', '/workspace/third_party/oauth2client', '/workspace/third_party/mock', '/workspace/third_party/markupsafe', '/workspace/third_party/mapreduce', '/workspace/third_party/jquery', '/workspace/third_party/jinja2', '/workspace/third_party/itsdangerous', '/workspace/third_party/ijson', '/workspace/third_party/idna', '/workspace/third_party/html5lib-python', '/workspace/third_party/graphy', '/workspace/third_party/google-auth', '/workspace/third_party/gae_ts_mon', '/workspace/third_party/flot', '/workspace/third_party/flask', '/workspace/third_party/depot_tools', '/workspace/third_party/cloudstorage', '/workspace/third_party/click', '/workspace/third_party/chardet', '/workspace/third_party/certifi', '/workspace/third_party/cachetools', '/workspace/third_party/beautifulsoup4', '/workspace/third_party/apiclient', '/workspace/common/node_runner/node_runner/node_modules/@chopsui/tsmon-client/tsmon-client.js', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/webob-1.2.3', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/markupsafe-0.15', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/PyAMF-0.6.1', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/protorpc-1.0', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/jinja2-2.6', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/endpoints-1.0', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/django-1.4', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/simplejson', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/six-1.9.0', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/oauth2client_devserver', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/httplib2', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/pyasn1_modules', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/pyasn1', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/rsa', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/yaml-3.10', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/six_subset', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/ipaddr', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/fancy_urllib', '/usr/lib/google-cloud-sdk/platform/google_appengine/lib/antlr3', '/opt/google-cloud-sdk/bin/platform/google_appengine', '/workspace/dashboard/dashboard', '/workspace/third_party/typ/typ', '/usr/lib/google-cloud-sdk/platform/google_appengine', '/root/.vpython-root/d67476/lib/python27.zip', '/root/.vpython-root/d67476/lib/python2.7', '/root/.vpython-root/d67476/lib/python2.7/plat-linux2', '/root/.vpython-root/d67476/lib/python2.7/lib-tk', '/root/.vpython-root/d67476/lib/python2.7/lib-old', '/root/.vpython-root/d67476/lib/python2.7/lib-dynload', '/usr/local/depot_tools/bootstrap-2@3.8.10.chromium.23_bin/python/lib/python2.7', '/usr/local/depot_tools/bootstrap-2@3.8.10.chromium.23_bin/python/lib/python2.7/plat-linux2', '/usr/local/depot_tools/bootstrap-2@3.8.10.chromium.23_bin/python/lib/python2.7/lib-tk', '/root/.vpython-root/d67476/lib/python2.7/site-packages', '/workspace/third_party/typ', '/workspace/third_party/coverage']
+  from google.appengine.api import datastore_errors
+  from google.appengine.api import taskqueue
+  from google.appengine.ext import deferred
+  from google.appengine.ext import ndb
+  from google.appengine.runtime import apiproxy_errors
+except ModuleNotFoundError:
+  print('job.py import did not work')
+  print(sys.path)
+  from google.appengine.api import datastore_errors
+  from google.appengine.api import taskqueue
+  from google.appengine.ext import deferred
+  from google.appengine.ext import ndb
+  from google.appengine.runtime import apiproxy_errors
+
 
 from dashboard.common import datastore_hooks
 from dashboard.common import utils
@@ -38,7 +58,6 @@ from dashboard.pinpoint.models.tasks import evaluator as task_evaluator
 from dashboard.services import gerrit_service
 from dashboard.services import issue_tracker_service
 from dashboard.services import swarming
-
 
 # We want this to be fast to minimize overhead while waiting for tasks to
 # finish, but don't want to consume too many resources.
