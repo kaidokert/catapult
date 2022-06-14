@@ -46,6 +46,30 @@
       },
       "revId": "c5ffa90b46d44f26e5ab4927c7d54500184fdb68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6b702bb_83728a61",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-14T21:33:15Z",
+      "side": 1,
+      "message": "There was a request in the persistent_shell cl to split it into multiple CLs. Unfornunately I don\u0027t think that\u0027s super possible, but this is one of the things that is splittable, so I wouldn\u0027t roll it into that CL.",
+      "parentUuid": "fae8e657_542cf835",
+      "range": {
+        "startLine": 186,
+        "startChar": 36,
+        "endLine": 186,
+        "endChar": 58
+      },
+      "revId": "c5ffa90b46d44f26e5ab4927c7d54500184fdb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
