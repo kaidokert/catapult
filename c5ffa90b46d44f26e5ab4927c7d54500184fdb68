@@ -22,6 +22,30 @@
       },
       "revId": "c5ffa90b46d44f26e5ab4927c7d54500184fdb68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae8e657_542cf835",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-06-14T21:27:39Z",
+      "side": 1,
+      "message": "We do not, but when I land the persistent_shell CL in the TODO, this \"skip_devive_check\" will be changed to a \"if persistent_shell\u003dTrue\"  check and the code will have a purpose.",
+      "parentUuid": "6432f19b_b8229a5f",
+      "range": {
+        "startLine": 186,
+        "startChar": 36,
+        "endLine": 186,
+        "endChar": 58
+      },
+      "revId": "c5ffa90b46d44f26e5ab4927c7d54500184fdb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
