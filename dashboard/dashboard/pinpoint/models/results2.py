@@ -7,7 +7,8 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
-import cloudstorage
+import cloudstorage.cloudstorage as cloudstorage
+# import cloudstorage
 import logging
 import os
 import uuid
@@ -22,7 +23,7 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models.quest import read_value
 from dashboard.pinpoint.models.quest import run_test
 from dashboard.services import swarming
-from oauth2client import client
+from oauth2client.oauth2client import client
 from tracing_build import render_histograms_viewer
 from tracing.value import gtest_json_converter
 from tracing.value.diagnostics import generic_set
@@ -132,8 +133,10 @@ def ScheduleResults2Generation(job):
         url='/api/generate-results2/' + job.job_id,
         name=task_name)
   except taskqueue.TombstonedTaskError:
+    logging.info('A task with the same name was previously executed in the queue. Job [%s]', job.job_id)
     return False
   except taskqueue.TaskAlreadyExistsError:
+    logging.info('The task already exists. It has not yet run. Job [%s]', job.job_id)
     pass
   return True
 

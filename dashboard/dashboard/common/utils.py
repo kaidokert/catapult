@@ -12,8 +12,9 @@ import os
 import re
 import time
 
-from apiclient import discovery
-from apiclient import errors
+import sys
+from apiclient.apiclient import discovery
+from apiclient.apiclient import errors
 from google.appengine.api import app_identity
 from google.appengine.api import memcache
 from google.appengine.api import oauth
@@ -22,7 +23,7 @@ from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import httplib2
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.common import stored_object
 import six
@@ -105,6 +106,19 @@ def GetEmail():
     OAuthServiceFailureError: An unknown error occurred.
   """
   request_uri = os.environ.get('PATH_INFO', '')
+
+  try:
+    user = oauth.get_current_user(OAUTH_SCOPES)
+  except:
+    pass
+  try:
+    if six.PY2:
+      user = users.get_current_user()
+    else:
+      user = users.GetCurrentUser()
+  except:
+    pass
+
   if any(request_uri.startswith(e) for e in OAUTH_ENDPOINTS):
     # Prevent a CSRF whereby a malicious site posts an api request without an
     # Authorization header (so oauth.get_current_user() is None), but while the
@@ -112,6 +126,7 @@ def GetEmail():
     # return a non-None user.
     if 'HTTP_AUTHORIZATION' not in os.environ:
       # The user is not signed in. Avoid raising OAuthRequestError.
+      logging.info('Cannot get user email as the user is not signed in')
       return None
     user = oauth.get_current_user(OAUTH_SCOPES)
   else:
@@ -678,6 +693,7 @@ def IsTryjobUser():
     return bool(email) and IsGroupMember(
         identity=email, group='project-pinpoint-tryjob-access')
   except GroupMemberAuthFailed:
+    logging.info('User is not a member of project-pinpoint-tryjob-access.')
     return False
 
 

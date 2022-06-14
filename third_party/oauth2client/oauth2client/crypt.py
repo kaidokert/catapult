@@ -196,6 +196,10 @@ except ImportError:
 
 
 try:
+#   import Crypto
+#   print('=== %s === ', Crypto.__version__)
+#   import Crypto.PublicKey
+#   print('==== %s ==== ', sys.modules[Crypto.PublicKey.__name__].__path__)
   from Crypto.PublicKey import RSA
   from Crypto.Hash import SHA256
   from Crypto.Signature import PKCS1_v1_5

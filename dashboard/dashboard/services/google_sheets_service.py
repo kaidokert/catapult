@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import logging
 
 from apiclient import discovery
-from oauth2client.client import GoogleCredentials
+from oauth2client.oauth2client.client import GoogleCredentials
 
 DISCOVERY_URL = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
 

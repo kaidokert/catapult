@@ -25,10 +25,10 @@ import webbrowser
 import gflags
 from six.moves import input
 
-from oauth2client import client
-from oauth2client import util
-from oauth2client.tools import ClientRedirectHandler
-from oauth2client.tools import ClientRedirectServer
+from oauth2client.oauth2client import client
+from oauth2client.oauth2client import util
+from oauth2client.oauth2client.tools import ClientRedirectHandler
+from oauth2client.oauth2client.tools import ClientRedirectServer
 
 
 FLAGS = gflags.FLAGS

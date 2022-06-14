@@ -11,7 +11,7 @@ import six
 
 from google.appengine.ext import ndb
 
-from oauth2client import xsrfutil
+from oauth2client.oauth2client import xsrfutil
 
 from dashboard.common import utils
 

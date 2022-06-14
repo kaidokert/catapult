@@ -26,10 +26,10 @@ import argparse
 import httplib2
 import os
 
-from googleapiclient import discovery
-from oauth2client import client
-from oauth2client import file
-from oauth2client import tools
+from apiclient.googleapiclient import discovery
+from oauth2client.oauth2client  import client
+from oauth2client.oauth2client  import file
+from oauth2client.oauth2client  import tools
 
 
 def init(argv, name, version, doc, filename, scope=None, parents=[], discovery_filename=None):

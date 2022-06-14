@@ -3,13 +3,21 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
+# import logging
+# import sys
+# print('IN BUGGING ZONE')
+# import google.protobuf as gbp
+# print('?? %s ?? ', gbp.__version__)
+# print('??? %s ??? ', sys.modules[gbp.__name__].__path__)
 try:
   # Note: from tracing.proto import histogram_pb2 would make more sense here,
   # but unfortunately protoc does not generate __init__.py files if you specify
   # an out package (at least for the gn proto_library rule).
+#   print('DEBUG TRACE IMPORT: FIRST TRY.')
   import histogram_pb2
   HAS_PROTO = True
 except ImportError as e:
+#   print('DEBUG TRACE IMPORT: FAILED ONCE.')
   try:
     # crbug/1234919
     # Catapult put the generated histogram_pb2.py in the same source folder,
@@ -20,8 +28,8 @@ except ImportError as e:
     from . import histogram_pb2
     HAS_PROTO = True
   except ImportError:
+#     print('DEBUG TRACE IMPORT: FAILED TWICE.')
     HAS_PROTO = False
-
 
 def _EnsureProto():
   """Ensures histogram_pb.py is in the PYTHONPATH.

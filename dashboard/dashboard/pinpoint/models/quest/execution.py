@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import traceback
 
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 from dashboard.pinpoint.models import errors
 import six

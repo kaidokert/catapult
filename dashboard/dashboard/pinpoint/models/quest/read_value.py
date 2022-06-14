@@ -366,7 +366,6 @@ def RetrieveCASOutput(cas_root_ref, path, client=None):
   data = response['responses'][0].get('data', '')
   return base64.b64decode(data)
 
-
 def RetrieveOutputJsonFromCAS(cas_root_ref, path):
   output = RetrieveCASOutput(cas_root_ref, path)
   return json.loads(output)

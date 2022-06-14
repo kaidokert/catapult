@@ -17,7 +17,7 @@
 import json
 import os
 
-from oauth2client import client
+from oauth2client.oauth2client import client
 
 
 DEVSHELL_ENV = 'DEVSHELL_CLIENT_PORT'

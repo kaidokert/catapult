@@ -47,25 +47,25 @@ import re
 # Third-party imports
 import httplib2
 import uritemplate
-
 # Local imports
-from googleapiclient import mimeparse
-from googleapiclient.errors import HttpError
-from googleapiclient.errors import InvalidJsonError
-from googleapiclient.errors import MediaUploadSizeError
-from googleapiclient.errors import UnacceptableMimeTypeError
-from googleapiclient.errors import UnknownApiNameOrVersion
-from googleapiclient.errors import UnknownFileType
-from googleapiclient.http import HttpRequest
-from googleapiclient.http import MediaFileUpload
-from googleapiclient.http import MediaUpload
-from googleapiclient.model import JsonModel
-from googleapiclient.model import MediaModel
-from googleapiclient.model import RawModel
-from googleapiclient.schema import Schemas
-from oauth2client.client import GoogleCredentials
-from oauth2client.util import _add_query_parameter
-from oauth2client.util import positional
+from apiclient.googleapiclient import mimeparse
+from apiclient.googleapiclient.errors import HttpError
+from apiclient.googleapiclient.errors import InvalidJsonError
+from apiclient.googleapiclient.errors import MediaUploadSizeError
+from apiclient.googleapiclient.errors import UnacceptableMimeTypeError
+from apiclient.googleapiclient.errors import UnknownApiNameOrVersion
+from apiclient.googleapiclient.errors import UnknownFileType
+from apiclient.googleapiclient.http import HttpRequest
+from apiclient.googleapiclient.http import MediaFileUpload
+from apiclient.googleapiclient.http import MediaUpload
+from apiclient.googleapiclient.model import JsonModel
+from apiclient.googleapiclient.model import MediaModel
+from apiclient.googleapiclient.model import RawModel
+from apiclient.googleapiclient.schema import Schemas
+
+from oauth2client.oauth2client.client import GoogleCredentials
+from oauth2client.oauth2client.util import _add_query_parameter
+from oauth2client.oauth2client.util import positional
 
 
 # The client library requires a version of httplib2 that supports RETRIES.
