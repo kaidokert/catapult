@@ -86,6 +86,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--use-web-instance',
         '--enable-web-instance-tmp',
         '--with-webui',
+        '--disable-accelerated-video-decode',
         'about:blank'
     ]
 
