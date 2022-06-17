@@ -16,6 +16,24 @@
       "message": "I confirmed `git cl presubmit` worked but I had to publish this CL with bypassing hooks because we need to update pylint.\n\nI opened the following bug:\nhttps://crbug.com/1337315\n\nIt\u0027s simple enough to fix, it just means going through each of the suggested changes and fixing those manually.",
       "revId": "f49171bea9a42b6849703ef4a6d8eedcd96cd81e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e70daff9_73a98f1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-17T16:06:21Z",
+      "side": 1,
+      "message": "I can try pick this up Monday. There are too many changes for me to cover it today. I haven\u0027t found an automated way of doing the changes yet.",
+      "parentUuid": "40299721_ba592132",
+      "revId": "f49171bea9a42b6849703ef4a6d8eedcd96cd81e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
