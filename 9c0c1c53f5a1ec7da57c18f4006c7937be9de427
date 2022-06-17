@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dfb1c45_ed92bb00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-17T15:57:05Z",
+      "side": 1,
+      "message": "Why using absolute path instead of relative path will reduce the risk of long full path?",
+      "revId": "9c0c1c53f5a1ec7da57c18f4006c7937be9de427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
