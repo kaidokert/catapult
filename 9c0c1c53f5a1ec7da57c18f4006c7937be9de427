@@ -16,6 +16,24 @@
       "message": "Why using absolute path instead of relative path will reduce the risk of long full path?",
       "revId": "9c0c1c53f5a1ec7da57c18f4006c7937be9de427",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c677e765_8e9635fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2022-06-17T16:14:41Z",
+      "side": 1,
+      "message": "Because function |CreateFileW| in clear_system_cache will make full path using concatenation without normalizing. For example, if we pass path |..\\..\\a| from |C:\\1\\2\\3| argument will be |C:\\1\\2\\3\\..\\..\\a| instead of |C:\\1\\a|.",
+      "parentUuid": "9dfb1c45_ed92bb00",
+      "revId": "9c0c1c53f5a1ec7da57c18f4006c7937be9de427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
