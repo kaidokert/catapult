@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8a37150_efb74122",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-06-18T00:33:22Z",
+      "side": 1,
+      "message": "infra bug here: https://chrome-internal-review.googlesource.com/c/infra/infra_internal/+/4829719",
+      "revId": "583a476da638aefee3c78531fcfe9e4b209bd08b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
