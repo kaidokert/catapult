@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84dbecf_270cc08e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-20T09:21:35Z",
+      "side": 1,
+      "message": "Yes I ran against a few different emulator SDK versions to confirm that I saw this still return versions and None for the expected test cases. I\u0027ve updated the CL description to include this testing.",
+      "parentUuid": "19648d4d_7bd6d27d",
+      "revId": "f49171bea9a42b6849703ef4a6d8eedcd96cd81e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a727fc4c_5ccca29d",
@@ -66,6 +84,30 @@
       "writtenOn": "2022-06-17T20:24:03Z",
       "side": 1,
       "message": "In the crbug I said that this problem happens on Oreo and above. Were you able to reproduce this problem on O \u0026 P or did I write down the wrong version in the crbug?",
+      "range": {
+        "startLine": 879,
+        "startChar": 8,
+        "endLine": 879,
+        "endChar": 21
+      },
+      "revId": "f49171bea9a42b6849703ef4a6d8eedcd96cd81e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "451fbcab_459069c8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 879,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-20T09:21:35Z",
+      "side": 1,
+      "message": "This was my fault. I miss-wrote Q everywhere even though I tested against each API level from 23 - 31. I\u0027ve updated this here and in the description.\n\nThat said, I actually found that Android N was where the change occurred.",
+      "parentUuid": "a727fc4c_5ccca29d",
       "range": {
         "startLine": 879,
         "startChar": 8,
