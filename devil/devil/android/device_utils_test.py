@@ -125,7 +125,9 @@ class DeviceUtilsInitTest(unittest.TestCase):
               return_value=True)
   def testInitWithUnicode(self, _mock_get_state):
     if six.PY2:
+      # pylint: disable=undefined-variable
       serial_as_unicode = unicode('fedcba9876543210')
+      # pylint: enable=undefined-variable
       d = device_utils.DeviceUtils(serial_as_unicode)
       self.assertEqual(serial_as_unicode, d.adb.GetDeviceSerial())
 
@@ -229,9 +231,9 @@ class DeviceUtilsTest(mock_calls.TestCase):
 
   def safeAssertItemsEqual(self, expected, actual):
     if six.PY2:
-      self.assertItemsEqual(expected, actual)
+      self.assertItemsEqual(expected, actual)  # pylint: disable=no-member
     else:
-      self.assertCountEqual(expected, actual) # pylint: disable=no-member
+      self.assertCountEqual(expected, actual)
 
   def AdbCommandError(self, args=None, output=None, status=None, msg=None):
     if args is None:
@@ -626,16 +628,15 @@ class DeviceUtils_GetUidForPackageTest(DeviceUtilsTest):
         self.call.device._GetDumpsysOutput(
             ['package', 'com.android.chrome'], 'userId='),
         ['  userId=1001']):
-      self.assertEquals('1001',
-                        self.device.GetUidForPackage('com.android.chrome'))
+      self.assertEqual('1001',
+                       self.device.GetUidForPackage('com.android.chrome'))
 
   def test_GetUidForPackage_notInstalled(self):
     with self.assertCall(
         self.call.device._GetDumpsysOutput(
             ['package', 'com.android.chrome'], 'userId='),
         ['']):
-      self.assertEquals(None,
-                        self.device.GetUidForPackage('com.android.chrome'))
+      self.assertEqual(None, self.device.GetUidForPackage('com.android.chrome'))
 
   def test_GetUidForPackage_fails(self):
     with self.assertCall(
@@ -4268,9 +4269,9 @@ class IterPushableComponentsTest(unittest.TestCase):
 
   def safeAssertItemsEqual(self, expected, actual):
     if six.PY2:
-      self.assertItemsEqual(expected, actual)
+      self.assertItemsEqual(expected, actual)  # pylint: disable=no-member
     else:
-      self.assertCountEqual(expected, actual) # pylint: disable=no-member
+      self.assertCountEqual(expected, actual)
 
   def testFile(self):
     with self.sampleLayout() as layout:

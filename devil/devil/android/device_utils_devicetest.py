@@ -251,7 +251,8 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
     self.assertEqual([], sub_dir)
 
   def testRestartAdbd(self):
-    def get_adbd_pid():
+    # Pylint isn't able to tell that self.fail effectively returns this test
+    def get_adbd_pid():  # pylint: disable=inconsistent-return-statements
       try:
         return next(p.pid for p in self.device.ListProcesses('adbd'))
       except StopIteration:
