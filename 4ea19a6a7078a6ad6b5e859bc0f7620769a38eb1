@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a05814f_64f6ccaf",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 0,
+      "message": "I think it\u0027s cleaner if we can have 1 import per line. Is that allowed under pylint?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "4ea19a6a7078a6ad6b5e859bc0f7620769a38eb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

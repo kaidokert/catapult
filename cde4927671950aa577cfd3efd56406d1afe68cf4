@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb69646_ec510ab9",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "Can we just add a `return None` after the `self.fail()` call?",
+      "range": {
+        "startLine": 254,
+        "startChar": 4,
+        "endLine": 254,
+        "endChar": 76
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cfe6a8_6bff2636",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "suggestion: https://six.readthedocs.io/#six.text_type",
+      "range": {
+        "startLine": 129,
+        "startChar": 26,
+        "endLine": 129,
+        "endChar": 53
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb5e9528_b76c39dc",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4272,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "suggestion: https://six.readthedocs.io/#six.assertCountEqual",
+      "range": {
+        "startLine": 4272,
+        "startChar": 6,
+        "endLine": 4272,
+        "endChar": 74
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f379a6c_7e925448",
+        "filename": "devil/devil/android/perf/perf_control_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "Should this say \"unreachable\"?",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 22
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbede459_818d3797",
+        "filename": "devil/devil/android/sdk/shared_prefs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "nit: prefer single quotes",
+      "range": {
+        "startLine": 51,
+        "startChar": 53,
+        "endLine": 51,
+        "endChar": 62
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bec18eb_14e36ab4",
+        "filename": "devil/devil/android/sdk/shared_prefs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "nit: prefer single quotes",
+      "range": {
+        "startLine": 243,
+        "startChar": 48,
+        "endLine": 243,
+        "endChar": 58
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e6f9a8_c5d40fde",
+        "filename": "devil/devil/android/tools/video_recorder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-06-21T19:31:45Z",
+      "side": 1,
+      "message": "suggestion: I think `six.moves.input()` can replace this. See https://six.readthedocs.io/#module-six.moves",
+      "range": {
+        "startLine": 174,
+        "startChar": 2,
+        "endLine": 177,
+        "endChar": 11
+      },
+      "revId": "cde4927671950aa577cfd3efd56406d1afe68cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
