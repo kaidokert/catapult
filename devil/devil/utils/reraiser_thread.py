@@ -14,6 +14,8 @@ from devil import base_error
 from devil.utils import watchdog_timer
 
 
+# TODO (https://crbug.com/1338100): Verify if we can change this type
+# pylint: disable=redefined-builtin
 class TimeoutError(base_error.BaseError):
   """Module-specific timeout exception."""
 
@@ -209,7 +211,7 @@ class ReraiserThreadGroup(object):
     Args:
       watcher: same as in |JoinAll|. Only used if threads are alive.
     """
-    if any([t.is_alive() for t in self._threads]):
+    if any(t.is_alive() for t in self._threads):
       self.JoinAll(watcher)
     return [t.GetReturnValue() for t in self._threads]
 
