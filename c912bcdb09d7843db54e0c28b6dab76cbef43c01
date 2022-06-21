@@ -16,6 +16,24 @@
       "message": "I confirmed that git cl presubmit passed. I had to bypass it though because there were some python 2 scripts running during the python 3 presubmit. I\u0027ve opened the following bug for this:\nhttps://crbug.com/1338112",
       "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d206d41e_d5e472fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-21T10:21:21Z",
+      "side": 1,
+      "message": "I commented on the ticket. I see we are explicitely returning python2 tests in our presubmit. I\u0027m not sure why we are still supporting python2 here. I\u0027ll leave it for whoever picks up that ticket (possibly me) to investigate.",
+      "parentUuid": "9dff04a9_27201871",
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
