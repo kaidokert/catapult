@@ -7,12 +7,13 @@ import contextlib
 import logging
 import os
 import shutil
+import subprocess
 import tempfile
 import textwrap
 import six.moves.urllib.parse # pylint: disable=import-error
 
 from telemetry.internal.util import binary_manager
-from telemetry.util import statistics
+from telemetry.util import statistics, cmd_util
 
 from devil.android.sdk import version_codes
 
@@ -77,6 +78,9 @@ class _PlatformController(object):
 
 
 class _LinuxController(_PlatformController):
+  PERF_BINARY_PATH = '/usr/bin/perf'
+  DEVICE_OUT_FILE_PATTERN = '/tmp/{period}-{pid}-perf.data'
+
   def __init__(self, possible_browser, process_name, thread_name,
                profiler_options):
     super(_LinuxController, self).__init__()
@@ -90,28 +94,72 @@ class _LinuxController(_PlatformController):
           % (process_name, thread_name))
     possible_browser.AddExtraBrowserArg('--no-sandbox')
     self._temp_results = []
+    self._perf_command = [self.PERF_BINARY_PATH, 'record' ] + profiler_options
+    self._process_name = process_name
+    self._thread_name = thread_name
+    self._device_results = []
 
   @contextlib.contextmanager
   def SamplePeriod(self, period, action_runner, **_):
-    (fd, out_file) = tempfile.mkstemp()
-    os.close(fd)
-    action_runner.ExecuteJavaScript(textwrap.dedent("""
-        if (typeof chrome.gpuBenchmarking.startProfiling !== "undefined") {
-          chrome.gpuBenchmarking.startProfiling("%s");
-        }""" % out_file))
-    yield
-    action_runner.ExecuteJavaScript(textwrap.dedent("""
-        if (typeof chrome.gpuBenchmarking.stopProfiling !== "undefined") {
-          chrome.gpuBenchmarking.stopProfiling();
-        }"""))
-    self._temp_results.append((period, out_file))
+    """Collects CPU profiles for the giving period."""
+    out_file = self.DEVICE_OUT_FILE_PATTERN.format(period=period,pid='{pid}')
+    browser = action_runner.tab.browser
+
+    print('ALL PROCESSES', [ p.name for p in browser._browser_backend.processes ])
+
+    processes = [p for p in browser._browser_backend.processes
+                 if p.name == self._process_name]
+
+    print('PROCESSES', processes)
+
+    for process in processes[0:1]:
+      platform_backend = action_runner.tab.browser._platform_backend
+      tmp = ' '.join(self._perf_command + [
+              '-g',
+              '-e', 'cpu-clock',
+              '-p', process.pid,
+              '-o', (out_file.format(pid=process.pid).replace(' ',''))])
+      print("COMMAND:", tmp)
+      # print("RUN:", subprocess.getoutput(tmp))
+      ssh_process = subprocess.Popen(tmp.split())
+      print("RUN:", ssh_process)
+      success = False
+      try:
+        yield
+        success = True
+      finally:
+        success = self._StopProfiling(ssh_process) and success
+        self._temp_results.append((period,out_file.format(pid=process.pid).replace(' ','')))
+        # self._device_results.append((period, out_file, success))
+        # self._temp_results.append((period, out_file))
+        pass
 
   def GetResults(self, file_safe_name, results):
     for period, temp_file in self._temp_results:
       with results.CaptureArtifact(
-          'pprof-%s-%s.profile.pb' % (file_safe_name, period)) as dest_file:
+          'perf-%s-%s.perf.data' % (file_safe_name, period)) as dest_file:
         shutil.move(temp_file, dest_file)
     self._temp_results = []
+
+  def _StopProfiling(self, ssh_process):
+    """Checks if the profiling process is alive and stops the process.
+
+    Checks if the SSH process is alive. If the SSH process is alive, terminates
+    the profiling process and returns true. If the SSH process is not alive, the
+    profiling process has exited prematurely so returns false.
+    """
+    # Poll the SSH process to check if the connection is still alive. If it is
+    # alive, the returncode should not be set.
+    ssh_process.poll()
+    if ssh_process.returncode != None:
+      logging.warning('Profiling process exited prematurely.')
+      return False
+    # Kill the profiling process directly. Terminating the SSH process doesn't
+    # kill the profiling process.
+    subprocess.call(['killall', '-s', 'INT',
+                                       self.PERF_BINARY_PATH])
+    ssh_process.wait()
+    return True
 
 
 class _AndroidController(_PlatformController):

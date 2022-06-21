@@ -26,6 +26,7 @@ from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import minidump_finder
 from telemetry.internal.backends.chrome import desktop_minidump_symbolizer
 from telemetry.internal.util import format_for_logging
+from telemetry.util import cmd_util
 
 
 DEVTOOLS_ACTIVE_PORT_FILE = 'DevToolsActivePort'
@@ -81,6 +82,15 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self._log_file_path
 
   @property
+  def processes(self):
+    class Process:
+      def __init__(self, s):
+        self.name = re.search('--type=(\w+)', s).group().lstrip('--type=')
+        self.pid = re.search(' \d+ ', s).group()
+    tmp = subprocess.getoutput('ps -aux | grep chrome')
+    return [ Process(line) for line in tmp.split('\n') if '--type=' in line ]
+
+  @property
   def supports_uploading_logs(self):
     return (self.browser_options.logs_cloud_bucket and self.log_file_path and
             os.path.isfile(self.log_file_path))
@@ -118,6 +128,9 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       raise EnvironmentError('UIDevTools file empty')
     devtools_port = int(lines[0])
     return devtools_port
+
+  def StartCommand(self, args, cwd=None, quiet=False):
+    return cmd_util.StartCmd(args, cwd, quiet)
 
   def Start(self, startup_args):
     assert not self._proc, 'Must call Close() before Start()'
