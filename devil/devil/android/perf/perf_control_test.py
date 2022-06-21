@@ -13,7 +13,7 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
   import mock
 
 
-# pylint: disable=unused-argument
+# pylint: disable=unused-argument,inconsistent-return-statements
 def _ShellCommandHandler(cmd,
                          shell=False,
                          check_return=False,
