@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb2424a7_18c76b78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Typo.",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dff04a9_27201871",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -32,6 +55,437 @@
       "side": 1,
       "message": "I commented on the ticket. I see we are explicitely returning python2 tests in our presubmit. I\u0027m not sure why we are still supporting python2 here. I\u0027ll leave it for whoever picks up that ticket (possibly me) to investigate.",
       "parentUuid": "9dff04a9_27201871",
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a417cf87_abf6e393",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Thanks for doing this, should be good to go once the disables are changed. Unless something changed in Pylint 2.7, I believe having a disable like you\u0027re currently doing results in it applying to the entire file from that point onward.",
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da13d2d3_465d88d4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Please either disable inline (on the same line it\u0027s complaining about) or add a corresponding enable.",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a32bab_afe4fe88",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2208,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Since you\u0027re moving this anyways, can probably remove jbudorick since he hasn\u0027t been on the team for a long time.",
+      "range": {
+        "startLine": 2208,
+        "startChar": 11,
+        "endLine": 2208,
+        "endChar": 20
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f426d20b_05418b06",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Please either disable inline (on the same line it\u0027s complaining about) or add a corresponding enable.",
+      "range": {
+        "startLine": 2210,
+        "startChar": 14,
+        "endLine": 2210,
+        "endChar": 21
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "407a826a_768de87f",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto with inline or corresponding re-enable.",
+      "range": {
+        "startLine": 255,
+        "startChar": 14,
+        "endLine": 255,
+        "endChar": 21
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f48b2ec9_32b2353b",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 128,
+        "startChar": 16,
+        "endLine": 128,
+        "endChar": 23
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0652eb88_ff098a40",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 23
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71dba83_7fa60edf",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4272,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 4272,
+        "startChar": 16,
+        "endLine": 4272,
+        "endChar": 23
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea2c8e94_2e7d1034",
+        "filename": "devil/devil/android/perf/perf_control_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer an unreachable return after the assert rather than adding this disable.",
+      "range": {
+        "startLine": 16,
+        "startChar": 34,
+        "endLine": 16,
+        "endChar": 64
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dccd5f7_983b9b7d",
+        "filename": "devil/devil/android/perf/perf_control_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 16,
+        "startChar": 10,
+        "endLine": 16,
+        "endChar": 17
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f64bbe3_38edbe4b",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 19
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9dee0c1_94788f58",
+        "filename": "devil/devil/android/sdk/gce_adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 19
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e764810a_3fd63971",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 153,
+        "startChar": 16,
+        "endLine": 153,
+        "endChar": 23
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ef64df2_e9bb3d8d",
+        "filename": "devil/devil/android/tools/video_recorder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 175,
+        "startChar": 14,
+        "endLine": 175,
+        "endChar": 21
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c59187_3cc6941c",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb5e727_98868f1e",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 141,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f98ce92e_dc37d444",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 307,
+        "startChar": 10,
+        "endLine": 307,
+        "endChar": 17
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c9ef55d_590167af",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 341,
+        "startChar": 12,
+        "endLine": 341,
+        "endChar": 19
+      },
+      "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd79e1ee_f17da70f",
+        "filename": "devil/devil/utils/reraiser_thread.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-21T16:13:38Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 18,
+        "startChar": 10,
+        "endLine": 18,
+        "endChar": 17
+      },
       "revId": "c912bcdb09d7843db54e0c28b6dab76cbef43c01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
