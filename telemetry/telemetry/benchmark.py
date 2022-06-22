@@ -227,13 +227,18 @@ class Benchmark(command_line.Command):
       tbm_options.config.enable_experimental_system_tracing = True
       tbm_options.config.system_trace_config.EnableChrome(
           chrome_trace_config=tbm_options.config.chrome_trace_config)
-    if options and options.experimental_system_data_sources:
-      assert not legacy_json_format
-      tbm_options.config.enable_experimental_system_tracing = True
-      tbm_options.config.system_trace_config.EnablePower()
-      tbm_options.config.system_trace_config.EnableSysStatsCpu()
-      tbm_options.config.system_trace_config.EnableFtraceCpu()
-      tbm_options.config.system_trace_config.EnableFtraceSched()
+    if options:
+      if options.experimental_system_data_sources:
+        assert not legacy_json_format
+        tbm_options.config.enable_experimental_system_tracing = True
+        tbm_options.config.system_trace_config.EnablePower()
+        tbm_options.config.system_trace_config.EnableSysStatsCpu()
+        tbm_options.config.system_trace_config.EnableFtraceCpu()
+        tbm_options.config.system_trace_config.EnableFtraceSched()
+        logging.warning('Not running Perfetto callstack sampling even though '
+                        '--experimental_system_data_sources was enabled. '
+                        'Please manually enable this in the benchmark file, '
+                        'if needed.')
 
     if options and options.force_sideload_perfetto:
       assert tbm_options.config.enable_experimental_system_tracing
