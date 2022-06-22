@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
-import cloudstorage
+import cloudstorage.cloudstorage as cloudstorage
 import logging
 import os
 import uuid
@@ -132,9 +132,13 @@ def ScheduleResults2Generation(job):
         url='/api/generate-results2/' + job.job_id,
         name=task_name)
   except taskqueue.TombstonedTaskError:
+    logging.info(
+        'A task with the same name has executed in the queue. Job [%s]',
+        job.job_id)
     return False
   except taskqueue.TaskAlreadyExistsError:
-    pass
+    logging.info('The task already exists. It has not yet run. Job [%s]',
+                 job.job_id)
   return True
 
 
