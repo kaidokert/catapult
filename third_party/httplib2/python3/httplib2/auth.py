@@ -1,7 +1,9 @@
 import base64
 import re
 
-import pyparsing as pp
+import sys
+# print(' === pp - 0 ===', sys.modules['pyparsing'].__path__)
+from pyparsing.pyparsing import pyparsing as pp
 
 from .error import *
 

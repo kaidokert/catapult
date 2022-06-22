@@ -320,8 +320,12 @@ class JobState(object):
 
     attempt_count = (len(attempts_a) + len(attempts_b)) // 2
 
-    executions_by_quest_a = _ExecutionsPerQuest(attempts_a)
-    executions_by_quest_b = _ExecutionsPerQuest(attempts_b)
+    try:
+      executions_by_quest_a = _ExecutionsPerQuest(attempts_a)
+      executions_by_quest_b = _ExecutionsPerQuest(attempts_b)
+    except:
+      print('Error on _ExecutionsPerQuest')
+      return compare.UNKNOWN
 
     any_unknowns = False
     for quest in self._quests:

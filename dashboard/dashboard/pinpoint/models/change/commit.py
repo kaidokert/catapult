@@ -10,7 +10,7 @@ import collections
 import datetime
 import re
 
-from depot_tools import gclient_eval
+from depot_tools.depot_tools import gclient_eval
 from google.appengine.ext import deferred
 
 from dashboard.pinpoint.models.change import commit_cache

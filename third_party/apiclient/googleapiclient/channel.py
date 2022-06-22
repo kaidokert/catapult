@@ -60,8 +60,8 @@ from __future__ import absolute_import
 import datetime
 import uuid
 
-from googleapiclient import errors
-from oauth2client import util
+from apiclient.googleapiclient import errors
+from oauth2client.oauth2client import util
 import six
 
 

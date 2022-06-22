@@ -29,8 +29,8 @@ import logging
 
 from six.moves.urllib.parse import urlencode
 
-from googleapiclient import __version__
-from googleapiclient.errors import HttpError
+from apiclient.googleapiclient import __version__
+from apiclient.googleapiclient.errors import HttpError
 
 
 dump_request_response = False

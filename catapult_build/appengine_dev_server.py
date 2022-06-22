@@ -32,7 +32,7 @@ def DevAppserver(paths, args, reuse_path=None):
     if not script_path:
       print('This script requires the App Engine SDK to be in PATH.')
       sys.exit(1)
-
+    print('\n   Sys path before dev_appserver \n', sys.path)
     subprocess.call([sys.executable, script_path] +
                     _AddTempDirToYamlPathArgs(temp_dir, args))
 
@@ -57,6 +57,6 @@ def _AddTempDirToYamlPathArgs(temp_dir, args):
   ]
   if not yaml_path_args:
     if options.run_pinpoint:
-      temp_dir += '/pinpoint.yaml'
+      temp_dir += '/pinpoint-py3.yaml'
     yaml_path_args = [temp_dir]
   return yaml_path_args + remaining_args

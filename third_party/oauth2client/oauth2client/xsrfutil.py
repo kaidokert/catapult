@@ -26,7 +26,7 @@ import hmac
 import time
 
 import six
-from oauth2client import util
+from oauth2client.oauth2client import util
 
 
 # Delimiter character

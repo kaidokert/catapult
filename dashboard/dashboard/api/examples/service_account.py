@@ -26,7 +26,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import httplib2
-from oauth2client import service_account
+from oauth2client.oauth2client import service_account
 
 
 def MakeApiRequest():

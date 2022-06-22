@@ -28,6 +28,7 @@ import random
 import time
 
 from . import api_utils
+import six
 
 try:
   from google.appengine.api import app_identity
@@ -52,10 +53,18 @@ def _make_token_async(scopes, service_account_id):
     An ndb.Return with a tuple (token, expiration_time) where expiration_time is
     seconds since the epoch.
   """
-  rpc = app_identity.create_rpc()
-  app_identity.make_get_access_token_call(rpc, scopes, service_account_id)
-  token, expires_at = yield rpc
-  raise ndb.Return((token, expires_at))
+  if six.PY2:
+    rpc = app_identity.create_rpc()
+    app_identity.make_get_access_token_call(rpc, scopes, service_account_id)
+    token, expires_at = yield rpc
+    raise ndb.Return((token, expires_at))
+  else:
+    # make_get_access_token_call is removed in Python 3 and rest_api is not used
+    # in chromeperf/pinpoint. As the cloudstorage itself does not support
+    # Python 3, we will skip this call when deploying in Python 3. Then we
+    # should replace the whole library shortly.
+    token = app_identity.get_access_token(scopes, service_account_id)
+    return token
 
 
 class _ConfigDefaults(object):
