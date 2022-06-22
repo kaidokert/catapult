@@ -234,6 +234,10 @@ class Benchmark(command_line.Command):
       tbm_options.config.system_trace_config.EnableSysStatsCpu()
       tbm_options.config.system_trace_config.EnableFtraceCpu()
       tbm_options.config.system_trace_config.EnableFtraceSched()
+      logging.warning('Not running Perfetto callstack sampling even though '
+                      '--experimental_system_data_sources was enabled. '
+                      'Please manually enable this in the benchmark file, '
+                      'if needed.')
 
     if options and options.force_sideload_perfetto:
       assert tbm_options.config.enable_experimental_system_tracing
