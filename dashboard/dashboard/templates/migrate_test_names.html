@@ -37,6 +37,17 @@ found in the LICENSE file.
           '<img src="//www.google.com/images/loading.gif">';
       return false;
     }
+
+    function deprecateOnlyChecked() {
+      var destinationField = document.getElementById("destination")
+      var deprecateOnly = document.getElementById("deprecate_only")
+      if (!deprecateOnly.checked) {
+        destinationField.style.display = "table-row"
+      }
+      else {
+        destinationField.style.display = "none"
+      }
+    }
   </script>
 </head>
 <body>
@@ -85,6 +96,7 @@ found in the LICENSE file.
   new_pattern: */*/blink_perf.animation/[Animation_]</pre>
 
   <form method="POST">
+    Deprecate only? <input type="checkbox" id="deprecate_only" onclick="deprecateOnlyChecked()">
     <table>
       <tr>
         <td>Old pattern:</td>
@@ -94,7 +106,7 @@ found in the LICENSE file.
                  style="font-family: monospace;" required>
         </td>
       </tr>
-      <tr>
+      <tr id="destination" style="display:table-row">
         <td>New pattern:</td>
         <td>
           <input type="text" size="125"

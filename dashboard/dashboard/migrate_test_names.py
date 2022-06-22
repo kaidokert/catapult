@@ -120,9 +120,10 @@ class MigrateTestNamesHandler(request_handler.RequestHandler):
 
     if not status:
       try:
+        deprecate_only = self.request.get('deprecate_only')
         old_pattern = self.request.get('old_pattern')
         new_pattern = self.request.get('new_pattern')
-        _MigrateTestBegin(old_pattern, new_pattern)
+        _MigrateTestBegin(old_pattern, new_pattern, deprecate_only)
         self.RenderHtml('result.html',
                         {'headline': 'Test name migration task started.'})
       except BadInputPatternError as error:
@@ -134,28 +135,32 @@ class MigrateTestNamesHandler(request_handler.RequestHandler):
         _MigrateTestLookupPatterns(old_pattern, new_pattern)
       elif status == _MIGRATE_TEST_CREATE:
         old_test_key = ndb.Key(urlsafe=self.request.get('old_test_key'))
-        new_test_key = ndb.Key(urlsafe=self.request.get('new_test_key'))
+        new_test_key_request = self.request.get('new_test_key')
+        new_test_key = ndb.Key(urlsafe=new_test_key_request) if new_test_key_request else None
         _MigrateTestCreateTest(old_test_key, new_test_key)
       elif status == _MIGRATE_TEST_COPY_DATA:
+        new_test_key_request = self.request.get('new_test_key')
         old_test_key = ndb.Key(urlsafe=self.request.get('old_test_key'))
-        new_test_key = ndb.Key(urlsafe=self.request.get('new_test_key'))
+        new_test_key = ndb.Key(urlsafe=new_test_key_request) if new_test_key_request else None
         _MigrateTestCopyData(old_test_key, new_test_key)
     else:
       self.ReportError('Missing required parameters of /migrate_test_names.')
 
 
-def _MigrateTestBegin(old_pattern, new_pattern):
-  _ValidateTestPatterns(old_pattern, new_pattern)
+def _MigrateTestBegin(old_pattern, new_pattern, deprecate_only):
+  _ValidateTestPatterns(old_pattern, new_pattern, deprecate_only)
 
   _QueueTask({
       'old_pattern': old_pattern,
-      'new_pattern': new_pattern,
+      'new_pattern': new_pattern if not deprecate_only else None,
       'status': _MIGRATE_TEST_LOOKUP_PATTERNS,
   }).get_result()
 
 
-def _ValidateTestPatterns(old_pattern, new_pattern):
+def _ValidateTestPatterns(old_pattern, new_pattern, deprecate_only):
   tests = list_tests.GetTestsMatchingPattern(old_pattern, list_entities=True)
+  if deprecate_only:
+    return
   for test in tests:
     old_path = utils.TestPath(test.key)
     _ValidateAndGetNewTestPath(old_path, new_pattern)
@@ -180,10 +185,10 @@ def _MigrateTestLookupPatterns(old_pattern, new_pattern):
   for test in tests:
     old_test_key = utils.TestKey(test)
     new_test_key = utils.TestKey(
-        _ValidateAndGetNewTestPath(old_test_key.id(), new_pattern))
+        _ValidateAndGetNewTestPath(old_test_key.id(), new_pattern)) if new_pattern else None
     task = {
         'old_test_key': old_test_key.urlsafe(),
-        'new_test_key': new_test_key.urlsafe(),
+        'new_test_key': new_test_key.urlsafe() if new_pattern else None,
         'status': _MIGRATE_TEST_CREATE
     }
     if task['old_test_key'] != task['new_test_key']:
@@ -296,19 +301,20 @@ def _MigrateTestCreateTest(old_test_key, new_test_key):
   Returns:
     True if finished or False if there is more work.
   """
-  new_test_entity = yield _GetOrCreate(graph_data.TestMetadata,
-                                       old_test_key.get(), new_test_key.id(),
-                                       None, _TEST_EXCLUDE)
+  if new_test_key:
+    new_test_entity = yield _GetOrCreate(graph_data.TestMetadata,
+                                        old_test_key.get(), new_test_key.id(),
+                                        None, _TEST_EXCLUDE)
 
-  yield new_test_entity.UpdateSheriffAsync()
+    yield new_test_entity.UpdateSheriffAsync()
 
-  yield (new_test_entity.put_async(),
-         _MigrateTestScheduleChildTests(old_test_key, new_test_key))
+    yield (new_test_entity.put_async(),
+          _MigrateTestScheduleChildTests(old_test_key, new_test_key))
 
   # Now migrate the actual row data and any associated data (ex. anomalies).
   # Do this in a seperate task that just spins on the row data.
   _QueueTask({
-      'old_test_key': old_test_key.urlsafe(),
+      'old_test_key': old_test_key.urlsafe() if old_test_key else None,
       'new_test_key': new_test_key.urlsafe(),
       'status': _MIGRATE_TEST_COPY_DATA
   }).get_result()
