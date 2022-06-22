@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23fbdc82_bf071e93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547433
+      },
+      "writtenOn": "2022-06-22T18:49:55Z",
+      "side": 1,
+      "message": "ptal",
+      "revId": "7e637edabf79f48d13062097fb9463efeda65daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0939777_4ab00d1c",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1547433
+      },
+      "writtenOn": "2022-06-22T18:49:55Z",
+      "side": 1,
+      "message": "V8.GC_MINOR_MARK_COMPACTOR is higher up in the hierarchy but it might be better to use V8.GC_MINOR_MC?",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 31
+      },
+      "revId": "7e637edabf79f48d13062097fb9463efeda65daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
