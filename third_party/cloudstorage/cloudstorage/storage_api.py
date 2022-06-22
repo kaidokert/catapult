@@ -27,6 +27,7 @@ import collections
 import os
 import six
 import six.moves.urllib.parse
+# import urlparse
 
 from . import api_utils
 from . import common
@@ -753,7 +754,7 @@ class StreamingBuffer(object):
     """
     self._check_open()
     if not isinstance(data, six.binary_type):
-      raise TypeError('Expected str but got %s.' % type(data))
+      raise TypeError('Expected binary but got %s.' % type(data))
     if not data:
       return
     self._buffer.append(data)

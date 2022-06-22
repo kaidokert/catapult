@@ -70,6 +70,7 @@ class InternalOnlyError(ApiAuthException):
 
 def Authorize():
   try:
+    import os
     email = utils.GetEmail()
   except oauth.OAuthRequestError as e:
     six.raise_from(OAuthError, e)
