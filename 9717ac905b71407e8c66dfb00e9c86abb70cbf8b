@@ -46,6 +46,30 @@
       },
       "revId": "9717ac905b71407e8c66dfb00e9c86abb70cbf8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab19fab4_3461e8c1",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-22T17:12:50Z",
+      "side": 0,
+      "message": "thanks for the suggestion John! I will do that.",
+      "parentUuid": "c316a5bf_bd7e0c24",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 6
+      },
+      "revId": "9717ac905b71407e8c66dfb00e9c86abb70cbf8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

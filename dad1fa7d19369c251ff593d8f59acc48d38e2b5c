@@ -87,6 +87,30 @@
       },
       "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5740818_d6e90544",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-22T17:12:50Z",
+      "side": 1,
+      "message": "ahh I missed that difference.\nUnfortunately disable-next is only supported after 2.10\nhttps://github.com/PyCQA/pylint/pull/4797\n\nI will switch back to inline.",
+      "parentUuid": "7d4b5677_6e03e146",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 48
+      },
+      "revId": "dad1fa7d19369c251ff593d8f59acc48d38e2b5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
