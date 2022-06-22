@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d74349b_806c59df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2022-06-22T21:08:32Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "7e637edabf79f48d13062097fb9463efeda65daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0939777_4ab00d1c",
@@ -31,6 +48,30 @@
       "writtenOn": "2022-06-22T18:49:55Z",
       "side": 1,
       "message": "V8.GC_MINOR_MARK_COMPACTOR is higher up in the hierarchy but it might be better to use V8.GC_MINOR_MC?",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 31
+      },
+      "revId": "7e637edabf79f48d13062097fb9463efeda65daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2688821e_3b3cb6f6",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2022-06-22T21:08:32Z",
+      "side": 1,
+      "message": "We generally try to use the most high-level scope we can so that the metrics account for all the work and are as close as possible to the actual duration of the GC. I think in this case V8.GC_MINOR_MARK_COMPACTOR is more appropriate.",
+      "parentUuid": "a0939777_4ab00d1c",
       "range": {
         "startLine": 129,
         "startChar": 8,
