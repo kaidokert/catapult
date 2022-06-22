@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0ed39a_3a5f062e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-22T19:57:43Z",
+      "side": 1,
+      "message": "LGTM % comments",
+      "revId": "3ad11a6c7aad75f685826d2d286d148713e80058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b6e0c6c_22d3dde7",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-22T19:57:43Z",
+      "side": 1,
+      "message": "Change this to `six.assertCountEqual` too?",
+      "range": {
+        "startLine": 232,
+        "startChar": 6,
+        "endLine": 232,
+        "endChar": 45
+      },
+      "revId": "3ad11a6c7aad75f685826d2d286d148713e80058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4310052b_fcaecfdd",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-22T19:57:43Z",
+      "side": 1,
+      "message": "Nit: Add a blank line above here since `psutil` isn\u0027t a build-in module.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "3ad11a6c7aad75f685826d2d286d148713e80058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
