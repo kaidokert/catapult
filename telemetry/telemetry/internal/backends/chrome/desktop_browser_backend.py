@@ -81,6 +81,15 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self._log_file_path
 
   @property
+  def processes(self):
+    class Process:
+      def __init__(self, s):
+        self.name = re.search('--type=(\w+)', s).group().lstrip('--type=')
+        self.pid = re.search(' \d+ ', s).group()
+    tmp = subprocess.getoutput('ps -aux | grep chrome')
+    return [ Process(line) for line in tmp.split('\n') if '--type=' in line ]
+
+  @property
   def supports_uploading_logs(self):
     return (self.browser_options.logs_cloud_bucket and self.log_file_path and
             os.path.isfile(self.log_file_path))
