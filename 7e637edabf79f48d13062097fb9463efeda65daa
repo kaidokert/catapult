@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a71a58b3_98a40066",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2022-06-22T21:11:12Z",
+      "side": 1,
+      "message": "Please add a title to the CL.\nSomething along the lines of \"[heap] Account for MinorMC in GC metrics\".\nNote the [heap] tag that we use to denote CLs relating to heap, allocations and GC.\n\nnit (short for nitpicking): we also try to not exceed 70 chars per line in the description.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "7e637edabf79f48d13062097fb9463efeda65daa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "23fbdc82_bf071e93",
