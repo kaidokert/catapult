@@ -22,6 +22,30 @@
       },
       "revId": "4ea19a6a7078a6ad6b5e859bc0f7620769a38eb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2760c8_54b6683f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-22T08:16:16Z",
+      "side": 0,
+      "message": "Yeah we can. I guess this is a habit I need to kick from working in node for a while.",
+      "parentUuid": "3a05814f_64f6ccaf",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "4ea19a6a7078a6ad6b5e859bc0f7620769a38eb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
