@@ -16,6 +16,29 @@
       "message": "ptal",
       "revId": "1ebff161f2824f91a6be275d454f5c31778783e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75dc2eea_4cc09670",
+        "filename": "tracing/tracing/metrics/v8/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2022-06-23T08:57:46Z",
+      "side": 1,
+      "message": "I think you can remove mythria as well.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 7
+      },
+      "revId": "1ebff161f2824f91a6be275d454f5c31778783e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
