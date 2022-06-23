@@ -42,14 +42,17 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
     # directory, so we can find the correct elements at bundle time. This is
     # simulating the paths we would be serving as defined in the pinpoint.yaml
     # file.
+#     os.symlink(
+#         os.path.join(catapult_path, 'dashboard', 'dashboard', 'pinpoint',
+#                      'elements'), os.path.join(temp_dir, 'elements'))
     os.symlink(
-        os.path.join(catapult_path, 'dashboard', 'dashboard', 'pinpoint',
+        os.path.join('..', 'dashboard', 'dashboard', 'pinpoint',
                      'elements'), os.path.join(temp_dir, 'elements'))
     os.symlink(
-        os.path.join(catapult_path, 'third_party', 'polymer', 'components'),
+        os.path.join('..', 'third_party', 'polymer', 'components'),
         os.path.join(temp_dir, 'components'))
     os.symlink(
-        os.path.join(catapult_path, 'third_party', 'd3'),
+        os.path.join('..', 'third_party', 'd3'),
         os.path.join(temp_dir, 'd3'))
 
     # We don't yet use any webpack in Pinpoint, so let's use the polymer bundler
