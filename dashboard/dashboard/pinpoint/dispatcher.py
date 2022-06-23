@@ -10,6 +10,10 @@ from dashboard.common import utils
 from dashboard.pinpoint import handlers
 
 if utils.IsRunningFlask():
+  import logging
+  import google.cloud.logging
+  google.cloud.logging.Client().setup_logging(log_level=logging.DEBUG)
+
   from flask import Flask
   APP = Flask(__name__)
 
