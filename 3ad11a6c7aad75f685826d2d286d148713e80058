@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb9ff24_603a93f4",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-23T08:15:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6e0c6c_22d3dde7",
+      "range": {
+        "startLine": 232,
+        "startChar": 6,
+        "endLine": 232,
+        "endChar": 45
+      },
+      "revId": "3ad11a6c7aad75f685826d2d286d148713e80058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4310052b_fcaecfdd",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-06-22T19:57:43Z",
       "side": 1,
       "message": "Nit: Add a blank line above here since `psutil` isn\u0027t a build-in module.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "3ad11a6c7aad75f685826d2d286d148713e80058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "208fdefa_96871a4c",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-06-23T08:15:52Z",
+      "side": 1,
+      "message": "Done - and thanks this makes sense. I was confused why pylint was asking me to use a non alphabetical order.",
+      "parentUuid": "4310052b_fcaecfdd",
       "range": {
         "startLine": 13,
         "startChar": 0,
