@@ -12,6 +12,7 @@ import os
 import re
 import time
 
+import sys
 from apiclient import discovery
 from apiclient import errors
 from google.appengine.api import app_identity
@@ -105,6 +106,19 @@ def GetEmail():
     OAuthServiceFailureError: An unknown error occurred.
   """
   request_uri = os.environ.get('PATH_INFO', '')
+
+  try:
+    user = oauth.get_current_user(OAUTH_SCOPES)
+  except:
+    pass
+  try:
+    if six.PY2:
+      user = users.get_current_user()
+    else:
+      user = users.GetCurrentUser()
+  except:
+    pass
+
   if any(request_uri.startswith(e) for e in OAUTH_ENDPOINTS):
     # Prevent a CSRF whereby a malicious site posts an api request without an
     # Authorization header (so oauth.get_current_user() is None), but while the

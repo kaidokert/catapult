@@ -28,6 +28,7 @@ import random
 import time
 
 from . import api_utils
+import six
 
 try:
   from google.appengine.api import app_identity

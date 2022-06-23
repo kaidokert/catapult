@@ -27,6 +27,7 @@ import collections
 import os
 import six
 import six.moves.urllib.parse
+# import urlparse
 
 from . import api_utils
 from . import common

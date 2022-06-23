@@ -65,6 +65,9 @@ class FindIsolate(quest.Quest):
   def __str__(self):
     return 'Build'
 
+  def __hash__(self):
+    return 'Build'
+
   @property
   def build_tags(self):
     if hasattr(self, '_build_tags'):

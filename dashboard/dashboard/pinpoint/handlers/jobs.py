@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import logging
 import json
+import six
 
 from dashboard.pinpoint.models import job as job_module
 from dashboard.common import utils
@@ -158,11 +159,37 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
       'prev': prev_,
       'next': next_,
   }
+#   print('===============')
+#   print(prev_cursor, type(prev_cursor))
+#   print(next_cursor, type(next_cursor))
+#   print('===============')
 
   # Skip the email replacement workflow in staging environment.
   if utils.IsStagingEnvironment():
+#   if utils.IsStagingEnvironment() or utils.IsRunningFlask():
+
+#     for k,v in jobs[0].AsDict(options).items():
+#       print(' key %s - %s' % (k, type(v)))
+#       print(' try')
+#     print('==== jobs DEBUG: ====', jobs[0].AsDict(options))
     for job in jobs:
+#       testjob = {}
+#       for k,v in job.AsDict(options).items():
+#         print(' key %s - %s' % (k, type(v)))
+#         testjob[k] = v
+#         print(' TRY ', json.dumps(testjob))
+#       print('==== jobs DEBUG: ====', job.AsDict(options))
+
+
       result['jobs'].append(job.AsDict(options))
+
+
+#       print(' TRY TRY ', json.dumps(result['jobs']))
+#       for k, v in result.items():
+#         print('key %s - %s' % (k, type(v)))
+#       print(' TRY TRY TRY', json.dumps(result))
+#     print(' FINAL TRY')
+#     json.dumps(result)
     return result
 
   service_account_email = utils.ServiceAccountEmail()

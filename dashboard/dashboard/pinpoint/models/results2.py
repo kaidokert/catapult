@@ -141,7 +141,7 @@ def ScheduleResults2Generation(job):
     return False
   except taskqueue.TaskAlreadyExistsError:
     logging.info('The task already exists. It has not yet run. Job [%s]',
-                 job.job_id)
+                 job.job_id)\
   return True
 
 
