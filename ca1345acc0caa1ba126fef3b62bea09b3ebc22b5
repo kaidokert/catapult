@@ -16,6 +16,46 @@
       "message": "Hey dproy@,\n\nI\u0027m looking to remove some noisy metrics from renderingMetric. The latest pinpoint (with the tree green again) had the metrics removed as expected, and the moved CPU metrics matching as expected.\n\nCould you PTAL?\n\nThnanks,\nJonathan",
       "revId": "ca1345acc0caa1ba126fef3b62bea09b3ebc22b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "593e1c23_0865e80c",
+        "filename": "tracing/tracing/metrics/rendering/cpu_utilization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-06-24T20:06:48Z",
+      "side": 1,
+      "message": "If wall time is zero, this will return Infinity, and when aggregating metrics Infinity causes all kinds of problems. Should you add null / undefined / NaN when wall time is zero? Those get filtered out in most aggregations and gets tracked separately as numNaNs.",
+      "revId": "ca1345acc0caa1ba126fef3b62bea09b3ebc22b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bfec08d_d39337b3",
+        "filename": "tracing/tracing/metrics/rendering/frame_segment_filter.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-06-24T20:06:48Z",
+      "side": 1,
+      "message": "nit: Change to 2022?",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "ca1345acc0caa1ba126fef3b62bea09b3ebc22b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
