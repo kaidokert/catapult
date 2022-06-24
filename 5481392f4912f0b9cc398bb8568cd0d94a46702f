@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d348b53_dd739fa1",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-24T18:23:31Z",
+      "side": 1,
+      "message": "Will this be problematic if `build_id_files` is empty? I.e., does the symbolizer handle that properly? Before, `None` would be returned if no files were specified.",
+      "range": {
+        "startLine": 124,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 38
+      },
+      "revId": "5481392f4912f0b9cc398bb8568cd0d94a46702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
