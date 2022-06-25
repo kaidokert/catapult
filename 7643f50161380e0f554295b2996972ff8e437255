@@ -16,6 +16,23 @@
       "message": "FWIW, the pool also stopped hanging with `time.sleep(1)`. It looks like the web test runner tests in blinkpy create real subprocesses, and I suspect that subtly altered the undefined thread scheduling behavior that the pool relied on.",
       "revId": "7643f50161380e0f554295b2996972ff8e437255",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9b2a3a_e20821b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-06-25T05:18:09Z",
+      "side": 1,
+      "message": "Thanks for working on this",
+      "revId": "7643f50161380e0f554295b2996972ff8e437255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
