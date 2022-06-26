@@ -1,0 +1,6 @@
+service: ndb-helper
+
+runtime: python39
+entrypoint: gunicorn -b:$PORT dashboard.ndb_helper.main:APP
+app_engine_apis: true
+instance_class: F4_1G
