@@ -69,6 +69,7 @@ DASHBOARD_FILES = [
     'dashboard',
     'dispatch.yaml',
     'index.yaml',
+    'ndb-helper.yaml',
     'pinpoint.yaml',
     'pinpoint-py3.yaml',  # remove after py3 migration is finalized.
     'queue.yaml',

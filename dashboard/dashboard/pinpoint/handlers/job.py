@@ -7,9 +7,11 @@ from __future__ import division
 from __future__ import absolute_import
 
 import json
+import logging
 
 from dashboard.pinpoint.models import job as job_module
 from dashboard.common import utils
+from dashboard.services import ndb_helper_service
 
 if utils.IsRunningFlask():
   from flask import make_response, request
@@ -30,7 +32,13 @@ if utils.IsRunningFlask():
           json.dumps({'error': 'Unknown job id: %s' % job_id}), 404)
 
     opts = request.args.getlist('o')
-    return make_response(json.dumps(job.AsDict(opts)))
+    try:
+      return make_response(json.dumps(job.AsDict(opts)))
+    except ValueError as e:
+      logging.info(
+          'Failed to load job: %s.\n Calling ndb helper for pickle issue.',
+          str(e))
+      return ndb_helper_service.GetJob(job_id, request.query_string)
 else:
 
   class Job(webapp2.RequestHandler):
