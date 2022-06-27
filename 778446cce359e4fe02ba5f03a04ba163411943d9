@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4286e334_db36cac4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544719
+      },
+      "writtenOn": "2022-06-27T18:32:19Z",
+      "side": 1,
+      "message": "Chong and Brian, could you PTAL? Thanks!",
+      "revId": "778446cce359e4fe02ba5f03a04ba163411943d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
