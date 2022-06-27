@@ -16,6 +16,46 @@
       "message": "Chong and Brian, could you PTAL? Thanks!",
       "revId": "778446cce359e4fe02ba5f03a04ba163411943d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "740d31c3_dd85c2c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-27T18:37:58Z",
+      "side": 1,
+      "message": "Seems fine from a coding perspective, but please wait for Chong\u0027s approval since I\u0027m not super familiar with Fuchsia-specific testing.",
+      "revId": "778446cce359e4fe02ba5f03a04ba163411943d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62453ed8_a3f43075",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-06-27T18:37:58Z",
+      "side": 1,
+      "message": "Nit: Since this directory is used multiple times in different branches, can you move this to a variable at the function definition?",
+      "range": {
+        "startLine": 197,
+        "startChar": 25,
+        "endLine": 197,
+        "endChar": 77
+      },
+      "revId": "778446cce359e4fe02ba5f03a04ba163411943d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
