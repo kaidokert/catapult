@@ -18,6 +18,7 @@ import py_utils
 
 
 WEB_ENGINE_SHELL = 'web-engine-shell'
+CAST_STREAMING_SHELL = 'cast-streaming-shell'
 FUCHSIA_CHROME = 'fuchsia-chrome'
 
 
@@ -70,7 +71,8 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return py_utils.WaitFor(TryReadingPort, timeout=60)
 
   def _ReadDevToolsPort(self):
-    if self.browser_type == WEB_ENGINE_SHELL:
+    if (self.browser_type == WEB_ENGINE_SHELL or
+        self.browser_type == CAST_STREAMING_SHELL):
       search_regex = r'Remote debugging port: (\d+)'
     else:
       search_regex = r'DevTools listening on ws://127.0.0.1:(\d+)/devtools.*'
@@ -100,6 +102,33 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--min-height-for-gpu-raster-tile=128',
         '--webgl-msaa-sample-count=0',
         '--max-decoded-image-size-mb=10'
+    ])
+    if startup_args:
+      browser_cmd.extend(startup_args)
+    self._browser_process = self._command_runner.RunCommandPiped(
+        browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    self._browser_log_proc = self._browser_process
+
+  def _StartCastStreamingShell(self, startup_args):
+    browser_cmd = [
+        'run',
+        'fuchsia-pkg://%s/cast_streaming_shell#meta/cast_streaming_shell.cmx' %
+        self._managed_repo,
+        '--remote-debugging-port=0',
+        'about:blank'
+    ]
+
+    # Use flags used on WebEngine in production devices.
+    browser_cmd.extend([
+        '--',
+        '--enable-low-end-device-mode',
+        '--force-gpu-mem-available-mb=64',
+        '--force-gpu-mem-discardable-limit-mb=32',
+        '--force-max-texture-size=2048',
+        '--gpu-rasterization-msaa-sample-count=0',
+        '--min-height-for-gpu-raster-tile=128',
+        '--webgl-msaa-sample-count=0',
+        '--max-decoded-image-size-mb=10',
     ])
     if startup_args:
       browser_cmd.extend(startup_args)
@@ -162,6 +191,14 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
             os.path.join(self._output_dir, 'gen', 'fuchsia_web', 'webengine',
                          'web_engine', 'ids.txt'),
         ]
+      elif self.browser_type == CAST_STREAMING_SHELL:
+        self._StartCastStreamingShell(startup_args)
+        browser_id_files = [
+            os.path.join(self._output_dir, 'gen', 'fuchsia_web', 'webengine',
+                         'cast_streaming_shell', 'ids.txt'),
+            os.path.join(self._output_dir, 'gen', 'fuchsia_web', 'webengine',
+                         'web_engine', 'ids.txt'),
+        ]
       else:
         self._StartChrome(startup_args)
         browser_id_files = [
@@ -210,7 +247,8 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     raise NotImplementedError
 
   def _CloseOnDeviceBrowsers(self):
-    if self.browser_type == WEB_ENGINE_SHELL:
+    if (self.browser_type == WEB_ENGINE_SHELL or
+        self.browser_type == CAST_STREAMING_SHELL):
       close_cmd = ['killall', 'web_instance.cmx']
     else:
       close_cmd = ['killall', 'chrome_v1.cmx']
