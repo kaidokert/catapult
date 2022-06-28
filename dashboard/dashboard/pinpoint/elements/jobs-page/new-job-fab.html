@@ -261,7 +261,17 @@ found in the LICENSE file.
                                 items="[[commitsListItems(commitsList)]]"
                                 headers="[[authHeaders]]"
                                 required disabled="[[isBisectJob(comparisonMode)]]"></commit-details>
-                <paper-input class="column" name="patch" value="{{patch}}" label="Patch to apply (Gerrit URL)" required disabled="[[isBisectJob(comparisonMode)]]"></paper-input>
+                <commit-details class="column rightPad"
+                                project="{{project}}"
+                                value="{{end_git_hash}}"
+                                label="Exp Git Hash"
+                                items="[[commitsListItems(commitsList)]]"
+                                headers="[[authHeaders]]"
+                                required disabled="[[isBisectJob(comparisonMode)]]"></commit-details>
+              </div>
+              <div class="horizontal">
+                <paper-input class="column" name="patch" value="{{base_patch}}" label="Base Patch (optional, Gerrit URL)" required disabled="[[isBisectJob(comparisonMode)]]"></paper-input>
+                <paper-input class="column" name="patch" value="{{experimental_patch}}" label="Exp Patch (optional, Gerrit URL)" required disabled="[[isBisectJob(comparisonMode)]]"></paper-input>
               </div>
             </template>
 
@@ -349,6 +359,8 @@ found in the LICENSE file.
           value: 10
         },
         patch: String,
+        base_patch: String,
+        experimental_patch: String,
         statistic: String,
         base_git_hash: {
           type: String,
@@ -464,6 +476,8 @@ found in the LICENSE file.
         this.bug_id = job.bug_id;
         this.project = job.arguments.project;
         this.patch = job.arguments.patch;
+        this.base_patch = job.arguments.base_patch;
+        this.experimental_patch = job.arguments.experimental_patch;
         // Legacy try job doesn't have base_git_hash, use end_git_hash instead
         this.base_git_hash = job.arguments.base_git_hash ||
                              job.arguments.end_git_hash;
