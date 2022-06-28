@@ -16,6 +16,230 @@
       "message": "@wenbinzhang gentle ping on this, can you take another look?",
       "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f6df46_73cd793f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "I still think we should break this CL down into one with only comments, and one with code changes. This will make code review and potential rollback/reland easier.",
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a7bca15_9adc5013",
+        "filename": "dashboard/dashboard/pinpoint/handlers/isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "For my own reference: should throw exception for unsupported http methods. (crbug/1340155)",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e76b897_aec162fd",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "For my own reference: should throw exception for unsupported http methods. (crbug/1340155)",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e64f1d_4ab63e34",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "I see the reason for adding this but I would suggest doing this in a separate CL. The original behavior when the Quest is used as index relies on the __str__() in python 2. I made a change to call str() before using it as index in python 3.\nI\u0027m not 100% sure how the behavior look like when we use a hash value here. \n\nIn order to avoid pylint complaint, maybe we can simply return the value of__str__().",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a311ba9e_e77bf5bf",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6649cee8_165dfec7",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 469,
+        "startChar": 6,
+        "endLine": 469,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdbcd23b_169bc540",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 600,
+        "startChar": 6,
+        "endLine": 600,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ca975fe_e827da76",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ad2918_0cfb41be",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_service_cases.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "sheriff config only runs on python3, where assertRegexpMatches is deprecated.",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be5ad753_c3d6345c",
+        "filename": "dashboard/dashboard/ttest_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T07:01:58Z",
+      "side": 1,
+      "message": "what is the pylint complaint here?",
+      "range": {
+        "startLine": 95,
+        "startChar": 41,
+        "endLine": 95,
+        "endChar": 69
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
