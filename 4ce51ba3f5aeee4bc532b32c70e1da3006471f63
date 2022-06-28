@@ -264,6 +264,30 @@
       },
       "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3909b0_2a06895f",
+        "filename": "dashboard/dashboard/ttest_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-06-28T18:57:59Z",
+      "side": 1,
+      "message": "I see. It would be nice to have stats1\u003dstats1, stats2\u003dstats2 on the line above.",
+      "parentUuid": "6565411b_14a9884f",
+      "range": {
+        "startLine": 95,
+        "startChar": 41,
+        "endLine": 95,
+        "endChar": 69
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
