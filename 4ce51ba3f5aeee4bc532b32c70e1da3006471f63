@@ -169,6 +169,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa90753_9e7459ca",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a311ba9e_e77bf5bf",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6649cee8_165dfec7",
@@ -182,6 +206,30 @@
       "writtenOn": "2022-06-28T07:01:58Z",
       "side": 1,
       "message": "ditto.",
+      "range": {
+        "startLine": 469,
+        "startChar": 6,
+        "endLine": 469,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a0b99af_27ff3c1b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6649cee8_165dfec7",
       "range": {
         "startLine": 469,
         "startChar": 6,
@@ -215,6 +263,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be312f9c_c8aa6320",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdbcd23b_169bc540",
+      "range": {
+        "startLine": 600,
+        "startChar": 6,
+        "endLine": 600,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ca975fe_e827da76",
@@ -238,6 +310,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76db3367_fe8fa254",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ca975fe_e827da76",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48ad2918_0cfb41be",
@@ -251,6 +347,30 @@
       "writtenOn": "2022-06-28T07:01:58Z",
       "side": 1,
       "message": "sheriff config only runs on python3, where assertRegexpMatches is deprecated.",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80de4d9e_16ced589",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_service_cases.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:25:58Z",
+      "side": 1,
+      "message": "nice!",
+      "parentUuid": "48ad2918_0cfb41be",
       "range": {
         "startLine": 77,
         "startChar": 9,
