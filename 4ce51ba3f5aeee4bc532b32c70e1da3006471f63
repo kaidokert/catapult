@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9144170_dbc6975d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:13:34Z",
+      "side": 1,
+      "message": "It\u0027s much harder to check pylint this way. because I will need to turn on pytlint2.7 to find ones to disable with comments, submit CL with still the previous pylint, and then submit another CL to actually do the pylint version switch. In the meantime, other CLs come in, so my second CL still need to address new changes and possibly still add new disable comments.",
+      "parentUuid": "20f6df46_73cd793f",
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a7bca15_9adc5013",
@@ -94,6 +112,30 @@
       "writtenOn": "2022-06-28T07:01:58Z",
       "side": 1,
       "message": "I see the reason for adding this but I would suggest doing this in a separate CL. The original behavior when the Quest is used as index relies on the __str__() in python 2. I made a change to call str() before using it as index in python 3.\nI\u0027m not 100% sure how the behavior look like when we use a hash value here. \n\nIn order to avoid pylint complaint, maybe we can simply return the value of__str__().",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bfbaf79_3b8e4996",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:13:34Z",
+      "side": 1,
+      "message": "SGTM. __hash__ require return type to be int though, so I will return hash(self.__str__())",
+      "parentUuid": "49e64f1d_4ab63e34",
       "range": {
         "startLine": 65,
         "startChar": 0,
@@ -280,6 +322,30 @@
       "side": 1,
       "message": "I see. It would be nice to have stats1\u003dstats1, stats2\u003dstats2 on the line above.",
       "parentUuid": "6565411b_14a9884f",
+      "range": {
+        "startLine": 95,
+        "startChar": 41,
+        "endLine": 95,
+        "endChar": 69
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14f9b870_2de74c17",
+        "filename": "dashboard/dashboard/ttest_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-28T20:13:34Z",
+      "side": 1,
+      "message": "SG",
+      "parentUuid": "0b3909b0_2a06895f",
       "range": {
         "startLine": 95,
         "startChar": 41,
