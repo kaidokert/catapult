@@ -16,6 +16,64 @@
       "message": "Hey Deep,\n\nI forgot to update one of the tests that referred to the `frame_times`. I\u0027ve updated tracing/tracing/metrics/rendering/rendering_metric_test.html to confirm that one of the tasks_per_frame is being calculated.\n\nI didn\u0027t make it too extensive as there is already cpu_utilization_test.html covering the inner workings.\n\nAny thoughts on the updated test?",
       "revId": "4cf3354cf69c7727e4451c8ffc4625bd920cb433",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71ad8ee9_81b28c61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-06-29T21:31:19Z",
+      "side": 1,
+      "message": "Hey! I don\u0027t understand the details of what this is testing, but if you think you have sufficient confidence that your metric is correct and the tests will help if someone wants to refactor the code some day, that\u0027s enough. I\u0027ll yield to your judgment for that.",
+      "parentUuid": "8f07150f_02890e90",
+      "revId": "4cf3354cf69c7727e4451c8ffc4625bd920cb433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88be0c45_d1736743",
+        "filename": "tracing/tracing/metrics/rendering/rendering_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-06-29T21:31:19Z",
+      "side": 1,
+      "message": "nit: After reading the test, I realized that we\u0027re not using addCpuUtilizationHistograms function here to compute cpu utilization anymore. We\u0027re just counting the number of tasks. The method at this point is not super well named. Renaming it would be ideal, but if that\u0027s worth the effort, could you add a comment noting this strangeness?",
+      "revId": "4cf3354cf69c7727e4451c8ffc4625bd920cb433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e86331ce_5a4d3d01",
+        "filename": "tracing/tracing/metrics/rendering/rendering_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-06-29T21:31:19Z",
+      "side": 1,
+      "message": "nit: 0.1 is probably more readable that 1e-1. Also can you add a comment why we need 0.1? When I see 1e-6 I know that this is just silly floating point errors. When I see 0.1, it makes me think there is some much bigger rounding errors we\u0027re papering over, and if you understand what\u0027s going on it would be good to note that.",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "4cf3354cf69c7727e4451c8ffc4625bd920cb433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
