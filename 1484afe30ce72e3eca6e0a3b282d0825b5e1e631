@@ -16,6 +16,24 @@
       "message": "The separate base and exp patch seem to get passed through properly; but the exp commit (end_commit_hash) does not:\n\n\"Received Params: {\u0027try\u0027: u\u0027on\u0027, \u0027story\u0027: u\u0027Speedometer2\u0027, \u0027comparison_mode\u0027: u\u0027try\u0027, \u0027target\u0027: u\u0027performance_test_suite\u0027, \u0027base_patch\u0027: u\u0027https://chromium-review.googlesource.com/c/catapult/+/3733573\u0027, \u0027experimental_patch\u0027: u\u0027https://chromium-review.googlesource.com/c/chromium/src/+/3498915\u0027, \u0027comparison_magnitude\u0027: u\u0027\u0027, \u0027project\u0027: u\u0027chromium\u0027, \u0027statistic\u0027: u\u0027\u0027, \u0027benchmark\u0027: u\u0027speedometer2\u0027, \u0027chart\u0027: u\u0027\u0027, \u0027extra_test_args\u0027: u\u0027\u0027, \u0027story_tags\u0027: u\u0027\u0027, \u0027batch_id\u0027: u\u0027\u0027, \u0027base_git_hash\u0027: u\u00276ff741d380a7bfe8aafa4d0e6a8e84c46ddb4d39\u0027, \u0027configuration\u0027: u\u0027linux-perf\u0027, \u0027bug_id\u0027: u\u0027\u0027, \u0027initial_attempt_count\u0027: u\u00271\u0027}\"\n\nAny ideas?\n\n",
       "revId": "1484afe30ce72e3eca6e0a3b282d0825b5e1e631",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1196209f_c9c8d0eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-06-29T22:30:17Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "4f17df55_2e969b6a",
+      "revId": "1484afe30ce72e3eca6e0a3b282d0825b5e1e631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
