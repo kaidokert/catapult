@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3278df38_ac969492",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-06-29T17:31:34Z",
+      "side": 1,
+      "message": "Do any tests in api_request_handler_test.py need to be updated to verify this change?",
+      "revId": "721da689a93f395be8245ca0d90b571ea2a28755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
