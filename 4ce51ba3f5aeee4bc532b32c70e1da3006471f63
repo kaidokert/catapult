@@ -146,6 +146,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99f3dc87_02dc87dd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-06-29T16:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bfbaf79_3b8e4996",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a311ba9e_e77bf5bf",
