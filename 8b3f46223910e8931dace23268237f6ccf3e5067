@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "417196b0_d447f2c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2022-06-30T17:00:50Z",
+      "side": 1,
+      "message": "Hey, so the test weirdness led me to finding a bug in how thread.html calculates segments.\n\nIt was using `slice.end` instead of `slice.duration` when calculating slice width.\n\nSo the test had:\n  Slice: start 7, end 7, duration 0\n  \nWhen counting slices present in the range 9-11, the above slice was being calculated as in the range as it was being treated effectively as:\n  Slice: start 7, end 14\n  \nThen weights were being apply to count it as a partial slice in the 9-11 range\n\nI\u0027ve updated the thread.html to use the duration instead. I\u0027ll kick off some pinpoints as I expect this will shift metrics",
+      "revId": "8b3f46223910e8931dace23268237f6ccf3e5067",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

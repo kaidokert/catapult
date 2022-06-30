@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7ce02e_9db1ee21",
+        "filename": "tracing/tracing/metrics/rendering/rendering_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2022-06-30T17:00:50Z",
+      "side": 1,
+      "message": "Renamed to `addCpuSegmentCostHistograms` to reflect that it can perform generic cost analysis using segmentCostFunc`",
+      "parentUuid": "88be0c45_d1736743",
+      "revId": "4cf3354cf69c7727e4451c8ffc4625bd920cb433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e86331ce_5a4d3d01",
@@ -66,6 +84,30 @@
       "writtenOn": "2022-06-29T21:31:19Z",
       "side": 1,
       "message": "nit: 0.1 is probably more readable that 1e-1. Also can you add a comment why we need 0.1? When I see 1e-6 I know that this is just silly floating point errors. When I see 0.1, it makes me think there is some much bigger rounding errors we\u0027re papering over, and if you understand what\u0027s going on it would be good to note that.",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "4cf3354cf69c7727e4451c8ffc4625bd920cb433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6128563_b197617d",
+        "filename": "tracing/tracing/metrics/rendering/rendering_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2022-06-30T17:00:50Z",
+      "side": 1,
+      "message": "Thanks for asking this. I hadn\u0027t dived deep into how the cpu slice calculations work.\n\nI actually found a bug in `thread.html sumOverToplevelSlicesInRange` where the `slice.end` was being passing with a `width` calculation. So we have been incorrectly calculating cpu slices for a long time. I\u0027ve added a fix to this patch.",
+      "parentUuid": "e86331ce_5a4d3d01",
       "range": {
         "startLine": 44,
         "startChar": 32,
