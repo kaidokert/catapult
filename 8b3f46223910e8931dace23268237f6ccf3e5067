@@ -34,6 +34,24 @@
       "parentUuid": "417196b0_d447f2c2",
       "revId": "8b3f46223910e8931dace23268237f6ccf3e5067",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed696c23_4c04851a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2022-06-30T19:56:39Z",
+      "side": 1,
+      "message": "I was debugging this locally with the catapult/bin/run_dev_server and http://localhost:8003/tracing/tests.html \"Run unit tests\"\n\nWith my patch to thread.html it gives: 2533/2533 tests run, 0 failures, 0 flaky, 89 skipped\n\nI do believe that these are running on the CQ, as the test I updated was failing when I tried to submit earlier [1]:\n\n\"tracing.metrics.rendering.rendering_metric_test.renderingMetric_gestureIR \"\n\n[1] https://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Linux%20Tryserver/7199/overview",
+      "parentUuid": "34e9e483_5044b140",
+      "revId": "8b3f46223910e8931dace23268237f6ccf3e5067",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
