@@ -16,6 +16,24 @@
       "message": "One concern I have is that this seems to be a v1 component, whereas we\u0027re as a team trying to move all components to v2. Is there a reason why it can\u0027t be a v2 component?",
       "revId": "3a01583571257b8b6d342a0c44fd6c6a89f692d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b6f4e2_f945a639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544719
+      },
+      "writtenOn": "2022-06-30T18:45:59Z",
+      "side": 1,
+      "message": "That would probably be good for the future, but WebEngineShell is also a v1 component, so I think it makes sense to create CastStreamingShell as a v1 component for now, and then updating them at the same time later. What do you think?",
+      "parentUuid": "2e095f1c_fa990cf0",
+      "revId": "3a01583571257b8b6d342a0c44fd6c6a89f692d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
