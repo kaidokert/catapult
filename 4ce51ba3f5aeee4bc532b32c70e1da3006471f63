@@ -288,6 +288,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48d7ff8f_77b464b1",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-07-01T06:27:21Z",
+      "side": 1,
+      "message": "oops thanks for catching.",
+      "parentUuid": "f0fcfa32_70e4884b",
+      "range": {
+        "startLine": 469,
+        "startChar": 6,
+        "endLine": 469,
+        "endChar": 14
+      },
+      "revId": "4ce51ba3f5aeee4bc532b32c70e1da3006471f63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdbcd23b_169bc540",
