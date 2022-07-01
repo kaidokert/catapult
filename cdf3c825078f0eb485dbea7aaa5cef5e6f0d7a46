@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e40c14ef_54f9884f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2022-07-01T20:34:41Z",
+      "side": 1,
+      "message": "The presubmit errors all appear to be unrelated to this change. John, I was wondering if there\u0027s a way to fix/skip them so that they only apply to the lines changes in this CL?",
+      "revId": "cdf3c825078f0eb485dbea7aaa5cef5e6f0d7a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
