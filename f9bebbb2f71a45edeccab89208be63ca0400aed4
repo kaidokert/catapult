@@ -16,6 +16,69 @@
       "message": "@wenbinzhang can you take another look?",
       "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7efca70_6b6969b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-01T06:07:35Z",
+      "side": 1,
+      "message": "A few comments. Other than these, lgtm.",
+      "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce1c298_e6f85ac3",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-01T06:07:35Z",
+      "side": 1,
+      "message": "nit: extra spaces?",
+      "range": {
+        "startLine": 121,
+        "startChar": 19,
+        "endLine": 121,
+        "endChar": 39
+      },
+      "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37a8c8a2_746e742e",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-01T06:07:35Z",
+      "side": 1,
+      "message": "order switched?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 46
+      },
+      "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
