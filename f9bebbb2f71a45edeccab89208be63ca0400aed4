@@ -127,6 +127,30 @@
       },
       "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6531c04c_7caaad49",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-01T15:47:25Z",
+      "side": 1,
+      "message": "Cool. Thanks for the fix!",
+      "parentUuid": "8b83d59b_3c1f06fe",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 46
+      },
+      "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
