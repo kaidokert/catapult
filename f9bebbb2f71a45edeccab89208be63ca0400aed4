@@ -79,6 +79,30 @@
       },
       "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b83d59b_3c1f06fe",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1397310
+      },
+      "writtenOn": "2022-07-01T06:20:58Z",
+      "side": 1,
+      "message": "yeah this is intentional, I think the original code passed the wrong order.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/sheriff_config/luci_config.py;l\u003d47?q\u003dInvalidContentError%20catapult",
+      "parentUuid": "37a8c8a2_746e742e",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 46
+      },
+      "revId": "f9bebbb2f71a45edeccab89208be63ca0400aed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
