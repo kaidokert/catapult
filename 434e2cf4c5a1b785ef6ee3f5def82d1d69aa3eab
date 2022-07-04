@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7da081e_016f4211",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2022-07-04T17:22:57Z",
+      "side": 1,
+      "message": "Reassigning since Wenbin reviewed earlier CLs on this bug, and thus has more context :).",
+      "revId": "434e2cf4c5a1b785ef6ee3f5def82d1d69aa3eab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
