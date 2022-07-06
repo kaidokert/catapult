@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5279e9c7_545a0018",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-07-06T17:06:25Z",
+      "side": 1,
+      "message": "Remove this property since it seems that it\u0027s no longer used.",
+      "revId": "8acb4e3b8718426b4cba13768a75ad0580e3bfc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7815df_6247387a",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-07-06T17:06:25Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "8acb4e3b8718426b4cba13768a75ad0580e3bfc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
