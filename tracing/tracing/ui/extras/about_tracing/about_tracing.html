@@ -22,6 +22,24 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
     Polymer.dom(document.body).appendChild(profilingView);
   });
 
+  if (window.location.href.startsWith('chrome://tracing/')) {
+    const req = new XMLHttpRequest();
+    req.open('GET', '/json/should_redirect', true);
+    req.onreadystatechange = function (e) {
+      if (req.readyState === 4 && req.status === 200) {
+        try {
+          const json = JSON.parse(req.responseText);
+          if (json === true) {
+            window.location.replace("https://ui.perfetto.dev");
+          }
+        }
+        catch (e) {
+        }
+      }
+    };
+    req.send(null);
+  }
+
   return {};
 });
 </script>
