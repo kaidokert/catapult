@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78c9b2ee_ff8ae913",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-07-06T17:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5279e9c7_545a0018",
+      "revId": "8acb4e3b8718426b4cba13768a75ad0580e3bfc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c7815df_6247387a",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-06T17:06:25Z",
       "side": 1,
       "message": "Same here.",
+      "revId": "8acb4e3b8718426b4cba13768a75ad0580e3bfc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a96d3176_ebbefbad",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-07-06T17:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c7815df_6247387a",
       "revId": "8acb4e3b8718426b4cba13768a75ad0580e3bfc6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
