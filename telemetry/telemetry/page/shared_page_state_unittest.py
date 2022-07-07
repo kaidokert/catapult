@@ -16,7 +16,7 @@ from telemetry.page import page
 from telemetry.page import legacy_page_test
 from telemetry.page import shared_page_state
 from telemetry import story as story_module
-from telemetry.testing import fakes
+from telemetry.testing import fakes  # pylint:disable=no-name-in-module
 from telemetry.testing import options_for_unittests
 from telemetry.testing import test_stories
 from telemetry.util import image_util

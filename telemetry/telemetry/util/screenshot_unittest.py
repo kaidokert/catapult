@@ -10,7 +10,7 @@ import os
 import mock
 
 from py_utils import cloud_storage  # pylint: disable=import-error
-from telemetry.testing import fakes
+from telemetry.testing import fakes  # pylint: disable=no-name-in-module
 from telemetry.internal.util import file_handle
 from telemetry.util import image_util
 from telemetry.util import screenshot
@@ -92,7 +92,7 @@ class ScreenshotUtilTests(unittest.TestCase):
 
 class FakeScreenshotTimeoutPlatform(fakes.FakePlatform):
   def __init__(self, *args, **kwargs):
-    super(FakeScreenshotTimeoutPlatform, self).__init__(*args, **kwargs)
+    super().__init__(*args, **kwargs)
     self.take_screenshot_call_count = 0
     self.target_screenshot_call_count = None
 

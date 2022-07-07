@@ -27,7 +27,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                browser_directory, profile_directory):
     assert isinstance(fuchsia_platform_backend,
                       fuchsia_platform_backend_module.FuchsiaPlatformBackend)
-    super(FuchsiaBrowserBackend, self).__init__(
+    super().__init__(
         fuchsia_platform_backend,
         browser_options=browser_options,
         browser_directory=browser_directory,
@@ -193,7 +193,8 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       elif self.browser_type == CAST_STREAMING_SHELL:
         self._StartCastStreamingShell(startup_args)
         browser_id_files = [
-            os.path.join(output_root, 'shell', 'cast_streaming_shell', 'ids.txt'),
+            os.path.join(
+                output_root, 'shell', 'cast_streaming_shell', 'ids.txt'),
             os.path.join(output_root, 'webengine', 'web_engine', 'ids.txt'),
         ]
       else:
@@ -253,7 +254,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         close_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
   def Close(self):
-    super(FuchsiaBrowserBackend, self).Close()
+    super().Close()
 
     if self._browser_process:
       logging.info('Shutting down browser process on Fuchsia')
