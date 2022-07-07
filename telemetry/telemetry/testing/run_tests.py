@@ -17,7 +17,7 @@ from telemetry.internal.browser import browser_options
 from telemetry.internal.platform import android_device
 from telemetry.internal.util import binary_manager
 from telemetry.internal.util import command_line
-from telemetry.internal.util import ps_util
+from telemetry.internal.util import ps_util  # pylint:disable=no-name-in-module
 from telemetry.testing import browser_test_case
 from telemetry.testing import options_for_unittests
 
@@ -42,7 +42,7 @@ class RunTestsCommand(command_line.OptparseCommand):
   xvfb_process = None
 
   def __init__(self):
-    super(RunTestsCommand, self).__init__()
+    super().__init__()
     self.stream = sys.stdout
 
   @classmethod

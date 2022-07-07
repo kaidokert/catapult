@@ -14,7 +14,7 @@ from __future__ import absolute_import
 import os
 
 from telemetry.internal import story_runner
-from telemetry.testing import fakes
+from telemetry.testing import fakes  # pylint:disable=no-name-in-module
 
 
 _options = []
