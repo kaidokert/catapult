@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd1bc3d5_723edf6d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-07T15:52:29Z",
+      "side": 1,
+      "message": "You can directly use .group(1) and then there is no need for the .lstrip(), since you are capturing it as a group. Yes, indexing starts at 1 :)",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fdbf95e_a6d7dd5f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-07T15:52:29Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84024242_dbd10314",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-07T15:52:29Z",
+      "side": 1,
+      "message": "Does self.browser contain the binary name somewhere? If not, it should be fine still, if a bit brittle.",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc5fb90_33d382ff",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-07T15:52:29Z",
+      "side": 1,
+      "message": "nit: Why not just a variable rather than a function?",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ed72666_2fdd7f91",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-07T15:52:29Z",
+      "side": 1,
+      "message": "This is too brittle, take the heaviest one?",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
