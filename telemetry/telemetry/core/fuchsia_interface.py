@@ -30,7 +30,7 @@ else:
   SDK_ROOT = _SDK_ROOT_IN_CATAPULT
 
 
-class CommandRunner(object):
+class CommandRunner():
   """Helper class used to execute commands on Fuchsia devices on a remote host
   over SSH."""
 
@@ -105,7 +105,8 @@ def GetHostArchFromPlatform():
   raise Exception('Unsupported host architecture: %s' % host_arch)
 
 
-def StartSymbolizerForProcessIfPossible(input_file, output_file, build_id_files):
+def StartSymbolizerForProcessIfPossible(
+    input_file, output_file, build_id_files):
   """Starts a symbolizer process if possible.
 
     Args:

@@ -28,7 +28,7 @@ class FuchsiaDevice(device.Device):
 
   def __init__(self, target_name, host, ssh_config,
                system_log_file, port, managed_repo):
-    super(FuchsiaDevice, self).__init__(
+    super().__init__(
         name='Fuchsia with host: %s' % host,
         guid='fuchsia:%s' % target_name)
     self._target_name = target_name
