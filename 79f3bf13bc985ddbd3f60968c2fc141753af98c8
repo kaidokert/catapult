@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a69f06_b0c4af07",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-07-07T17:21:56Z",
+      "side": 1,
+      "message": "I believe the standard error message only recommends one ffx command, so if there are multiple found that means it was not a suggestion.",
+      "parentUuid": "c440d51f_e39dd825",
+      "range": {
+        "startLine": 99,
+        "startChar": 20,
+        "endLine": 99,
+        "endChar": 45
+      },
+      "revId": "79f3bf13bc985ddbd3f60968c2fc141753af98c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd7b8ccc_6735eed1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-07T16:23:41Z",
       "side": 1,
       "message": "Remove",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 22
+      },
+      "revId": "79f3bf13bc985ddbd3f60968c2fc141753af98c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90100124_500dda72",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-07-07T17:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7b8ccc_6735eed1",
       "range": {
         "startLine": 173,
         "startChar": 4,
