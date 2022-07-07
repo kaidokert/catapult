@@ -136,7 +136,7 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
         self.assertEqual(len(found_devices), 1)
         device = found_devices[0]
         self.assertEqual(device.host, 'a0')
-        self.assertEqual(device.target_name, 'n0')
+        self.assertEqual(device.target_id, 'n0')
 
   def testFoundMultipleFuchsiaDevices(self):
     with mock.patch('os.path.exists', return_value=True):
@@ -148,7 +148,7 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
         self.assertEqual(len(found_devices), 1)
         device = found_devices[0]
         self.assertEqual(device.host, 'a0')
-        self.assertEqual(device.target_name, 'n0')
+        self.assertEqual(device.target_id, 'n0')
 
   def testSkipUsingSDKIfFuchsiaSshPortFlagUsed(self):
 
@@ -161,7 +161,7 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
         self.assertEqual(len(found_devices), 1)
         device = found_devices[0]
         self.assertEqual(device.host, 'localhost')
-        self.assertEqual(device.target_name, 'local_device')
+        self.assertEqual(device.target_id, 'local_device')
         get_mock.assert_not_called()
         find_mock.assert_not_called()
 
@@ -176,7 +176,7 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
         self.assertEqual(len(found_devices), 1)
         device = found_devices[0]
         self.assertEqual(device.host, 'fuchsia_device')
-        self.assertEqual(device.target_name, 'device_target')
+        self.assertEqual(device.target_id, 'device_target')
         get_mock.assert_not_called()
         find_mock.assert_not_called()
 
@@ -192,6 +192,6 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
         self.assertEqual(len(found_devices), 1)
         device = found_devices[0]
         self.assertEqual(device.host, 'localhost')
-        self.assertEqual(device.target_name, 'local_device')
+        self.assertEqual(device.target_id, 'local_device')
         get_mock.assert_not_called()
         find_mock.assert_not_called()
