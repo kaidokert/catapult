@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "e3b344055a72b8879ed402d184783be3ab2c0a08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52701d8_48628b69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-07-07T21:34:42Z",
+      "side": 1,
+      "message": "LGTM.\n\nCc\u0027ing Wenbin as FYI.",
+      "revId": "e3b344055a72b8879ed402d184783be3ab2c0a08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
