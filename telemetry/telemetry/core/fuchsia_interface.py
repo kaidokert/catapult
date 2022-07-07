@@ -43,7 +43,7 @@ def GetHostArchFromPlatform():
 _FFX_TOOL = os.path.join(
     SDK_ROOT, 'tools', GetHostArchFromPlatform(), 'ffx')
 
-class CommandRunner(object):
+class CommandRunner():
   """Helper class used to execute commands on Fuchsia devices on a remote host
   over SSH."""
 
