@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58684bc6_aa3524dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-07T19:13:14Z",
+      "side": 1,
+      "message": "Why is this necessary? At a glance, this contains some of the same changes as https://chromium-review.googlesource.com/c/catapult/+/3750084/8/telemetry/telemetry/core/fuchsia_interface.py",
+      "revId": "8922968c283a3b1a448a28b32376ef4ac5b77c0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
