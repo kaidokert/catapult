@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c440d51f_e39dd825",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-07T16:23:41Z",
+      "side": 1,
+      "message": "Couldn\u0027t this mean there are multiple commands found, not that none were found?",
+      "range": {
+        "startLine": 99,
+        "startChar": 20,
+        "endLine": 99,
+        "endChar": 45
+      },
+      "revId": "79f3bf13bc985ddbd3f60968c2fc141753af98c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7b8ccc_6735eed1",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-07T16:23:41Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 22
+      },
+      "revId": "79f3bf13bc985ddbd3f60968c2fc141753af98c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
