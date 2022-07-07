@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff633f0_aac8ab42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-07-07T03:33:05Z",
+      "side": 1,
+      "message": "Note that run_ffx_command is copied from https://source.chromium.org/chromium/chromium/src/+/main:build/fuchsia/test/common.py;l\u003d56, but this duplication must exist since Telemetry cannot import from Chromium.",
+      "revId": "8b61dcb50045b16e47ab3a8a00ecfff57f26e10e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
