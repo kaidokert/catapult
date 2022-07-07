@@ -34,6 +34,24 @@
       "parentUuid": "58684bc6_aa3524dd",
       "revId": "8922968c283a3b1a448a28b32376ef4ac5b77c0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "684f90b7_834d4a8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-07-07T19:17:43Z",
+      "side": 1,
+      "message": "Oh I added a new patch (patch 3) to delete the print() line from the last CL since the other one submitted before my upload finished \u003e\u003c",
+      "parentUuid": "2d86009c_b2f14b20",
+      "revId": "8922968c283a3b1a448a28b32376ef4ac5b77c0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
