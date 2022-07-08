@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71f2670_e46a3814",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1437399
+      },
+      "writtenOn": "2022-07-08T05:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd1bc3d5_723edf6d",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fdbf95e_a6d7dd5f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-07T15:52:29Z",
       "side": 1,
       "message": "ditto",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c8fcaa4_61e76861",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1437399
+      },
+      "writtenOn": "2022-07-08T05:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fdbf95e_a6d7dd5f",
       "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "992872fd_2412c4da",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1437399
+      },
+      "writtenOn": "2022-07-08T05:15:24Z",
+      "side": 1,
+      "message": "AFAIK, no. I could probably find it somewhere, but it may be different on different systems. I\u0027m not 100% sure what the script uses to launch a new chrome instance.",
+      "parentUuid": "84024242_dbd10314",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fc5fb90_33d382ff",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 10
@@ -65,6 +119,24 @@
       "writtenOn": "2022-07-07T15:52:29Z",
       "side": 1,
       "message": "nit: Why not just a variable rather than a function?",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace9e8a5_33bb98c0",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1437399
+      },
+      "writtenOn": "2022-07-08T05:15:24Z",
+      "side": 1,
+      "message": "Oops, forgot to clean that up. Done",
+      "parentUuid": "1fc5fb90_33d382ff",
       "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -82,6 +154,24 @@
       "writtenOn": "2022-07-07T15:52:29Z",
       "side": 1,
       "message": "This is too brittle, take the heaviest one?",
+      "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c513043c_aa7b5bdf",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1437399
+      },
+      "writtenOn": "2022-07-08T05:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ed72666_2fdd7f91",
       "revId": "a59e7bec2b6f4479bd22851a37e6a98d4af0994f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
