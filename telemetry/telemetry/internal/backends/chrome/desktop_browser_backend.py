@@ -81,6 +81,28 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self._log_file_path
 
   @property
+  def processes(self):
+    class Process(object):
+      def __init__(self, s):
+        # We want to get 3 pieces of information from 'ps aux':
+        # - PID of the processes
+        # - Type of process (e.g. 'renderer', etc)
+        # - RSS of the process
+        self.name = re.search(r'--type=(\w+)', s).group(1)
+        self.pid = re.search(r' (\d+) ', s).group(1)
+        # For RSS, we need a more complicated pattern, since multiple parts of
+        # the output are just digits.
+        self.rss = re.search(r'\d+\.\d+'  # %CPU
+                             r'\s+'
+                             r'\d+\.\d+'  # %MEM
+                             r'\s+'
+                             r'\d+'       # VSZ
+                             r'\s+'
+                             r'(\d+)', s).group(1)  # RSS
+    tmp = subprocess.getoutput('ps -aux | grep chrome')
+    return [Process(line) for line in tmp.split('\n') if '--type=' in line]
+
+  @property
   def supports_uploading_logs(self):
     return (self.browser_options.logs_cloud_bucket and self.log_file_path and
             os.path.isfile(self.log_file_path))
