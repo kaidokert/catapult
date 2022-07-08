@@ -22,6 +22,29 @@
       },
       "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c760b53f_198145c1",
+        "filename": "telemetry/telemetry/timeline/system_trace_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1312130
+      },
+      "writtenOn": "2022-07-08T13:21:31Z",
+      "side": 1,
+      "message": "Why not pass a list?",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 43
+      },
+      "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
