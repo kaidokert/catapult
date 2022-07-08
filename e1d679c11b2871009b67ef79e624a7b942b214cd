@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22edcf3e_49ba4695",
+        "filename": "telemetry/telemetry/timeline/system_trace_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1312130
+      },
+      "writtenOn": "2022-07-08T13:17:34Z",
+      "side": 1,
+      "message": "Can we make this optional? AFAICT we don\u0027t really need this (if we only care about chrome) if org.chromium.trace_metadata is enabled as that will record the mappings form chrome processes.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 12
+      },
+      "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
