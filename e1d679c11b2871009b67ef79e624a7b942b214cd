@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41e316e2_70da4370",
+        "filename": "telemetry/telemetry/timeline/system_trace_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2022-07-11T15:51:36Z",
+      "side": 1,
+      "message": "I primarily added this because this file is somewhat agnostic of whether it is always chrome that is being profiled.\n\nWdyt?",
+      "parentUuid": "c258c49c_2bac1261",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 12
+      },
+      "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c760b53f_198145c1",
         "filename": "telemetry/telemetry/timeline/system_trace_config.py",
         "patchSetId": 9
@@ -61,6 +85,30 @@
       "writtenOn": "2022-07-08T13:21:31Z",
       "side": 1,
       "message": "Why not pass a list?",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 43
+      },
+      "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a34036d_1c92b6b2",
+        "filename": "telemetry/telemetry/timeline/system_trace_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2022-07-11T15:51:36Z",
+      "side": 1,
+      "message": "I agree -- a list would be better. I originally implemented it this way because I expected multiple callers to have available a comma-separated string, and then they would\u0027ve had to each split it, etc., versus it being in one place here.\n\nHowever, there\u0027s only one caller for this, so I definitely agree with your suggestion -- I plan to fix this in an upcoming change.",
+      "parentUuid": "c760b53f_198145c1",
       "range": {
         "startLine": 205,
         "startChar": 28,
