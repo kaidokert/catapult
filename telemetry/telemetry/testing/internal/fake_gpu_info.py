@@ -22,16 +22,17 @@
 FAKE_GPU_INFO = {
     'feature_status':
         {
-            'flash_stage3d': 'enabled',
+            '2d_canvas': 'enabled',
             'gpu_compositing': 'enabled',
-            'video_decode': 'unavailable_software',
-            'flash_3d': 'enabled',
-            'webgl': 'enabled',
-            'video_encode': 'enabled',
+            'opengl': 'enabled_on',
             'multiple_raster_threads': 'enabled_on',
-            '2d_canvas': 'unavailable_software',
-            'rasterization': 'disabled_software',
-            'flash_stage3d_baseline': 'enabled'
+            'rasterization': 'enabled',
+            'video_decode': 'enabled',
+            'video_encode': 'disabled_software',
+            'vulkan': 'enabled_on',
+            'webgl': 'enabled',
+            'webgl2': 'enabled',
+            'webgpu': 'disabled_off'
         },
     'aux_attributes':
         {
