@@ -129,7 +129,19 @@ def _FindSystemPackagePaths(device, system_package_list):
     p = _GetSystemPath(system_package, paths)
     if p:
       found_paths.append(p)
-  return found_paths
+  # Certain versions of certain apps can have multiple APKs. If they aren't all
+  # removed, the app is still considered installed, so look for all of them.
+  all_paths = found_paths.copy()
+  for p in found_paths:
+    if not p.endswith('.apk'):
+      continue
+    dirname = posixpath.dirname(p)
+    for f in device.ListDirectory(dirname, as_root=True):
+      filepath = posixpath.join(dirname, f)
+      if filepath == p or not filepath.endswith('.apk'):
+        continue
+      all_paths.append(filepath)
+  return all_paths
 
 
 # Find all application paths, even those flagged as uninstalled, as these
