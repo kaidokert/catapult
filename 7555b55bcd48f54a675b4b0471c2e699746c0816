@@ -16,6 +16,40 @@
       "message": "Fixed up, presubmit looks like errors in other files, not sure what to do with that yet.",
       "revId": "7555b55bcd48f54a675b4b0471c2e699746c0816",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e2ee94f_0e686b8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-11T16:42:12Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "7555b55bcd48f54a675b4b0471c2e699746c0816",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7cbef43_9b084cc4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1132034
+      },
+      "writtenOn": "2022-07-11T16:42:12Z",
+      "side": 1,
+      "message": "nit: I often add an \"in-place\" unit test in the code for complex regexps like that.\n\nsomething like:\n  _EXAMPLE_LINE \u003d \u0027...\u0027\n  assert re.search(_REGEXP, _EXAMPLE_LINE) \u003d\u003d \u0027something\u0027",
+      "revId": "7555b55bcd48f54a675b4b0471c2e699746c0816",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
