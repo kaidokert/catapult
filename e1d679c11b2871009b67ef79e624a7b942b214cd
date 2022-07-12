@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1735281_65150736",
+        "filename": "telemetry/telemetry/timeline/system_trace_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1312130
+      },
+      "writtenOn": "2022-07-12T08:28:31Z",
+      "side": 1,
+      "message": "Well with catapult chances are pretty high you are running chrome. I can see why you might want to trace this for some benchmarks, but that should be the benchmarks choice. I would make this configurable, maybe have a method EnableProcessStats",
+      "parentUuid": "41e316e2_70da4370",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 12
+      },
+      "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c760b53f_198145c1",
         "filename": "telemetry/telemetry/timeline/system_trace_config.py",
         "patchSetId": 9
