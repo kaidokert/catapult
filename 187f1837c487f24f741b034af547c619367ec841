@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7da8144_b6cc4eb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-13T20:49:46Z",
+      "side": 1,
+      "message": "PTAL, will submit with No-Presubmit to get around the pylint warnings.",
+      "revId": "187f1837c487f24f741b034af547c619367ec841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
