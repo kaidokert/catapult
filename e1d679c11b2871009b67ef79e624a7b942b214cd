@@ -120,6 +120,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5a59b55_45c845d4",
+        "filename": "telemetry/telemetry/timeline/system_trace_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2022-07-14T15:11:10Z",
+      "side": 1,
+      "message": "Sounds good! I will send out a change to make this optional.",
+      "parentUuid": "0b2ae8d9_25b9ab3d",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 12
+      },
+      "revId": "e1d679c11b2871009b67ef79e624a7b942b214cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c760b53f_198145c1",
