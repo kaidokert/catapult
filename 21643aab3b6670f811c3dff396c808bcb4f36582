@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8848f7b7_facb1302",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-14T18:30:15Z",
+      "side": 1,
+      "message": "PTAL\n\nChromium trybots seem happy with this change https://chromium-review.googlesource.com/c/chromium/src/+/3761393",
+      "revId": "21643aab3b6670f811c3dff396c808bcb4f36582",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
