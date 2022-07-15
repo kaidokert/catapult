@@ -37,6 +37,116 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1013f967_21fb00ee",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "The current implementation uses the jinja2 under third_party/. I forgot whether it is python 3 compatible. But when in python 3 runtime, we can update the requirements.txt to use a newer version, as in:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/requirements.txt",
+      "parentUuid": "1d1e55c3_7d4b50a4",
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d06e9bd_25469f35",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "nit: seems we don\u0027t need the return value. The dictionary (template_values) is passed by reference and is updated within GetDynamicVariable already.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 19
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0129b4e3_c891fdbd",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "Make_response here generates a response string but is not assigned to a class member as in webapp2. Thus, we need an explicit \u0027return\u0027 here. Also, because it is a helper called by the real handler, we need another \u0027return\u0027 there as well. E.g., after your update, you need something like:\nreturn request_handler.RequestHandlerRenderHtml(...)\nin:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/edit_bug_labels.py;l\u003d22?q\u003dself.renderhtml\u0026ss\u003dchromium\n\nSame for the other calls to make_response.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75882ecb_f2a0cf35",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "I guess we need to read the file in bytes, or encoded using utf8 before passing the contents to make_response():\nhttps://flask.palletsprojects.com/en/2.1.x/api/#flask.Flask.make_response",
+      "range": {
+        "startLine": 49,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5358a659_288440cf",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "ditto: return",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61132d01_a58c42ce",
         "filename": "dashboard/dashboard/common/request_handler.py",
         "patchSetId": 1
@@ -48,6 +158,52 @@
       "writtenOn": "2022-07-14T23:44:05Z",
       "side": 1,
       "message": "I didn\u0027t make any changes here because there was no self.* line",
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abf16d2b_fee3116d",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "Actually there is one with self.*.",
+      "range": {
+        "startLine": 72,
+        "startChar": 57,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678d23ab_4ddd70ac",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-15T18:05:13Z",
+      "side": 1,
+      "message": "ditto: return",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 17
+      },
       "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
