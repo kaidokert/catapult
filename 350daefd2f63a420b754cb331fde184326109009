@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f322cc_1f098493",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Not sure if this is the correct property... documentation below: \n\n[1] flask - https://flask.palletsprojects.com/en/2.1.x/api/#flask.Request.full_path\n[2] webapp2 - https://webapp2.readthedocs.io/en/latest/guide/request.html",
+      "revId": "350daefd2f63a420b754cb331fde184326109009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

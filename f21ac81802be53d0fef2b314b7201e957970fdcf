@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "265af128_f33b93e4",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1013f967_21fb00ee",
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d06e9bd_25469f35",
@@ -66,6 +84,30 @@
       "writtenOn": "2022-07-15T18:05:13Z",
       "side": 1,
       "message": "nit: seems we don\u0027t need the return value. The dictionary (template_values) is passed by reference and is updated within GetDynamicVariable already.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 19
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2354159a_e4ab6f0e",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d06e9bd_25469f35",
       "range": {
         "startLine": 44,
         "startChar": 4,
@@ -99,6 +141,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f5d8f00_83f2c334",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0129b4e3_c891fdbd",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75882ecb_f2a0cf35",
@@ -112,6 +178,30 @@
       "writtenOn": "2022-07-15T18:05:13Z",
       "side": 1,
       "message": "I guess we need to read the file in bytes, or encoded using utf8 before passing the contents to make_response():\nhttps://flask.palletsprojects.com/en/2.1.x/api/#flask.Flask.make_response",
+      "range": {
+        "startLine": 49,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0649ef2b_b1ff021e",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75882ecb_f2a0cf35",
       "range": {
         "startLine": 49,
         "startChar": 15,
@@ -145,6 +235,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3812d40a_1dd103ee",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5358a659_288440cf",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61132d01_a58c42ce",
@@ -158,6 +272,24 @@
       "writtenOn": "2022-07-14T23:44:05Z",
       "side": 1,
       "message": "I didn\u0027t make any changes here because there was no self.* line",
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04416f27_e00d564d",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61132d01_a58c42ce",
       "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -185,6 +317,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75bfa8e1_d8e1774a",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abf16d2b_fee3116d",
+      "range": {
+        "startLine": 72,
+        "startChar": 57,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "678d23ab_4ddd70ac",
@@ -198,6 +354,30 @@
       "writtenOn": "2022-07-15T18:05:13Z",
       "side": 1,
       "message": "ditto: return",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 17
+      },
+      "revId": "f21ac81802be53d0fef2b314b7201e957970fdcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "717f9e55_49f4bdc0",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-15T21:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "678d23ab_4ddd70ac",
       "range": {
         "startLine": 101,
         "startChar": 4,
