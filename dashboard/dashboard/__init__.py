@@ -130,6 +130,8 @@ def _AllSdkThirdPartyLibraryPaths():
   SDK to our Python path for local unit tests.
     https://cloud.google.com/appengine/docs/python/tools/localunittesting
   """
+  if sys.version_info.major == 3:
+    return []
   paths = []
   for sdk_bin_path in os.environ['PATH'].split(os.pathsep):
     if 'google-cloud-sdk' not in sdk_bin_path:
