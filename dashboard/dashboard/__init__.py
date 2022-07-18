@@ -24,7 +24,7 @@ THIRD_PARTY_LIBRARIES = [
     'flask',
     'flot',
     'gae_ts_mon',
-    'google-auth',
+    # 'google-auth',
     'graphy',
     'html5lib-python',
     'idna',
@@ -55,7 +55,7 @@ THIRD_PARTY_LIBRARIES = [
 ]
 
 THIRD_PARTY_LIBRARIES_PY2 = THIRD_PARTY_LIBRARIES + [
-    'apiclient', 'httplib2/python2/httplib2', 'oauth2client', 'pyparsing'
+    'apiclient', 'google-auth', 'httplib2/python2/httplib2', 'oauth2client', 'pyparsing'
 ]
 
 THIRD_PARTY_LIBRARIES_PY3 = THIRD_PARTY_LIBRARIES
@@ -130,6 +130,8 @@ def _AllSdkThirdPartyLibraryPaths():
   SDK to our Python path for local unit tests.
     https://cloud.google.com/appengine/docs/python/tools/localunittesting
   """
+  if sys.version_info.major == 3:
+    return []
   paths = []
   for sdk_bin_path in os.environ['PATH'].split(os.pathsep):
     if 'google-cloud-sdk' not in sdk_bin_path:
