@@ -27,6 +27,9 @@ if __name__ == '__main__':
   else:
     install.InstallHooks()
 
+  if sys.version_info.major == 3 and 'PYTHONPATH' in os.environ:
+    os.environ.pop('PYTHONPATH')
+
   from catapult_build import run_with_typ
   import dashboard
   return_code = run_with_typ.Run(

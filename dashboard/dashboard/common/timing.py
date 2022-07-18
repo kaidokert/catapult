@@ -6,7 +6,11 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import gae_ts_mon
+import sys
+if sys.version_info.major = 2:
+  import gae_ts_mon
+else:
+  from infra_libs import ts_mon
 import logging
 import time
 

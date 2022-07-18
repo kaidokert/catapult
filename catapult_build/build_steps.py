@@ -369,7 +369,8 @@ def main(args=None):
       vpython_executable += '.bat'
 
     # Always add the appengine SDK path.
-    step['env']['PYTHONPATH'] = args.app_engine_sdk_pythonpath
+    if not args.use_python3:
+        step['env']['PYTHONPATH'] = args.app_engine_sdk_pythonpath
 
     step['cmd'] = [
         vpython_executable,
