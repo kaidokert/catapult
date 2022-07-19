@@ -16,6 +16,24 @@
       "message": "could probably add this back in",
       "revId": "1240e973d53fe4ad1679620896992d5115fa08ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b2f2166_ec80a2ae",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-07-19T17:04:38Z",
+      "side": 0,
+      "message": "It\u0027s good without - it doesn\u0027t tell us anything useful.",
+      "parentUuid": "1304cf09_2dae1d2b",
+      "revId": "1240e973d53fe4ad1679620896992d5115fa08ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
