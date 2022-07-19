@@ -22,6 +22,7 @@ group("telemetry_chrome_test_support") {
     "PRESUBMIT.py",
     "README.md",
     "WATCHLISTS",
+    "catapult.code-workspace",
     "codereview.settings",
     "navbar.md",
     "pylintrc",
