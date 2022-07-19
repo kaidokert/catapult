@@ -16,6 +16,24 @@
       "message": "\"Well, why not use issue_tracker_service.STATUS_OPE... [checks issue_tracker_service.py] ... oh :( nvm\"",
       "revId": "e06f29713012a8659340e0b02f5d6770b6759e3f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbecf555_23adf9d0",
+        "filename": "dashboard/dashboard/update_bug_with_results_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-07-19T22:59:28Z",
+      "side": 1,
+      "message": "My reaction too...",
+      "parentUuid": "0a7485b4_c7879583",
+      "revId": "e06f29713012a8659340e0b02f5d6770b6759e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
