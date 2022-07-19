@@ -14,7 +14,12 @@ import six
 if six.PY2:
   from depot_tools import gclient_eval
 else:
-  from depot_tools.depot_tools import gclient_eval
+  try:
+    from depot_tools.depot_tools import gclient_eval
+  except ImportError:
+    # TODO: Fix this for unit test
+    from depot_tools import gclient_eval
+
 from google.appengine.ext import deferred
 
 from dashboard.pinpoint.models.change import commit_cache

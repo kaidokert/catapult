@@ -14,48 +14,50 @@ _CATAPULT_PATH = os.path.abspath(
 
 # Directories in catapult/third_party required by dashboard.
 THIRD_PARTY_LIBRARIES = [
-    'beautifulsoup4',
-    'cachetools',
+    # 'beautifulsoup4',
+    # 'cachetools',
     'certifi',
-    'chardet',
-    'click',
+    # 'chardet',
+    # 'click',
     'cloudstorage',
     'depot_tools',
-    'flask',
+    # 'flask',
     'flot',
-    'gae_ts_mon',
-    'google-auth',
+    'gae_ts_mon', # This needs update. The one in third_party is not python 3 compatible.
+    # 'google-auth',
     'graphy',
     'html5lib-python',
     'idna',
     'ijson',
-    'itsdangerous',
-    'jinja2',
+    # 'itsdangerous',
+    # 'jinja2',
     'jquery',
     'mapreduce',
-    'markupsafe',
-    'mock',
+    # 'markupsafe',
+    # 'mock',
     'pipeline',
     'polymer',
     'polymer-svg-template',
     'polymer2/bower_components',
     'polymer2/bower_components/chopsui',
-    'pyasn1',
-    'pyasn1_modules',
+    # 'pyasn1',
+    # 'pyasn1_modules',
     'redux/redux.min.js',
     'requests',
     'requests_toolbelt',
-    'rsa',
+    # 'rsa',
     'six',
-    'uritemplate',
+    # 'uritemplate',
     'urllib3',
-    'webapp2',
-    'webtest',
-    'werkzeug',
+    'webapp2',  # This should be removed from default set. Keeping it as the testing_common still needs it.
+    # 'webtest',
+    # 'werkzeug',
 ]
 
 THIRD_PARTY_LIBRARIES_PY2 = THIRD_PARTY_LIBRARIES + [
-    'apiclient', 'httplib2/python2/httplib2', 'oauth2client', 'pyparsing'
+    'apiclient', 'httplib2/python2/httplib2', 'cachetools', 'mock', 'rsa', 'webtest',
+    'oauth2client', 'pyparsing', 'beautifulsoup4',
+    'chardet', 'google-auth', 'jinja2', 'pyasn1', 'pyasn1_modules', 'uritemplate',
 ]
 
 THIRD_PARTY_LIBRARIES_PY3 = THIRD_PARTY_LIBRARIES
@@ -144,7 +146,10 @@ def _AllSdkThirdPartyLibraryPaths():
 
   try:
     # pylint: disable=import-outside-toplevel
-    import dev_appserver
+    if sys.version_info.major == 2:
+      import dev_appserver
+    else:
+      import google.appengine
   except ImportError:
     # TODO: Put the Cloud SDK in the path with the binary dependency manager.
     # https://github.com/catapult-project/catapult/issues/2135
@@ -153,8 +158,9 @@ def _AllSdkThirdPartyLibraryPaths():
         'See https://chromium.googlesource.com/catapult/+/HEAD/dashboard/README.md'
     )
     sys.exit(1)
-
-  paths.extend(dev_appserver.EXTRA_PATHS)
+  
+  if sys.version_info.major == 2:
+    paths.extend(dev_appserver.EXTRA_PATHS)
   return paths
 
 
