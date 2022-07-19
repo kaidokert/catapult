@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1304cf09_2dae1d2b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-19T01:29:34Z",
+      "side": 0,
+      "message": "could probably add this back in",
+      "revId": "1240e973d53fe4ad1679620896992d5115fa08ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
