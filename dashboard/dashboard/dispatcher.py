@@ -6,9 +6,6 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import gae_ts_mon
-import webapp2
-
 from dashboard import add_histograms
 from dashboard import add_histograms_queue
 from dashboard import add_point
@@ -66,79 +63,94 @@ from dashboard.api import report_template
 from dashboard.api import test_suites
 from dashboard.api import timeseries
 from dashboard.api import timeseries2
+from dashboard.common import utils
 
-_URL_MAPPING = [
-    ('/_/jstsmon', jstsmon.JsTsMonHandler),
-    ('/add_histograms', add_histograms.AddHistogramsHandler),
-    ('/add_histograms/process', add_histograms.AddHistogramsProcessHandler),
-    ('/add_histograms_queue', add_histograms_queue.AddHistogramsQueueHandler),
-    ('/add_point', add_point.AddPointHandler),
-    ('/add_point_queue', add_point_queue.AddPointQueueHandler),
-    ('/alerts', alerts.AlertsHandler),
-    (r'/api/alerts', api_alerts.AlertsHandler),
-    (r'/api/bugs/p/(.+)/(.+)', bugs.BugsWithProjectHandler),
-    (r'/api/bugs/(.*)', bugs.BugsHandler),
-    (r'/api/config', config.ConfigHandler),
-    (r'/api/describe', describe.DescribeHandler),
-    (r'/api/list_timeseries/(.*)', list_timeseries.ListTimeseriesHandler),
-    (r'/api/new_bug', new_bug.NewBugHandler),
-    (r'/api/new_pinpoint', new_pinpoint.NewPinpointHandler),
-    (r'/api/existing_bug', existing_bug.ExistingBugHandler),
-    (r'/api/nudge_alert', nudge_alert.NudgeAlertHandler),
-    (r'/api/report/generate', report_generate.ReportGenerateHandler),
-    (r'/api/report/names', report_names.ReportNamesHandler),
-    (r'/api/report/template', report_template.ReportTemplateHandler),
-    (r'/api/test_suites', test_suites.TestSuitesHandler),
-    (r'/api/timeseries/(.*)', timeseries.TimeseriesHandler),
-    (r'/api/timeseries2', timeseries2.Timeseries2Handler),
-    ('/associate_alerts', associate_alerts.AssociateAlertsHandler),
-    ('/alert_groups_update', alert_groups.AlertGroupsHandler),
-    ('/bug_details', bug_details.BugDetailsHandler),
-    (r'/buildbucket_job_status/(\d+)',
-     buildbucket_job_status.BuildbucketJobStatusHandler),
-    ('/create_health_report', create_health_report.CreateHealthReportHandler),
-    ('/configs/update', sheriff_config_poller.ConfigsUpdateHandler),
-    ('/delete_expired_entities',
-     layered_cache_delete_expired.LayeredCacheDeleteExpiredHandler),
-    ('/dump_graph_json', dump_graph_json.DumpGraphJsonHandler),
-    ('/edit_anomalies', edit_anomalies.EditAnomaliesHandler),
-    ('/edit_anomaly_configs', edit_anomaly_configs.EditAnomalyConfigsHandler),
-    ('/edit_bug_labels', edit_bug_labels.EditBugLabelsHandler),
-    ('/edit_site_config', edit_site_config.EditSiteConfigHandler),
-    ('/file_bug', file_bug.FileBugHandler),
-    ('/get_diagnostics', get_diagnostics.GetDiagnosticsHandler),
-    ('/get_histogram', get_histogram.GetHistogramHandler),
-    ('/graph_csv', graph_csv.GraphCsvHandler),
-    ('/graph_json', graph_json.GraphJsonHandler),
-    ('/graph_revisions', graph_revisions.GraphRevisionsHandler),
-    ('/group_report', group_report.GroupReportHandler),
-    ('/list_tests', list_tests.ListTestsHandler),
-    ('/load_from_prod', load_from_prod.LoadFromProdHandler),
-    ('/', main.MainHandler),
-    ('/mark_recovered_alerts',
-     mark_recovered_alerts.MarkRecoveredAlertsHandler),
-    ('/memory_report', memory_report.MemoryReportHandler),
-    ('/migrate_test_names', migrate_test_names.MigrateTestNamesHandler),
-    ('/navbar', navbar.NavbarHandler),
-    ('/pinpoint/new/bisect', pinpoint_request.PinpointNewBisectRequestHandler),
-    ('/pinpoint/new/perf_try',
-     pinpoint_request.PinpointNewPerfTryRequestHandler),
-    ('/pinpoint/new/prefill',
-     pinpoint_request.PinpointNewPrefillRequestHandler),
-    ('/put_entities_task', put_entities_task.PutEntitiesTaskHandler),
-    ('/report', report.ReportHandler),
-    ('/short_uri', short_uri.ShortUriHandler),
-    (r'/speed_releasing/(.*)', speed_releasing.SpeedReleasingHandler),
-    ('/speed_releasing', speed_releasing.SpeedReleasingHandler),
-    ('/update_dashboard_stats',
-     update_dashboard_stats.UpdateDashboardStatsHandler),
-    ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler),
-    ('/update_test_suite_descriptors',
-     update_test_suite_descriptors.UpdateTestSuiteDescriptorsHandler),
-    ('/uploads/(.+)', uploads_info.UploadInfoHandler),
-    (oauth2_decorator.DECORATOR.callback_path,
-     oauth2_decorator.DECORATOR.callback_handler())
-]
+if utils.IsRunningFlask():
+  from flask import Flask
+  APP = Flask(__name__)
 
-APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
-gae_ts_mon.initialize(APP)
+  @APP.route('/api/config/', methods=['POST'])
+  def ConfigHandlerPost():
+    return config.ConfigHandlerPost()
+
+
+else:
+  import webapp2
+  import gae_ts_mon
+
+  _URL_MAPPING = [
+      ('/_/jstsmon', jstsmon.JsTsMonHandler),
+      ('/add_histograms', add_histograms.AddHistogramsHandler),
+      ('/add_histograms/process', add_histograms.AddHistogramsProcessHandler),
+      ('/add_histograms_queue', add_histograms_queue.AddHistogramsQueueHandler),
+      ('/add_point', add_point.AddPointHandler),
+      ('/add_point_queue', add_point_queue.AddPointQueueHandler),
+      ('/alerts', alerts.AlertsHandler),
+      (r'/api/alerts', api_alerts.AlertsHandler),
+      (r'/api/bugs/p/(.+)/(.+)', bugs.BugsWithProjectHandler),
+      (r'/api/bugs/(.*)', bugs.BugsHandler),
+      (r'/api/config', config.ConfigHandler),
+      (r'/api/describe', describe.DescribeHandler),
+      (r'/api/list_timeseries/(.*)', list_timeseries.ListTimeseriesHandler),
+      (r'/api/new_bug', new_bug.NewBugHandler),
+      (r'/api/new_pinpoint', new_pinpoint.NewPinpointHandler),
+      (r'/api/existing_bug', existing_bug.ExistingBugHandler),
+      (r'/api/nudge_alert', nudge_alert.NudgeAlertHandler),
+      (r'/api/report/generate', report_generate.ReportGenerateHandler),
+      (r'/api/report/names', report_names.ReportNamesHandler),
+      (r'/api/report/template', report_template.ReportTemplateHandler),
+      (r'/api/test_suites', test_suites.TestSuitesHandler),
+      (r'/api/timeseries/(.*)', timeseries.TimeseriesHandler),
+      (r'/api/timeseries2', timeseries2.Timeseries2Handler),
+      ('/associate_alerts', associate_alerts.AssociateAlertsHandler),
+      ('/alert_groups_update', alert_groups.AlertGroupsHandler),
+      ('/bug_details', bug_details.BugDetailsHandler),
+      (r'/buildbucket_job_status/(\d+)',
+       buildbucket_job_status.BuildbucketJobStatusHandler),
+      ('/create_health_report', create_health_report.CreateHealthReportHandler),
+      ('/configs/update', sheriff_config_poller.ConfigsUpdateHandler),
+      ('/delete_expired_entities',
+       layered_cache_delete_expired.LayeredCacheDeleteExpiredHandler),
+      ('/dump_graph_json', dump_graph_json.DumpGraphJsonHandler),
+      ('/edit_anomalies', edit_anomalies.EditAnomaliesHandler),
+      ('/edit_anomaly_configs', edit_anomaly_configs.EditAnomalyConfigsHandler),
+      ('/edit_bug_labels', edit_bug_labels.EditBugLabelsHandler),
+      ('/edit_site_config', edit_site_config.EditSiteConfigHandler),
+      ('/file_bug', file_bug.FileBugHandler),
+      ('/get_diagnostics', get_diagnostics.GetDiagnosticsHandler),
+      ('/get_histogram', get_histogram.GetHistogramHandler),
+      ('/graph_csv', graph_csv.GraphCsvHandler),
+      ('/graph_json', graph_json.GraphJsonHandler),
+      ('/graph_revisions', graph_revisions.GraphRevisionsHandler),
+      ('/group_report', group_report.GroupReportHandler),
+      ('/list_tests', list_tests.ListTestsHandler),
+      ('/load_from_prod', load_from_prod.LoadFromProdHandler),
+      ('/', main.MainHandler),
+      ('/mark_recovered_alerts',
+       mark_recovered_alerts.MarkRecoveredAlertsHandler),
+      ('/memory_report', memory_report.MemoryReportHandler),
+      ('/migrate_test_names', migrate_test_names.MigrateTestNamesHandler),
+      ('/navbar', navbar.NavbarHandler),
+      ('/pinpoint/new/bisect',
+       pinpoint_request.PinpointNewBisectRequestHandler),
+      ('/pinpoint/new/perf_try',
+       pinpoint_request.PinpointNewPerfTryRequestHandler),
+      ('/pinpoint/new/prefill',
+       pinpoint_request.PinpointNewPrefillRequestHandler),
+      ('/put_entities_task', put_entities_task.PutEntitiesTaskHandler),
+      ('/report', report.ReportHandler),
+      ('/short_uri', short_uri.ShortUriHandler),
+      (r'/speed_releasing/(.*)', speed_releasing.SpeedReleasingHandler),
+      ('/speed_releasing', speed_releasing.SpeedReleasingHandler),
+      ('/update_dashboard_stats',
+       update_dashboard_stats.UpdateDashboardStatsHandler),
+      ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler),
+      ('/update_test_suite_descriptors',
+       update_test_suite_descriptors.UpdateTestSuiteDescriptorsHandler),
+      ('/uploads/(.+)', uploads_info.UploadInfoHandler),
+      (oauth2_decorator.DECORATOR.callback_path,
+       oauth2_decorator.DECORATOR.callback_handler())
+  ]
+
+  APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
+  gae_ts_mon.initialize(APP)
