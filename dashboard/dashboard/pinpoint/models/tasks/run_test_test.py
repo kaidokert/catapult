@@ -8,6 +8,8 @@ from __future__ import absolute_import
 
 import functools
 import mock
+import unittest
+import six
 
 from dashboard.pinpoint import test
 from dashboard.pinpoint.models import change as change_module
@@ -33,6 +35,7 @@ DIMENSIONS = [
 
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
+@unittest.skipIf(six.PY3, 'Skipping tests under models/tasks for python 3.')
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
@@ -524,6 +527,7 @@ AttributeError: 'Namespace' object has no attribute 'benchmark_names'"""
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@unittest.skipIf(six.PY3, 'Skipping tests under models/tasks for python 3.')
 class ValidatorTest(test.TestCase):
 
   def setUp(self):

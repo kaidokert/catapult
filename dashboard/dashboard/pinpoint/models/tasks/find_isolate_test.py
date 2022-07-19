@@ -7,6 +7,8 @@ from __future__ import division
 from __future__ import absolute_import
 
 import mock
+import unittest
+import six
 
 from dashboard.pinpoint import test
 from dashboard.pinpoint.models import change as change_module
@@ -47,6 +49,7 @@ class FindIsolateEvaluatorBase(test.TestCase):
 
 @mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
 @mock.patch('dashboard.services.buildbucket_service.Put')
+@unittest.skipIf(six.PY3, 'Skipping tests under models/tasks for python 3.')
 class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
   def testInitiate_FoundIsolate(self, *_):
@@ -219,6 +222,7 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
 
 @mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
+@unittest.skipIf(six.PY3, 'Skipping tests under models/tasks for python 3.')
 class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
 
   def setUp(self):

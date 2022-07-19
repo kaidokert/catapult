@@ -10,6 +10,8 @@ from __future__ import absolute_import
 import itertools
 import json
 import mock
+import unittest
+import six
 
 from dashboard.pinpoint import test
 from dashboard.pinpoint.models import change as change_module
@@ -27,6 +29,7 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 @mock.patch('dashboard.services.isolate.Retrieve')
+@unittest.skipIf(six.PY3, 'Skipping tests under models/tasks for python 3.')
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
