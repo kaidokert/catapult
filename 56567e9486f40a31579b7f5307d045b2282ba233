@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "345dbb72_347fa961",
+        "filename": "tracing/tracing/ui/extras/about_tracing/about_tracing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1395206
+      },
+      "writtenOn": "2022-07-19T16:57:12Z",
+      "side": 1,
+      "message": "I\u0027m not so sure about that: untimed message gives enough time to read the message and find out about the way to avoid getting interrupted by it in the future. In contrast, timed message that you have to cancel in 3 seconds might not give enough time.\n\nI\u0027m also wary of spending time implementing that popup: it\u0027s definitely something that I should be able to figure out, but `alert` has a simple blocking API and timed popup will require me to learn how to do all of that in Polymer",
+      "parentUuid": "49b69a9d_3eaad2e1",
+      "revId": "56567e9486f40a31579b7f5307d045b2282ba233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6a64985_97422199",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 4
