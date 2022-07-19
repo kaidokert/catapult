@@ -16,6 +16,23 @@
       "message": "Submit whenever you\u0027re happy with the Chromium-side bot changes.",
       "revId": "3f84fab2bfbd8c02eaab642aa0af6921ce0f65b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95847ea7_9d454143",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-19T02:32:10Z",
+      "side": 1,
+      "message": "The CL from infra is checked in:\nhttps://chromium-review.googlesource.com/c/chromium/tools/build/+/3758202\n\nIf no revert happens, we can reland this.",
+      "revId": "3f84fab2bfbd8c02eaab642aa0af6921ce0f65b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
