@@ -18,7 +18,10 @@ from google.appengine.ext import ndb
 if six.PY2:
   import cloudstorage
 else:
-  import cloudstorage.cloudstorage as cloudstorage
+  try:
+    import cloudstorage.cloudstorage as cloudstorage
+  except ImportError:
+    import cloudstorage # this is for local test
 from apiclient.discovery import build
 from dashboard.common import utils
 from dashboard.pinpoint.models import job_state
