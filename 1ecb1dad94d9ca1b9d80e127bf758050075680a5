@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce97d9b_e587e945",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-07-19T17:22:15Z",
+      "side": 1,
+      "message": "Quick explanation: this line [1] expects cc_list is a set.\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job_bug_update.py;l\u003d445;drc\u003d3220e1ed9373209c199f0325250005b9c18b995c",
+      "revId": "1ecb1dad94d9ca1b9d80e127bf758050075680a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
