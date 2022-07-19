@@ -30,6 +30,6 @@ if __name__ == '__main__':
   from catapult_build import run_with_typ
   import dashboard
   return_code = run_with_typ.Run(
-      os.path.join(_DASHBOARD_PATH, 'dashboard'),
+      os.path.join(_DASHBOARD_PATH, 'dashboard/pinpoint/models'),
       path=dashboard.PathsForTesting())
   sys.exit(return_code)
