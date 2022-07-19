@@ -15,12 +15,14 @@ from google.appengine.api import users
 from google.appengine.datastore import datastore_pb
 
 from dashboard.common import utils
+import six
 
 if utils.IsRunningFlask():
   from flask import g as flask_global
   from flask import request as flask_request
 else:
-  import webapp2
+  if six.PY2:
+    import webapp2
 
 # The list below contains all kinds that have an internal_only property.
 # IMPORTANT: any new data types with internal_only properties must be added
@@ -174,7 +176,8 @@ def _DatastorePreHook(service, call, request, _):
   assert service == 'datastore_v3'
   if call != 'RunQuery':
     return
-  if request.kind() not in _INTERNAL_ONLY_KINDS:
+  request_kind = request.kind() if six.PY2 else request.kind
+  if request_kind not in _INTERNAL_ONLY_KINDS:
     return
   if IsUnalteredQueryPermitted():
     return

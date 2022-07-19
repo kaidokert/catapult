@@ -8,6 +8,8 @@ from __future__ import absolute_import
 
 import logging
 import mock
+import unittest
+import six
 
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import evaluators
@@ -16,7 +18,7 @@ from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import bisection_test_util
 
-
+@unittest.skipIf(six.PY3, 'Skipping tests under models/tasks for python 3.')
 class EvaluatorTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):
