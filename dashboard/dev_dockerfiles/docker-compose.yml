@@ -8,6 +8,13 @@ services:
     volumes:
       - ../..:/image/workspace:ro
     command: [vpython, /workspace/dashboard/bin/run_py_tests, -t, -v]
+  my-compose:
+    image: dashboard-base:latest
+    volumes:
+      - ../..:/image/workspace:ro
+    command: [/bin/sh]
+    stdin_open: true
+    tty: true
   deploy-dashboard:
     image: dashboard-base:latest
     volumes:
