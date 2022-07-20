@@ -112,7 +112,7 @@ found in the LICENSE file.
         </template>
         <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
           <p>
-            Run an A/B experiment.
+            Run an A/B experiment. A
           </p>
         </template>
         <template is="dom-if" if="[[error]]">
@@ -134,9 +134,9 @@ found in the LICENSE file.
             <input type="hidden" name="target" value="[[telemetryIsolate(configuration, benchmark)]]">
             <!--Prevent uploading unused git_hash because raw request will be displayed on job page.
               It won't change the result, but display unused (and wrong) parameters are confusing-->
-            <input type="hidden" disabled="[[isBisectJob(comparisonMode)]]" name="base_git_hash" value="[[base_git_hash]]">
-            <input type="hidden" disabled="[[!isBisectJob(comparisonMode)]]" name="start_git_hash" value="[[start_git_hash]]">
-            <input type="hidden" name="end_git_hash" value="[[end_git_hash]]">
+            <input type="hidden" disabled="[[isBisectJob(comparisonMode)]]" name="base_git_hash" value="[[base_git_hash]]" required>
+            <input type="hidden" disabled="[[!isBisectJob(comparisonMode)]]" name="start_git_hash" value="[[start_git_hash]]" required>
+            <input type="hidden" name="end_git_hash" value="[[end_git_hash]]" required>
 
             <template is="dom-if" if="[[hasJob(job)]]">
               <input type="hidden" name="grouping_label" disabled$="[[!job.arguments.grouping_label]]" value="[[job.arguments.grouping_label]]">
