@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b85d1ef0_35284ff5",
+        "filename": "tracing/tracing/ui/extras/about_tracing/about_tracing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-07-20T14:43:37Z",
+      "side": 1,
+      "message": "It\u0027s not super hard to do fancier things like Eric described (and I\u0027m happy to jump on a call and pair program this), but I do like that the alert is blocking - it gives you enough time to read the message + there\u0027s also no chance someone will fail to notice it and then redirect will happen halfway through a recording session.\n\nI wish there was a way to disable it for the future with a cookie, but I suspect \"chrome://tracing/?noredirect\" will get on people\u0027s bookmarks / omnibox-autocomplete really soon if they don\u0027t want to use the new UI. This current method is also a stronger nudge for people to use the new UI. Be prepared for more feature requests / bug reports.",
+      "parentUuid": "90d7cea8_ce98c408",
+      "revId": "56567e9486f40a31579b7f5307d045b2282ba233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6a64985_97422199",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 4
