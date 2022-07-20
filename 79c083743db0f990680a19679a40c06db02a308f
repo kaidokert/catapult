@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6041760_0fbab2e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-20T17:08:13Z",
+      "side": 1,
+      "message": "For the fun of it, I checked the first 15 bisections on pinpoint\u0027s front page. Four of these were manually kicked off and the rest were auto-bisects. All had the self.tags[\"test_path\"] populated.",
+      "parentUuid": "c648983d_a0888fb4",
+      "revId": "79c083743db0f990680a19679a40c06db02a308f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d216e7f2_d21885e4",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 2
