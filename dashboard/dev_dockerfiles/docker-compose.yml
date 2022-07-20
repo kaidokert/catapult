@@ -8,6 +8,11 @@ services:
     volumes:
       - ../..:/image/workspace:ro
     command: [vpython, /workspace/dashboard/bin/run_py_tests, -t, -v]
+  python-unittest-dashboard-py3:
+    image: dashboard-base:latest
+    volumes:
+      - ../..:/image/workspace:ro
+    command: [vpython3, /workspace/dashboard/bin/run_py_tests, -t, -v]
   deploy-dashboard:
     image: dashboard-base:latest
     volumes:

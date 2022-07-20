@@ -26,6 +26,12 @@ steps:
   args: [
     'run', 'python-unittest-dashboard'
   ]
+# Run unit tests in Python 3. Eventually this will replace the Python 2 step.
+- name: 'gcr.io/$PROJECT_ID/docker-compose'
+  dir: 'dashboard/dev_dockerfiles'
+  args: [
+    'run', 'python-unittest-dashboard-py3'
+  ]
 # We need to provide the auth token that the service account is using to the
 # container from which we're going to deploy the Dashboard services.
 - name: 'gcr.io/$PROJECT_ID/docker-compose'
