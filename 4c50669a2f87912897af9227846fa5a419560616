@@ -16,6 +16,24 @@
       "message": "Friedrich, thanks for catching it. Would you give us some info about where you saw the failures in Python 2? We\u0027re trying to make sure things are running in Python 3.",
       "revId": "4c50669a2f87912897af9227846fa5a419560616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bda94d0_9444cd61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-21T17:28:41Z",
+      "side": 1,
+      "message": "Information is in this bug https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1346203",
+      "parentUuid": "f6a66fe9_b777d3cb",
+      "revId": "4c50669a2f87912897af9227846fa5a419560616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
