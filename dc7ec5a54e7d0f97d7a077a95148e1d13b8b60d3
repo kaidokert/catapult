@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d016095a_7414d239",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-chart.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-21T22:10:02Z",
+      "side": 1,
+      "message": "not sure if it\u0027s better to do \u003d\u003d or \u003d\u003d\u003d. \n\nhttps://stackoverflow.com/a/23465314",
+      "revId": "dc7ec5a54e7d0f97d7a077a95148e1d13b8b60d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
