@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3781ed88_c43dd754",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-07-21T22:34:24Z",
+      "side": 1,
+      "message": "I looked into making the base and exp fields turn red if they\u0027re empty, but I was not able to figure out how. This is a less pretty, but functional, solution.",
+      "revId": "7f46c5bd7063fa37abffb1845f4e867062721f4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
