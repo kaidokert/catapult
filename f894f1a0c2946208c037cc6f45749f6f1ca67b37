@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfeafee1_6462b722",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1200319
+      },
+      "writtenOn": "2022-07-21T09:35:05Z",
+      "side": 1,
+      "message": "Hi Mikhail,\nWould you please take a look at this revert since Owner-Override doesn\u0027t seem to apply for catapult?",
+      "revId": "f894f1a0c2946208c037cc6f45749f6f1ca67b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
