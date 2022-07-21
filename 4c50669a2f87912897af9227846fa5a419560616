@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a66fe9_b777d3cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-07-21T16:59:17Z",
+      "side": 1,
+      "message": "Friedrich, thanks for catching it. Would you give us some info about where you saw the failures in Python 2? We\u0027re trying to make sure things are running in Python 3.",
+      "revId": "4c50669a2f87912897af9227846fa5a419560616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
