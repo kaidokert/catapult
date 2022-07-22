@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71da561_5fcc795b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-07-22T18:50:31Z",
+      "side": 1,
+      "message": "Hi John\n\nThis CL plumbs the run_as option to several adb commands run in devil functions. Please take a  look. \n\nRegards\nRakib Hasan",
+      "revId": "60b7627589abcf218c5cefdad56b140cbe8cd391",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
