@@ -70,6 +70,24 @@
       "parentUuid": "c7852154_7225daa2",
       "revId": "4c50669a2f87912897af9227846fa5a419560616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2038cbda_ad11123c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2022-07-22T19:59:34Z",
+      "side": 1,
+      "message": "\u003e FYI this broke our custom merge scripts https://anglebug.com/7522\nI meant this CL fixes the issue, the CL that got reverted here was the one that broke them.\n\n\u003e last time I checked merge scripts still ran on python2 https://crbug.com/1326517 \nMore specifically, bpastene@ made some upgrades there such as moving away from the old \"build\" recipe https://crbug.com/1326517#c11 and some other changes that were expected to make py3 migration easier https://crbug.com/1326517#c24 but my understanding is we\u0027re still on py2 there.",
+      "parentUuid": "17f850a5_b06991ed",
+      "revId": "4c50669a2f87912897af9227846fa5a419560616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
