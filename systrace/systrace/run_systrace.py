@@ -32,8 +32,10 @@ if _DEVIL_DIR not in sys.path:
   sys.path.insert(0, _DEVIL_DIR)
 if _SYSTRACE_DIR not in sys.path:
   sys.path.insert(0, _SYSTRACE_DIR)
-
 from devil import devil_env
+
+from six.moves import input
+
 from devil.android.sdk import adb_wrapper
 from systrace import systrace_runner
 from systrace import util
@@ -192,7 +194,7 @@ def main_impl(arguments):
     print('Starting tracing (%d seconds)' % options.trace_time)
     time.sleep(options.trace_time)
   else:
-    raw_input('Starting tracing (stop with enter)')
+    input('Starting tracing (stop with enter)')
 
   # Stop tracing and collect the output.
   print('Tracing completed. Collecting output...')
