@@ -6,15 +6,12 @@ from __future__ import absolute_import
 from telemetry.internal.platform import linux_based_device
 
 
-class CrOSDevice(linux_based_device.LinuxBasedDevice):
-  OS_NAME = 'chromeos'
-  OS_PROPER_NAME = 'ChromeOs'
-  GUID_NAME = 'cros'
+class LinuxDevice(linux_based_device.LinuxBasedDevice):
+  pass
 
-
-def IsRunningOnCrOS():
-  return CrOSDevice.PlatformIsRunningOS()
+def IsRunningOnLinux():
+  return LinuxDevice.PlatformIsRunningOS()
 
 
 def FindAllAvailableDevices(options):
-  return CrOSDevice.FindAllAvailableDevices(options)
+  return LinuxDevice.FindAllAvailableDevices(options)
