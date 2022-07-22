@@ -52,6 +52,24 @@
       "parentUuid": "0bda94d0_9444cd61",
       "revId": "4c50669a2f87912897af9227846fa5a419560616",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17f850a5_b06991ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2022-07-22T19:15:56Z",
+      "side": 1,
+      "message": "FYI this broke our custom merge scripts https://anglebug.com/7522\n\nWe\u0027d love to see that migrated to python3, actually, but last time I checked merge scripts still ran on python2 https://crbug.com/1326517 - has that changed / changing soon?",
+      "parentUuid": "c7852154_7225daa2",
+      "revId": "4c50669a2f87912897af9227846fa5a419560616",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
