@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b6db73c_a2474eb4",
+        "filename": "tracing/tracing/ui/extras/about_tracing/about_tracing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2022-07-25T09:43:25Z",
+      "side": 1,
+      "message": "Alright, if y\u0027all are happy with this, I won\u0027t block 😊 Let\u0027s see if there are many complaints 😄\n\nLet me offer my wording suggestion: \"chrome://tracing is deprecated: You will be redirected to the successor, ui.perfetto.dev. Use chrome://tracing/?noredirect to keep using the deprecated catapult trace viewer.\"",
+      "parentUuid": "b85d1ef0_35284ff5",
+      "revId": "56567e9486f40a31579b7f5307d045b2282ba233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6a64985_97422199",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 4
