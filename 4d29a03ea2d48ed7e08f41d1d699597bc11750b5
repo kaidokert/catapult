@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebffe6d7_24a2b3f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-07-25T22:13:14Z",
+      "side": 1,
+      "message": "Hi Nate\n\nThis CL adds the read and write permissions for all users to temporary files on test devices. We need this because the test list binary writes to a temporary file. For scoped storage requirements the binary should do this in the app data directory instead of external storage. Currently the binary writes the test list and sets the permissions to the file to rw for the user only. This CL adds the read and write permissions for all users to the file. Please take a look. \n\nRegards\nRakib Hasan",
+      "revId": "4d29a03ea2d48ed7e08f41d1d699597bc11750b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
