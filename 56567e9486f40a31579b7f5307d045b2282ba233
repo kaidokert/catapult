@@ -90,6 +90,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d63fec_2dceb12f",
+        "filename": "tracing/tracing/ui/extras/about_tracing/about_tracing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1395206
+      },
+      "writtenOn": "2022-07-25T09:59:35Z",
+      "side": 1,
+      "message": "I don\u0027t want to use \"catapult\" in wording, as using it raised questions in the past whether the whole catapult repository is deprecated (which is not, because it\u0027s basically a mini-monorepo with a bunch of projects that are somewhat interrelated with one another, some of them are continue to be in use).\n\nI\u0027ll send this to CQ as is, but let me know if there\u0027s another part of wording you would like to change.",
+      "parentUuid": "6b6db73c_a2474eb4",
+      "revId": "56567e9486f40a31579b7f5307d045b2282ba233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6a64985_97422199",
