@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d24e638_af90a8bb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-07-25T22:13:20Z",
+      "side": 1,
+      "message": "\"Module\" might get confused for one of the other meanings, ex. \"dynamic feature modules\". Maybe \"SystemModule\" might be clearer since https://source.android.com/devices/tech/ota/apex says APEX is \"used in the install flow for lower-level system modules.\"",
+      "range": {
+        "startLine": 810,
+        "startChar": 8,
+        "endLine": 810,
+        "endChar": 14
+      },
+      "revId": "a694d4b1d4850564d40010b656d111ba01670377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdd2e485_d63c2e85",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-07-25T22:13:20Z",
+      "side": 1,
+      "message": "Is this actually necessary between each APEX install, or do we just need to reboot after all `InstallApex()` calls for the system to actually activate the APEX installation?",
+      "range": {
+        "startLine": 1288,
+        "startChar": 3,
+        "endLine": 1291,
+        "endChar": 28
+      },
+      "revId": "a694d4b1d4850564d40010b656d111ba01670377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17ade36_64bc0fd5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-07-25T22:13:20Z",
+      "side": 1,
+      "message": "nit: I think this is the APEX file path, not an APK.",
+      "range": {
+        "startLine": 1305,
+        "startChar": 46,
+        "endLine": 1305,
+        "endChar": 50
+      },
+      "revId": "a694d4b1d4850564d40010b656d111ba01670377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
