@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "025985ff_9b05ae42",
+        "filename": "tracing/docs/perfetto.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2022-07-26T16:55:24Z",
+      "side": 1,
+      "message": "nit: \"stay functional\" or \"function\"",
+      "range": {
+        "startLine": 3,
+        "startChar": 61,
+        "endLine": 3,
+        "endChar": 72
+      },
+      "revId": "8736d149be7743eb57e80bb7c30540790fd7a9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
