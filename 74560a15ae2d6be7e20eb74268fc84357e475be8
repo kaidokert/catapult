@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b1143f_917c8595",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-07-26T21:09:13Z",
+      "side": 1,
+      "message": "Will wait a bit to make sure that the recipe fix sticks, but should be ready to give this another shot.",
+      "revId": "74560a15ae2d6be7e20eb74268fc84357e475be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
