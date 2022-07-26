@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6510d982_33143fe6",
+        "filename": "tracing/tracing/ui/extras/about_tracing/about_tracing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-07-26T14:24:48Z",
+      "side": 1,
+      "message": "nit (verging on bikeshedding): \"Trace Viewer\" (with T and V capitalized) can be confusing it was not really a Product Name, and technically Perfetto UI is also a trace viewer. Also, it\u0027s good to be explicit that Perfetto UI is the successor (and not some random third party website because it\u0027s honestly hard to tell at first glance that Perfetto UI is also built by us so people might get concerned about security). Can we use Eric\u0027s wording without the catapult word? \n\n\"chrome://tracing is deprecated: You will be redirected to the successor, ui.perfetto.dev. Use chrome://tracing/?noredirect to keep using the deprecated trace viewer.\"",
+      "parentUuid": "49d63fec_2dceb12f",
+      "revId": "56567e9486f40a31579b7f5307d045b2282ba233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6a64985_97422199",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 4
