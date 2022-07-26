@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cddf3fe9_5576a77d",
+        "filename": "devil/devil/android/device_temp_file.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-07-26T22:12:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5802ff7d_d936a3c3",
+      "range": {
+        "startLine": 85,
+        "startChar": 34,
+        "endLine": 85,
+        "endChar": 43
+      },
+      "revId": "4d29a03ea2d48ed7e08f41d1d699597bc11750b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92bc80ed_f1c9983c",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-07-25T22:19:06Z",
       "side": 1,
       "message": "This should also be quoted to guard against command injection attacks.",
+      "range": {
+        "startLine": 88,
+        "startChar": 45,
+        "endLine": 88,
+        "endChar": 60
+      },
+      "revId": "4d29a03ea2d48ed7e08f41d1d699597bc11750b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbae0262_2f527ca9",
+        "filename": "devil/devil/android/device_temp_file.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-07-26T22:12:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92bc80ed_f1c9983c",
       "range": {
         "startLine": 88,
         "startChar": 45,
