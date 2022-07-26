@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4c5742d_9e15020c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-07-26T09:19:14Z",
+      "side": 1,
+      "message": "Yeah that makes sense thanks! I\u0027ve updated this to IsSystemModuleInstalled.",
+      "parentUuid": "2d24e638_af90a8bb",
+      "range": {
+        "startLine": 810,
+        "startChar": 8,
+        "endLine": 810,
+        "endChar": 14
+      },
+      "revId": "a694d4b1d4850564d40010b656d111ba01670377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdd2e485_d63c2e85",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "278aba02_b177a92c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-07-26T09:19:14Z",
+      "side": 1,
+      "message": "Yeah unfortunately we can only stage one module at a time. We can stage more if we have checkpoint support (see: https://android.googlesource.com/platform/system/vold/+/master/Checkpoint.cpp). This is a mode that we seem to have to request to start the OS in however:\nhttps://source.android.com/devices/bootloader/soft-restart\n\nCheckpointing isn\u0027t the default state of devices. We could possibly add additional support for checkpoints but I wouldn\u0027t want to do that without knowing more about how it affects the rest of the OS since it touches on the file system and may affect how tests are executed. If we supported that - I would want to treat it as an additional use case instead of how this works by default.\n\nThe \"Cannot stage multiple sessions without checkpoint support\" error I check for below is thrown if we try to stage a module after one has already been staged.",
+      "parentUuid": "fdd2e485_d63c2e85",
+      "range": {
+        "startLine": 1288,
+        "startChar": 3,
+        "endLine": 1291,
+        "endChar": 28
+      },
+      "revId": "a694d4b1d4850564d40010b656d111ba01670377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e17ade36_64bc0fd5",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-07-25T22:13:20Z",
       "side": 1,
       "message": "nit: I think this is the APEX file path, not an APK.",
+      "range": {
+        "startLine": 1305,
+        "startChar": 46,
+        "endLine": 1305,
+        "endChar": 50
+      },
+      "revId": "a694d4b1d4850564d40010b656d111ba01670377",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3157e687_2761c609",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1539202
+      },
+      "writtenOn": "2022-07-26T09:19:14Z",
+      "side": 1,
+      "message": "Ah yeha slipped here. Thanks! Updated.",
+      "parentUuid": "e17ade36_64bc0fd5",
       "range": {
         "startLine": 1305,
         "startChar": 46,
