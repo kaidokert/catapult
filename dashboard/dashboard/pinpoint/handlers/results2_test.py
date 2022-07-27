@@ -34,15 +34,13 @@ class _Results2Test(test.TestCase):
     self._job_from_id.return_value = job
 
 
-@unittest.skipIf(sys.version_info.major == 3,
-                   'Skipping old handler tests for python 3.')
 class Results2GetTest(_Results2Test):
 
   def testGet_InvalidJob_Error(self):
     self._SetJob(None)
 
     response = self.testapp.get('/api/results2/456', status=400)
-    self.assertIn('Error', response.body)
+    self.assertIn(b'Error', response.body)
 
   @mock.patch.object(results2.results2, 'GetCachedResults2',
                      mock.MagicMock(return_value=None))
