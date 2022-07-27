@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d08acb_114ee482",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1550317
+      },
+      "writtenOn": "2022-07-27T19:32:55Z",
+      "side": 1,
+      "message": "I see the following CQ failure:\n\npy:37:0: C0411: third party import \"from six\\.moves import input\" should be placed before \"from devil import devil\\_env\n\nThe issue issue is that \"from six.moves import input\" must come after \"from devil import devil_env\" because the devil_env is what adds the \"six\" module to the python import path and we will get runtime errors if the we follow the linter\u0027s advice.\n\nI will update the CL to ignore that linter error for that import so we can keep the relative import order as it currently exists in this CL.",
+      "revId": "f382a24885af4a81a7ca7afd6b69ba4957167f52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
