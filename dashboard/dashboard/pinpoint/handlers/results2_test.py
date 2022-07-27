@@ -42,7 +42,7 @@ class Results2GetTest(_Results2Test):
     self._SetJob(None)
 
     response = self.testapp.get('/api/results2/456', status=400)
-    self.assertIn('Error', response.body)
+    self.assertIn(b'Error', response.body)
 
   @mock.patch.object(results2.results2, 'GetCachedResults2',
                      mock.MagicMock(return_value=None))
