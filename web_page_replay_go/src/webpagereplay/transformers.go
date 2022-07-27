@@ -260,6 +260,7 @@ func transformCSPHeader(header http.Header, injectedScriptSha256 string) {
 	tokens := strings.Split(updateDirective, " ")
 	newDirective := ""
 	needsUnsafeInline := true
+  lookingForSha := true
 
 	for _, token := range tokens {
 		token = strings.TrimSpace(token)
@@ -275,7 +276,14 @@ func transformCSPHeader(header http.Header, injectedScriptSha256 string) {
 		if strings.HasPrefix(token, "'sha256-") ||
 			strings.HasPrefix(token, "'sha384-") ||
 			strings.HasPrefix(token, "'sha512-") {
-			newDirective += "'sha256-" + injectedScriptSha256 + "' "
+			// Only add the injected script the first time we are at a block of sha
+			// entries, otherwise we may repeat it several times
+			if lookingForSha {
+				lookingForSha = false
+			  newDirective += "'sha256-" + injectedScriptSha256 + "' "
+			} else {
+				lookingForSha = true
+			}
 			needsUnsafeInline = false
 		}
 		// Don't add back 'none' to our set, as if it is the only item it
