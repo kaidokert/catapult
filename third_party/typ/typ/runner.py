@@ -590,44 +590,42 @@ class Runner(object):
             jobs = 1
 
         child = _Child(self)
-        pool = make_pool(h, jobs, _run_one_test, child,
-                         _setup_process, _teardown_process)
+        pool_generator = lambda j: make_pool(h, j, _run_one_test, child,
+                                            _setup_process, _teardown_process)
 
-        self._run_one_set(self.stats, result_set, test_set, jobs, pool)
+        self._run_one_set(self.stats, result_set, test_set, jobs,
+                          pool_generator)
 
         tests_to_retry = sorted(get_tests_to_retry(result_set))
         retry_limit = self.args.retry_limit
-        try:
-            # Start at 1 since we already did iteration 0 above.
-            for iteration in range(1, self.args.retry_limit + 1):
-                if not tests_to_retry:
-                    break
-                if retry_limit == self.args.retry_limit:
-                    self.flush()
-                    self.args.overwrite = False
-                    self.printer.should_overwrite = False
-                    self.args.verbose = min(self.args.verbose, 1)
+        # Start at 1 since we already did iteration 0 above.
+        for iteration in range(1, self.args.retry_limit + 1):
+            if not tests_to_retry:
+                break
+            if retry_limit == self.args.retry_limit:
+                self.flush()
+                self.args.overwrite = False
+                self.printer.should_overwrite = False
+                self.args.verbose = min(self.args.verbose, 1)
 
-                self.print_('')
-                self.print_('Retrying failed tests (attempt #%d of %d)...' %
-                            (iteration, self.args.retry_limit))
-                self.print_('')
+            self.print_('')
+            self.print_('Retrying failed tests (attempt #%d of %d)...' %
+                        (iteration, self.args.retry_limit))
+            self.print_('')
 
-                stats = Stats(self.args.status_format, h.time, 1)
-                stats.total = len(tests_to_retry)
-                test_set = TestSet(self.args.test_name_prefix)
-                test_set.isolated_tests = [
-                    TestInput(name,
-                        iteration=iteration) for name in tests_to_retry]
-                tests_to_retry = test_set
-                retry_set = ResultSet()
-                self._run_one_set(stats, retry_set, tests_to_retry, 1, pool)
-                result_set.results.extend(retry_set.results)
-                tests_to_retry = get_tests_to_retry(retry_set)
-                retry_limit -= 1
-            pool.close()
-        finally:
-            self.final_responses.extend(pool.join())
+            stats = Stats(self.args.status_format, h.time, 1)
+            stats.total = len(tests_to_retry)
+            test_set = TestSet(self.args.test_name_prefix)
+            test_set.isolated_tests = [
+                TestInput(name,
+                    iteration=iteration) for name in tests_to_retry]
+            tests_to_retry = test_set
+            retry_set = ResultSet()
+            self._run_one_set(stats, retry_set, tests_to_retry, 1,
+                              pool_generator)
+            result_set.results.extend(retry_set.results)
+            tests_to_retry = get_tests_to_retry(retry_set)
+            retry_limit -= 1
 
         if retry_limit != self.args.retry_limit:
             self.print_('')
@@ -641,12 +639,25 @@ class Runner(object):
 
         return (retcode, full_results)
 
-    def _run_one_set(self, stats, result_set, test_set, jobs, pool):
+    def _run_one_set(self, stats, result_set, test_set, jobs, pool_generator):
         self._skip_tests(stats, result_set, test_set.tests_to_skip)
-        self._run_list(stats, result_set,
-                       test_set.parallel_tests, jobs, pool)
-        self._run_list(stats, result_set,
-                       test_set.isolated_tests, 1, pool)
+        pool = pool_generator(jobs)
+        try:
+            self._run_list(stats, result_set,
+                           test_set.parallel_tests, jobs, pool)
+            # We recreate the pool instead of just relying on _run_list's |jobs|
+            # argument since state in other processes (e.g. open browsers) can
+            # impact serial test behavior even if the other processes aren't
+            # actively running tests.
+            if jobs != 1:
+                pool.close()
+                self.final_responses.extend(pool.join())
+                pool = pool_generator(1)
+            self._run_list(stats, result_set,
+                           test_set.isolated_tests, 1, pool)
+            pool.close()
+        finally:
+            self.final_responses.extend(pool.join())
 
     def _skip_tests(self, stats, result_set, tests_to_skip):
         for test_input in tests_to_skip:
