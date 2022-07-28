@@ -393,6 +393,12 @@ class BaseApkHelper(object):
     except KeyError:
       return None
 
+  def IsDebuggable(self):
+    """Returns True if apk is debuggable, or False if is not."""
+    manifest_info = self._GetManifest()
+    return int(
+        manifest_info['manifest'][0].get('android:debuggable', 0), 16) != 0
+
   def _GetManifest(self):
     if not self._manifest:
       with self._GetBaseApkPath() as base_apk_path:
