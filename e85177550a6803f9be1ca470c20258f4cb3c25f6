@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a57642e1_15cc2826",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-07-28T00:52:06Z",
+      "side": 1,
+      "message": "Here\u0027s what it looks like on staging\nhttps://screenshot.googleplex.com/7citUx7ekCAV4sP",
+      "revId": "e85177550a6803f9be1ca470c20258f4cb3c25f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
