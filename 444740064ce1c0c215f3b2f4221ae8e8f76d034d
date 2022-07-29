@@ -33,6 +33,24 @@
       "message": "I think the original was an attempt to maintain behavioral equivalence w/ https://codereview.chromium.org/1416703003/diff/20001/build/android/pylib/constants/__init__.py or something along those lines?",
       "revId": "444740064ce1c0c215f3b2f4221ae8e8f76d034d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e4768bd_414df3d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-07-29T22:33:07Z",
+      "side": 1,
+      "message": "Ah, that makes sense. If I\u0027m reading that correctly it looks like the thing we really care about is the `adb` binary path. In my checkout `build_tools.GetPath(\u0027adb\u0027)` seems to return `/path/to/chromium/src/third_party/android_sdk/public/platform-tools/adb` with or without this patch though, so I wonder if something changed since the CL originally landed.",
+      "parentUuid": "8a117fbc_2c5679ce",
+      "revId": "444740064ce1c0c215f3b2f4221ae8e8f76d034d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
