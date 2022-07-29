@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0da0ce5_656be877",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-07-29T22:17:39Z",
+      "side": 1,
+      "message": "PTAL. CC\u0027ing John in case he recalls the reason that this was necessary in the first place or has suggestions about a safer way to go about this.",
+      "revId": "444740064ce1c0c215f3b2f4221ae8e8f76d034d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
