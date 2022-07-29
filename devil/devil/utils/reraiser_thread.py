@@ -40,6 +40,18 @@ def LogThreadStack(thread, error_log_func=logging.critical):
   error_log_func('*' * 80)
 
 
+# We use this temporary class to pull the
+# current thread stack from the LogThreadStack method
+# We are using this so that we can refer to the stack
+# state variable
+class ParentStackLogger:
+  def __init__(self):
+    self.stack = []
+
+  def log(self, *args):
+    self.stack.append(args)
+
+
 class ReraiserThread(threading.Thread):
   """Thread class that can reraise exceptions."""
 
@@ -57,6 +69,15 @@ class ReraiserThread(threading.Thread):
         name = func.__name__
       else:
         name = 'anonymous'
+
+    # We are retrieving the stack trace of the parent creating this
+    # thread so that we can report it in the event of an exception
+    # This is necessary because otherwise the exception logs
+    # will only contain the stack trace of this thread
+    stack_logger = ParentStackLogger()
+    LogThreadStack(threading.current_thread(), stack_logger.log)
+    self._parent_stack = stack_logger.stack
+
     super(ReraiserThread, self).__init__(name=name)
     if not args:
       args = []
@@ -81,6 +102,7 @@ class ReraiserThread(threading.Thread):
     def ReraiseIfException(self):
       """Reraise exception if an exception was raised in the thread."""
       if self._exc_info:
+        self._logParentStackTrace()
         raise self._exc_info[1]
 
   def GetReturnValue(self):
@@ -95,6 +117,12 @@ class ReraiserThread(threading.Thread):
       self._ret = self._func(*self._args, **self._kwargs)
     except:  # pylint: disable=W0702
       self._exc_info = sys.exc_info()
+
+  def _logParentStackTrace(self):
+    logging.critical('*' * 80)
+    logging.critical('Dumping parent thread stack for %s:', self.name)
+    for logs in self._parent_stack:
+      logging.critical(*logs)
 
 
 class ReraiserThreadGroup(object):
