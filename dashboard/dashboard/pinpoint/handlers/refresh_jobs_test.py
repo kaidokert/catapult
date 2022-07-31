@@ -10,7 +10,6 @@ import datetime
 import logging
 import mock
 import sys
-import unittest
 
 from dashboard.common import layered_cache
 from dashboard.pinpoint.handlers import refresh_jobs
@@ -20,8 +19,6 @@ from dashboard.pinpoint import test
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
-@unittest.skipIf(sys.version_info.major == 3,
-                   'Skipping old handler tests for python 3.')
 class RefreshJobsTest(test.TestCase):
 
   def setUp(self):
@@ -86,16 +83,14 @@ class RefreshJobsTest(test.TestCase):
     j1.task = '123'
     j1.started = True
     j1.put()
-    j1._Schedule = mock.MagicMock()
-    j1.Fail = mock.MagicMock()
 
     j2 = job_module.Job.New((), ())
     j2.task = '123'
     j2.started = True
     j2.updated = datetime.datetime.utcnow() - datetime.timedelta(hours=8)
     j2.put()
-    j2._Schedule = mock.MagicMock()
-    j2.Fail = mock.MagicMock()
+    job_module.Job._Schedule = mock.MagicMock()
+    job_module.Job.Fail = mock.MagicMock()
 
     layered_cache.Set(refresh_jobs._JOB_CACHE_KEY % j2.job_id,
                       {'retries': refresh_jobs._JOB_MAX_RETRIES})
@@ -104,11 +99,8 @@ class RefreshJobsTest(test.TestCase):
 
     self.ExecuteDeferredTasks('default')
 
-    self.assertFalse(j1._Schedule.called)
-    self.assertFalse(j1.Fail.called)
-
-    self.assertFalse(j2._Schedule.called)
-    self.assertTrue(j2.Fail.called)
+    self.assertEqual(job_module.Job._Schedule.call_count, 0)
+    self.assertEqual(job_module.Job.Fail.call_count, 1)
 
   def testGet_OverRetryLimit(self):
     j1 = job_module.Job.New((), ())
