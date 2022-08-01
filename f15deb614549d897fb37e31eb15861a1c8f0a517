@@ -16,6 +16,23 @@
       "message": "PTAL\n\nChromium is happy with this in https://chromium-review.googlesource.com/c/chromium/src/+/3792747",
       "revId": "f15deb614549d897fb37e31eb15861a1c8f0a517",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffcc89e3_ce927322",
+        "filename": "third_party/typ/typ/pool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-08-01T18:55:39Z",
+      "side": 1,
+      "message": "Instead of making a single PoolGroup class for parallel, serial and global pools. Can you have one abstract PoolGroup class and child PoolGroup classes for serial, parallel and global poolgroup classes that override the abstract one.",
+      "revId": "f15deb614549d897fb37e31eb15861a1c8f0a517",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
