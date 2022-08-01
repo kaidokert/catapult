@@ -973,14 +973,14 @@ class BugCommentTest(test.TestCase):
         merge_issue=None,
         project='chromium')
 
-  @mock.patch.object(job.job_state.JobState, 'ScheduleWork',
-                     mock.MagicMock(side_effect=AssertionError('Error string')))
-  def testFailed(self):
+  @mock.patch('dashboard.pinpoint.models.job_state.JobState.ScheduleWork')
+  def testFailed(self, mock_schedule):
+    mock_schedule.side_effect = AssertionError('Error string')
+
     j = job.Job.New((), (), bug_id=123456)
     scheduler.Schedule(j)
     with self.assertRaises(AssertionError):
       j.Run()
-
     self.ExecuteDeferredTasks('default')
     self.assertTrue(j.failed)
     self.add_bug_comment.assert_called_once_with(
