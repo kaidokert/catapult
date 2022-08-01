@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57300986_a9d02376",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-08-01T20:29:46Z",
+      "side": 1,
+      "message": "Why are you adding the try finally blocks? Also I think the close pool functions should be called in the finally blocks.",
+      "revId": "3b2059e05e571dd1f83a98cc9fa7202aeb9e731f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
