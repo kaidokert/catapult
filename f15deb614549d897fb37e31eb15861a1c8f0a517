@@ -33,6 +33,24 @@
       "message": "Instead of making a single PoolGroup class for parallel, serial and global pools. Can you have one abstract PoolGroup class and child PoolGroup classes for serial, parallel and global poolgroup classes that override the abstract one.",
       "revId": "f15deb614549d897fb37e31eb15861a1c8f0a517",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd6aea08_ac2cb8cd",
+        "filename": "third_party/typ/typ/pool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-08-01T20:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffcc89e3_ce927322",
+      "revId": "f15deb614549d897fb37e31eb15861a1c8f0a517",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
