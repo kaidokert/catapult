@@ -16,6 +16,24 @@
       "message": "Why are you adding the try finally blocks? Also I think the close pool functions should be called in the finally blocks.",
       "revId": "3b2059e05e571dd1f83a98cc9fa7202aeb9e731f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d493b1_680039f9",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-08-01T20:34:16Z",
+      "side": 1,
+      "message": "I\u0027m following the same behavior as the left side, which calls `.close()` in the `try` block and `.join()` in the `finally` block.\n\nI agree that it seems to make sense to close the pools in the `finally` blocks, but wanted to keep the existing behavior in case there\u0027s some weird undocumented reason for the current behavior. I can change it if you think that\u0027s unwarranted, though.",
+      "parentUuid": "57300986_a9d02376",
+      "revId": "3b2059e05e571dd1f83a98cc9fa7202aeb9e731f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
