@@ -16,6 +16,24 @@
       "message": "Just saw this: We need a bit more discussion around this if this is supposed to redirect by default.\n\nchrome://tracing has many features that are not yet present in perfetto\n- JS stack samples\n- V8 RCS support\n- Certain detailed V8 heap statistics\n\nUnless these get ported to perfetto we need easy access to those via chrome://tracing",
       "revId": "0f1031ef28ae3d85d1aaf6fc78e728b983b87c91",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d302369f_bbc26762",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2022-08-02T08:31:45Z",
+      "side": 1,
+      "message": "Well, I guess all the memory infra stuff is missing, or I couldn\u0027t fint it.",
+      "parentUuid": "0a4c5df2_f4a0d02c",
+      "revId": "0f1031ef28ae3d85d1aaf6fc78e728b983b87c91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
