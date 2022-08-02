@@ -454,6 +454,34 @@ class AdbWrapper(object):
         env=self._ADB_ENV,
         check_status=check_error)
 
+  def _Shell(self, command, timeout, retries, expect_status=None):
+    """Runs a command on the device by executing the "adb shell".
+    This runs adb shell without the persistent shell invocation.
+    Returns:
+      (output, status)
+    Raises:
+      device_errors.AdbCommandFailedError: If the shell iteself crashes
+    """
+    if expect_status is None:
+      args = ['shell', command]
+    else:
+      # Pipe stderr->stdout to ensure the echo'ed exit code is not interleaved
+      # with the command's stderr (as seen in https://crbug.com/1314912).
+      args = ['shell', '( %s ) 2>&1;echo %%$?' % command.rstrip()]
+    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
+    output_end = len(output)
+    if expect_status:
+      output_end = output.rfind('%')
+      if output_end < 0:
+        logger.warning('exit status of shell command %r missing.', command)
+        output_end = len(output)
+        # TODO(crbug/1021686): Remove the exception when persistent shells are
+        # used as calling function Shell will check result status.
+        raise device_errors.AdbShellCommandFailedError(
+            command, output, status=None, device_serial=self._device_serial)
+    status = int(output[output_end + 1:]) if output else 1
+    return (output[:output_end], status)
+
   def __eq__(self, other):
     """Consider instances equal if they refer to the same device.
 
@@ -711,29 +739,11 @@ class AdbWrapper(object):
       device_errors.AdbCommandFailedError: If the exit status doesn't match
         |expect_status|.
     """
-    if expect_status is None:
-      args = ['shell', command]
-    else:
-      # Pipe stderr->stdout to ensure the echo'ed exit code is not interleaved
-      # with the command's stderr (as seen in https://crbug.com/1314912).
-      args = ['shell', '( %s ) 2>&1;echo %%$?' % command.rstrip()]
-    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
-    if expect_status is not None:
-      output_end = output.rfind('%')
-      if output_end < 0:
-        # causes the status string to become empty and raise a ValueError
-        output_end = len(output)
-
-      try:
-        status = int(output[output_end + 1:])
-      except ValueError:
-        logger.warning('exit status of shell command %r missing.', command)
-        raise device_errors.AdbShellCommandFailedError(
-            command, output, status=None, device_serial=self._device_serial)
-      output = output[:output_end]
-      if status != expect_status:
-        raise device_errors.AdbShellCommandFailedError(
-            command, output, status=status, device_serial=self._device_serial)
+    # TODO(crbug/1021686): Add request for persistent shell.
+    output, status = self._Shell(command, timeout, retries)
+    if expect_status is not None and status != expect_status:
+      raise device_errors.AdbShellCommandFailedError(
+          command, output, status=status, device_serial=self._device_serial)
     return output
 
   def IterShell(self, command, timeout):
