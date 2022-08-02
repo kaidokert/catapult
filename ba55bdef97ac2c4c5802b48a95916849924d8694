@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e55e36a1_ca72d900",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "643fcf29_430652b7",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9ed4a32c_8efe1593",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -59,6 +83,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06eba4da_b700d74e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Ok, I have this as part of a split out CL. https://chromium-review.googlesource.com/c/catapult/+/3705142/3/devil/devil/android/sdk/adb_wrapper.py\n\nI think I can do one more where we do the persistent_shell check.",
+      "parentUuid": "7efb0405_028d4249",
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d5a7fa_cd09eb72",
@@ -72,6 +114,30 @@
       "writtenOn": "2022-05-24T18:17:01Z",
       "side": 1,
       "message": "Do we need this for rebooting the device too?",
+      "range": {
+        "startLine": 3902,
+        "startChar": 4,
+        "endLine": 3903,
+        "endChar": 33
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78bf2203_e1bd7b01",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3903,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Have it here: https://chromium-review.googlesource.com/c/catapult/+/3652893/1/devil/devil/android/sdk/adb_wrapper.py#1322\n\nAlso used when rooting the device.",
+      "parentUuid": "98d5a7fa_cd09eb72",
       "range": {
         "startLine": 3902,
         "startChar": 4,
@@ -105,6 +171,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cabd47a_d2fb30c1",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "I don\u0027t think so. It\u0027s pretty unique. It needs to be short to reduce runtime form bytes sense.",
+      "parentUuid": "f28b49d0_c91b01bc",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 73
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38e33390_49f43a99",
@@ -118,6 +208,30 @@
       "writtenOn": "2022-05-24T18:17:01Z",
       "side": 1,
       "message": "spelling?",
+      "range": {
+        "startLine": 423,
+        "startChar": 6,
+        "endLine": 423,
+        "endChar": 14
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e200cb4_13164009",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38e33390_49f43a99",
       "range": {
         "startLine": 423,
         "startChar": 6,
@@ -175,6 +289,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29ea7ab2_1ce36bd9",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027ll happen a lot. I think we can add a lock, but that\u0027d slow things down. Maybe add a state variable that\u0027s set when we\u0027re deleting stuff?",
+      "parentUuid": "04aae431_16be8c39",
+      "range": {
+        "startLine": 431,
+        "startChar": 4,
+        "endLine": 431,
+        "endChar": 68
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c2dfbc7_6cb23af6",
@@ -198,6 +336,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e13439a_80ba7161",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "This is for running a regular \"adb shell\" command without a persistent shell. It is basically what existed before I split it between adb shell and a persistent shell, ie this comes from the old code: https://chromium-review.googlesource.com/c/catapult/+/3652893/6/devil/devil/android/sdk/adb_wrapper.py#b719",
+      "parentUuid": "1c2dfbc7_6cb23af6",
+      "range": {
+        "startLine": 588,
+        "startChar": 22,
+        "endLine": 588,
+        "endChar": 28
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5160036_791d8e21",
@@ -211,6 +373,30 @@
       "writtenOn": "2022-05-24T18:17:01Z",
       "side": 1,
       "message": "nit: use underscore naming convention",
+      "range": {
+        "startLine": 1388,
+        "startChar": 6,
+        "endLine": 1388,
+        "endChar": 16
+      },
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e4e042c_aba3aff8",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1388,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5160036_791d8e21",
       "range": {
         "startLine": 1388,
         "startChar": 6,

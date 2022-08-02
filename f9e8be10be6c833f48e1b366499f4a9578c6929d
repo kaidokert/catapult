@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a795521d_75bef194",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3843,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57e95b01_a9a20ec9",
+      "range": {
+        "startLine": 3843,
+        "startChar": 39,
+        "endLine": 3843,
+        "endChar": 72
+      },
+      "revId": "f9e8be10be6c833f48e1b366499f4a9578c6929d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c223996_93dda232",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-25T00:51:25Z",
       "side": 1,
       "message": "Are these ever used outside the context of PersistentShell? Should make them class constants if not",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "f9e8be10be6c833f48e1b366499f4a9578c6929d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f649a16b_fa708b17",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c223996_93dda232",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c53fd4ef_90dacc68",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6050a164_65ea8cc4",
+      "revId": "f9e8be10be6c833f48e1b366499f4a9578c6929d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "274ee2a8_f9c933a3",
@@ -83,6 +149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96c2f1a5_f3b57c28",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "I\u0027ll see to write some unit tests in the next patch.",
+      "parentUuid": "274ee2a8_f9c933a3",
+      "revId": "f9e8be10be6c833f48e1b366499f4a9578c6929d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "838107c5_f2129b35",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 2
@@ -94,6 +178,30 @@
       "writtenOn": "2022-05-25T00:51:25Z",
       "side": 1,
       "message": "yielding or returning?",
+      "range": {
+        "startLine": 339,
+        "startChar": 33,
+        "endLine": 339,
+        "endChar": 39
+      },
+      "revId": "f9e8be10be6c833f48e1b366499f4a9578c6929d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a78de8a8_e7551345",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T03:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "838107c5_f2129b35",
       "range": {
         "startLine": 339,
         "startChar": 33,
