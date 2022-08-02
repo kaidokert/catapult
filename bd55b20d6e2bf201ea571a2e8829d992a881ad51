@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64652e82_0ac973c9",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-02T23:52:55Z",
+      "side": 1,
+      "message": "Do we need to catch ValueError here or is that no longer relevant?",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 480,
+        "endChar": 41
+      },
+      "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
