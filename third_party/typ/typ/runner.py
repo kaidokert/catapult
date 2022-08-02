@@ -918,7 +918,7 @@ class Runner(object):
             elif self.should_isolate(test):
                 test_set.add_test_to_run_isolated(test)
             else:
-                test_set.add_test_to_run_in_parallel(test)
+                test_set.add_test_to_run_isolated(test)
 
     def matches_filter(self, test_case):
         _validate_test_starts_with_prefix(
