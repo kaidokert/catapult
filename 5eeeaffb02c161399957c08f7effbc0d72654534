@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "641ec7d6_2fbbf432",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-02T04:34:30Z",
+      "side": 1,
+      "message": "Breaking https://chromium-review.googlesource.com/c/catapult/+/3652893 into multiple CLs.",
+      "revId": "5eeeaffb02c161399957c08f7effbc0d72654534",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
