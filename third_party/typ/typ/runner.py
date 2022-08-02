@@ -472,6 +472,8 @@ class Runner(object):
                     self._add_tests_to_set(test_set, args.suffixes,
                                            self.top_level_dirs, classifier,
                                            name)
+                    print('++++ parallel: ', len(test_set.parallel_tests))
+                    print('++++ isolated: ', len(test_set.isolated_tests))
                 except (AttributeError, ImportError, SyntaxError) as e:
                     ex_str = traceback.format_exc()
                     self.print_('Failed to load "%s" in find_tests: %s' %
@@ -902,7 +904,8 @@ class Runner(object):
             elif self.should_isolate(test):
                 test_set.add_test_to_run_isolated(test)
             else:
-                test_set.add_test_to_run_in_parallel(test)
+                # test_set.add_test_to_run_in_parallel(test)
+                test_set.add_test_to_run_isolated(test)
 
     def matches_filter(self, test_case):
         _validate_test_starts_with_prefix(
