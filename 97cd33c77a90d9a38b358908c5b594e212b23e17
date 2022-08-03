@@ -16,6 +16,69 @@
       "message": "I needed to do some setups in order to run the dev server on my Linux machine. This CL captures what I did, and hopefully makes it easier for others.\n\nWenbin: PTAL.\nFuning: Please try the steps under \"Running a local instance\" and see if it works for you.",
       "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7115dde_dfd9ed7e",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-03T20:57:28Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 28,
+        "startChar": 56,
+        "endLine": 28,
+        "endChar": 63
+      },
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f9a16a1_be011323",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-03T20:57:28Z",
+      "side": 1,
+      "message": "nit: extra \u0027\\\u0027",
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f71e70_c715cac5",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-03T20:57:28Z",
+      "side": 1,
+      "message": "Are these one time setups or we need to run these every time before running dev_server?",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
