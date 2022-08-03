@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc17406a_80e4f0ac",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-03T22:44:52Z",
+      "side": 1,
+      "message": "Fixed. Thanks for catching it!",
+      "parentUuid": "b7115dde_dfd9ed7e",
+      "range": {
+        "startLine": 28,
+        "startChar": 56,
+        "endLine": 28,
+        "endChar": 63
+      },
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f9a16a1_be011323",
@@ -60,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1e4295b_8492464e",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-03T22:44:52Z",
+      "side": 1,
+      "message": "That was actually intentional. _ has special meaning in md files, and should be quoted. (See https://chromium.googlesource.com/catapult/+/refs/changes/00/3807900/2/dashboard/docs/getting-set-up.md for the formatted version, and note that the \\ is removed by md parser.)",
+      "parentUuid": "1f9a16a1_be011323",
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88f71e70_c715cac5",
         "filename": "dashboard/docs/getting-set-up.md",
         "patchSetId": 1
@@ -71,6 +113,30 @@
       "writtenOn": "2022-08-03T20:57:28Z",
       "side": 1,
       "message": "Are these one time setups or we need to run these every time before running dev_server?",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c2cf123_38466a5f",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-03T22:44:52Z",
+      "side": 1,
+      "message": "Added clarifications",
+      "parentUuid": "88f71e70_c715cac5",
       "range": {
         "startLine": 31,
         "startChar": 10,
