@@ -2,8 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 """Provides the web interface for displaying an overview of alerts."""
-from __future__ import print_function
-from __future__ import division
+
 from __future__ import absolute_import
 
 import json
@@ -11,18 +10,18 @@ import json
 from google.appengine.datastore.datastore_query import Cursor
 from google.appengine.ext import ndb
 
-from dashboard import email_template
-from dashboard.common import descriptor
-from dashboard.common import request_handler
-from dashboard.common import utils
-from dashboard.models import anomaly
-from dashboard.models import bug_label_patterns
+from . import email_template
+from common import descriptor
+from common import request_handler
+from common import utils
+from models import anomaly
+from models import bug_label_patterns
 
 # We need to import this last because importing it earlier causes issues with
 # module lookups when importing protobuf messages before loading the
 # appengine-specific shims to resolve package name lookup. This shows up as
 # interesting non-deterministic issues with test loading order.
-from dashboard import sheriff_config_client
+from . import sheriff_config_client
 
 _MAX_ANOMALIES_TO_COUNT = 5000
 _MAX_ANOMALIES_TO_SHOW = 500
