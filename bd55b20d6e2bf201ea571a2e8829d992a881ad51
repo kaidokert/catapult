@@ -22,6 +22,30 @@
       },
       "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cde276d_e3e2151d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-03T05:59:25Z",
+      "side": 1,
+      "message": "I fixed it so it\u0027s more clear. The original code seems convoluted. IE check if output_end is less than 0. If it is, set it to a value so that it throws a value_error, then catch that value error and throw an exception. Why not just throw the exception if output_end \u003c 0?",
+      "parentUuid": "64652e82_0ac973c9",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 480,
+        "endChar": 41
+      },
+      "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
