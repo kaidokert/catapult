@@ -16,6 +16,24 @@
       "message": "this worked for me locally when I run unit tests located in devil/bin/run_py3_tests and dashboard/bin/run_py_tests",
       "revId": "f53c1ba2cd914afeddb081b680ae2e7f4038dba1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51b70e43_3e325d22",
+        "filename": ".gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-03T21:51:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "493b8486_8c731f89",
+      "revId": "f53c1ba2cd914afeddb081b680ae2e7f4038dba1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
