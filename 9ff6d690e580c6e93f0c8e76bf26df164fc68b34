@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c726e6_1322e4e3",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-03T20:11:52Z",
+      "side": 1,
+      "message": "Either copy Shell()\u0027s arg docstring, or add a line here that says something like \"see AdbWrapper.Shell() ....\"",
+      "revId": "9ff6d690e580c6e93f0c8e76bf26df164fc68b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -46,6 +46,30 @@
       },
       "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c3d3aa_193f8c96",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-03T20:11:52Z",
+      "side": 1,
+      "message": "We\u0027re using \u0027%\u0027 a sentinel char to determine where the exit code gets printed. If something goes wrong with adb and the exit code doesn\u0027t get printed _and_ the error message has an unrelated \u0027%\u0027 char in it, this code will get a little confused. That\u0027s when the catching of the ValueError would come into play.\n\nThat said, it\u0027s such a specific and obscure failure mode, I can\u0027t imagine it happening at any real frequency, so lgtm without it. (Then again, this is android... so who knows.)",
+      "parentUuid": "5cde276d_e3e2151d",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 480,
+        "endChar": 41
+      },
+      "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
