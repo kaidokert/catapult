@@ -100,6 +100,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc97945d_6241d5ea",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-03T23:41:39Z",
+      "side": 1,
+      "message": "I see. Thanks for clarifying!",
+      "parentUuid": "f1e4295b_8492464e",
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88f71e70_c715cac5",
@@ -137,6 +155,30 @@
       "side": 1,
       "message": "Added clarifications",
       "parentUuid": "88f71e70_c715cac5",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f203f71d_b41c2b33",
+        "filename": "dashboard/docs/getting-set-up.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-03T23:41:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6c2cf123_38466a5f",
       "range": {
         "startLine": 31,
         "startChar": 10,
