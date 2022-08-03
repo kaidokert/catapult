@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ec4038_7e702e05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-03T18:18:14Z",
+      "side": 1,
+      "message": "I needed to do some setups in order to run the dev server on my Linux machine. This CL captures what I did, and hopefully makes it easier for others.\n\nWenbin: PTAL.\nFuning: Please try the steps under \"Running a local instance\" and see if it works for you.",
+      "revId": "97cd33c77a90d9a38b358908c5b594e212b23e17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
