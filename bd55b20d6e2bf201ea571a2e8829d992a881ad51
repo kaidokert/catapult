@@ -70,6 +70,30 @@
       },
       "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33562821_a80f4909",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-03T20:56:02Z",
+      "side": 1,
+      "message": "I added the ValueError. Each case is now independent so all the if statements are a bit clearer.",
+      "parentUuid": "45c3d3aa_193f8c96",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 480,
+        "endChar": 41
+      },
+      "revId": "bd55b20d6e2bf201ea571a2e8829d992a881ad51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
