@@ -121,6 +121,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8a70a0d_b1213303",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-04T21:36:46Z",
+      "side": 1,
+      "message": "I added some initial feedback from skimming. I\u0027ll need to take another look once that\u0027s addressed because there\u0027s a lot happening in this CL.\n\nI think you might be able to break this up a little further. For example, you might be able to break this into:\n\n1. Update AdbWrapper to implement the `persistent_shell` parameter and logic, but keep the default as `persistent_shell\u003dFalse` for now.\n2. Add `persistent_shell` parameters to plumb this through other devil classes/methods (if necessary).\n3. Flip the default to `persistent_shell\u003dTrue`.",
+      "parentUuid": "06d3a47b_79f0d0ab",
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98d5a7fa_cd09eb72",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
