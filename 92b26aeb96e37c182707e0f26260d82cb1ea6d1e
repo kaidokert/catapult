@@ -33,6 +33,24 @@
       "message": "The changes to the imports are not correct. With this CL, running dev server results in the following errors:\n\nERROR    2022-08-03 17:50:33,206 wsgi.py:269] \nTraceback (most recent call last):\n  File \"/usr/local/google/home/zhanliang/chromium/gae_sdk/google/appengine/runtime/wsgi.py\", line 240, in Handle\n    handler \u003d _config_handle.add_wsgi_middleware(self._LoadHandler())\n  File \"/usr/local/google/home/zhanliang/chromium/gae_sdk/google/appengine/runtime/wsgi.py\", line 311, in _LoadHandler\n    handler, path, err \u003d LoadObject(self._handler)\n  File \"/usr/local/google/home/zhanliang/chromium/gae_sdk/google/appengine/runtime/wsgi.py\", line 96, in LoadObject\n    __import__(cumulative_path)\n  File \"/tmp/deploy-AR2pv2/dashboard/dispatcher.py\", line 16, in \u003cmodule\u003e\n    from dashboard import alerts\n  File \"/tmp/deploy-AR2pv2/dashboard/alerts.py\", line 14, in \u003cmodule\u003e\n    from common import descriptor\nImportError: No module named common\n\nAll the CQ tests passed, so apparently we lack test coverage for this.",
       "revId": "92b26aeb96e37c182707e0f26260d82cb1ea6d1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e696479f_a7a2c041",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-08-04T22:44:58Z",
+      "side": 1,
+      "message": "I checked locally, you could help confirm in your local. Thanks!",
+      "parentUuid": "7bebaa57_b1489c43",
+      "revId": "92b26aeb96e37c182707e0f26260d82cb1ea6d1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
