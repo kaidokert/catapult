@@ -56,6 +56,30 @@
       },
       "revId": "718e16fb6739ae32cad46802213c1d0eceb4f763",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa123ea_cc0e745d",
+        "filename": "dashboard/bin/deploy-py3",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-04T21:59:10Z",
+      "side": 1,
+      "message": "Updated. Thanks!",
+      "parentUuid": "154692cd_f85de943",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "718e16fb6739ae32cad46802213c1d0eceb4f763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
