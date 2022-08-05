@@ -16,6 +16,24 @@
       "message": "The new version works correctly, and relative imports seems to be clearer in this situation. However, I have two concerns:\n\n1. It creates an inconsistency with other Python files in this directory. If we want to change the import style, we really should change all files.\n\n2. Google Python Style Guide says \"Do not use relative names in imports. Even if the module is in the same package, use the full package name.\" https://google.github.io/styleguide/pyguide.html#224-decision\n\nWenbin: What do you think?",
       "revId": "36aec7c5e205aa98dc1c1e4c24a79305591a8762",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2344de3f_8048c99f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-05T17:34:45Z",
+      "side": 1,
+      "message": "I agree. \nWhen running modernize, applying the fixers one by one would help to keep the whole project in the same style between CLs. \nAnother thing is, if the current code is already compatible in python 3, it would be easier to just keep it as it is.",
+      "parentUuid": "72fe9a46_d5011223",
+      "revId": "36aec7c5e205aa98dc1c1e4c24a79305591a8762",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
