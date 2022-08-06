@@ -50,10 +50,11 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
     with self.assertRaises(device_errors.AdbCommandFailedError):
       self._adb.Shell('echo test', expect_status=1)
 
+  # We need to access the device serial number here in order
+  # to create the persistent shell and check the process.
+  # pylint: disable=protected-access
   def testPersistentShell(self):
-    # We need to access the device serial number here in order
-    # to create the persistent shell.
-    serial = self._adb.GetDeviceSerial()  # pylint: disable=protected-access
+    serial = self._adb.GetDeviceSerial()
     with self._adb.PersistentShell(serial) as pshell:
       (res1, code1) = pshell.RunCommand('echo TEST')
       (res2, code2) = pshell.RunCommand('echo TEST2')
@@ -63,6 +64,60 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       self.assertEqual(code1, 0)
       self.assertEqual(code2, 0)
 
+  def testPersistentShellKillAdbs(self):
+    self._adb = adb_wrapper.AdbWrapper(self.serial, persistent_shell=True)
+    self._adb.WaitForDevice()
+    self.assertEqual(2, len(self._adb._all_persistent_shells))
+    self.assertEqual(2, self._adb._persistent_shells.qsize())
+    self._adb.KillPersistentAdbs()
+    self.assertEqual(0, len(self._adb._all_persistent_shells))
+    self.assertEqual(0, self._adb._persistent_shells.qsize())
+
+  def testPersistentShellRunCommandClose(self):
+    self._adb = adb_wrapper.AdbWrapper(self.serial, persistent_shell=True)
+    self._adb.WaitForDevice()
+    self.assertEqual(2, len(self._adb._all_persistent_shells))
+    self.assertEqual(2, self._adb._persistent_shells.qsize())
+    output, status = self._adb._get_a_shell().RunCommand('echo FOOBAR',
+                                                         close=False)
+    self.assertEqual(output[0], 'FOOBAR')
+    self.assertEqual(status, 0)
+    found_none = False
+    for shell in self._adb._all_persistent_shells:
+      if shell._process is None:
+        found_none = True
+        break
+    self.assertFalse(found_none)
+
+    # Run a command with a close=True, and then check that a persistent shell
+    # has a process set to None.
+    output, status = self._adb._get_a_shell().RunCommand('echo FOOBAR',
+                                                         close=True)
+    self.assertEqual(output[0], 'FOOBAR')
+    self.assertEqual(status, 0)
+    found_none = False
+    for shell in self._adb._all_persistent_shells:
+      if shell._process is None:
+        found_none = True
+        break
+    self.assertTrue(found_none)
+
+  def testPersistentShellRunCommandKeepEnds(self):
+    self._adb = adb_wrapper.AdbWrapper(self.serial, persistent_shell=True)
+    self._adb.WaitForDevice()
+    output, status = self._adb._get_a_shell().RunCommand('echo FOOBAR')
+    self.assertEqual(output[0], 'FOOBAR')
+    self.assertEqual(status, 0)
+    output, status = self._adb._get_a_shell().RunCommand('echo FOOBAR\n',
+                                                         keepends=False)
+    self.assertEqual(output[0], 'FOOBAR')
+    self.assertEqual(status, 0)
+    output, status = self._adb._get_a_shell().RunCommand('echo FOOBAR\n',
+                                                         keepends=True)
+    self.assertEqual(output[0], 'FOOBAR\n')
+    self.assertEqual(status, 0)
+
+  # pylint: enable=protected-access
   def testPushLsPull(self):
     path = self._MakeTempFile('foo')
     device_path = '/data/local/tmp/testfile.txt'
