@@ -18,6 +18,7 @@ def PrepareDevices(*_args):
   raw_devices = device_utils.DeviceUtils.HealthyDevices()
   live_devices = []
   for d in raw_devices:
+    print("RAW DEVICES: %s" % d)
     try:
       d.WaitUntilFullyBooted(timeout=5, retries=0)
       live_devices.append(str(d))

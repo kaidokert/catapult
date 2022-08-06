@@ -42,7 +42,7 @@ def main():
   return runner.main(
       coverage_source=[_DEVIL_PATH],
       jobs=1,
-      suffixes=['*_devicetest.py'],
+      suffixes=['*wrapper_devicetest.py'],
       top_level_dir=_DEVIL_PATH)
 
 
