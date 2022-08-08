@@ -63,6 +63,36 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       self.assertEqual(code1, 0)
       self.assertEqual(code2, 0)
 
+  # We need to access the device serial number here in order
+  # to create the persistent shell. Need to access process to verify
+  # functionality.
+  # pylint: disable=protected-access
+  def testPersistentShellEnsureStarted(self):
+    serial = self._adb.GetDeviceSerial()
+    with self._adb.PersistentShell(serial) as pshell:
+      self.assertIsNotNone(pshell._process)
+      pshell.Stop()
+      self.assertIsNone(pshell._process)
+      pshell.EnsureStarted()
+      self.assertIsNotNone(pshell._process)
+      # Force restart should start a new process which should have a new pid.
+      pid = pshell._process.pid
+      pshell.EnsureStarted(force_restart=True)
+      self.assertNotEqual(pid, pshell._process.pid)
+
+  def testPersistentShellHardStop(self):
+    serial = self._adb.GetDeviceSerial()
+    # When persistent shell exits, it'll cause an error when trying to flush
+    # because the hardstop has killed the process.
+    with self.assertRaises(BrokenPipeError):
+      with self._adb.PersistentShell(serial) as pshell:
+        self.assertIsNone(pshell._process.poll())
+        pshell.HardStop()
+        # Need time for process to actually die.
+        time.sleep(.25)
+        self.assertIsNotNone(pshell._process.poll())
+
+  # pylint: enable=protected-access
   def testPushLsPull(self):
     path = self._MakeTempFile('foo')
     device_path = '/data/local/tmp/testfile.txt'
