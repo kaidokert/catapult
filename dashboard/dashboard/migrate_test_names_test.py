@@ -18,6 +18,7 @@ from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import histogram
 from tracing.value.diagnostics import generic_set
+from six.moves import range
 
 # Masters, bots and test names to add to the mock datastore.
 _MOCK_DATA = [['ChromiumPerf'], ['win7', 'mac'], {

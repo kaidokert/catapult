@@ -18,6 +18,7 @@ from dashboard.common import datastore_hooks
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import graph_data
+from six.moves import range
 
 
 class GraphCsvTest(testing_common.TestCase):

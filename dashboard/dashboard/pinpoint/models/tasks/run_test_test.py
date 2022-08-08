@@ -18,6 +18,7 @@ from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import find_isolate
 from dashboard.pinpoint.models.tasks import run_test
 from dashboard.pinpoint.models.tasks import bisection_test_util
+from six.moves import range
 
 DIMENSIONS = [
     {

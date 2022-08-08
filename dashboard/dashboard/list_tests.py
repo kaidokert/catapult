@@ -19,6 +19,8 @@ from dashboard.common import layered_cache
 from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import graph_data
+from six.moves import map
+from six.moves import range
 
 
 class BadRequestError(Exception):

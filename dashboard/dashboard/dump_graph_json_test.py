@@ -20,6 +20,9 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models.subscription import Subscription
+from six.moves import map
+from six.moves import range
+from six.moves import zip
 
 
 class DumpGraphJsonTest(testing_common.TestCase):

@@ -27,6 +27,7 @@ from oauth2client import client
 from dashboard.common import stored_object
 import six
 import six.moves.urllib.parse
+from six.moves import zip
 
 SHERIFF_DOMAINS_KEY = 'sheriff_domains_key'
 IP_ALLOWLIST_KEY = 'ip_whitelist'

@@ -18,6 +18,7 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import table_config
+from six.moves import range
 
 _SAMPLE_BOTS = ['ChromiumPerf/win', 'ChromiumPerf/linux']
 _DOWNSTREAM_BOTS = ['ClankInternal/win', 'ClankInternal/linux']

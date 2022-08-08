@@ -27,6 +27,7 @@ from dashboard.common import namespaced_stored_object
 from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import graph_data
+from six.moves import map
 
 _CACHE_KEY = 'num_revisions_%s'
 

@@ -28,6 +28,7 @@ from dashboard.services import swarming
 from dateutil.parser import isoparse
 from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
+from six.moves import zip
 
 # pylint: disable=too-many-lines
 
@@ -1276,7 +1277,7 @@ class _JobStateFake(object):
     def Pairwise(iterable):
       a, b = itertools.tee(iterable)
       next(b, None)
-      return zip(a, b)
+      return list(zip(a, b))
 
     return list(Pairwise(list(self._attempts.keys())))
 

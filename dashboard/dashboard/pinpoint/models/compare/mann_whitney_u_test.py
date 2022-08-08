@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import unittest
 
 from dashboard.pinpoint.models.compare import mann_whitney_u
+from six.moves import range
 
 
 class MannWhitneyUTest(unittest.TestCase):

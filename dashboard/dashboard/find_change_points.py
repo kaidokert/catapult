@@ -30,6 +30,7 @@ from dashboard import ttest
 from dashboard.common import math_utils
 from dashboard.common import clustering_change_detector
 from dashboard.common import defaults
+from six.moves import zip
 
 
 class ChangePoint(

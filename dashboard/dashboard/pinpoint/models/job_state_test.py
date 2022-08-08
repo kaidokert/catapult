@@ -16,6 +16,7 @@ from dashboard.pinpoint import test
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models.change import change_test
 from dashboard.pinpoint.models.quest import quest_test
+from six.moves import range
 
 
 class ExploreTest(test.TestCase):

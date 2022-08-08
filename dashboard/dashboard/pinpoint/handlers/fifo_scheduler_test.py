@@ -17,6 +17,7 @@ from dashboard.pinpoint import test
 from dashboard.pinpoint.models import job
 from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models.tasks import bisection_test_util
+from six.moves import range
 
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',

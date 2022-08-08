@@ -36,6 +36,7 @@ from tracing.value.diagnostics import breakdown
 from tracing.value.diagnostics import date_range
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
+from six.moves import range
 
 # pylint: disable=too-many-lines
 

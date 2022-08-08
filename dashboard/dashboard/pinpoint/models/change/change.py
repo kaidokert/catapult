@@ -9,11 +9,12 @@ from __future__ import absolute_import
 import collections
 import json
 import six
+from six.moves import zip_longest
 
 try:
   from itertools import zip_longest
 except ImportError:
-  from itertools import izip_longest as zip_longest
+  
 
 from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.change import patch as patch_module

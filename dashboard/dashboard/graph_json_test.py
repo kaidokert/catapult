@@ -21,6 +21,8 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
+from six.moves import range
+from six.moves import zip
 
 
 class GraphJsonTest(testing_common.TestCase):

@@ -22,6 +22,8 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models.subscription import Subscription
 from dashboard.services import issue_tracker_service
+from six.moves import map
+from six.moves import range
 
 
 class AssociateAlertsTest(testing_common.TestCase):

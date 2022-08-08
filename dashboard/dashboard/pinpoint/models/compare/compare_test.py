@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import unittest
 
 from dashboard.pinpoint.models.compare import compare
+from six.moves import range
 
 
 class CompareTest(unittest.TestCase):

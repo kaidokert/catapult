@@ -29,6 +29,7 @@ from dashboard.models import anomaly
 from dashboard.models import anomaly_config
 from dashboard.models import graph_data
 from dashboard.sheriff_config_client import SheriffConfigClient
+from six.moves import range
 
 # This is a very long file.
 # pylint: disable=too-many-lines

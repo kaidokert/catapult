@@ -10,6 +10,7 @@ import logging
 
 from apiclient import discovery
 from dashboard.common import utils
+from six.moves import range
 
 
 def GetRBECASService():

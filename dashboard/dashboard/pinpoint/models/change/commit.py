@@ -10,6 +10,7 @@ import collections
 import datetime
 import re
 import six
+from six.moves import range
 
 if six.PY2:
   from depot_tools import gclient_eval

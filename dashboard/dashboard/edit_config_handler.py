@@ -22,6 +22,8 @@ from dashboard import list_tests
 from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.common import xsrf
+from six.moves import map
+from six.moves import range
 
 # Max number of entities to put in one request to /put_entities_task.
 _MAX_TESTS_TO_PUT_AT_ONCE = 25

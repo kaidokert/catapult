@@ -20,6 +20,7 @@ from dashboard.pinpoint.models.quest import execution as execution_module
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
 import six
+from six.moves import range
 
 _TESTER_SERVICE_ACCOUNT = (
     'chrome-tester@chops-service-accounts.iam.gserviceaccount.com')
@@ -155,7 +156,7 @@ class RunTest(quest.Quest):
     # We need to wait for all of the builds to be complete.
     if len(self._started_executions) != 2:
       return
-    a_list, b_list = self._started_executions.values()
+    a_list, b_list = list(self._started_executions.values())
     if len(a_list) != self._attempt_count or len(b_list) != self._attempt_count:
       return
 

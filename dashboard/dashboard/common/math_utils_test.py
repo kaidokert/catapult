@@ -10,6 +10,7 @@ import math
 import unittest
 
 from dashboard.common import math_utils
+from six.moves import range
 
 
 class MathUtilsTest(unittest.TestCase):

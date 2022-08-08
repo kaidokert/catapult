@@ -14,6 +14,7 @@ from dashboard.api import timeseries
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import anomaly
+from six.moves import range
 
 
 class TimeseriesTest(testing_common.TestCase):

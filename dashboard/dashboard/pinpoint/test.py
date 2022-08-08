@@ -13,6 +13,7 @@ from dashboard.common import testing_common
 
 from dashboard.pinpoint import dispatcher
 from dashboard.pinpoint.models.change import repository
+from six.moves import range
 
 CATAPULT_URL = 'https://chromium.googlesource.com/catapult'
 CHROMIUM_URL = 'https://chromium.googlesource.com/chromium/src'

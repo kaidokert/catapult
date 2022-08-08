@@ -21,6 +21,7 @@ from tracing.value import histogram as histogram_module
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 import six
+from six.moves import range
 
 _BASE_ARGUMENTS_HISTOGRAMS = {'benchmark': 'speedometer'}
 _BASE_ARGUMENTS_GRAPH_JSON = {

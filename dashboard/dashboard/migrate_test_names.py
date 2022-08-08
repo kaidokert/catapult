@@ -34,6 +34,7 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import histogram
+from six.moves import map
 
 _MAX_DATASTORE_PUTS_PER_PUT_MULTI_CALL = 50
 

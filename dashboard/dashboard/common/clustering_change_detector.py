@@ -23,6 +23,7 @@ from dashboard.common import math_utils
 # TODO(dberris): Remove this dependency if/when we are able to depend on SciPy
 # instead.
 from dashboard.pinpoint.models.compare import compare as pinpoint_compare
+from six.moves import range
 
 # This number controls the maximum number of iterations we perform when doing
 # permutation testing to identify potential change-points hidden in the

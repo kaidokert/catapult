@@ -24,6 +24,7 @@ from dashboard.pinpoint.models.quest import run_vr_telemetry_test
 from dashboard.pinpoint.models.quest import run_gtest
 from dashboard.pinpoint.models.quest import run_webrtc_test
 from dashboard.services import gitiles_service
+from six.moves import zip
 
 _DEFAULT_SPECULATION_LEVELS = 2
 
@@ -542,7 +543,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         p, c, n = itertools.tee(iterable, 3)
         p = itertools.chain([None], p)
         n = itertools.chain(itertools.islice(n, 1, None), [None])
-        return zip(p, c, n)
+        return list(zip(p, c, n))
 
       # This is a comparison between values at a change and the values at
       # the previous change and the next change.
@@ -595,7 +596,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         """s -> (s0, s1), (s1, s2), (s2, s3), ..."""
         a, b = itertools.tee(iterable)
         next(b, None)
-        return zip(a, b)
+        return list(zip(a, b))
 
       task.payload.update({
           'culprits': [(a.AsDict(), b.AsDict())

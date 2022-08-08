@@ -27,6 +27,7 @@ from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
+from six.moves import map
 
 # Default number of points to fetch per test.
 # This can be overridden by specifying num_points or start_rev and end_rev.

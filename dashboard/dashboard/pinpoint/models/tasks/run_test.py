@@ -17,6 +17,7 @@ from dashboard.pinpoint.models.quest import run_test as run_test_quest
 from dashboard.pinpoint.models.tasks import find_isolate
 from dashboard.services import swarming
 from dashboard.services import request
+from six.moves import range
 
 
 class MarkTaskFailedAction(

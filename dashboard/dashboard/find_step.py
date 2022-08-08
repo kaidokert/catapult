@@ -14,6 +14,8 @@ from __future__ import absolute_import
 import math
 
 from dashboard.common import math_utils
+from six.moves import range
+from six.moves import zip
 
 
 def FindStep(data_series, score_threshold=4.0):

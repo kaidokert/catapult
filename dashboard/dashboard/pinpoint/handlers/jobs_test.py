@@ -14,6 +14,7 @@ from dashboard.pinpoint import test
 from dashboard.pinpoint.handlers import jobs
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import results2 as results2_module
+from six.moves import range
 
 _SERVICE_ACCOUNT_EMAIL = 'some-service-account@example.com'
 

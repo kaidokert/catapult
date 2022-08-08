@@ -21,6 +21,7 @@ from dashboard.models import anomaly
 from dashboard.models import anomaly_config
 from dashboard.models import graph_data
 from dashboard.services import pinpoint_service
+from six.moves import zip
 
 
 _DEFAULT_START_COMMIT = 'abcd1234'

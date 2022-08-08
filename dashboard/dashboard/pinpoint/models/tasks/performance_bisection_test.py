@@ -15,6 +15,7 @@ from dashboard.pinpoint.models import event as event_module
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import bisection_test_util
+from six.moves import range
 
 
 class EvaluatorTest(bisection_test_util.BisectionTestBase):

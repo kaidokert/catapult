@@ -11,6 +11,7 @@ import sys
 import unittest
 
 from dashboard.pinpoint.models import exploration
+from six.moves import range
 
 
 def FindMidpoint(a, b):

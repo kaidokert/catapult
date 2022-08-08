@@ -25,6 +25,7 @@ from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
+from six.moves import range
 
 @mock.patch('dashboard.services.isolate.Retrieve')
 class EvaluatorTest(test.TestCase):

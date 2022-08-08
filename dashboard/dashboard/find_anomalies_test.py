@@ -26,6 +26,7 @@ from dashboard.models.subscription import VISIBILITY
 from dashboard.models.subscription import AnomalyConfig
 from dashboard.sheriff_config_client import SheriffConfigClient
 from tracing.value.diagnostics import reserved_infos
+from six.moves import range
 
 # pylint: disable=too-many-lines
 

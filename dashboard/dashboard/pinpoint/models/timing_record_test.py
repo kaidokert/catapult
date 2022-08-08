@@ -14,6 +14,7 @@ from dashboard.pinpoint.models import job
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import timing_record
 from dashboard.pinpoint import test
+from six.moves import range
 
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',

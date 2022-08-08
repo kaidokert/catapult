@@ -23,6 +23,7 @@ from __future__ import absolute_import
 import six.moves.cPickle as cPickle
 
 from google.appengine.ext import ndb
+from six.moves import range
 
 # Max bytes per entity.
 _CHUNK_SIZE = 1000 * 1000

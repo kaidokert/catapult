@@ -13,6 +13,7 @@ import itertools
 import random
 
 from dashboard.common import clustering_change_detector as ccd
+from six.moves import range
 
 
 class ChangeDetectorTest(unittest.TestCase):

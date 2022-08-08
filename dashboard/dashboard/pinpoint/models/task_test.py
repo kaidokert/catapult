@@ -16,6 +16,7 @@ from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import exploration
 from dashboard.pinpoint import test
+from six.moves import range
 
 FakeEvent = collections.namedtuple('Event', ('type', 'status', 'payload'))
 

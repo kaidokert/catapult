@@ -19,6 +19,7 @@ from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import graph_data
+from six.moves import map
 
 
 class ListTestSuitesTest(testing_common.TestCase):

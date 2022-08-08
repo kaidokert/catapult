@@ -20,6 +20,7 @@ from dashboard.models import anomaly
 from dashboard.models import bug_data
 from dashboard.models.subscription import Subscription
 from dashboard.sheriff_config_client import SheriffConfigClient
+from six.moves import range
 
 
 @mock.patch.object(SheriffConfigClient, '__init__',

@@ -16,6 +16,7 @@ from google.appengine.ext import ndb
 from dashboard import get_diagnostics
 from dashboard.common import testing_common
 from dashboard.models import histogram
+from six.moves import range
 
 _TEST_DIAGNOSTIC_DATA = [{
     'start_revision': 1,

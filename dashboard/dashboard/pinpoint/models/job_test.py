@@ -26,6 +26,7 @@ from dashboard.pinpoint.models import job
 from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint import test
 from six.moves import zip # pylint: disable=redefined-builtin
+from six.moves import range
 
 # This is a very long file.
 # pylint: disable=too-many-lines

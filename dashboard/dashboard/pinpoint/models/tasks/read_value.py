@@ -19,6 +19,7 @@ from dashboard.pinpoint.models.quest import read_value as read_value_quest
 from dashboard.pinpoint.models.tasks import find_isolate
 from dashboard.pinpoint.models.tasks import run_test
 from tracing.value import histogram_set
+from six.moves import range
 
 HistogramOptions = collections.namedtuple(
     'HistogramOptions',

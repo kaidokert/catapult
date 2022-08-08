@@ -11,6 +11,7 @@ import unittest
 
 from dashboard import find_step
 from dashboard.common import math_utils
+from six.moves import zip
 
 # Sample data where there is a small-ish step upwards around revision 304772.
 _QUITE_STEPPISH = [

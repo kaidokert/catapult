@@ -19,6 +19,7 @@ from dashboard.models import graph_data
 from dashboard.models import histogram
 from dashboard.models.subscription import Subscription
 from tracing.value.diagnostics import reserved_infos
+from six.moves import range
 
 _TEST_HISTOGRAM_DATA = {
     'binBoundaries': [1, [1, 1000, 20]],

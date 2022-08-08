@@ -20,6 +20,7 @@ from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
+from six.moves import map
 
 _DEFAULT_MAX_POINTS = 500
 # This is about the limit we want to return since we fetch many associated

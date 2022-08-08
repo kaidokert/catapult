@@ -13,6 +13,7 @@ from __future__ import absolute_import
 
 import bisect
 import math
+from six.moves import zip
 
 
 def KolmogorovSmirnov(x, y):

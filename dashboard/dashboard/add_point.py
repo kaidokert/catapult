@@ -23,6 +23,7 @@ from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
 from dashboard.common import math_utils
 from dashboard.models import graph_data
+from six.moves import range
 
 _TASK_QUEUE_NAME = 'new-points-queue'
 

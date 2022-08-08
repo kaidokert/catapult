@@ -17,6 +17,7 @@ from dashboard.pinpoint.handlers import migrate
 from dashboard.pinpoint.models import job
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint import test
+from six.moves import range
 
 
 class MigrateAuthTest(test.TestCase):

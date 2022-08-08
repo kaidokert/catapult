@@ -16,6 +16,8 @@ from __future__ import absolute_import
 
 import itertools
 import math
+from six.moves import range
+from six.moves import zip
 
 
 def MannWhitneyU(x, y):

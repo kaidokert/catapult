@@ -14,6 +14,7 @@ from dashboard.common import datastore_hooks
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import graph_data
+from six.moves import range
 
 
 # TODO(https://crbug.com/1262292): Update after Python2 trybots retire.

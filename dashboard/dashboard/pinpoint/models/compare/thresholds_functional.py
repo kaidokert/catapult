@@ -11,6 +11,7 @@ import itertools
 import math
 
 from scipy import stats
+from six.moves import range
 
 # The approximate false negative rate.
 P_VALUE = 0.01

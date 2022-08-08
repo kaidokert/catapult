@@ -32,6 +32,7 @@ from dashboard.models import upload_completion_token
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
+from six.moves import range
 
 TASK_QUEUE_NAME = 'histograms-queue'
 
