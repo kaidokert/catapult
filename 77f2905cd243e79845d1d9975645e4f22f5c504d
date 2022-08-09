@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ab9b11_4391e5fb",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-09T23:37:47Z",
+      "side": 1,
+      "message": "should this be outside of the if else and run regardless of flask or webapp2?",
+      "revId": "77f2905cd243e79845d1d9975645e4f22f5c504d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
