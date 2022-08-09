@@ -47,6 +47,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3df7e7d_5e382a21",
+        "filename": "dashboard/dashboard/api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-09T23:42:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae4c96ae_6580a74d",
+      "range": {
+        "startLine": 25,
+        "startChar": 24,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "63c487ffcc2007b36bfc8cd01a545035fc164ab0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "400e40b0_03c4324d",
+        "filename": "dashboard/dashboard/api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-09T23:42:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79a4b2e7_d8f4284f",
+      "range": {
+        "startLine": 25,
+        "startChar": 29,
+        "endLine": 25,
+        "endChar": 45
+      },
+      "revId": "63c487ffcc2007b36bfc8cd01a545035fc164ab0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "616fccf9_f7e297ca",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-07-20T19:25:18Z",
       "side": 1,
       "message": "gae_ts_mon should support Python 3 now. The usage should be similar. Can we try whether it works in staging?\n\nFYI, pinpoint didn\u0027t need the change when migrating the service, but I needed to change that when updating the tests because the gae_ts_mon from either docker image or cipd package is not python 3 compatible. We need to add the infra_libs package from vpython and \u0027from infra_libs import ts_mon as gae_ts_mon\u0027.",
+      "range": {
+        "startLine": 79,
+        "startChar": 9,
+        "endLine": 79,
+        "endChar": 19
+      },
+      "revId": "63c487ffcc2007b36bfc8cd01a545035fc164ab0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbc43a59_46495d3e",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-09T23:42:09Z",
+      "side": 1,
+      "message": "I can give this a shot tomorrow",
+      "parentUuid": "616fccf9_f7e297ca",
       "range": {
         "startLine": 79,
         "startChar": 9,
