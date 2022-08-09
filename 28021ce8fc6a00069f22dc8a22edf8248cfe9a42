@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "963d564f_bd26ff7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-09T22:50:51Z",
+      "side": 1,
+      "message": "This fix is unreliable. It works only if the user hasn\u0027t previously logged into Google Cloud. If the user has previously logged in using \"gcloud auth application-default login\" command, the test will attempt to use that identity, and will fail even with this CL.\n\nRegardless of user\u0027s login status, the failure occurs while fetching sheriff config. Since this test doesn\u0027t need a real sheriff config, the easiest fix is to use a fake sheriff config, which we have already created with `self._sheriff_config \u003d testing_common.FakeSheriffConfigClient()`.",
+      "revId": "28021ce8fc6a00069f22dc8a22edf8248cfe9a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21f689c9_38cf5406",
         "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
         "patchSetId": 1
