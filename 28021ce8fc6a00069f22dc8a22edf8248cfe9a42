@@ -16,6 +16,52 @@
       "message": "PTAL",
       "revId": "28021ce8fc6a00069f22dc8a22edf8248cfe9a42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21f689c9_38cf5406",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-09T06:11:15Z",
+      "side": 1,
+      "message": "nit: These two should have been called in the setUp of the super class (testing_common.TestCase).",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "28021ce8fc6a00069f22dc8a22edf8248cfe9a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d48a84c2_85766229",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-08-09T06:11:15Z",
+      "side": 1,
+      "message": "Wondering whether this should be put in testing_common. Did you see other tests failing for the same reason?",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "28021ce8fc6a00069f22dc8a22edf8248cfe9a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
