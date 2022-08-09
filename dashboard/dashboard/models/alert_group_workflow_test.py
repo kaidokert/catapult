@@ -13,6 +13,7 @@ import six
 import uuid
 
 from google.appengine.ext import ndb
+from google.appengine.ext import testbed
 
 from dashboard.common import namespaced_stored_object
 from dashboard.common import testing_common
@@ -31,6 +32,10 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
     # pylint: disable=super-with-arguments
     super(AlertGroupWorkflowTest, self).setUp()
+    self.testbed = testbed.Testbed()
+    self.testbed.activate()
+    self.testbed.init_app_identity_stub()
+
     self.maxDiff = None
     self._issue_tracker = testing_common.FakeIssueTrackerService()
     self._sheriff_config = testing_common.FakeSheriffConfigClient()
@@ -57,6 +62,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             }
         })
     self._service_account = lambda: _SERVICE_ACCOUNT_EMAIL
+
+  def tearDown(self):
+    self.testbed.deactivate()
 
   @staticmethod
   def _AddAnomaly(is_summary=False, **kwargs):
