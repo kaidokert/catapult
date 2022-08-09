@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336b2adf_4ea80dad",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-09T05:53:35Z",
+      "side": 1,
+      "message": "This looks likely to be flaky. Is there a way we can block until the process is fully stopped, and throw an error if we hit a timeout?",
+      "range": {
+        "startLine": 90,
+        "startChar": 6,
+        "endLine": 91,
+        "endChar": 21
+      },
+      "revId": "2feb544fd213547d3defef915c210dbc0ca4114b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
