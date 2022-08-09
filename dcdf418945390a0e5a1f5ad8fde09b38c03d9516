@@ -22,6 +22,30 @@
       },
       "revId": "dcdf418945390a0e5a1f5ad8fde09b38c03d9516",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d40c8b3a_503b93db",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c68cdc55_07baba3c",
+      "range": {
+        "startLine": 1292,
+        "startChar": 0,
+        "endLine": 1292,
+        "endChar": 52
+      },
+      "revId": "dcdf418945390a0e5a1f5ad8fde09b38c03d9516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

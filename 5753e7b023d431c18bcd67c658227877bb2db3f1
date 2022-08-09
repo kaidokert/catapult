@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e4ee1b3_77e63e61",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfd86ec5_e1216258",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "5753e7b023d431c18bcd67c658227877bb2db3f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b3aa974_b610ad44",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-04T21:36:46Z",
       "side": 1,
       "message": "I think this variable will shadow HealthyDevices\u0027s persistent_shell parameter. Was this intentional? Is HealthyDevices\u0027s persistent_shell parameter used anywhere?",
+      "range": {
+        "startLine": 3951,
+        "startChar": 0,
+        "endLine": 3951,
+        "endChar": 31
+      },
+      "revId": "5753e7b023d431c18bcd67c658227877bb2db3f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "019bccdd_fb2071e0",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 3951,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 1,
+      "message": "Sorry, this is just something I force to be on while testing the CL.",
+      "parentUuid": "7b3aa974_b610ad44",
       "range": {
         "startLine": 3951,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4429f8a5_31137bb4",
+        "filename": "devil/devil/android/sdk/adb_compatibility_devicetest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6164e51d_05ae04ee",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 106,
+        "endChar": 30
+      },
+      "revId": "5753e7b023d431c18bcd67c658227877bb2db3f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89570081_16b76231",
@@ -93,6 +165,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ce9913f_fcb94eeb",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89570081_16b76231",
+      "range": {
+        "startLine": 346,
+        "startChar": 6,
+        "endLine": 346,
+        "endChar": 46
+      },
+      "revId": "5753e7b023d431c18bcd67c658227877bb2db3f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2318803_190f60cf",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-08-04T21:36:46Z",
       "side": 1,
       "message": "Do we need to fix this before turning this on by default?",
+      "range": {
+        "startLine": 458,
+        "startChar": 4,
+        "endLine": 459,
+        "endChar": 56
+      },
+      "revId": "5753e7b023d431c18bcd67c658227877bb2db3f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f3596e3_e0758aec",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 1,
+      "message": "Added lock.",
+      "parentUuid": "f2318803_190f60cf",
       "range": {
         "startLine": 458,
         "startChar": 4,

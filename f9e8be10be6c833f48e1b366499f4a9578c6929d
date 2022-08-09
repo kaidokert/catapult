@@ -165,6 +165,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7590e58_ec18e02b",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-09T20:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96c2f1a5_f3b57c28",
+      "revId": "f9e8be10be6c833f48e1b366499f4a9578c6929d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "838107c5_f2129b35",
