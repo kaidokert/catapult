@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "819f525a_a56ab3ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-08-10T18:52:49Z",
+      "side": 1,
+      "message": "I think the vpython3 merge script change has been deployed and not caused any issues, but I\u0027ll confirm before relanding this.",
+      "revId": "4e4ebcf9775cb617b4b8be6cffda8bd434c67e6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
