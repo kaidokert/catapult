@@ -46,6 +46,30 @@
       },
       "revId": "3f9cc7f7d8abbbe96502af327566be6008d21a23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b757a798_2c249e46",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1128941
+      },
+      "writtenOn": "2022-08-10T17:30:00Z",
+      "side": 1,
+      "message": "Maybe add a TODO to change it once we\u0027re on python 3?",
+      "parentUuid": "62999c36_d09483a2",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "3f9cc7f7d8abbbe96502af327566be6008d21a23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
