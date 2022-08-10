@@ -94,6 +94,30 @@
       },
       "revId": "3f9cc7f7d8abbbe96502af327566be6008d21a23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1567de5_a9affeea",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-10T17:47:13Z",
+      "side": 1,
+      "message": "Ah, that makes sense. In that case this approach lgtm.\n\noptional suggestion: this code snippet would be simpler with `for count in range(10):`. You also need to change the condition to be `if count \u003d\u003d 9:` because `range(10)` will yield 0 through 9.",
+      "parentUuid": "b757a798_2c249e46",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "3f9cc7f7d8abbbe96502af327566be6008d21a23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
