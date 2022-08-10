@@ -22,6 +22,30 @@
       },
       "revId": "3f9cc7f7d8abbbe96502af327566be6008d21a23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62999c36_d09483a2",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-10T17:18:36Z",
+      "side": 1,
+      "message": "Unfortunately, the timeout field is not compatible in python2, so it wouldn\u0027t pass the py2 trybot, so you\u0027d have to end up writing your own timeout catcher so the test doesn\u0027t potentially hang forever on the wait.",
+      "parentUuid": "c891b3db_a711fbfe",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "3f9cc7f7d8abbbe96502af327566be6008d21a23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
