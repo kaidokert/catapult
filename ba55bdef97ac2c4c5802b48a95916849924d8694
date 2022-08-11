@@ -175,6 +175,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8438f29_b6baf7ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-11T23:50:19Z",
+      "side": 1,
+      "message": "Ya, I had that running here:\n\nhttps://chromium-review.googlesource.com/c/chromium/src/+/3823153\n\nLooks like it worked for devices, failed for emulators because persistent shell checks if the device is ready, but it was using persistent shell to try to setup the device. For testing I hardwired persistent shell to be turned on always, probably need to have the device_util here set to false.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:build/android/pylib/local/emulator/avd.py;drc\u003d1a3d260cc905d07a55cbc0c9387d169bae8b0483;l\u003d865",
+      "parentUuid": "acc36a91_334df5f9",
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98d5a7fa_cd09eb72",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1

@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "382f2d18_3c495378",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-11T23:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e96b3d7c_722865de",
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f4498f_3cb07502",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-11T00:31:03Z",
       "side": 1,
       "message": "Needs type annotation since it\u0027s not clear what this field is.",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 53
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0d505d8_035266dd",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-11T23:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f4498f_3cb07502",
       "range": {
         "startLine": 209,
         "startChar": 8,
@@ -64,6 +106,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fdc2325_16b5c67c",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-11T23:50:19Z",
+      "side": 1,
+      "message": "This was added as a separate CL. The Diff is just not doing a good job of showing what\u0027s new and what\u0027s just moved.\n\n https://chromium-review.googlesource.com/c/catapult/+/3705142/3/devil/devil/android/sdk/adb_wrapper.py\n \nI\u0027 just reordered some methods so that the diff is a little better.",
+      "parentUuid": "272e302b_f3c63036",
+      "range": {
+        "startLine": 459,
+        "startChar": 18,
+        "endLine": 459,
+        "endChar": 30
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe07b86b_73935806",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-08-11T00:31:03Z",
       "side": 1,
       "message": "This seems hairy. Can we do away with this queue support in this CL and just go with a single persistent shell? Then in a follow-up we can add back support for multiple parallel shells.\n\nThat would make this CL much smaller and easier to review. (Smaller CLs are _always_ preferred.) And would also make it much more likely to land safely since there\u0027s no risk for race conditions.",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 52
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93058ed9_bea04f88",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-11T23:50:19Z",
+      "side": 1,
+      "message": "Ack, I\u0027ll see about taking it out in the next Patch.",
+      "parentUuid": "fe07b86b_73935806",
       "range": {
         "startLine": 471,
         "startChar": 0,

@@ -16,6 +16,24 @@
       "message": "Why are these newlines getting removed? top-level definitions traditionally have double newlines separating them",
       "revId": "47666e0907499ed5c44f6cb15e51ac5096e6f2ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "375fb1a2_537feff9",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-11T23:50:19Z",
+      "side": 0,
+      "message": "I don\u0027t know, gpylint and git cl format hasn\u0027t touched or complained when I add them or remote them.",
+      "parentUuid": "07f26bd4_12d5e79a",
+      "revId": "47666e0907499ed5c44f6cb15e51ac5096e6f2ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
