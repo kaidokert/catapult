@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96b3d7c_722865de",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-11T00:31:03Z",
+      "side": 1,
+      "message": "docstring needs updating",
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f4498f_3cb07502",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-11T00:31:03Z",
+      "side": 1,
+      "message": "Needs type annotation since it\u0027s not clear what this field is.",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 53
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "272e302b_f3c63036",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-11T00:31:03Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem relevant to a persistent shell. Should be a separate CL to better accommodate emulators.\n\n\"--avd-config\" also refers to an arg to a script that\u0027s not in the same repo as devil, so should be generalized.",
+      "range": {
+        "startLine": 459,
+        "startChar": 18,
+        "endLine": 459,
+        "endChar": 30
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe07b86b_73935806",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-11T00:31:03Z",
+      "side": 1,
+      "message": "This seems hairy. Can we do away with this queue support in this CL and just go with a single persistent shell? Then in a follow-up we can add back support for multiple parallel shells.\n\nThat would make this CL much smaller and easier to review. (Smaller CLs are _always_ preferred.) And would also make it much more likely to land safely since there\u0027s no risk for race conditions.",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 52
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

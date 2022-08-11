@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07f26bd4_12d5e79a",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-11T00:31:03Z",
+      "side": 0,
+      "message": "Why are these newlines getting removed? top-level definitions traditionally have double newlines separating them",
+      "revId": "47666e0907499ed5c44f6cb15e51ac5096e6f2ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -157,6 +157,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acc36a91_334df5f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-11T00:31:03Z",
+      "side": 1,
+      "message": "\u003e I might also suggest trying this out on chromium\u0027s CQ in a dummy CL (like https://chromium-review.googlesource.com/c/chromium/src/+/2967505) prior to landing to suss out any issues.\n\nPing on my suggestion here. Please try that out on this CL",
+      "parentUuid": "655851c6_73d03fcc",
+      "revId": "ba55bdef97ac2c4c5802b48a95916849924d8694",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98d5a7fa_cd09eb72",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
