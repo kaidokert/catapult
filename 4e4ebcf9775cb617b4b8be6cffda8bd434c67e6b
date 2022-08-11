@@ -16,6 +16,23 @@
       "message": "I think the vpython3 merge script change has been deployed and not caused any issues, but I\u0027ll confirm before relanding this.",
       "revId": "4e4ebcf9775cb617b4b8be6cffda8bd434c67e6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b93de9a_ef471c8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-08-11T18:11:40Z",
+      "side": 1,
+      "message": "Should be ready to try relanding this again.",
+      "revId": "4e4ebcf9775cb617b4b8be6cffda8bd434c67e6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
