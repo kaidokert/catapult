@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8feaed32_10164be0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-12T02:42:43Z",
+      "side": 1,
+      "message": "Fixing a bug in logging from Catapult. See https://crbug.com/1352346 for details. PTAL.",
+      "revId": "21d4f76fe9d577998a287b100f3d3509325904bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
