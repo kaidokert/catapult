@@ -8,6 +8,8 @@ from __future__ import absolute_import
 
 from dashboard import chart_handler
 
+if True:
+  pass
 
 class MemoryReportHandler(chart_handler.ChartHandler):
   """URL endpoint for /memory_report page."""
