@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9d5997_1b38a6fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-12T18:34:11Z",
+      "side": 1,
+      "message": "this is for the navigation bar at the top\n\nnot tested - probably could not test on staging without merging in changes for the main handler [1]. Might be worth chaining?\n\n[1] https://chromium-review.googlesource.com/c/catapult/+/3820950",
+      "revId": "5db14d00820e852553665d8fa3a0d435de681720",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
