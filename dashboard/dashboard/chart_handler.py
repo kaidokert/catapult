@@ -23,6 +23,9 @@ if utils.IsRunningFlask():
     return request_handler.RequestHandlerRenderHtml(template_file,
                                                     template_values, status)
 
+  def ChartHandlerRenderStaticHtml(filename):
+    return request_handler.RequestHandlerRenderStaticHtml(filename)
+
   def ChartHandlerGetDynamicVariables(self, template_values, request_path=None):
     template_values.update(_ChartHandlerGetChartValues)
     return request_handler.RequestHandlerGetDynamicVariable(
