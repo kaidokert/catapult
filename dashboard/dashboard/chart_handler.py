@@ -33,6 +33,8 @@ if utils.IsRunningFlask():
 
 else:
 
+  pass
+
   class ChartHandler(request_handler.RequestHandler):
     """Base class for requests which display a chart."""
 
