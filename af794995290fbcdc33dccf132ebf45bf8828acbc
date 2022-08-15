@@ -175,6 +175,30 @@
       },
       "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82b0ca60_d33bbad0",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-08-15T22:35:32Z",
+      "side": 1,
+      "message": "So I removed the for loop speed up.  I don\u0027t believe we can remove the Queue support.\n\nBasically if I try to run command 1 and then command 2, Persistent Shell can\u0027t differentiate which output goes to command1 and which output goes to command2 if they\u0027re run in the same shell since persistent shell doesn\u0027t know when a command ends except by the Echoed DONE keyword.",
+      "parentUuid": "93058ed9_bea04f88",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 52
+      },
+      "revId": "af794995290fbcdc33dccf132ebf45bf8828acbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
