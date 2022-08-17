@@ -50,6 +50,42 @@
       "message": "The failure in Catapult Mac Tryserver doesn\u0027t look related, +rmhasan@ any ideas how to debug?",
       "revId": "4c1e7c7323b4f87735ba54bbf93dc9c4fada5bdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58e5ba02_1927587c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-08-17T23:15:54Z",
+      "side": 1,
+      "message": "The test seems to be flaky, crbug.com/1005062. It is disabled for other platforms. Can you try running the bot again. If it fails then you should consider disabling it. Johnchen@ or bsheedy@ can advise you.",
+      "parentUuid": "6eb5fbd0_1de6c3c8",
+      "revId": "4c1e7c7323b4f87735ba54bbf93dc9c4fada5bdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd97201_740d4693",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-08-17T23:15:54Z",
+      "side": 1,
+      "message": "It seems to be a flaky telemetry browser test. It fails all retries.",
+      "parentUuid": "6eb5fbd0_1de6c3c8",
+      "revId": "4c1e7c7323b4f87735ba54bbf93dc9c4fada5bdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
