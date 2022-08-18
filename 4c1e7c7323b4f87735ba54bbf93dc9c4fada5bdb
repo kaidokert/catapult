@@ -86,6 +86,24 @@
       "parentUuid": "6eb5fbd0_1de6c3c8",
       "revId": "4c1e7c7323b4f87735ba54bbf93dc9c4fada5bdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "308ae76c_a7f373fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2022-08-18T15:11:10Z",
+      "side": 1,
+      "message": "Thanks. I tried re-trying one more time before going for the disable.",
+      "parentUuid": "58e5ba02_1927587c",
+      "revId": "4c1e7c7323b4f87735ba54bbf93dc9c4fada5bdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
