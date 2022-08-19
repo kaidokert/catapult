@@ -39,6 +39,30 @@
       },
       "revId": "342cd8adf4cc3a6af9e7b3d7fd2b2171b007ffd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a827a7_f35af8fc",
+        "filename": "dashboard/dashboard/sheriff_config/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-08-19T17:31:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "94ecd1c4_5b31efd0",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "342cd8adf4cc3a6af9e7b3d7fd2b2171b007ffd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
