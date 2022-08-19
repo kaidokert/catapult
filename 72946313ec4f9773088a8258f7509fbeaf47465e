@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4d301fd_75130aae",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2022-08-19T16:11:30Z",
+      "side": 0,
+      "message": "Recent versions of adb print socket information to stdout after successful forwarding is established. This leads to confusing messages like \u0027Unexpected output from \"adb forward\": 12345\u0027. The output itself may be useful to the calling site: for example, if the caller asks to forward any free tcp port (\"adb forward tcp:0 tcp:12345\"), this output will contain free port number adb chose to use for this forwarding. This is why I decided to return this output from the method.\n\nOn the other side, a call to \"forward --remove\" should not generate any output, this is why I moved this check for \"unexpected output\" down to ForwardRemove method and also applied it in new ReverseForwardRemove.",
+      "revId": "72946313ec4f9773088a8258f7509fbeaf47465e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
