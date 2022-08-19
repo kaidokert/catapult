@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdf8cf64_aecf9da4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-19T04:56:42Z",
+      "side": 1,
+      "message": "LGTM with a suggestion.",
+      "revId": "342cd8adf4cc3a6af9e7b3d7fd2b2171b007ffd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ecd1c4_5b31efd0",
+        "filename": "dashboard/dashboard/sheriff_config/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-19T04:56:42Z",
+      "side": 1,
+      "message": "Just move \"ADD . /app\" here. It adds all files in current directory to /app, so there is no need to add individual files explicitly.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "342cd8adf4cc3a6af9e7b3d7fd2b2171b007ffd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
