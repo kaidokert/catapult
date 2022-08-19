@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b2cdd2_32695f30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2022-08-19T16:32:33Z",
+      "side": 1,
+      "message": "Sure, added this bug to CL description.",
+      "parentUuid": "772ae807_33ea4e4c",
+      "revId": "3c368b6495580e59e5d9d104a7deb2c14f150b60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c81aa046_0393d95b",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-08-19T16:21:42Z",
       "side": 1,
       "message": "I would expect this to just be Reverse, matching the adb command.",
+      "revId": "3c368b6495580e59e5d9d104a7deb2c14f150b60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc7017e_f36c5d98",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2022-08-19T16:32:33Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c81aa046_0393d95b",
       "revId": "3c368b6495580e59e5d9d104a7deb2c14f150b60",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -69,6 +105,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d473f7_98b4feda",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2022-08-19T16:32:33Z",
+      "side": 1,
+      "message": "In fact I did a copy-paste from Forward method, changing local/remote direction and removing socket types unsupported by reverse command, as described by adb help.",
+      "parentUuid": "7b5c0344_2c39cac3",
+      "revId": "3c368b6495580e59e5d9d104a7deb2c14f150b60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad3cb261_3e0d9005",
@@ -82,6 +136,24 @@
       "writtenOn": "2022-08-19T16:21:42Z",
       "side": 1,
       "message": "Similarly, I\u0027d expect this to be just ReverseRemove.",
+      "revId": "3c368b6495580e59e5d9d104a7deb2c14f150b60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47b2aa5_f55714a3",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2022-08-19T16:32:33Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "ad3cb261_3e0d9005",
       "revId": "3c368b6495580e59e5d9d104a7deb2c14f150b60",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
