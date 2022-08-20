@@ -16,6 +16,24 @@
       "message": "Mention that it returns the output as a string now",
       "revId": "cef1632e32290e766d8234896cb08a8fd4c7a7fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc4999cd_ffa5b33f",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2022-08-20T07:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43ac5065_4bd95a71",
+      "revId": "cef1632e32290e766d8234896cb08a8fd4c7a7fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
