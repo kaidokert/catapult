@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42870ff9_f7f8c919",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-22T23:36:10Z",
+      "side": 1,
+      "message": "More changes related to the new Pixel devices on Pinpoint. PTAL.",
+      "revId": "0b5cc7d023d5c70f3d610f95bfb789dbbe9091a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
