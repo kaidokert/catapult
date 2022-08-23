@@ -12,6 +12,7 @@ import itertools
 import logging
 import mock
 import unittest
+import six
 
 from google.appengine.api import taskqueue
 
@@ -497,7 +498,8 @@ class GenerateResults2Test(testing_common.TestCase):
 
     results2.GenerateResults2(job)
     self.maxDiff = None
-    self.assertItemsEqual(mock_bqinsert.call_args_list[0][0][3], expected_rows)
+    six.assertCountEqual(self, mock_bqinsert.call_args_list[0][0][3],
+                         expected_rows)
 
   @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
   @mock.patch.object(results2, '_InsertBQRows')
@@ -641,7 +643,8 @@ class GenerateResults2Test(testing_common.TestCase):
 
     results2.GenerateResults2(job)
     self.maxDiff = None
-    self.assertItemsEqual(mock_bqinsert.call_args_list[0][0][3], expected_rows)
+    six.assertCountEqual(self, mock_bqinsert.call_args_list[0][0][3],
+                         expected_rows)
 
   @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
   @mock.patch.object(results2, '_InsertBQRows')
@@ -737,7 +740,8 @@ class GenerateResults2Test(testing_common.TestCase):
 
     results2.GenerateResults2(job)
     self.maxDiff = None
-    self.assertItemsEqual(mock_bqinsert.call_args_list[0][0][3], expected_rows)
+    six.assertCountEqual(self, mock_bqinsert.call_args_list[0][0][3],
+                         expected_rows)
 
   @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
   @mock.patch.object(results2, '_InsertBQRows')
@@ -751,6 +755,70 @@ class GenerateResults2Test(testing_common.TestCase):
                                             mock_render, mock_bqinsert):
     expected_histogram_set = histogram_set.HistogramSet([
         _CreateHistogram('Score', 1),
+        _CreateHistogram('3d-cube-SP.Average', 2),
+        _CreateHistogram('3d-raytrace-SP.Average', 3),
+        _CreateHistogram('Air.Average', 4),
+        _CreateHistogram('Babylon.Average', 5),
+        _CreateHistogram('Basic.Average', 6),
+        _CreateHistogram('Box2D.Average', 7),
+        _CreateHistogram('FlightPlanner.Average', 8),
+        _CreateHistogram('HashSet-wasm.Runtime', 9),
+        _CreateHistogram('ML.Average', 10),
+        _CreateHistogram('OfflineAssembler.Average', 11),
+        _CreateHistogram('UniPoker.Average', 12),
+        _CreateHistogram('WSL.MainRun', 13),
+        _CreateHistogram('acorn-wtb.Average', 14),
+        _CreateHistogram('ai-astar.Average', 15),
+        _CreateHistogram('async-fs.Average', 16),
+        _CreateHistogram('babylon-wtb.Average', 17),
+        _CreateHistogram('base64-SP.Average', 18),
+        _CreateHistogram('bomb-workers.Average', 19),
+        _CreateHistogram('cdjs.Average', 20),
+        _CreateHistogram('chai-wtb.Average', 21),
+        _CreateHistogram('coffeescript-wtb.Average', 22),
+        _CreateHistogram('crypto-aes-SP.Average', 23),
+        _CreateHistogram('crypto-md5-SP.Average', 24),
+        _CreateHistogram('crypto-shal-SP.Average', 25),
+        _CreateHistogram('crypto.Average', 26),
+        _CreateHistogram('date-format-tofte-SP.Average', 27),
+        _CreateHistogram('date-format-xparb-SP.Average', 28),
+        _CreateHistogram('delta-blue.Average', 29),
+        _CreateHistogram('earley-boyer.Average', 30),
+        _CreateHistogram('espree-wtb.Average', 31),
+        _CreateHistogram('first-inspector-code-load.Average', 32),
+        _CreateHistogram('float-mm_c.Average', 33),
+        _CreateHistogram('gaussian-blur.Average', 34),
+        _CreateHistogram('gbemu.Average', 35),
+        _CreateHistogram('gcc-loops-wasm.Runtime', 36),
+        _CreateHistogram('hash-map.Average', 37),
+        _CreateHistogram('jshint-wtb.Average', 38),
+        _CreateHistogram('json-parse-inspector.Average', 39),
+        _CreateHistogram('json-stringify-inspector.Average', 40),
+        _CreateHistogram('lebab-wtb.Average', 41),
+        _CreateHistogram('mandreel.Average', 42),
+        _CreateHistogram('multi-inspector-code-load.Average', 43),
+        _CreateHistogram('n-body-SP.Average', 44),
+        _CreateHistogram('navier-stokes.Average', 45),
+        _CreateHistogram('octane-code-load.Average', 46),
+        _CreateHistogram('octane-zlib.Average', 47),
+        _CreateHistogram('pdfjs.Average', 48),
+        _CreateHistogram('prepack-wtb.Average', 49),
+        _CreateHistogram('quicksort-wasm.Runtime', 50),
+        _CreateHistogram('raytrace.Average', 51),
+        _CreateHistogram('regex-dna-SP.Average', 52),
+        _CreateHistogram('regexp.Average', 53),
+        _CreateHistogram('richards-wasm.Runtime', 54),
+        _CreateHistogram('richards.Average', 55),
+        _CreateHistogram('segmentation.Average', 56),
+        _CreateHistogram('splay.Average', 57),
+        _CreateHistogram('stanford-crypto-aes.Average', 58),
+        _CreateHistogram('stanford-crypto-pbkdf2.Average', 59),
+        _CreateHistogram('stanford-crypto-sha256.Average', 60),
+        _CreateHistogram('string-unpack-code-SP.Average', 61),
+        _CreateHistogram('tagcloud-SP.Average', 62),
+        _CreateHistogram('tsf-wasm.Runtime', 63),
+        _CreateHistogram('typescript.Average', 64),
+        _CreateHistogram('uglify-js-wtb.Average', 65)
     ])
     job = _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
                        expected_histogram_set, set_device_os=False)
@@ -787,7 +855,71 @@ class GenerateResults2Test(testing_common.TestCase):
             'speedometer2': {},
             'motionmark': {},
             'jetstream2': {
-                'Score': 1
+                'Score': 1,
+                'cube_3d_SP_Average': 2,
+                'raytrace_3d_SP_Average': 3,
+                'Air_Average': 4,
+                'Babylon_Average': 5,
+                'Basic_Average': 6,
+                'Box2D_Average': 7,
+                'FlightPlanner_Average': 8,
+                'HashSet_wasm_Runtime': 9,
+                'ML_Average': 10,
+                'OfflineAssembler_Average': 11,
+                'UniPoker_Average': 12,
+                'WSL_MainRun': 13,
+                'acorn_wtb_Average': 14,
+                'ai_astar_Average': 15,
+                'async_fs_Average': 16,
+                'babylon_wtb_Average': 17,
+                'base64_SP_Average': 18,
+                'bomb_workers_Average': 19,
+                'cdjs_Average': 20,
+                'chai_wtb_Average': 21,
+                'coffeescript_wtb_Average': 22,
+                'crypto_aes_SP_Average': 23,
+                'crypto_md5_SP_Average': 24,
+                'crypto_shal_SP_Average': 25,
+                'crypto_Average': 26,
+                'date_format_tofte_SP_Average': 27,
+                'date_format_xparb_SP_Average': 28,
+                'delta_blue_Average': 29,
+                'earley_boyer_Average': 30,
+                'espree_wtb_Average': 31,
+                'first_inspector_code_load_Average': 32,
+                'float_mm_c_Average': 33,
+                'gaussian_blur_Average': 34,
+                'gbemu_Average': 35,
+                'gcc_loops_wasm_Runtime': 36,
+                'hash_map_Average': 37,
+                'jshint_wtb_Average': 38,
+                'json_parse_inspector_Average': 39,
+                'json_stringify_inspector_Average': 40,
+                'lebab_wtb_Average': 41,
+                'mandreel_Average': 42,
+                'multi_inspector_code_load_Average': 43,
+                'n_body_SP_Average': 44,
+                'navier_stokes_Average': 45,
+                'octane_code_load_Average': 46,
+                'octane_zlib_Average': 47,
+                'pdfjs_Average': 48,
+                'prepack_wtb_Average': 49,
+                'quicksort_wasm_Runtime': 50,
+                'raytrace_Average': 51,
+                'regex_dna_SP_Average': 52,
+                'regexp_Average': 53,
+                'richards_wasm_Runtime': 54,
+                'richards_Average': 55,
+                'segmentation_Average': 56,
+                'splay_Average': 57,
+                'stanford_crypto_aes_Average': 58,
+                'stanford_crypto_pbkdf2_Average': 59,
+                'stanford_crypto_sha256_Average': 60,
+                'string_unpack_code_SP_Average': 61,
+                'tagcloud_SP_Average': 62,
+                'tsf_wasm_Runtime': 63,
+                'typescript_Average': 64,
+                'uglify_js_wtb_Average': 65
             },
         },
         'run_id': 'fake_job_id'
@@ -825,7 +957,71 @@ class GenerateResults2Test(testing_common.TestCase):
             'speedometer2': {},
             'motionmark': {},
             'jetstream2': {
-                'Score': 1
+                'Score': 1,
+                'cube_3d_SP_Average': 2,
+                'raytrace_3d_SP_Average': 3,
+                'Air_Average': 4,
+                'Babylon_Average': 5,
+                'Basic_Average': 6,
+                'Box2D_Average': 7,
+                'FlightPlanner_Average': 8,
+                'HashSet_wasm_Runtime': 9,
+                'ML_Average': 10,
+                'OfflineAssembler_Average': 11,
+                'UniPoker_Average': 12,
+                'WSL_MainRun': 13,
+                'acorn_wtb_Average': 14,
+                'ai_astar_Average': 15,
+                'async_fs_Average': 16,
+                'babylon_wtb_Average': 17,
+                'base64_SP_Average': 18,
+                'bomb_workers_Average': 19,
+                'cdjs_Average': 20,
+                'chai_wtb_Average': 21,
+                'coffeescript_wtb_Average': 22,
+                'crypto_aes_SP_Average': 23,
+                'crypto_md5_SP_Average': 24,
+                'crypto_shal_SP_Average': 25,
+                'crypto_Average': 26,
+                'date_format_tofte_SP_Average': 27,
+                'date_format_xparb_SP_Average': 28,
+                'delta_blue_Average': 29,
+                'earley_boyer_Average': 30,
+                'espree_wtb_Average': 31,
+                'first_inspector_code_load_Average': 32,
+                'float_mm_c_Average': 33,
+                'gaussian_blur_Average': 34,
+                'gbemu_Average': 35,
+                'gcc_loops_wasm_Runtime': 36,
+                'hash_map_Average': 37,
+                'jshint_wtb_Average': 38,
+                'json_parse_inspector_Average': 39,
+                'json_stringify_inspector_Average': 40,
+                'lebab_wtb_Average': 41,
+                'mandreel_Average': 42,
+                'multi_inspector_code_load_Average': 43,
+                'n_body_SP_Average': 44,
+                'navier_stokes_Average': 45,
+                'octane_code_load_Average': 46,
+                'octane_zlib_Average': 47,
+                'pdfjs_Average': 48,
+                'prepack_wtb_Average': 49,
+                'quicksort_wasm_Runtime': 50,
+                'raytrace_Average': 51,
+                'regex_dna_SP_Average': 52,
+                'regexp_Average': 53,
+                'richards_wasm_Runtime': 54,
+                'richards_Average': 55,
+                'segmentation_Average': 56,
+                'splay_Average': 57,
+                'stanford_crypto_aes_Average': 58,
+                'stanford_crypto_pbkdf2_Average': 59,
+                'stanford_crypto_sha256_Average': 60,
+                'string_unpack_code_SP_Average': 61,
+                'tagcloud_SP_Average': 62,
+                'tsf_wasm_Runtime': 63,
+                'typescript_Average': 64,
+                'uglify_js_wtb_Average': 65
             },
         },
         'run_id': 'fake_job_id'
@@ -833,7 +1029,8 @@ class GenerateResults2Test(testing_common.TestCase):
 
     results2.GenerateResults2(job)
     self.maxDiff = None
-    self.assertItemsEqual(mock_bqinsert.call_args_list[0][0][3], expected_rows)
+    six.assertCountEqual(self, mock_bqinsert.call_args_list[0][0][3],
+                         expected_rows)
 
   @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
   @mock.patch.object(results2, '_InsertBQRows')
@@ -852,6 +1049,32 @@ class GenerateResults2Test(testing_common.TestCase):
 
     results2.GenerateResults2(job)
     self.assertEqual(1, len(mock_bqinsert.call_args_list))
+
+  @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
+  @mock.patch.object(results2, '_RequestInsertBQRows')
+  @mock.patch.object(results2, '_BQService')
+  @mock.patch.object(results2.render_histograms_viewer,
+                     'RenderHistogramsViewer')
+  @mock.patch.object(results2, '_JsonFromExecution')
+  @mock.patch.object(swarming, 'Swarming')
+  @mock.patch.object(commit.Commit, 'GetOrCacheCommitInfo')
+  def testTypeDispatch_PushBQ_CH_Many_Rows(self, mock_commit_info,
+                                           mock_swarming, mock_json,
+                                           mock_render, mock_bqservice,
+                                           mock_reqbqinsert):
+    histograms = []
+    for i in range(1001):
+      some_histogram = histogram_module.Histogram('someMetric-' + str(i),
+                                                  'count')
+      some_histogram.AddSample(i)
+      histograms.append(some_histogram)
+    expected_histogram_set = histogram_set.HistogramSet(histograms)
+    job = _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
+                       expected_histogram_set)
+
+    results2.GenerateResults2(job)
+    self.assertEqual(1, len(mock_bqservice.call_args_list))
+    self.assertEqual(3, len(mock_reqbqinsert.call_args_list))
 
   @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
   @mock.patch.object(results2, '_InsertBQRows')
@@ -895,7 +1118,8 @@ class GenerateResults2Test(testing_common.TestCase):
 
     results2.GenerateResults2(job)
     self.maxDiff = None
-    self.assertItemsEqual(mock_bqinsert.call_args_list[1][0][3], expected_rows)
+    six.assertCountEqual(self, mock_bqinsert.call_args_list[1][0][3],
+                         expected_rows)
 
 
 def _CreateGeneralRow(checkout, variant, metric, values):

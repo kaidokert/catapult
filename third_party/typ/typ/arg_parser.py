@@ -77,7 +77,8 @@ class ArgumentParser(argparse.ArgumentParser):
                               help=('Builder name to include in the '
                                     'uploaded data.'))
             self.add_argument('-c', '--coverage', action='store_true',
-                              help='Reports coverage information.')
+                              help=('Reports coverage information. This is '
+                                    'disabled when a test filter is used.'))
             self.add_argument('--coverage-source', action='append',
                               default=[],
                               help=('Directories to include when running and '
@@ -219,6 +220,10 @@ class ArgumentParser(argparse.ArgumentParser):
                               type=str,
                               metavar='PATH',
                               help='directory to write output to (ignored)')
+            self.add_argument('--use-global-pool', action='store_true',
+                              default=False,
+                              help=('Use the older, single/global process pool '
+                                    'approach instead of the scoped approach.'))
 
         if discovery or running:
             self.add_argument('-P', '--path', action='append', default=[],
@@ -239,7 +244,8 @@ class ArgumentParser(argparse.ArgumentParser):
                 type=str, default='', action='store',
                 help='Pass a double-colon-separated ("::") list of exact test '
                 'names or globs, to run just that subset of tests. fnmatch will '
-                'be used to match globs to test names')
+                'be used to match globs to test names. Utilizing a filter will '
+                'disable coverage.')
             self.add_argument(
                 '--partial-match-filter', type=str, default=[], action='append',
                 help='Pass a string and Typ will run tests whose names '
@@ -298,6 +304,11 @@ class ArgumentParser(argparse.ArgumentParser):
 
         if rargs.overwrite is None:
             rargs.overwrite = self._host.stdout.isatty() and not rargs.verbose
+
+        if (rargs.test_filter and rargs.coverage):
+            # Running a subset of tests will fail coverage check, so explicitly
+            # disable coverage when a filter is passed.
+            rargs.coverage = False
 
         return rargs
 

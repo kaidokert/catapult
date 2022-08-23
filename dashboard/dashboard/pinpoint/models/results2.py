@@ -11,6 +11,8 @@ import logging
 import os
 import uuid
 import six
+import sys
+import json
 
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
@@ -18,7 +20,11 @@ from google.appengine.ext import ndb
 if six.PY2:
   import cloudstorage
 else:
-  import cloudstorage.cloudstorage as cloudstorage
+  try:
+    import cloudstorage.cloudstorage as cloudstorage
+  except ImportError:
+    # This is a work around to fix the discrepency on file tree in tests.
+    import cloudstorage
 from apiclient.discovery import build
 from dashboard.common import utils
 from dashboard.pinpoint.models import job_state
@@ -66,7 +72,82 @@ _METRIC_MAP = {
     "motionmark": ("motionmark", "motionmark"),
 
     # Jetstream2
-    "Score": ("jetstream2", "Score")
+    # BQ unhappy if name starts with numeric
+    "3d-cube-SP.Average": ("jetstream2", "cube_3d_SP_Average"),
+    "3d-raytrace-SP.Average": ("jetstream2", "raytrace_3d_SP_Average"),
+    "Air.Average": ("jetstream2", "Air_Average"),
+    "Babylon.Average": ("jetstream2", "Babylon_Average"),
+    "Basic.Average": ("jetstream2", "Basic_Average"),
+    "Box2D.Average": ("jetstream2", "Box2D_Average"),
+    "FlightPlanner.Average": ("jetstream2", "FlightPlanner_Average"),
+    "HashSet-wasm.Runtime": ("jetstream2", "HashSet_wasm_Runtime"),
+    "ML.Average": ("jetstream2", "ML_Average"),
+    "OfflineAssembler.Average": ("jetstream2", "OfflineAssembler_Average"),
+    "Score": ("jetstream2", "Score"),
+    "UniPoker.Average": ("jetstream2", "UniPoker_Average"),
+    "WSL.MainRun": ("jetstream2", "WSL_MainRun"),
+    "acorn-wtb.Average": ("jetstream2", "acorn_wtb_Average"),
+    "ai-astar.Average": ("jetstream2", "ai_astar_Average"),
+    "async-fs.Average": ("jetstream2", "async_fs_Average"),
+    "babylon-wtb.Average": ("jetstream2", "babylon_wtb_Average"),
+    "base64-SP.Average": ("jetstream2", "base64_SP_Average"),
+    "bomb-workers.Average": ("jetstream2", "bomb_workers_Average"),
+    "cdjs.Average": ("jetstream2", "cdjs_Average"),
+    "chai-wtb.Average": ("jetstream2", "chai_wtb_Average"),
+    "coffeescript-wtb.Average": ("jetstream2", "coffeescript_wtb_Average"),
+    "crypto-aes-SP.Average": ("jetstream2", "crypto_aes_SP_Average"),
+    "crypto-md5-SP.Average": ("jetstream2", "crypto_md5_SP_Average"),
+    "crypto-shal-SP.Average": ("jetstream2", "crypto_shal_SP_Average"),
+    "crypto.Average": ("jetstream2", "crypto_Average"),
+    "date-format-tofte-SP.Average":
+        ("jetstream2", "date_format_tofte_SP_Average"),
+    "date-format-xparb-SP.Average":
+        ("jetstream2", "date_format_xparb_SP_Average"),
+    "delta-blue.Average": ("jetstream2", "delta_blue_Average"),
+    "earley-boyer.Average": ("jetstream2", "earley_boyer_Average"),
+    "espree-wtb.Average": ("jetstream2", "espree_wtb_Average"),
+    "first-inspector-code-load.Average":
+        ("jetstream2", "first_inspector_code_load_Average"),
+    "float-mm_c.Average": ("jetstream2", "float_mm_c_Average"),
+    "gaussian-blur.Average": ("jetstream2", "gaussian_blur_Average"),
+    "gbemu.Average": ("jetstream2", "gbemu_Average"),
+    "gcc-loops-wasm.Runtime": ("jetstream2", "gcc_loops_wasm_Runtime"),
+    "hash-map.Average": ("jetstream2", "hash_map_Average"),
+    "jshint-wtb.Average": ("jetstream2", "jshint_wtb_Average"),
+    "json-parse-inspector.Average":
+        ("jetstream2", "json_parse_inspector_Average"),
+    "json-stringify-inspector.Average":
+        ("jetstream2", "json_stringify_inspector_Average"),
+    "lebab-wtb.Average": ("jetstream2", "lebab_wtb_Average"),
+    "mandreel.Average": ("jetstream2", "mandreel_Average"),
+    "multi-inspector-code-load.Average":
+        ("jetstream2", "multi_inspector_code_load_Average"),
+    "n-body-SP.Average": ("jetstream2", "n_body_SP_Average"),
+    "navier-stokes.Average": ("jetstream2", "navier_stokes_Average"),
+    "octane-code-load.Average": ("jetstream2", "octane_code_load_Average"),
+    "octane-zlib.Average": ("jetstream2", "octane_zlib_Average"),
+    "pdfjs.Average": ("jetstream2", "pdfjs_Average"),
+    "prepack-wtb.Average": ("jetstream2", "prepack_wtb_Average"),
+    "quicksort-wasm.Runtime": ("jetstream2", "quicksort_wasm_Runtime"),
+    "raytrace.Average": ("jetstream2", "raytrace_Average"),
+    "regex-dna-SP.Average": ("jetstream2", "regex_dna_SP_Average"),
+    "regexp.Average": ("jetstream2", "regexp_Average"),
+    "richards-wasm.Runtime": ("jetstream2", "richards_wasm_Runtime"),
+    "richards.Average": ("jetstream2", "richards_Average"),
+    "segmentation.Average": ("jetstream2", "segmentation_Average"),
+    "splay.Average": ("jetstream2", "splay_Average"),
+    "stanford-crypto-aes.Average":
+        ("jetstream2", "stanford_crypto_aes_Average"),
+    "stanford-crypto-pbkdf2.Average":
+        ("jetstream2", "stanford_crypto_pbkdf2_Average"),
+    "stanford-crypto-sha256.Average":
+        ("jetstream2", "stanford_crypto_sha256_Average"),
+    "string-unpack-code-SP.Average":
+        ("jetstream2", "string_unpack_code_SP_Average"),
+    "tagcloud-SP.Average": ("jetstream2", "tagcloud_SP_Average"),
+    "tsf-wasm.Runtime": ("jetstream2", "tsf_wasm_Runtime"),
+    "typescript.Average": ("jetstream2", "typescript_Average"),
+    "uglify-js-wtb.Average": ("jetstream2", "uglify_js_wtb_Average"),
 }
 
 _PROJECT_ID = 'chromeperf'
@@ -403,16 +484,31 @@ def _ConvertDatetimeToBQ(dt):
 def _InsertBQRows(project_id, dataset_id, table_id, rows, num_retries=5):
   service = _BQService()
   rows = [{'insertId': str(uuid.uuid4()), 'json': row} for row in rows]
-  insert_data = {'rows': rows}
-  logging.info("Saving to BQ: %s", str(insert_data))
-  response = service.tabledata().insertAll(
+  logging.info("Saving %d rows to BQ. Total size: %d.", len(rows),
+               sys.getsizeof(json.dumps(rows)))
+  row_data_list = _CreateRowDataLists(rows)
+  for i, row_list in enumerate(row_data_list):
+    logging.info('Saving rows to BQ. Batch #%d with size %d.', i,
+                 sys.getsizeof(json.dumps(row_list)))
+    response = _RequestInsertBQRows(service, project_id, dataset_id, table_id,
+                                    row_list, num_retries)
+    if 'insertErrors' in response:
+      logging.error("Insert failed: %s", str(response))
+
+
+def _RequestInsertBQRows(service,
+                         project_id,
+                         dataset_id,
+                         table_id,
+                         row_list,
+                         num_retries=5):
+  return service.tabledata().insertAll(
       projectId=project_id,
       datasetId=dataset_id,
       tableId=table_id,
-      body=insert_data).execute(num_retries=num_retries)
-
-  if 'insertErrors' in response:
-    logging.error("Insert failed: %s", str(response))
+      body={
+          'rows': row_list
+      }).execute(num_retries=num_retries)
 
 
 def _BQService():
@@ -423,3 +519,13 @@ def _BQService():
     credentials = credentials.create_scoped(
         'https://www.googleapis.com/auth/bigquery')
   return build('bigquery', 'v2', credentials=credentials)
+
+
+def _CreateRowDataLists(rows):
+  # crbug/1340323, crbug/1352869
+  # We saw complains on query size in Python 3 runtime. In order to limit the
+  # size, we will separate the rows into multiple batches. Without a good
+  # estimate, we are using 1000 rows as a conservative guess.
+  batch_size = 1000
+
+  return [rows[i:i + batch_size] for i in range(0, len(rows), batch_size)]

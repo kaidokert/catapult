@@ -15,6 +15,7 @@ from google.appengine.api import users
 from google.appengine.datastore import datastore_pb
 
 from dashboard.common import utils
+import six
 
 if utils.IsRunningFlask():
   from flask import g as flask_global
@@ -94,7 +95,11 @@ def CancelSinglePrivilegedRequest():
 def _IsServicingPrivilegedRequest():
   """Checks whether the request is considered privileged."""
   if utils.IsRunningFlask():
-    path = flask_request.path
+    try:
+      path = flask_request.path
+    except RuntimeError:
+      # This happens in unit tests, when code gets called outside of a request.
+      return False
     if path.startswith('/mapreduce'):
       return True
     if path.startswith('/_ah/queue/deferred'):
@@ -174,7 +179,8 @@ def _DatastorePreHook(service, call, request, _):
   assert service == 'datastore_v3'
   if call != 'RunQuery':
     return
-  if request.kind() not in _INTERNAL_ONLY_KINDS:
+  request_kind = request.kind() if six.PY2 else request.kind
+  if request_kind not in _INTERNAL_ONLY_KINDS:
     return
   if IsUnalteredQueryPermitted():
     return

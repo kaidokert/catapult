@@ -17,7 +17,7 @@ from telemetry.internal.util import binary_manager
 from telemetry.testing import run_tests
 from telemetry.testing import unittest_runner
 
-class MockArgs(object):
+class MockArgs():
   def __init__(self):
     self.positional_args = []
     self.test_filter = ''
@@ -26,7 +26,7 @@ class MockArgs(object):
     self.skip = []
 
 
-class MockPossibleBrowser(object):
+class MockPossibleBrowser():
   def __init__(self, browser_type, os_name, os_version_name,
                supports_tab_control):
     self.browser_type = browser_type
@@ -37,7 +37,7 @@ class MockPossibleBrowser(object):
     return []
 
 
-class MockPlatform(object):
+class MockPlatform():
   def __init__(self, os_name, os_version_name):
     self.os_name = os_name
     self.os_version_name = os_version_name
@@ -108,6 +108,11 @@ class RunTestsUnitTest(unittest.TestCase):
           # We don't want the underlying tests to report their results to
           # ResultDB.
           '--disable-resultsink',
+          # These tests currently rely on some information sticking around
+            # between tests, so we need to use the older global process pool
+            # approach instead of having different pools scoped for
+            # parallel/serial execution.
+            '--use-global-pool',
       ]
       if test_name:
         passed_args.append(test_name)

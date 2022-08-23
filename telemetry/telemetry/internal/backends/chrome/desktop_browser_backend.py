@@ -13,7 +13,7 @@ import random
 import re
 import shutil
 import signal
-import subprocess as subprocess
+import subprocess
 import sys
 import tempfile
 
@@ -39,7 +39,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                browser_directory, profile_directory,
                executable, flash_path, is_content_shell,
                build_dir=None):
-    super(DesktopBrowserBackend, self).__init__(
+    super().__init__(
         desktop_platform_backend,
         browser_options=browser_options,
         browser_directory=browser_directory,
@@ -79,6 +79,32 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @property
   def log_file_path(self):
     return self._log_file_path
+
+  @property
+  def processes(self):
+    class Process:
+      def __init__(self, s):
+        # We want to get 3 pieces of information from 'ps aux':
+        # - PID of the processes
+        # - Type of process (e.g. 'renderer', etc)
+        # - RSS of the process
+        self.name = re.search(r'--type=(\w+)', s).group(1)
+        self.pid = re.search(r' (\d+) ', s).group(1)
+        # For RSS, we need a more complicated pattern, since multiple parts of
+        # the output are just digits.
+        REGEXP = (r'\d+\.\d+'  # %CPU
+                  r'\s+'
+                  r'\d+\.\d+'  # %MEM
+                  r'\s+'
+                  r'\d+'       # VSZ
+                  r'\s+'
+                  r'(\d+)')
+        EXAMPLE = ('root           1  0.0  0.0 166760 12228 ?'
+                   '        Ss   01:50   0:14 /sbin/init splash')
+        assert re.search(REGEXP, EXAMPLE).group(1) == '12228'
+        self.rss = re.search(REGEXP, s).group(1)
+    tmp = subprocess.getoutput('ps -aux | grep chrome')
+    return [Process(line) for line in tmp.split('\n') if '--type=' in line]
 
   @property
   def supports_uploading_logs(self):
@@ -218,7 +244,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if not self.IsBrowserRunning():
       raise exceptions.ProcessGoneException(
           'Return code: %d' % self._proc.returncode)
-    super(DesktopBrowserBackend, self).BindDevToolsClient()
+    super().BindDevToolsClient()
 
   def GetPid(self):
     if self._proc:
@@ -320,9 +346,9 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           # 'CHROME_SHUTDOWN_TIMEOUT' environment variable.
           # TODO(sebmarchand): Remove this now that there's an option to shut
           # down Chrome via Devtools.
-          py_utils.WaitFor(lambda: not self.IsBrowserRunning(),
-                           timeout=int(os.getenv('CHROME_SHUTDOWN_TIMEOUT', 15))
-                          )
+          py_utils.WaitFor(
+              lambda: not self.IsBrowserRunning(),
+              timeout=int(os.getenv('CHROME_SHUTDOWN_TIMEOUT', '15')))
           logging.info('Successfully shut down browser cooperatively')
         except py_utils.TimeoutException as e:
           logging.warning('Failed to cooperatively shutdown. ' +
@@ -333,7 +359,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   @exc_util.BestEffort
   def Close(self):
-    super(DesktopBrowserBackend, self).Close()
+    super().Close()
 
     # First, try to cooperatively shutdown.
     if self.IsBrowserRunning():
@@ -346,7 +372,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._proc.send_signal(signal.SIGINT)
       try:
         py_utils.WaitFor(lambda: not self.IsBrowserRunning(),
-                         timeout=int(os.getenv('CHROME_SHUTDOWN_TIMEOUT', 5))
+                         timeout=int(os.getenv('CHROME_SHUTDOWN_TIMEOUT', '5'))
                         )
         self._proc = None
       except py_utils.TimeoutException:

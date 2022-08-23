@@ -432,7 +432,7 @@ class DeviceUtils(object):
   _MAX_ADB_COMMAND_LENGTH = 512
   _MAX_ADB_OUTPUT_LENGTH = 32768
   _RESUMED_LAUNCHER_ACTIVITY_RE = re.compile(
-      r'\s*mResumedActivity.*(Launcher|launcher).*')
+      r'\s*(m|top)ResumedActivity.*(Launcher|launcher).*')
   _VALID_SHELL_VARIABLE = re.compile('^[a-zA-Z_][a-zA-Z0-9_]*$')
 
   LOCAL_PROPERTIES_PATH = posixpath.join('/', 'data', 'local.prop')
@@ -471,6 +471,7 @@ class DeviceUtils(object):
     self._cache = {}
     self._client_caches = {}
     self._cache_lock = threading.RLock()
+    self._apex_lock = threading.Lock()
     assert hasattr(self, decorators.DEFAULT_TIMEOUT_ATTR)
     assert hasattr(self, decorators.DEFAULT_RETRIES_ATTR)
 
@@ -803,6 +804,26 @@ class DeviceUtils(object):
         if (installed_version_code is None
             or installed_version_code == str(version_code)):
           return True
+    return False
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def IsSystemModuleInstalled(self,
+                              package,
+                              version_code,
+                              timeout=None,
+                              retries=None):
+    """
+    Checks the version for a mainline module to confirm if it is installed
+    """
+    dumpsys_output = self.RunShellCommand(['dumpsys', 'package', package],
+                                          check_return=True,
+                                          large_output=True)
+
+    expected_version_line = 'Version: %s' % version_code
+
+    for line in dumpsys_output:
+      if expected_version_line in line:
+        return True
     return False
 
   @decorators.WithTimeoutAndRetriesFromInstance()
@@ -1241,6 +1262,82 @@ class DeviceUtils(object):
                             permissions=permissions,
                             instant_app=instant_app,
                             force_queryable=force_queryable)
+
+  @decorators.WithTimeoutAndRetriesFromInstance(
+      min_default_timeout=INSTALL_DEFAULT_TIMEOUT)
+  def InstallApex(self, apex, timeout=None, retries=None):
+    """
+    Installs a mainline module and manages rebooting the device. Can only be
+    used from Android 10 onwards with devices that have the correct
+    kernal support.
+
+    Args:
+      base_apk: The path to an apex file
+      timeout: timeout in seconds
+      retries: number of retries
+
+    Raises:
+      CommandFailedError if the installation fails
+      DeviceVersionError if the device SDK level does not support
+        mainline modules
+    """
+
+    self._CheckSdkLevel(version_codes.Q)
+
+    apex = apk_helper.ToHelper(apex)
+    package_name = apex.GetPackageName()
+    version = apex.GetVersionCode()
+
+    # Only one module can be installed at a time so
+    # we use a lock to prevent two parallel InstallApex calls
+    # because the device needs to reboot before it is safe to
+    # install another module
+    with self._apex_lock:
+      with apex.GetApkPaths(self) as apex_file_paths:
+        if len(apex_file_paths) != 1:
+          raise device_errors.CommandFailedError(
+              'Expected one apex path but received: %s' %
+              pprint.pformat(apex_file_paths))
+
+        apex_file_path = apex_file_paths[0]
+
+        if not os.path.exists(apex_file_path):
+          raise device_errors.CommandFailedError(
+              'Attempted to install non-existent apex: %s' % apex_file_path)
+
+        logger.info('Installing module %s using apex %s', package_name,
+                    apex_file_path)
+
+        try:
+          self.adb.Install(apex_file_path)
+        except device_errors.AdbCommandFailedError as adb_error:
+          # If the device already has a module staged, it is in an unexpected
+          # state We will throw an error to allow the developer to work out
+          # how to deal with this
+          # While ADB will already throw this, it will be a little harder
+          # to debug what is happening
+          if 'Cannot stage multiple sessions without checkpoint support' in str(
+              adb_error):
+            raise device_errors.CommandFailedError(
+                'Apex module is already staged - the device must be restarted')
+          # Even though we do a SDK version check, the device could still not
+          # support APEX files because they have further kernal requirements
+          # that aren't necessarily enforced in Android 10
+          if "device doesn't support the installation of APEX" in str(
+              adb_error):
+            raise device_errors.CommandFailedError(
+                'The device used does not support installing apex files')
+          raise adb_error
+
+      logger.info('Rebooting device')
+      self.Reboot()
+
+    if not self.IsSystemModuleInstalled(package_name, version):
+      raise device_errors.CommandFailedError(
+          'Module %s with version %s not installed on device after rebooting '
+          'install attempt.' % (package_name, version))
+
+    logger.info('Apex %s installed', package_name)
 
   @staticmethod
   def _GetFakeInstallPaths(apk_paths, fake_modules):
@@ -1954,7 +2051,9 @@ class DeviceUtils(object):
                        host_device_tuples,
                        delete_device_stale=False,
                        timeout=None,
-                       retries=None):
+                       retries=None,
+                       run_as=None,
+                       as_root=False):
     """Push files to the device, skipping files that don't need updating.
 
     When a directory is pushed, it is traversed recursively on the host and
@@ -1970,6 +2069,10 @@ class DeviceUtils(object):
       delete_device_stale: option to delete stale files on device
       timeout: timeout in seconds
       retries: number of retries
+      run_as: A string containing the package as which the command should be
+        run.
+      as_root: A boolean indicating whether the shell command should be run
+        with root privileges.
 
     Raises:
       CommandFailedError on failure.
@@ -1996,7 +2099,9 @@ class DeviceUtils(object):
     if changed_files:
       if missing_dirs:
         self.RunShellCommand(['mkdir', '-p'] + list(missing_dirs),
-                             check_return=True)
+                             check_return=True,
+                             run_as=run_as,
+                             as_root=as_root)
       self._PushFilesImpl(host_device_tuples, changed_files)
     cache_commit_func()
 
@@ -2550,7 +2655,8 @@ class DeviceUtils(object):
                 as_root=False,
                 force_push=False,
                 timeout=None,
-                retries=None):
+                retries=None,
+                run_as=None):
     """Writes |contents| to a file on the device.
 
     Args:
@@ -2575,7 +2681,11 @@ class DeviceUtils(object):
       # a shell command rather than pushing a file.
       cmd = 'echo -n %s > %s' % (cmd_helper.SingleQuote(contents),
                                  cmd_helper.SingleQuote(device_path))
-      self.RunShellCommand(cmd, shell=True, as_root=as_root, check_return=True)
+      self.RunShellCommand(cmd,
+                           shell=True,
+                           as_root=as_root,
+                           run_as=run_as,
+                           check_return=True)
     elif as_root and self.NeedsSU():
       # Adb does not allow to "push with su", so we first push to a temp file
       # on a safe location, and then copy it to the desired location with su.

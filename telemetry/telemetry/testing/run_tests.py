@@ -42,7 +42,7 @@ class RunTestsCommand(command_line.OptparseCommand):
   xvfb_process = None
 
   def __init__(self):
-    super(RunTestsCommand, self).__init__()
+    super().__init__()
     self.stream = sys.stdout
 
   @classmethod
@@ -147,6 +147,8 @@ class RunTestsCommand(command_line.OptparseCommand):
       runner.host.stdout = self.stream
     if hasattr(args, 'disable_resultsink'):
       runner.args.disable_resultsink = args.disable_resultsink
+    if hasattr(args, 'use_global_pool'):
+      runner.args.use_global_pool = args.use_global_pool
 
     if args.no_browser:
       possible_browser = None

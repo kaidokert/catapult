@@ -47,7 +47,7 @@ def CreateBuildUpdate(job, commit_id):
                                       (commit_id,)
                               }
                           })
-                  }))
+                  }).encode('utf-8')).decode('utf-8')
       }
   })
 
@@ -74,7 +74,7 @@ def CreateTestUpdate(job, commit_id, attempt):
                                       (commit_id, attempt)
                               }
                           })
-                  }))
+                  }).encode('utf-8')).decode('utf-8')
       }
   })
 
@@ -138,7 +138,7 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
                                         'type': 'build',
                                     }
                                 }),
-                        }))
+                        }).encode('utf-8')).decode('utf-8')
             }
         }))
 
@@ -165,7 +165,9 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
                   'attributes': {
                       'nothing': 'important'
                   },
-                  'data': base64.urlsafe_b64encode('not json formatted'),
+                  'data':
+                      base64.urlsafe_b64encode(b'not json formatted').decode(
+                          'utf-8'),
               },
           }))
 

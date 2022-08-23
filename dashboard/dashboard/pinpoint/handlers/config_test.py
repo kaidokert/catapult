@@ -20,32 +20,36 @@ class ConfigTest(test.TestCase):
     # pylint: disable=super-with-arguments
     super(ConfigTest, self).setUp()
 
-    self.SetCurrentUser('external@chromium.org')
+    self.SetCurrentUser(testing_common.EXTERNAL_USER.email())
+    self.SetCurrentUserOAuth(testing_common.EXTERNAL_USER)
 
     namespaced_stored_object.Set('bot_configurations', {
         'chromium-rel-mac11-pro': {},
     })
 
-    self.SetCurrentUser('internal@chromium.org', is_admin=True)
-    testing_common.SetIsInternalUser('internal@chromium.org', True)
+    self.SetCurrentUser(testing_common.INTERNAL_USER.email(), is_admin=True)
+    testing_common.SetIsInternalUser(testing_common.INTERNAL_USER.email(), True)
+    self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
 
     namespaced_stored_object.Set('bot_configurations', {
         'internal-only-bot': {},
     })
 
   def testGet_External(self):
-    self.SetCurrentUser('external@chromium.org')
+    self.SetCurrentUser(testing_common.EXTERNAL_USER.email())
+    self.SetCurrentUserOAuth(testing_common.EXTERNAL_USER)
 
-    actual = json.loads(self.testapp.post('/api/config').body)
+    actual = json.loads(self.Post('/api/config').body)
     expected = {
         'configurations': ['chromium-rel-mac11-pro'],
     }
     self.assertEqual(actual, expected)
 
   def testGet_Internal(self):
-    self.SetCurrentUser('internal@chromium.org')
+    self.SetCurrentUser(testing_common.INTERNAL_USER.email())
+    self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
 
-    actual = json.loads(self.testapp.post('/api/config').body)
+    actual = json.loads(self.Post('/api/config').body)
     expected = {
         'configurations': ['internal-only-bot'],
     }

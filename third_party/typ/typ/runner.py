@@ -46,7 +46,7 @@ from typ import result_sink
 from typ.arg_parser import ArgumentParser
 from typ.expectations_parser import TestExpectations, Expectation
 from typ.host import Host
-from typ.pool import make_pool
+from typ.pool import make_pool_group
 from typ.stats import Stats
 from typ.printer import Printer
 from typ.test_case import TestCase as TypTestCase
@@ -271,17 +271,16 @@ class Runner(object):
             self._summarize(full_results)
             self._write(self.args.write_full_results_to, full_results)
             upload_ret = self._upload(full_results)
-            if not ret:
-                ret = upload_ret
             reporting_end = h.time()
             self._add_trace_event(trace, 'run', find_start, reporting_end)
             self._add_trace_event(trace, 'discovery', find_start, find_end)
             self._add_trace_event(trace, 'testing', find_end, test_end)
             self._add_trace_event(trace, 'reporting', test_end, reporting_end)
             self._write(self.args.write_trace_to, trace)
-            self.report_coverage()
-        else:
-            upload_ret = 0
+            cov_ret = self.report_coverage() if self.args.coverage else 0
+            # Exit with the code of the first failing step, but do not skip
+            # any steps with short-circuiting.
+            ret = ret or upload_ret or cov_ret
 
         return ret, full_results, trace
 
@@ -421,7 +420,7 @@ class Runner(object):
             if not source:
                 source = self.top_level_dirs + self.args.path
             self.coverage_source = source
-            self.cov = coverage.coverage(source=self.coverage_source,
+            self.cov = coverage.Coverage(source=self.coverage_source,
                                          data_suffix=True)
             self.cov.erase()
 
@@ -591,10 +590,13 @@ class Runner(object):
             jobs = 1
 
         child = _Child(self)
-        pool = make_pool(h, jobs, _run_one_test, child,
-                         _setup_process, _teardown_process)
+        pool_group = make_pool_group(h, jobs, _run_one_test, child,
+                                     _setup_process, _teardown_process,
+                                     self.args.use_global_pool)
+        pool_group.make_global_pool()
 
-        self._run_one_set(self.stats, result_set, test_set, jobs, pool)
+        self._run_one_set(self.stats, result_set, test_set, jobs,
+                          pool_group)
 
         tests_to_retry = sorted(get_tests_to_retry(result_set))
         retry_limit = self.args.retry_limit
@@ -622,13 +624,14 @@ class Runner(object):
                         iteration=iteration) for name in tests_to_retry]
                 tests_to_retry = test_set
                 retry_set = ResultSet()
-                self._run_one_set(stats, retry_set, tests_to_retry, 1, pool)
+                self._run_one_set(stats, retry_set, tests_to_retry, 1,
+                                  pool_group)
                 result_set.results.extend(retry_set.results)
                 tests_to_retry = get_tests_to_retry(retry_set)
                 retry_limit -= 1
-            pool.close()
+            pool_group.close_global_pool()
         finally:
-            self.final_responses.extend(pool.join())
+            self.final_responses.extend(pool_group.join_global_pool())
 
         if retry_limit != self.args.retry_limit:
             self.print_('')
@@ -642,12 +645,23 @@ class Runner(object):
 
         return (retcode, full_results)
 
-    def _run_one_set(self, stats, result_set, test_set, jobs, pool):
+    def _run_one_set(self, stats, result_set, test_set, jobs, pool_group):
         self._skip_tests(stats, result_set, test_set.tests_to_skip)
-        self._run_list(stats, result_set,
-                       test_set.parallel_tests, jobs, pool)
-        self._run_list(stats, result_set,
-                       test_set.isolated_tests, 1, pool)
+        pool = pool_group.make_parallel_pool()
+        try:
+            self._run_list(stats, result_set,
+                           test_set.parallel_tests, jobs, pool)
+            pool_group.close_parallel_pool()
+        finally:
+            self.final_responses.extend(pool_group.join_parallel_pool())
+
+        pool = pool_group.make_serial_pool()
+        try:
+            self._run_list(stats, result_set,
+                           test_set.isolated_tests, 1, pool)
+            pool_group.close_serial_pool()
+        finally:
+            self.final_responses.extend(pool_group.join_serial_pool())
 
     def _skip_tests(self, stats, result_set, tests_to_skip):
         for test_input in tests_to_skip:
@@ -834,16 +848,17 @@ class Runner(object):
             h.print_('Uploading the JSON results raised "%s"' % str(e))
             return 1
 
-    def report_coverage(self):
-        if self.args.coverage:  # pragma: no cover
-            self.host.print_()
-            import coverage
-            cov = coverage.coverage(data_suffix=True)
-            cov.combine()
-            cov.report(show_missing=self.args.coverage_show_missing,
-                       omit=self.args.coverage_omit)
-            if self.args.coverage_annotate:
-                cov.annotate(omit=self.args.coverage_omit)
+    def report_coverage(self):  # pragma: no cover
+        self.host.print_()
+        import coverage
+        cov = coverage.Coverage(data_suffix=True)
+        cov.combine()
+        percentage = cov.report(show_missing=self.args.coverage_show_missing,
+                                omit=self.args.coverage_omit)
+        if self.args.coverage_annotate:
+            cov.annotate(omit=self.args.coverage_omit)
+        # https://coverage.readthedocs.io/en/6.4.2/config.html#report-fail-under
+        return 2 if percentage < cov.get_option('report:fail_under') else 0
 
     def _add_trace_event(self, trace, name, start, end):
         event = {
@@ -1006,7 +1021,7 @@ def _setup_process(host, worker_num, child):
 
     if child.coverage:  # pragma: no cover
         import coverage
-        child.cov = coverage.coverage(source=child.coverage_source,
+        child.cov = coverage.Coverage(source=child.coverage_source,
                                       data_suffix=True)
         child.cov._warn_no_data = False
         child.cov.start()
@@ -1162,9 +1177,9 @@ def _run_one_test(child, test_input):
                            unexpected=False, pid=pid)
             result.result_sink_retcode =\
                     child.result_sink_reporter.report_individual_test_result(
-                        child.test_name_prefix, result,
-                        child.artifact_output_dir, child.expectations,
-                        test_location, test_line, additional_tags)
+                        result, child.artifact_output_dir, child.expectations,
+                        test_location, test_line, child.test_name_prefix,
+                        additional_tags)
             return (result, False)
         should_retry_on_failure = (should_retry_on_failure
                                    or test_case.retryOnFailure)
@@ -1174,8 +1189,9 @@ def _run_one_test(child, test_input):
                                     art.artifacts)
     result.result_sink_retcode =\
             child.result_sink_reporter.report_individual_test_result(
-                child.test_name_prefix, result, child.artifact_output_dir,
-                child.expectations, test_location, test_line, additional_tags)
+                result, child.artifact_output_dir, child.expectations,
+                test_location, test_line, child.test_name_prefix,
+                additional_tags)
     return (result, should_retry_on_failure)
 
 

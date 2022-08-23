@@ -25,6 +25,7 @@ from devil import base_error
 from devil import devil_env
 from devil.android import decorators
 from devil.android import device_errors
+from devil.android.sdk import version_codes
 from devil.utils import cmd_helper
 from devil.utils import lazy
 from devil.utils import timeout_retry
@@ -112,13 +113,6 @@ def _GetReleaseVersion():
   return None
 
 
-def _GetSdkVersion():
-  # pylint: disable=protected-access
-  raw_version = AdbWrapper._RunAdbCmd(
-      ['shell', 'getprop', 'ro.build.version.sdk'], timeout=2, retries=0)
-  return int(raw_version.rstrip())
-
-
 def _ShouldRetryAdbCmd(exc):
   # Errors are potentially transient and should be retried, with the exception
   # of NoAdbError. Exceptions [e.g. generated from SIGTERM handler] should be
@@ -181,7 +175,6 @@ class AdbWrapper(object):
   _adb_path = lazy.WeakConstant(_FindAdb)
   _adb_protocol_version = lazy.WeakConstant(_GetProtocolVersion)
   _adb_release_version = lazy.WeakConstant(_GetReleaseVersion)
-  _adb_sdk_version = lazy.WeakConstant(_GetSdkVersion)
 
   def __init__(self, device_serial, skip_device_check=True):
     """Initializes the AdbWrapper.
@@ -237,6 +230,30 @@ class AdbWrapper(object):
 
     def __exit__(self, exc_type, exc_value, tb):
       self.Stop()
+
+    def EnsureStarted(self, force_restart=False):
+      """Ensures the persistent shell is running and ready for commands.
+
+      Will restart the shell in case it has crashed.
+      """
+      if self._process is not None:
+        if force_restart:
+          self._process.kill()
+          retcode = None
+        else:
+          retcode = self._process.poll()
+          # If no return code, shell process is alive and hopefully well.
+          if retcode is None:
+            return
+        logging.warning("Adb PersistentShell crashed with code %d", retcode)
+        self._process = None
+
+      # self._process will always be None at this point.
+      self.Start()
+
+    def HardStop(self):
+      if self._process is not None and self._process.poll() is None:
+        self._process.kill()
 
     def Start(self):
       """Start the shell."""
@@ -338,15 +355,6 @@ class AdbWrapper(object):
     http://issuetracker.google.com/218716282#comment8
     """
     return cls._adb_release_version.read()
-
-  @classmethod
-  def SdkVersion(cls):
-    """Returns the adb "shell getprop ro.build.version.sdk"
-
-    Used for when using arguments that are only supported on later
-    Android versions
-    """
-    return cls._adb_sdk_version.read()
 
   @classmethod
   def _BuildAdbCmd(cls, args, device_serial, cpu_affinity=None):
@@ -453,6 +461,47 @@ class AdbWrapper(object):
         timeout=timeout,
         env=self._ADB_ENV,
         check_status=check_error)
+
+  def _Shell(self,
+             command,
+             expect_status=None,
+             timeout=DEFAULT_TIMEOUT,
+             retries=DEFAULT_RETRIES):
+    """Runs a shell command on the device.
+
+    Args:
+      command: A string with the shell command to run.
+      expect_status: (optional) If None, skip status check.
+      timeout: (optional) Timeout per try in seconds.
+      retries: (optional) Number of retries to attempt.
+
+    Returns:
+      The output of the shell command as a string.
+    """
+    # Pipe stderr->stdout to ensure the echo'ed exit code is not interleaved
+    # with the command's stderr (as seen in https://crbug.com/1314912).
+    args = ['shell', '( %s ) 2>&1;echo %%$?' % command.rstrip()]
+    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
+    # If we don't care about the status, just return output and unchecked
+    # status.
+    if expect_status is None:
+      return (output, None)
+
+    output_end = output.rfind('%')
+    # We care about the status, and the and exit status is not found.
+    if output_end < 0:
+      logger.warning('exit status of shell command %r missing.', command)
+      return (output, None)
+
+    # There could be a case where we don't get a return status, but the error
+    # message contains a '%' symbol.
+    try:
+      status = int(output[output_end + 1:])
+    except ValueError:
+      logger.warning('exit status of shell command %r missing.', command)
+      return (output, None)
+
+    return (output[:output_end], status)
 
   def __eq__(self, other):
     """Consider instances equal if they refer to the same device.
@@ -563,7 +612,9 @@ class AdbWrapper(object):
 
     Throws: device_errors.DeviceVersionError
     """
-    device_version = self.SdkVersion()
+    raw_version = self._RunDeviceAdbCmd(
+        ['shell', 'getprop', 'ro.build.version.sdk'], timeout=2, retries=0)
+    device_version = int(raw_version.rstrip())
     if device_version < expected_sdk:
       raise device_errors.DeviceVersionError(
           '%s: SDK version %d expected but %d reported' %
@@ -711,29 +762,11 @@ class AdbWrapper(object):
       device_errors.AdbCommandFailedError: If the exit status doesn't match
         |expect_status|.
     """
-    if expect_status is None:
-      args = ['shell', command]
-    else:
-      # Pipe stderr->stdout to ensure the echo'ed exit code is not interleaved
-      # with the command's stderr (as seen in https://crbug.com/1314912).
-      args = ['shell', '( %s ) 2>&1;echo %%$?' % command.rstrip()]
-    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
-    if expect_status is not None:
-      output_end = output.rfind('%')
-      if output_end < 0:
-        # causes the status string to become empty and raise a ValueError
-        output_end = len(output)
-
-      try:
-        status = int(output[output_end + 1:])
-      except ValueError:
-        logger.warning('exit status of shell command %r missing.', command)
-        raise device_errors.AdbShellCommandFailedError(
-            command, output, status=None, device_serial=self._device_serial)
-      output = output[:output_end]
-      if status != expect_status:
-        raise device_errors.AdbShellCommandFailedError(
-            command, output, status=status, device_serial=self._device_serial)
+    # TODO(crbug/1021686): Add request for persistent shell.
+    output, status = self._Shell(command, expect_status, timeout, retries)
+    if expect_status is not None and status != expect_status:
+      raise device_errors.AdbShellCommandFailedError(
+          command, output, status=status, device_serial=self._device_serial)
     return output
 
   def IterShell(self, command, timeout):
@@ -877,14 +910,14 @@ class AdbWrapper(object):
         already being forwarded.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
+    Returns:
+      The output of the "adb forward" command as a string.
     """
     cmd = ['forward']
     if not allow_rebind:
       cmd.append('--no-rebind')
     cmd.extend([str(local), str(remote)])
-    output = self._RunDeviceAdbCmd(cmd, timeout, retries).strip()
-    if output:
-      logger.warning('Unexpected output from "adb forward": %s', output)
+    return self._RunDeviceAdbCmd(cmd, timeout, retries).strip()
 
   def ForwardRemove(self,
                     local,
@@ -897,7 +930,69 @@ class AdbWrapper(object):
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
     """
-    self._RunDeviceAdbCmd(['forward', '--remove', str(local)], timeout, retries)
+    output = self._RunDeviceAdbCmd(
+        ['forward', '--remove', str(local)], timeout, retries)
+    if output:
+      logger.warning('Unexpected output from "adb forward --remove": %s',
+                     output)
+
+  def Reverse(self,
+              remote,
+              local,
+              allow_rebind=False,
+              timeout=DEFAULT_TIMEOUT,
+              retries=DEFAULT_RETRIES):
+    """Forward socket connections from the remote socket to the local socket.
+
+    Sockets are specified by one of:
+      tcp:<port>
+      localabstract:<unix domain socket name>
+      localreserved:<unix domain socket name>
+      localfilesystem:<unix domain socket name>
+
+    Args:
+      remote: The device socket.
+      local: The host socket.
+      allow_rebind: A boolean indicating whether adb may rebind a remote socket;
+        otherwise, the default, an exception is raised if the remote socket is
+        already being forwarded.
+      timeout: (optional) Timeout per try in seconds.
+      retries: (optional) Number of retries to attempt.
+    Returns:
+      The output of the "adb reverse" command as a string.
+    Raises:
+      DeviceVersionError if the device SDK version does not support reverse
+        forwarding
+    """
+    self._CheckSdkVersion(version_codes.LOLLIPOP,
+                          error_message='Reverse forwarding is not supported')
+    cmd = ['reverse']
+    if not allow_rebind:
+      cmd.append('--no-rebind')
+    cmd.extend([str(remote), str(local)])
+    return self._RunDeviceAdbCmd(cmd, timeout, retries).strip()
+
+  def ReverseRemove(self,
+                    remote,
+                    timeout=DEFAULT_TIMEOUT,
+                    retries=DEFAULT_RETRIES):
+    """Remove a reverse forward socket connection.
+
+    Args:
+      local: The device socket.
+      timeout: (optional) Timeout per try in seconds.
+      retries: (optional) Number of retries to attempt.
+    Raises:
+      DeviceVersionError if the device SDK version does not support reverse
+        forwarding
+    """
+    self._CheckSdkVersion(version_codes.LOLLIPOP,
+                          error_message='Reverse forwarding is not supported')
+    output = self._RunDeviceAdbCmd(
+        ['reverse', '--remove', str(remote)], timeout, retries)
+    if output:
+      logger.warning('Unexpected output from "adb reverse --remove": %s',
+                     output)
 
   def ForwardList(self, timeout=DEFAULT_TIMEOUT, retries=DEFAULT_RETRIES):
     """List all currently forwarded socket connections.

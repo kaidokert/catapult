@@ -78,21 +78,19 @@ class RefreshJobsTest(test.TestCase):
     self.assertFalse(cancelled_job.running)
     self.assertEqual(cancelled_job.status, 'Cancelled')
 
-  def testGet_RetryLimit(self):
+  @mock.patch('dashboard.pinpoint.models.job.Job._Schedule')
+  @mock.patch('dashboard.pinpoint.models.job.Job.Fail')
+  def testGet_RetryLimit(self, mock_fail, mock_schedule):
     j1 = job_module.Job.New((), ())
     j1.task = '123'
     j1.started = True
     j1.put()
-    j1._Schedule = mock.MagicMock()
-    j1.Fail = mock.MagicMock()
 
     j2 = job_module.Job.New((), ())
     j2.task = '123'
     j2.started = True
     j2.updated = datetime.datetime.utcnow() - datetime.timedelta(hours=8)
     j2.put()
-    j2._Schedule = mock.MagicMock()
-    j2.Fail = mock.MagicMock()
 
     layered_cache.Set(refresh_jobs._JOB_CACHE_KEY % j2.job_id,
                       {'retries': refresh_jobs._JOB_MAX_RETRIES})
@@ -101,11 +99,8 @@ class RefreshJobsTest(test.TestCase):
 
     self.ExecuteDeferredTasks('default')
 
-    self.assertFalse(j1._Schedule.called)
-    self.assertFalse(j1.Fail.called)
-
-    self.assertFalse(j2._Schedule.called)
-    self.assertTrue(j2.Fail.called)
+    self.assertEqual(mock_schedule.call_count, 0)
+    self.assertEqual(mock_fail.call_count, 1)
 
   def testGet_OverRetryLimit(self):
     j1 = job_module.Job.New((), ())
