@@ -16,6 +16,24 @@
       "message": "Please take a look.\n\nI did not find usages of this library in catapult codebase (that should also explain why unit-tests do not see Py3-incompatibilities). Presumably it was added as part of BattOr(1) support.\n\nAt Yandex we still have power measurement devices and code to support them, so we will definitely benefit from these changes, this is why I decided to push them to upstream. You may, however, decide to drop the library altogether, in that case I should delete the code to prevent conflicts of fresh version in our fork with upstream.\n\n(1) https://cseweb.ucsd.edu/~schulman/docs/battor-tr.pdf",
       "revId": "8c4566eb98e06cbf4322811d9b16edf960391fc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c477e480_b53ec7ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-08-23T18:24:46Z",
+      "side": 1,
+      "message": "I\u0027m also not seeing any uses of pyserial in Catapult or Chromium as a whole, so I think removing this library entirely would be preferable.",
+      "parentUuid": "7071c0c0_b1205ed1",
+      "revId": "8c4566eb98e06cbf4322811d9b16edf960391fc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
