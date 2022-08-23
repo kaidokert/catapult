@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83c749cf_2fd7100c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-23T20:25:14Z",
+      "side": 1,
+      "message": "On staging, /alerts will load, but POST will not due to an error with sheriff_config [1]. It\u0027s unclear we could ever get this to work on staging.\n\n\n[1] https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-08-23T20:18:40.425310Z;query\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22leina-alerts4%22%0Aseverity%3DERROR%0Atimestamp%3D%222022-08-23T20:18:40.425310Z%22%0AinsertId%3D%2263053621000879fa6a773294%22;timeRange\u003dPT15M?project\u003dchromeperf-stage",
+      "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b1d298_d505d113",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-23T20:25:14Z",
+      "side": 1,
+      "message": "any style guidances here? I wrote it this way but not sure if there\u0027s a more readable or better way to write it.",
+      "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
