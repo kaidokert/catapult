@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebcdccfe_46c5eea1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-23T22:37:39Z",
+      "side": 1,
+      "message": "On staging, GET works [1]. Unable to test POST on staging, even on older builds that pre-date py3 migration [2]. \n\n[1] https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-08-23T22:24:59.238551Z;query\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22leina-site-config1%22%0A%22edit_site_config%22%0Atimestamp%3D%222022-08-23T22:24:59.238551Z%22%0AinsertId%3D%22630553bb0004c9073dbc6da8%22;timeRange\u003dPT15M?project\u003dchromeperf-stage\n\n[2] https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-08-23T22:11:05.034351Z;query\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0A%22edit_site_config%22%0Atimestamp%3D%222022-08-23T22:11:05.034351Z%22%0AinsertId%3D%226305507a0002f08e7e7a62d6%22;timeRange\u003dP7D?project\u003dchromeperf-stage",
+      "revId": "e4c81e5416cb549df292e50aaa9e26c1e18238a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d550f88_572e5323",
+        "filename": "dashboard/dashboard/edit_site_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-23T22:37:39Z",
+      "side": 1,
+      "message": "Added return statements here since flask is based on methods and not classes - not 100% sure if this is correct",
+      "revId": "e4c81e5416cb549df292e50aaa9e26c1e18238a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2893c120_85fe1c7a",
+        "filename": "dashboard/dashboard/edit_site_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-23T22:37:39Z",
+      "side": 1,
+      "message": "not sure if this requires any special treatment - I assume no, since it pertains to authentication",
+      "revId": "e4c81e5416cb549df292e50aaa9e26c1e18238a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
