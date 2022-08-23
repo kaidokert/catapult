@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4b3911_8cfe89d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-23T01:28:26Z",
+      "side": 1,
+      "message": "Here\u0027s what it looks like on staging - https://chromeperf-stage.uc.r.appspot.com/configs/update\n\nHere\u0027s what it looks like on production - https://cloud-build-e12cc61-dot-chromeperf.appspot.com/configs/update\n\nI\u0027m not sure I can get this to work without any type of user authentication. I tried to do user authentication via curl on production but that did not work. \n\nDespite that, I think this should work as intended - logging [1] suggests there are no major errors, just credential issues. \n\nAdvice for other types of testing I can do would be appreciated. \n\n[1] https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-08-23T01:13:00.582302Z;query\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22leina-config-update%22%0Atimestamp%3D%222022-08-23T01:13:00.582302Z%22%0AinsertId%3D%226304299c000e8f126d0b3a83%22;timeRange\u003dPT15M?project\u003dchromeperf-stage",
+      "revId": "434fabce7b9541fa5f23d10a181ea54fb79852e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
