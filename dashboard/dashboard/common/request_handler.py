@@ -41,15 +41,20 @@ if utils.IsRunningFlask():
       status: int. HTTP status code.
     """
     template = JINJA2_ENVIRONMENT.get_template(template_file)
-    RequestHandlerGetDynamicVariable(template_values)
+    RequestHandlerGetDynamicVariables(template_values)
     return make_response(template.render(template_values), status)
 
   def RequestHandlerRenderStaticHtml(filename):
     filename = os.path.join(_DASHBOARD_PYTHON_DIR, 'static', filename)
-    with open(filename, 'r', encoding='utf-8') as contents:
-      return make_response(contents.read())
+    try:
+      with open(filename, 'r', encoding='utf-8') as contents:
+        return make_response(contents.read())
+    except TypeError:
+      # Running in py2 runtime, encoding not a valid argument
+      with open(filename, 'r') as contents:
+        return make_response(contents.read())
 
-  def RequestHandlerGetDynamicVariable(template_values, request_path=None):
+  def RequestHandlerGetDynamicVariables(template_values, request_path=None):
     """Gets the values that vary for every page.
 
     Args:

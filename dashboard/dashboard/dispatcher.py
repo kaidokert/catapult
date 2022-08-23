@@ -9,11 +9,18 @@ from __future__ import absolute_import
 from dashboard.common import utils
 
 if utils.IsRunningFlask():
+  from dashboard import alerts
   from dashboard import main
   from dashboard import sheriff_config_poller
 
-  from flask import Flask
+  from flask import Flask, request
   APP = Flask(__name__)
+
+  @APP.route('/alerts', methods=['GET', 'POST'])
+  def AlertsHandler():
+    if request.method == 'GET':
+      return alerts.AlertsHandlerGet()
+    return alerts.AlertsHandlerPost()
 
   @APP.route('/')
   def MainHandlerGet():
