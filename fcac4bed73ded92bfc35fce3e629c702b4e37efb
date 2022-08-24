@@ -16,6 +16,172 @@
       "message": "Ping for this.\n\nLooks good on the CQ check\n\nhttps://chromium-review.googlesource.com/c/chromium/src/+/3823153",
       "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5f7eec_12accb01",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "Curious on other\u0027s thoughts: are we getting much out of this class being nested in AdbWrapper()?\n\nI think it\u0027s grown enough logic to warrant breaking out, since I find nesting classes only work if the inner classes are sufficiently small/lightweight.",
+      "range": {
+        "startLine": 190,
+        "startChar": 8,
+        "endLine": 190,
+        "endChar": 23
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc98380e_2819cc79",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "Is there harm in making this a required arg and getting rid of the optional None? Would prefer that if we can.",
+      "range": {
+        "startLine": 206,
+        "startChar": 31,
+        "endLine": 206,
+        "endChar": 44
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee0ec43c_f782a5a6",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "Prob worth checking self._process is not None here and throwing an exception if it is",
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b744efbe_9b0620a4",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "If a command\u0027s output is expected to have empty newlines interspersed, wouldn\u0027t this swallow it? Seems like it shouldn\u0027t do that?",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 20
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4924f78b_afd8e290",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "Can you add a docstring here briefly explaining when/why HardStop() would be used over Stop() ?",
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410df6d3_8e70e994",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "Should there be some cleanup of these fields (self._outq and self._reader_thread) in Stop() or HardStop() ? Maybe at least set them to None?",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 33
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be914ed_362af9e6",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "What does this 0.2 second duration represent? The maximum time we expect the shell to take to shutdown?",
+      "range": {
+        "startLine": 365,
+        "startChar": 49,
+        "endLine": 365,
+        "endChar": 60
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a70977_5ee31276",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 1527,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-08-24T00:16:30Z",
+      "side": 1,
+      "message": "Worth a docstring mentioning what the behavior around _persistent_shells is here",
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
