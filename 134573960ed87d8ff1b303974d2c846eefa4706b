@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3148444a_9655a7ce",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-24T16:46:07Z",
+      "side": 1,
+      "message": "I would avoid using try block to handle Python 2 vs Python 3. Suggest\n\nif sys.version_info.major \u003d\u003d 3:\n  python 3 code\nelse:\n  python 2 code",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 7
+      },
+      "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3b1d298_d505d113",
         "filename": "dashboard/dashboard/dispatcher.py",
         "patchSetId": 2
@@ -31,6 +54,24 @@
       "writtenOn": "2022-08-23T20:25:14Z",
       "side": 1,
       "message": "any style guidances here? I wrote it this way but not sure if there\u0027s a more readable or better way to write it.",
+      "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc274587_f60c2685",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-24T16:46:07Z",
+      "side": 1,
+      "message": "Suggestion:\n\n    @APP.route(\u0027/alerts\u0027, methods\u003d[\u0027GET\u0027])\n      def AlertsHandlerGet():\n        ...\n\n    @APP.route(\u0027/alerts\u0027, methods\u003d[\u0027POST\u0027])\n      def AlertsHandlerPost():\n        ...",
+      "parentUuid": "f3b1d298_d505d113",
       "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
