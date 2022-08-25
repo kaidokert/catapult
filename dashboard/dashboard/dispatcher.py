@@ -9,11 +9,20 @@ from __future__ import absolute_import
 from dashboard.common import utils
 
 if utils.IsRunningFlask():
+  from dashboard import edit_site_config
   from dashboard import main
   from dashboard import sheriff_config_poller
 
   from flask import Flask
   APP = Flask(__name__)
+
+  @APP.get('/edit_site_config')
+  def EditSiteConfigHandlerGet():
+    return edit_site_config.EditSiteConfigHandlerGet()
+
+  @APP.post('/edit_site_config')
+  def EditSiteConfigHandlerPost():
+    return edit_site_config.EditSiteConfigHandlerPost()
 
   @APP.route('/')
   def MainHandlerGet():
