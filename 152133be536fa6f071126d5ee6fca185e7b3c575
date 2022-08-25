@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "867868a3_54384d27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-25T18:51:23Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "152133be536fa6f071126d5ee6fca185e7b3c575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7c27de6_bd9a94cc",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-25T18:51:23Z",
+      "side": 1,
+      "message": "There turns out to be slightly more compact way. You can use @APP.get and @APP.post instead. See https://flask.palletsprojects.com/en/2.2.x/quickstart/#http-methods for an example. What you have works as well.",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "152133be536fa6f071126d5ee6fca185e7b3c575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
