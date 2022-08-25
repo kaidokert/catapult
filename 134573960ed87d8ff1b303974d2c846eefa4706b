@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a757b743_14f9ce9a",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-25T00:03:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3148444a_9655a7ce",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 7
+      },
+      "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3b1d298_d505d113",
@@ -72,6 +96,24 @@
       "side": 1,
       "message": "Suggestion:\n\n    @APP.route(\u0027/alerts\u0027, methods\u003d[\u0027GET\u0027])\n      def AlertsHandlerGet():\n        ...\n\n    @APP.route(\u0027/alerts\u0027, methods\u003d[\u0027POST\u0027])\n      def AlertsHandlerPost():\n        ...",
       "parentUuid": "f3b1d298_d505d113",
+      "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ece92b_9cef9894",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-25T00:03:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc274587_f60c2685",
       "revId": "134573960ed87d8ff1b303974d2c846eefa4706b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
