@@ -39,6 +39,30 @@
       },
       "revId": "152133be536fa6f071126d5ee6fca185e7b3c575",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29d9fde9_77a44925",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-25T21:42:00Z",
+      "side": 1,
+      "message": "I tried this revision, but it didn\u0027t work on staging. It\u0027s possible that we\u0027re not using the most up to date version of Flask. I\u0027m going to go with the old approach since it works.",
+      "parentUuid": "a7c27de6_bd9a94cc",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "152133be536fa6f071126d5ee6fca185e7b3c575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
