@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7eebc0c_509b8815",
+        "filename": "devil/devil/android/sdk/adb_compatibility_devicetest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-25T23:25:28Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 20
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c5f7eec_12accb01",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 24
@@ -31,6 +54,30 @@
       "writtenOn": "2022-08-24T00:16:30Z",
       "side": 1,
       "message": "Curious on other\u0027s thoughts: are we getting much out of this class being nested in AdbWrapper()?\n\nI think it\u0027s grown enough logic to warrant breaking out, since I find nesting classes only work if the inner classes are sufficiently small/lightweight.",
+      "range": {
+        "startLine": 190,
+        "startChar": 8,
+        "endLine": 190,
+        "endChar": 23
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83542168_ece5a31b",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-25T23:25:28Z",
+      "side": 1,
+      "message": "I\u0027m fine either way.",
+      "parentUuid": "2c5f7eec_12accb01",
       "range": {
         "startLine": 190,
         "startChar": 8,
@@ -180,6 +227,52 @@
       "writtenOn": "2022-08-24T00:16:30Z",
       "side": 1,
       "message": "Worth a docstring mentioning what the behavior around _persistent_shells is here",
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883f014c_eea51112",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-25T23:25:28Z",
+      "side": 1,
+      "message": "Is this necessary?",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 36
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1310d667_d25844ca",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-08-25T23:25:28Z",
+      "side": 1,
+      "message": "suggestion: this can also be changed into `for count in range(30):`",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 230,
+        "endChar": 15
+      },
       "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
