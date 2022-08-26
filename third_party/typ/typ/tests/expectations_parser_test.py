@@ -504,38 +504,44 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '[ linux ] b1/s3 [ Failure ]\n'
             'crbug.com/2431 [ linux ] b1/s2 [ Failure RetryOnFailure ] # c1\n'
             'crbug.com/2432 [ linux ] b1/s* [ Failure Slow ]\n')
-        raw_data2 = (
-            '# tags: [ Intel ]\n'
-            '# results: [ Pass RetryOnFailure ]\n'
-            '[ intel ] b1/s1 [ RetryOnFailure ]\n'
-            'crbug.com/2432 [ intel ] b1/s2 [ Pass ] # c2\n'
-            'crbug.com/2431 [ intel ] b1/s* [ RetryOnFailure ]\n')
-        test_exp1 = expectations_parser.TestExpectations(['Linux'])
+        raw_data2 = ('# tags: [ intel ]\n'
+                     '# results: [ Pass RetryOnFailure ]\n'
+                     '[ intel ] b1/s1 [ RetryOnFailure ]\n'
+                     'crbug.com/2432 [ intel ] b1/s2 [ Pass ] # c2\n'
+                     'crbug.com/2431 [ intel ] b1/s* [ RetryOnFailure ]\n')
+        test_exp1 = expectations_parser.TestExpectations(['linux'])
         ret, _ = test_exp1.parse_tagged_list(raw_data1)
         self.assertEqual(ret, 0)
-        test_exp2 = expectations_parser.TestExpectations(['Intel'])
+        test_exp2 = expectations_parser.TestExpectations(['intel'])
         ret, _ = test_exp2.parse_tagged_list(raw_data2)
         self.assertEqual(ret, 0)
         test_exp1.merge_test_expectations(test_exp2)
         self.assertEqual(sorted(test_exp1.tags), ['intel', 'linux'])
-        self.assertEqual(test_exp1.expectations_for('b1/s2'),
-                         Expectation(
-                             test='b1/s2',
-                             results={ResultType.Pass, ResultType.Failure},
-                             retry_on_failure=True, is_slow_test=False,
-                             reason='crbug.com/2431 crbug.com/2432',
-                             trailing_comments=' # c1\n # c2\n',
-                             tags={'linux', 'intel'}))
-        self.assertEqual(test_exp1.expectations_for('b1/s1'),
-                         Expectation(
-                             test='b1/s1', results={ResultType.Pass},
-                             retry_on_failure=True, is_slow_test=False,
-                             tags={'intel'}))
-        self.assertEqual(test_exp1.expectations_for('b1/s3'),
-                         Expectation(
-                             test='b1/s3', results={ResultType.Failure},
-                             retry_on_failure=False, is_slow_test=False,
-                             tags={'linux'}))
+        self.assertEqual(
+            test_exp1.expectations_for('b1/s2'),
+            Expectation(test='b1/s2',
+                        results={ResultType.Pass, ResultType.Failure},
+                        retry_on_failure=True,
+                        is_slow_test=False,
+                        reason='crbug.com/2431 crbug.com/2432',
+                        trailing_comments=' # c1\n # c2',
+                        tags={'linux', 'intel'}))
+        self.assertEqual(
+            test_exp1.expectations_for('b1/s1'),
+            Expectation(test='b1/s1',
+                        results={ResultType.Pass},
+                        retry_on_failure=True,
+                        is_slow_test=False,
+                        reason='crbug.com/2431',
+                        tags={'intel'}))
+        self.assertEqual(
+            test_exp1.expectations_for('b1/s3'),
+            Expectation(test='b1/s3',
+                        results={ResultType.Failure},
+                        retry_on_failure=True,
+                        is_slow_test=False,
+                        reason='crbug.com/2431',
+                        tags={'linux', 'intel'}))
         self.assertEqual(test_exp1.expectations_for('b1/s5'),
                          Expectation(
                              test='b1/s5', results={ResultType.Failure},
@@ -550,12 +556,11 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '[ linux ] b1/s3 [ Failure ]\n'
             'crbug.com/2431 [ linux ] b1/s2 [ Failure RetryOnFailure ]\n'
             'crbug.com/2432 [ linux ] b1/s* [ Failure ]\n')
-        raw_data2 = (
-            '# tags: [ Intel ]\n'
-            '# results: [ Pass RetryOnFailure Slow ]\n'
-            '[ intel ] b1/s1 [ RetryOnFailure ]\n'
-            'crbug.com/2432 [ intel ] b1/s2 [ Pass Slow ]\n'
-            'crbug.com/2431 [ intel ] b1/s* [ RetryOnFailure ]\n')
+        raw_data2 = ('# tags: [ intel ]\n'
+                     '# results: [ Pass RetryOnFailure Slow ]\n'
+                     '[ intel ] b1/s1 [ RetryOnFailure ]\n'
+                     'crbug.com/2432 [ intel ] b1/s2 [ Pass Slow ]\n'
+                     'crbug.com/2431 [ intel ] b1/s* [ RetryOnFailure ]\n')
         raw_data3 = (
             '# tags: [ linux ]\n'
             '# results: [ Failure RetryOnFailure Slow ]\n'
@@ -574,20 +579,22 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                              conflict_resolution=ConflictResolutionTypes.UNION
                          ))
 
-        test_exp2 = expectations_parser.TestExpectations(['Intel'])
+        test_exp2 = expectations_parser.TestExpectations(['intel'])
         ret, _ = test_exp2.parse_tagged_list(
             raw_data2,
             conflict_resolution = ConflictResolutionTypes.OVERRIDE)
         self.assertEqual(ret, 0)
-        self.assertEqual(test_exp2.expectations_for('b1/s2'),
-                         Expectation(
-                             test='b1/s2', results={ResultType.Pass},
-                             retry_on_failure=False, is_slow_test=True,
-                             reason='crbug.com/2432', tags={'intel'},
-                             conflict_resolution=ConflictResolutionTypes.OVERRIDE
-                         ))
+        self.assertEqual(
+            test_exp2.expectations_for('b1/s2'),
+            Expectation(test='b1/s2',
+                        results={ResultType.Pass},
+                        retry_on_failure=True,
+                        is_slow_test=True,
+                        reason='crbug.com/2431 crbug.com/2432',
+                        tags={'intel'},
+                        conflict_resolution=ConflictResolutionTypes.OVERRIDE))
 
-        test_exp3 = expectations_parser.TestExpectations(['Linux'])
+        test_exp3 = expectations_parser.TestExpectations(['linux'])
         ret, _ = test_exp3.parse_tagged_list(raw_data3)
         self.assertEqual(ret, 0)
         self.assertEqual(test_exp3.expectations_for('b1/s2'),
@@ -605,34 +612,44 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '[ linux ] b1/s3 [ Failure ]\n'
             'crbug.com/2431 [ linux ] b1/s2 [ Failure RetryOnFailure ]\n'
             'crbug.com/2432 [ linux ] b1/s* [ Failure ]\n')
-        raw_data2 = (
-            '# tags: [ Intel ]\n'
-            '# results: [ Pass RetryOnFailure Slow ]\n'
-            '[ intel ] b1/s1 [ RetryOnFailure ]\n'
-            'crbug.com/2432 [ intel ] b1/s2 [ Pass Slow ]\n'
-            'crbug.com/2431 [ intel ] b1/s* [ RetryOnFailure ]\n')
-        test_exp1 = expectations_parser.TestExpectations(['Linux'])
+        raw_data2 = ('# tags: [ intel ]\n'
+                     '# results: [ Pass RetryOnFailure Slow ]\n'
+                     '[ intel ] b1/s1 [ RetryOnFailure ]\n'
+                     'crbug.com/2432 [ intel ] b1/s2 [ Pass Slow ]\n'
+                     'crbug.com/2431 [ intel ] b1/s* [ RetryOnFailure ]\n')
+        test_exp1 = expectations_parser.TestExpectations(['linux'])
         ret, _ = test_exp1.parse_tagged_list(raw_data1)
         self.assertEqual(ret, 0)
-        test_exp2 = expectations_parser.TestExpectations(['Intel'])
+        test_exp2 = expectations_parser.TestExpectations(['intel'])
         ret, _ = test_exp2.parse_tagged_list(
             raw_data2, conflict_resolution=ConflictResolutionTypes.OVERRIDE)
         self.assertEqual(ret, 0)
         test_exp1.merge_test_expectations(test_exp2)
         self.assertEqual(sorted(test_exp1.tags), ['intel', 'linux'])
-        self.assertEqual(test_exp1.expectations_for('b1/s2'),
-                         Expectation(
-                             test='b1/s2', results={ResultType.Pass},
-                             retry_on_failure=False, is_slow_test=True,
-                             reason='crbug.com/2432', tags={'intel'}))
-        self.assertEqual(test_exp1.expectations_for('b1/s1'),
-                         Expectation(test='b1/s1', results={ResultType.Pass},
-                                     retry_on_failure=True, is_slow_test=False,
-                                     tags={'intel'}))
-        self.assertEqual(test_exp1.expectations_for('b1/s3'),
-                         Expectation(test='b1/s3', results={ResultType.Failure},
-                                     retry_on_failure=False, is_slow_test=False,
-                                     tags={'linux'}))
+        self.assertEqual(
+            test_exp1.expectations_for('b1/s2'),
+            Expectation(test='b1/s2',
+                        results={ResultType.Pass},
+                        retry_on_failure=True,
+                        is_slow_test=True,
+                        reason='crbug.com/2431 crbug.com/2432',
+                        tags={'intel'}))
+        self.assertEqual(
+            test_exp1.expectations_for('b1/s1'),
+            Expectation(test='b1/s1',
+                        results={ResultType.Pass},
+                        retry_on_failure=True,
+                        is_slow_test=False,
+                        reason='crbug.com/2431',
+                        tags={'intel'}))
+        self.assertEqual(
+            test_exp1.expectations_for('b1/s3'),
+            Expectation(test='b1/s3',
+                        results={ResultType.Failure},
+                        retry_on_failure=True,
+                        is_slow_test=False,
+                        reason='crbug.com/2431',
+                        tags={'linux', 'intel'}))
         self.assertEqual(test_exp1.expectations_for('b1/s5'),
                          Expectation(test='b1/s5', results={ResultType.Pass},
                                      retry_on_failure=True, is_slow_test=False,
