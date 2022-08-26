@@ -13,6 +13,7 @@ if utils.IsRunningFlask():
   from dashboard import main
   from dashboard import navbar
   from dashboard import sheriff_config_poller
+  from dashboard import short_uri
 
   from flask import Flask
   APP = Flask(__name__)
@@ -36,6 +37,14 @@ if utils.IsRunningFlask():
   @APP.route('/configs/update')
   def SheriffConfigPollerGet():
     return sheriff_config_poller.SheriffConfigPollerGet()
+
+  @APP.route('/short_uri', methods=['GET'])
+  def ShortUriHandlerGet():
+    return short_uri.ShortUriHandlerGet()
+
+  @APP.route('/short_uri', methods=['POST'])
+  def ShortUriHandlerPost():
+    return short_uri.ShortUriHandlerPost()
 
 else:
   import gae_ts_mon

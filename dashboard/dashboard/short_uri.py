@@ -15,28 +15,31 @@ from dashboard import list_tests
 from dashboard.common import descriptor
 from dashboard.common import request_handler
 from dashboard.common import datastore_hooks
+from dashboard.common import utils
 from dashboard.models import page_state
 
 
-class ShortUriHandler(request_handler.RequestHandler):
+if utils.IsRunningFlask():
+  from flask import make_response, request
   """Handles short URI."""
 
-  def get(self):
+  def ShortUriHandlerGet():
     """Handles getting page states."""
-    state_id = self.request.get('sid')
+    state_id = request.args.get('sid')
 
     if not state_id:
-      self.ReportError('Missing required parameters.', status=400)
+      request_handler.RequestHandlerReportError(
+          'Missing required parameters.', status=400)
       return
 
     state = ndb.Key(page_state.PageState, state_id).get()
 
     if not state:
-      self.ReportError('Invalid sid.', status=400)
+      request_handler.RequestHandlerReportError('Invalid sid.', status=400)
       return
 
-    if self.request.get('v2', None) is None:
-      self.response.out.write(state.value)
+    if request.args.get('v2', None) is None:
+      make_response(state.value)
       return
 
     if state.value_v2 is None:
@@ -47,20 +50,67 @@ class ShortUriHandler(request_handler.RequestHandler):
       # store it.
       if datastore_hooks.IsUnalteredQueryPermitted():
         state.put()
-    self.response.out.write(state.value_v2)
+    return make_response(state.value_v2)
 
-  def post(self):
+  def ShortUriHandlerPost(self):
     """Handles saving page states and getting state id."""
 
-    state = self.request.get('page_state')
+    state = request.args.get('page_state')
 
     if not state:
-      self.ReportError('Missing required parameters.', status=400)
+      request_handler.RequestHandlerReportError(
+          'Missing required parameters.', status=400)
       return
 
     state_id = GetOrCreatePageState(state)
 
-    self.response.out.write(json.dumps({'sid': state_id}))
+    return make_response(json.dumps({'sid': state_id}))
+
+else:
+
+  class ShortUriHandler(request_handler.RequestHandler):
+    """Handles short URI."""
+
+    def get(self):
+      """Handles getting page states."""
+      state_id = self.request.get('sid')
+
+      if not state_id:
+        self.ReportError('Missing required parameters.', status=400)
+        return
+
+      state = ndb.Key(page_state.PageState, state_id).get()
+
+      if not state:
+        self.ReportError('Invalid sid.', status=400)
+        return
+
+      if self.request.get('v2', None) is None:
+        self.response.out.write(state.value)
+        return
+
+      if state.value_v2 is None:
+        state.value_v2 = _Upgrade(state.value)
+        # If the user is not signed in, then they won't be able to see
+        # internal_only TestMetadata, so value_v2 will be incomplete.
+        # If the user is signed in, then value_v2 is complete, so it's safe to
+        # store it.
+        if datastore_hooks.IsUnalteredQueryPermitted():
+          state.put()
+      self.response.out.write(state.value_v2)
+
+    def post(self):
+      """Handles saving page states and getting state id."""
+
+      state = self.request.get('page_state')
+
+      if not state:
+        self.ReportError('Missing required parameters.', status=400)
+        return
+
+      state_id = GetOrCreatePageState(state)
+
+      self.response.out.write(json.dumps({'sid': state_id}))
 
 
 def GetOrCreatePageState(state):
