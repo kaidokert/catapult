@@ -9,17 +9,19 @@ from __future__ import absolute_import
 import json
 
 from dashboard.common import request_handler
+from dashboard.common import utils
 from dashboard.common import xsrf
 from dashboard.models import bug_label_patterns
 
 
-class EditBugLabelsHandler(request_handler.RequestHandler):
-  """Handles editing the info about perf sheriff rotations."""
+if utils.IsRunningFlask():
+  # Handles editing the info about perf sheriff rotations.
+  from flask import request
 
-  def get(self):
+  def EditBugLabelsGet():
     """Renders the UI with all of the forms."""
     patterns_dict = bug_label_patterns.GetBugLabelPatterns()
-    self.RenderHtml(
+    return request_handler.RequestHandlerRenderHtml(
         'edit_bug_labels.html', {
             'bug_labels':
                 sorted(patterns_dict),
@@ -28,30 +30,30 @@ class EditBugLabelsHandler(request_handler.RequestHandler):
         })
 
   @xsrf.TokenRequired
-  def post(self):
+  def EditBugLabelsPost():
     """Updates the sheriff configurations.
 
     Each form on the edit sheriffs page has a hidden field called action, which
     tells us which form was submitted. The other particular parameters that are
     expected depend on which form was submitted.
     """
-    action = self.request.get('action')
+    action = request.args.get('action')
     if action == 'add_buglabel_pattern':
-      self._AddBuglabelPattern()
+      return _AddBuglabelPattern()
     if action == 'remove_buglabel_pattern':
-      self._RemoveBuglabelPattern()
+      return _RemoveBuglabelPattern()
 
-  def _AddBuglabelPattern(self):
+  def _AddBuglabelPattern():
     """Adds a bug label to be added to a group of tests.
 
     Request parameters:
       buglabel_to_add: The bug label, which is a BugLabelPattern entity name.
       pattern: A test path pattern.
     """
-    label = self.request.get('buglabel_to_add')
-    pattern = self.request.get('pattern')
+    label = request.args.get('buglabel_to_add')
+    pattern = request.args.get('pattern')
     bug_label_patterns.AddBugLabelPattern(label, pattern)
-    self.RenderHtml(
+    return request_handler.RequestHandlerRenderHtml(
         'result.html', {
             'headline': 'Added label %s' % label,
             'results': [{
@@ -60,13 +62,73 @@ class EditBugLabelsHandler(request_handler.RequestHandler):
             }]
         })
 
-  def _RemoveBuglabelPattern(self):
+  def _RemoveBuglabelPattern():
     """Removes a BugLabelPattern so that the label no longer applies.
 
     Request parameters:
       buglabel_to_remove: The bug label, which is the name of a
       BugLabelPattern entity.
     """
-    label = self.request.get('buglabel_to_remove')
+    label = request.args.get('buglabel_to_remove')
     bug_label_patterns.RemoveBugLabel(label)
-    self.RenderHtml('result.html', {'headline': 'Deleted label %s' % label})
+    return request_handler.RequestHandlerRenderHtml('result.html', {'headline': 'Deleted label %s' % label})
+
+
+else:
+  class EditBugLabelsHandler(request_handler.RequestHandler):
+    """Handles editing the info about perf sheriff rotations."""
+
+    def get(self):
+      """Renders the UI with all of the forms."""
+      patterns_dict = bug_label_patterns.GetBugLabelPatterns()
+      self.RenderHtml(
+          'edit_bug_labels.html', {
+              'bug_labels':
+                  sorted(patterns_dict),
+              'bug_labels_json':
+                  json.dumps(patterns_dict, indent=2, sort_keys=True)
+          })
+
+    @xsrf.TokenRequired
+    def post(self):
+      """Updates the sheriff configurations.
+
+      Each form on the edit sheriffs page has a hidden field called action, which
+      tells us which form was submitted. The other particular parameters that are
+      expected depend on which form was submitted.
+      """
+      action = self.request.get('action')
+      if action == 'add_buglabel_pattern':
+        self._AddBuglabelPattern()
+      if action == 'remove_buglabel_pattern':
+        self._RemoveBuglabelPattern()
+
+    def _AddBuglabelPattern(self):
+      """Adds a bug label to be added to a group of tests.
+
+      Request parameters:
+        buglabel_to_add: The bug label, which is a BugLabelPattern entity name.
+        pattern: A test path pattern.
+      """
+      label = self.request.get('buglabel_to_add')
+      pattern = self.request.get('pattern')
+      bug_label_patterns.AddBugLabelPattern(label, pattern)
+      self.RenderHtml(
+          'result.html', {
+              'headline': 'Added label %s' % label,
+              'results': [{
+                  'name': 'Pattern',
+                  'value': pattern
+              }]
+          })
+
+    def _RemoveBuglabelPattern(self):
+      """Removes a BugLabelPattern so that the label no longer applies.
+
+      Request parameters:
+        buglabel_to_remove: The bug label, which is the name of a
+        BugLabelPattern entity.
+      """
+      label = self.request.get('buglabel_to_remove')
+      bug_label_patterns.RemoveBugLabel(label)
+      self.RenderHtml('result.html', {'headline': 'Deleted label %s' % label})

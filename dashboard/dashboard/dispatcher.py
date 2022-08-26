@@ -10,6 +10,7 @@ from dashboard.common import utils
 
 if utils.IsRunningFlask():
   from dashboard import alerts
+  from dashboard import edit_bug_labels
   from dashboard import edit_site_config
   from dashboard import main
   from dashboard import navbar
@@ -25,6 +26,14 @@ if utils.IsRunningFlask():
   @APP.route('/alerts', methods=['POST'])
   def AlertsHandlerPost():
     return alerts.AlertsHandlerPost()
+  
+  @APP.route('/edit_bug_labels', methods=['GET'])
+  def EditBugLabelsGet():
+    return edit_bug_labels.EditBugLabelsGet()
+
+  @APP.route('/edit_bug_labels', methods=['POST'])
+  def EditBugLabelsPost():
+    return edit_bug_labels.EditBugLabelsPost()
 
   @APP.route('/edit_site_config', methods=['GET'])
   def EditSiteConfigHandlerGet():
