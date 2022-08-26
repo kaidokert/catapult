@@ -393,7 +393,7 @@ class TaggedTestListParser(object):
                          'part of the same tag set')
             tags_by_tag_set_id = defaultdict(list)
             for t in tags:
-              tags_by_tag_set_id[self._tag_to_tag_set[t]].append(t)
+                tags_by_tag_set_id[self._tag_to_tag_set[t]].append(t)
             for tag_intersection in tags_by_tag_set_id.values():
                 error_msg += ('\n  - Tags %s are part of the same tag set' %
                               _group_to_string(sorted(tag_intersection)))
@@ -452,6 +452,7 @@ class TestExpectations(object):
         self.individual_exps = OrderedDict()
         self.glob_exps = OrderedDict()
         self._tags_conflict = _default_tags_conflict
+        self._conflicts_allowed = False
         self._conflict_resolution = ConflictResolutionTypes.UNION
 
     def set_tags(self, tags, raise_ex_for_bad_tags=False):
@@ -510,8 +511,9 @@ class TestExpectations(object):
         # self.set_tags().
         self.tag_sets = parser.tag_sets
         self._tags_conflict = tags_conflict
-        # Conflict resolution tag in raw data will take precedence
+        # Conflict resolution and alloweness tags in raw data take precedence
         self._conflict_resolution = parser.conflict_resolution
+        self._conflicts_allowed = parser.conflicts_allowed
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
@@ -530,7 +532,7 @@ class TestExpectations(object):
             self.glob_exps.setdefault(exp.test, []).append(exp)
 
         errors = ''
-        if not parser.conflicts_allowed:
+        if not self._conflicts_allowed:
             errors = self.check_test_expectations_patterns_for_conflicts()
             ret = 1 if errors else 0
         return ret, errors
@@ -561,16 +563,20 @@ class TestExpectations(object):
         #  [ Mac ] TestFoo.test_bar [ Skip ]
         #  [ Debug Win ] TestFoo.test_bar [ Pass Failure ]
         #
-        # To determine the expected results for a test, we have to loop over
-        # all of the failures matching a test, find the ones whose tags are
-        # a subset of the ones in effect, and  return the union of all of the
-        # results. For example, if the runner is running with {Debug, Mac, Mac10.12}
-        # then lines with no tags, {Mac}, or {Debug, Mac} would all match, but
-        # {Debug, Win} would not. We also have to set the should_retry_on_failure
-        # boolean variable to True if any of the expectations have the
-        # should_retry_on_failure flag set to true
+        # Note that there are two categories of expected results: 'result' and
+        # 'attribute'. Results encompass the types defined in RESULT_TAGS while
+        # attributes encompass things like 'Slow' and 'RetryOnFailure'.
         #
-        # The longest matching test string (name or glob) has priority.
+        # To determine the expected results for a test, we have to loop over
+        # all of the expectations matching a test, find the ones whose tags are
+        # a subset of the ones in effect, and return the union of all result
+        # attributes while using the conflict resolution type to resolve the result.
+        # For example, for the tags, if the runner is running with
+        # {Debug, Mac, Mac10.12} then lines with no tags, {Mac}, or {Debug, Mac}
+        # would all match, but {Debug, Win} would not.
+        #
+        # The longest matching test string (name or glob) has priority for the
+        # result.
 
         # Ensure that the given test name is in the same decoded format that
         # is used internally so that %20 is handled properly.
@@ -580,59 +586,72 @@ class TestExpectations(object):
         self._exp_tags = set()
         self._should_retry_on_failure = False
         self._is_slow_test = False
-        self._trailing_comments = str()
+        self._trailing_comments = set()
+        self._matched = False
+
+        def _update_expected_attributes(exp):
+            # Updates the attributes for the test expectation, i.e. [ Slow ] or
+            # [ RetryOnFailure ]. This should be ran for every single matching
+            # expectation as long as the expectation doesn't have results
+            # specified. This allows bubbling down of attributes with globs.
+            if exp.tags.issubset(self._tags):
+                self._should_retry_on_failure |= exp.should_retry_on_failure
+                self._is_slow_test |= exp.is_slow_test
+                self._exp_tags.update(exp.tags)
+                if exp.trailing_comments:
+                    self._trailing_comments.update([exp.trailing_comments])
+                if exp.reason:
+                    self._reasons.update([exp.reason])
 
         def _update_expected_results(exp):
             if exp.tags.issubset(self._tags):
                 if exp.conflict_resolution == ConflictResolutionTypes.UNION:
                     if not exp.is_default_pass:
                         self._results.update(exp.results)
-                    self._should_retry_on_failure |= exp.should_retry_on_failure
-                    self._is_slow_test |= exp.is_slow_test
                     self._exp_tags.update(exp.tags)
                     if exp.trailing_comments:
-                        self._trailing_comments += exp.trailing_comments + '\n'
+                        self._trailing_comments.update([exp.trailing_comments])
                     if exp.reason:
                         self._reasons.update([exp.reason])
-                else:
+                elif exp.conflict_resolution == ConflictResolutionTypes.OVERRIDE:
                     self._results = set(exp.results)
-                    self._should_retry_on_failure = exp.should_retry_on_failure
-                    self._is_slow_test = exp.is_slow_test
                     self._exp_tags = set(exp.tags)
-                    self._trailing_comments = exp.trailing_comments
-                    if exp.reason:
-                        self._reasons = {exp.reason}
+                    self._trailing_comments = {
+                        exp.trailing_comments
+                    } if exp.trailing_comments else set()
+                    self._reasons = {exp.reason} if exp.reason else set()
+                _update_expected_attributes(exp)
+                return True
+            return False
 
         # First, check for an exact match on the test name.
         for exp in self.individual_exps.get(test, []):
-            _update_expected_results(exp)
+            self._matched |= _update_expected_results(exp)
 
-        if self._results or self._is_slow_test or self._should_retry_on_failure:
-            return Expectation(
-                    test=test, results=self._results, tags=self._exp_tags,
-                    retry_on_failure=self._should_retry_on_failure,
-                    conflict_resolution=self._conflict_resolution,
-                    is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
-                    trailing_comments=self._trailing_comments)
-
-        # If we didn't find an exact match, check for matching globs. Match by
-        # the most specific (i.e., longest) glob first. Because self.globs_exps
-        # is ordered by length, this is a simple linear search
+        # Check for matching globs. Match by the most specific (i.e., longest)
+        # glob first. Because self.globs_exps is ordered by length, this is a
+        # simple linear search
         for glob, exps in self.glob_exps.items():
             glob = glob[:-1]
             if test.startswith(glob):
+                matched = False
                 for exp in exps:
-                    _update_expected_results(exp)
-                # if *any* of the exps matched, results will be non-empty,
-                # and we're done. If not, keep looking through ever-shorter
-                # globs.
-                if self._results or self._is_slow_test or self._should_retry_on_failure:
-                    return Expectation(
-                            test=test, results=self._results, tags=self._exp_tags,
-                            retry_on_failure=self._should_retry_on_failure,
-                            conflict_resolution=self._conflict_resolution,
-                            is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
-                            trailing_comments=self._trailing_comments)
+                    if not self._matched:
+                        matched |= _update_expected_results(exp)
+                    if exp.is_default_pass:
+                        _update_expected_attributes(exp)
+                self._matched |= matched
+
+        if self._matched:
+            return Expectation(test=test,
+                               results=self._results,
+                               tags=self._exp_tags,
+                               retry_on_failure=self._should_retry_on_failure,
+                               conflict_resolution=self._conflict_resolution,
+                               is_slow_test=self._is_slow_test,
+                               reason=' '.join(sorted(self._reasons)),
+                               trailing_comments='\n'.join(
+                                   self._trailing_comments))
 
         # Nothing matched, so by default, the test is expected to pass.
         return Expectation(test=test)
@@ -657,6 +676,8 @@ class TestExpectations(object):
         # which might look like [ win linux]. A test expectation that has the
         # linux tag will not conflict with an expectation that has the win tag.
         error_msg = ''
+        if self._conflicts_allowed:
+            return error_msg
         patterns_to_exps = dict(self.individual_exps)
         patterns_to_exps.update(self.glob_exps)
         for pattern, exps in patterns_to_exps.items():
@@ -714,12 +735,12 @@ class TestExpectations(object):
         return broken_exps + broken_glob_exps
 
 def uri_encode_spaces(s):
-  s = s.replace('%', '%25')
-  s = s.replace(' ', '%20')
-  return s
+    s = s.replace('%', '%25')
+    s = s.replace(' ', '%20')
+    return s
 
 
 def uri_decode_spaces(s):
-  s = s.replace('%20', ' ')
-  s = s.replace('%25', '%')
-  return s
+    s = s.replace('%20', ' ')
+    s = s.replace('%25', '%')
+    return s
