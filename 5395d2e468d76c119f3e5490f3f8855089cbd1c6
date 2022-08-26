@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3fcdb45_e5bfd75e",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-26T18:51:52Z",
+      "side": 1,
+      "message": "I don\u0027t know what to do here\n\neverything I found requires a make_response first\n\nhttps://stackoverflow.com/questions/29464276/add-response-headers-to-flask-web-app\nhttps://stackoverflow.com/questions/25860304/how-do-i-set-response-headers-in-flask",
+      "revId": "5395d2e468d76c119f3e5490f3f8855089cbd1c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
