@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553e629b_0d220ed0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-26T23:01:34Z",
+      "side": 1,
+      "message": "GET works on staging\n\nPOST does not because I\u0027m unable to pass the token in staging\nlog: https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-08-26T22:57:38.029930Z;query\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22leina-bug-labels2%22%0Atimestamp%3D%222022-08-26T22:57:38.029930Z%22%0AinsertId%3D%2263094fe20003142ba8492df6%22;timeRange\u003dPT15M?project\u003dchromeperf-stage",
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10fffa1e_2dcd9c30",
+        "filename": "dashboard/dashboard/edit_bug_labels.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-26T23:01:34Z",
+      "side": 1,
+      "message": "not sure how to guarantee this in staging",
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
