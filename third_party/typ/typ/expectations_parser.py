@@ -563,7 +563,7 @@ class TestExpectations(object):
         #
         # To determine the expected results for a test, we have to loop over
         # all of the failures matching a test, find the ones whose tags are
-        # a subset of the ones in effect, and  return the union of all of the
+        # a subset of the ones in effect, and return the union of all of the
         # results. For example, if the runner is running with {Debug, Mac, Mac10.12}
         # then lines with no tags, {Mac}, or {Debug, Mac} would all match, but
         # {Debug, Win} would not. We also have to set the should_retry_on_failure
@@ -607,17 +607,8 @@ class TestExpectations(object):
         for exp in self.individual_exps.get(test, []):
             _update_expected_results(exp)
 
-        if self._results or self._is_slow_test or self._should_retry_on_failure:
-            return Expectation(
-                    test=test, results=self._results, tags=self._exp_tags,
-                    retry_on_failure=self._should_retry_on_failure,
-                    conflict_resolution=self._conflict_resolution,
-                    is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
-                    trailing_comments=self._trailing_comments)
-
-        # If we didn't find an exact match, check for matching globs. Match by
-        # the most specific (i.e., longest) glob first. Because self.globs_exps
-        # is ordered by length, this is a simple linear search
+        # Check for matching globs. Match by the most specific (i.e., longest) glob first. Because
+        # self.globs_exps is ordered by length, this is a simple linear search
         for glob, exps in self.glob_exps.items():
             glob = glob[:-1]
             if test.startswith(glob):
@@ -633,6 +624,14 @@ class TestExpectations(object):
                             conflict_resolution=self._conflict_resolution,
                             is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
                             trailing_comments=self._trailing_comments)
+
+        if self._results or self._is_slow_test or self._should_retry_on_failure:
+            return Expectation(
+                    test=test, results=self._results, tags=self._exp_tags,
+                    retry_on_failure=self._should_retry_on_failure,
+                    conflict_resolution=self._conflict_resolution,
+                    is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
+                    trailing_comments=self._trailing_comments)
 
         # Nothing matched, so by default, the test is expected to pass.
         return Expectation(test=test)
