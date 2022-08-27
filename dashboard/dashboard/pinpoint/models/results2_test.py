@@ -1290,6 +1290,7 @@ class _JobStateFake(object):
         for change, attempt_list in attempts.items() for attempt in attempt_list
     }
     logging.debug('JobStateFake = %s', self._attempts)
+    self.attempt_count = len(self._attempts)
 
   @property
   def _changes(self):
