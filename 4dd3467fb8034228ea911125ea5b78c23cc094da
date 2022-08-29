@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5709e26e_24c001b6",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2022-08-29T18:37:17Z",
+      "side": 1,
+      "message": "It could be placed inside the dims, test info. But the attempt_count is recalculated here: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job.py;l\u003d364,and it is different from the initial attempt as input.",
+      "parentUuid": "b874fc8f_99f0e0db",
+      "revId": "4dd3467fb8034228ea911125ea5b78c23cc094da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6702283e_b02c72c9",
         "filename": "dashboard/dashboard/proto/pinpoint_results.proto",
         "patchSetId": 6
