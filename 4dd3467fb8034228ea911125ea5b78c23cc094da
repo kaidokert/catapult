@@ -18,6 +18,40 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f4df37e_7a34ad1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-29T18:29:56Z",
+      "side": 1,
+      "message": "LGTM with a comment/question",
+      "revId": "4dd3467fb8034228ea911125ea5b78c23cc094da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b874fc8f_99f0e0db",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-29T18:29:56Z",
+      "side": 1,
+      "message": "any thoughts on placing this inside of dims, test info?",
+      "revId": "4dd3467fb8034228ea911125ea5b78c23cc094da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6702283e_b02c72c9",
