@@ -16,6 +16,80 @@
       "message": "PTAL",
       "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ff40db_47350cf4",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-08-29T23:07:07Z",
+      "side": 1,
+      "message": "spaces around the conditional, and single quotes for string literals:\n```\n...indexOf(\u0027Windows`) !\u003d -1) {\n```",
+      "range": {
+        "startLine": 189,
+        "startChar": 47,
+        "endLine": 189,
+        "endChar": 61
+      },
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa67593e_e46fd24e",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-08-29T23:07:07Z",
+      "side": 1,
+      "message": "one line:\n```\n} else {\n```",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "525e0f6e_2dcd1eb2",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-08-29T23:07:07Z",
+      "side": 1,
+      "message": "Is this the native built-in `alert` function that pops up a modal dialog? It may be excessive if that\u0027s the case. Users shouldn\u0027t have to click twice (once to copy, once to close the modal dialog).\n\nAlso, single quotes for strings here too, and below.",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfaf52f_43f9e7f8",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-08-29T23:07:07Z",
+      "side": 1,
+      "message": "is this return statement necessary?",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
