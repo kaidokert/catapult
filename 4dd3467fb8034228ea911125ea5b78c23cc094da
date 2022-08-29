@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43b1afc1_07f3d69b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-29T18:13:10Z",
+      "side": 1,
+      "message": "LGTM with a comment.",
+      "revId": "4dd3467fb8034228ea911125ea5b78c23cc094da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6702283e_b02c72c9",
+        "filename": "dashboard/dashboard/proto/pinpoint_results.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-08-29T18:13:10Z",
+      "side": 1,
+      "message": "Do we really need 64-bit int for this? (I\u0027m OK with it if our convention is to always use int64.)",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "4dd3467fb8034228ea911125ea5b78c23cc094da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
