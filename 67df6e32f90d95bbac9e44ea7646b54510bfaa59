@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f120d99_c13911c5",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-08-29T23:37:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35ff40db_47350cf4",
+      "range": {
+        "startLine": 189,
+        "startChar": 47,
+        "endLine": 189,
+        "endChar": 61
+      },
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa67593e_e46fd24e",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-08-29T23:07:07Z",
       "side": 1,
       "message": "one line:\n```\n} else {\n```",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "078e311e_b147aa09",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-08-29T23:37:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa67593e_e46fd24e",
       "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -77,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aae52bc6_aa6e8625",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-08-29T23:37:49Z",
+      "side": 1,
+      "message": "Yeah, paper-toast could be the best but I need to put that in the third-party folder outside catapult, making this cl huge. I am making it a to-do. Dunno if there\u0027s another way letting user know it\u0027s already copied in clipboard.",
+      "parentUuid": "525e0f6e_2dcd1eb2",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6dfaf52f_43f9e7f8",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
         "patchSetId": 1
@@ -88,6 +148,24 @@
       "writtenOn": "2022-08-29T23:07:07Z",
       "side": 1,
       "message": "is this return statement necessary?",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b7cb5b_23decb1c",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-08-29T23:37:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dfaf52f_43f9e7f8",
       "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
