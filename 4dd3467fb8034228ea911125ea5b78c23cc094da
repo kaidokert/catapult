@@ -70,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e5c2a44_3a322cf7",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-08-29T18:46:28Z",
+      "side": 1,
+      "message": "okay yeah, I agree - it doesn\u0027t seem like it fits well with any of the existing dimensions. Leave it where it is then.",
+      "parentUuid": "5709e26e_24c001b6",
+      "revId": "4dd3467fb8034228ea911125ea5b78c23cc094da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6702283e_b02c72c9",
