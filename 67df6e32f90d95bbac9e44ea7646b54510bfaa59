@@ -137,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58d1e6f5_ef43f9fc",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-08-30T17:23:11Z",
+      "side": 1,
+      "message": "Forcing the user to use two clicks to copy a string is not good UX. In principle, if this was a choice between \"require two clicks from the user\" and \"give no feedback that we put something in their paste clipboard\" I\u0027d choose the latter (one click, no notification that we did anything; users will try it out and learn).\n\nHowever there may be ways to give feedback here, without toast: \n\nOne alternative is to use https://www.webcomponents.org/element/@polymer/paper-tooltip/elements/paper-tooltip#property-manualMode and force the tooltip to render on click, but also update its contents to say `\u0027Benchmark command copied\u0027` (then reset the tooltip text back to `\u0027Command to download CAS binaries\u0027` immediately after hiding the tooltip).\n\nAnother option: if you make this element a \u003cbutton\u003e I believe the browser will make it render with a visually different pressed state when the user clicks it, offering another type of feedback that something happened.",
+      "parentUuid": "aae52bc6_aa6e8625",
+      "revId": "67df6e32f90d95bbac9e44ea7646b54510bfaa59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6dfaf52f_43f9e7f8",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
         "patchSetId": 1
