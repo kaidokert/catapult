@@ -894,4 +894,5 @@ def RequestParamsMixed(req):
 
 
 def IsRunningFlask():
-  return IsStagingEnvironment() or six.PY3
+  return False
+  # return IsStagingEnvironment() or six.PY3
