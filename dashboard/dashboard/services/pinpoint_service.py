@@ -26,8 +26,11 @@ def _Request(endpoint, params):
   assert datastore_hooks.IsUnalteredQueryPermitted()
 
   try:
+    if utils.IsRunningFlask():
+      return request.RequestJson(
+          endpoint, method='POST', use_cache=False, use_auth=True, **params)
     return request.RequestJson(
-        endpoint, method='POST', use_cache=False, use_auth=True, **params)
+        endpoint, method='POST', use_cache=False, use_auth=True, body=params)
   except request.RequestError as e:
     return json.loads(e.content)
 
