@@ -16,6 +16,24 @@
       "message": "It looks like this means \"disable on chromeos, enable on all others\".\n\nc.f. https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/decorators.py;l\u003d338\n\nI guess `Disabled(\u0027all\u0027)` is what we want.",
       "revId": "20bed12108af215090c9541f0b0b54cd0b80b4f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13441fd9_efb32254",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1179631
+      },
+      "writtenOn": "2022-08-31T02:16:22Z",
+      "side": 1,
+      "message": "Thanks a lot",
+      "parentUuid": "240421c6_c480901f",
+      "revId": "20bed12108af215090c9541f0b0b54cd0b80b4f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
