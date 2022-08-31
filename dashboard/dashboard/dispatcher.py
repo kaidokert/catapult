@@ -155,7 +155,7 @@ else:
       ('/edit_anomalies', edit_anomalies.EditAnomaliesHandler),
       ('/edit_anomaly_configs', edit_anomaly_configs.EditAnomalyConfigsHandler),
       ('/edit_bug_labels', edit_bug_labels.EditBugLabelsHandler),
-      ('/edit_site_config', edit_site_config.EditSiteConfigHandler),
+      # ('/edit_site_config', edit_site_config.EditSiteConfigHandler),
       ('/file_bug', file_bug.FileBugHandler),
       ('/get_diagnostics', get_diagnostics.GetDiagnosticsHandler),
       ('/get_histogram', get_histogram.GetHistogramHandler),
@@ -193,4 +193,23 @@ else:
   ]
 
   APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
-  gae_ts_mon.initialize(APP)
+
+  # gae_ts_mon.initialize(APP)
+
+  import flask
+  from werkzeug.middleware import dispatcher
+  flask_app = flask.Flask(__name__)
+
+  @flask_app.route('/edit_site_config', methods=['GET'])
+  def EditSiteConfigHandlerGet():
+    return edit_site_config.EditSiteConfigHandlerGet()
+
+  @flask_app.route('/edit_site_config', methods=['POST'])
+  def EditSiteConfigHandlerPost():
+    return edit_site_config.EditSiteConfigHandlerPost()
+  
+  APP = dispatcher.DispatcherMiddleware(
+    APP,
+    {
+        '/(.+)': flask_app,
+    })
