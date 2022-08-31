@@ -116,6 +116,7 @@ class ScrollActionTest(tab_test_case.TabTestCase):
         1000, 300, page_action.GESTURE_SOURCE_TOUCH, 10)
 
   @decorators.Disabled('android-reference')  # crbug.com/934649
+  @decorators.Disabled('chromeos')  # crbug.com/1358617
   def testScrollDistanceSlowWheel(self):
     self._RunScrollDistanceTest(
         1000, 300, page_action.GESTURE_SOURCE_MOUSE, 200)
