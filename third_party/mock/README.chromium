@@ -1,6 +1,6 @@
 Name: mock
 URL: https://pypi.python.org/pypi/mock
-Version: 1.0.1
+Version: 2.0.0
 License: BSD
 
 Description:
@@ -12,5 +12,5 @@ In Python 3.3 onwards, it is a part of the standard library, available as
 unittest.mock.
 
 Local Modifications:
-Removed everything except for mock.py (including setup script and documentation).
-
+Removed everything except for mock/__init__.py and mock/mock.py
+(including setup script and documentation).
