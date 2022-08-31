@@ -33,6 +33,24 @@
       "message": "looks like we don\u0027t get owners override in this repo. let me try to find an owner in this timezone...",
       "revId": "77b846aa7ff4c55d0bc34a4a7fb1a9bedd9141a8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4604b4a2_6dbb8071",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1179631
+      },
+      "writtenOn": "2022-08-31T02:28:30Z",
+      "side": 1,
+      "message": "there is no reviewer in this timezone who isn\u0027t OOO unfortunately",
+      "parentUuid": "5805f0f6_16a1b3ea",
+      "revId": "77b846aa7ff4c55d0bc34a4a7fb1a9bedd9141a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
