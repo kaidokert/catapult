@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de350c9a_76302832",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306173
+      },
+      "writtenOn": "2022-09-01T22:45:55Z",
+      "side": 1,
+      "message": "Got it",
+      "parentUuid": "fe2eb969_30449691",
+      "revId": "799f3b90fa35aedefa78779b6d9e33d1c715cb8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2576be2b_a7c205a6",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-09-01T22:25:11Z",
       "side": 1,
       "message": "I think I\u0027d prefer if this was abstracted away into something like `QueuePool`. The `ProcessPool` itself shouldn\u0027t really care about how jobs are queued.",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "799f3b90fa35aedefa78779b6d9e33d1c715cb8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d835a7f9_7edf1f87",
+        "filename": "third_party/typ/typ/pool.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1306173
+      },
+      "writtenOn": "2022-09-01T22:45:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2576be2b_a7c205a6",
       "range": {
         "startLine": 64,
         "startChar": 11,
