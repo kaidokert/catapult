@@ -16,6 +16,24 @@
       "message": "Have you tried this on the Chromium tryjobs yet to see what impact it has on the benefit of parallelization?",
       "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63b57195_777df0d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306173
+      },
+      "writtenOn": "2022-09-01T21:12:37Z",
+      "side": 1,
+      "message": "I uploaded a local build with some extra logging:\nhttps://chromium-swarm.appspot.com/task?id\u003d5d13b2c7748aac10 \non shard 10 of 14 on Linux Intel, runtime was 1m 55s\n\nTop of tree https://chromium-swarm.appspot.com/task?id\u003d5d13951d44707d10\nthat shard is 1m 54s so I\u0027m not extremely worried about unbalanced times. for WebGPU at least, the tests have many parameterizations of the same thing, so if a test is heavy, it\u0027s likely that the many variants of it will be distributed well across the 4 jobs. May not be the case for WebGL though",
+      "parentUuid": "d573d425_b4ecf247",
+      "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
