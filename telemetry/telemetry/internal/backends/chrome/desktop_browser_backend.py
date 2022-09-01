@@ -202,12 +202,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # This can't be used for subprocesses since it is all in-memory, and thus
       # does not have a fileno.
       if sys.platform == 'win32':
-        try:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
-        except io.UnsupportedOperation:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
+        #try:
+        self._proc = subprocess.Popen(
+            cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
+        #except io.UnsupportedOperation:
+        #  self._proc = subprocess.Popen(
+        #      cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
       else:
         self._proc = subprocess.Popen(cmd, env=env)
 

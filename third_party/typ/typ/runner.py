@@ -1065,6 +1065,8 @@ def _run_one_test(child, test_input):
     # This comes up when using the FakeTestLoader and testing typ itself,
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
+    sys.stdout.write('\n\nASDF stdout write running one test\n\n')
+    print('\n\nASDF running one test\n\n')
     if child.has_expectations:
         expectation = child.expectations.expectations_for(test_name)
         expected_results, should_retry_on_failure = (
