@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d573d425_b4ecf247",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-01T21:05:06Z",
+      "side": 1,
+      "message": "Have you tried this on the Chromium tryjobs yet to see what impact it has on the benefit of parallelization?",
+      "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
