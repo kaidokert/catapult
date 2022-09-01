@@ -34,6 +34,24 @@
       "parentUuid": "d573d425_b4ecf247",
       "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e114c94b_d4c5e43b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-01T21:20:59Z",
+      "side": 1,
+      "message": "\u003e May not be the case for WebGL though\nI think that\u0027s fine, at least for now - we should be fine not using this flag for WebGL atm.\n\nHowever, I don\u0027t think your sample job is actually using the flag. I believe you need to manually forward arguments to typ for the GPU tests - see https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/testing/run_browser_tests.py;l\u003d275 and https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/testing/run_tests.py;l\u003d188",
+      "parentUuid": "63b57195_777df0d6",
+      "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
