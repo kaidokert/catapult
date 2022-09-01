@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe2eb969_30449691",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-01T22:26:24Z",
+      "side": 1,
+      "message": "Also please wait for Rakib\u0027s LGTM as well since they\u0027re a more specific owner than I am.",
+      "parentUuid": "0db80b52_5a5bb622",
+      "revId": "799f3b90fa35aedefa78779b6d9e33d1c715cb8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2576be2b_a7c205a6",
