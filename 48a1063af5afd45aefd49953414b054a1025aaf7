@@ -70,6 +70,24 @@
       "parentUuid": "e114c94b_d4c5e43b",
       "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db368d2_e0fef590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-01T22:25:11Z",
+      "side": 1,
+      "message": "Seems like a reasonable trade-off if this helps with debugability. However, I would like this to be monitored going forward to look out for cases of long-running shards. If it ends up becoming a problem, I think you\u0027ll either need to do something similar to what the WebGL tests do for deterministic sharding w/ roughly equal runtimes or consider removing this.",
+      "parentUuid": "405c8ff0_53d43fca",
+      "revId": "48a1063af5afd45aefd49953414b054a1025aaf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
