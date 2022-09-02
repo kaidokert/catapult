@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e0426e_63520f2a",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-02T00:27:23Z",
+      "side": 0,
+      "message": "Sean added this logging about a year ago. I believe this logging is no longer useful.",
+      "revId": "7ee071132a536a6616589cc2411674d1b459b4da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

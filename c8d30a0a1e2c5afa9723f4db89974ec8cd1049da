@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b60cb104_7c4bdd00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-02T00:27:23Z",
+      "side": 1,
+      "message": "PTAL!",
+      "revId": "c8d30a0a1e2c5afa9723f4db89974ec8cd1049da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a76b8b6_cece0420",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-02T00:27:23Z",
+      "side": 1,
+      "message": "I added this logging in case the solution doesn\u0027t work. I\u0027m worried that it might generate too many log statements, but I want some way to monitor the problem.",
+      "revId": "c8d30a0a1e2c5afa9723f4db89974ec8cd1049da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a20eddc_15fc51de",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-02T00:27:23Z",
+      "side": 1,
+      "message": "Logging suggests that the logic for auto_triage_enable [1] works properly. When an anomaly is supposed to be auto-triaged, it will show up in the logs [2]. When an anomaly is excluded, such as ChromiumPerf/mac-laptop_high_end-perf/jetstream2/raytrace_min/JetStream2, which is excluded by [3] does not appear as auto triaged in logging [4]. The theory is that auto_triage_enabled anomalies are not getting checked before they are added to the regression list on this line of code. This change should address the issue if my logic is correct. \n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;drc\u003de999681ef89091d15a27b9dc74ae24b799db282a;l\u003d280\n[2] Example log https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-09-01T14:31:38.220233Z;query\u003d%22auto_triage_enable%20for%20ChromiumPerf%2Fmac-laptop_high_end-perf%2Fjetstream2%2FUniPoker.Worst%2FJetStream2%22%0Atimestamp%3D%222022-09-01T14:31:38.220233Z%22%0AinsertId%3D%226310c2530006ee290629e81a%22;timeRange\u003d2022-09-01T13:43:30.365Z%2F2022-09-01T14:58:30.365Z?project\u003dchromeperf\n[3] https://source.corp.google.com/chromium_infra_internal/infra/config/subprojects/chromeperf/v8-perf.cfg;rcl\u003da23a64201dbb95847f5ec7a80471bb3fe6f63bcb;l\u003d392\n[4] https://source.corp.google.com/chromium_infra_internal/infra/config/subprojects/chromeperf/v8-perf.cfg;rcl\u003da23a64201dbb95847f5ec7a80471bb3fe6f63bcb;l\u003d392",
+      "revId": "c8d30a0a1e2c5afa9723f4db89974ec8cd1049da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
