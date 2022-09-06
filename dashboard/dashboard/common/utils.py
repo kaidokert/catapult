@@ -895,3 +895,8 @@ def RequestParamsMixed(req):
 
 def IsRunningFlask():
   return IsStagingEnvironment() or six.PY3
+
+
+def IsMultiApps():
+  # Running both Flask and Webapp2.
+  return IsStagingEnvironment() and six.PY2
