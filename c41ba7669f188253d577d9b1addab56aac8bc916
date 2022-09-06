@@ -16,6 +16,40 @@
       "message": "PTAL.",
       "revId": "c41ba7669f188253d577d9b1addab56aac8bc916",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a009a00a_7ee0b3f7",
+        "filename": "dashboard/dashboard/alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-06T23:04:52Z",
+      "side": 1,
+      "message": "Would this not also trigger webapp2? Could see a logging statement to verify that flask runs and another to verify webapp2 isn\u0027t running.",
+      "revId": "c41ba7669f188253d577d9b1addab56aac8bc916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7f68bfd_450c8235",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-06T23:04:52Z",
+      "side": 1,
+      "message": "why _edit_site_config vs /edit_site_config",
+      "revId": "c41ba7669f188253d577d9b1addab56aac8bc916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
