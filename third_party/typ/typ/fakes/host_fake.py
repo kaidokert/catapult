@@ -18,7 +18,7 @@ import logging
 import sys
 
 from typ import python_2_3_compat
-from typ.host import _TeedStream
+from typ.teed_streams import _StringIoTeedStream
 
 
 is_python3 = bool(sys.version_info.major == 3)
@@ -249,14 +249,14 @@ class FakeHost(object):
         return resp
 
     def _tap_output(self):
-        self.stdout = _TeedStream(self.stdout)
-        self.stderr = _TeedStream(self.stderr)
+        self.stdout = _StringIoTeedStream(self.stdout)
+        self.stderr = _StringIoTeedStream(self.stderr)
         if True:
             sys.stdout = self.stdout
             sys.stderr = self.stderr
 
     def _untap_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        assert isinstance(self.stdout, _StringIoTeedStream)
         self.stdout = self.stdout.stream
         self.stderr = self.stderr.stream
         if True:
@@ -272,7 +272,7 @@ class FakeHost(object):
         self.stderr.capture(divert=divert)
 
     def restore_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        assert isinstance(self.stdout, _StringIoTeedStream)
         out, err = (self.stdout.restore(), self.stderr.restore())
         out = python_2_3_compat.bytes_to_str(out)
         err = python_2_3_compat.bytes_to_str(err)
