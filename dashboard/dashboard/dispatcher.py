@@ -15,6 +15,7 @@ if utils.IsRunningFlask():
   from dashboard import main
   from dashboard import navbar
   from dashboard import sheriff_config_poller
+  from dashboard import speed_releasing
 
   from flask import Flask
   APP = Flask(__name__)
@@ -54,6 +55,14 @@ if utils.IsRunningFlask():
   @APP.route('/configs/update')
   def SheriffConfigPollerGet():
     return sheriff_config_poller.SheriffConfigPollerGet()
+
+  @APP.route('/speed_releasing', methods=['GET'])
+  def SpeedReleasingGet():
+    return speed_releasing.SpeedReleasingGet()
+
+  @APP.route(r'/speed_releasing/(.*)', methods=['POST'])
+  def SpeedReleasingPost():
+    return speed_releasing.SpeedReleasingPOST()
 
 else:
   import gae_ts_mon

@@ -6,6 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import logging
+
 import collections
 import json
 import six.moves.urllib.parse
@@ -58,178 +60,67 @@ CHROMIUM_MILESTONES = {
 
 CURRENT_MILESTONE = max(CHROMIUM_MILESTONES.keys())
 
-
-class SpeedReleasingHandler(request_handler.RequestHandler):
-  """Request handler for requests for speed releasing page."""
-
-  def get(self, *args):  # pylint: disable=unused-argument
-    """Renders the UI for the speed releasing page."""
-    self.RenderStaticHtml('speed_releasing.html')
-
-  def post(self, *args):
-    """Returns dynamic data for /speed_releasing.
-
-    Args:
-      args: May contain the table_name for the requested Speed Releasing
-            report. If args is empty, user is requesting the Speed Releasing
-            landing page.
-    Requested parameters:
-      anomalies: A boolean that is set if the POST request is for the Release
-                 Notes alerts-table. Note, the table_name must also be passed
-                 in (via args) to retrieve the correct set of data.
-    Outputs:
-      JSON for the /speed_releasing page XHR request.
-    """
-    anomalies = self.request.get('anomalies')
-    if args[0] and not anomalies:
-      self._OutputTableJSON(args[0])
-    elif args[0]:
-      self._OutputAnomaliesJSON(args[0])
-    else:
-      self._OutputHomePageJSON()
-
-  def _OutputTableJSON(self, table_name):
-    """Obtains the JSON values that comprise the table.
-
-    Args:
-      table_name: The name of the requested report.
-    """
-    table_entity = ndb.Key('TableConfig', table_name).get()
-    if not table_entity:
-      self.response.out.write(json.dumps({'error': 'Invalid table name.'}))
-      return
-
-    rev_a = self.request.get('revA')
-    rev_b = self.request.get('revB')
-    milestone_param = self.request.get('m')
-
-    if milestone_param:
-      milestone_param = int(milestone_param)
-      if milestone_param not in CHROMIUM_MILESTONES:
-        self.response.out.write(
-            json.dumps({'error': 'No data for that milestone.'}))
-        return
-
-    master_bot_pairs = _GetMasterBotPairs(table_entity.bots)
-    rev_a, rev_b, milestone_dict = _GetRevisionsFromParams(
-        rev_a, rev_b, milestone_param, table_entity, master_bot_pairs)
-
-    revisions = [rev_b, rev_a]  # In reverse intentionally. This is to support
-    # the format of the Chrome Health Dashboard which compares 'Current' to
-    # 'Reference', in that order. The ordering here is for display only.
-    display_a = _GetDisplayRev(master_bot_pairs, table_entity.tests, rev_a)
-    display_b = _GetDisplayRev(master_bot_pairs, table_entity.tests, rev_b)
-
-    display_milestone_a, display_milestone_b = _GetMilestoneForRevs(
-        rev_a, rev_b, milestone_dict)
-    navigation_milestone_a, navigation_milestone_b = _GetNavigationMilestones(
-        display_milestone_a, display_milestone_b, milestone_dict)
-
-    values = {}
-    self.GetDynamicVariables(values)
-    self.response.out.write(
-        json.dumps({
-            'xsrf_token':
-                values['xsrf_token'],
-            'table_bots':
-                master_bot_pairs,
-            'table_tests':
-                table_entity.tests,
-            'table_layout':
-                json.loads(table_entity.table_layout),
-            'name':
-                table_entity.key.string_id(),
-            'values':
-                _GetRowValues(revisions, master_bot_pairs, table_entity.tests),
-            'units':
-                _GetTestToUnitsMap(master_bot_pairs, table_entity.tests),
-            'revisions':
-                revisions,
-            'categories':
-                _GetCategoryCounts(json.loads(table_entity.table_layout)),
-            'urls':
-                _GetDashboardURLMap(master_bot_pairs, table_entity.tests, rev_a,
-                                    rev_b),
-            'display_revisions': [display_b,
-                                  display_a],  # Similar to revisions.
-            'display_milestones': [display_milestone_a, display_milestone_b],
-            'navigation_milestones': [
-                navigation_milestone_a, navigation_milestone_b
-            ]
-        }))
-
-  def _OutputHomePageJSON(self):
-    """Returns a list of reports a user has permission to see."""
-    all_entities = table_config.TableConfig.query().fetch()
-    list_of_entities = []
-    for entity in all_entities:
-      list_of_entities.append(entity.key.string_id())
-    self.response.out.write(
-        json.dumps({
-            'show_list': True,
-            'list': list_of_entities
-        }))
-
-  def _OutputAnomaliesJSON(self, table_name):
-    """Obtains the entire alert list specified.
-
-    Args:
-      table_name: The name of the requested report.
-    """
-    table_entity = ndb.Key('TableConfig', table_name).get()
-    if not table_entity:
-      self.response.out.write(json.dumps({'error': 'Invalid table name.'}))
-      return
-    rev_a = self.request.get('revA')
-    rev_b = self.request.get('revB')
-    milestone_param = self.request.get('m')
-
-    if milestone_param:
-      milestone_param = int(milestone_param)
-      if milestone_param not in CHROMIUM_MILESTONES:
-        self.response.out.write(
-            json.dumps({'error': 'No data for that milestone.'}))
-        return
-
-    master_bot_pairs = _GetMasterBotPairs(table_entity.bots)
-    rev_a, rev_b, _ = _GetRevisionsFromParams(rev_a, rev_b, milestone_param,
-                                              table_entity, master_bot_pairs)
-    revisions = [rev_b, rev_a]
-
-    anomalies = _FetchAnomalies(table_entity, rev_a, rev_b)
-    anomaly_dicts = alerts.AnomalyDicts(anomalies)
-
-    values = {}
-    self.GetDynamicVariables(values)
-    self.response.out.write(
-        json.dumps({
-            'xsrf_token': values['xsrf_token'],
-            'revisions': revisions,
-            'anomalies': anomaly_dicts
-        }))
-
-
-def _GetRevisionsFromParams(rev_a, rev_b, milestone_param, table_entity,
-                            master_bot_pairs):
-  milestone_dict = _GetUpdatedMilestoneDict(master_bot_pairs,
-                                            table_entity.tests)
-  if milestone_param:
-    rev_a, rev_b = milestone_dict[milestone_param]
-  if not rev_a or not rev_b:  # If no milestone param and <2 revs passed in.
-    rev_a, rev_b = _GetEndRevOrCurrentMilestoneRevs(rev_a, rev_b,
-                                                    milestone_dict)
-  rev_a, rev_b = _CheckRevisions(rev_a, rev_b)
-  return rev_a, rev_b, milestone_dict
-
-
-def _GetMasterBotPairs(bots):
+def GetMasterBotPairs(bots):
   master_bot_pairs = []
   for bot in bots:
     master_bot_pairs.append(bot.parent().string_id() + '/' + bot.string_id())
   return master_bot_pairs
 
+def GetDisplayRev(bots, tests, rev):
+  """Creates a user friendly commit position to display.
+  For V8 and ChromiumPerf masters, this will just be the passed in rev.
+  """
+  if bots and tests:
+    test_path = bots[0] + '/' + tests[0]
+    test_key = utils.TestKey(test_path)
+    row_key = utils.GetRowKey(test_key, rev)
+    row = row_key.get()
+    if row and hasattr(row, 'r_commit_pos'):  # Rule out masters like V8
+      if rev != row.r_commit_pos:  # Rule out ChromiumPerf
+        if hasattr(row, 'a_default_rev') and hasattr(row, row.a_default_rev):
+          return row.r_commit_pos + '-' + getattr(row, row.a_default_rev)[:3]
+  return rev
 
-def _GetRowValues(revisions, bots, tests):
+def GetMilestoneForRevs(rev_a, rev_b, milestone_dict):
+  """Determines which milestone each revision is part of. Returns a tuple."""
+  rev_a_milestone = CURRENT_MILESTONE
+  rev_b_milestone = CURRENT_MILESTONE
+
+  for key, milestone in milestone_dict.items():
+    if milestone[0] <= rev_a < milestone[1]:
+      rev_a_milestone = key
+    if milestone[0] < rev_b <= milestone[1]:
+      rev_b_milestone = key
+  return rev_a_milestone, rev_b_milestone
+
+def GetNavigationMilestones(rev_a_milestone, rev_b_milestone, milestone_dict):
+  """Finds the next/previous milestones for navigation, if available.
+
+  Most often, the milestones will be the same (e.g. the report for M57 will
+  have both rev_a_milestone and rev_b_milestone as 57; the navigation in this
+  case is 56 for back and 58 for forward). If the milestone is at either the
+  lower or upper bounds of the milestones that we support, return None (so
+  users can't navigate to an invalid milestone). In the case that the
+  revisions passed in cover multiple milestones (e.g. a report from
+  M55 -> M57), the correct navigation is 54 (back) and 57 (forward).
+  """
+  min_milestone = min(milestone_dict)
+
+  if rev_a_milestone == min_milestone:
+    navigation_milestone_a = None
+  else:
+    navigation_milestone_a = rev_a_milestone - 1
+
+  if rev_b_milestone == CURRENT_MILESTONE:
+    navigation_milestone_b = None
+  elif rev_a_milestone != rev_b_milestone:  # In the multiple milestone case.
+    navigation_milestone_b = rev_b_milestone
+  else:
+    navigation_milestone_b = rev_b_milestone + 1
+
+  return navigation_milestone_a, navigation_milestone_b
+
+def GetRowValues(revisions, bots, tests):
   """Builds a nested dict organizing values by rev/bot/test.
 
   Args:
@@ -257,13 +148,12 @@ def _GetRowValues(revisions, bots, tests):
     for bot in bots:
       test_values = {}
       for test in tests:
-        test_values[test] = _GetRow(bot, test, rev)
+        test_values[test] = GetRow(bot, test, rev)
       bot_values[bot] = test_values
     row_values[rev] = bot_values
   return row_values
 
-
-def _GetTestToUnitsMap(bots, tests):
+def GetTestToUnitsMap(bots, tests):
   """Grabs the units on each test for only one bot."""
   units_map = {}
   if bots:
@@ -276,7 +166,7 @@ def _GetTestToUnitsMap(bots, tests):
   return units_map
 
 
-def _GetRow(bot, test, rev):
+def GetRow(bot, test, rev):
   test_path = bot + '/' + test
   test_key = utils.TestKey(test_path)
   row_key = utils.GetRowKey(test_key, rev)
@@ -285,8 +175,7 @@ def _GetRow(bot, test, rev):
     return row.value
   return None
 
-
-def _CheckRevisions(rev_a, rev_b):
+def CheckRevisions(rev_a, rev_b):
   """Checks to ensure the revisions are valid."""
   rev_a = int(rev_a)
   rev_b = int(rev_b)
@@ -294,15 +183,13 @@ def _CheckRevisions(rev_a, rev_b):
     rev_a, rev_b = rev_b, rev_a
   return rev_a, rev_b
 
-
-def _GetCategoryCounts(layout):
+def GetCategoryCounts(layout):
   categories = collections.defaultdict(lambda: 0)
   for test in layout:
     categories[layout[test][0]] += 1
   return categories
 
-
-def _GetDashboardURLMap(bots, tests, rev_a, rev_b):
+def GetDashboardURLMap(bots, tests, rev_a, rev_b):
   """Get the /report links appropriate for the bot and test."""
   url_mappings = {}
   for bot in bots:
@@ -323,27 +210,10 @@ def _GetDashboardURLMap(bots, tests, rev_a, rev_b):
           'end_rev': rev_b,
       }
       url_mappings[bot + '/' + test] = \
-          '?%s' % six.moves.urllib.parse.urlencode(url_args)
+        '?%s' % six.moves.urllib.parse.urlencode(url_args)
   return url_mappings
 
-
-def _GetDisplayRev(bots, tests, rev):
-  """Creates a user friendly commit position to display.
-  For V8 and ChromiumPerf masters, this will just be the passed in rev.
-  """
-  if bots and tests:
-    test_path = bots[0] + '/' + tests[0]
-    test_key = utils.TestKey(test_path)
-    row_key = utils.GetRowKey(test_key, rev)
-    row = row_key.get()
-    if row and hasattr(row, 'r_commit_pos'):  # Rule out masters like V8
-      if rev != row.r_commit_pos:  # Rule out ChromiumPerf
-        if hasattr(row, 'a_default_rev') and hasattr(row, row.a_default_rev):
-          return row.r_commit_pos + '-' + getattr(row, row.a_default_rev)[:3]
-  return rev
-
-
-def _UpdateNewestRevInMilestoneDict(bots, tests, milestone_dict):
+def UpdateNewestRevInMilestoneDict(bots, tests, milestone_dict):
   """Updates the most recent rev in the milestone dict.
 
   The global milestone dicts are declared with 'None' for the end of the
@@ -369,8 +239,7 @@ def _UpdateNewestRevInMilestoneDict(bots, tests, milestone_dict):
       milestone_dict[CURRENT_MILESTONE] = (milestone_dict[CURRENT_MILESTONE][0],
                                            milestone_dict[CURRENT_MILESTONE][0])
 
-
-def _GetEndOfMilestone(rev, milestone_dict):
+def GetEndOfMilestone(rev, milestone_dict):
   """Finds the end of the milestone that 'rev' is in.
 
   Check that 'rev' is between [beginning, end) of the tuple. In case an end
@@ -388,8 +257,7 @@ def _GetEndOfMilestone(rev, milestone_dict):
     return beginning_rev
   return milestone_dict[CURRENT_MILESTONE][1]
 
-
-def _GetEndRevOrCurrentMilestoneRevs(rev_a, rev_b, milestone_dict):
+def GetEndRevOrCurrentMilestoneRevs(rev_a, rev_b, milestone_dict):
   """If one/both of the revisions are None, change accordingly.
 
   If both are None, return most recent milestone, present.
@@ -397,10 +265,9 @@ def _GetEndRevOrCurrentMilestoneRevs(rev_a, rev_b, milestone_dict):
   """
   if not rev_a and not rev_b:
     return milestone_dict[CURRENT_MILESTONE]
-  return (rev_a or rev_b), _GetEndOfMilestone((rev_a or rev_b), milestone_dict)
+  return (rev_a or rev_b), GetEndOfMilestone((rev_a or rev_b), milestone_dict)
 
-
-def _GetUpdatedMilestoneDict(master_bot_pairs, tests):
+def GetUpdatedMilestoneDict(master_bot_pairs, tests):
   """Gets the milestone_dict with the newest rev.
 
   Checks to see which milestone_dict to use (Clank/Chromium), and updates
@@ -413,11 +280,10 @@ def _GetUpdatedMilestoneDict(master_bot_pairs, tests):
     milestone_dict = CHROMIUM_MILESTONES.copy()
   # If we might access the end of the milestone_dict, update it to
   # be the newest revision instead of 'None'.
-  _UpdateNewestRevInMilestoneDict(master_bot_pairs, tests, milestone_dict)
+  UpdateNewestRevInMilestoneDict(master_bot_pairs, tests, milestone_dict)
   return milestone_dict
 
-
-def _FetchAnomalies(table_entity, rev_a, rev_b):
+def FetchAnomalies(table_entity, rev_a, rev_b):
   """Finds anomalies that have the given benchmark/master, in a given range."""
   if table_entity.bots and table_entity.tests:
     master_list = []
@@ -456,43 +322,310 @@ def _FetchAnomalies(table_entity, rev_a, rev_b):
 
   return anomalies
 
+def GetRevisionsFromParams(rev_a, rev_b, milestone_param, table_entity,
+    master_bot_pairs):
+  milestone_dict = GetUpdatedMilestoneDict(master_bot_pairs,
+                                            table_entity.tests)
+  if milestone_param:
+    rev_a, rev_b = milestone_dict[milestone_param]
+  if not rev_a or not rev_b:  # If no milestone param and <2 revs passed in.
+    rev_a, rev_b = GetEndRevOrCurrentMilestoneRevs(rev_a, rev_b,
+                                                    milestone_dict)
+  rev_a, rev_b = CheckRevisions(rev_a, rev_b)
+  return rev_a, rev_b, milestone_dict
 
-def _GetMilestoneForRevs(rev_a, rev_b, milestone_dict):
-  """Determines which milestone each revision is part of. Returns a tuple."""
-  rev_a_milestone = CURRENT_MILESTONE
-  rev_b_milestone = CURRENT_MILESTONE
+if utils.IsRunningFlask():
+  """Request handler for requests for speed releasing page."""
 
-  for key, milestone in milestone_dict.items():
-    if milestone[0] <= rev_a < milestone[1]:
-      rev_a_milestone = key
-    if milestone[0] < rev_b <= milestone[1]:
-      rev_b_milestone = key
-  return rev_a_milestone, rev_b_milestone
+  from flask import request, make_response, url_for
 
+  def SpeedReleasingGet():
+    """Renders the UI for the speed releasing page."""
+    logging.debug('crbug/1298177 - /api/speed_releasing handler triggered')
+    return url_for('static', filename='speed_releasing.html')
 
-def _GetNavigationMilestones(rev_a_milestone, rev_b_milestone, milestone_dict):
-  """Finds the next/previous milestones for navigation, if available.
+  def SpeedReleasingPost():
+    """Returns dynamic data for /speed_releasing.
 
-  Most often, the milestones will be the same (e.g. the report for M57 will
-  have both rev_a_milestone and rev_b_milestone as 57; the navigation in this
-  case is 56 for back and 58 for forward). If the milestone is at either the
-  lower or upper bounds of the milestones that we support, return None (so
-  users can't navigate to an invalid milestone). In the case that the
-  revisions passed in cover multiple milestones (e.g. a report from
-  M55 -> M57), the correct navigation is 54 (back) and 57 (forward).
-  """
-  min_milestone = min(milestone_dict)
+    Args:
+      args: May contain the table_name for the requested Speed Releasing
+            report. If args is empty, user is requesting the Speed Releasing
+            landing page.
+    Requested parameters:
+      anomalies: A boolean that is set if the POST request is for the Release
+                 Notes alerts-table. Note, the table_name must also be passed
+                 in (via args) to retrieve the correct set of data.
+    Outputs:
+      JSON for the /speed_releasing page XHR request.
+    """
+    anomalies = request.args.get('anomalies')
+    table_name = request.args.get('table_name')
+    if table_name and not anomalies:
+      OutputTableJSON(table_name)
+    elif table_name:
+      OutputAnomaliesJSON(table_name)
+    else:
+      OutputHomePageJSON()
 
-  if rev_a_milestone == min_milestone:
-    navigation_milestone_a = None
-  else:
-    navigation_milestone_a = rev_a_milestone - 1
+  def OutputTableJSON(table_name):
+    """Obtains the JSON values that comprise the table.
 
-  if rev_b_milestone == CURRENT_MILESTONE:
-    navigation_milestone_b = None
-  elif rev_a_milestone != rev_b_milestone:  # In the multiple milestone case.
-    navigation_milestone_b = rev_b_milestone
-  else:
-    navigation_milestone_b = rev_b_milestone + 1
+    Args:
+      table_name: The name of the requested report.
+    """
+    table_entity = ndb.Key('TableConfig', table_name).get()
+    if not table_entity:
+      return make_response({'error': 'Invalid table name.'})
 
-  return navigation_milestone_a, navigation_milestone_b
+    rev_a = request.args.get('revA')
+    rev_b = request.args.get('revB')
+    milestone_param = request.args.get('m')
+
+    if milestone_param:
+      milestone_param = int(milestone_param)
+      if milestone_param not in CHROMIUM_MILESTONES:
+        return make_response({'error': 'No data for that milestone.'})
+
+    master_bot_pairs = GetMasterBotPairs(table_entity.bots)
+    rev_a, rev_b, milestone_dict = GetRevisionsFromParams(
+        rev_a, rev_b, milestone_param, table_entity, master_bot_pairs)
+
+    revisions = [rev_b, rev_a]  # In reverse intentionally. This is to support
+    # the format of the Chrome Health Dashboard which compares 'Current' to
+    # 'Reference', in that order. The ordering here is for display only.
+    display_a = GetDisplayRev(master_bot_pairs, table_entity.tests, rev_a)
+    display_b = GetDisplayRev(master_bot_pairs, table_entity.tests, rev_b)
+
+    display_milestone_a, display_milestone_b = GetMilestoneForRevs(
+        rev_a, rev_b, milestone_dict)
+    navigation_milestone_a, navigation_milestone_b = GetNavigationMilestones(
+        display_milestone_a, display_milestone_b, milestone_dict)
+
+    values = {}
+    request_handler.RequestHandlerGetDynamicVariables(values)
+    return make_response({
+            'xsrf_token':
+              values['xsrf_token'],
+            'table_bots':
+              master_bot_pairs,
+            'table_tests':
+              table_entity.tests,
+            'table_layout':
+              json.loads(table_entity.table_layout),
+            'name':
+              table_entity.key.string_id(),
+            'values':
+              GetRowValues(revisions, master_bot_pairs, table_entity.tests),
+            'units':
+              GetTestToUnitsMap(master_bot_pairs, table_entity.tests),
+            'revisions':
+              revisions,
+            'categories':
+              GetCategoryCounts(json.loads(table_entity.table_layout)),
+            'urls':
+              GetDashboardURLMap(master_bot_pairs, table_entity.tests, rev_a,
+                                  rev_b),
+            'display_revisions': [display_b,
+                                  display_a],  # Similar to revisions.
+            'display_milestones': [display_milestone_a, display_milestone_b],
+            'navigation_milestones': [
+                navigation_milestone_a, navigation_milestone_b
+            ]
+        })
+
+  def OutputHomePageJSON():
+    """Returns a list of reports a user has permission to see."""
+    all_entities = table_config.TableConfig.query().fetch()
+    list_of_entities = []
+    for entity in all_entities:
+      list_of_entities.append(entity.key.string_id())
+    return make_response({
+            'show_list': True,
+            'list': list_of_entities
+        })
+
+  def OutputAnomaliesJSON(table_name):
+    """Obtains the entire alert list specified.
+
+    Args:
+      table_name: The name of the requested report.
+    """
+    table_entity = ndb.Key('TableConfig', table_name).get()
+    if not table_entity:
+      return make_response({'error': 'Invalid table name.'})
+
+    rev_a = request.args.get('revA')
+    rev_b = request.args.get('revB')
+    milestone_param = request.args.get('m')
+
+    if milestone_param:
+      milestone_param = int(milestone_param)
+      if milestone_param not in CHROMIUM_MILESTONES:
+        return make_response({'error': 'No data for that milestone.'})
+
+    master_bot_pairs = GetMasterBotPairs(table_entity.bots)
+    rev_a, rev_b, _ = GetRevisionsFromParams(rev_a, rev_b, milestone_param,
+                                             table_entity, master_bot_pairs)
+    revisions = [rev_b, rev_a]
+
+    anomalies = FetchAnomalies(table_entity, rev_a, rev_b)
+    anomaly_dicts = alerts.AnomalyDicts(anomalies)
+
+    values = {}
+    request_handler.RequestHandlerGetDynamicVariables(values)
+    return make_response({
+            'xsrf_token': values['xsrf_token'],
+            'revisions': revisions,
+            'anomalies': anomaly_dicts
+        })
+
+else:
+  class SpeedReleasingHandler(request_handler.RequestHandler):
+    """Request handler for requests for speed releasing page."""
+
+    def get(self, *args):  # pylint: disable=unused-argument
+      """Renders the UI for the speed releasing page."""
+      logging.debug('crbug/1298177 - /api/speed_releasing project handler triggered')
+      self.RenderStaticHtml('speed_releasing.html')
+
+    def post(self, *args):
+      """Returns dynamic data for /speed_releasing.
+
+      Args:
+        args: May contain the table_name for the requested Speed Releasing
+              report. If args is empty, user is requesting the Speed Releasing
+              landing page.
+      Requested parameters:
+        anomalies: A boolean that is set if the POST request is for the Release
+                   Notes alerts-table. Note, the table_name must also be passed
+                   in (via args) to retrieve the correct set of data.
+      Outputs:
+        JSON for the /speed_releasing page XHR request.
+      """
+      anomalies = self.request.get('anomalies')
+      if args[0] and not anomalies:
+        self._OutputTableJSON(args[0])
+      elif args[0]:
+        self._OutputAnomaliesJSON(args[0])
+      else:
+        self._OutputHomePageJSON()
+
+    def _OutputTableJSON(self, table_name):
+      """Obtains the JSON values that comprise the table.
+
+      Args:
+        table_name: The name of the requested report.
+      """
+      table_entity = ndb.Key('TableConfig', table_name).get()
+      if not table_entity:
+        self.response.out.write(json.dumps({'error': 'Invalid table name.'}))
+        return
+
+      rev_a = self.request.get('revA')
+      rev_b = self.request.get('revB')
+      milestone_param = self.request.get('m')
+
+      if milestone_param:
+        milestone_param = int(milestone_param)
+        if milestone_param not in CHROMIUM_MILESTONES:
+          self.response.out.write(
+              json.dumps({'error': 'No data for that milestone.'}))
+          return
+
+      master_bot_pairs = GetMasterBotPairs(table_entity.bots)
+      rev_a, rev_b, milestone_dict = GetRevisionsFromParams(
+          rev_a, rev_b, milestone_param, table_entity, master_bot_pairs)
+
+      revisions = [rev_b, rev_a]  # In reverse intentionally. This is to support
+      # the format of the Chrome Health Dashboard which compares 'Current' to
+      # 'Reference', in that order. The ordering here is for display only.
+      display_a = GetDisplayRev(master_bot_pairs, table_entity.tests, rev_a)
+      display_b = GetDisplayRev(master_bot_pairs, table_entity.tests, rev_b)
+
+      display_milestone_a, display_milestone_b = GetMilestoneForRevs(
+          rev_a, rev_b, milestone_dict)
+      navigation_milestone_a, navigation_milestone_b = GetNavigationMilestones(
+          display_milestone_a, display_milestone_b, milestone_dict)
+
+      values = {}
+      self.GetDynamicVariables(values)
+      self.response.out.write(
+          json.dumps({
+              'xsrf_token':
+                  values['xsrf_token'],
+              'table_bots':
+                  master_bot_pairs,
+              'table_tests':
+                  table_entity.tests,
+              'table_layout':
+                  json.loads(table_entity.table_layout),
+              'name':
+                  table_entity.key.string_id(),
+              'values':
+                  GetRowValues(revisions, master_bot_pairs, table_entity.tests),
+              'units':
+                  GetTestToUnitsMap(master_bot_pairs, table_entity.tests),
+              'revisions':
+                  revisions,
+              'categories':
+                  GetCategoryCounts(json.loads(table_entity.table_layout)),
+              'urls':
+                  GetDashboardURLMap(master_bot_pairs, table_entity.tests, rev_a,
+                                      rev_b),
+              'display_revisions': [display_b,
+                                    display_a],  # Similar to revisions.
+              'display_milestones': [display_milestone_a, display_milestone_b],
+              'navigation_milestones': [
+                  navigation_milestone_a, navigation_milestone_b
+              ]
+          }))
+
+    def _OutputHomePageJSON(self):
+      """Returns a list of reports a user has permission to see."""
+      all_entities = table_config.TableConfig.query().fetch()
+      list_of_entities = []
+      for entity in all_entities:
+        list_of_entities.append(entity.key.string_id())
+      self.response.out.write(
+          json.dumps({
+              'show_list': True,
+              'list': list_of_entities
+          }))
+
+    def _OutputAnomaliesJSON(self, table_name):
+      """Obtains the entire alert list specified.
+
+      Args:
+        table_name: The name of the requested report.
+      """
+      table_entity = ndb.Key('TableConfig', table_name).get()
+      if not table_entity:
+        self.response.out.write(json.dumps({'error': 'Invalid table name.'}))
+        return
+      rev_a = self.request.get('revA')
+      rev_b = self.request.get('revB')
+      milestone_param = self.request.get('m')
+
+      if milestone_param:
+        milestone_param = int(milestone_param)
+        if milestone_param not in CHROMIUM_MILESTONES:
+          self.response.out.write(
+              json.dumps({'error': 'No data for that milestone.'}))
+          return
+
+      master_bot_pairs = GetMasterBotPairs(table_entity.bots)
+      rev_a, rev_b, _ = GetRevisionsFromParams(rev_a, rev_b, milestone_param,
+                                                table_entity, master_bot_pairs)
+      revisions = [rev_b, rev_a]
+
+      anomalies = FetchAnomalies(table_entity, rev_a, rev_b)
+      anomaly_dicts = alerts.AnomalyDicts(anomalies)
+
+      values = {}
+      self.GetDynamicVariables(values)
+      self.response.out.write(
+          json.dumps({
+              'xsrf_token': values['xsrf_token'],
+              'revisions': revisions,
+              'anomalies': anomaly_dicts
+          }))
