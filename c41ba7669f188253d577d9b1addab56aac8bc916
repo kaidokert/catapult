@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a1ca41c_46315e6d",
+        "filename": "dashboard/dashboard/alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-07T20:50:50Z",
+      "side": 1,
+      "message": "This will trigger webapp2. That means the webapp2 class will still be declared. This is not needed in the service as it should not be used. Though, they are still be seen for unit tests, thus I enabled them when in PY2. \n\nAdded the logs.",
+      "parentUuid": "a009a00a_7ee0b3f7",
+      "revId": "c41ba7669f188253d577d9b1addab56aac8bc916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7f68bfd_450c8235",
         "filename": "dashboard/dashboard/dispatcher.py",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-06T23:04:52Z",
       "side": 1,
       "message": "why _edit_site_config vs /edit_site_config",
+      "revId": "c41ba7669f188253d577d9b1addab56aac8bc916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d72cddaa_1fef9f81",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-07T20:50:50Z",
+      "side": 1,
+      "message": "This is passed to Flask() together with the package name __name__, and I believe it is used as the ID of the flask instance. Slashes are used more likely in urls.",
+      "parentUuid": "b7f68bfd_450c8235",
       "revId": "c41ba7669f188253d577d9b1addab56aac8bc916",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
