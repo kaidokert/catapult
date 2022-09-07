@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cad2d71_bc48b886",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-07T20:57:29Z",
+      "side": 1,
+      "message": "new logging based on https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;drc\u003d452501f321d74c54de04396e7b750991ebf4213c;l\u003d282\n\nCurrent logging is giving me this which isn\u0027t good enough. https://screenshot.googleplex.com/3M5vovq3dNLMbXA",
+      "revId": "18d62164ec503b95d272188fa98990cf48f98093",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
