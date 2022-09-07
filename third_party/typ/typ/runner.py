@@ -654,7 +654,6 @@ class Runner(object):
             pool_group.close_parallel_pool()
         finally:
             self.final_responses.extend(pool_group.join_parallel_pool())
-
         pool = pool_group.make_serial_pool()
         try:
             self._run_list(stats, result_set,
@@ -1013,6 +1012,15 @@ class _Child(object):
 
 
 def _setup_process(host, worker_num, child):
+    # For some currently unknown reason, running with one job (i.e. using an
+    # async pool instead of an actual process pool, and thus at some point
+    # creating a deep copy of the child) while using a _PipeTeedStream causes
+    # the write end of the pipe to be closed. Ideally, this wouldn't happen, but
+    # since this only happens when creating a new process pool and we know we
+    # will never be capturing output when that happens, we can currently just
+    # handle this by letting the teed streams know to recreate the pipe on
+    # process setup.
+    host.reset_teed_streams()
     child.host = host
     child.result_sink_reporter = result_sink.ResultSinkReporter(
             host, child.disable_resultsink)
