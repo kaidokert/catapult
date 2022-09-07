@@ -12,17 +12,18 @@ from dashboard.common import utils
 from dashboard.sheriff_config_client import SheriffConfigClient
 
 
-if utils.IsRunningFlask():
-  from flask import Response
+from flask import Response
 
-  def SheriffConfigPollerGet():
-    client = SheriffConfigClient()
-    ok, err_msg = client.Update()
-    if not ok:
-      return Response('FAILED: %s' % err_msg)
-    return Response('OK')
 
-else:
+def SheriffConfigPollerGet():
+  client = SheriffConfigClient()
+  ok, err_msg = client.Update()
+  if not ok:
+    return Response('FAILED: %s' % err_msg)
+  return Response('OK')
+
+
+if utils.IsMultiApps():
   import webapp2
 
   class ConfigsUpdateHandler(request_handler.RequestHandler):

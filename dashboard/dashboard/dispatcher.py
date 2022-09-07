@@ -6,6 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import logging
+
 from dashboard.common import utils
 
 if utils.IsRunningFlask():
@@ -125,7 +127,7 @@ else:
       ('/add_histograms_queue', add_histograms_queue.AddHistogramsQueueHandler),
       ('/add_point', add_point.AddPointHandler),
       ('/add_point_queue', add_point_queue.AddPointQueueHandler),
-      ('/alerts', alerts.AlertsHandler),
+      # ('/alerts', alerts.AlertsHandler),
       (r'/api/alerts', api_alerts.AlertsHandler),
       (r'/api/bugs/p/(.+)/(.+)', bugs.BugsWithProjectHandler),
       (r'/api/bugs/(.*)', bugs.BugsHandler),
@@ -155,11 +157,11 @@ else:
       ('/edit_anomalies', edit_anomalies.EditAnomaliesHandler),
       ('/edit_anomaly_configs', edit_anomaly_configs.EditAnomalyConfigsHandler),
       ('/edit_bug_labels', edit_bug_labels.EditBugLabelsHandler),
-      ('/edit_site_config', edit_site_config.EditSiteConfigHandler),
+      # ('/edit_site_config', edit_site_config.EditSiteConfigHandler),
       ('/file_bug', file_bug.FileBugHandler),
       ('/get_diagnostics', get_diagnostics.GetDiagnosticsHandler),
       ('/get_histogram', get_histogram.GetHistogramHandler),
-      ('/graph_csv', graph_csv.GraphCsvHandler),
+      # ('/graph_csv', graph_csv.GraphCsvHandler),
       ('/graph_json', graph_json.GraphJsonHandler),
       ('/graph_revisions', graph_revisions.GraphRevisionsHandler),
       ('/group_report', group_report.GroupReportHandler),
@@ -170,9 +172,9 @@ else:
        mark_recovered_alerts.MarkRecoveredAlertsHandler),
       ('/memory_report', memory_report.MemoryReportHandler),
       ('/migrate_test_names', migrate_test_names.MigrateTestNamesHandler),
-      ('/navbar', navbar.NavbarHandler),
-      ('/pinpoint/new/bisect',
-       pinpoint_request.PinpointNewBisectRequestHandler),
+      # ('/navbar', navbar.NavbarHandler),
+      ('/pinpoint/new/bisect', pinpoint_request.PinpointNewBisectRequestHandler
+      ),
       ('/pinpoint/new/perf_try',
        pinpoint_request.PinpointNewPerfTryRequestHandler),
       ('/pinpoint/new/prefill',
@@ -192,5 +194,85 @@ else:
        oauth2_decorator.DECORATOR.callback_handler())
   ]
 
-  APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
-  gae_ts_mon.initialize(APP)
+  webapp2_app = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
+
+  gae_ts_mon.initialize(webapp2_app)
+
+  # Before fully switch to flask, we will have multiple flask instances created
+  # to handle the requests for the migrated handlers.
+  import flask
+  from werkzeug.middleware import dispatcher
+
+  def FlaskHandlerDebugLogger(func):
+
+    def DebugLogger(*args, **kwargs):
+      logging.debug('Directed to Flask handler by %s.', func.__name__)
+      return func(*args, **kwargs)
+
+    DebugLogger.__name__ = func.__name__
+    return DebugLogger
+
+  # edit_site_config
+  flask_edit_site_config_app = flask.Flask(__name__ + '_edit_site_config')
+
+  @flask_edit_site_config_app.route('/', methods=['GET'])
+  @FlaskHandlerDebugLogger
+  def EditSiteConfigHandlerGet():
+    return edit_site_config.EditSiteConfigHandlerGet()
+
+  @flask_edit_site_config_app.route('/', methods=['POST'])
+  @FlaskHandlerDebugLogger
+  def EditSiteConfigHandlerPost():
+    return edit_site_config.EditSiteConfigHandlerPost()
+
+  # alert
+  flask_alerts_app = flask.Flask(__name__ + '_alerts')
+
+  @flask_alerts_app.route('/', methods=['GET'])
+  @FlaskHandlerDebugLogger
+  def AlertsHandlerGet():
+    return alerts.AlertsHandlerGet()
+
+  @flask_alerts_app.route('/', methods=['POST'])
+  @FlaskHandlerDebugLogger
+  def AlertsHandlerPost():
+    return alerts.AlertsHandlerPost()
+
+  # graph_csv
+  flask_graph_csv_app = flask.Flask(__name__ + '_graph_csv')
+
+  @flask_graph_csv_app.route('/', methods=['GET'])
+  @FlaskHandlerDebugLogger
+  def GraphCSVHandlerGet():
+    return graph_csv.GraphCSVGet()
+
+  @flask_graph_csv_app.route('/', methods=['POST'])
+  @FlaskHandlerDebugLogger
+  def GraphCSVHandlerPost():
+    return graph_csv.GraphCSVPost()
+
+  # navbar
+  flask_navbar_app = flask.Flask(__name__ + '_navbar')
+
+  @flask_navbar_app.route('/', methods=['POST'])
+  @FlaskHandlerDebugLogger
+  def NavbarHandlerPost():
+    return navbar.NavbarHandlerPost()
+
+  # sheriff config update
+  flask_sheriff_config_poller_app = flask.Flask(__name__ +
+                                                '_sheriff_config_poller')
+
+  @flask_sheriff_config_poller_app.route('/')
+  @FlaskHandlerDebugLogger
+  def SheriffConfigPollerGet():
+    return sheriff_config_poller.SheriffConfigPollerGet()
+
+  APP = dispatcher.DispatcherMiddleware(
+      webapp2_app, {
+          '/edit_site_config': flask_edit_site_config_app,
+          '/alerts': flask_alerts_app,
+          '/graph_csv': flask_graph_csv_app,
+          '/navbar': flask_navbar_app,
+          '/configs/update': flask_sheriff_config_poller_app,
+      })

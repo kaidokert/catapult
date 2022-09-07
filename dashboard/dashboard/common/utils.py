@@ -895,3 +895,9 @@ def RequestParamsMixed(req):
 
 def IsRunningFlask():
   return IsStagingEnvironment() or six.PY3
+
+
+def IsMultiApps():
+  # Running both Flask and Webapp2. This should only apply on chromeperf
+  # (non-pinpoint) services.
+  return six.PY2
