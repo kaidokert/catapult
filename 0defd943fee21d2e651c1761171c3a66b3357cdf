@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "516ccf91_5be5e954",
+        "filename": "dashboard/dashboard/speed_releasing.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-07T23:55:45Z",
+      "side": 1,
+      "message": "take a look at how we\u0027re doing it here: https://chromium-review.googlesource.com/c/catapult/+/3862958",
+      "revId": "0defd943fee21d2e651c1761171c3a66b3357cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dd51cd1_4a00c7ab",
+        "filename": "dashboard/dashboard/speed_releasing.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-07T23:55:45Z",
+      "side": 1,
+      "message": "why do you have logging here? the handler methods should call this function consistently",
+      "revId": "0defd943fee21d2e651c1761171c3a66b3357cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975f9df5_6a680649",
+        "filename": "dashboard/dashboard/speed_releasing.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-07T23:55:45Z",
+      "side": 1,
+      "message": "I think all of these functions can sit outside of the if statement and do not have to be recopied in the webapp2 section",
+      "revId": "0defd943fee21d2e651c1761171c3a66b3357cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
