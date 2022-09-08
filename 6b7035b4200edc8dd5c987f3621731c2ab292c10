@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b24eb40_a8da50b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2022-09-08T18:50:57Z",
+      "side": 1,
+      "message": "I tried to fix this in crrev.com/c/3868100, but `result.unexpected` is ignored, so we need to make this change in typ as well.",
+      "revId": "6b7035b4200edc8dd5c987f3621731c2ab292c10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
