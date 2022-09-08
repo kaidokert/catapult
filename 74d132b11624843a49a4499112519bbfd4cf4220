@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1eb48a0_3614f174",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T18:53:00Z",
+      "side": 1,
+      "message": "I tested this via a manual roll CL (https://chromium-review.googlesource.com/c/chromium/src/+/3858320). There are some minor failures with the comments due to the removal of the trailing newline character. I was planning to fix those in the manual roll CL and submit that after this is LGTMed.",
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
