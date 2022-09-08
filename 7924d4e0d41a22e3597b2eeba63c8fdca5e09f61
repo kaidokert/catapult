@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "878bfeb0_dce9ccdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-08T23:51:37Z",
+      "side": 1,
+      "message": "In staging I wasn\u0027t able to verify that the POST commands would work for most handlers due to issues with the staging environment. I think there\u0027s some risk that some of these handlers will work and some of them will not. Navbar for example affects the navigational bar at the top of every page, so it could affect the entire website. \n\nIf we want to be conservative, we could start with:\n- main (we\u0027ve verified this works on staging), \n- graph_csv (easy to test feature, rarely used), \n- edit_site_config (also rarely used)\n\nAnd then bring the others along one by one. ",
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11704705_1d2438ef",
+        "filename": "dashboard/dashboard/api/api_request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-08T23:51:37Z",
+      "side": 1,
+      "message": "possible nit: not necessary?",
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0cb4042_3b698990",
         "filename": "dashboard/dashboard/api/api_request_handler.py",
         "patchSetId": 2
@@ -37,6 +71,30 @@
       "writtenOn": "2022-09-08T22:57:11Z",
       "side": 1,
       "message": "I encountered an issue with POST handler of this URL while testing on dev server. The @xsrf.TokenRequired decorator isn\u0027t working correctly with flask. Could you double check if it works on staging?",
+      "range": {
+        "startLine": 205,
+        "startChar": 5,
+        "endLine": 205,
+        "endChar": 22
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f89b6e_dbe5bbd6",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-08T23:51:37Z",
+      "side": 1,
+      "message": "Is it a similar issue as what you mentioned here? https://chromium-review.googlesource.com/c/catapult/+/3860021/comments/f3160708_4a21d241",
+      "parentUuid": "5c537031_f4aa42a1",
       "range": {
         "startLine": 205,
         "startChar": 5,
