@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 from dashboard.common import utils
 
-if utils.IsRunningFlask():
+if True:
   from dashboard import alerts
   from dashboard import edit_site_config
   from dashboard import graph_csv
@@ -17,45 +17,45 @@ if utils.IsRunningFlask():
   from dashboard import sheriff_config_poller
 
   from flask import Flask
-  APP = Flask(__name__)
+  flask_app = Flask(__name__)
 
-  @APP.route('/alerts', methods=['GET'])
+  @flask_app.route('/alerts', methods=['GET'])
   def AlertsHandlerGet():
     return alerts.AlertsHandlerGet()
 
-  @APP.route('/alerts', methods=['POST'])
+  @flask_app.route('/alerts', methods=['POST'])
   def AlertsHandlerPost():
     return alerts.AlertsHandlerPost()
 
-  @APP.route('/edit_site_config', methods=['GET'])
+  @flask_app.route('/edit_site_config', methods=['GET'])
   def EditSiteConfigHandlerGet():
     return edit_site_config.EditSiteConfigHandlerGet()
 
-  @APP.route('/edit_site_config', methods=['POST'])
+  @flask_app.route('/edit_site_config', methods=['POST'])
   def EditSiteConfigHandlerPost():
     return edit_site_config.EditSiteConfigHandlerPost()
 
-  @APP.route('/graph_csv', methods=['GET'])
+  @flask_app.route('/graph_csv', methods=['GET'])
   def GraphCSVHandlerGet():
     return graph_csv.GraphCSVGet()
 
-  @APP.route('/graph_csv', methods=['POST'])
+  @flask_app.route('/graph_csv', methods=['POST'])
   def GraphCSVHandlerPost():
     return graph_csv.GraphCSVPost()
 
-  @APP.route('/')
+  @flask_app.route('/')
   def MainHandlerGet():
     return main.MainHandlerGet()
 
-  @APP.route('/navbar')
+  @flask_app.route('/navbar')
   def NavbarHandlerPost():
     return navbar.NavbarHandlerPost()
 
-  @APP.route('/configs/update')
+  @flask_app.route('/configs/update')
   def SheriffConfigPollerGet():
     return sheriff_config_poller.SheriffConfigPollerGet()
 
-else:
+if True:
   import gae_ts_mon
   import webapp2
 
@@ -192,5 +192,11 @@ else:
        oauth2_decorator.DECORATOR.callback_handler())
   ]
 
-  APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
-  gae_ts_mon.initialize(APP)
+  webapp2_app = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
+  gae_ts_mon.initialize(webapp2_app)
+
+def APP(environ, request):
+  path = environ.get('PATH_INFO', '')
+  if path.startswith('/edit_site_config'):
+    return flask_app(environ, request)
+  return webapp2_app(environ, request)

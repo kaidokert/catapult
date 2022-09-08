@@ -17,9 +17,9 @@ from google.appengine.api import users
 from dashboard.common import utils
 from dashboard.common import xsrf
 
-if utils.IsRunningFlask():
+if True:
   from flask import make_response, request
-else:
+if True:
   import webapp2
 
 _DASHBOARD_PYTHON_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -31,7 +31,7 @@ JINJA2_ENVIRONMENT = jinja2.Environment(
     autoescape=True,
     extensions=['jinja2.ext.autoescape'])
 
-if utils.IsRunningFlask():
+if True:
   def RequestHandlerRenderHtml(template_file, template_values, status=200):
     """Renders HTML given template and values.
 
@@ -116,7 +116,7 @@ if utils.IsRunningFlask():
     return make_response('%s\nrequest_id:%s\n' % (warning_message, utils.GetRequestId()),
                   status)
 
-else:
+if True:
 
   class RequestHandler(webapp2.RequestHandler):
     """Base class for requests. Does common template and error handling tasks."""

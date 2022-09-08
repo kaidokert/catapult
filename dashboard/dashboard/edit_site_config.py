@@ -20,6 +20,8 @@ from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.common import xsrf
 
+import logging
+
 _NOTIFICATION_EMAIL_BODY = """
 The configuration of %(hostname)s was changed by %(user)s.
 
@@ -41,12 +43,13 @@ Internal-only value diff:
 _NOTIFICATION_ADDRESS = 'browser-perf-engprod@google.com'
 _SENDER_ADDRESS = 'gasper-alerts@google.com'
 
-if utils.IsRunningFlask():
+if True:
   from flask import request
   # Handles editing of site config values stored with stored_entity.
 
   def EditSiteConfigHandlerGet():
     """Renders the UI with the form."""
+    logging.info('EditSiteConfigHandlerGet')
     key = request.args.get('key')
     if not key:
       return request_handler.RequestHandlerRenderHtml('edit_site_config.html',
@@ -67,6 +70,7 @@ if utils.IsRunningFlask():
   @xsrf.TokenRequired
   def EditSiteConfigHandlerPost():
     """Accepts posted values, makes changes, and shows the form again."""
+    logging.info('EditSiteConfigHandlerPost')
     key = request.args.get('key')
 
     if not utils.IsInternalUser():
@@ -114,7 +118,7 @@ if utils.IsRunningFlask():
     return request_handler.RequestHandlerRenderHtml('edit_site_config.html',
                                                     template_params)
 
-else:
+if True:
 
   class EditSiteConfigHandler(request_handler.RequestHandler):
     """Handles editing of site config values stored with stored_entity.
@@ -127,6 +131,7 @@ else:
 
     def get(self):
       """Renders the UI with the form."""
+      logging.info('EditSiteConfigHandler.get')
       key = self.request.get('key')
       if not key:
         self.RenderHtml('edit_site_config.html', {})
@@ -146,6 +151,7 @@ else:
     @xsrf.TokenRequired
     def post(self):
       """Accepts posted values, makes changes, and shows the form again."""
+      logging.info('EditSiteConfigHandler.post')
       key = self.request.get('key')
 
       if not utils.IsInternalUser():
