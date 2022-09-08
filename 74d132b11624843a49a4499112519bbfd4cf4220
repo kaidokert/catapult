@@ -113,6 +113,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "675e48c7_131516a5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-09-08T21:38:35Z",
+      "side": 1,
+      "message": "What should be the semantics of this variable? If the intention is to allow union of attributes , is it correct to totally disable check of conflicts?",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c53de301_6fc1ffc0",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
@@ -221,6 +244,29 @@
         "startChar": 36,
         "endLine": 622,
         "endChar": 48
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709ba5af_43b772d0",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-09-08T21:38:35Z",
+      "side": 1,
+      "message": "left over debug info?",
+      "range": {
+        "startLine": 520,
+        "startChar": 8,
+        "endLine": 520,
+        "endChar": 62
       },
       "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
