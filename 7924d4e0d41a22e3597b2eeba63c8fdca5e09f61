@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0cb4042_3b698990",
+        "filename": "dashboard/dashboard/api/api_request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-08T22:57:11Z",
+      "side": 1,
+      "message": "Should we remove the \"if\", as in alerts.py?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 8
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c537031_f4aa42a1",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-08T22:57:11Z",
+      "side": 1,
+      "message": "I encountered an issue with POST handler of this URL while testing on dev server. The @xsrf.TokenRequired decorator isn\u0027t working correctly with flask. Could you double check if it works on staging?",
+      "range": {
+        "startLine": 205,
+        "startChar": 5,
+        "endLine": 205,
+        "endChar": 22
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
