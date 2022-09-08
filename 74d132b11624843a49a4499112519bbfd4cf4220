@@ -111,6 +111,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d10f685f_71ccd051",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "Added a comment for now. We can consider a map for them later, but atm there isn\u0027t an enum or anything for these immediately so leaving as is for now.",
+      "parentUuid": "9bd65892_ab10aafe",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 40
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "675e48c7_131516a5",
@@ -124,6 +148,30 @@
       "writtenOn": "2022-09-08T21:38:35Z",
       "side": 1,
       "message": "What should be the semantics of this variable? If the intention is to allow union of attributes , is it correct to totally disable check of conflicts?",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62fc8df9_e5abef66",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "This is separate from attributes. This is specifically for what `typ` currently defines as conflicts, i.e. exact query matches. I am adding this so that the presubmit unittests don\u0027t check for conflicts if the expectation file specifically allows them.",
+      "parentUuid": "675e48c7_131516a5",
       "range": {
         "startLine": 455,
         "startChar": 13,
@@ -157,6 +205,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecff24f4_909ee186",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c53de301_6fc1ffc0",
+      "range": {
+        "startLine": 460,
+        "startChar": 8,
+        "endLine": 460,
+        "endChar": 18
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af4205ad_b8c96755",
@@ -170,6 +242,30 @@
       "writtenOn": "2022-09-08T20:25:08Z",
       "side": 1,
       "message": "These seem like they should be local variables, not member variables.",
+      "range": {
+        "startLine": 584,
+        "startChar": 8,
+        "endLine": 590,
+        "endChar": 29
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac6c55de_9a4caddc",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "I agree and I initially tried to change this already, but the way that the helpers are set up it doesn\u0027t work because the helpers (`_update_expected_attributes`, and `_update_expected_results` need to have the `self` scope to find and modify the variables. This can probably be reworked so that these helpers either return like an updated set of information or something, but I would prefer to leave this as is for now since it would be a more involved change.",
+      "parentUuid": "af4205ad_b8c96755",
       "range": {
         "startLine": 584,
         "startChar": 8,
@@ -203,6 +299,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4ff6a6e_f1efe3df",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38075ea2_2ce00045",
+      "range": {
+        "startLine": 602,
+        "startChar": 44,
+        "endLine": 602,
+        "endChar": 50
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c7cf436_762deb98",
@@ -216,6 +336,30 @@
       "writtenOn": "2022-09-08T20:25:08Z",
       "side": 1,
       "message": "`set([exp.trailing_comments])` seems better.",
+      "range": {
+        "startLine": 619,
+        "startChar": 46,
+        "endLine": 621,
+        "endChar": 21
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22373a02_efd903bc",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c7cf436_762deb98",
       "range": {
         "startLine": 619,
         "startChar": 46,
@@ -249,6 +393,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d2cd8ce_26e40fc6",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "042b3376_c5434994",
+      "range": {
+        "startLine": 622,
+        "startChar": 36,
+        "endLine": 622,
+        "endChar": 48
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "709ba5af_43b772d0",
@@ -262,6 +430,30 @@
       "writtenOn": "2022-09-08T21:38:35Z",
       "side": 1,
       "message": "left over debug info?",
+      "range": {
+        "startLine": 520,
+        "startChar": 8,
+        "endLine": 520,
+        "endChar": 62
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8dbb61e_ef160dfa",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-08T23:09:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "709ba5af_43b772d0",
       "range": {
         "startLine": 520,
         "startChar": 8,
