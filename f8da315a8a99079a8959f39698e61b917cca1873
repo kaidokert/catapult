@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbc8c5a4_c4a9d3f8",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-08T17:06:39Z",
+      "side": 1,
+      "message": "Nit: extra spaces",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 2
+      },
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10fffa1e_2dcd9c30",
         "filename": "dashboard/dashboard/edit_bug_labels.py",
         "patchSetId": 2
@@ -31,6 +54,29 @@
       "writtenOn": "2022-08-26T23:01:34Z",
       "side": 1,
       "message": "not sure how to guarantee this in staging",
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3160708_4a21d241",
+        "filename": "dashboard/dashboard/edit_bug_labels.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-08T17:06:39Z",
+      "side": 1,
+      "message": "This won\u0027t work correctly. Since this is submitted from an HTML form (created by the get handler above) using POST method, you need either request.form or request.values to retrieve the data. (request.values is safer, as it works with both GET and POST methods.)",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 24
+      },
       "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
