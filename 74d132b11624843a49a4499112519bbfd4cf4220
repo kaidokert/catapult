@@ -33,6 +33,24 @@
       "message": "Please add definitions of \"attribute\" and \"result\" in the CL description and code comments. I have used these terms in discussions, but I don\u0027t think they were formally defined.",
       "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28bf8db7_0ba98481",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2022-09-08T19:28:55Z",
+      "side": 1,
+      "message": "The above comment just applies to CL description.\n\nThe code comments already have good definitions of them.",
+      "parentUuid": "fde0be6b_87e9d65b",
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
