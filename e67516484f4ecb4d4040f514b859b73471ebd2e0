@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99b799e1_6e0ae370",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-08T01:12:31Z",
+      "side": 1,
+      "message": "I did some research into this, and I\u0027d recommend a different approach. The issue with this CL is creating a new flask app for each path. This is different from the end goal, so one day (after fully migrating to flask) we\u0027ll have to submit more CLs to combine the flask apps...\n\nIt\u0027s actually quite easy to write a simple middleware that selectively dispatch to flask and webapp2. I created a proof-of-concept: https://chromium-review.googlesource.com/c/catapult/+/3881403. Currently it dispatches /edit_site_config to flask, and everything else to webapp2. By editing the \"if\" statement near the end of dispatcher.py, it can dispatch any paths to flask. It only requires one flask app regardless of how many paths are dispatched. It still has lots of rough edges, but I hope it can provide a better way for the flask migration.",
+      "revId": "e67516484f4ecb4d4040f514b859b73471ebd2e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
