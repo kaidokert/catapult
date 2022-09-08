@@ -16,6 +16,23 @@
       "message": "I tested this via a manual roll CL (https://chromium-review.googlesource.com/c/chromium/src/+/3858320). There are some minor failures with the comments due to the removal of the trailing newline character. I was planning to fix those in the manual roll CL and submit that after this is LGTMed.",
       "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde0be6b_87e9d65b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2022-09-08T19:27:40Z",
+      "side": 1,
+      "message": "Please add definitions of \"attribute\" and \"result\" in the CL description and code comments. I have used these terms in discussions, but I don\u0027t think they were formally defined.",
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
