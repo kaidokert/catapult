@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a79c4cd_5857b96a",
+        "filename": "dashboard/dashboard/speed_releasing.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-08T00:40:06Z",
+      "side": 1,
+      "message": "Will wait 4 Wenbin\u0027s common util\u0027s change then",
+      "parentUuid": "516ccf91_5be5e954",
+      "revId": "0defd943fee21d2e651c1761171c3a66b3357cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6dd51cd1_4a00c7ab",
         "filename": "dashboard/dashboard/speed_releasing.py",
         "patchSetId": 3
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-07T23:55:45Z",
       "side": 1,
       "message": "why do you have logging here? the handler methods should call this function consistently",
+      "revId": "0defd943fee21d2e651c1761171c3a66b3357cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16d1505b_74a7ad28",
+        "filename": "dashboard/dashboard/speed_releasing.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-08T00:40:06Z",
+      "side": 1,
+      "message": "I see, no need to put it in get apis frequently called",
+      "parentUuid": "6dd51cd1_4a00c7ab",
       "revId": "0defd943fee21d2e651c1761171c3a66b3357cdf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
