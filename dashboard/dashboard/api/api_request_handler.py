@@ -10,12 +10,13 @@ import json
 import logging
 import re
 import traceback
+import six
 
 from dashboard.api import api_auth
 from dashboard.common import utils
-if utils.IsRunningFlask():
+if True:
   from flask import make_response, request
-else:
+if six.PY2:
   import webapp2
 
 _ALLOWED_ORIGINS = [
@@ -55,7 +56,7 @@ def SafeOriginRegex(prefix, origin):
   return re.compile(r'^' + prefix + re.escape(origin) + '$')
 
 
-if utils.IsRunningFlask():
+if True:
 
   def RequestHandlerDecoratorFactory(user_checker):
 
@@ -111,7 +112,8 @@ if utils.IsRunningFlask():
     logging.error(traceback.format_exc())
     return make_response(json.dumps({'error': message}), status)
 
-else:
+
+if six.PY2:
 
   class ApiRequestHandler(webapp2.RequestHandler):
     """API handler for api requests.
