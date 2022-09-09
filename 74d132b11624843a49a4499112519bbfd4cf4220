@@ -278,6 +278,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0f4b3fc_7e4c3209",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-09-09T22:36:56Z",
+      "side": 1,
+      "message": "OK, thanks for the change.\n\nOne more question is that do we still need _conflicts_allowed, if we now treat retry_on_failure and slow as attributes. I will defer this to rmhasan@ as _conflicts_allowed is an existing feature.",
+      "parentUuid": "da0d791f_caf293df",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c53de301_6fc1ffc0",
