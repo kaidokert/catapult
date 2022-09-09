@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5623c08_58238154",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-09T18:32:46Z",
+      "side": 1,
+      "message": "This seems a larger scope of change. I will trim down the change and leave the original CL owner to decide which one to enable to run in flask.",
+      "parentUuid": "51840764_5e013e4a",
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11704705_1d2438ef",
         "filename": "dashboard/dashboard/api/api_request_handler.py",
         "patchSetId": 2
@@ -49,6 +67,24 @@
       "writtenOn": "2022-09-08T23:51:37Z",
       "side": 1,
       "message": "possible nit: not necessary?",
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec6c60a7_c765841a",
+        "filename": "dashboard/dashboard/api/api_request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-09T18:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11704705_1d2438ef",
       "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -66,6 +102,30 @@
       "writtenOn": "2022-09-08T22:57:11Z",
       "side": 1,
       "message": "Should we remove the \"if\", as in alerts.py?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 8
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66b2078b_72fdba1a",
+        "filename": "dashboard/dashboard/api/api_request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-09T18:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0cb4042_3b698990",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -149,6 +209,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96c93e2f_bd872d2d",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-09T18:32:46Z",
+      "side": 1,
+      "message": "Will revert this change and limit the scope of this CL, as mentioned in another comment.",
+      "parentUuid": "e1a99d2d_acdfd150",
+      "range": {
+        "startLine": 205,
+        "startChar": 5,
+        "endLine": 205,
+        "endChar": 22
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1c7c74e_f007e527",
         "filename": "dashboard/dashboard/edit_site_config.py",
         "patchSetId": 2
@@ -160,6 +244,30 @@
       "writtenOn": "2022-09-09T17:34:16Z",
       "side": 1,
       "message": "Need to use `values` in a POST handler.",
+      "range": {
+        "startLine": 75,
+        "startChar": 16,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d3dadd6_6c2c9a88",
+        "filename": "dashboard/dashboard/edit_site_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-09T18:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1c7c74e_f007e527",
       "range": {
         "startLine": 75,
         "startChar": 16,
@@ -183,6 +291,30 @@
       "writtenOn": "2022-09-09T17:34:16Z",
       "side": 1,
       "message": "Replace args with values",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 70
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33605806_482ce98a",
+        "filename": "dashboard/dashboard/edit_site_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-09T18:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb454bc9_d3d3d8f8",
       "range": {
         "startLine": 86,
         "startChar": 0,
