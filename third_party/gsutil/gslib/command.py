@@ -69,6 +69,7 @@ from gslib.storage_url import HaveFileUrls
 from gslib.storage_url import HaveProviderUrls
 from gslib.storage_url import StorageUrlFromString
 from gslib.storage_url import UrlsAreForSingleProvider
+from gslib.storage_url import UrlsAreMixOfBucketsAndObjects
 from gslib.third_party.storage_apitools import storage_v1_messages as apitools_messages
 from gslib.thread_message import FinalMessage
 from gslib.thread_message import MetadataMessage
@@ -92,6 +93,7 @@ from gslib.utils.parallelism_framework_util import ShouldProhibitMultiprocessing
 from gslib.utils.parallelism_framework_util import UI_THREAD_JOIN_TIMEOUT
 from gslib.utils.parallelism_framework_util import ZERO_TASKS_TO_DO_ARGUMENT
 from gslib.utils.rsync_util import RsyncDiffToApply
+from gslib.utils.shim_util import GcloudStorageCommandMixin
 from gslib.utils.system_util import GetTermLines
 from gslib.utils.system_util import IS_WINDOWS
 from gslib.utils.translation_helper import AclTranslation
@@ -490,7 +492,7 @@ CommandSpec = namedtuple(
     ])
 
 
-class Command(HelpProvider):
+class Command(HelpProvider, GcloudStorageCommandMixin):
   """Base class for all gsutil commands."""
 
   # Each subclass must override this with an instance of CommandSpec.
@@ -611,6 +613,7 @@ class Command(HelpProvider):
     because it will make changing the __init__ interface more painful.
     """
     # Save class values from constructor params.
+    super().__init__()
     self.command_runner = command_runner
     self.unparsed_args = args
     self.headers = headers
@@ -641,8 +644,8 @@ class Command(HelpProvider):
       raise CommandException('"%s" command implementation is missing a '
                              'command_spec definition.' % self.command_name)
 
-    quiet_mode = not self.logger.isEnabledFor(logging.INFO)
-    ui_controller = UIController(quiet_mode=quiet_mode,
+    self.quiet_mode = not self.logger.isEnabledFor(logging.INFO)
+    ui_controller = UIController(quiet_mode=self.quiet_mode,
                                  dump_status_messages_file=boto.config.get(
                                      'GSUtil', 'dump_status_messages_file',
                                      None))
@@ -725,25 +728,46 @@ class Command(HelpProvider):
                (self.command_spec.usage_synopsis, self.command_name))
     raise CommandException(message)
 
-  def ParseSubOpts(self, check_args=False):
+  def ParseSubOpts(self,
+                   check_args=False,
+                   args=None,
+                   should_update_sub_opts_and_args=True):
     """Parses sub-opt args.
 
     Args:
       check_args: True to have CheckArguments() called after parsing.
+      args: List of args. If None, self.args will be used.
+      should_update_sub_opts_and_args: True if self.sub_opts and self.args
+        should be updated with the values returned after parsing. Else return a
+        tuple of sub_opts, args returned by getopt.getopt. This is done
+        to allow this method to be called from get_gcloud_storage_args in which
+        case we do not want to update self.sub_opts and self.args.
 
-    Populates:
-      (self.sub_opts, self.args) from parsing.
-
-    Raises: RaiseInvalidArgumentException if invalid args specified.
+    Raises:
+      RaiseInvalidArgumentException: Invalid args specified.
     """
+    if args is None:
+      unparsed_args = self.args
+    else:
+      unparsed_args = args
     try:
-      self.sub_opts, self.args = getopt.getopt(
-          self.args, self.command_spec.supported_sub_args,
+      parsed_sub_opts, parsed_args = getopt.getopt(
+          unparsed_args, self.command_spec.supported_sub_args,
           self.command_spec.supported_private_args or [])
     except getopt.GetoptError:
       self.RaiseInvalidArgumentException()
-    if check_args:
-      self.CheckArguments()
+    if should_update_sub_opts_and_args:
+      self.sub_opts, self.args = parsed_sub_opts, parsed_args
+      if check_args:
+        self.CheckArguments()
+    else:
+      if check_args:
+        # This is just for sanity check. Only get_gcloud_storage_args will
+        # call this method with should_update_sub_opts_and_args=False, and it
+        # does not set check_args to True.
+        raise TypeError('Requested to check arguments'
+                        ' but sub_opts and args have not been updated.')
+      return parsed_sub_opts, parsed_args
 
   def CheckArguments(self):
     """Checks that command line arguments match the command_spec.
@@ -854,12 +878,17 @@ class Command(HelpProvider):
       CommandException if an ACL could not be set.
     """
     multi_threaded_url_args = []
+
+    urls = list(map(StorageUrlFromString, url_strs))
+
+    if (UrlsAreMixOfBucketsAndObjects(urls) and not self.recursion_requested):
+      raise CommandException('Cannot operate on a mix of buckets and objects.')
+
     # Handle bucket ACL setting operations single-threaded, because
     # our threading machinery currently assumes it's working with objects
     # (name_expansion_iterator), and normally we wouldn't expect users to need
     # to set ACLs on huge numbers of buckets at once anyway.
-    for url_str in url_strs:
-      url = StorageUrlFromString(url_str)
+    for url in urls:
       if url.IsCloudUrl() and url.IsBucket():
         if self.recursion_requested:
           # If user specified -R option, convert any bucket args to bucket
@@ -873,10 +902,15 @@ class Command(HelpProvider):
           for blr in self.WildcardIterator(
               url.url_string).IterBuckets(bucket_fields=['id']):
             name_expansion_for_url = NameExpansionResult(
-                url, False, False, blr.storage_url, None)
+                source_storage_url=url,
+                is_multi_source_request=False,
+                is_multi_top_level_source_request=False,
+                names_container=False,
+                expanded_storage_url=blr.storage_url,
+                expanded_result=None)
             acl_func(self, name_expansion_for_url)
       else:
-        multi_threaded_url_args.append(url_str)
+        multi_threaded_url_args.append(url.url_string)
 
     if len(multi_threaded_url_args) >= 1:
       name_expansion_iterator = NameExpansionIterator(
@@ -948,8 +982,8 @@ class Command(HelpProvider):
       gsutil_api: gsutil Cloud API to use for the ACL set. Must support XML
           passthrough functions.
     """
+    orig_prefer_api = gsutil_api.prefer_api
     try:
-      orig_prefer_api = gsutil_api.prefer_api
       gsutil_api.prefer_api = ApiSelector.XML
       gsutil_api.XmlPassThroughSetAcl(self.acl_arg,
                                       url,
