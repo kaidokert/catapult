@@ -16,6 +16,23 @@
       "message": "Re-ran CQ with the optional bots here: https://chromium-review.googlesource.com/c/chromium/src/+/3858320",
       "revId": "771a77a799c4c438a22130457023874b5f3190ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "125e3eb4_58f7e5f3",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-09T18:37:32Z",
+      "side": 1,
+      "message": "Please add a new test (or multiple if necessary) explicitly testing the new behavior. It looks like there\u0027s some coverage with existing tests, but seems like something we should be explicitly testing thoroughly.",
+      "revId": "771a77a799c4c438a22130457023874b5f3190ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

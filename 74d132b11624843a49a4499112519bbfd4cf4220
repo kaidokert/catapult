@@ -324,6 +324,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66cace73_8c00d0fc",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-09T18:37:32Z",
+      "side": 1,
+      "message": "\u003e the helpers ( _update_expected_attributes , and  _update_expected_results  need to have the  self  scope to find and modify the variables\n\nThat shouldn\u0027t be the case. Toy example from an interactive Python prompt:\n\n```\n\u003e\u003e\u003e def outer():\n...   a \u003d \u0027a string\u0027\n...   def inner():\n...     print(a)\n...   inner()\n... \n\u003e\u003e\u003e outer()\na string\n```",
+      "parentUuid": "ac6c55de_9a4caddc",
+      "range": {
+        "startLine": 584,
+        "startChar": 8,
+        "endLine": 590,
+        "endChar": 29
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38075ea2_2ce00045",
