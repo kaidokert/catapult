@@ -652,10 +652,28 @@ def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
   assert scope, "ServiceAccountHttp scope must not be None."
 
   client.logger.setLevel(logging.WARNING)
-  credentials = client.SignedJwtAssertionCredentials(
-      service_account_name=account_details['client_email'],
-      private_key=account_details['private_key'],
-      scope=scope)
+  if six.PY2:
+    credentials = client.SignedJwtAssertionCredentials(
+        service_account_name=account_details['client_email'],
+        private_key=account_details['private_key'],
+        scope=scope)
+  else:
+    from oauth2client.service_account import ServiceAccountCredentials
+
+    logging.error('DEBUG - 0: %s', account_details['private_key'])
+
+    # from io import BytesIO
+    # key_buffer = BytesIO(six.ensure_binary(account_details['private_key']))
+
+    from io import StringIO
+    key_buffer = StringIO(account_details['private_key'])
+
+    logging.error('DEBUG: %s', key_buffer.read())
+
+    credentials = ServiceAccountCredentials.from_p12_keyfile_buffer(
+        service_account_email=account_details['client_email'],
+        file_buffer=key_buffer,
+        scopes=scope)
 
   http = httplib2.Http(timeout=timeout)
   credentials.authorize(http)
