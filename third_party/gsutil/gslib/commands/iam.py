@@ -45,6 +45,7 @@ from gslib.plurality_checkable_iterator import PluralityCheckableIterator
 from gslib.storage_url import GetSchemeFromUrlString
 from gslib.storage_url import IsKnownUrlScheme
 from gslib.storage_url import StorageUrlFromString
+from gslib.storage_url import UrlsAreMixOfBucketsAndObjects
 from gslib.third_party.storage_apitools import storage_v1_messages as apitools_messages
 from gslib.utils.cloud_api_helper import GetCloudApiInstance
 from gslib.utils.constants import IAM_POLICY_VERSION
@@ -83,9 +84,9 @@ _CH_SYNOPSIS = """
   conditions to a policy or to change the policy of a resource that already
   contains conditions. See additional details below.
 
-  NOTE: The "gsutil iam" command does not allow using project convenience groups
-  (projectOwner, projectEditor, projectViewer) as the first segment of a binding
-  because these groups go against the principle of least privilege.
+  NOTE: The "gsutil iam" command does not allow you to add convenience values
+  (projectOwner, projectEditor, projectViewer), but you can remove existing
+  ones.
 
 """
 
@@ -130,12 +131,12 @@ _SET_DESCRIPTION = """
 
   -R, -r      Performs ``iam set`` recursively on all objects under the
               specified bucket.
-              
-              This flag can only be set if the policy exclusively uses 
+
+              This flag can only be set if the policy exclusively uses
               ``roles/storage.legacyObjectReader`` or ``roles/storage.legacyObjectOwner``.
               This flag cannot be used if the bucket is configured
               for uniform bucket-level access.
-              
+
   -a          Performs ``iam set`` on all object versions.
 
   -e <etag>   Performs the precondition check on each object with the
@@ -151,8 +152,8 @@ _CH_DESCRIPTION = """
 <B>CH</B>
   The ``iam ch`` command incrementally updates Cloud IAM policies. You can specify
   multiple access grants or removals in a single command. The access changes are
-  applied as a batch to each url in the order in which they appear in the
-  command line arguments. Each access change specifies a member and a role that
+  applied as a batch to each url in the order in which they appear in the command
+  line arguments. Each access change specifies a principal and a role that
   is either granted or revoked.
 
   You can use gsutil ``-m`` to handle object-level operations in parallel.
@@ -167,7 +168,7 @@ _CH_DESCRIPTION = """
 <B>CH EXAMPLES</B>
   Examples for the ``ch`` sub-command:
 
-  To grant a single role to a single member for some targets:
+  To grant a single role to a single principal for some targets:
 
     gsutil iam ch user:john.doe@example.com:objectCreator gs://ex-bucket
 
@@ -180,12 +181,12 @@ _CH_DESCRIPTION = """
     gsutil iam ch user:john.doe@example.com:objectCreator \\
                   domain:www.my-domain.org:objectViewer gs://ex-bucket
 
-  To specify more than one role for a particular member:
+  To specify more than one role for a particular principal:
 
     gsutil iam ch user:john.doe@example.com:objectCreator,objectViewer \\
                   gs://ex-bucket
 
-  To specify a custom role for a particular member:
+  To specify a custom role for a particular principal:
 
     gsutil iam ch user:john.doe@example.com:roles/customRoleName gs://ex-bucket
 
@@ -201,12 +202,12 @@ _CH_DESCRIPTION = """
 <B>CH OPTIONS</B>
   The ``ch`` sub-command has the following options:
 
-  -d          Removes roles granted to the specified member.
+  -d          Removes roles granted to the specified principal.
 
   -R, -r      Performs ``iam ch`` recursively to all objects under the
               specified bucket.
-              
-              This flag can only be set if the policy exclusively uses 
+
+              This flag can only be set if the policy exclusively uses
               ``roles/storage.legacyObjectReader`` or ``roles/storage.legacyObjectOwner``.
               This flag cannot be used if the bucket is configured
               for uniform bucket-level access.
@@ -526,8 +527,13 @@ class IamCommand(Command):
     self.everything_set_okay = True
     self.tried_ch_on_resource_with_conditions = False
     threaded_wildcards = []
-    for pattern in patterns:
-      surl = StorageUrlFromString(pattern)
+
+    surls = list(map(StorageUrlFromString, patterns))
+
+    if (UrlsAreMixOfBucketsAndObjects(surls) and not self.recursion_requested):
+      raise CommandException('Cannot operate on a mix of buckets and objects.')
+
+    for surl in surls:
       try:
         if surl.IsBucket():
           if self.recursion_requested:
@@ -646,8 +652,13 @@ class IamCommand(Command):
     # This list of wildcard strings will be handled by NameExpansionIterator.
     threaded_wildcards = []
 
-    for pattern in patterns:
-      surl = StorageUrlFromString(pattern)
+    surls = list(map(StorageUrlFromString, patterns))
+
+    if (UrlsAreMixOfBucketsAndObjects(surls) and not self.recursion_requested):
+      raise CommandException('Cannot operate on a mix of buckets and objects.')
+
+    for surl in surls:
+      print(surl.url_string)
       if surl.IsBucket():
         if self.recursion_requested:
           surl.object_name = '*'

@@ -27,13 +27,13 @@ from __future__ import division
 from __future__ import unicode_literals
 
 import functools
-import mock
 import os
 import signal
 import six
 import threading
 import textwrap
 import time
+from unittest import mock
 
 import boto
 from boto.storage_uri import BucketStorageUri
@@ -98,7 +98,7 @@ def _ReturnOneValue(cls, args, thread_state=None):
 
 
 def _ReturnProcAndThreadId(cls, args, thread_state=None):
-  return (os.getpid(), threading.currentThread().ident)
+  return os.getpid(), threading.current_thread().ident
 
 
 def _SleepThenReturnProcAndThreadId(cls, args, thread_state=None):
