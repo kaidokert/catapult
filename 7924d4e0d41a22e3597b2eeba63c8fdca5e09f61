@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51840764_5e013e4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-09T17:34:16Z",
+      "side": 1,
+      "message": "While edit_site_config is rarely used, it is very important when it is needed. With the changes I just commented about elsewhere, edit_site_config now works using dev server.",
+      "parentUuid": "878bfeb0_dce9ccdd",
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11704705_1d2438ef",
         "filename": "dashboard/dashboard/api/api_request_handler.py",
         "patchSetId": 2
@@ -100,6 +118,76 @@
         "startChar": 5,
         "endLine": 205,
         "endChar": 22
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a99d2d_acdfd150",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-09T17:34:16Z",
+      "side": 1,
+      "message": "It\u0027s actually the same as the issue you mentioned at https://chromium-review.googlesource.com/c/catapult/+/3860021/comments/553e629b_0d220ed0\n\nThe problem is @xsrf.TokenRequired only works with webapp2, not with flask. See its implementation at https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/xsrf.py;l\u003d54. The CheckToken method assumes there is a \"self\" argument, i.e., the wrapped function is a method inside a class. But this is only true in the case of webapp2, not flask. In addition, it retrieves the token with self.request.get, and that doesn\u0027t work with flask.\n\nThe easiest solution is to define a new TokenRequiredFlask decorator inside https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/xsrf.py\n\nfrom flask import request\ndef TokenRequiredFlask(handler_method):\n  \"\"\"A decorator to require that the XSRF token be validated for the handler.\"\"\"\n  \n  def CheckToken(*args, **kwargs):\n    email \u003d utils.GetEmail()\n    token \u003d str(request.values.get(\u0027xsrf_token\u0027))\n    if not email or not _ValidateToken(token, email):\n      self.abort(403)\n    return handler_method(*args, **kwargs)\n\n  return CheckToken\n\nAnd then use @xsrf.TokenRequiredFlask to decorate flask functions.",
+      "parentUuid": "93f89b6e_dbe5bbd6",
+      "range": {
+        "startLine": 205,
+        "startChar": 5,
+        "endLine": 205,
+        "endChar": 22
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c7c74e_f007e527",
+        "filename": "dashboard/dashboard/edit_site_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-09T17:34:16Z",
+      "side": 1,
+      "message": "Need to use `values` in a POST handler.",
+      "range": {
+        "startLine": 75,
+        "startChar": 16,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb454bc9_d3d3d8f8",
+        "filename": "dashboard/dashboard/edit_site_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-09T17:34:16Z",
+      "side": 1,
+      "message": "Replace args with values",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 70
       },
       "revId": "7924d4e0d41a22e3597b2eeba63c8fdca5e09f61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
