@@ -302,6 +302,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00f24e9a_c99f43fe",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-09T23:51:33Z",
+      "side": 1,
+      "message": "Conflicts allow conflicting `results` as well, i.e. Skip/Failure at the same time. So I don\u0027t think this will be enough to justify removing it entirely atm.",
+      "parentUuid": "d0f4b3fc_7e4c3209",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c53de301_6fc1ffc0",
