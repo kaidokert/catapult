@@ -206,6 +206,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cf9266d_40f968e5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-09T06:50:33Z",
+      "side": 1,
+      "message": "There is a usage of it in line 679. The `check_test_expectations_patterns_for_conflicts` function is used in a unit test here: content/test/gpu/gpu_tests/test_expectations_unittest.py",
+      "parentUuid": "f3cbca78_79327c44",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c53de301_6fc1ffc0",
