@@ -232,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79e5a4a4_3612ebd5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-09-09T19:54:49Z",
+      "side": 1,
+      "message": "How about we pass in _conflicts_allowed as a parameter, if it is really needed?\n\nWe are checking `self._conflicts_allowed` before and in `check_test_expectations_patterns_for_conflicts`. Is this really needed?\n\nMake this a member variable can be confusing. I think this is the reason I get confused at the beginning.",
+      "parentUuid": "7cf9266d_40f968e5",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c53de301_6fc1ffc0",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
