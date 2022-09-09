@@ -52,6 +52,7 @@ SUFFIXES = {
     '_android_clank_monochrome',
     '_android_clank_monochrome_64_32_bundle',
     '_android_clank_monochrome_bundle',
+    '_android_clank_trichrome_64_32_bundle',
     '_android_clank_trichrome_bundle',
     '_android_clank_trichrome_webview',
     '_android_clank_trichrome_webview_bundle',
