@@ -254,6 +254,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da0d791f_caf293df",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-09T21:24:26Z",
+      "side": 1,
+      "message": "I removed the duplicated checking of `self._conflicts_allowed` but am keeping the member variable since it is needed for the test mentioned above. It is also pretty much the same as `self._conflict_resolution` which was already a member variable in the first place so I don\u0027t see why we shouldn\u0027t have both.",
+      "parentUuid": "79e5a4a4_3612ebd5",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c53de301_6fc1ffc0",
@@ -362,6 +386,30 @@
       "side": 1,
       "message": "\u003e the helpers ( _update_expected_attributes , and  _update_expected_results  need to have the  self  scope to find and modify the variables\n\nThat shouldn\u0027t be the case. Toy example from an interactive Python prompt:\n\n```\n\u003e\u003e\u003e def outer():\n...   a \u003d \u0027a string\u0027\n...   def inner():\n...     print(a)\n...   inner()\n... \n\u003e\u003e\u003e outer()\na string\n```",
       "parentUuid": "ac6c55de_9a4caddc",
+      "range": {
+        "startLine": 584,
+        "startChar": 8,
+        "endLine": 590,
+        "endChar": 29
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b81d0fa_32950d23",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-09T21:24:26Z",
+      "side": 1,
+      "message": "Resolved offline and by using a temporary class scope for now.",
+      "parentUuid": "66cace73_8c00d0fc",
       "range": {
         "startLine": 584,
         "startChar": 8,
