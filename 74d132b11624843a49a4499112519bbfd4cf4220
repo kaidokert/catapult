@@ -184,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3cbca78_79327c44",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-09-09T00:00:06Z",
+      "side": 1,
+      "message": "Thanks. I realized this is essentially an existing variable. We are always accessing this variable after the assignment at line 518. In this case I suggest we don\u0027t add this member variable.\n\nWhy this would make a difference to the presubmit unittests? I see there is no functional change around this.",
+      "parentUuid": "62fc8df9_e5abef66",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 31
+      },
+      "revId": "74d132b11624843a49a4499112519bbfd4cf4220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c53de301_6fc1ffc0",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
