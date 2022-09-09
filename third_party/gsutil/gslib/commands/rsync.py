@@ -75,7 +75,7 @@ from gslib.utils.posix_util import ConvertDatetimeToPOSIX
 from gslib.utils.posix_util import ConvertModeToBase8
 from gslib.utils.posix_util import DeserializeFileAttributesFromObjectMetadata
 from gslib.utils.posix_util import GID_ATTR
-from gslib.utils.posix_util import InitializeUserGroups
+from gslib.utils.posix_util import InitializePreservePosixData
 from gslib.utils.posix_util import MODE_ATTR
 from gslib.utils.posix_util import MTIME_ATTR
 from gslib.utils.posix_util import NA_ID
@@ -150,7 +150,7 @@ _DETAILED_HELP_TEXT = ("""
   flow through the machine where gsutil is running, doing this can make your
   transfer run significantly faster than running gsutil on your local
   workstation.
-  
+
   Note 3: rsync does not copy empty directory trees, since Cloud Storage uses a
   `flat namespace <https://cloud.google.com/storage/docs/folders>`_.
 
@@ -186,7 +186,7 @@ _DETAILED_HELP_TEXT = ("""
 
   Change detection works if the other Cloud provider is using md5 or CRC32. AWS
   multipart upload has an incompatible checksum.
-  
+
   As mentioned above, using -d can be dangerous because of how quickly data can
   be deleted. For example, if you meant to synchronize a local directory from
   a bucket in the cloud but instead run the command:
@@ -334,8 +334,10 @@ _DETAILED_HELP_TEXT = ("""
 
   Note that by default, the gsutil rsync command does not copy the ACLs of
   objects being synchronized and instead will use the default bucket ACL (see
-  "gsutil help defacl"). You can override this behavior with the -p option (see
-  OPTIONS below).
+  "gsutil help defacl"). You can override this behavior with the -p option. See
+  the `Options section
+  <https://cloud.google.com/storage/docs/gsutil/commands/rsync#options>`_ to
+  learn how.
 
 
 <B>SLOW CHECKSUMS</B>
@@ -480,7 +482,7 @@ _DETAILED_HELP_TEXT = ("""
                  copied.  With this feature enabled, gsutil rsync will copy
                  fields provided by stat. These are the user ID of the owner,
                  the group ID of the owning group, the mode (permissions) of the
-                 file, and the access/modification time of the file. For
+                 file, and the access/modification timestamps of the file. For
                  downloads, these attributes will only be set if the source
                  objects were uploaded with this flag enabled.
 
@@ -942,7 +944,6 @@ class _DiffIterator(object):
   """Iterator yielding sequence of RsyncDiffToApply objects."""
 
   def __init__(self, command_obj, base_src_url, base_dst_url):
-    global _tmp_files
     self.command_obj = command_obj
     self.compute_file_checksums = command_obj.compute_file_checksums
     self.delete_extras = command_obj.delete_extras
@@ -1219,8 +1220,14 @@ class _DiffIterator(object):
           src_url_str_to_check = _EncodeUrl(
               src_url_str[base_src_url_len:].replace('\\', '/'))
           dst_url_str_would_copy_to = copy_helper.ConstructDstUrl(
-              self.base_src_url, StorageUrlFromString(src_url_str), True, True,
-              self.base_dst_url, False, self.recursion_requested).url_string
+              src_url=self.base_src_url,
+              exp_src_url=StorageUrlFromString(src_url_str),
+              src_url_names_container=True,
+              have_multiple_srcs=True,
+              has_multiple_top_level_srcs=False,
+              exp_dst_url=self.base_dst_url,
+              have_existing_dest_subdir=False,
+              recursion_requested=self.recursion_requested).url_string
       if dst_url_str is None:
         if not self.sorted_dst_urls_it.IsEmpty():
           # We don't need time created at the destination.
@@ -1330,7 +1337,6 @@ class _AvoidChecksumAndListingDiffIterator(_DiffIterator):
 
     # We're providing an estimate, so avoid computing checksums even though
     # that may cause our estimate to be off.
-    global _tmp_files
     self.compute_file_checksums = False
     self.delete_extras = initialized_diff_iterator.delete_extras
     self.recursion_requested = initialized_diff_iterator.delete_extras
@@ -1764,7 +1770,7 @@ class RsyncCommand(Command):
         elif o == '-P':
           self.preserve_posix_attrs = True
           if not IS_WINDOWS:
-            InitializeUserGroups()
+            InitializePreservePosixData()
         elif o == '-r' or o == '-R':
           self.recursion_requested = True
         elif o == '-u':
