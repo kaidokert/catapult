@@ -476,6 +476,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f3e0c70_e6b6e51d",
+        "filename": "devil/devil/android/sdk/adb_wrapper_devicetest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-09-09T00:55:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "657e018b_56df3b51",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 36
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1310d667_d25844ca",
