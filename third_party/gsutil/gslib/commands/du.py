@@ -54,16 +54,16 @@ _DETAILED_HELP_TEXT = ("""
   For example, the following command reports the total space used by all objects and
   subdirectories under gs://your-bucket/dir:
 
-    gsutil du -s gs://your-bucket/dir
+    gsutil du -s -a gs://your-bucket/dir
 
 
 <B>OPTIONS</B>
   -0          Ends each output line with a 0 byte rather than a newline. You
               can use this to make the output machine-readable.
 
-  -a          Includes noncurrent object versions for a bucket with Object
-              Versioning enabled. Also prints the
-              generation and metageneration number for each listed object.
+  -a          Includes both live and noncurrent object versions. Also prints the
+              generation and metageneration number for each listed object. If 
+              this flag is not specified, only live object versions are included.
 
   -c          Includes a total size at the end of the output.
 
@@ -74,7 +74,8 @@ _DETAILED_HELP_TEXT = ("""
   -h          Prints object sizes in human-readable format. For example, ``1 KiB``,
               ``234 MiB``, or ``2GiB``.
 
-  -s          Displays only the total size for each argument.
+  -s          Displays only the total size for each argument, omitting the list of
+              individual objects.
 
   -X          Similar to ``-e``, but excludes patterns from the given file. The
               patterns to exclude should be listed one per line.
@@ -89,16 +90,18 @@ _DETAILED_HELP_TEXT = ("""
 
     gsutil du gs://bucketname/prefix/*
 
-  To print the total number of bytes in a bucket in human-readable form:
+  To include the total number of bytes in human-readable form:
 
     gsutil du -ch gs://bucketname
 
-  To see a summary of the total number of bytes in two given buckets:
+  To see only the summary of the total number of (live) bytes in two given
+  buckets:
 
     gsutil du -s gs://bucket1 gs://bucket2
 
-  To list the size of each object in a bucket with Object Versioning
-  enabled, including noncurrent objects:
+  To list the size of each object in a bucket with `Object Versioning
+  <https://cloud.google.com/storage/docs/object-versioning>`_ enabled,
+  including noncurrent objects:
 
     gsutil du -a gs://bucketname
 

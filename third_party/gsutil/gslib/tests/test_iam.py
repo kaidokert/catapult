@@ -86,6 +86,30 @@ def gen_binding(role, members=None, condition=None):
   return [binding]
 
 
+def patch_binding(policy, role, new_policy):
+  """Returns a patched Python object representation of a Policy.
+
+  Given replaces the original role:members binding in policy with new_policy.
+
+  Args:
+    policy: Python dict representation of a Policy instance.
+    role: An IAM policy role (e.g. "roles/storage.objectViewer"). Fully
+          specified in BindingsValueListEntry.
+    new_policy: A Python dict representation of a Policy instance, with a
+                single BindingsValueListEntry entry.
+
+  Returns:
+    A Python dict representation of the patched IAM Policy object.
+  """
+  bindings = [
+      b for b in policy.get('bindings', []) if b.get('role', '') != role
+  ]
+  bindings.extend(new_policy)
+  policy = dict(policy)
+  policy['bindings'] = bindings
+  return policy
+
+
 class TestIamIntegration(testcase.GsUtilIntegrationTestCase):
   """Superclass for iam integration test cases."""
 
@@ -380,6 +404,22 @@ class TestIamHelpers(testcase.GsUtilUnitTestCase):
     self.assertEquals(len(bindings), 1)
     self.assertIn(bvle(members=['allUsers'], role='roles/storage.a'), bindings)
 
+  def test_removing_project_convenience_groups(self):
+    """Tests that project convenience roles can be removed."""
+    (_, bindings) = bstt(False, 'projectViewer:123424:admin')
+    self.assertEquals(len(bindings), 1)
+    self.assertIn(
+        bvle(members=['projectViewer:123424'], role='roles/storage.admin'),
+        bindings)
+    (_, bindings) = bstt(False, 'projectViewer:123424')
+    self.assertEquals(len(bindings), 1)
+    self.assertIn(bvle(members=['projectViewer:123424'], role=''), bindings)
+
+  def test_adding_project_convenience_groups(self):
+    """Tests that project convenience roles cannot be added."""
+    with self.assertRaises(CommandException):
+      bstt(True, 'projectViewer:123424:admin')
+
   def test_invalid_input(self):
     """Tests invalid input handling."""
     with self.assertRaises(CommandException):
@@ -388,8 +428,6 @@ class TestIamHelpers(testcase.GsUtilUnitTestCase):
       bstt(True, 'non_valid_type:id:role')
     with self.assertRaises(CommandException):
       bstt(True, 'user:r')
-    with self.assertRaises(CommandException):
-      bstt(True, 'projectViewer:123424:admin')
     with self.assertRaises(CommandException):
       bstt(True, 'deleted:user')
     with self.assertRaises(CommandException):
@@ -435,6 +473,27 @@ class TestIamCh(TestIamIntegration):
                             return_stderr=True,
                             expected_status=1)
     self.assertIn('CommandException', stderr)
+
+  def test_path_mix_of_buckets_and_objects(self):
+    """Tests expected failure if both buckets and objects are provided."""
+    stderr = self.RunGsUtil([
+        'iam', 'ch',
+        '%s:%s' % (self.user, IAM_BUCKET_READ_ROLE_ABBREV), self.bucket.uri,
+        self.object.uri
+    ],
+                            return_stderr=True,
+                            expected_status=1)
+    self.assertIn('CommandException', stderr)
+
+  def test_path_file_url(self):
+    """Tests expected failure is caught when a file url is provided."""
+    stderr = self.RunGsUtil([
+        'iam', 'ch',
+        '%s:%s' % (self.user, IAM_BUCKET_READ_ROLE_ABBREV), 'file://somefile'
+    ],
+                            return_stderr=True,
+                            expected_status=1)
+    self.assertIn('AttributeError', stderr)
 
   def test_patch_single_grant_single_bucket(self):
     """Tests granting single role."""
@@ -581,6 +640,27 @@ class TestIamCh(TestIamIntegration):
         return_stderr=True,
         expected_status=1)
     self.assertIn('not supported', stderr)
+
+  def test_patch_remove_disallowed_binding_type(self):
+    """Tests that we can remove project convenience values."""
+    # Set up the bucket to include a disallowed member which we can then remove.
+    disallowed_member = 'projectViewer:%s' % PopulateProjectId()
+    policy_file_path = self.CreateTempFile(contents=json.dumps(
+        patch_binding(
+            json.loads(self.bucket_iam_string), IAM_OBJECT_READ_ROLE,
+            gen_binding(IAM_OBJECT_READ_ROLE, members=[disallowed_member
+                                                      ]))).encode(UTF8))
+    self.RunGsUtil(['iam', 'set', policy_file_path, self.bucket.uri])
+    # Confirm the disallowed member was actually added.
+    iam_string = self.RunGsUtil(['iam', 'get', self.bucket.uri],
+                                return_stdout=True)
+    self.assertHas(iam_string, disallowed_member, IAM_OBJECT_READ_ROLE)
+    # Use iam ch to remove the disallowed member.
+    self.RunGsUtil(['iam', 'ch', '-d', disallowed_member, self.bucket.uri])
+    # Confirm the disallowed member was actually removed.
+    iam_string = self.RunGsUtil(['iam', 'get', self.bucket.uri],
+                                return_stdout=True)
+    self.assertHasNo(iam_string, disallowed_member, IAM_OBJECT_READ_ROLE)
 
   def test_patch_multiple_objects(self):
     """Tests IAM patch against multiple objects."""
@@ -742,29 +822,6 @@ class TestIamCh(TestIamIntegration):
 class TestIamSet(TestIamIntegration):
   """Integration tests for iam set command."""
 
-  def _patch_binding(self, policy, role, new_policy):
-    """Returns a patched Python object representation of a Policy.
-
-    Given replaces the original role:members binding in policy with new_policy.
-
-    Args:
-      policy: Python dict representation of a Policy instance.
-      role: An IAM policy role (e.g. "roles/storage.objectViewer"). Fully
-            specified in BindingsValueListEntry.
-      new_policy: A Python dict representation of a Policy instance, with a
-                  single BindingsValueListEntry entry.
-
-    Returns:
-      A Python dict representation of the patched IAM Policy object.
-    """
-    bindings = [
-        b for b in policy.get('bindings', []) if b.get('role', '') != role
-    ]
-    bindings.extend(new_policy)
-    policy = dict(policy)
-    policy['bindings'] = bindings
-    return policy
-
   # TODO(iam-beta): Replace gen_binding, _patch_binding with generators from
   # iam_helper.
   def setUp(self):
@@ -796,7 +853,7 @@ class TestIamSet(TestIamIntegration):
     # Using the existing bucket's policy, make an altered policy that allows
     # allUsers to be "legacyBucketReader"s. Some tests will later apply this
     # policy.
-    self.new_bucket_iam_policy = self._patch_binding(
+    self.new_bucket_iam_policy = patch_binding(
         json.loads(self.bucket_iam_string), IAM_BUCKET_READ_ROLE,
         self.public_bucket_read_binding)
     self.new_bucket_iam_path = self.CreateTempFile(
@@ -812,8 +869,8 @@ class TestIamSet(TestIamIntegration):
         contents=json.dumps(self.new_bucket_policy_with_conditions_policy))
 
     # Create an object to fetch its policy, used as a base for other policies.
-    tmp_object = self.CreateObject(contents='foobar')
-    self.object_iam_string = self.RunGsUtil(['iam', 'get', tmp_object.uri],
+    self.object = self.CreateObject(contents='foobar')
+    self.object_iam_string = self.RunGsUtil(['iam', 'get', self.object.uri],
                                             return_stdout=True)
     self.old_object_iam_path = self.CreateTempFile(
         contents=self.object_iam_string.encode(UTF8))
@@ -821,7 +878,7 @@ class TestIamSet(TestIamIntegration):
     # Using the existing object's policy, make an altered policy that allows
     # allUsers to be "legacyObjectReader"s. Some tests will later apply this
     # policy.
-    self.new_object_iam_policy = self._patch_binding(
+    self.new_object_iam_policy = patch_binding(
         json.loads(self.object_iam_string), IAM_OBJECT_READ_ROLE,
         self.public_object_read_binding)
     self.new_object_iam_path = self.CreateTempFile(
@@ -840,6 +897,24 @@ class TestIamSet(TestIamIntegration):
           ['-m', 'iam', 'set', self.new_object_iam_path, gsutil_object.uri],
           return_stderr=True)
       self.assertIn('Estimated work for this command: objects: 1\n', stderr)
+
+  def test_set_mix_of_buckets_and_objects(self):
+    """Tests that failure is thrown when buckets and objects are provided."""
+
+    stderr = self.RunGsUtil([
+        'iam', 'set', self.new_object_iam_path, self.bucket.uri, self.object.uri
+    ],
+                            return_stderr=True,
+                            expected_status=1)
+    self.assertIn('CommandException', stderr)
+
+  def test_set_file_url(self):
+    """Tests that failure is thrown when a file url is provided."""
+    stderr = self.RunGsUtil(
+        ['iam', 'set', self.new_object_iam_path, 'file://somefile'],
+        return_stderr=True,
+        expected_status=1)
+    self.assertIn('AttributeError', stderr)
 
   def test_set_invalid_iam_bucket(self):
     """Ensures invalid content returns error on input check."""
