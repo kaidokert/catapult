@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61604162_da5fa64f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-10T00:30:07Z",
+      "side": 1,
+      "message": "Hmm... That\u0027s a good point, but I think maybe it would be best to handle that at the next layer since otherwise we would need to make `RetryOnFailure` a sort of special attribute... Alternatively, maybe `RetryOnFailure` isn\u0027t an attribute at all, and it\u0027s actually a result?\n\nEither way, I think we can follow up on this in a separate change iteratively.",
+      "parentUuid": "09a6fb03_618306a1",
+      "revId": "5fd865d8f35994d8502b640c26ab689a145c0625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0ed69d4_0310774f",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-09T21:49:01Z",
       "side": 1,
       "message": "Nit: typo",
+      "range": {
+        "startLine": 585,
+        "startChar": 10,
+        "endLine": 585,
+        "endChar": 19
+      },
+      "revId": "5fd865d8f35994d8502b640c26ab689a145c0625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b285e7a_e163c090",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-10T00:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0ed69d4_0310774f",
       "range": {
         "startLine": 585,
         "startChar": 10,
