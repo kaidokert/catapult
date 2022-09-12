@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "217f27f0_e73bf70e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-12T16:14:20Z",
+      "side": 1,
+      "message": "I\u0027m okay with making the actual code changes in follow-ups, but we should decide on a way forward before landing this.\n\nIMO, it makes more sense to treat RetryOnFailure as a result, not an attribute. While \"RetryOnFailure\" sounds like an attribute, it functions more like a result since I don\u0027t think we\u0027ll ever want it mixing with other results, but it\u0027s fine to mix it with Slow.",
+      "parentUuid": "61604162_da5fa64f",
+      "revId": "5fd865d8f35994d8502b640c26ab689a145c0625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0ed69d4_0310774f",
