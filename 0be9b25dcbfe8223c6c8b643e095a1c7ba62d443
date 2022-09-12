@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31e44534_75977dd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-12T21:18:17Z",
+      "side": 1,
+      "message": "PTAL.\nWith this CL, pinpoint on py3 is seeing 403 when talking to BQ, which happens on pyhon2 on main on staging. ",
+      "revId": "0be9b25dcbfe8223c6c8b643e095a1c7ba62d443",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
