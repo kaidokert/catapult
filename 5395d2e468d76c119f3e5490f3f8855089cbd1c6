@@ -16,6 +16,70 @@
       "message": "I don\u0027t know what to do here\n\neverything I found requires a make_response first\n\nhttps://stackoverflow.com/questions/29464276/add-response-headers-to-flask-web-app\nhttps://stackoverflow.com/questions/25860304/how-do-i-set-response-headers-in-flask",
       "revId": "5395d2e468d76c119f3e5490f3f8855089cbd1c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9270efd_c38e6288",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-12T22:11:20Z",
+      "side": 1,
+      "message": "You can put the headers in a dict, and then pass the dict as the second argument to make_response. Replace this line with:\n\n`headers \u003d { \u0027Access-Control-Allow-Origin\u0027: \u0027*\u0027 }`\n\nThen replace each `return make_response(foo)` with `return make_response(foo, headers)`.",
+      "parentUuid": "d3fcdb45_e5bfd75e",
+      "revId": "5395d2e468d76c119f3e5490f3f8855089cbd1c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec52b72f_4a2218e9",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-12T22:11:20Z",
+      "side": 1,
+      "message": "In post handlers, use `values` instead of `args`.",
+      "range": {
+        "startLine": 55,
+        "startChar": 24,
+        "endLine": 55,
+        "endChar": 28
+      },
+      "revId": "5395d2e468d76c119f3e5490f3f8855089cbd1c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabee48b_c445c204",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-12T22:11:20Z",
+      "side": 1,
+      "message": "No need to call json.dumps. Flask does it automatically when it receives a dict.",
+      "range": {
+        "startLine": 61,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "5395d2e468d76c119f3e5490f3f8855089cbd1c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
