@@ -16,6 +16,23 @@
       "message": "Adding flask version of @xsrf.TokenRequired, as described in https://chromium-review.googlesource.com/c/catapult/+/3884616/comments/5c537031_f4aa42a1. PTAL.",
       "revId": "c7168bcae10e29904c1032a091f5d57e0b1ddd24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "524d4d52_2a56fb0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-12T21:52:14Z",
+      "side": 1,
+      "message": "LGTM/",
+      "revId": "c7168bcae10e29904c1032a091f5d57e0b1ddd24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
