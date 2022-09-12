@@ -39,6 +39,30 @@
       },
       "revId": "847c8f195db607093d33e9ecda43448c695514c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "651331e1_af0c0f69",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-12T21:47:55Z",
+      "side": 1,
+      "message": "Tested, at least in chrome, there\u0027s no underscore.",
+      "parentUuid": "538b8014_eb4b25bb",
+      "range": {
+        "startLine": 155,
+        "startChar": 62,
+        "endLine": 155,
+        "endChar": 63
+      },
+      "revId": "847c8f195db607093d33e9ecda43448c695514c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
