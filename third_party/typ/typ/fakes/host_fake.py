@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import atexit
 import copy
 import io
 import logging
 import sys
 
 from typ import python_2_3_compat
-from typ.host import _TeedStream
+from typ.teed_streams import _StringIoTeedStream
 
 
 is_python3 = bool(sys.version_info.major == 3)
@@ -55,6 +56,10 @@ class FakeHost(object):
         self.cmds = []
         self.cwd = '/tmp'
         self._orig_logging_handlers = []
+        self._tap_output()
+
+    def __del__(self):
+        self._untap_output()
 
     def __getstate__(self):
         d = copy.copy(self.__dict__)
@@ -249,14 +254,16 @@ class FakeHost(object):
         return resp
 
     def _tap_output(self):
-        self.stdout = _TeedStream(self.stdout)
-        self.stderr = _TeedStream(self.stderr)
+        self.stdout = _StringIoTeedStream(self.stdout)
+        self.stderr = _StringIoTeedStream(self.stderr)
         if True:
             sys.stdout = self.stdout
             sys.stderr = self.stderr
+        atexit.register(self._untap_output)
 
     def _untap_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        if not isinstance(self.stdout, _StringIoTeedStream):
+            return
         self.stdout = self.stdout.stream
         self.stderr = self.stderr.stream
         if True:
@@ -264,7 +271,6 @@ class FakeHost(object):
             sys.stderr = self.stderr
 
     def capture_output(self, divert=True):
-        self._tap_output()
         self._orig_logging_handlers = self.logger.handlers
         if self._orig_logging_handlers:
             self.logger.handlers = [logging.StreamHandler(self.stderr)]
@@ -272,12 +278,11 @@ class FakeHost(object):
         self.stderr.capture(divert=divert)
 
     def restore_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        assert isinstance(self.stdout, _StringIoTeedStream)
         out, err = (self.stdout.restore(), self.stderr.restore())
         out = python_2_3_compat.bytes_to_str(out)
         err = python_2_3_compat.bytes_to_str(err)
         self.logger.handlers = self._orig_logging_handlers
-        self._untap_output()
         return out, err
 
 

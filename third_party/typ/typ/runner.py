@@ -654,7 +654,6 @@ class Runner(object):
             pool_group.close_parallel_pool()
         finally:
             self.final_responses.extend(pool_group.join_parallel_pool())
-
         pool = pool_group.make_serial_pool()
         try:
             self._run_list(stats, result_set,
