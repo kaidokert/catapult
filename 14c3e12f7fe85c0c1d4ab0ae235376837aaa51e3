@@ -16,6 +16,23 @@
       "message": "Updating some device configurations based on https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1356090#c7 and to match https://crrev.com/i/4973157. PTAL.",
       "revId": "14c3e12f7fe85c0c1d4ab0ae235376837aaa51e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "736f1e0e_9dfc5307",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-12T21:28:27Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "14c3e12f7fe85c0c1d4ab0ae235376837aaa51e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
