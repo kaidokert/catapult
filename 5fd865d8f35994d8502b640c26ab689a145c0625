@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "418fc80e_deaaf87c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-13T02:27:27Z",
+      "side": 1,
+      "message": "Hmm... I think for us, `RetryOnFailure` as a result is fine since we use the tag pretty much to mean \"retry on failure and expect a pass\", but I could see maybe a use case where intention is for a test to `Crash` or something, but it takes a retry to cause the crash? (Not sure how realistic such a use case is though...)\n\nAny inputs from the tint side?",
+      "parentUuid": "217f27f0_e73bf70e",
+      "revId": "5fd865d8f35994d8502b640c26ab689a145c0625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0ed69d4_0310774f",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 5
