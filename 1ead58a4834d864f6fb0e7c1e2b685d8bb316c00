@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03963820_cca3e881",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T20:40:42Z",
+      "side": 1,
+      "message": "nit: Our git commit message formatting style is a little different from Critique (e.g. we prefer manual text wrapping at 72 columns). Also it won\u0027t be obvious to the reader of the commit message that this is coming from the xprof team so \"our\" is ambiguous here. Can you rewrite the commit message to something like this?\n\n\nMake async tracks with \u003c 30 subrows default expanded \n\nXprof uses streaming data loading for their trace viewer, which resets\nthe async slice group expanded state to the default state on every model\nupdate (which can happen when the user moves around the trace or zooms\nin/out). It\u0027s difficult to retain the expanded/collapsed state of the\nslice group tracks across these updates, so as a usability improvement,\nset the default state to be expanded when there are less than 30\nsubrows.\n\nNote that for non-async tracks, the default is expanded for tracks with\nless than 100 subrows:\nhttps://chromium.googlesource.com/catapult/+/refs/heads/main/tracing/tracing/ui/tracks/slice_group_track.html#32\n\nChange-Id: Ie415e26af4bd1147fb39bf2f85fe8ce37215f69b",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "1ead58a4834d864f6fb0e7c1e2b685d8bb316c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

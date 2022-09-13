@@ -227,6 +227,30 @@
       },
       "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f88efee_c8a5c4a8",
+        "filename": "tracing/tracing/ui/tracks/async_slice_group_track.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T20:40:42Z",
+      "side": 1,
+      "message": "I see. I read the attached bug to get more context. I didn\u0027t realize you\u0027re streaming in new data as the user moves around and updating the model - this is the first time I\u0027m seeing this pattern in trace viewer; all other use cases load the data at the beginning and never load new data after. \n\nSetting it to 30 subrows sgtm. As you probably realize, this is a partial improvement and won\u0027t really fix the root cause - if a user had collapsed a track before, it might get expanded now as when new data gets loaded. Ideally you\u0027d track the collapsed/expanded state in your own code, and fix the state after you load new data. You\u0027ll need a way to identify the track/track-groups because once new data is loaded I assume the internal track/track-groups are recreated from scratch, which the why the collapsed/expanded state is being reset. I have no idea how hard that is to do in xprof, so I\u0027m happy to accept 30 rows as the default expanded threshold for now.",
+      "parentUuid": "375ec385_c37ae78a",
+      "range": {
+        "startLine": 35,
+        "startChar": 55,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
