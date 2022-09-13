@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c1a9733_2dd7d4e6",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend_list.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-09-13T16:30:07Z",
+      "side": 1,
+      "message": "[I am not a python expert] is there a way to make this a conditional based on some runtime information about the current python interpreter\u0027s version, rather than doing it implicitly with a try/except block?",
+      "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
