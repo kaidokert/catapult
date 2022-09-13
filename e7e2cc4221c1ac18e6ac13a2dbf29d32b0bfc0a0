@@ -1,6 +1,69 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "213d7343_77c00b65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T00:12:13Z",
+      "side": 1,
+      "message": "nit: Can you add a new line before the \"Background\" line in the commit message?",
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22e87f67_7c6fd2be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T00:12:13Z",
+      "side": 1,
+      "message": "typo.",
+      "range": {
+        "startLine": 10,
+        "startChar": 118,
+        "endLine": 10,
+        "endChar": 125
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc7a210_172e4578",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T00:12:13Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand this. Could you make this clearer? Did you mean \"This makes it hard to browse the trace without first expanding a lot of tracks\"?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 95
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f78cde67_60b32b2b",
@@ -14,6 +77,46 @@
       "writtenOn": "2022-09-12T22:32:26Z",
       "side": 1,
       "message": "This fixes a usage case in our project where the data fed to the trace viewer model got updated from time to time when user is browsing. Please help review, thanks!",
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc7ef095_755ac559",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T00:12:13Z",
+      "side": 1,
+      "message": "lgtm! This should be fine - ",
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fc8171b_b4e6d889",
+        "filename": "tracing/tracing/ui/tracks/async_slice_group_track.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-13T00:12:13Z",
+      "side": 1,
+      "message": "How many subrows do you usually have? Can we make it a smaller number like 10/20? For regular slice groups a higher number made sense, because we rarely very deeply nested slices. But async slices often have many subrows due to bin packing, which is why I presume it was left to default collapsed, otherwise the async tracks become very tall and distracting.",
+      "range": {
+        "startLine": 35,
+        "startChar": 55,
+        "endLine": 35,
+        "endChar": 58
+      },
       "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
