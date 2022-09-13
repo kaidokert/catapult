@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c024a96_bedc0970",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1555477
+      },
+      "writtenOn": "2022-09-13T19:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "213d7343_77c00b65",
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22e87f67_7c6fd2be",
@@ -54,6 +72,54 @@
       "writtenOn": "2022-09-13T00:12:13Z",
       "side": 1,
       "message": "I\u0027m not sure I understand this. Could you make this clearer? Did you mean \"This makes it hard to browse the trace without first expanding a lot of tracks\"?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 95
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "969a3fb0_ed7fc89b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1555477
+      },
+      "writtenOn": "2022-09-13T19:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22e87f67_7c6fd2be",
+      "range": {
+        "startLine": 10,
+        "startChar": 118,
+        "endLine": 10,
+        "endChar": 125
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0a2218e_c9b01f31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1555477
+      },
+      "writtenOn": "2022-09-13T19:21:40Z",
+      "side": 1,
+      "message": "sorry for the confusion, added a detailed example to explain that, does it makes more sense now?",
+      "parentUuid": "1fc7a210_172e4578",
       "range": {
         "startLine": 10,
         "startChar": 0,
@@ -129,6 +195,30 @@
       "writtenOn": "2022-09-13T00:12:13Z",
       "side": 1,
       "message": "How many subrows do you usually have? Can we make it a smaller number like 10/20? For regular slice groups a higher number made sense, because we rarely very deeply nested slices. But async slices often have many subrows due to bin packing, which is why I presume it was left to default collapsed, otherwise the async tracks become very tall and distracting.",
+      "range": {
+        "startLine": 35,
+        "startChar": 55,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "375ec385_c37ae78a",
+        "filename": "tracing/tracing/ui/tracks/async_slice_group_track.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1555477
+      },
+      "writtenOn": "2022-09-13T19:21:40Z",
+      "side": 1,
+      "message": "yes you are right, in the case reported in the ticket, it do has 20~30 subrows. Can we make it 30 to unblock that (and I agree, it do potentially will create too many subrows, and by default expand will make the UI really lengthy. However to fulfill the use case, that if user want to explore a certain async track and make it expanded always, we might want to have a way to ping a single track to make it consistently expanded, while others can be collapsed. Just thinking out loud)",
+      "parentUuid": "3fc8171b_b4e6d889",
       "range": {
         "startLine": 35,
         "startChar": 55,
