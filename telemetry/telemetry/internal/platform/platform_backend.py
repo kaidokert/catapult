@@ -230,7 +230,7 @@ class PlatformBackend():
 
   def GetTypExpectationsTags(self):
     return test_utils.sanitizeTypExpectationsTags(
-        [self.GetOSName(), self.GetOSVersionName()])
+        [self.GetOSName(), self.GetOSVersionName(), self.GetArchName()])
 
   def GetIntelPowerGadgetPath(self):
     return None
