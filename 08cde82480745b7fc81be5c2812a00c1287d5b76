@@ -33,6 +33,24 @@
       "message": "[I am not a python expert] is there a way to make this a conditional based on some runtime information about the current python interpreter\u0027s version, rather than doing it implicitly with a try/except block?",
       "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd25efbf_cddcd742",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend_list.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2022-09-14T14:06:30Z",
+      "side": 1,
+      "message": "I must admit, I\u0027m just cargo-culting here: I\u0027ve seen this code in other places and I know it works.\n\nMaybe you have someone on your team that has better python knowledge? I\u0027m just an infrequent user as well.",
+      "parentUuid": "6c1a9733_2dd7d4e6",
+      "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
