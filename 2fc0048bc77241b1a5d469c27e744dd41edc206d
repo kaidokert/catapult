@@ -70,6 +70,30 @@
       },
       "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e1b611b_3ffc7dfa",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-14T19:49:37Z",
+      "side": 1,
+      "message": "Use the api in the Expectation instance to add results, reasons or tags. If the api is not then improve the API.",
+      "parentUuid": "d224e8fe_d37e4f99",
+      "range": {
+        "startLine": 587,
+        "startChar": 14,
+        "endLine": 587,
+        "endChar": 26
+      },
+      "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
