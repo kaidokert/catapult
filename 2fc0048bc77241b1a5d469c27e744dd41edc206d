@@ -46,6 +46,30 @@
       },
       "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d224e8fe_d37e4f99",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-14T19:33:13Z",
+      "side": 1,
+      "message": "It\u0027s a bit harder to use an `Expectation` because some of the variables are of different types, i.e. `reasons` is a set in the WorkingScope, while it is supposed to be a simple string in the `Expectation`.\n\nChanging this would be a much larger refactoring which should definitely be in a separate CL. The comment above the `WorkingScope` class tries to document that this is definitely not the best way but it is still better than the original where member variables could leak and cause other issues. Lmk what you think.",
+      "parentUuid": "77b6f9ab_7460b864",
+      "range": {
+        "startLine": 587,
+        "startChar": 14,
+        "endLine": 587,
+        "endChar": 26
+      },
+      "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
