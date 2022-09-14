@@ -12,6 +12,7 @@ from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models import event as event_module
 from dashboard.pinpoint.models.tasks import evaluator
+from dashboard.pinpoint.models import errors
 
 from dashboard.common import utils
 if utils.IsRunningFlask():
@@ -36,4 +37,9 @@ else:
         task_module.Evaluate(job, event, evaluator.ExecutionEngine(job))
         logging.info('Execution Engine: Evaluation done.')
       else:
-        job.Run()
+        try:
+          job.Run()
+        except errors.BuildCancelled:
+          logging.warning(
+              'Failed to run a job that has been already cancelled. Jod ID: %s',
+              job_id)
