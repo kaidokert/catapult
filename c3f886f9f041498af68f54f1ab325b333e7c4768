@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85abb2be_5e56919e",
+        "filename": "dashboard/dashboard/add_histograms_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-14T00:59:51Z",
+      "side": 1,
+      "message": "Not that necessary but it\u0027s a bit cleaner to make the if-else handlers in one file and functionalities in another. A bit confusing to have if-else, class and functions mixed.",
+      "parentUuid": "df82f85a_92e2d752",
+      "revId": "c3f886f9f041498af68f54f1ab325b333e7c4768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f289e56b_4f143c0c",
         "filename": "dashboard/dashboard/dispatcher.py",
         "patchSetId": 2
@@ -48,6 +66,30 @@
       "writtenOn": "2022-09-14T00:40:09Z",
       "side": 1,
       "message": "By default flask only routes GET requests. Since these are POST requests, need to add `methods\u003d[\u0027POST\u0027]`",
+      "range": {
+        "startLine": 69,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "c3f886f9f041498af68f54f1ab325b333e7c4768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50e6c0c8_41850083",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-14T00:59:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f289e56b_4f143c0c",
       "range": {
         "startLine": 69,
         "startChar": 34,
