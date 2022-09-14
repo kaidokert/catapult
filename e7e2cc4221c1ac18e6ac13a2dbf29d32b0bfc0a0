@@ -251,6 +251,30 @@
       },
       "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7adb20a_dd731993",
+        "filename": "tracing/tracing/ui/tracks/async_slice_group_track.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1555477
+      },
+      "writtenOn": "2022-09-14T17:29:07Z",
+      "side": 1,
+      "message": "yes due to the reality that our profiling trace data could be extremely large, we use this incremental loading hack to downsize the data for each rendering. And yes it make sense to me, to solve the root cause, a more comprehensive implementation need to be done on top layer by capturing and keeping the state of user selections. Will think about it later, thanks!",
+      "parentUuid": "5f88efee_c8a5c4a8",
+      "range": {
+        "startLine": 35,
+        "startChar": 55,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "e7e2cc4221c1ac18e6ac13a2dbf29d32b0bfc0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
