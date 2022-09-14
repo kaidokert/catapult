@@ -118,6 +118,30 @@
       },
       "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf25ab65_28d181a5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-14T20:43:09Z",
+      "side": 1,
+      "message": "Ill take a look at the logic.",
+      "parentUuid": "b23c25ec_6e7fb7cb",
+      "range": {
+        "startLine": 587,
+        "startChar": 14,
+        "endLine": 587,
+        "endChar": 26
+      },
+      "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
