@@ -51,6 +51,24 @@
       "parentUuid": "6c1a9733_2dd7d4e6",
       "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4644658_f5c3ee31",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend_list.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-09-14T14:24:42Z",
+      "side": 1,
+      "message": "according to some teammates I consulted over group chat, this is apparently fine for python (!?)",
+      "parentUuid": "bd25efbf_cddcd742",
+      "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
