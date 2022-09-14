@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "b4aa0a52c57cd609f9406e11c82fc3957e2691d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "467290bf_401ed61d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-14T18:50:02Z",
+      "side": 1,
+      "message": "LGTM except for a typo.",
+      "revId": "b4aa0a52c57cd609f9406e11c82fc3957e2691d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b03b644_b134cbc5",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-14T18:50:02Z",
+      "side": 1,
+      "message": "Typo: _finder_options_to_copy",
+      "range": {
+        "startLine": 716,
+        "startChar": 11,
+        "endLine": 716,
+        "endChar": 27
+      },
+      "revId": "b4aa0a52c57cd609f9406e11c82fc3957e2691d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
