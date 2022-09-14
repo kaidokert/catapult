@@ -14,7 +14,7 @@ import time
 from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 
-from dashboard import add_histograms
+from dashboard import add_histograms_helper
 from dashboard.common import datastore_hooks
 from dashboard.common import request_handler
 from dashboard.common import utils
@@ -260,7 +260,7 @@ def _ProcessPinpointStats(offset=0):
 
     hs = _CreateHistogramSet('ChromiumPerfFyi', bot, 'pinpoint.success',
                              commit_pos, hists)
-    deferred.defer(add_histograms.ProcessHistogramSet, hs.AsDicts())
+    deferred.defer(add_histograms_helper.ProcessHistogramSet, hs.AsDicts())
 
   # Create one "uber" bot to contain all benchmarks results, just for ease of
   # use.
@@ -288,7 +288,7 @@ def _ProcessPinpointStats(offset=0):
 
   hs = _CreateHistogramSet('ChromiumPerfFyi.all', 'all', 'pinpoint.success',
                            commit_pos, hists)
-  deferred.defer(add_histograms.ProcessHistogramSet, hs.AsDicts())
+  deferred.defer(add_histograms_helper.ProcessHistogramSet, hs.AsDicts())
 
 
 @ndb.synctasklet
@@ -333,7 +333,7 @@ def _ProcessAlertsForBot(bot_name, alerts):
                            int(time.time()),
                            [alerts_total] + list(hists_by_suite.values()))
 
-  deferred.defer(add_histograms.ProcessHistogramSet, hs.AsDicts())
+  deferred.defer(add_histograms_helper.ProcessHistogramSet, hs.AsDicts())
 
 
 @ndb.synctasklet
@@ -372,4 +372,4 @@ def _ProcessPinpointJobs():
       'ChromiumPerfFyi', 'test1', 'chromeperf.stats', int(time.time()),
       [commit_to_alert, alert_to_job, job_to_culprit, commit_to_culprit])
 
-  deferred.defer(add_histograms.ProcessHistogramSet, hs.AsDicts())
+  deferred.defer(add_histograms_helper.ProcessHistogramSet, hs.AsDicts())

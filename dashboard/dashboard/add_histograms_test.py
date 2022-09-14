@@ -20,6 +20,7 @@ import zlib
 from google.appengine.ext import ndb
 
 from dashboard import add_histograms
+from dashboard import add_histograms_helper
 from dashboard import add_histograms_queue
 from dashboard import uploads_info
 from dashboard.api import api_auth
@@ -243,7 +244,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     self.assertTrue('file' in upload_token)
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     diagnostics = histogram.SparseDiagnostic.query().fetch()
     self.assertEqual(4, len(diagnostics))
     histograms = histogram.Histogram.query().fetch()
@@ -277,7 +278,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram(data)
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     diagnostics = histogram.SparseDiagnostic.query().fetch()
     self.assertEqual(4, len(diagnostics))
     histograms = histogram.Histogram.query().fetch()
@@ -314,7 +315,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram(data)
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     rows = graph_data.Row.query().fetch()
     self.assertEqual(rows[0].a_build_uri, '[build](http://foo)')
@@ -348,7 +349,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.testapp.post('/add_histograms', {'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     tests = graph_data.TestMetadata.query().fetch()
     for t in tests:
       parts = t.key.id().split('/')
@@ -366,7 +367,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     histograms = histogram.Histogram.query().fetch()
     hist = histogram_module.Histogram.FromDict(histograms[0].data)
@@ -427,7 +428,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.testapp.post('/add_histograms', {'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     rows = graph_data.Row.query().fetch()
     self.assertEqual(0, len(rows))
@@ -453,7 +454,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     data = json.dumps(hs.AsDicts())
     self.PostAddHistogram({'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     mock_process_test.assert_called_once_with([])
 
   @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync')
@@ -470,7 +471,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     data = json.dumps(hs.AsDicts())
     self.PostAddHistogram({'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     mock_process_test.assert_called_once_with([])
 
   @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync')
@@ -486,7 +487,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     data = json.dumps(hs.AsDicts())
     self.PostAddHistogram({'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     self.assertTrue(mock_process_test.called)
 
   @mock.patch.object(add_histograms_queue.graph_revisions,
@@ -505,7 +506,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
         samples=[42])
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     # There should be the 4 suite level and 2 histogram level diagnostics
     diagnostics = histogram.SparseDiagnostic.query().fetch()
@@ -522,7 +523,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
         samples=[42])
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     # There should STILL be the 4 suite level and 2 histogram level diagnostics
     diagnostics = histogram.SparseDiagnostic.query().fetch()
@@ -539,7 +540,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
         samples=[42])
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     # There should one additional device diagnostic since that changed
     diagnostics = histogram.SparseDiagnostic.query().fetch()
@@ -555,7 +556,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
         owner='owner2')
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     # Now there's an additional owner diagnostic
     diagnostics = histogram.SparseDiagnostic.query().fetch()
@@ -572,7 +573,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
         samples=[42])
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     # No more new diagnostics
     diagnostics = histogram.SparseDiagnostic.query().fetch()
@@ -593,7 +594,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     diagnostics = histogram.SparseDiagnostic.query().fetch()
     self.assertEqual(4, len(diagnostics))
@@ -617,7 +618,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
   @mock.patch.object(add_histograms_queue.graph_revisions,
                      'AddRowsToCacheAsync', mock.MagicMock())
@@ -658,7 +659,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(histograms.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     tests = graph_data.TestMetadata.query().fetch()
 
@@ -692,7 +693,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(histograms.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     tests = graph_data.TestMetadata.query().fetch()
 
@@ -732,7 +733,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(histograms.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     tests = [t.key.id() for t in graph_data.TestMetadata.query().fetch()]
     self.assertEqual(15, len(tests))  # suite + hist + stats + story per stat
@@ -750,7 +751,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(histograms.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     tests = [t.key.id() for t in graph_data.TestMetadata.query().fetch()]
     self.assertEqual(15, len(tests))
@@ -777,7 +778,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
   def _CheckOutOfOrderExpectations(self, expected):
     diags = histogram.SparseDiagnostic.query().fetch()
@@ -829,7 +830,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 class AddHistogramsTest(AddHistogramsBaseTest):
 
   def TaskParams(self):
-    tasks = self.GetTaskQueueTasks(add_histograms.TASK_QUEUE_NAME)
+    tasks = self.GetTaskQueueTasks(add_histograms_helper.TASK_QUEUE_NAME)
     params = []
     for task in tasks:
       params.extend(json.loads(base64.b64decode(task['body'])))
@@ -1484,7 +1485,8 @@ class AddHistogramsTest(AddHistogramsBaseTest):
         'foo', generic_set.GenericSet(['bar']))
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.DEVICE_IDS.name, generic_set.GenericSet([]))
-    diagnostics = add_histograms.FindHistogramLevelSparseDiagnostics(hist)
+    diagnostics = add_histograms_helper.FindHistogramLevelSparseDiagnostics(
+        hist)
 
     self.assertEqual(1, len(diagnostics))
     self.assertIsInstance(diagnostics[reserved_infos.DEVICE_IDS.name],
@@ -1504,14 +1506,13 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     ])
 
     with self.assertRaises(ValueError):
-      add_histograms.FindSuiteLevelSparseDiagnostics(histograms,
-                                                     utils.TestKey('M/B/Foo'),
-                                                     12345, False)
+      add_histograms_helper.FindSuiteLevelSparseDiagnostics(
+          histograms, utils.TestKey('M/B/Foo'), 12345, False)
 
   def testComputeRevision(self):
     hs = _CreateHistogram(
         name='hist', commit_position=424242, revision_timestamp=123456)
-    self.assertEqual(424242, add_histograms.ComputeRevision(hs))
+    self.assertEqual(424242, add_histograms_helper.ComputeRevision(hs))
 
   def testComputeRevision_NotInteger_Raises(self):
     hist = histogram_module.Histogram('hist', 'count')
@@ -1520,7 +1521,7 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name, chromium_commit)
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(histograms)
+      add_histograms_helper.ComputeRevision(histograms)
 
   def testComputeRevision_RaisesOnError(self):
     hist = histogram_module.Histogram('hist', 'count')
@@ -1529,7 +1530,7 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name, chromium_commit)
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(histograms)
+      add_histograms_helper.ComputeRevision(histograms)
 
   def testComputeRevision_UsesPointIdIfPresent(self):
     hs = _CreateHistogram(
@@ -1537,35 +1538,35 @@ class AddHistogramsTest(AddHistogramsBaseTest):
         commit_position=123456,
         point_id=234567,
         revision_timestamp=345678)
-    rev = add_histograms.ComputeRevision(hs)
+    rev = add_histograms_helper.ComputeRevision(hs)
     self.assertEqual(234567, rev)
 
   def testComputeRevision_PointIdNotInteger_Raises(self):
     hs = _CreateHistogram(name='foo', commit_position=123456, point_id='abc')
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(hs)
+      add_histograms_helper.ComputeRevision(hs)
 
   def testComputeRevision_UsesRevisionTimestampIfNecessary(self):
     hs = _CreateHistogram(name='foo', revision_timestamp=123456)
-    rev = add_histograms.ComputeRevision(hs)
+    rev = add_histograms_helper.ComputeRevision(hs)
     self.assertEqual(123456, rev)
 
   def testComputeRevision_RevisionTimestampNotInteger_Raises(self):
     hs = _CreateHistogram(name='foo', revision_timestamp='abc')
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(hs)
+      add_histograms_helper.ComputeRevision(hs)
 
   def testComputeRevision_NoRevision_Raises(self):
     hs = _CreateHistogram(name='foo')
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(hs)
+      add_histograms_helper.ComputeRevision(hs)
 
   def testSparseDiagnosticsAreNotInlined(self):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.BENCHMARKS.name, generic_set.GenericSet(['benchmark']))
-    add_histograms.InlineDenseSharedDiagnostics(histograms)
+    add_histograms_helper.InlineDenseSharedDiagnostics(histograms)
     self.assertTrue(hist.diagnostics[reserved_infos.BENCHMARKS.name].has_guid)
 
   @mock.patch('logging.info')
@@ -1576,7 +1577,7 @@ class AddHistogramsTest(AddHistogramsBaseTest):
         reserved_infos.LOG_URLS.name, generic_set.GenericSet(['http://foo']))
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.BUILD_URLS.name, generic_set.GenericSet(['http://bar']))
-    add_histograms._LogDebugInfo(histograms)
+    add_histograms_helper._LogDebugInfo(histograms)
     self.assertEqual('Buildbot URL: %s' % "['http://foo']",
                      mock_log.call_args_list[0][0][0])
     self.assertEqual('Build URL: %s' % "['http://bar']",
@@ -1585,14 +1586,14 @@ class AddHistogramsTest(AddHistogramsBaseTest):
   @mock.patch('logging.info')
   def testLogDebugInfo_NoHistograms(self, mock_log):
     histograms = histogram_set.HistogramSet()
-    add_histograms._LogDebugInfo(histograms)
+    add_histograms_helper._LogDebugInfo(histograms)
     mock_log.assert_called_once_with('No histograms in data.')
 
   @mock.patch('logging.info')
   def testLogDebugInfo_NoLogUrls(self, mock_log):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
-    add_histograms._LogDebugInfo(histograms)
+    add_histograms_helper._LogDebugInfo(histograms)
     self.assertEqual('No LOG_URLS in data.', mock_log.call_args_list[0][0][0])
     self.assertEqual('No BUILD_URLS in data.', mock_log.call_args_list[1][0][0])
 
@@ -1604,7 +1605,8 @@ class AddHistogramsTest(AddHistogramsBaseTest):
 class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
+    # TODO(https://crbug.com/1262292):
+    #   Change to super() after Python2 trybots retire.
     # pylint: disable=super-with-arguments
     super(AddHistogramsUploadCompleteonTokenTest, self).setUp()
 
@@ -1659,7 +1661,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.assertEqual(measurements[0].histogram, None)
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     token = upload_completion_token.Token.get_by_id(token_info['token'])
     self.assertEqual(token.state, upload_completion_token.State.COMPLETED)
 
@@ -1687,7 +1689,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.assertEqual(token.state, upload_completion_token.State.PROCESSING)
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     token = upload_completion_token.Token.get_by_id(token_info['token'])
     self.assertEqual(token.state, upload_completion_token.State.FAILED)
     # Error happened on measurement level.
@@ -1720,7 +1722,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     diagnostics = histogram.SparseDiagnostic.query().fetch()
 
     # Perform same checks as for AddHistogramsEndToEndTest.testPost_Succeeds.
@@ -1755,7 +1757,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.assertEqual(token, None)
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     diagnostics = histogram.SparseDiagnostic.query().fetch()
 
     # Perform same checks as for AddHistogramsEndToEndTest.testPost_Succeeds.
@@ -1800,7 +1802,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.assertEqual(token.internal_only, utils.IsInternalUser())
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
     token = upload_completion_token.Token.get_by_id(token_info['token'])
     self.assertEqual(token.state, upload_completion_token.State.COMPLETED)
 
@@ -1809,7 +1811,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     token_info = self.PostAddHistogram({'data': self.histogram_data})
     self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     measurement_id = 'master/bot/benchmark/hist'
     log_calls = [
@@ -1873,7 +1875,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.assertTrue(measurement.get('lastUpdated') is not None)
 
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     uploads_response = self.GetUploads(token_info['token'])
     measurement = uploads_response['measurements'][0]
@@ -1887,7 +1889,7 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     token_info = self.PostAddHistogram({'data': self.histogram_data})
     self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
+                               add_histograms_helper.TASK_QUEUE_NAME)
 
     uploads_response = self.GetUploads(token_info['token'])
     self.assertEqual(uploads_response['state'], 'FAILED')
@@ -1912,7 +1914,8 @@ class DecompressFileWrapperTest(testing_common.TestCase):
     self.assertEqual(len(payload), filesize)
     input_file = BufferedFakeFile(zlib.compress(payload))
     retrieved_payload = str()
-    with add_histograms.DecompressFileWrapper(input_file, 2048) as decompressor:
+    with add_histograms_helper.DecompressFileWrapper(
+      input_file, 2048) as decompressor:
       while True:
         chunk = decompressor.read(1024)
         if len(chunk) == 0:
@@ -1931,7 +1934,7 @@ class DecompressFileWrapperTest(testing_common.TestCase):
     input_file = BufferedFakeFile(payload)
     retrieved_payload = str()
     with self.assertRaises(zlib.error):
-      with add_histograms.DecompressFileWrapper(input_file, 2048) as d:
+      with add_histograms_helper.DecompressFileWrapper(input_file, 2048) as d:
         while True:
           chunk = d.read(1024)
           if len(chunk) == 0:
@@ -1969,16 +1972,16 @@ class DecompressFileWrapperTest(testing_common.TestCase):
 
     loaded_compressed_histograms = histogram_set.HistogramSet()
 
-    with add_histograms.DecompressFileWrapper(input_file_compressed,
-                                              256) as decompressor:
+    with add_histograms_helper.DecompressFileWrapper(
+      input_file_compressed, 256) as decompressor:
       loaded_compressed_histograms.ImportDicts(
-          add_histograms._LoadHistogramList(decompressor))
+          add_histograms_helper.LoadHistogramList(decompressor))
 
     loaded_compressed_histograms.DeduplicateDiagnostics()
 
     loaded_raw_histograms = histogram_set.HistogramSet()
     loaded_raw_histograms.ImportDicts(
-        add_histograms._LoadHistogramList(input_file_raw))
+        add_histograms_helper.LoadHistogramList(input_file_raw))
     loaded_raw_histograms.DeduplicateDiagnostics()
 
     self.assertEqual(
@@ -1988,13 +1991,13 @@ class DecompressFileWrapperTest(testing_common.TestCase):
   def testJSONFail(self):
     with BufferedFakeFile('Not JSON') as input_file:
       with self.assertRaises(ValueError):
-        _ = add_histograms._LoadHistogramList(input_file)
+        _ = add_histograms_helper.LoadHistogramList(input_file)
 
   def testIncrementalJSONSupport(self):
     with BufferedFakeFile('[{"key": "value incomplete"') as input_file:
       with self.assertRaises(ValueError):
-        _ = add_histograms._LoadHistogramList(input_file)
+        _ = add_histograms_helper.LoadHistogramList(input_file)
 
     with BufferedFakeFile('[{"key": "complete list"}]') as input_file:
-      dicts = add_histograms._LoadHistogramList(input_file)
+      dicts = add_histograms_helper.LoadHistogramList(input_file)
       self.assertSequenceEqual([{u'key': u'complete list'}], dicts)
