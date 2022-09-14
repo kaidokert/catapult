@@ -39,6 +39,30 @@
       },
       "revId": "d522be400a8a84b78c4f9c1ff5af2e1270d7622c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a989dde_1fc55842",
+        "filename": "dashboard/dashboard/pinpoint/handlers/commits.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-14T06:09:03Z",
+      "side": 1,
+      "message": "Updated. Thanks!",
+      "parentUuid": "39231fb8_78944b3d",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 31,
+        "endChar": 21
+      },
+      "revId": "d522be400a8a84b78c4f9c1ff5af2e1270d7622c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
