@@ -94,6 +94,30 @@
       },
       "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23c25ec_6e7fb7cb",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-14T20:03:23Z",
+      "side": 1,
+      "message": "Fine, I can do this refactor, but can you please take a look at the actual logic and give feedback on that as well? Or is this the only issue you see?",
+      "parentUuid": "0e1b611b_3ffc7dfa",
+      "range": {
+        "startLine": 587,
+        "startChar": 14,
+        "endLine": 587,
+        "endChar": 26
+      },
+      "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
