@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a2f3bf_f5ba9c4f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-14T00:30:21Z",
+      "side": 1,
+      "message": "This looks like a refactor. Can you please remove this and move it to another CL. Its hard to parse what you are actually trying to accomplish in this CL from the changes that are just refactorings.",
+      "revId": "5c441d55cd2f4da59e5e8fb99525c8e556ea8353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
