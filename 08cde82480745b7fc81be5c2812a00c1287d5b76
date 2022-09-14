@@ -69,6 +69,24 @@
       "parentUuid": "bd25efbf_cddcd742",
       "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85a21530_01a9452e",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend_list.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2022-09-14T14:38:10Z",
+      "side": 1,
+      "message": "ok, then we roll with it :P",
+      "parentUuid": "b4644658_f5c3ee31",
+      "revId": "08cde82480745b7fc81be5c2812a00c1287d5b76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
