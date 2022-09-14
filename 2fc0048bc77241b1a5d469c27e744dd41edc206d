@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f028fa09_0fc7fb45",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-14T19:16:39Z",
+      "side": 1,
+      "message": "Please use an expectations instance instead \u0027WorkingScope\u0027 to store these variables.",
+      "range": {
+        "startLine": 587,
+        "startChar": 14,
+        "endLine": 587,
+        "endChar": 26
+      },
+      "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
