@@ -22,8 +22,13 @@ if utils.IsRunningFlask():
     try:
       repository = flask_request.args.get('repository', 'chromium')
       c1 = change.Commit.FromDict({
-          'repository': repository,
-          'git_hash': flask_request.args.get('start_git_hash'),
+          'repository':
+              repository,
+          # crbug/1363418: workaround when start_git_hash is 'undefined'
+          'git_hash':
+              flask_request.args.get('start_git_hash')
+              if flask_request.args.get('start_git_hash') != 'undefined' else
+              'HEAD',
       })
       c2 = change.Commit.FromDict({
           'repository': repository,
