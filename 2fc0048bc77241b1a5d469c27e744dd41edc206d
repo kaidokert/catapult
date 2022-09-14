@@ -142,6 +142,30 @@
       },
       "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13260271_c5698f6d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-14T21:02:52Z",
+      "side": 1,
+      "message": "Hmm alternatively, since this is turning out to be a lot more work... would you be fine if I just reverted it to use the hacky `self._*` for now and it can be refactored later?",
+      "parentUuid": "cf25ab65_28d181a5",
+      "range": {
+        "startLine": 587,
+        "startChar": 14,
+        "endLine": 587,
+        "endChar": 26
+      },
+      "revId": "2fc0048bc77241b1a5d469c27e744dd41edc206d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
