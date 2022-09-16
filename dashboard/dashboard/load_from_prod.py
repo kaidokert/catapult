@@ -35,6 +35,7 @@ class LoadFromProdHandler(request_handler.RequestHandler):
   """Debugging handler to load data from the production instance."""
 
   def get(self):
+    logging.debug('crbug/1298177 - load_from_prod GET triggered')
     if 'Development' not in os.environ['SERVER_SOFTWARE']:
       self.RenderHtml('result.html', {
           'errors':
@@ -44,6 +45,7 @@ class LoadFromProdHandler(request_handler.RequestHandler):
     self.RenderHtml('load_from_prod.html', {})
 
   def post(self):
+    logging.debug('crbug/1298177 - load_from_prod POST triggered')
     """Loads the requested data from the production server."""
     if 'Development' not in os.environ['SERVER_SOFTWARE']:
       self.RenderHtml('result.html', {
