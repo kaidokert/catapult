@@ -34,6 +34,24 @@
       "parentUuid": "7ab14e9e_4e66ea51",
       "revId": "14d227abed32499b0038bb58050a952d0d9c0c32",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "282bd544_7adfeb6d",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-16T18:13:22Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "f906f479_29b27908",
+      "revId": "14d227abed32499b0038bb58050a952d0d9c0c32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
