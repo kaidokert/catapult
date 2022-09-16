@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab14e9e_4e66ea51",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-16T17:56:39Z",
+      "side": 0,
+      "message": "I\u0027ve confirmed that this service is still in use. Its trigger is unclear. We could keep this since it could be useful in future testing. \n\nhttps://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-09-14T04:30:46.463526Z;query\u003d%22crbug%2F1298177%22%0Atimestamp%3D%222022-09-14T04:30:46.463526Z%22%0AinsertId%3D%22632158f6000ccf6814c906bf%22;timeRange\u003dP7D?project\u003dchromeperf",
+      "revId": "14d227abed32499b0038bb58050a952d0d9c0c32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
