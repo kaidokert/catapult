@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2420f9_6f78ecec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2022-09-16T13:09:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37b89eea_83cedd53",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "2f91bd44c67d02d5fc2c0d6dbf4f22eb5fe33264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46f7b75b_a3beb623",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-16T13:05:35Z",
       "side": 1,
       "message": "You can remove this line altogether if there\u0027s no associated bug.",
+      "revId": "2f91bd44c67d02d5fc2c0d6dbf4f22eb5fe33264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "280c1422_a02f5962",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2022-09-16T13:09:09Z",
+      "side": 1,
+      "message": "Thank you! Done.",
+      "parentUuid": "46f7b75b_a3beb623",
       "revId": "2f91bd44c67d02d5fc2c0d6dbf4f22eb5fe33264",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
