@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5b85b62_80e39d20",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-16T18:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8acabe7c_9cb3b053",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 36
+      },
+      "revId": "17543869f6f27f5315be6b8ce49006be278d80bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e3f93a1_b5716ad2",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-16T17:43:19Z",
       "side": 1,
       "message": "The original class inherit from api_request_handler.ApiRequestHandler. We need to use a decorator like @api_request_handler.RequestHandlerDecoratorFactory(_CheckUser) to include the _CheckUser() logic.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "17543869f6f27f5315be6b8ce49006be278d80bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d1f3e1_6a227ea6",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-16T18:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e3f93a1_b5716ad2",
       "range": {
         "startLine": 82,
         "startChar": 4,
