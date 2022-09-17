@@ -160,6 +160,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dba8d30_66fbba14",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-17T00:33:31Z",
+      "side": 1,
+      "message": "By testing on prod, the only way to get json is request.get_data()",
+      "parentUuid": "911b9559_779cf215",
+      "range": {
+        "startLine": 109,
+        "startChar": 17,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "c4c5a78a5182edffaedf0a569bba2463d87109cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "720a9cb1_3bbfe0fc",
@@ -197,6 +221,30 @@
       "side": 1,
       "message": "I am putting this on-hold, testing it first",
       "parentUuid": "720a9cb1_3bbfe0fc",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 30
+      },
+      "revId": "c4c5a78a5182edffaedf0a569bba2463d87109cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb620b3_ed8d54c6",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-17T00:33:31Z",
+      "side": 1,
+      "message": "Tested, but let me know if we should comment this part (utils.isRunningFlask is not actually working in Prod)",
+      "parentUuid": "2ab37238_700ebaf9",
       "range": {
         "startLine": 218,
         "startChar": 0,
