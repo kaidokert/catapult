@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e459be6_78cab595",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-17T00:16:07Z",
+      "side": 1,
+      "message": "IIUIC, you are trying to get attributes from all globs that match a test name instead of the longest glob. That violates the rule we get expectations from the longest matching prefix.",
+      "revId": "f4516746a62d7e835ed3b6843c1f31af80a86353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
