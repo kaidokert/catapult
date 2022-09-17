@@ -16,6 +16,24 @@
       "message": "IIUIC, you are trying to get attributes from all globs that match a test name instead of the longest glob. That violates the rule we get expectations from the longest matching prefix.",
       "revId": "f4516746a62d7e835ed3b6843c1f31af80a86353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0ade84_4959a154",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-17T00:24:08Z",
+      "side": 1,
+      "message": "Yes, that is the whole point of this CL. The point is to differentiate results from attributes, so that they can be handled differently. Results semantics do not change, but now attributes will be bubbled down through globs when they are only attribute tagged.",
+      "parentUuid": "4e459be6_78cab595",
+      "revId": "f4516746a62d7e835ed3b6843c1f31af80a86353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
