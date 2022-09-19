@@ -186,6 +186,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98e24f31_2dd19e79",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-19T19:15:54Z",
+      "side": 1,
+      "message": "The original code was written to handle two types of input:\n* The input data could be raw binary data compressed by zlib.\n* The input data could also be form encoded uncompressed text, in a form property named \u0027data\u0027.\n\nEven if only one form of input was encountered during testing, we should still keep handling both forms (i.e., keep request.values.get(\u0027data\u0027)), unless we can prove that there are no possibilities of receiving the second type of input.",
+      "parentUuid": "0dba8d30_66fbba14",
+      "range": {
+        "startLine": 109,
+        "startChar": 17,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "c4c5a78a5182edffaedf0a569bba2463d87109cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "720a9cb1_3bbfe0fc",
         "filename": "dashboard/dashboard/dispatcher.py",
         "patchSetId": 1

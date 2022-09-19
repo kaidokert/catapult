@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b701900a_d9140b9c",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-19T19:15:54Z",
+      "side": 1,
+      "message": "If the caller has correctly set Content-Type, request.data should be equivalent to request.get_data(). But I suppose the caller didn\u0027t do that correctly. To be safe, I think we should replace all instances of request.data with request.get_data().",
+      "range": {
+        "startLine": 107,
+        "startChar": 17,
+        "endLine": 107,
+        "endChar": 35
+      },
+      "revId": "dbd7600c70564286cd7757809faa995f646d7442",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
