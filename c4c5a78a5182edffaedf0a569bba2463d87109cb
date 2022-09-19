@@ -208,6 +208,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8acfcd1_b08de44c",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-19T21:26:47Z",
+      "side": 1,
+      "message": "I asked @Wenbin and checked myself, for now the only entry point is https://source.chromium.org/chromium/chromium/src/+/main:tools/perf/core/results_dashboard.py;l\u003d46?q\u003dresults_dashboard.py (no matter manual or service calls).\nThus we are using request.get_data() either way.",
+      "parentUuid": "98e24f31_2dd19e79",
+      "range": {
+        "startLine": 109,
+        "startChar": 17,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "c4c5a78a5182edffaedf0a569bba2463d87109cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "720a9cb1_3bbfe0fc",
