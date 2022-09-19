@@ -34,6 +34,24 @@
       "parentUuid": "4e459be6_78cab595",
       "revId": "f4516746a62d7e835ed3b6843c1f31af80a86353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d38b1fd9_18284506",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-19T15:27:17Z",
+      "side": 1,
+      "message": "I don\u0027t think we should make exceptions to the rule for attributes. If you want to set attributes for tests then you should write the longest matching glob for the tests you want to apply the attributes to. Or you should go through each test expectation individually and add the attribute. If those two options don\u0027t work then you should modify the test harness to make a longer timeout and extra retries for tests that match a certain criteria.",
+      "parentUuid": "9f0ade84_4959a154",
+      "revId": "f4516746a62d7e835ed3b6843c1f31af80a86353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
