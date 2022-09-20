@@ -15,6 +15,7 @@ from dashboard import graph_csv
 from dashboard import main
 from dashboard import navbar
 from dashboard import sheriff_config_poller
+from dashboard import short_uri
 
 from flask import Flask
 flask_app = Flask(__name__)
@@ -50,6 +51,11 @@ def GraphCSVHandlerPost():
   return graph_csv.GraphCSVPost()
 
 
+@flask_app.route('/list_tests', methods=['POST'])
+def ListTestsHandlerPost():
+  return list_tests.ListTestsHandlerPost()
+
+
 @flask_app.route('/')
 def MainHandlerGet():
   return main.MainHandlerGet()
@@ -63,6 +69,16 @@ def NavbarHandlerPost():
 @flask_app.route('/configs/update')
 def SheriffConfigPollerGet():
   return sheriff_config_poller.SheriffConfigPollerGet()
+
+
+@flask_app.route('/short_uri', methods=['GET'])
+def ShortUriHandlerGet():
+  return short_uri.ShortUriHandlerGet()
+
+
+@flask_app.route('/short_uri', methods=['POST'])
+def ShortUriHandlerPost():
+  return short_uri.ShortUriHandlerPost()
 
 
 if six.PY2:
@@ -205,7 +221,9 @@ _PATHS_HANDLED_BY_FLASK = [
     # '/configs/update',
     '/edit_site_config',
     # '/graph_csv',
+    '/list_tests',
     # '/navbar',
+    '/short_uri',
 ]
 
 
