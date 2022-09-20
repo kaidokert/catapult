@@ -552,16 +552,22 @@ tr.b.unittest.testSuite(function() {
 
   test('atomicAndIncremental', function() {
     const mainSlices = [
+    {
+        title: 'V8.GC_MC_COMPLETE_SWEEPING',
+        cat: 'v8',
+        args: {'epoch': 0},
+        start: 80, cpuStart: 80, end: 100, cpuEnd: 100,
+      },
       {
         title: 'V8.GC_MC_INCREMENTAL',
         cat: 'v8',
-        args: {'epoch': 0},
+        args: {'epoch': 1},
         start: 100, cpuStart: 100, end: 110, cpuEnd: 110,
       },
       {
         title: 'V8.GC_MARK_COMPACTOR',
         cat: 'v8',
-        args: {'epoch': 0},
+        args: {'epoch': 1},
         start: 200, cpuStart: 200, end: 300, cpuEnd: 300,
       },
       {
@@ -574,17 +580,18 @@ tr.b.unittest.testSuite(function() {
       {
         title: 'V8.GC_MC_BACKGROUND_MARKING',
         cat: 'v8',
-        args: {'epoch': 0},
+        args: {'epoch': 1},
         start: 100, cpuStart: 100, end: 130, cpuEnd: 130,
       },
       {
         title: 'V8.GC_MC_BACKGROUND_MARKING',
         cat: 'v8',
-        args: {'epoch': 0},
+        args: {'epoch': 1},
         start: 200, cpuStart: 200, end: 240, cpuEnd: 240,
       },
     ];
     const expectedAverages = [
+      ['v8:gc:cycle:main_thread:full:incremental:sweep', 20],
       ['v8:gc:cycle:main_thread:full:atomic:mark', 20],
       ['v8:gc:cycle:main_thread:full:incremental:mark', 10],
       ['v8:gc:cycle:background_threads:full:atomic:mark', 40],
