@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a079a33_1fc39878",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-20T06:20:49Z",
+      "side": 1,
+      "message": "Can we try to run and verify it?",
+      "parentUuid": "4e29de1c_93968511",
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95fc645d_a51f9808",
         "filename": "dashboard/dashboard/file_bug.py",
         "patchSetId": 1
@@ -48,6 +66,29 @@
       "writtenOn": "2022-09-20T02:23:21Z",
       "side": 1,
       "message": "using `values` instead of `args` because `POST` or `GET` could call this.",
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c837c256_a2f66da3",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-20T06:20:49Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 98,
+        "startChar": 15,
+        "endLine": 98,
+        "endChar": 19
+      },
       "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
