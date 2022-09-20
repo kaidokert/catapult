@@ -16,6 +16,40 @@
       "message": "A simple change to use vpython to run dashboard dev server, as most dev machines (such as mine) no longer has /usr/bin/python.",
       "revId": "57ea0bd1d14a7701c5ebcfac41ff694ea6941b0b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dcb9759_8eb03a10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-20T18:21:09Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "57ea0bd1d14a7701c5ebcfac41ff694ea6941b0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "146dcbc1_5bde1e61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-20T18:21:09Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "57ea0bd1d14a7701c5ebcfac41ff694ea6941b0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
