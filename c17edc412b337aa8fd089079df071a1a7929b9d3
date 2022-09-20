@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5559c92b_71be0567",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-20T00:49:02Z",
+      "side": 1,
+      "message": "changed `request.args` to `request.values` but is `request.form.get` better? \n\nhttps://code.luasoftware.com/tutorials/flask/flask-get-request-parameters-get-post-and-json/#post-formpost",
+      "revId": "c17edc412b337aa8fd089079df071a1a7929b9d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
