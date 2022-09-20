@@ -201,11 +201,11 @@ if six.PY2:
 # The listed values will be used as *prefix* to match and redirect
 # the incoming requests.
 _PATHS_HANDLED_BY_FLASK = [
-    # '/alerts',
+    '/alerts',
     # '/configs/update',
     '/edit_site_config',
-    # '/graph_csv',
-    # '/navbar',
+    '/graph_csv',
+    '/navbar',
 ]
 
 
