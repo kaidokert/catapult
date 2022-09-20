@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad96cbc_3453e524",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-20T01:59:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "553e629b_0d220ed0",
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbc8c5a4_c4a9d3f8",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-08T17:06:39Z",
       "side": 1,
       "message": "Nit: extra spaces",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 2
+      },
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c14600d_85683410",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-20T01:59:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbc8c5a4_c4a9d3f8",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -58,6 +100,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "014d9c43_989db4be",
+        "filename": "dashboard/dashboard/edit_bug_labels.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-20T01:59:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "10fffa1e_2dcd9c30",
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3160708_4a21d241",
@@ -71,6 +131,30 @@
       "writtenOn": "2022-09-08T17:06:39Z",
       "side": 1,
       "message": "This won\u0027t work correctly. Since this is submitted from an HTML form (created by the get handler above) using POST method, you need either request.form or request.values to retrieve the data. (request.values is safer, as it works with both GET and POST methods.)",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "f8da315a8a99079a8959f39698e61b917cca1873",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bba4b23_c67b329d",
+        "filename": "dashboard/dashboard/edit_bug_labels.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-20T01:59:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f3160708_4a21d241",
       "range": {
         "startLine": 53,
         "startChar": 12,

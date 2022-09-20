@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c96c8b95_b99e2080",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-20T01:59:48Z",
+      "side": 1,
+      "message": "Someone should double check me that deleting these would not break anything. \n\nI believe these two handlers are now obsoleted by the anomaly config system. If someone wants to update bug labels or the anomaly configs, we would direct them to the anomaly configs files. \n\n`Edit_bug_labels` [1]\nWhen I check `edit_bug_labels`, I see that some of the bug labels are still in use. For example \"Performance-power\". However, when I check on monorail [3], the last time the label was used for anomaly alerts on a series of tests was in 2020 [4]\n\n`edit_anomaly_configs` [2]\nIn `edit_anomaly_configs` under the drop-down `Edit existing config`, there\u0027s a bunch of configs I do not recognize and the current configs in place are not in that list. If I try `memory_above_64k` for example, I find one mention of it on monorail [5] and a handler that is also deprecated [6]. Also telling is how most of these configs are ported into `chromium-perf.cfg`, like in the case of `memory_above_64k` [7]\n\n\n[1] https://chromeperf.appspot.com/edit_bug_labels\n[2] https://chromeperf.appspot.com/edit_anomaly_configs\n[3] https://bugs.chromium.org/p/chromium/issues/list?q\u003dlabel%3APerformance-Power\u0026can\u003d2\n[4] https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1101405\u0026q\u003dlabel%3APerformance-Power\u0026can\u003d2\n[5] https://bugs.chromium.org/p/chromium/issues/list?q\u003dmemory_above_64k\u0026can\u003d1\n[6] https://source.corp.google.com/piper///depot/google3/third_party/catapult/experimental/alert_configs/memory.py;rcl\u003d417345091;l\u003d18\n[7] https://source.corp.google.com/chromium_infra_internal/infra/config/subprojects/chromeperf/chromium-perf.cfg;rcl\u003ddb052180c52ca81fb209747c7793af3931aba397;l\u003d295",
+      "revId": "3b31c106c50270bd9cc023a3eeaeceadedc2c9e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
