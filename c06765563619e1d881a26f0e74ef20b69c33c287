@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98881b61_952fcbe4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-20T19:50:45Z",
+      "side": 1,
+      "message": "It seems like this CL breaks existing functionality, specifically --compatibility-mode working properly.\n\nIn https://ci.chromium.org/ui/p/chromium/builders/ci/Android%20FYI%20Release%20(Samsung%20A23)/44/overview, the tests are able to get to browser creation. However, in the following build https://ci.chromium.org/ui/p/chromium/builders/ci/Android%20FYI%20Release%20(Samsung%20A23)/45/overview, in which the roll of this is in the blamelist, the tests fail earlier, complaining about being unable to root the device. This is because `--compatibility-mode\u003ddont-require-rooted-device` is not being properly forwarded to where it\u0027s used in android_platform_backend.py anymore https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/platform/android_platform_backend.py;l\u003d163?q\u003dandroid_platform_backend.py (`finder_options.browser_options.compatibility_mode` is an empty list)",
+      "revId": "c06765563619e1d881a26f0e74ef20b69c33c287",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
