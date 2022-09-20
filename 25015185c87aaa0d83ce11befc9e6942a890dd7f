@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caa10d7c_d68f4a8d",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-20T07:34:04Z",
+      "side": 1,
+      "message": "I wouldn\u0027t expect it to work. The oauth2_decorator.DECORATOR is defined in https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/oauth2_decorator.py, and it\u0027s just a simple wrapper of https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/third_party/oauth2client/oauth2client/appengine.py. The oauth_required is at https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/third_party/oauth2client/oauth2client/appengine.py;l\u003d697. It returns another method, check_oauth (https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/third_party/oauth2client/oauth2client/appengine.py;l\u003d708), which expects the first argument to be a request_handler, and it wants to do things like request_handler.request. This is the API of webapp2, not flask.\n\nWe\u0027ll need to find equivalent code for flask.",
+      "parentUuid": "4a079a33_1fc39878",
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95fc645d_a51f9808",
         "filename": "dashboard/dashboard/file_bug.py",
         "patchSetId": 1
