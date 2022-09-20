@@ -11,6 +11,7 @@ import logging
 
 from dashboard import alerts
 from dashboard import edit_site_config
+from dashboard import file_bug
 from dashboard import graph_csv
 from dashboard import main
 from dashboard import navbar
@@ -38,6 +39,16 @@ def EditSiteConfigHandlerGet():
 @flask_app.route('/edit_site_config', methods=['POST'])
 def EditSiteConfigHandlerPost():
   return edit_site_config.EditSiteConfigHandlerPost()
+
+
+@flask_app.route('/file_bug', methods=['GET'])
+def FileBugHandlerGet():
+  return file_bug.FileBugHandlerGet()
+
+
+@flask_app.route('/file_bug', methods=['POST'])
+def FileBugHandlerPost():
+  return file_bug.FileBugHandlerPost()
 
 
 @flask_app.route('/graph_csv', methods=['GET'])
@@ -204,6 +215,7 @@ _PATHS_HANDLED_BY_FLASK = [
     # '/alerts',
     # '/configs/update',
     '/edit_site_config',
+    '/file_bug',
     # '/graph_csv',
     # '/navbar',
 ]
