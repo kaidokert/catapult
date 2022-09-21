@@ -16,6 +16,46 @@
       "message": "set calls to webapp2 now",
       "revId": "385a6f296b9d6720ea1d52514b08cf7d1e3f0954",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a2c4c2_adabe4ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:17:51Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "385a6f296b9d6720ea1d52514b08cf7d1e3f0954",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f54053c_2ae5819f",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:17:51Z",
+      "side": 1,
+      "message": "For future reference, please avoid combining code movements with other changes in a CL. It\u0027s hard for a reviewer to tell if the moved code has changed or nor. If you believe that the move is necessary, please submit a separate CL for just the code movement.\n\nFor this review I\u0027ll assume the moved code is unchanged, without doing a line-by-line comparison.",
+      "range": {
+        "startLine": 608,
+        "startChar": 0,
+        "endLine": 615,
+        "endChar": 36
+      },
+      "revId": "385a6f296b9d6720ea1d52514b08cf7d1e3f0954",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
