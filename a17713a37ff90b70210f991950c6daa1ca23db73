@@ -69,6 +69,24 @@
       "message": "The changes LGTM. Please do be careful with submitting it, and test is in production ASAP after the changes are uploaded to app engine.",
       "revId": "a17713a37ff90b70210f991950c6daa1ca23db73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3018789d_f6a3e757",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-21T23:30:57Z",
+      "side": 1,
+      "message": "Could we pass an argument to datastore_hooks? Something like \n```\nSetSinglePrivilegedRequest(flask_flag \u003d False):\n  if utils.IsRunningFlask() or flask_flag:\n    flask stuff\n  else:\n    webapp2 stuff\n```",
+      "parentUuid": "4ddec138_596fa4a9",
+      "revId": "a17713a37ff90b70210f991950c6daa1ca23db73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
