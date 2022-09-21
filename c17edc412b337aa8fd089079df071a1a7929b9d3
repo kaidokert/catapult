@@ -16,6 +16,70 @@
       "message": "changed `request.args` to `request.values` but is `request.form.get` better? \n\nhttps://code.luasoftware.com/tutorials/flask/flask-get-request-parameters-get-post-and-json/#post-formpost",
       "revId": "c17edc412b337aa8fd089079df071a1a7929b9d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "838db7c9_318be9b7",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:41:16Z",
+      "side": 1,
+      "message": "It really depends on how this handler gets called. If you can search all calls to /list_tests URL, and they all send the data through posted data, then request.form is better. If you want to skip the search, request.values is safer.",
+      "parentUuid": "5559c92b_71be0567",
+      "revId": "c17edc412b337aa8fd089079df071a1a7929b9d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07a8e40_76a62da0",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:41:16Z",
+      "side": 1,
+      "message": "Need to do: return request_handler.RequestHandlerReportError(...)\n\nrequest_handler.RequestHandlerReportError returns an error response to the caller. It\u0027s not effective unless the returned value is passed on back to the caller of the handler.\n\nTwo additional instances of this issue below.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "c17edc412b337aa8fd089079df071a1a7929b9d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d13e33f_2f274435",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:41:16Z",
+      "side": 1,
+      "message": "return state.value\n\nThe response needs to be returned to the caller. Also explicitly calling make_response isn\u0027t necessary unless you want to pass additional parameters.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 10
+      },
+      "revId": "c17edc412b337aa8fd089079df071a1a7929b9d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
