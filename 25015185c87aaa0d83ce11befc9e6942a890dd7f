@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bcc81f8_fb894605",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:54:55Z",
+      "side": 1,
+      "message": "In Flask, there is no need to use separate functions for GET and POST when they do the same thing. Use one function with methods\u003d[\u0027GET\u0027, \u0027POST\u0027]",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f77ca1_8241e42d",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:54:55Z",
+      "side": 1,
+      "message": "Delete (duplicate of line 14).",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e29de1c_93968511",
         "filename": "dashboard/dashboard/file_bug.py",
         "patchSetId": 1
@@ -109,6 +155,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37c13062_cb346754",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:54:55Z",
+      "side": 1,
+      "message": "Good question.\n\nWenbin: Do you know how much work there would be to migrate to google-auth?",
+      "parentUuid": "66cd1832_bb0355cb",
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95fc645d_a51f9808",
         "filename": "dashboard/dashboard/file_bug.py",
         "patchSetId": 1
@@ -120,6 +184,24 @@
       "writtenOn": "2022-09-20T02:23:21Z",
       "side": 1,
       "message": "using `values` instead of `args` because `POST` or `GET` could call this.",
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a837ac62_3c78f22c",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T17:54:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95fc645d_a51f9808",
       "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
