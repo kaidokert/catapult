@@ -16,6 +16,29 @@
       "message": "will revert after bug is fixed",
       "revId": "2d8323db873792b2e0f27f2c7337f9531d6cd74d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ffd1388_23cb1d28",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T16:50:49Z",
+      "side": 1,
+      "message": "FYI: %s formatting implies calling str to convert the argument to string. So explicit calling str is unnecessary. Sufficient to do logging.debug(\u0027... %s\u0027, bots)",
+      "range": {
+        "startLine": 355,
+        "startChar": 17,
+        "endLine": 355,
+        "endChar": 40
+      },
+      "revId": "2d8323db873792b2e0f27f2c7337f9531d6cd74d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
