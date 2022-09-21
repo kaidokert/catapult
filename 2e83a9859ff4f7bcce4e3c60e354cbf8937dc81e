@@ -16,6 +16,29 @@
       "message": "PTAL\n\nTested:\n\nhttps://pantheon.corp.google.com/logs/query;query\u003d%22%2Fapi%2Fdescribe%22%0Aresource.type%3D%22gae_app%22%0Aresource.labels.version_id%3D%22funing%22%0A%22632b7f0d000c96f6e0532a3e%22;cursorTimestamp\u003d2022-09-21T21:15:54.421304Z?project\u003dchromeperf",
       "revId": "2e83a9859ff4f7bcce4e3c60e354cbf8937dc81e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7535ef9e_ba5d6c78",
+        "filename": "dashboard/dashboard/api/describe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-21T21:48:11Z",
+      "side": 1,
+      "message": "Use the decorator in api request handler. (to be consistent even _CheckUser is pass here), then we don\u0027t need the make_response() here.",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "2e83a9859ff4f7bcce4e3c60e354cbf8937dc81e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
