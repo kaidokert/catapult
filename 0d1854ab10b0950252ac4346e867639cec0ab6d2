@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d1ecdf_35ddae2d",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2022-09-21T07:39:30Z",
+      "side": 0,
+      "message": "This one is never used in the code afaict",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 36
+      },
+      "revId": "0d1854ab10b0950252ac4346e867639cec0ab6d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
