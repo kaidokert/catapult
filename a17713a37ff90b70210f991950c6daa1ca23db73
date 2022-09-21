@@ -34,6 +34,41 @@
       "parentUuid": "fd2c16da_75be430d",
       "revId": "a17713a37ff90b70210f991950c6daa1ca23db73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ddec138_596fa4a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T18:06:47Z",
+      "side": 1,
+      "message": "SGTM.\n\nNote that https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/datastore_hooks.py;l\u003d72 does have code to handle both flask and webapp2 requests, but utils.IsRunningFlask() doesn\u0027t give the right value when we\u0027re routing based on URL.",
+      "parentUuid": "1b883e80_89f07ce2",
+      "revId": "a17713a37ff90b70210f991950c6daa1ca23db73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8696722_8ccbfa4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-21T18:06:47Z",
+      "side": 1,
+      "message": "The changes LGTM. Please do be careful with submitting it, and test is in production ASAP after the changes are uploaded to app engine.",
+      "revId": "a17713a37ff90b70210f991950c6daa1ca23db73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
