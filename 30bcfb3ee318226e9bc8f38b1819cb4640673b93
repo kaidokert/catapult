@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb67b9b4_8b489e22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-22T23:10:15Z",
+      "side": 1,
+      "message": "When the CL was live, I tested this briefly on production and everything looked good [1]. Hopefully I addressed the merge conflict correctly this time around. Sorry for the mental mistakes! \n\n[1] https://chromium-review.googlesource.com/c/catapult/+/3914042/comment/2202d108_a20bffc0/",
+      "revId": "30bcfb3ee318226e9bc8f38b1819cb4640673b93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
