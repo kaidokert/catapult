@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "041d09bd_8b79ac83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-22T18:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bd04355_82667b95",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a1dbff41_8966a377",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -81,6 +105,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eca1b06_418fd26b",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-22T18:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c93da38_1ecdb432",
+      "range": {
+        "startLine": 97,
+        "startChar": 41,
+        "endLine": 97,
+        "endChar": 49
+      },
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "811cbc22_96d7881d",
@@ -94,6 +142,30 @@
       "writtenOn": "2022-09-22T04:46:56Z",
       "side": 1,
       "message": "Should we follow the same pattern like\n... copy the command that runs benchmark ...\n?",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 44
+      },
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d5e2fe6_5e23fec0",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-22T18:17:53Z",
+      "side": 1,
+      "message": "I believe the shorter the better but it\u0027s a bit hard to shorten the prior button description.",
+      "parentUuid": "811cbc22_96d7881d",
       "range": {
         "startLine": 103,
         "startChar": 28,
