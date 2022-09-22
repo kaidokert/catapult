@@ -58,6 +58,8 @@ class AdbCompatibilityTest(device_test_case.DeviceTestCase):
   def testStartServer(self):
     # Manually kill off any instances of adb.
     adb_pids = _hostAdbPids()
+    if adb_pids:
+      print(adb_pids)
     for p in adb_pids:
       os.kill(p, signal.SIGKILL)
 
