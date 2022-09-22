@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e30745b_fa45d682",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-22T04:40:08Z",
+      "side": 0,
+      "message": "I think we should keep this parameter, for use by discovery.build itself to connect to DISCOVERY_URI. This DISCOVERY_URI appears to be public, so we are probably OK even without this parameter (discovery.build will use default http.Http()), but I feel safer to keep this parameter as is, and just add a new parameter to execute.",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 63
+      },
+      "revId": "fcf15b9b7bb20025fee0cff0c7c4ec8b867faf7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
