@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c490ef9_19e7c8b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-22T02:43:00Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c93da38_1ecdb432",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-22T02:43:00Z",
+      "side": 1,
+      "message": "downloads",
+      "range": {
+        "startLine": 97,
+        "startChar": 41,
+        "endLine": 97,
+        "endChar": 49
+      },
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
