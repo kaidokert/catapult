@@ -404,6 +404,23 @@ ANDROID_CHROMIUM_MONOCHROME = GenericChromeBackendSettings(
     apk_name='MonochromePublic.apk'
 )
 
+# These are produced when using the `android_channel="beta"`` gn arg.
+ANDROID_CHROMIUM_BETA = GenericChromeBackendSettings(
+    browser_type='android-chromium.beta',
+    package='org.chromium.chrome',
+    apk_name='ChromePublic.apk')
+
+ANDROID_CHROMIUM_BUNDLE_BETA = GenericChromeBundleBackendSettings(
+    browser_type='android-chromium-bundle.beta',
+    package='org.chromium.chrome',
+    apk_name='chrome_modern_public_bundle')
+
+ANDROID_CHROMIUM_MONOCHROME_BETA = GenericChromeBackendSettings(
+    browser_type='android-chromium-monochrome.beta',
+    package='org.chromium.chrome',
+    apk_name='MonochromePublic.apk'
+)
+
 ANDROID_CHROME = ChromeBackendSettings(
     browser_type='android-chrome',
     package='com.google.android.apps.chrome')
@@ -470,6 +487,9 @@ ANDROID_BACKEND_SETTINGS = (
     ANDROID_CHROMIUM,
     ANDROID_CHROMIUM_BUNDLE,
     ANDROID_CHROMIUM_MONOCHROME,
+    ANDROID_CHROMIUM_BETA,
+    ANDROID_CHROMIUM_BUNDLE_BETA,
+    ANDROID_CHROMIUM_MONOCHROME_BETA,
     ANDROID_CHROME,
     ANDROID_CHROME_64_BUNDLE,
     ANDROID_CHROME_BUNDLE,
