@@ -174,6 +174,30 @@
       },
       "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8048cda1_91579005",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-22T18:31:12Z",
+      "side": 1,
+      "message": "What about \u0027Click to copy the command that runs benchmark\u0027?",
+      "parentUuid": "4d5e2fe6_5e23fec0",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 44
+      },
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
