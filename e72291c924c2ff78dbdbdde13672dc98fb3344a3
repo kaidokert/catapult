@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2202d108_a20bffc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-22T22:55:20Z",
+      "side": 1,
+      "message": "Good news is that /alerts [1][2] and /navbar [3] appear to be working in production, so once we revert, I can resubmit and it\u0027ll be working properly. \n\n[1] GET - https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-09-22T22:43:09.996589Z;query\u003dprotoPayload.line.logMessage%3D%22Request%20path%20from%20environ:%20%2Falerts.%20Method:%20GET%22%0Aresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22cloud-build-47471b4%22%0Atimestamp%3D%222022-09-22T22:43:09.996589Z%22%0AinsertId%3D%22632ce4fe000103169e78101c%22;timeRange\u003dPT15M?project\u003dchromeperf\n[2] POST - https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-09-22T22:43:10.380113Z;query\u003dprotoPayload.line.logMessage%3D%22Request%20path%20from%20environ:%20%2Falerts.%20Method:%20POST%22%0Aresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22cloud-build-47471b4%22%0Atimestamp%3D%222022-09-22T22:43:10.380113Z%22%0AinsertId%3D%22632ce501000061c7bef01e63%22;timeRange\u003dPT15M?project\u003dchromeperf\n[3] https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-09-22T22:43:10.374546Z;query\u003d%22navbar%22%0Aresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0Aresource.labels.version_id%3D%22cloud-build-47471b4%22%0Atimestamp%3D%222022-09-22T22:43:10.374546Z%22%0AinsertId%3D%22632ce4fe0008865ed763202c%22;timeRange\u003dPT15M?project\u003dchromeperf",
+      "revId": "e72291c924c2ff78dbdbdde13672dc98fb3344a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
