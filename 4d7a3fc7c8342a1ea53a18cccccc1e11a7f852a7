@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d96f83b_f19a479d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-22T04:27:30Z",
+      "side": 1,
+      "message": "PTAL. (wow~)",
+      "revId": "4d7a3fc7c8342a1ea53a18cccccc1e11a7f852a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5237f464_309b8419",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-22T04:27:30Z",
+      "side": 1,
+      "message": "PTAL. (wow~)",
+      "revId": "4d7a3fc7c8342a1ea53a18cccccc1e11a7f852a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
