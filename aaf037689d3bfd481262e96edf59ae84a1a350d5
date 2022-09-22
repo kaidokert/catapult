@@ -16,6 +16,40 @@
       "message": "PTAL",
       "revId": "aaf037689d3bfd481262e96edf59ae84a1a350d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d5efb8_70074bb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-22T04:40:00Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "aaf037689d3bfd481262e96edf59ae84a1a350d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e20e073_bad08241",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-22T04:40:00Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "aaf037689d3bfd481262e96edf59ae84a1a350d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
