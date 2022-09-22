@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8edd045_9180acdc",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-09-22T17:03:06Z",
+      "side": 1,
+      "message": "Not sure about these apk names, but I copied them from the ANDROID_CHROMIUM/ANDROID_CHROMIUM_BUNDLE/ANDROID_CHROMIUM_MONOCHROME configs above.",
+      "revId": "6fdf5a4a747862a5958d0dd09105e2cfd2909190",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
