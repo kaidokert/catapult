@@ -198,6 +198,30 @@
       },
       "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f0c651e_b134b03c",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-09-22T18:35:59Z",
+      "side": 1,
+      "message": "It\u0027s ok though longer, the trade-off is minor. Done",
+      "parentUuid": "8048cda1_91579005",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 44
+      },
+      "revId": "c6068913911dbba89ae8a0f5c4c7e244073ca824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
