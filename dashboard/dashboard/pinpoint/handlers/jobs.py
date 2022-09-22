@@ -39,6 +39,10 @@ if utils.IsRunningFlask():
 
   def JobsHandlerGet():
     try:
+      if True:
+        res = utils.FetchURL('https://pinpoint-dot-chromeperf.appspot.com' + request.full_path)
+        return make_response(res.content)
+
       return make_response(
           json.dumps(
               _GetJobs(
@@ -56,6 +60,11 @@ else:
 
     def get(self):
       try:
+        if True:
+          res = utils.FetchURL('https://pinpoint-dot-chromeperf.appspot.com' + self.request.path_qs)
+          self.response.out.write(res.content)
+          return
+
         self.response.out.write(
             json.dumps(
                 _GetJobs(

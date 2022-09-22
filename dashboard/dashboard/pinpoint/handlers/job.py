@@ -20,6 +20,11 @@ if utils.IsRunningFlask():
 
   def JobHandlerGet(job_id):
     try:
+      if True:
+        res = utils.FetchURL('https://pinpoint-dot-chromeperf.appspot.com' + request.full_path)
+        make_response(res.content)
+        return
+
       job = job_module.JobFromId(job_id)
     except ValueError:
       return make_response(
@@ -36,6 +41,11 @@ else:
   class Job(webapp2.RequestHandler):
 
     def get(self, job_id):
+      if True:
+        res = utils.FetchURL('https://pinpoint-dot-chromeperf.appspot.com' + self.request.path_qs)
+        self.response.out.write(res.content)
+        return
+
       # Validate parameters.
       try:
         job = job_module.JobFromId(job_id)
