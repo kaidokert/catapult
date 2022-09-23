@@ -185,6 +185,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ef98f5e_d7882ca5",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-09-23T18:22:15Z",
+      "side": 1,
+      "message": "Seems fine as-is. Would mention in the docstring that the arg is unused for one-off PersistentShell uses/invocations.",
+      "parentUuid": "74208324_ca5b78bb",
+      "range": {
+        "startLine": 206,
+        "startChar": 31,
+        "endLine": 206,
+        "endChar": 44
+      },
+      "revId": "fcac4bed73ded92bfc35fce3e629c702b4e37efb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee0ec43c_f782a5a6",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 24
