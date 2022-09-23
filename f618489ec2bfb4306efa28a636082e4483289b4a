@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b35cf68b_8301da7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T22:55:48Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "f618489ec2bfb4306efa28a636082e4483289b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b05c38ec_55526b49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T22:55:48Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "f618489ec2bfb4306efa28a636082e4483289b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4acb8e4_96690332",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T22:55:48Z",
+      "side": 1,
+      "message": "nit: put the third party import before the local imports.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 31
+      },
+      "revId": "f618489ec2bfb4306efa28a636082e4483289b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d250192_24c13d6d",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T22:55:48Z",
+      "side": 1,
+      "message": "nit: extra \u0027c\u0027?",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 225,
+        "endChar": 6
+      },
+      "revId": "f618489ec2bfb4306efa28a636082e4483289b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
