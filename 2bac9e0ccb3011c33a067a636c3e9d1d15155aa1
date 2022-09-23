@@ -34,6 +34,139 @@
       "parentUuid": "59cf37e4_90adfbd7",
       "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e3cbee1_06daaf2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T06:29:08Z",
+      "side": 1,
+      "message": "I\u0027m not sure how the privilege value is read after it is saved. Without the flask parameter in the \u0027read\u0027 functions, we should fail to read the saved value in global.",
+      "parentUuid": "cea503bc_9e5434a3",
+      "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88bd006c_918fbf77",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T06:29:08Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 57,
+        "startChar": 24,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3cb0f57_c2437aee",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T06:29:08Z",
+      "side": 1,
+      "message": "I think we can always import the flask related libraries.",
+      "range": {
+        "startLine": 83,
+        "startChar": 3,
+        "endLine": 83,
+        "endChar": 39
+      },
+      "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ffbf8fe_f9f65391",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T06:29:08Z",
+      "side": 1,
+      "message": "We need the flask flag here as well.",
+      "range": {
+        "startLine": 90,
+        "startChar": 33,
+        "endLine": 90,
+        "endChar": 35
+      },
+      "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3897b98b_d9b9cc14",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T06:29:08Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 99,
+        "startChar": 33,
+        "endLine": 99,
+        "endChar": 35
+      },
+      "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf4d5d60_43d43df7",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-23T06:29:08Z",
+      "side": 1,
+      "message": "Needed here as well as we need to pass it to _IsServicingPrivilegedRequest().",
+      "range": {
+        "startLine": 145,
+        "startChar": 29,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "2bac9e0ccb3011c33a067a636c3e9d1d15155aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
