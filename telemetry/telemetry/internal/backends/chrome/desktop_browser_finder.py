@@ -63,6 +63,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     self._is_content_shell = is_content_shell
     self._browser_directory = browser_directory
     self._profile_directory = None
+    self._exact_profile_directory = False
     self._download_directory = None
     self._extra_browser_args = set()
     self.is_local_build = is_local_build
@@ -120,9 +121,15 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     if source_profile and self._is_content_shell:
       raise RuntimeError('Profiles cannot be used with content shell')
 
-    self._profile_directory = tempfile.mkdtemp()
+    self._exact_profile_directory =\
+      self._browser_options.profile_type == 'exact'
+    if not self._exact_profile_directory:
+      self._profile_directory = tempfile.mkdtemp()
+    else:
+      self._profile_directory = source_profile
+
     self._download_directory = tempfile.mkdtemp()
-    if source_profile:
+    if not self._exact_profile_directory and source_profile:
       logging.info('Seeding profile directory from: %s', source_profile)
       # copytree requires the directory to not exist, so just delete the empty
       # directory and re-create it.
@@ -146,9 +153,11 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
   def _TearDownEnvironment(self):
     if self._profile_directory and os.path.exists(self._profile_directory):
-      # Remove the profile directory, which was hosted on a temp dir.
-      shutil.rmtree(self._profile_directory, ignore_errors=True)
+      if not self._exact_profile_directory:
+        # Remove the profile directory, which was hosted on a temp dir.
+        shutil.rmtree(self._profile_directory, ignore_errors=True)
       self._profile_directory = None
+      self._exact_profile_directory = False
     if self._download_directory and os.path.exists(self._download_directory):
       # Remove the download directory, which was hosted on a temp dir.
       shutil.rmtree(self._download_directory, ignore_errors=True)
