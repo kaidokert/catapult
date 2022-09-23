@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b32bdf_df4df581",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-23T00:50:12Z",
+      "side": 1,
+      "message": "Ideally I can confirm that datastore no longer uses these files for anomaly detection before submitting",
+      "revId": "f21936ab656e6e228ca08319b3d8c09bc95869ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
