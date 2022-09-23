@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "20bffd700aeeffef3d3a499af544222f3d46659a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73fcc90_86cdcbdd",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-23T21:23:29Z",
+      "side": 1,
+      "message": "I\u0027m not sure we want to enable this right out the gate. This one controls anomaly alerting. Do we have a plan to test this without exposing it to production? I imagine this will not trigger until an anomaly/auto-triage takes place.",
+      "revId": "20bffd700aeeffef3d3a499af544222f3d46659a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
