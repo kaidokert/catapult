@@ -16,6 +16,24 @@
       "message": "Ideally I can confirm that datastore no longer uses these files for anomaly detection before submitting",
       "revId": "f21936ab656e6e228ca08319b3d8c09bc95869ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6480732a_e26c697c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-23T21:47:42Z",
+      "side": 1,
+      "message": "A few additional investigations:\n- When I query for the anomalies in `/edit_anomaly_configs`, I turn up with nothing. https://console.cloud.google.com/bigquery?sq\u003d62121018386:2c61c7b7c87f470e8b26972deb0815a5\n\n- when I query monorail for labels in `/edit_bug_labels` the most recent bugs I found were from 2017. I copied the bug labels and saved a hard copy just in case. https://bugs.chromium.org/p/chromium/issues/list?q\u003dCr-Blink-WebRTC\u0026can\u003d1\n\nQuerying the datastore wasn\u0027t the most productive since there are no timestamps: https://pantheon.corp.google.com/datastore/entities;kind\u003dAnomalyConfig;ns\u003d__$DEFAULT$__/query/kind?project\u003dchromeperf",
+      "parentUuid": "42b32bdf_df4df581",
+      "revId": "f21936ab656e6e228ca08319b3d8c09bc95869ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
