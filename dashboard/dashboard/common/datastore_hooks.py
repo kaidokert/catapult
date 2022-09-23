@@ -69,14 +69,18 @@ def SetPrivilegedRequest():
     request.registry['privileged'] = True
 
 
-def SetSinglePrivilegedRequest():
+def SetSinglePrivilegedRequest(flask_flag=False):
   """Allows the current request to act as a privileged user only ONCE.
 
   This should be called ONLY by handlers that have checked privilege immediately
   before making a query. It will be automatically unset when the next query is
   made.
+
+  Args:
+    flask_flag - Determines if running on flask handlers when routing from URL. Default False.
   """
-  if utils.IsRunningFlask():
+  if utils.IsRunningFlask() or flask_flag:
+    from flask import g as flask_global
     flask_global.single_privileged = True
   else:
     request = webapp2.get_request()

@@ -222,7 +222,7 @@ _PATHS_HANDLED_BY_FLASK = [
     # '/add_histograms',
     # '/add_histograms/process',
     '/edit_site_config',
-    # '/graph_csv',
+    '/graph_csv',
     # '/navbar',
 ]
 
