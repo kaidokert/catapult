@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b625a836_6abb2623",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-09-26T20:33:51Z",
+      "side": 1,
+      "message": "This is still breaking --compatibility-mode functionality, see https://chromium-swarm.appspot.com/task?id\u003d5d94309c14002810\n\nVerified locally - tests on unrooted devices fail with this reland but pass on the revision just before it. Will revert.",
+      "revId": "5b90d5e7568beef38c375ca5787802ee37fc50c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
