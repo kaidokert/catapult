@@ -39,6 +39,30 @@
       },
       "revId": "35dd943f94fb5b624dac1b5039838b46eca9a5fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ced9850_f5d1e13d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-09-26T19:09:48Z",
+      "side": 1,
+      "message": "The self._idle_persistent_shells becomes a queue object if needed. Seems odd to have it be initialized as an empty list, then it becomes overwritten as a queue?",
+      "parentUuid": "e746580c_20e66b9a",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 485,
+        "endChar": 36
+      },
+      "revId": "35dd943f94fb5b624dac1b5039838b46eca9a5fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
