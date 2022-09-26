@@ -87,6 +87,30 @@
       },
       "revId": "35dd943f94fb5b624dac1b5039838b46eca9a5fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "530970d2_66299e9f",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-09-26T19:49:19Z",
+      "side": 1,
+      "message": "Apologies for the commit-queue, Done",
+      "parentUuid": "cc840a8b_41113e0d",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 485,
+        "endChar": 36
+      },
+      "revId": "35dd943f94fb5b624dac1b5039838b46eca9a5fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
