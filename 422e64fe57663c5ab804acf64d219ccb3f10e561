@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d4c4313_6685e3ca",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-09-27T19:12:01Z",
+      "side": 1,
+      "message": "+1 \n\nadd a .openDownloadDialog {} rule here instead of inlining style into element attributes and just move those color:, float: etc settings to this rule.",
+      "parentUuid": "7cfc74a5_f974ac2a",
+      "revId": "422e64fe57663c5ab804acf64d219ccb3f10e561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "225b5bb7_9888b85b",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
         "patchSetId": 1
