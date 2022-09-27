@@ -272,7 +272,7 @@ def _ArgumentsWithConfiguration(original_arguments):
   configuration = original_arguments.get('configuration')
   if configuration:
     try:
-      default_arguments = bot_configurations.Get(configuration)
+      default_arguments = bot_configurations.GetFromJson(configuration)
     except ValueError as e:
       # Reraise with a clearer message.
       six.raise_from(

@@ -6,10 +6,35 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import json
+import logging
+import os
+import six
+if six.PY2:
+  FileNotFoundError = IOError  # pylint: disable=redefined-builtin
+
 from google.appengine.ext import ndb
 
 from dashboard.common import datastore_hooks
 from dashboard.common import stored_object
+
+
+def GetFromJson(key):
+  config_file_name = '%s.json' % key
+  config_file_path = os.path.join(
+      os.path.dirname(__file__), 'site_configs', config_file_name)
+  try:
+    with open(config_file_path) as f:
+      content = json.load(f)
+      configs = content[datastore_hooks.EXTERNAL]
+      if datastore_hooks.GetNamespace() == datastore_hooks.INTERNAL:
+        configs.update(content[datastore_hooks.INTERNAL])
+      return configs
+  except FileNotFoundError:
+    logging.error(
+        'Namespaced_stored_object: %s does not exist. Fall back to Datastore.',
+        config_file_path)
+    return Get(key)
 
 
 @ndb.synctasklet

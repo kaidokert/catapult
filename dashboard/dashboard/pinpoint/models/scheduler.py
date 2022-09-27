@@ -396,7 +396,7 @@ def GetSchedulerOptions(configuration):
   #     }
   #   }
   try:
-    bot_config = bot_configurations.Get(configuration)
+    bot_config = bot_configurations.GetFromJson(configuration)
   except ValueError:
     bot_config = {}
 
