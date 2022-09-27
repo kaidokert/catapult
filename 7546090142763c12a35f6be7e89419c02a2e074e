@@ -16,6 +16,24 @@
       "message": "Seems the trybot failure is unrelated to this change... the bot has been failing for some time now. Mikhail WDYT?",
       "revId": "7546090142763c12a35f6be7e89419c02a2e074e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "329215cd_de920958",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2022-09-27T15:29:39Z",
+      "side": 1,
+      "message": "Yeah, the bot seems flaky. Might make sense to file a bug against the infra team.",
+      "parentUuid": "5e0497fc_63e8ff9d",
+      "revId": "7546090142763c12a35f6be7e89419c02a2e074e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
