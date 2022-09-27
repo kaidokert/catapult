@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "adb29bff_361f1dac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-09-27T19:57:47Z",
+      "side": 1,
+      "message": "By convention, there should be a blank line separating the first line and the rest of the commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "422e64fe57663c5ab804acf64d219ccb3f10e561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c78fcac4_474fa675",
