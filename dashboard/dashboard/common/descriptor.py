@@ -279,7 +279,7 @@ class Descriptor(object):
     if not self.bot:
       raise ndb.Return(set())
 
-    test_paths = yield self._BotTestPaths()
+    test_paths = self._BotTestPaths()
     if not self.test_suite:
       raise ndb.Return(test_paths)
 
@@ -299,11 +299,10 @@ class Descriptor(object):
 
     raise ndb.Return(test_paths)
 
-  @ndb.tasklet
   def _BotTestPaths(self):
     master, slave = self.bot.split(':')
-    aliases = yield bot_configurations.GetAliasesAsync(slave)
-    raise ndb.Return({master + '/' + alias for alias in aliases})
+    aliases = bot_configurations.GetAliases(slave)
+    return {master + '/' + alias for alias in aliases}
 
   @ndb.tasklet
   def _AppendTestSuite(self, test_paths):
