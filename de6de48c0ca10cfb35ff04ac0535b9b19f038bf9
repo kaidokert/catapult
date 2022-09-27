@@ -16,6 +16,52 @@
       "message": "Done, thanks!",
       "revId": "de6de48c0ca10cfb35ff04ac0535b9b19f038bf9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f9d632_3761b0e2",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-09-27T21:30:54Z",
+      "side": 1,
+      "message": "sorry I think I made a mistake in my suggestion for naming this rule.\n\n\"float-right\" is a very confusing name to use for a CSS class (since it looks very similar to a property setting, which it is not)\n\nThe selector should instead use the element ID syntax. Please replace `.float-right {` with `#openDownloadDialog {` here.",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "de6de48c0ca10cfb35ff04ac0535b9b19f038bf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae489cbb_409ba532",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-details.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-09-27T21:30:54Z",
+      "side": 1,
+      "message": "and you can delete this `class\u003d\"float-right\"` part altogether",
+      "range": {
+        "startLine": 112,
+        "startChar": 14,
+        "endLine": 112,
+        "endChar": 33
+      },
+      "revId": "de6de48c0ca10cfb35ff04ac0535b9b19f038bf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
