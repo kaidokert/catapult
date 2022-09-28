@@ -17,6 +17,7 @@ from dashboard import graph_csv
 from dashboard import main
 from dashboard import navbar
 from dashboard import sheriff_config_poller
+from dashboard import short_uri
 from dashboard.api import describe
 
 from flask import Flask
@@ -31,6 +32,21 @@ def AlertsHandlerGet():
 @flask_app.route('/alerts', methods=['POST'])
 def AlertsHandlerPost():
   return alerts.AlertsHandlerPost()
+
+
+@flask_app.route('/add_histograms', methods=['POST'])
+def AddHistogramsPost():
+  return add_histograms.AddHistogramsPost()
+
+
+@flask_app.route('/add_histograms/process', methods=['POST'])
+def AddHistogramsProcessPost():
+  return add_histograms.AddHistogramsProcessPost()
+
+
+@flask_app.route('/api/describe', methods=['POST'])
+def DescribePost():
+  return describe.DescribePost()
 
 
 @flask_app.route('/edit_site_config', methods=['GET'])
@@ -53,6 +69,11 @@ def GraphCSVHandlerPost():
   return graph_csv.GraphCSVPost()
 
 
+@flask_app.route('/list_tests', methods=['POST'])
+def ListTestsHandlerPost():
+  return list_tests.ListTestsHandlerPost()
+
+
 @flask_app.route('/')
 def MainHandlerGet():
   return main.MainHandlerGet()
@@ -68,19 +89,14 @@ def SheriffConfigPollerGet():
   return sheriff_config_poller.SheriffConfigPollerGet()
 
 
-@flask_app.route('/add_histograms', methods=['POST'])
-def AddHistogramsPost():
-  return add_histograms.AddHistogramsPost()
+@flask_app.route('/short_uri', methods=['GET'])
+def ShortUriHandlerGet():
+  return short_uri.ShortUriHandlerGet()
 
 
-@flask_app.route('/add_histograms/process', methods=['POST'])
-def AddHistogramsProcessPost():
-  return add_histograms.AddHistogramsProcessPost()
-
-
-@flask_app.route('/api/describe', methods=['POST'])
-def DescribePost():
-  return describe.DescribePost()
+@flask_app.route('/short_uri', methods=['POST'])
+def ShortUriHandlerPost():
+  return short_uri.ShortUriHandlerPost()
 
 
 @flask_app.route('/alert_groups_update')
@@ -225,7 +241,9 @@ _PATHS_HANDLED_BY_FLASK = [
     # '/add_histograms/process',
     '/edit_site_config',
     # '/graph_csv',
+    '/list_tests',
     '/navbar',
+    '/short_uri',
 ]
 
 
