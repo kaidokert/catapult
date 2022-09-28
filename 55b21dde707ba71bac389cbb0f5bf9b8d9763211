@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9944699_9e34a605",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-09-28T12:54:40Z",
+      "side": 1,
+      "message": "Why would we not want to seed the profile directory if the profile type is exact?",
+      "revId": "55b21dde707ba71bac389cbb0f5bf9b8d9763211",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
