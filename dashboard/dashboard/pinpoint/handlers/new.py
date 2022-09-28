@@ -184,6 +184,10 @@ def _CreateJob(req):
     initial_attempt_count = int(initial_attempt_count)
   except (TypeError, ValueError):
     initial_attempt_count = None
+  try:
+    swarming_server=arguments.get('swarming_server')
+  except errors.SwarmingNoBots as e:
+    six.reraise(ValueError, e)
 
   # Create job.
   job = job_module.Job.New(
@@ -205,7 +209,7 @@ def _CreateJob(req):
       batch_id=batch_id,
       initial_attempt_count=initial_attempt_count,
       dimensions=arguments.get('dimensions'),
-      swarming_server=arguments.get('swarming_server'))
+      swarming_server=swarming_server)
 
   if use_execution_engine:
     # TODO(dberris): We need to figure out a way to get the arguments to be more
