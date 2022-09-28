@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d58ab9_66a54be3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-28T22:56:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure I did this right.\n\nI followed the logic used here [1] which was enough to trigger [2] and generate the comment on monorail [3]. \n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/handlers/new.py;drc\u003d486444967e3ba7da8e2a97b5a4f39f58125b2ab1;l\u003d278\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;drc\u003d8f315cbf913c8c003085c91b9762c5c72a407a40;l\u003d830\n[3] https://bugs.chromium.org/p/webrtc/issues/detail?id\u003d14410#c1",
+      "revId": "19f9a1e1fe0782e569b219bdedf4f5563bebc38a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
