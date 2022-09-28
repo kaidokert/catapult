@@ -16,6 +16,24 @@
       "message": "Why would we not want to seed the profile directory if the profile type is exact?",
       "revId": "55b21dde707ba71bac389cbb0f5bf9b8d9763211",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82a91dea_65032f1a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-09-28T18:45:49Z",
+      "side": 1,
+      "message": "Seeding implies we are not using the \u0027exact\u0027 profile directory, rather we are creating a temp one and then copying everything from the profile directory into it. This is already supported. But for caching, for the first load of the cache entries, we want to be able to do it in an exact temporary directory that isn\u0027t cleaned up by the teardown so that we can use it to seed subsequent browser restarts in the test.",
+      "parentUuid": "e9944699_9e34a605",
+      "revId": "55b21dde707ba71bac389cbb0f5bf9b8d9763211",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
