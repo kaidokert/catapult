@@ -65,7 +65,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       raise RuntimeError('Flash path does not exist: %s' % self._flash_path)
 
     if self.is_logging_enabled:
-      self._log_file_path = os.path.join(tempfile.mkdtemp(), 'chrome.log')
+      self._log_file_path = os.path.join('/tmp/chromedebug', 'chrome.log')
     else:
       self._log_file_path = None
 
