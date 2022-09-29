@@ -55,7 +55,8 @@ def _StartBisectForBug(bug_id, project_id):
   if not test or not can_bisect.IsValidTestForBisect(test.test_path):
     raise NotBisectableError('Could not select a test.')
 
-  bot_configurations = namespaced_stored_object.Get('bot_configurations')
+  bot_configurations = namespaced_stored_object.GetFromJson(
+      'bot_configurations')
 
   if test.bot_name not in list(bot_configurations.keys()):
     raise NotBisectableError('Bot: %s has no corresponding Pinpoint bot.' %

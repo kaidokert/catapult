@@ -200,8 +200,15 @@ class RunTest(quest.Quest):
                   str(index), [str(b) for b in self._bots])
     bot_id = self._bots[index % len(self._bots)]
     if bot_id:
+      # In some cases, we may save the candidate bot ids in bot_congurations
+      # in the format like:
+      #   bot_id_1|bot_id_2|...
+      # So that swarming can find available bots among these candidates. This
+      # value need to be removed before adding the chosen bot id here.
+      dimensions = [d for d in dimensions if d['key'] != 'id']
       dimensions.append({'key': 'id', 'value': bot_id})
     return dimensions
+
 
   @classmethod
   def _ComputeCommand(cls, arguments):
