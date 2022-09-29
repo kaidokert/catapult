@@ -469,13 +469,6 @@ class AdbWrapper(object):
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
 
-    for _ in range(5):
-      if not self.is_ready:
-        # Sometimes emulators that are being started up will indicate they're
-        # available to 'adb devices' but will not be ready to connect on adb.
-        time.sleep(3)
-        break
-
     # A queue of persistent shells that are waiting for a command to execute.
     # When a persistent shell is done executing a command, it is usually put
     # back into the queue to await the next command.
@@ -485,6 +478,18 @@ class AdbWrapper(object):
     # are in the queue waiting for a command to run.
     self._all_persistent_shells = []
     self._lock = threading.Lock()
+
+    # TODO(crrev/3929220): See if this fixes failing mac-rel and
+    # linux-rel builders, as they didn't check for device to be ready before.
+    if not persistent_shell:
+      return
+
+    for _ in range(5):
+      if not self.is_ready:
+        # Sometimes emulators that are being started up will indicate they're
+        # available to 'adb devices' but will not be ready to connect on adb.
+        time.sleep(3)
+        break
 
     # TODO: Persistent Shell has issues when it is used to initialize a
     # previously non running emulator.
