@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43f0b9e5_c297ff46",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-29T04:37:29Z",
+      "side": 1,
+      "message": "Pylint checks whether all execution paths return a value. If the list_type is none of the three, the function will exit without a return.",
+      "revId": "591d22dff5a64b7fefa529156ca518d898978b83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
