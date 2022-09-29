@@ -75,25 +75,25 @@ class Attempt(object):
   def AsDict(self):
     return {'executions': [e.AsDict() for e in self._executions]}
 
-  def ScheduleWork(self):
+  def ScheduleWork(self, index):
     """Run this Attempt and update its status."""
     assert not self.completed
 
-    self._StartNextExecutionIfReady()
+    self._StartNextExecutionIfReady(index)
     self._Poll()
 
   def _Poll(self):
     """Update the Attempt status."""
     self._last_execution.Poll()
 
-  def _StartNextExecutionIfReady(self):
+  def _StartNextExecutionIfReady(self, index):
     can_start_next_execution = not self._executions or (
         self._last_execution.completed and not self.completed)
     if not can_start_next_execution:
       return
 
     next_quest = self._quests[len(self._executions)]
-    arguments = {'change': self._change}
+    arguments = {'change': self._change, 'index': index}
     if self._executions:
       arguments.update(self._last_execution.result_arguments)
 
