@@ -10,17 +10,33 @@ import six
 import logging
 
 from dashboard import add_histograms
-from dashboard import alerts
 from dashboard import alert_groups
+from dashboard import alerts
 from dashboard import edit_site_config
 from dashboard import graph_csv
 from dashboard import main
 from dashboard import navbar
 from dashboard import sheriff_config_poller
+from dashboard import short_uri
 from dashboard.api import describe
 
 from flask import Flask
 flask_app = Flask(__name__)
+
+
+@flask_app.route('/add_histograms', methods=['POST'])
+def AddHistogramsPost():
+  return add_histograms.AddHistogramsPost()
+
+
+@flask_app.route('/add_histograms/process', methods=['POST'])
+def AddHistogramsProcessPost():
+  return add_histograms.AddHistogramsProcessPost()
+
+
+@flask_app.route('/alert_groups_update')
+def AlertGroupsGet():
+  return alert_groups.AlertGroupsGet()
 
 
 @flask_app.route('/alerts', methods=['GET'])
@@ -31,6 +47,11 @@ def AlertsHandlerGet():
 @flask_app.route('/alerts', methods=['POST'])
 def AlertsHandlerPost():
   return alerts.AlertsHandlerPost()
+
+
+@flask_app.route('/api/describe', methods=['POST'])
+def DescribePost():
+  return describe.DescribePost()
 
 
 @flask_app.route('/edit_site_config', methods=['GET'])
@@ -53,6 +74,11 @@ def GraphCSVHandlerPost():
   return graph_csv.GraphCSVPost()
 
 
+@flask_app.route('/list_tests', methods=['POST'])
+def ListTestsHandlerPost():
+  return list_tests.ListTestsHandlerPost()
+
+
 @flask_app.route('/')
 def MainHandlerGet():
   return main.MainHandlerGet()
@@ -68,24 +94,14 @@ def SheriffConfigPollerGet():
   return sheriff_config_poller.SheriffConfigPollerGet()
 
 
-@flask_app.route('/add_histograms', methods=['POST'])
-def AddHistogramsPost():
-  return add_histograms.AddHistogramsPost()
+@flask_app.route('/short_uri', methods=['GET'])
+def ShortUriHandlerGet():
+  return short_uri.ShortUriHandlerGet()
 
 
-@flask_app.route('/add_histograms/process', methods=['POST'])
-def AddHistogramsProcessPost():
-  return add_histograms.AddHistogramsProcessPost()
-
-
-@flask_app.route('/api/describe', methods=['POST'])
-def DescribePost():
-  return describe.DescribePost()
-
-
-@flask_app.route('/alert_groups_update')
-def AlertGroupsGet():
-  return alert_groups.AlertGroupsGet()
+@flask_app.route('/short_uri', methods=['POST'])
+def ShortUriHandlerPost():
+  return short_uri.ShortUriHandlerPost()
 
 
 if six.PY2:
@@ -217,15 +233,17 @@ if six.PY2:
 # The listed values will be used as *prefix* to match and redirect
 # the incoming requests.
 _PATHS_HANDLED_BY_FLASK = [
-    '/alerts',
     # '/alert_groups_update',
+    '/alerts',
     '/api/describe',
     # '/configs/update',
     # '/add_histograms',
     # '/add_histograms/process',
     '/edit_site_config',
     '/graph_csv',
+    '/list_tests',
     '/navbar',
+    '/short_uri',
 ]
 
 
