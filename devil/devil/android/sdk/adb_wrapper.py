@@ -262,7 +262,7 @@ class AdbWrapper(object):
 
     def Stop(self):
       """Stops the ADB process if it is still running."""
-      if self._process is not None:
+      if self._process is not None and self._process.poll() != 0:
         self._process.stdin.write(six.ensure_binary('exit\n'))
         self._process.stdin.flush()
         self._process = None
