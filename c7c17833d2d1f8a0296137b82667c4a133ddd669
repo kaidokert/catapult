@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "795fe7a0_50e9e796",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-09-29T18:29:29Z",
+      "side": 1,
+      "message": "This hasn\u0027t been turned on yet, so it should still be following the old code path.\n\n\nI noticed the linux-rel failing test:\n\nhttps://ci.chromium.org/p/chromium/builders/try/linux-rel/1147315\n\nSeems to be complaining about not finding gsutil?\n\n\n      raise GetErrorObjectForCloudStorageStderr(stderr.decode(\u0027utf-8\u0027))\n  py_utils.cloud_storage.CloudStorageError: /b/s/w/ir/.task_template_vpython_cache/vpython/58af1e/bin/python: can\u0027t open file \u0027/b/s/w/ir/third_party/catapult/third_party/gsutil/gsutil\u0027: [Errno 2] No such file or directory\n  \n  It looks the same on mac-rel?\n \n https://ci.chromium.org/p/chromium/builders/try/mac-rel/1130750\n  \n dency_manager/dependency_manager/manager.py\", line 95, in FetchPathWithVersion\n      raise exceptions.NoPathFoundError(dependency, platform)\n  dependency_manager.exceptions.NoPathFoundError: No file could be found locally, and no file to download from cloud storage for adb on platform darwin_x86_64",
+      "revId": "c7c17833d2d1f8a0296137b82667c4a133ddd669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
