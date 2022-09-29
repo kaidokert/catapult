@@ -51,6 +51,23 @@
       "message": "This might be a fix for these issues? That\u0027s the only  thing I can think of that really changed. https://chromium-review.googlesource.com/c/catapult/+/3929299",
       "revId": "c7c17833d2d1f8a0296137b82667c4a133ddd669",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fddf55e1_d6322fbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-09-29T18:56:57Z",
+      "side": 1,
+      "message": "Locally, these tests pass for me without the revert.\n\npython3 third_party/blink/tools/run_blinkpy_tests.py --test-filter blinkpy.web_tests.port.android_unittest.AndroidPortTest.test_default_child_processes\nStart running tests: 2022-09-29 11:52:35.309594\n1 test passed, 0 skipped, 0 failures.",
+      "revId": "c7c17833d2d1f8a0296137b82667c4a133ddd669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
