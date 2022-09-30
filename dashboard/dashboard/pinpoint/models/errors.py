@@ -216,9 +216,9 @@ class SwarmingNoBots(InformationalError):
     # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
     # pylint: disable=super-with-arguments
     super(SwarmingNoBots, self).__init__(
-        "There doesn't appear to be any bots available to run the "\
-        'performance test. Either all the swarming devices are offline, or '\
-        "they're misconfigured.")
+          "There doesn't appear to be any bots available to run the "\
+          'performance test. Either all the swarming devices are offline, or '\
+          "they're misconfigured.")
 
 
 class ReadValueNoValues(InformationalError):
