@@ -16,6 +16,24 @@
       "message": "Based on the trace stack here [1], the error needs to contain a json string in `e.content` in `pinpoint_service` [2]. Alternatively, I can modify the `pinpoint_service` to handle an exception message that doesn\u0027t have `e.contents`. Not sure what felt more smooth. \n\n[1] https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1367366#c5\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/services/pinpoint_service.py;drc\u003d39a3806d4972290e58f3f3f948ce9295c008239c;l\u003d32",
       "revId": "2b9b5de1fbe0b58037ca0271b6d89897303ffff7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b64308a6_a3f14857",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-09-30T19:14:29Z",
+      "side": 1,
+      "message": "The SwarmingNoBots is raised from the server side. It is not visible from the client side (pinpoint_service.py). \nThe content returned from the request is printed in the logs in [1]:\nbody: \u003c!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\"\u003e\n\u003ctitle\u003e500 Internal Server Error\u003c/title\u003e\n\u003ch1\u003eInternal Server Error\u003c/h1\u003e\n\u003cp\u003eThe server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.\u003c/p\u003e\n\nFor client side fix, we can update pinpoint_service to take the content instead of json. That should allow the InvalidPinpointRequest to raise correctly.",
+      "parentUuid": "b8c84d7c_8750f02c",
+      "revId": "2b9b5de1fbe0b58037ca0271b6d89897303ffff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
