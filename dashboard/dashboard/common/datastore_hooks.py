@@ -84,6 +84,7 @@ def SetSinglePrivilegedRequest(flask_flag=False):
     flask_flag - Determines if running on flask handlers when routing from URL.
         Default False.
   """
+  from flask import g as flask_global
   if utils.IsRunningFlask() or flask_flag:
     flask_global.single_privileged = True
   else:
@@ -113,6 +114,9 @@ def _IsServicingPrivilegedRequest(flask_flag=False):
         Default False.
   """
   if utils.IsRunningFlask() or flask_flag:
+    from flask import g as flask_global
+    from flask import request as flask_request
+
     try:
       path = flask_request.path
     except RuntimeError:
