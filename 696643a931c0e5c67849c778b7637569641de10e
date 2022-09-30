@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce82fdb_d7e714f5",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-30T21:46:47Z",
+      "side": 1,
+      "message": "will fix this.",
+      "revId": "696643a931c0e5c67849c778b7637569641de10e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
