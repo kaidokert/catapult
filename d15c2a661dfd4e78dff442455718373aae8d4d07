@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2866a763_c94e74cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-09-30T18:21:54Z",
+      "side": 1,
+      "message": "Gerrit has \"reland\" button on CLs for a reason. Go to the original and click reland (or click revert on the revert.. either works).\n\nThat makes patchset #1 the original. Then you can upload whatever reland fixes are needed to later patchsets. This makes viewing the diffs much easier.\n\nReland/revert buttons also leave a papertrail in gerrit. These are useful things, please use them.",
+      "revId": "d15c2a661dfd4e78dff442455718373aae8d4d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
