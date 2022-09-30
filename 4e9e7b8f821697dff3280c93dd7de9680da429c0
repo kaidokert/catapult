@@ -22,6 +22,30 @@
       },
       "revId": "4e9e7b8f821697dff3280c93dd7de9680da429c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "084e8fe7_c45fcbd5",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-30T21:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7893bcee_7c0821b6",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 44
+      },
+      "revId": "4e9e7b8f821697dff3280c93dd7de9680da429c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
