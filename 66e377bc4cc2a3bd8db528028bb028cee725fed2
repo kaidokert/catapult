@@ -16,6 +16,24 @@
       "message": "not sure of the syntax here",
       "revId": "66e377bc4cc2a3bd8db528028bb028cee725fed2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f1740ec_7f0ea60a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-30T17:56:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e5201f99_43d41cd5",
+      "revId": "66e377bc4cc2a3bd8db528028bb028cee725fed2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

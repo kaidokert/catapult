@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8c84d7c_8750f02c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-30T17:56:33Z",
+      "side": 1,
+      "message": "Based on the trace stack here [1], the error needs to contain a json string in `e.content` in `pinpoint_service` [2]. Alternatively, I can modify the `pinpoint_service` to handle an exception message that doesn\u0027t have `e.contents`. Not sure what felt more smooth. \n\n[1] https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1367366#c5\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/services/pinpoint_service.py;drc\u003d39a3806d4972290e58f3f3f948ce9295c008239c;l\u003d32",
+      "revId": "2b9b5de1fbe0b58037ca0271b6d89897303ffff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
