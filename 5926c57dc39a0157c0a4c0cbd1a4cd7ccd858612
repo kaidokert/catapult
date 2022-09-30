@@ -39,6 +39,30 @@
       },
       "revId": "5926c57dc39a0157c0a4c0cbd1a4cd7ccd858612",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2fd2eb8_feee29ba",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-09-30T03:17:29Z",
+      "side": 1,
+      "message": "They seem to run some tests:\n\nblinkpy.web_tests.port.android_unittest.AndroidPortTest.test_default_child_processes\n\nwhich attempt to connect some devices:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/tools/blinkpy/web_tests/port/android.py;l\u003d340?q\u003dblinkpy.web_tests.port%20import%20android\u0026ss\u003dchromium\n\nBefore the change, you could create an ADB wrapper without actually having a real device to talk to.\n\nI think they try to mock out the devices if called, but I guess that\u0027s not until after they\u0027ve tried to establish an adb wrapper object with no actual device.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/tools/blinkpy/web_tests/port/android_unittest.py;l\u003d76?q\u003dblinkpy%2Fweb_tests%2Fport%2Fandroid_unittest.py\u0026ss\u003dchromium",
+      "parentUuid": "eba0d3ef_26a53f2a",
+      "range": {
+        "startLine": 482,
+        "startChar": 53,
+        "endLine": 483,
+        "endChar": 24
+      },
+      "revId": "5926c57dc39a0157c0a4c0cbd1a4cd7ccd858612",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
