@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d66735c_bb098959",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-30T23:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bce82fdb_d7e714f5",
+      "revId": "696643a931c0e5c67849c778b7637569641de10e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a65b86b_88a0c473",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-30T21:51:40Z",
       "side": 1,
       "message": "nit: we can use \u0027 instead of \"\"\".\n\nAlso, we can simply return {\"error\": str(e)}.",
+      "range": {
+        "startLine": 36,
+        "startChar": 24,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "696643a931c0e5c67849c778b7637569641de10e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f51908b_5ee65763",
+        "filename": "dashboard/dashboard/services/pinpoint_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-09-30T23:54:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a65b86b_88a0c473",
       "range": {
         "startLine": 36,
         "startChar": 24,
