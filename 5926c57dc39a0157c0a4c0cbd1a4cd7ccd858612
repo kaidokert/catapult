@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d608702f_4851f0ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-09-30T17:12:25Z",
+      "side": 1,
+      "message": "yes, that\u0027s now here. https://chromium-review.googlesource.com/c/catapult/+/3928619",
+      "parentUuid": "4945894d_c8b08230",
+      "revId": "5926c57dc39a0157c0a4c0cbd1a4cd7ccd858612",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eba0d3ef_26a53f2a",
