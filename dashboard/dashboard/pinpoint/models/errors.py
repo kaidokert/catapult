@@ -47,6 +47,7 @@ from __future__ import absolute_import
 
 import traceback
 import pprint
+import json
 
 
 class JobError(Exception):
@@ -215,10 +216,11 @@ class SwarmingNoBots(InformationalError):
   def __init__(self):
     # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
     # pylint: disable=super-with-arguments
-    super(SwarmingNoBots, self).__init__(
-        "There doesn't appear to be any bots available to run the "\
-        'performance test. Either all the swarming devices are offline, or '\
-        "they're misconfigured.")
+    msg = "There doesn't appear to be any bots available to run the "\
+          'performance test. Either all the swarming devices are offline, or '\
+          "they're misconfigured."
+    super(SwarmingNoBots, self).__init__(msg)
+    self.content = json.dumps({'error': msg})
 
 
 class ReadValueNoValues(InformationalError):
