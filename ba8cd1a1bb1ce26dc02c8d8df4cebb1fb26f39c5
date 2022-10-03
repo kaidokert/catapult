@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9691e14_2a3688d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-03T18:11:34Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "ba8cd1a1bb1ce26dc02c8d8df4cebb1fb26f39c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0545e2d_826da8d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-03T18:11:34Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "ba8cd1a1bb1ce26dc02c8d8df4cebb1fb26f39c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6cf7b7c_c05203a4",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-03T18:11:34Z",
+      "side": 1,
+      "message": "nit: add \u0027flask\u0027 to make the log different from the one in webapp2.",
+      "range": {
+        "startLine": 42,
+        "startChar": 55,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "ba8cd1a1bb1ce26dc02c8d8df4cebb1fb26f39c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
