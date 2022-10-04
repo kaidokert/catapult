@@ -34,6 +34,24 @@
       "parentUuid": "45052901_c5482201",
       "revId": "c0829c2beb9113301ca4f9551556267839706391",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df9c1fc8_413ce912",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-10-04T01:40:16Z",
+      "side": 1,
+      "message": "I think Ben\u0027s suggestion was to do a pure reland as patchset #1, but then you upload the fix to patchset #2 of the same CL. This strategy has the advantage that we can land the fix and the reland atomically but we can also diff patchset #1 with patchset #2 to see the fix.",
+      "parentUuid": "b81fbc2d_f507d21c",
+      "revId": "c0829c2beb9113301ca4f9551556267839706391",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
