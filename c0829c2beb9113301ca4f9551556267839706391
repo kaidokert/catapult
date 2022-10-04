@@ -52,6 +52,24 @@
       "parentUuid": "b81fbc2d_f507d21c",
       "revId": "c0829c2beb9113301ca4f9551556267839706391",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e735da2_b043926a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-10-04T18:49:29Z",
+      "side": 1,
+      "message": "Ditto to what Nate said. Upload the reland fix (\"reland fix\" being what additional fixes are needed that weren\u0027t present in the original) as a second patchset. And also summarize in the commit message what the reland fix is.",
+      "parentUuid": "df9c1fc8_413ce912",
+      "revId": "c0829c2beb9113301ca4f9551556267839706391",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
