@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ef897e3_c59384a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-10-04T01:41:15Z",
+      "side": 1,
+      "message": "Is this a duplicate of https://chromium-review.googlesource.com/c/catapult/+/3929869? If so, should we abandon this CL?",
+      "revId": "36eabc59b479b632c515a72671be8f6f071a5955",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
