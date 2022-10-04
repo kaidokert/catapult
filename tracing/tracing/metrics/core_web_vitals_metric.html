@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+Copyright 2022 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<!--
+TODO: Write docs.
+-->
+
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics', function() {
+  function coreWebVitalsMetric(histograms, model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    if (chromeHelper === undefined) return;
+
+    const cumulativeLayoutShiftHistogram =
+      histograms.createHistogram('cwv:cumulative_layout_shift',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter, [], {
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
+    const largestContentfulPaintHistogram =
+      histograms.createHistogram('cwv:largest_contentful_paint',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [], {
+            alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_PAINT],
+        });
+    const firstContentfulPaintHistogram =
+      histograms.createHistogram('cwv:first_contentful_paint',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [], {
+            alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_PAINT],
+        });
+
+    for (const browserHelper of Object.values(chromeHelper.browserHelpers)) {
+      const mainThread = browserHelper.mainThread;
+      const timingUpdateEvents = [];
+      const latestTimingBySourceId = new Map();
+
+      for (const event of mainThread.sliceGroup.childEvents()) {
+        if (event.category === "loading" &&
+            event.title === "UkmPageLoadTimingUpdate") {
+          timingUpdateEvents.push(event);
+          const timingUpdate = event.args['ukm_page_load_timing_update'];
+          const sourceId = timingUpdate['ukm_source_id'];
+          latestTimingBySourceId.set(sourceId, timingUpdate);
+        }
+      }
+
+      for (const timingUpdate of latestTimingBySourceId.values()) {
+        const timingUpdateDiagnostic = {
+          'page_load_timing': new tr.v.d.GenericSet([timingUpdate]),
+        };
+
+        // Note: This might always be a perfect round number because as of
+        // 2022/09/13, FCP values are clamped to 1ms resolution when sent to the
+        // browser process to prevent timing attacks.
+        const firstContentfulPaint =
+            timingUpdate['first_contentful_paint_ms'];
+
+        // Do not add any core web vitals metrics if page did not reach FCP.
+        if (firstContentfulPaint === undefined) continue;
+
+        firstContentfulPaintHistogram.addSample(
+            firstContentfulPaint, timingUpdateDiagnostic);
+
+        // Note: There is no need to specially handle the case when there are no
+        // layout shifts on the page. The latest_cumulative_layout_shift value
+        // should be reported as 0 in the trace event by the browser. not
+        // undefined.
+        cumulativeLayoutShiftHistogram.addSample(
+            timingUpdate['latest_cumulative_layout_shift'],
+            timingUpdateDiagnostic);
+
+        // Note: this could be undefined if somehow the browser determined the
+        // LCP data is invalid. They should be exactly the same cases where we
+        // also do not report data to UKM.
+        largestContentfulPaintHistogram.addSample(
+            timingUpdate['latest_largest_contentful_paint_ms'],
+            timingUpdateDiagnostic);
+      }
+    }
+  }
+
+  tr.metrics.MetricRegistry.register(coreWebVitalsMetric);
+
+  return {
+    coreWebVitalsMetric,
+  };
+});
+</script>
