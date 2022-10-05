@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "642b28f2_d0811b14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-05T17:14:07Z",
+      "side": 1,
+      "message": "should be api/alerts, i copied and pasted the title by mistake. timeseries2 is done already. For api/alerts it needs api.yaml to be updated, much harder to test.",
+      "parentUuid": "4b5c91f1_10918973",
+      "revId": "5634f16961723d24055481839ebdcb9e072a6641",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4f40262_a6bd35b1",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-10-05T16:55:20Z",
       "side": 1,
       "message": "change the commit message so that it\u0027s about alerts and not timeseries2",
+      "revId": "5634f16961723d24055481839ebdcb9e072a6641",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b68880a_b6f2e19b",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-05T17:14:07Z",
+      "side": 1,
+      "message": "Uh the cl should be for api/alerts.",
+      "parentUuid": "f4f40262_a6bd35b1",
       "revId": "5634f16961723d24055481839ebdcb9e072a6641",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
