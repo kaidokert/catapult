@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b693545d_5df79e98",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-06T17:19:03Z",
+      "side": 1,
+      "message": "make_response will be called in the decorator. We don\u0027t need it here.",
+      "range": {
+        "startLine": 93,
+        "startChar": 9,
+        "endLine": 93,
+        "endChar": 22
+      },
+      "revId": "9a088bd50be5f29b6895d6234cf7090235663108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
