@@ -16,6 +16,24 @@
       "message": "The client side change lgtm. Though, I think we still need to server side fix in job.py that you did earlier, to catch the SwarmingNoBot when calling New(). We can update the api_request_handler to make it return in json format. So that the original client can handle the error, while your client fix will catch similar issues potentially raised from somewhere else.",
       "revId": "0e2b77b64e4b6328c23cc2304e1d95360767d389",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e186ed29_9bd51ccb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-06T22:19:27Z",
+      "side": 1,
+      "message": "Let me know if what I did works. I\u0027m not 100% sure what I needed to do.",
+      "parentUuid": "b977a55d_23dfe081",
+      "revId": "0e2b77b64e4b6328c23cc2304e1d95360767d389",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
