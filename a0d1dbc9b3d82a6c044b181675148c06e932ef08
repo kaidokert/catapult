@@ -22,6 +22,30 @@
       },
       "revId": "a0d1dbc9b3d82a6c044b181675148c06e932ef08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed12f4bc_c26ec898",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-10-07T18:31:39Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure if I could guarantee there is no more data. Like if there was an \"echo 0\\n\" type of thing? I think typically an \"echo 0\\n\" would come with an exit status, so the output would be \"0\\n 0\\n\" with the second 0 being the exit status?",
+      "parentUuid": "caf44858_f260685b",
+      "range": {
+        "startLine": 380,
+        "startChar": 14,
+        "endLine": 381,
+        "endChar": 60
+      },
+      "revId": "a0d1dbc9b3d82a6c044b181675148c06e932ef08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
