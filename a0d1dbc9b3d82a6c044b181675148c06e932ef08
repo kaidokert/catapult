@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf44858_f260685b",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-10-07T04:52:13Z",
+      "side": 1,
+      "message": "If there\u0027s no more data, can we just `break` out of the loop? That seems like it should also solve the problem, unless we think there\u0027s a need to loop again.",
+      "range": {
+        "startLine": 380,
+        "startChar": 14,
+        "endLine": 381,
+        "endChar": 60
+      },
+      "revId": "a0d1dbc9b3d82a6c044b181675148c06e932ef08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
