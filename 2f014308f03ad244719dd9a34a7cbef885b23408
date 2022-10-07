@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b54b524d_a4ac7d0a",
+        "filename": "tracing/tracing/metrics/core_web_vitals_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-10-07T19:16:52Z",
+      "side": 1,
+      "message": "Thanks for catching this! Removed.",
+      "parentUuid": "8440b0e3_4b03a38a",
+      "revId": "2f014308f03ad244719dd9a34a7cbef885b23408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7a51210b_b09b8f8c",
         "filename": "tracing/tracing/metrics/core_web_vitals_metric.html",
         "patchSetId": 8
@@ -48,6 +66,24 @@
       "writtenOn": "2022-10-07T16:33:04Z",
       "side": 1,
       "message": "Just reiterating FYI: Yoav is working on soft-navs reporting, which includes resetting FCP and LCP and reporting multiple Entries to the perf timeline.\n\nI think that these are not yet supposed to be recorded to UKM, but I do think there were some versions where these were being recorded (may have been fixed)...\n\nEventually, when these do get recorded, I think they won\u0027t share the same sourceId when they do get reported (same as BFCache, right?).",
+      "revId": "2f014308f03ad244719dd9a34a7cbef885b23408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74d8914c_9230e80e",
+        "filename": "tracing/tracing/metrics/core_web_vitals_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-10-07T19:16:52Z",
+      "side": 1,
+      "message": "Yeah I think having a different ukm source id would be the safest (my guess would be we\u0027ve assumed at various points there is one of these metrics per navigation, although I do notice that in ukm.xml our metrics are not marked as singular\u003d\"True\" so not sure if that\u0027s actually true). \n\nIf we get a different source id then these metrics should automatically work without having to make any changes.",
+      "parentUuid": "7a51210b_b09b8f8c",
       "revId": "2f014308f03ad244719dd9a34a7cbef885b23408",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
