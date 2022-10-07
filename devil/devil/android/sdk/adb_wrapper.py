@@ -371,11 +371,16 @@ class AdbWrapper(object):
         self._process.stdin.flush()
         output_lines = []
         while True:
+          queue_timeout = DEFAULT_TIMEOUT
           try:
             self._process.stdout.flush()
-            line = six.ensure_str(self._outq.get(timeout=DEFAULT_TIMEOUT))
+            line = six.ensure_str(self._outq.get(timeout=queue_timeout))
             if not _IsExtraneousLine(line, send_cmd):
               output_lines.append(line)
+              # If an exit command is detected, there shouldn't be more data
+              # to try to read, so don't waste time waiting.
+              if line.strip() == '0':
+                queue_timeout = 2
           except Empty:
             self._terminating = True
             break
