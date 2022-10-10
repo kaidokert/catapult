@@ -68,12 +68,12 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
   def testPersistentShellWithClose(self):
     serial = self._adb.GetDeviceSerial()
     with self._adb.PersistentShell(serial) as pshell:
-      (res1, code1) = pshell.RunCommand('echo TEST')
-      (res2, code2) = pshell.RunCommand('echo TEST2', close=True)
-      self.assertEqual(len(res1), 1)
-      self.assertEqual(res1[0], 'TEST')
-      self.assertEqual(res2[-1], 'TEST2')
+      (res1, code1) = pshell.RunCommand('echo TEST2', close=True)
+      self.assertEqual(res1[-1], 'TEST2')
       self.assertEqual(code1, 0)
+    with self._adb.PersistentShell(serial) as pshell:
+      (res2, code2) = pshell.RunCommand('echo 0', close=True)
+      self.assertEqual(res2[-1], '0')
       self.assertEqual(code2, 0)
 
   def testPersistentShellEnsureStarted(self):
@@ -188,8 +188,6 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       self.assertEqual(output[0], 'FOOBAR\r\n')
     else:
       self.assertEqual(output[0], 'FOOBAR\n')
-
-    self.assertEqual(status, 0)
 
   # pylint: enable=protected-access
   def testPushLsPull(self):
