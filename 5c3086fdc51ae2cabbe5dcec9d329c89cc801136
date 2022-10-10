@@ -86,6 +86,24 @@
       "message": "Just want to verify - it\u0027s not possible for `self.GetV1` to accidentally call the `GetV1` on line 26?",
       "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f95f95ee_48d95f00",
+        "filename": "dashboard/dashboard/buildbucket_job_status.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-10T17:58:46Z",
+      "side": 1,
+      "message": "I don\u0027t think so, it will call the inner class classmethod.",
+      "parentUuid": "cbee9d94_df3b70a6",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
