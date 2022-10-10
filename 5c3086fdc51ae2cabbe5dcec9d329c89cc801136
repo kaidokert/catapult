@@ -16,6 +16,58 @@
       "message": "PTAL\n\nlog: https://pantheon.corp.google.com/logs/query;query\u003d%22buildbucket_job_status%2F%22%0AprotoPayload.traceId%3D%2211276d7ddbf834f8bdc2dc8ad04296e8%22;timeRange\u003dPT1H;cursorTimestamp\u003d2022-10-08T00:33:08.355051Z?project\u003dchromeperf",
       "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97801646_3cbcc695",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-10T17:33:47Z",
+      "side": 1,
+      "message": "Try testing a local build on production i.e. cloud-build-blahblah.\n\nIt also looks like I don\u0027t have code owners for dispatcher so Wenbin will have to give LGTM",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a165b6_6024847f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-10T17:33:47Z",
+      "side": 1,
+      "message": "This logging says the handler failed due to permissions issue? When I try `https://funing-dot-chromeperf.appspot.com/buildbucket_job_status/4553196720226304` I get a permissions issue. Can you try testing a local deployment on production? You should have proper permissions there.",
+      "parentUuid": "07194d27_704bc2a4",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbee9d94_df3b70a6",
+        "filename": "dashboard/dashboard/buildbucket_job_status.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-10T17:33:47Z",
+      "side": 1,
+      "message": "Just want to verify - it\u0027s not possible for `self.GetV1` to accidentally call the `GetV1` on line 26?",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
