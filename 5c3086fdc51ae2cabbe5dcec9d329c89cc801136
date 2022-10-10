@@ -73,6 +73,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4767fc15_5e2ebf48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-10T18:05:08Z",
+      "side": 1,
+      "message": "Ah got it. Ty.\n\nDo we know what this handler is used for then? Is it something buildbucket calls automatically?",
+      "parentUuid": "ed6a5d6c_858671b5",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7a38ea_c58f4564",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-10T18:05:08Z",
+      "side": 1,
+      "message": "LGTM, with a question",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbee9d94_df3b70a6",
         "filename": "dashboard/dashboard/buildbucket_job_status.py",
         "patchSetId": 3
