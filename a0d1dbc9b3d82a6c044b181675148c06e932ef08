@@ -70,6 +70,30 @@
       },
       "revId": "a0d1dbc9b3d82a6c044b181675148c06e932ef08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5a5d74_5a505f0d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-10-10T22:02:46Z",
+      "side": 1,
+      "message": "There wasn\u0027t an output markers in the closed case. Latest patch fixes that.",
+      "parentUuid": "44116c62_ca3becc0",
+      "range": {
+        "startLine": 380,
+        "startChar": 14,
+        "endLine": 381,
+        "endChar": 60
+      },
+      "revId": "a0d1dbc9b3d82a6c044b181675148c06e932ef08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
