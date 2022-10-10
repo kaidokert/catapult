@@ -363,7 +363,8 @@ class AdbWrapper(object):
         last generated output is an integer status code.
       """
       if close:
-        send_cmd = '( %s ); echo $?; exit;\n' % command
+        send_cmd = '( %s ); echo %s$?; exit;\n' % (
+            command, self._SHELL_OUTPUT_END_MARKER)
         # This could be simplified with a communicate call, but py2 throws
         # an error from the thread reader and communicate accessing the same
         # fd.
@@ -375,10 +376,18 @@ class AdbWrapper(object):
             self._process.stdout.flush()
             line = six.ensure_str(self._outq.get(timeout=DEFAULT_TIMEOUT))
             if not _IsExtraneousLine(line, send_cmd):
-              output_lines.append(line)
+              # This allows us to check for the exit code to know when to stop
+              # looking for output.
+              if line[:len(self._SHELL_OUTPUT_END_MARKER
+                           )] == self._SHELL_OUTPUT_END_MARKER:
+                line = line[len(self._SHELL_OUTPUT_END_MARKER):]
+                output_lines.append(line)
+                break
+            output_lines.append(line)
           except Empty:
-            self._terminating = True
             break
+
+        self._terminating = True
 
         if include_status:
           output_lines[-1] = int(output_lines[-1])
@@ -480,8 +489,9 @@ class AdbWrapper(object):
     self._all_persistent_shells = []
     self._lock = threading.Lock()
 
-    # The test blinkpy.web_tests.port.android_unittest.AndroidPortTest.test_default_child_processes
-    # doesn't work with checking for a real device on some builders.
+    # The test blinkpy.web_tests.port.android_unittest.AndroidPortTest.
+    # test_default_child_processes doesn't work with checking for a
+    # real device on some builders.
     if not persistent_shell:
       return
 
