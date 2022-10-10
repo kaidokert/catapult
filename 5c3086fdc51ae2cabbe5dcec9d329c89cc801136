@@ -160,6 +160,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5259455_8cfce5b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-10T20:37:02Z",
+      "side": 1,
+      "message": "LGTM. FYI, I have a CL removing the V1 footprint for buildbucket:\nhttps://chromium-review.googlesource.com/c/catapult/+/3933962",
+      "revId": "5c3086fdc51ae2cabbe5dcec9d329c89cc801136",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbee9d94_df3b70a6",
