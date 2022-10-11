@@ -16,6 +16,29 @@
       "message": "PTAL\n\nlog: https://pantheon.corp.google.com/logs/query;query\u003dresource.type%3D%22gae_app%22%0A%22edit_anomalies%22%0AprotoPayload.traceId%3D%22d5d8ba3d2156b8c1fffe45f1affb4b6b%22;timeRange\u003dPT1H;cursorTimestamp\u003d2022-10-10T22:54:12.606507Z?project\u003dchromeperf",
       "revId": "93e49348a85ebd53bd98d2a6cf1108b36eddf95f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4471e17_55b091cb",
+        "filename": "dashboard/dashboard/common/request_handler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-11T21:21:02Z",
+      "side": 1,
+      "message": "This is implemented in RequestHandlerReportError().",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 16
+      },
+      "revId": "93e49348a85ebd53bd98d2a6cf1108b36eddf95f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
