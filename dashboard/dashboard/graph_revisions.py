@@ -20,6 +20,7 @@ import bisect
 import json
 import math
 
+import six
 from google.appengine.ext import ndb
 
 from dashboard.common import datastore_hooks
@@ -28,36 +29,58 @@ from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import graph_data
 
+from flask import request, make_response
+
 _CACHE_KEY = 'num_revisions_%s'
 
 
-class GraphRevisionsHandler(request_handler.RequestHandler):
-  """URL endpoint to list all the revisions for each test, for x-axis slider."""
+def GraphRevisionsPost():
+  test_path = request.values.get('test_path')
+  rows = namespaced_stored_object.Get(_CACHE_KEY % test_path)
+  if not rows:
+    rows = _UpdateCache(utils.TestKey(test_path))
 
-  def post(self):
-    """Fetches a list of revisions and values for a given test.
+  # TODO(simonhatch): Need to filter out NaN values.
+  # https://github.com/catapult-project/catapult/issues/3474
+  def _NaNtoNone(x):
+    if math.isnan(x):
+      return None
+    return x
 
-    Request parameters:
-      test_path: Full test path for a TestMetadata entity.
+  rows = [(_NaNtoNone(r[0]), _NaNtoNone(r[1]), _NaNtoNone(r[2])) for r in rows
+          ]
+  return make_response(json.dumps(rows))
 
-    Outputs:
-      A JSON list of 3-item lists [revision, value, timestamp].
-    """
-    test_path = self.request.get('test_path')
-    rows = namespaced_stored_object.Get(_CACHE_KEY % test_path)
-    if not rows:
-      rows = _UpdateCache(utils.TestKey(test_path))
 
-    # TODO(simonhatch): Need to filter out NaN values.
-    # https://github.com/catapult-project/catapult/issues/3474
-    def _NaNtoNone(x):
-      if math.isnan(x):
-        return None
-      return x
+if six.PY2:
+  class GraphRevisionsHandler(request_handler.RequestHandler):
+    """URL endpoint to list all the revisions for each test,
+    for x-axis slider."""
 
-    rows = [(_NaNtoNone(r[0]), _NaNtoNone(r[1]), _NaNtoNone(r[2])) for r in rows
-           ]
-    self.response.out.write(json.dumps(rows))
+    def post(self):
+      """Fetches a list of revisions and values for a given test.
+
+      Request parameters:
+        test_path: Full test path for a TestMetadata entity.
+
+      Outputs:
+        A JSON list of 3-item lists [revision, value, timestamp].
+      """
+      test_path = self.request.get('test_path')
+      rows = namespaced_stored_object.Get(_CACHE_KEY % test_path)
+      if not rows:
+        rows = _UpdateCache(utils.TestKey(test_path))
+
+      # TODO(simonhatch): Need to filter out NaN values.
+      # https://github.com/catapult-project/catapult/issues/3474
+      def _NaNtoNone(x):
+        if math.isnan(x):
+          return None
+        return x
+
+      rows = [(_NaNtoNone(r[0]), _NaNtoNone(r[1]), _NaNtoNone(r[2]))
+              for r in rows]
+      self.response.out.write(json.dumps(rows))
 
 
 @ndb.synctasklet
@@ -78,7 +101,9 @@ def SetCacheAsync(test_path, rows):
 
   # If this is an internal_only query for externally available data,
   # set the cache for that too.
-  if datastore_hooks.IsUnalteredQueryPermitted():
+  permitted = datastore_hooks.IsUnalteredQueryPermitted(flask_flag=False) if \
+    six.PY2 else datastore_hooks.IsUnalteredQueryPermitted(flask_flag=True)
+  if permitted:
     test = utils.TestKey(test_path).get()
     if test and not test.internal_only:
       futures.append(
@@ -112,7 +137,10 @@ def _UpdateCache(test_key):
   if not test:
     return []
   assert utils.IsInternalUser() or not test.internal_only
-  datastore_hooks.SetSinglePrivilegedRequest()
+  if six.PY2:
+    datastore_hooks.SetSinglePrivilegedRequest(flask_flag=False)
+  else:
+    datastore_hooks.SetSinglePrivilegedRequest(flask_flag=True)
 
   # A projection query queries just for the values of particular properties;
   # this is faster than querying for whole entities.
@@ -124,7 +152,11 @@ def _UpdateCache(test_key):
   rows = list(map(_MakeTriplet, query.iter(batch_size=1000)))
   # Note: Unit tests do not call datastore_hooks with the above query, but
   # it is called in production and with more recent SDK.
-  datastore_hooks.CancelSinglePrivilegedRequest()
+  if six.PY2:
+    datastore_hooks.CancelSinglePrivilegedRequest(flask_flag=False)
+  else:
+    datastore_hooks.CancelSinglePrivilegedRequest(flask_flag=True)
+
   SetCache(utils.TestPath(test_key), rows)
   return rows
 
