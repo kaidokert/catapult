@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d7fc95a_15314cf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-12T23:18:32Z",
+      "side": 1,
+      "message": "It\u0027s possible that this handler is deprecated. Still checking logs to see if this has been tripped.",
+      "revId": "f9bac61bd083de894b0bc1288816dd48f737e1ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac424bb_19eb59c3",
+        "filename": "dashboard/dashboard/api/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-12T23:18:32Z",
+      "side": 1,
+      "message": "This links to here which I\u0027m not sure could cause an issue: \n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/namespaced_stored_object.py;drc\u003d39a3806d4972290e58f3f3f948ce9295c008239c;l\u003d16",
+      "revId": "f9bac61bd083de894b0bc1288816dd48f737e1ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
