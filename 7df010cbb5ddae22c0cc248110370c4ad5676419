@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "7df010cbb5ddae22c0cc248110370c4ad5676419",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "781273c3_9546f17d",
+        "filename": "dashboard/dashboard/common/oauth2_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-10-12T19:14:04Z",
+      "side": 1,
+      "message": "this call can raise DefaultCredentialsError - is this a good place to catch/log/re-raise it, or should we expect all callers of this to handle the error?",
+      "revId": "7df010cbb5ddae22c0cc248110370c4ad5676419",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
