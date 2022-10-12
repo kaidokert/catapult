@@ -58,7 +58,6 @@ tr.b.unittest.testSuite(function() {
       'V8.GCFinalizeMC': 'v8-gc-latency-mark-compactor',
       'V8.GCFinalizeMCReduceMemory': 'v8-gc-memory-mark-compactor',
       'V8.GCIncrementalMarking': 'v8-gc-incremental-step',
-      'V8.GCIncrementalMarkingFinalize': 'v8-gc-incremental-finalize',
       'V8.GCIncrementalMarkingStart': 'v8-gc-incremental-start',
       'V8.GCPhantomHandleProcessingCallback': 'v8-gc-phantom-handle-callback',
       'V8.GCScavenger': 'v8-gc-scavenger'
@@ -154,11 +153,6 @@ tr.b.unittest.testSuite(function() {
         title: 'V8.GCIncrementalMarking',
         args: {}, start: 150, end: 160,
         cpuStart: 150, cpuEnd: 160
-      },
-      {
-        title: 'V8.GCIncrementalMarkingFinalize',
-        args: {}, start: 200, end: 220,
-        cpuStart: 200, cpuEnd: 220
       },
       {
         title: 'V8.GCFinalizeMC',
