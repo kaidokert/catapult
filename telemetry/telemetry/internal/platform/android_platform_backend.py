@@ -568,6 +568,15 @@ class AndroidPlatformBackend(
         profile is to be deleted.
       ignore_list: List of files to keep.
     """
+    # If we don't have root, then we are almost certainly actually using the
+    # default profile directory instead of the one we return from GetProfileDir.
+    # This is due to SELinux, as a non-root-readable directory will not be
+    # usable by the browser due to SELinux security contexts/permissions. So,
+    # clear the default directory be wiping the application state. We still
+    # go through the regular profile directory deletion afterwards on the off
+    # chance that we are somehow using the non-default directory.
+    if not self._require_root:
+      self._device.ClearApplicationState(package)
     profile_dir = self.GetProfileDir(package)
     if not self._device.PathExists(profile_dir):
       return
