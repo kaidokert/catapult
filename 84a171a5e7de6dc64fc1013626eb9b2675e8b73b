@@ -33,6 +33,40 @@
       "message": "PTAL.",
       "revId": "84a171a5e7de6dc64fc1013626eb9b2675e8b73b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62205cd5_a957775c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-12T18:04:48Z",
+      "side": 1,
+      "message": "Did you test this change on staging? I presume this is what you were testing on staging the last few days.",
+      "revId": "84a171a5e7de6dc64fc1013626eb9b2675e8b73b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "354cc97e_05b82a6f",
+        "filename": "dashboard/dashboard/common/oauth2_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-12T18:04:48Z",
+      "side": 1,
+      "message": "why do you set credentials to itself twice here? Is one not sufficient?",
+      "revId": "84a171a5e7de6dc64fc1013626eb9b2675e8b73b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
