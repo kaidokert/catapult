@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92048e33_e3f33f0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-13T05:19:01Z",
+      "side": 1,
+      "message": "Sorry for the delay.",
+      "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d1cd8c_0e86de6e",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-13T05:19:01Z",
+      "side": 1,
+      "message": "Rename this to LocalhostUrlOfStaticFilePath",
+      "range": {
+        "startLine": 326,
+        "startChar": 6,
+        "endLine": 326,
+        "endChar": 20
+      },
+      "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17053f01_56db1825",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-13T05:19:01Z",
+      "side": 1,
+      "message": "Why are you adding a \u0027/\u0027 if the path ends with the os specific file path delimiter?",
+      "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
