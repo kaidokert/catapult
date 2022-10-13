@@ -22,6 +22,30 @@
       },
       "revId": "48771bc03b1e07f6d9721633e8db20262be9d353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17e59cf1_5744618a",
+        "filename": "dashboard/scripts.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-13T21:03:43Z",
+      "side": 0,
+      "message": "I confirmed that it\u0027s still there on staging: https://remove-bug-labels-dot-chromeperf-stage.uc.r.appspot.com/edit_site_config",
+      "parentUuid": "626f7060_3d019e3d",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 24
+      },
+      "revId": "48771bc03b1e07f6d9721633e8db20262be9d353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
