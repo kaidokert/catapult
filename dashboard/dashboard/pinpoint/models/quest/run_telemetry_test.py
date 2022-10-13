@@ -104,10 +104,11 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     relative_cwd = arguments.get('relative_cwd', 'out/Release')
     return relative_cwd, command
 
-  def Start(self, change, isolate_server, isolate_hash):
+  def Start(self, change, index, isolate_server, isolate_hash):
     extra_swarming_tags = {'change': str(change)}
     return self._Start(
         change,
+        index,
         isolate_server,
         isolate_hash,
         ChangeDependentArgs(self._extra_args, change),

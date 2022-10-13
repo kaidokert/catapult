@@ -10,17 +10,39 @@ import six
 import logging
 
 from dashboard import add_histograms
-from dashboard import alerts
 from dashboard import alert_groups
+from dashboard import alerts
+from dashboard import buildbucket_job_status
+from dashboard import edit_anomalies
 from dashboard import edit_site_config
 from dashboard import graph_csv
+from dashboard import graph_json
 from dashboard import main
 from dashboard import navbar
 from dashboard import sheriff_config_poller
+from dashboard import short_uri
+from dashboard.api import alerts as api_alerts
 from dashboard.api import describe
+from dashboard.api import test_suites
+from dashboard.api import timeseries2
 
 from flask import Flask
 flask_app = Flask(__name__)
+
+
+@flask_app.route('/add_histograms', methods=['POST'])
+def AddHistogramsPost():
+  return add_histograms.AddHistogramsPost()
+
+
+@flask_app.route('/add_histograms/process', methods=['POST'])
+def AddHistogramsProcessPost():
+  return add_histograms.AddHistogramsProcessPost()
+
+
+@flask_app.route('/alert_groups_update')
+def AlertGroupsGet():
+  return alert_groups.AlertGroupsGet()
 
 
 @flask_app.route('/alerts', methods=['GET'])
@@ -31,6 +53,36 @@ def AlertsHandlerGet():
 @flask_app.route('/alerts', methods=['POST'])
 def AlertsHandlerPost():
   return alerts.AlertsHandlerPost()
+
+
+@flask_app.route('/api/alerts', methods=['POST'])
+def AlertsPost():
+  return api_alerts.AlertsPost()
+
+
+@flask_app.route('/api/describe', methods=['POST'])
+def DescribePost():
+  return describe.DescribePost()
+
+
+@flask_app.route('/api/test_suites', methods=['POST'])
+def TestSuitesPost():
+  return test_suites.TestSuitesPost()
+
+
+@flask_app.route('/api/timeseries2', methods=['POST'])
+def TimeSeries2Post():
+  return timeseries2.TimeSeries2Post()
+
+
+@flask_app.route('/buildbucket_job_status/<job_id>')
+def BuildbucketJobStatusGet(job_id):
+  return buildbucket_job_status.BuildbucketJobStatusGet(job_id)
+
+
+@flask_app.route('/edit_anomalies', methods=['POST'])
+def EditAnomaliesPost():
+  return edit_anomalies.EditAnomaliesPost()
 
 
 @flask_app.route('/edit_site_config', methods=['GET'])
@@ -53,6 +105,16 @@ def GraphCSVHandlerPost():
   return graph_csv.GraphCSVPost()
 
 
+@flask_app.route('/graph_json', methods=['POST'])
+def GraphJsonPost():
+  return graph_json.GraphJsonPost()
+
+
+@flask_app.route('/list_tests', methods=['POST'])
+def ListTestsHandlerPost():
+  return list_tests.ListTestsHandlerPost()
+
+
 @flask_app.route('/')
 def MainHandlerGet():
   return main.MainHandlerGet()
@@ -68,24 +130,14 @@ def SheriffConfigPollerGet():
   return sheriff_config_poller.SheriffConfigPollerGet()
 
 
-@flask_app.route('/add_histograms', methods=['POST'])
-def AddHistogramsPost():
-  return add_histograms.AddHistogramsPost()
+@flask_app.route('/short_uri', methods=['GET'])
+def ShortUriHandlerGet():
+  return short_uri.ShortUriHandlerGet()
 
 
-@flask_app.route('/add_histograms/process', methods=['POST'])
-def AddHistogramsProcessPost():
-  return add_histograms.AddHistogramsProcessPost()
-
-
-@flask_app.route('/api/describe', methods=['POST'])
-def DescribePost():
-  return describe.DescribePost()
-
-
-@flask_app.route('/alert_groups_update')
-def AlertGroupsGet():
-  return alert_groups.AlertGroupsGet()
+@flask_app.route('/short_uri', methods=['POST'])
+def ShortUriHandlerPost():
+  return short_uri.ShortUriHandlerPost()
 
 
 if six.PY2:
@@ -98,14 +150,11 @@ if six.PY2:
   from dashboard import add_point_queue
   from dashboard import associate_alerts
   from dashboard import bug_details
-  from dashboard import buildbucket_job_status
   from dashboard import create_health_report
   from dashboard import dump_graph_json
-  from dashboard import edit_anomalies
   from dashboard import file_bug
   from dashboard import get_diagnostics
   from dashboard import get_histogram
-  from dashboard import graph_json
   from dashboard import graph_revisions
   from dashboard import group_report
   from dashboard import jstsmon
@@ -118,13 +167,11 @@ if six.PY2:
   from dashboard import pinpoint_request
   from dashboard import put_entities_task
   from dashboard import report
-  from dashboard import short_uri
   from dashboard import speed_releasing
   from dashboard import update_dashboard_stats
   from dashboard import update_test_suite_descriptors
   from dashboard import update_test_suites
   from dashboard import uploads_info
-  from dashboard.api import alerts as api_alerts
   from dashboard.api import bugs
   from dashboard.api import config
   from dashboard.api import list_timeseries
@@ -135,9 +182,7 @@ if six.PY2:
   from dashboard.api import report_generate
   from dashboard.api import report_names
   from dashboard.api import report_template
-  from dashboard.api import test_suites
   from dashboard.api import timeseries
-  from dashboard.api import timeseries2
 
   _URL_MAPPING = [
       ('/_/jstsmon', jstsmon.JsTsMonHandler),
@@ -217,15 +262,23 @@ if six.PY2:
 # The listed values will be used as *prefix* to match and redirect
 # the incoming requests.
 _PATHS_HANDLED_BY_FLASK = [
-    '/alerts',
     # '/alert_groups_update',
+    '/alerts',
+    '/api/alerts',
     '/api/describe',
+    '/api/test_suites',
+    '/api/timeseries2',
     # '/configs/update',
     # '/add_histograms',
     # '/add_histograms/process',
+    '/buildbucket_job_status',
+    '/edit_anomalies',
     '/edit_site_config',
-    # '/graph_csv',
+    '/graph_csv',
+    '/graph_json',
+    '/list_tests',
     '/navbar',
+    '/short_uri',
 ]
 
 

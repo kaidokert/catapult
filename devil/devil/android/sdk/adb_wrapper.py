@@ -262,7 +262,8 @@ class AdbWrapper(object):
 
     def Stop(self):
       """Stops the ADB process if it is still running."""
-      if self._process is not None:
+      # If command is called with closed, then process may be 0.
+      if self._process is not None and self._process.poll() != 0:
         self._process.stdin.write(six.ensure_binary('exit\n'))
         self._process.stdin.flush()
         self._process = None
@@ -469,13 +470,6 @@ class AdbWrapper(object):
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
 
-    for _ in range(5):
-      if not self.is_ready:
-        # Sometimes emulators that are being started up will indicate they're
-        # available to 'adb devices' but will not be ready to connect on adb.
-        time.sleep(3)
-        break
-
     # A queue of persistent shells that are waiting for a command to execute.
     # When a persistent shell is done executing a command, it is usually put
     # back into the queue to await the next command.
@@ -485,6 +479,18 @@ class AdbWrapper(object):
     # are in the queue waiting for a command to run.
     self._all_persistent_shells = []
     self._lock = threading.Lock()
+
+    # The test blinkpy.web_tests.port.android_unittest.AndroidPortTest.test_default_child_processes
+    # doesn't work with checking for a real device on some builders.
+    if not persistent_shell:
+      return
+
+    for _ in range(5):
+      if not self.is_ready:
+        # Sometimes emulators that are being started up will indicate they're
+        # available to 'adb devices' but will not be ready to connect on adb.
+        time.sleep(3)
+        break
 
     # TODO: Persistent Shell has issues when it is used to initialize a
     # previously non running emulator.
