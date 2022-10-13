@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2bdffba_c69a4fe3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-13T02:18:09Z",
+      "side": 1,
+      "message": "This was the original CL: https://chromium-review.googlesource.com/c/catapult/+/3927951\n\nI had some issues with my .git/config file so I ended up creating a second CL by accident.\n\nRationale: We noticed that Pinpoint bots are in the right order but sometimes either A or B will kick off in the middle of that bot list [1]. This should order the quests so that the i-th quest will always be the executed as the i-th iteration. \n\nI believe this works based on one job I ran on staging.\n\n[1] https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1364271#c8",
+      "revId": "cbd1f2b92d4cdb23d5e20c7fc7226102d414e1fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
