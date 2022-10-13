@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d750bf0_0da1d34c",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-10-13T18:56:53Z",
+      "side": 1,
+      "message": "This is supposed to be the exact same thing as `UrlOf` above. The `LocalhostUrlOfStaticFilePath` is at [1] and that one is the equivalent of `UrlOfStaticFilePath`",
+      "parentUuid": "93d1cd8c_0e86de6e",
+      "range": {
+        "startLine": 326,
+        "startChar": 6,
+        "endLine": 326,
+        "endChar": 20
+      },
+      "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17053f01_56db1825",
@@ -54,6 +78,47 @@
       "writtenOn": "2022-10-13T05:19:01Z",
       "side": 1,
       "message": "Why are you adding a \u0027/\u0027 if the path ends with the os specific file path delimiter?",
+      "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0682111a_48ca6d26",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-10-13T18:56:53Z",
+      "side": 1,
+      "message": "I am doing the same thing as `UrlOf` above.",
+      "parentUuid": "17053f01_56db1825",
+      "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6de481d_aee9bd1b",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1524993
+      },
+      "writtenOn": "2022-10-13T18:56:53Z",
+      "side": 1,
+      "message": "[1]",
+      "range": {
+        "startLine": 190,
+        "startChar": 2,
+        "endLine": 196,
+        "endChar": 0
+      },
       "revId": "bb6ca82beb9c1a6b70e8cf86c4f25a04bea3cda0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
