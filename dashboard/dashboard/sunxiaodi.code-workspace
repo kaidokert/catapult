@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "path": "../../../../../../infra_internal"
+        },
+        {
+            "path": "../../../.."
+        },
+        {
+            "path": "../../../../../../infra/go/src/infra/chromeperf"
+        }
+    ]
+}
