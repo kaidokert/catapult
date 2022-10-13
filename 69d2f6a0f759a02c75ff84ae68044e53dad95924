@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "732836ee_0cf52001",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-10-13T22:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f5a8a02_069c5a78",
+      "range": {
+        "startLine": 381,
+        "startChar": 17,
+        "endLine": 382,
+        "endChar": 63
+      },
+      "revId": "69d2f6a0f759a02c75ff84ae68044e53dad95924",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e811b8e8_e05907b3",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-12T23:01:41Z",
       "side": 1,
       "message": "suggestion: name this variable `exit_code` to make it clear that we expect the remainder of the line will contain only the exit code.\n\nAlso, rather than appending this to `output_lines` and then parsing it back out on line 393, it would be more efficient to just store the `exit_code` variable separately. Then you can change line 392 and below to look like:\n\n```\n        for x in output_lines:\n          yield x\n\n        if include_status:\n          yield exit_code\n```",
+      "range": {
+        "startLine": 383,
+        "startChar": 16,
+        "endLine": 384,
+        "endChar": 41
+      },
+      "revId": "69d2f6a0f759a02c75ff84ae68044e53dad95924",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "929f027d_7825b910",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2022-10-13T22:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e811b8e8_e05907b3",
       "range": {
         "startLine": 383,
         "startChar": 16,
