@@ -275,8 +275,11 @@ _PATHS_HANDLED_BY_FLASK = [
     '/edit_anomalies',
     '/edit_site_config',
     '/graph_csv',
+<<<<<<< HEAD
+=======
     '/graph_json',
     '/list_tests',
+>>>>>>> main
     '/navbar',
     '/short_uri',
 ]

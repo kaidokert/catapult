@@ -203,11 +203,11 @@ class JobState(object):
   def ScheduleWork(self):
     work_left = False
     for attempts in self._attempts.values():
-      for attempt in attempts:
+      for index, attempt in enumerate(attempts):
         if attempt.completed:
           continue
 
-        attempt.ScheduleWork()
+        attempt.ScheduleWork(index)
         work_left = True
 
     if not work_left:

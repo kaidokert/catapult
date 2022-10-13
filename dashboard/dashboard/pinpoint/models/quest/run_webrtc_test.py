@@ -7,6 +7,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import logging
 import os
 from dashboard.pinpoint.models.quest import run_test
 
@@ -87,6 +88,7 @@ class RunWebRtcTest(run_test.RunTest):
     return relative_cwd, command
 
   def Start(self, change, isolate_server, isolate_hash):
+    logging.debgu('leina - run_webrtc_test kicks off start')
     return self._Start(
         change,
         isolate_server,
