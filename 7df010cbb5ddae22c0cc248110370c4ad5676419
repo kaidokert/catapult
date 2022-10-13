@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "666314fa_7bfb52ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-13T20:28:26Z",
+      "side": 1,
+      "message": "Updated. Thanks!",
+      "revId": "7df010cbb5ddae22c0cc248110370c4ad5676419",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "781273c3_9546f17d",
@@ -31,6 +48,24 @@
       "writtenOn": "2022-10-12T19:14:04Z",
       "side": 1,
       "message": "this call can raise DefaultCredentialsError - is this a good place to catch/log/re-raise it, or should we expect all callers of this to handle the error?",
+      "revId": "7df010cbb5ddae22c0cc248110370c4ad5676419",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0461cee3_16d77f33",
+        "filename": "dashboard/dashboard/common/oauth2_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-13T20:28:26Z",
+      "side": 1,
+      "message": "That\u0027s a good question. The callers need to be changed either way: to catch the error, or to handler the None value. I didn\u0027t add it because the ApplicationDefaultCredentialsError was not handled either. :D \n\nPersonally, I would like to catch it here, log, and return None. In all of our cases, the credential is used to call discovery.build(), where the credentials is default to None:\nhttps://github.com/googleapis/google-api-python-client/blob/main/googleapiclient/discovery.py#L184\nAnd then default credential will be applied:\nhttps://github.com/googleapis/google-api-python-client/blob/5d54a7debaa68277c556706598ddfe53b5bac4d7/googleapiclient/discovery.py#L580\n\nThis may work.",
+      "parentUuid": "781273c3_9546f17d",
       "revId": "7df010cbb5ddae22c0cc248110370c4ad5676419",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
