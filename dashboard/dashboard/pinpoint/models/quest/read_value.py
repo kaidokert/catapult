@@ -69,13 +69,13 @@ class ReadValue(quest.Quest):
   def results_path(self):
     return getattr(self, '_results_path', None)
 
-  def Start(self, change, isolate_server=None, isolate_hash=None,
+  def Start(self, change, index, isolate_server=None, isolate_hash=None,
             cas_root_ref=None):
     # Here we create an execution that can handle both histograms and graph
     # json and any other format we support later.
     # TODO(dberris): It seems change is a required input, need to preserve this
     # for forward/backward compatibility.
-    del change
+    del change, index
     return ReadValueExecution(self._results_filename, self.results_path,
                               self._metric, self._grouping_label,
                               self._trace_or_story, self._statistic,
