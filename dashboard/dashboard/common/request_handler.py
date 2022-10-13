@@ -32,6 +32,47 @@ JINJA2_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'])
 
 
+def GetDynamicVariablesFlask(template_values, request_path=None):
+  """Gets the values that vary for every page.
+
+  Args:
+    template_values: dict of name/value pairs.
+    request_path: path for login urls, None if using the current path.
+  """
+  user_info = ''
+  xsrf_token = ''
+  user = users.get_current_user()
+  display_username = 'Sign in'
+  title = 'Sign in to an account'
+  is_admin = False
+  if user:
+    display_username = user.email()
+    title = 'Switch user'
+    xsrf_token = xsrf.GenerateToken(user)
+    is_admin = users.is_current_user_admin()
+  try:
+    login_url = users.create_login_url(request_path or request.full_path)
+  except users.RedirectTooLongError:
+    # On the bug filing pages, the full login URL can be too long. Drop
+    # the correct redirect URL, since the user should already be logged in
+    # at this point anyway.
+    login_url = users.create_login_url('/')
+  user_info = '<a href="%s" title="%s">%s</a>' % (login_url, title,
+                                                  display_username)
+  # Force out of passive login, as it creates multilogin issues.
+  login_url = login_url.replace('passive=true', 'passive=false')
+  template_values['login_url'] = login_url
+  template_values['display_username'] = display_username
+  template_values['user_info'] = user_info
+  template_values['is_admin'] = is_admin
+  template_values['is_internal_user'] = utils.IsInternalUser()
+  template_values['xsrf_token'] = xsrf_token
+  template_values['xsrf_input'] = (
+      '<input type="hidden" name="xsrf_token" value="%s">' % xsrf_token)
+  template_values['login_url'] = login_url
+  return template_values
+
+
 def RequestHandlerRenderHtml(template_file, template_values, status=200):
   """Renders HTML given template and values.
 
