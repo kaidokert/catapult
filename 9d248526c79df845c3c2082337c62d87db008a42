@@ -34,6 +34,24 @@
       "parentUuid": "cb7e6c56_844498ba",
       "revId": "9d248526c79df845c3c2082337c62d87db008a42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e09d027_137ce4aa",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-14T20:13:36Z",
+      "side": 1,
+      "message": "Just confirmed that a bisection also works on staging - https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/143cdef3000000\n\nI think this should be fine, but we can also wait for John to return to office to ask for his opinion.",
+      "parentUuid": "8bddab29_bc59724b",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
