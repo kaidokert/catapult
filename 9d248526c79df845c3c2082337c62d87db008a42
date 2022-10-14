@@ -70,6 +70,24 @@
       "parentUuid": "4e09d027_137ce4aa",
       "revId": "9d248526c79df845c3c2082337c62d87db008a42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04043ef2_6bd1bf9f",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-14T22:38:58Z",
+      "side": 1,
+      "message": "It\u0027s not urgent. I\u0027ll add him to the reviewers to get his feedback.",
+      "parentUuid": "34100aee_f378cb6e",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
