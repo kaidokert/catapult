@@ -33,6 +33,40 @@
       "message": "LGTM but i am not code owner",
       "revId": "b459e5fb34d4c548a82aee44990fc60e1704a47b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dce165e_5f75852f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-14T20:20:22Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "b459e5fb34d4c548a82aee44990fc60e1704a47b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb67b462_f5b27f10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-14T20:20:22Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "b459e5fb34d4c548a82aee44990fc60e1704a47b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
