@@ -52,6 +52,24 @@
       "parentUuid": "8bddab29_bc59724b",
       "revId": "9d248526c79df845c3c2082337c62d87db008a42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34100aee_f378cb6e",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-10-14T22:36:29Z",
+      "side": 1,
+      "message": "If it\u0027s urgent to land this please LMK, otherwise I\u0027d rather wait for John\u0027s feedback when he gets back next week.  Also, I\u0027m a little concerned about what would happen to pinpoint jobs that were already running (and have some pickled state from the previous version squirreled away in ndb) when this change is deployed. Would they still run as expected?",
+      "parentUuid": "4e09d027_137ce4aa",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
