@@ -16,6 +16,24 @@
       "message": "Does `index` have to be a required parameter to this now? Do all callers of `ScheduleWork` have a value to pass for `index` that makes sense?",
       "revId": "9d248526c79df845c3c2082337c62d87db008a42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bddab29_bc59724b",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-14T00:44:58Z",
+      "side": 1,
+      "message": "Yes. I don\u0027t think there is a generic index value that makes sense because every iteration would write to the same index. \n\nFortunately, AFAIK, job_state is the only caller of attempt.py\u0027s scheduleWork(), but I\u0027ll run a bisection on staging tomorrow just to make sure nothing goes wrong.",
+      "parentUuid": "cb7e6c56_844498ba",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
