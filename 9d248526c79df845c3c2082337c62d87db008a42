@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99675469_2993c4ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-15T16:40:14Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb7e6c56_844498ba",
@@ -86,6 +103,29 @@
       "side": 1,
       "message": "It\u0027s not urgent. I\u0027ll add him to the reviewers to get his feedback.",
       "parentUuid": "34100aee_f378cb6e",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c0d126c_2b5a2a6e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-15T16:40:14Z",
+      "side": 1,
+      "message": "nit: Let\u0027s have a different logging for this.",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 74
+      },
       "revId": "9d248526c79df845c3c2082337c62d87db008a42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
