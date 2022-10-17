@@ -73,7 +73,7 @@ def DescribePost():
   return describe.DescribePost()
 
 
-@flask_app.route('/api/test_suites', methods=['POST'])
+@flask_app.route('/api/test_suites', methods=['GET', 'POST'])
 def TestSuitesPost():
   return test_suites.TestSuitesPost()
 
