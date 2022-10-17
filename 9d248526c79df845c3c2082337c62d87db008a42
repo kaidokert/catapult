@@ -109,6 +109,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1ea034c_368d1f22",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2022-10-17T16:45:36Z",
+      "side": 1,
+      "message": "Maybe you need to change it to \u0027\u003c\u0027\n\nfor example, for the first execution, the index is 0, the  len(self._started_executions[change]) is 0 too. so it will append a \u0027None\u0027 self._started_executions[change], which is not necessary.",
+      "range": {
+        "startLine": 152,
+        "startChar": 48,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c0d126c_2b5a2a6e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 6
