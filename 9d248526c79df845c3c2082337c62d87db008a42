@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c4ede65_e934e5bc",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-17T17:38:14Z",
+      "side": 1,
+      "message": "There is a small chance that an already-running job can hang when this change is deployed. If we want to be safe, we can make the _Start method in run_test.py more robust. (See comments in that file.)",
+      "parentUuid": "04043ef2_6bd1bf9f",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1ea034c_368d1f22",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 6
@@ -149,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1598946_23e5e8a8",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-17T17:38:14Z",
+      "side": 1,
+      "message": "\u0027\u003c\u003d\u0027 is correct, if a little wasteful. The code appends a None, and then immediately overwrites it with the actual value. This is necessary, because otherwise you can get index out of range error.",
+      "parentUuid": "c1ea034c_368d1f22",
+      "range": {
+        "startLine": 152,
+        "startChar": 48,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83b012d7_89296430",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 6
@@ -160,6 +202,30 @@
       "writtenOn": "2022-10-17T16:55:44Z",
       "side": 1,
       "message": "also change this line to:\nself._started_executions[change].append(test_execution).\n\nIt\u0027s more efficient for the code, but you may keep your code if you like.",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 60
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4098756_02c76a75",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-17T17:38:14Z",
+      "side": 1,
+      "message": "This method isn\u0027t always called in order, i.e., it could first get called for indexes 5 through 9, and then 0 through 4, so it\u0027s not always an append.\n\nProbably the better thing to do is this:\n\nNear beginning of this method, use:\n\n    if change not in self._started_executions:\n      self._started_executions[change] \u003d [None] * self._attempt_count\n      \nThen here we can do:\n\n    if len(self._started_executions[change]) \u003c self._attempt_count:\n      # This must have been created by an old version of the code,\n      # continue to do the old way.\n      self._started_executions[change].append(test_execution)\n    else:\n      # The new way\n      self._started_executions[change][index] \u003d test_execution",
+      "parentUuid": "83b012d7_89296430",
       "range": {
         "startLine": 154,
         "startChar": 4,
