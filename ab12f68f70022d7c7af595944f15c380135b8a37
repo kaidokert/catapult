@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "ab12f68f70022d7c7af595944f15c380135b8a37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4dafb44_74d0d966",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-10-17T23:23:28Z",
+      "side": 1,
+      "message": "Thanks for looking into this Funing! Have you been able to verify this fixes the problem? I know there\u0027s been some difficulty getting this CORS issue to repro.\n\nIn the optimistic case that we have any tests that cover this, please update them too.",
+      "revId": "ab12f68f70022d7c7af595944f15c380135b8a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
