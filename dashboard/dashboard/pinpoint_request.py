@@ -23,6 +23,8 @@ from dashboard.models import graph_data
 from dashboard.services import crrev_service
 from dashboard.services import pinpoint_service
 
+from flask import request, make_response
+
 _NON_CHROME_TARGETS = ['v8']
 _SUITE_CRREV_CONFIGS = {
     'v8': ['chromium', 'v8/v8'],
@@ -34,6 +36,12 @@ class InvalidParamsError(Exception):
   pass
 
 
+def PinpointNewBisectPost():
+  job_params = dict(
+      (a, request.values.get(a)) for a in request.values)
+  return make_response(NewPinpointBisect(job_params))
+
+
 class PinpointNewPrefillRequestHandler(request_handler.RequestHandler):
 
   def post(self):
@@ -42,13 +50,15 @@ class PinpointNewPrefillRequestHandler(request_handler.RequestHandler):
     self.response.write(json.dumps({'story_filter': t.unescaped_story_name}))
 
 
-class PinpointNewBisectRequestHandler(request_handler.RequestHandler):
+if six.PY2:
+  class PinpointNewBisectRequestHandler(request_handler.RequestHandler):
 
-  def post(self):
-    logging.debug('crbug/1298177 - pinpoint_request new bisect POST triggered')
-    job_params = dict(
-        (a, self.request.get(a)) for a in self.request.arguments())
-    self.response.write(json.dumps(NewPinpointBisect(job_params)))
+    def post(self):
+      logging.debug(
+          'crbug/1298177 - pinpoint_request new bisect POST triggered')
+      job_params = dict(
+          (a, self.request.get(a)) for a in self.request.arguments())
+      self.response.write(json.dumps(NewPinpointBisect(job_params)))
 
 
 def NewPinpointBisect(job_params):
