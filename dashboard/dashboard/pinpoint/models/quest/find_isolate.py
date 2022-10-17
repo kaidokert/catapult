@@ -80,7 +80,8 @@ class FindIsolate(quest.Quest):
     if not hasattr(self, '_build_tags'):
       self._build_tags = collections.OrderedDict()
 
-  def Start(self, change):
+  def Start(self, change, index):
+    del index  # not needed in this step
     return _FindIsolateExecution(
         self._builder_name,
         self._target,
