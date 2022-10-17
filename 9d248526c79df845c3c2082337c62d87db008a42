@@ -189,6 +189,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dafbfaba_a044c719",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-17T23:20:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1598946_23e5e8a8",
+      "range": {
+        "startLine": 152,
+        "startChar": 48,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83b012d7_89296430",
@@ -238,6 +262,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "261950b1_c4f12325",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-17T23:20:20Z",
+      "side": 1,
+      "message": "I made the adjustments recommended, but I\u0027m not sure how these changes address potential Pinpoint jobs that are running when the traffic change takes place.\n\nWould there have to be additional edits on line 137 to specify an index: `dimensions \u003d self._GetDimensions(index)` ?",
+      "parentUuid": "b4098756_02c76a75",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 60
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c0d126c_2b5a2a6e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 6
@@ -249,6 +297,30 @@
       "writtenOn": "2022-10-15T16:40:14Z",
       "side": 1,
       "message": "nit: Let\u0027s have a different logging for this.",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 74
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09573b83_ef4d737f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-17T23:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c0d126c_2b5a2a6e",
       "range": {
         "startLine": 166,
         "startChar": 42,
