@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ce2e3c4_4278ee2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2022-10-17T17:00:42Z",
+      "side": 1,
+      "message": "It\u0027s great that you found the root cause and made this change!\n\nI think the ideal long term fix is to merge multiple executions of FindIsolate for the same change to one FindIsolate execution. Since all of those executions are waiting for the same build. keep multiple FindIsolate execution is redundant, not efficient, and hard to keep consistent.\nBut it would be a big change, we may handle it as a separate tech optimization task, you don\u0027t have to do it in this CL.",
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb7e6c56_844498ba",
