@@ -33,6 +33,24 @@
       "message": "Thanks for looking into this Funing! Have you been able to verify this fixes the problem? I know there\u0027s been some difficulty getting this CORS issue to repro.\n\nIn the optimistic case that we have any tests that cover this, please update them too.",
       "revId": "ab12f68f70022d7c7af595944f15c380135b8a37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b00fd8f9_2efa9b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-17T23:30:33Z",
+      "side": 1,
+      "message": "From the logs:\n\nhttps://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-10-17T21:53:11.180322Z;query\u003d%22%2Fapi%2Fdescribe%22%0Aseverity%3DERROR%0Atimestamp%3D%222022-10-17T21:53:11.180322Z%22%0AinsertId%3D%22634dcec700040ab3bfbd3020%22?project\u003dchromeperf\n\nWe see a 500 here which is the real culprit. Then it throws without getting the header, returning a CORs error.",
+      "parentUuid": "e4dafb44_74d0d966",
+      "revId": "ab12f68f70022d7c7af595944f15c380135b8a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
