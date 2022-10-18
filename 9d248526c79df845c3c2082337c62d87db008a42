@@ -286,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "283298c5_52e8358f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-18T00:22:07Z",
+      "side": 1,
+      "message": "Here is an example of why Patch Set #6 wasn\u0027t safe. Let\u0027s say self._attempt_count is 10, and we are running the old version of this file (without this CL). Let\u0027s further assume that while processing the first 2 attempts, the isolate wasn\u0027t ready, but the isolate becomes ready for the final 8 attempts. This causes _Start to be called 8 times. Since the old code always append to self._started_executions[change], at the end this list will have 8 elements, all of them are not None.\n\nThen one minute later, the job will run again, and let\u0027s assume that within this minute, this CL has been deployed. Since the first 2 attempts haven\u0027t been started yet, _Start will be called twice, with index of 0 and 1, respectively. Code in patch set #6 would overwrite the first two elements of self._started_executions[change], so at the end the list will still have only 8 elements. This means we\u0027ll always have len(a_list) !\u003d self._attempt_count, and the job will not be able to run the tests.\n\nPatch Set #8 can detect that the list was created by a previous version of the code, and continue to use the old method (i.e., append to the list), to avoid the problem mentioned above.\n\nThinking more about this, we would still have problem if self._started_executions[change] is partially filled by the new version of the code, but then the deployed code is rolled back to the old version before the job is run again. This is harder to handle, as we can\u0027t change the behavior of old code. I think we just have to ignore that case.\n\nAbout line 137, to be strictly correct, we should overwrite index with len(self._started_executions[change]) if we detect the old case. I\u0027ll leave it up to you to decide whether to make that change. We would already be having bad pairing in that case anyway.",
+      "parentUuid": "261950b1_c4f12325",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 60
+      },
+      "revId": "9d248526c79df845c3c2082337c62d87db008a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c0d126c_2b5a2a6e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 6
