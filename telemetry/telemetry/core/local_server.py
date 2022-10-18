@@ -85,6 +85,9 @@ class LocalServer():
 
     env = os.environ.copy()
     env['PYTHONPATH'] = os.pathsep.join(sys.path)
+    logging.info('Starting LocalServer...')
+    logging.info('CMD: %s', cmd)
+    logging.info('env: %s', env)
 
     self._subprocess = subprocess.Popen(cmd,
                                         cwd=util.GetTelemetryDir(),
@@ -93,6 +96,7 @@ class LocalServer():
                                         stderr=subprocess.PIPE)
 
     named_ports = self._GetNamedPortsFromBackend()
+    logging.info('NAMED PORTS: %s', str(named_ports))
     http_port = None
     for p in named_ports:
       if p.name == 'http':
@@ -182,6 +186,8 @@ class LocalServerController():
       raise Exception(
           'Cannot have two servers of the same class running at once. ' +
           'Locate the existing one and use it, or call Close() on it.')
+
+    logging.info('StartServer called  on %s', str(server))
 
     server.Start(self)
     self._local_servers_by_class[server.__class__] = server

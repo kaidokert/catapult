@@ -8,6 +8,7 @@ import six
 from py_trace_event import trace_event
 from telemetry.util import wpr_modes
 
+import logging
 
 class NetworkController(
     six.with_metaclass(trace_event.TracedMetaClass, object)):
@@ -27,6 +28,7 @@ class NetworkController(
   def Open(self, wpr_mode=None):
     if wpr_mode is None:
       wpr_mode = wpr_modes.WPR_REPLAY
+    logging.info('NETWORK BACKEND: %s', str(self._network_controller_backend))
     self._network_controller_backend.Open(wpr_mode)
 
   def Close(self):

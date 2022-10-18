@@ -1,0 +1,534 @@
+# Copyright 2013 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+from __future__ import absolute_import
+import os
+import shutil
+import socket
+import subprocess
+import tempfile
+import unittest
+import mock
+
+from devil.utils import cmd_helper
+from telemetry.core import linux_based_interface
+from telemetry import decorators
+from telemetry.internal.forwarders import cros_forwarder
+from telemetry.testing import options_for_unittests
+from telemetry.util import cmd_util
+
+
+class LinuxBasedInterfaceHelperMethodsTest(unittest.TestCase):
+
+  @mock.patch.object(cmd_util, 'GetAllCmdOutput')
+  def testGetAllCmdOutputCallsAndDecodes(self, mock_get_output):
+    mock_stdout = mock.create_autospec(bytes, instance=True)
+    mock_stdout.decode.return_value = 'decoded stdout'
+    mock_stderr = mock.create_autospec(bytes, instance=True)
+    mock_stderr.decode.return_value = 'decoded stderr'
+    mock_get_output.return_value = (mock_stdout, mock_stderr)
+
+    stdout, stderr = linux_based_interface.GetAllCmdOutput(['forward', 'me'])
+
+    self.assertEqual(stdout, 'decoded stdout')
+    self.assertEqual(stderr, 'decoded stderr')
+
+    mock_stdout.decode.assert_called_once_with('utf-8')
+    mock_stderr.decode.assert_called_once_with('utf-8')
+
+    mock_get_output.assert_called_once_with(['forward', 'me'],
+                                             None,
+                                             False)
+
+    mock_get_output.reset_mock()
+    linux_based_interface.GetAllCmdOutput(
+        ['forward', 'me'], quiet=True, cwd='some/dir')
+    mock_get_output.assert_called_once_with(['forward', 'me'], 'some/dir', True)
+
+
+  @mock.patch.object(cmd_util, 'StartCmd')
+  def testStartCmdForwardsArgs(self, mock_start):
+    ret = mock.Mock()
+    mock_start.return_value = ret
+
+    self.assertEqual(linux_based_interface.StartCmd('cmd'),
+                     ret)
+
+    mock_start.assert_called_once_with('cmd', None, False)
+
+    mock_start.reset_mock()
+    self.assertEqual(linux_based_interface.StartCmd('another cmd',
+                                                    quiet=True,
+                                                    cwd='some/other/dir'),
+                     ret)
+    mock_start.assert_called_once_with('another cmd',
+                                       'some/other/dir',
+                                       True)
+
+
+class LinuxBasedInterfaceTest(unittest.TestCase):
+
+  def _GetLBI(self, remote = None, remote_ssh_port = None,
+              ssh_identity = None):
+    # TODO(crbug.com/1344930): Rename these flags.
+    remote = remote or options_for_unittests.GetCopy().cros_remote
+    remote_ssh_port = remote_ssh_port or options_for_unittests.GetCopy().cros_remote_ssh_port
+    ssh_identity = ssh_identity or options_for_unittests.GetCopy().cros_ssh_identity
+
+    return linux_based_interface.LinuxBasedInterface(
+        remote, remote_ssh_port,
+        ssh_identity)
+
+  def _GetLocalLBI(self):
+    return linux_based_interface.LinuxBasedInterface()
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  def testLocal(self, unused_mock):
+    with self._GetLocalLBI() as lbi:
+      self.assertTrue(lbi.local)
+      self.assertIsNone(lbi.hostname)
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  def testLocalIsFalseIfHostname(self, unused_mock):
+    with self._GetLBI(remote='some address') as lbi:
+      self.assertFalse(lbi.local)
+      self.assertEqual(lbi.hostname, 'some address')
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  def testCallsOpenConnectionOnInitRemote(self, mock_open):
+    with self._GetLBI(remote='address') as lbi:
+      mock_open.assert_called_once_with()
+
+  @mock.patch.object(subprocess, 'call')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'FormSSHCommandLine')
+  def testOpenConnection(self, mock_call, mock_form_ssh):
+    with self._GetLocalLBI() as lbi:
+      # Check that local will return immediately.
+      self.assertTrue(lbi.local)
+      lbi.OpenConnection()
+      self.assertEqual(mock_call.call_count, 0)
+      self.assertEqual(mock_form_ssh.call_count, 0)
+
+    mock_call.reset_mock()
+    mock_form_ssh.reset_mock()
+
+    # Test remote case calls OpenConnection on start.
+    with self._GetLBI(remote='address') as lbi:
+      mock_form_ssh.assert_called_once()
+      mock_call.assert_called_once()
+
+      self.assertTrue(lbi._master_connection_open)
+
+      # Assert no duplicate calls if already open.
+      lbi.OpenConnection()
+      self.assertEqual(mock_form_ssh.call_count, 1)
+      self.assertEqual(mock_call.call_count, 1)
+
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  def testFormSSHCommandLineLocal(self, unused_mock):
+    with self._GetLocalLBI() as lbi:
+      self.assertEqual(lbi.FormSSHCommandLine(['some', 'args']),
+                       ['sh', '-c', 'some args'])
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  def testFormSSHCommandLineRemote(self, unused_conn):
+    with self._GetLBI(remote='address') as lbi:
+      lbi._DEFAULT_SSH_CONNECTION_TIMEOUT = 42
+      lbi._DEFAULT_SSH_COMMAND = ['fizz', 'buzz']
+      lbi._ssh_args = ['-o SomeOptions', '-o ToAdd']
+      lbi._ssh_control_file = 'some_file'
+      lbi._ssh_port = 8222
+      lbi._ssh_identity = 'foo-bar'
+
+      result = lbi.FormSSHCommandLine(['some', 'args'])
+      formed = ' '.join(result)
+
+      # Ensure the correct components are present
+      # SSH command
+      self.assertIn('fizz buzz', formed)
+      # Default timeout
+      self.assertIn('-o ConnectTimeout=42', formed)
+      # Control file (if no port-forwarding)
+      self.assertIn('-S some_file', formed)
+      # SSH Args.
+      self.assertIn('-o SomeOptions -o ToAdd', formed)
+      # Check root and SSH port
+      self.assertIn('root@address', formed)
+      self.assertIn('-p8222', formed)
+      # SSH Identity
+      self.assertIn('-i foo-bar', formed)
+      # args given.
+      self.assertIn('some args', formed)
+
+      # Timeout override, extra_args, and port_forward
+      result = lbi.FormSSHCommandLine(['some', 'args'],
+                                      connect_timeout=57,
+                                      port_forward=True,
+                                      extra_ssh_args=['additional', 'ssh', 'args'])
+      formed = ' '.join(result)
+      # Default timeout
+      self.assertIn('-o ConnectTimeout=57', formed)
+      # Control file not present if  port-forwarding
+      self.assertNotIn('-S some_file', formed)
+      # extra args given.
+      self.assertIn('additional ssh args', formed)
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  def testRemoveSSHWarnings(self, unused_mock):
+    with self._GetLBI() as lbi:
+      filter_string = 'Warning: Permanently added something to the list of known hosts.\n\n'
+      test_string = filter_string + 'Output from some command'
+
+      self.assertEqual(lbi._RemoveSSHWarnings(test_string),
+                       'Output from some command')
+
+      test_string = filter_string.replace('something', 'another address with whitespace') + 'foo'
+      self.assertEqual(lbi._RemoveSSHWarnings(test_string),
+                       'foo')
+
+      # Does not remove.
+      test_string = filter_string.replace('something to', 'something') + 'foo'
+      self.assertEqual(lbi._RemoveSSHWarnings(test_string),
+                       test_string)
+
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'FormSSHCommandLine')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, '_RemoveSSHWarnings')
+  @mock.patch.object(linux_based_interface, 'GetAllCmdOutput')
+  def testTryLoginRunsEcho(self, mock_get_output, mock_remove_warnings, mock_form_ssh, unused_mock):
+    with self._GetLBI() as lbi:
+      mock_form_ssh.return_value = ['some', 'args']
+      mock_get_output.return_value = ('stdout', 'stderr')
+      mock_remove_warnings.return_value = 'filtered stderr'
+
+      stdout, stderr = lbi.RunCmdOnDevice(['additional', 'args'],
+                         cwd='/some/dir',
+                         quiet=True,
+                         connect_timeout=57,
+                         port_forward=True)
+      self.assertEqual(stdout, 'stdout')
+      self.assertEqual(stderr, 'filtered stderr')
+
+      mock_form_ssh.assert_called_once_with(
+          ['additional', 'args'],
+          connect_timeout=57,
+          port_forward=True)
+      mock_get_output.assert_called_once_with(
+          ['some', 'args'],
+          cwd='/some/dir',
+          quiet=True)
+      mock_remove_warnings.asset_called_once_with('stderr')
+
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  def testTryLoginRunsEcho(self, mock_run_cmd, unused_mock):
+    with self._GetLBI(remote='address') as lbi:
+      lbi._REMOTE_USER = 'foo_user'
+      mock_run_cmd.return_value = ('foo_user\n', '')
+      lbi.TryLogin()
+
+      mock_run_cmd.assert_called_once_with(['echo', '$USER'],
+                                           quiet=mock.ANY,
+                                           connect_timeout=mock.ANY)
+
+      mock_run_cmd.return_value = 'bad user', ''
+      self.assertRaises(linux_based_interface.LoginException, lbi.TryLogin)
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  def testTryLoginErrors(self, mock_run_cmd, unused_mock):
+    with self._GetLBI(remote='address') as lbi:
+      mock_run_cmd.return_value = ('', 'random error')
+
+      self.assertRaisesRegex(linux_based_interface.LoginException,
+                             'logging into address, got random error',
+                             lbi.TryLogin)
+
+      mock_run_cmd.return_value = ('', lbi._HOST_KEY_ERROR)
+      self.assertRaisesRegexp(linux_based_interface.LoginException,
+                              'address host key verification failed',
+                              lbi.TryLogin)
+      mock_run_cmd.return_value = ('', lbi._TIMEOUT_ERROR)
+      self.assertRaisesRegexp(linux_based_interface.LoginException,
+                              '[tT]imed out',
+                              lbi.TryLogin)
+      mock_run_cmd.return_value = ('', lbi._PRIV_KEY_PROTECTIONS_ERROR)
+      self.assertRaisesRegexp(linux_based_interface.LoginException,
+                              '[pP]ermissions.*are too open',
+                              lbi.TryLogin)
+      mock_run_cmd.return_value = ('', lbi._SSH_AUTH_ERROR)
+      self.assertRaisesRegexp(linux_based_interface.LoginException,
+                              '[nN]eed to set up ssh auth',
+                              lbi.TryLogin)
+      mock_run_cmd.return_value = ('', lbi._HOSTNAME_RESOLUTION_ERROR)
+      self.assertRaisesRegexp(linux_based_interface.DNSFailureException,
+                              '[uU]nable to resolve the hostname for: address',
+                              lbi.TryLogin)
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'OpenConnection')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  def testFileExistsOnDevice(self, mock_run_cmd, unused_mock):
+    with self._GetLBI(remote='address') as lbi:
+      mock_run_cmd.return_value = ('1\n', '')
+      self.assertTrue(self.FileExistsOnDevice('foo'))
+
+      # Check that file existence is called.
+      self.assertIn('test -e foo', ' '.join(mock_run_cmd.call_args))
+
+      # Check bad stdout returns False.
+      mock_run_cmd.return_value = ('', '')
+      self.assertFalse(self.FileExistsOnDevice('foo'))
+
+
+
+
+
+  #@decorators.Enabled('linux')
+  #def testExists(self):
+  #  with self._GetLBI() as lbi:
+  #    self.assertTrue(lbi.FileExistsOnDevice('/proc/cpuinfo'))
+  #    self.assertTrue(lbi.FileExistsOnDevice('/etc/passwd'))
+
+
+
+
+  #@decorators.Enabled('linux')
+  #def testExists(self):
+  #  with self._GetLBI() as lbi:
+  #    self.assertTrue(lbi.FileExistsOnDevice('/proc/cpuinfo'))
+  #    self.assertTrue(lbi.FileExistsOnDevice('/etc/passwd'))
+  #    self.assertFalse(lbi.FileExistsOnDevice('/etc/sdlfsdjflskfjsflj'))
+
+  #@decorators.Enabled('linux')
+  #def testGetFileContents(self):
+  #  with self._GetLBI() as lbi:
+  #    hosts = lbi.GetFileContents('/etc/lsb-release')
+  #    self.assertTrue('CHROMEOS' in hosts)
+
+  #@decorators.Enabled('linux')
+  #def testGetFile(self):  # pylint: disable=no-self-use
+  #  with self._GetLBI() as lbi:
+  #    f = tempfile.NamedTemporaryFile()
+  #    lbi.GetFile('/etc/lsb-release', f.name)
+  #    with open(f.name, 'r') as f2:
+  #      res = f2.read()
+  #      self.assertTrue('CHROMEOS' in res)
+
+  #@decorators.Enabled('linux')
+  #def testGetFileQuotes(self):  # pylint: disable=no-self-use
+  #  with self._GetLBI() as lbi:
+  #    f = tempfile.NamedTemporaryFile()
+  #    lbi.GetFile(cmd_helper.SingleQuote('/etc/lsb-release'), f.name)
+  #    with open(f.name, 'r') as f2:
+  #      res = f2.read()
+  #      self.assertTrue('CHROMEOS' in res)
+
+  #@decorators.Enabled('linux')
+  #def testGetFileNonExistent(self):
+  #  with self._GetLBI() as lbi:
+  #    f = '/tmp/testGetFile'  # A path that can be created on the device.
+  #    lbi.PushContents('testGetFileNonExistent', f)
+  #    lbi.RmRF(f)
+  #    self.assertRaises(OSError, lambda: lbi.GetFile(f))
+
+  #@decorators.Enabled('linux')
+  #def testIsServiceRunning(self):
+  #  with self._GetLBI() as lbi:
+  #    self.assertTrue(lbi.IsServiceRunning('openssh-server'))
+
+  ## TODO(crbug.com/799484): Fix this test.
+  #@decorators.Disabled('all')
+  #def testGetRemotePortAndIsHTTPServerRunningOnPort(self):
+  #  with self._GetLBI() as lbi:
+  #    # Create local server.
+  #    sock = socket.socket()
+  #    sock.bind(('', 0))
+  #    port = sock.getsockname()[1]
+  #    sock.listen(0)
+
+  #    # Get remote port and ensure that it was unused.
+  #    remote_port = lbi.GetRemotePort()
+  #    self.assertFalse(lbi.IsHTTPServerRunningOnPort(remote_port))
+
+  #    # Forward local server's port to remote device's remote_port.
+  #    forwarder = cros_forwarder.CrOsForwarderFactory(lbi).Create(
+  #        local_port=port, remote_port=remote_port)
+
+  #    # At this point, remote device should be able to connect to local server.
+  #    self.assertTrue(lbi.IsHTTPServerRunningOnPort(remote_port))
+
+  #    # Next remote port shouldn't be the same as remote_port, since remote_port
+  #    # is now in use.
+  #    self.assertTrue(lbi.GetRemotePort() != remote_port)
+
+  #    # Close forwarder and local server ports.
+  #    forwarder.Close()
+  #    sock.close()
+
+  #    # Device should no longer be able to connect to remote_port since it is no
+  #    # longer in use.
+  #    self.assertFalse(lbi.IsHTTPServerRunningOnPort(remote_port))
+
+  #@decorators.Enabled('linux')
+  #def testGetRemotePortReservedPorts(self):
+  #  with self._GetLBI() as lbi:
+  #    # Should return 2 separate ports even though the first one isn't
+  #    # technically being used yet.
+  #    remote_port_1 = lbi.GetRemotePort()
+  #    remote_port_2 = lbi.GetRemotePort()
+
+  #    self.assertTrue(remote_port_1 != remote_port_2)
+
+  @decorators.Enabled('linux')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'TakeScreenshot')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'FileExistsOnDevice')
+  def testTakeScreenshotWithPrefixSucceeds(self, mock_file_exists, mock_run_cmd, mock_screenshot):
+    with self._GetLBI() as lbi:
+      mock_file_exists.return_value = False
+
+      self.assertTrue(lbi.TakeScreenshotWithPrefix('test-prefix'))
+
+      screenshot_file = '/tmp/telemetry/screenshots/test-prefix-0.png'
+      mock_file_exists.assert_called_once_with(screenshot_file)
+      mock_screenshot.assert_called_once_with(screenshot_file)
+      mock_run_cmd.assert_called_once_with([
+          'mkdir',
+          '-p',
+          '/tmp/telemetry/screenshots/'])
+
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'TakeScreenshot')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  @mock.patch.object(linux_based_interface.LinuxBasedInterface, 'FileExistsOnDevice')
+  def testTakeScreenshotWithPrefixFailsIfFull(self, mock_file_exists, mock_run_cmd,
+                                              mock_screenshot):
+    with self._GetLBI() as lbi:
+      # Simulate as if there were too many screenshots.
+      mock_file_exists.side_effect = [True, True]
+
+      self.assertFalse(lbi.TakeScreenshotWithPrefix('test-prefix'))
+
+      mock_run_cmd.assert_called_once_with([
+          'mkdir',
+          '-p',
+          '/tmp/telemetry/screenshots/'])
+
+      # Assert there were no screenshots - disc is "full"
+      self.assertEqual(mock_screenshot.call_count, 0)
+
+      screenshot_file = '/tmp/telemetry/screenshots/test-prefix-%d.png'
+      mock_file_exists.assert_has_calls([
+          mock.call(screenshot_file % 0),
+          mock.call(screenshot_file % 1)
+      ])
+
+  #@decorators.Enabled('linux')
+  #def testLsbReleaseValue(self):
+  #  with self._GetLBI() as lbi:
+  #    # TODO: Change this to linux version
+  #    build_num = lbi.LsbReleaseValue('CHROMEOS_RELEASE_BUILD_NUMBER', None)
+  #    self.assertTrue(build_num.isdigit())
+  #    device_type = lbi.GetDeviceTypeName()
+  #    self.assertTrue(device_type.isalpha())
+
+  #@decorators.Enabled('linux')
+  #def testGetBoard(self):
+  #  # All devices, including VMs, should have board names.
+  #  self.assertIsNotNone(self._GetLBI().GetBoard())
+
+  #@decorators.Enabled('linux')
+  #def testEscapeCmdArguments(self):
+  #  """Commands and their arguments that are executed through the cros
+  #  interface should follow bash syntax. This test needs to run on remotely
+  #  and locally on the device to check for consistency.
+  #  """
+  #  options = options_for_unittests.GetCopy()
+  #  # TODO(crbug.com/1344930): Replace these flags names.
+  #  with linux_based_interface.LinuxBasedInterface(options.cros_remote,
+  #                                    options.cros_remote_ssh_port,
+  #                                    options.cros_ssh_identity) as lbi:
+
+  #    # Check arguments with no special characters
+  #    stdout, _ = lbi.RunCmdOnDevice(['echo', '--arg1=value1', '--arg2=value2',
+  #                                    '--arg3="value3"'])
+  #    assert stdout.strip() == '--arg1=value1 --arg2=value2 --arg3=value3'
+
+  #    # Check argument with special characters escaped
+  #    stdout, _ = lbi.RunCmdOnDevice(['echo', '--arg=A\\; echo \\"B\\"'])
+  #    assert stdout.strip() == '--arg=A; echo "B"'
+
+  #    # Check argument with special characters in quotes
+  #    stdout, _ = lbi.RunCmdOnDevice(['echo', "--arg='$HOME;;$PATH'"])
+  #    assert stdout.strip() == "--arg=$HOME;;$PATH"
+
+  #@decorators.Enabled('linux')
+  #def testStartCmdOnDevice(self):
+  #  options = options_for_unittests.GetCopy()
+  #  with linux_based_interface.LinuxBasedInterface(options.cros_remote,
+  #                                    options.cros_remote_ssh_port,
+  #                                    options.cros_ssh_identity) as lbi:
+  #    p = lbi.StartCmdOnDevice(['true'])
+  #    p.wait()
+  #    self.assertEqual(p.returncode, 0)
+
+  #    p = lbi.StartCmdOnDevice(['false'])
+  #    p.wait()
+  #    self.assertEqual(p.returncode, 1)
+
+  #@decorators.Enabled('linux')
+  #@mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  #def testTryLoginSuccess(self, mock_run_cmd):
+  #  mock_run_cmd.return_value = ('root\n', '')
+  #  lbi = linux_based_interface.LinuxBasedInterface(
+  #      "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+  #  lbi.TryLogin()
+  #  mock_run_cmd.assert_called_once_with(
+  #      ['echo', '$USER'], quiet=True, connect_timeout=60)
+
+  #@decorators.Enabled('linux')
+  #@mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  #def testTryLoginStderr(self, mock_run_cmd):
+  #  lbi = linux_based_interface.LinuxBasedInterface(
+  #      "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+
+  #  mock_run_cmd.return_value = ('', 'Host key verification failed')
+  #  self.assertRaises(linux_based_interface.LoginException, lbi.TryLogin)
+  #  self.assertRaisesRegex(linux_based_interface.LoginException,
+  #                          r'.*host key verification failed..*', lbi.TryLogin)
+
+  #  mock_run_cmd.return_value = ('', 'Operation timed out')
+  #  self.assertRaisesRegex(linux_based_interface.LoginException,
+  #                          r'Timed out while logging into.*', lbi.TryLogin)
+
+  #  mock_run_cmd.return_value = ('', 'UNPROTECTED PRIVATE KEY FILE!')
+  #  self.assertRaisesRegex(linux_based_interface.LoginException,
+  #                          r'Permissions for .* are too open. To fix this.*',
+  #                          lbi.TryLogin)
+
+  #  mock_run_cmd.return_value = (
+  #      '', 'Permission denied (publickey,keyboard-interactive)')
+  #  self.assertRaisesRegex(linux_based_interface.KeylessLoginRequiredException,
+  #                          r'Need to set up ssh auth for .*', lbi.TryLogin)
+
+  #  mock_run_cmd.return_value = ('', 'Fallback error case')
+  #  self.assertRaisesRegex(linux_based_interface.LoginException,
+  #                          r'While logging into .*, got .*', lbi.TryLogin)
+
+  #  mock_run_cmd.return_value = ('', 'Could not resolve hostname')
+  #  self.assertRaisesRegex(linux_based_interface.DNSFailureException,
+  #                          r'Unable to resolve the hostname for:.*',
+  #                          lbi.TryLogin)
+
+  #@decorators.Enabled('linux')
+  #@mock.patch.object(linux_based_interface.LinuxBasedInterface, 'RunCmdOnDevice')
+  #def testTryLoginStdout(self, mock_run_cmd):
+  #  mock_run_cmd.return_value = ('notrooot', '')
+  #  lbi = linux_based_interface.LinuxBasedInterface(
+  #      "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+  #  self.assertRaisesRegex(linux_based_interface.LoginException,
+  #                          r'Logged into .*, expected \$USER=root, but got .*',
+  #                          lbi.TryLogin)

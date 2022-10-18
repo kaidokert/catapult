@@ -8,6 +8,7 @@ import os
 import subprocess
 import time
 import six
+import logging
 
 from telemetry.core import local_server
 from telemetry.core import memory_cache_http_server
@@ -60,7 +61,11 @@ def GetPlatformForDevice(device, finder_options, logging=real_logging):
   if device.guid in _REMOTE_PLATFORMS:
     return _REMOTE_PLATFORMS[device.guid]
   try:
-    for platform_backend_class in _IterAllPlatformBackendClasses():
+    platform_classes = _IterAllPlatformBackendClasses()
+    logging.info(f'Platform classes: {platform_classes}')
+    for platform_backend_class in platform_classes:
+      logging.info(f'Checking if {platform_backend_class} is supported')
+
       if platform_backend_class.SupportsDevice(device):
         _REMOTE_PLATFORMS[device.guid] = (
             platform_backend_class.CreatePlatformForDevice(device,
@@ -145,6 +150,10 @@ class Platform():
 
     Examples: WIN, MAC, LINUX, CHROMEOS"""
     return self._platform_backend.GetOSName()
+
+  @property
+  def interface(self):
+    return self._platform_backend.interface
 
   def GetDeviceId(self):
     """Returns a string identifying the device.
@@ -317,6 +326,7 @@ class Platform():
     """Starts a LocalServer and associates it with this platform.
     |server.Close()| should be called manually to close the started server.
     """
+    real_logging.info('Starting local server..')
     self._local_server_controller.StartServer(server)
 
   @property
@@ -447,6 +457,9 @@ class Platform():
     command = '"%s" -duration %d -file "%s"' % (ipg_path, duration, output_path)
     subprocess.Popen(command, shell=True, stderr=subprocess.STDOUT)
     return True
+
+  def GetDisplays(self):
+    return self._platform_backend.GetDisplays()
 
   def CollectIntelPowerGadgetResults(self, output_path, skip_duration=0,
                                      sample_duration=0):

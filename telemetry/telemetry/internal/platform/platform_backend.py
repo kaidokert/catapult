@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
+import logging
 from telemetry.internal.forwarders import do_nothing_forwarder
 from telemetry.internal.platform import network_controller_backend
 from telemetry.internal.platform import tracing_controller_backend
@@ -25,6 +26,7 @@ class PlatformBackend():
     """
     if device and not self.SupportsDevice(device):
       raise ValueError('Unsupported device: %s' % device.name)
+    logging.info('Initializing a PLATFORM BACKEND: %s', str(self))
     self._platform = None
     self._network_controller_backend = None
     self._tracing_controller_backend = None
@@ -65,6 +67,16 @@ class PlatformBackend():
     return self._platform.is_host_platform
 
   @property
+  def interface(self):
+    '''Interface of device, if supported.'''
+    raise NotImplementedError
+
+  @property(self):
+  def has_interface(self):
+    '''Indicates whether interface is a supported property.'''
+    return False
+
+  @property
   def network_controller_backend(self):
     return self._network_controller_backend
 
@@ -79,6 +91,7 @@ class PlatformBackend():
     return self._forwarder_factory
 
   def _CreateForwarderFactory(self):
+    logging.info('Creating forwarder factory in platform_backend')
     return do_nothing_forwarder.DoNothingForwarderFactory()
 
   def GetRemotePort(self, port):
@@ -86,7 +99,6 @@ class PlatformBackend():
 
   def GetSystemLog(self):
     return None
-
 
   def IsRemoteDevice(self):
     """Check if target platform is on remote device.

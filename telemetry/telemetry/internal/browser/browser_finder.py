@@ -50,6 +50,9 @@ def _IsCrosBrowser(options):
   return (options.browser_type in
           ['cros-chrome', 'cros-chrome-guest', 'lacros-chrome'])
 
+def _IsRemoteBrowser(options):
+  return 'remote-' in options.browser_type
+
 def SetTargetPlatformsBasedOnBrowserType(options):
   """Sets options.target_platforms based on options.browser_type
 
@@ -95,10 +98,10 @@ def FindBrowser(options):
     raise browser_finder_exceptions.BrowserFinderException(
         '--browser-executable requires --browser=exact.')
 
-  if (not _IsCrosBrowser(options)  and
-      options.cros_remote is not None):
-    raise browser_finder_exceptions.BrowserFinderException(
-        '--remote requires --browser=[la]cros-chrome[-guest].')
+  if options.cros_remote != None:
+    if (not _IsCrosBrowser(options) and not _IsRemoteBrowser(options)):
+      raise browser_finder_exceptions.BrowserFinderException(
+        '--remote requires --browser=[la]cros-chrome[-guest] or --browser=remote-*')
 
   SetTargetPlatformsBasedOnBrowserType(options)
   devices = device_finder.GetDevicesMatchingOptions(options)
@@ -106,19 +109,24 @@ def FindBrowser(options):
   default_browsers = []
 
   browser_finders = _GetBrowserFinders(options.target_platforms)
-
+  logging.info('All devices: %s', ', '.join([str(d) for d in devices]))
   for device in devices:
     for finder in browser_finders:
+      all_types = finder.FindAllBrowserTypes()
+      logging.info('Device: %s', str(device))
+      logging.info('All browser types: %s', ', '.join([str(d) for d in all_types]))
       if(options.browser_type and options.browser_type != 'any' and
          options.browser_type not in finder.FindAllBrowserTypes()):
         continue
       curr_browsers = finder.FindAllAvailableBrowsers(options, device)
+      logging.info('Current browsers: %s', ', '.join([str(b) for b in curr_browsers]))
       new_default_browser = finder.SelectDefaultBrowser(curr_browsers)
       if new_default_browser:
         default_browsers.append(new_default_browser)
       browsers.extend(curr_browsers)
 
   if not browsers:
+    logging.info('NO BROWSERS FOUND')
     return None
 
   if options.browser_type is None:

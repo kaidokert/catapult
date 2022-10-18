@@ -87,6 +87,8 @@ class SharedPageState(story_module.SharedState):
     self.platform.SetPerformanceMode(finder_options.performance_mode)
     self._perf_mode_set = (finder_options.performance_mode !=
                            android_device.KEEP_PERFORMANCE_MODE)
+    logging.info('Network CONTROLLER for SharedPageState %s',
+                 str(self.platform.network_controller))
     self.platform.network_controller.Open(self.wpr_mode)
     self.platform.Initialize()
     self._video_recording_enabled = (self._finder_options.capture_screen_video
@@ -156,7 +158,10 @@ class SharedPageState(story_module.SharedState):
 
   @property
   def platform(self):
+    logging.info('Platform: %s', str(self._possible_browser.platform))
+    logging.info('Platform backend %s', str(self._possible_browser.platform._platform_backend))
     return self._possible_browser.platform
+
 
   def _AllowInteractionForStage(self, stage):
     if self._finder_options.pause == stage:

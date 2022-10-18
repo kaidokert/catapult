@@ -9,6 +9,7 @@ from telemetry.internal.util import webpagereplay_go_server
 from telemetry.internal.util import ts_proxy_server
 from telemetry.util import wpr_modes
 
+import logging
 
 class ArchiveDoesNotExistError(Exception):
   """Raised when the archive path does not exist for replay mode."""
@@ -26,7 +27,14 @@ class NetworkControllerBackend():
   """
 
   def __init__(self, platform_backend):
-    self._platform_backend = platform_backend
+    logging.info('Creating a network_controller_backend....')
+    import traceback
+    traceback.print_stack()
+    self._platform_backend_true = platform_backend
+    logging.info('INITIALIZING %s', str(self))
+    logging.info('BACKEND: %s', str(platform_backend))
+    logging.info('BACKEND local: %s', str(platform_backend.interface.local))
+    logging.info('INTERACE: %s', str(platform_backend.interface))
     # Controller options --- bracketed by Open/Close
     self._wpr_mode = None
     # Replay options --- bracketed by StartReplay/StopReplay
@@ -67,7 +75,9 @@ class NetworkControllerBackend():
     self._wpr_mode = wpr_mode
     try:
       local_port = self._StartTsProxyServer()
-      self._forwarder = self._platform_backend.forwarder_factory.Create(
+      logging.info('platform_backend in Open: %s', str(self.platform_backend))
+      logging.info('platform_backend.interface in Open: %s', str(self.platform_backend.interface))
+      self._forwarder = self.platform_backend.forwarder_factory.Create(
           local_port=local_port, remote_port=None)
     except Exception:
       self.Close()
@@ -83,7 +93,11 @@ class NetworkControllerBackend():
 
   @property
   def host_ip(self):
-    return self._platform_backend.forwarder_factory.host_ip
+    return self.platform_backend.forwarder_factory.host_ip
+
+  @property
+  def platform_backend(self):
+    return self._platform_backend_true
 
   def Close(self):
     """Undo changes in the target platform used for network control.

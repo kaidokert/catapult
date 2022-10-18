@@ -10,6 +10,8 @@ from telemetry.internal.platform import cast_device
 from telemetry.internal.platform import cros_device
 from telemetry.internal.platform import desktop_device
 from telemetry.internal.platform import fuchsia_device
+from telemetry.internal.platform import linux_device
+import logging
 
 DEVICES = [
     android_device,
@@ -17,6 +19,7 @@ DEVICES = [
     cros_device,
     desktop_device,
     fuchsia_device,
+    linux_device,
 ]
 
 
@@ -32,12 +35,15 @@ def _GetDeviceFinders(supported_platforms):
     device_finders.append(cros_device)
   if 'fuchsia' in supported_platforms:
     device_finders.append(fuchsia_device)
+  if 'linux' in supported_platforms:
+    device_finders.append(linux_device)
   return device_finders
 
 
 def _GetAllAvailableDevices(options):
   """Returns a list of all available devices."""
   devices = []
+  logging.info('Target platforms: %s', ' '.join(options.target_platforms))
   for finder in _GetDeviceFinders(options.target_platforms):
     devices.extend(finder.FindAllAvailableDevices(options))
   return devices
