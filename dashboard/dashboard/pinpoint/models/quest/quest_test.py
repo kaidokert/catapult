@@ -34,8 +34,8 @@ class QuestCycle(_QuestStub):
     """
     self._execution_classes = itertools.cycle(quests)
 
-  def Start(self, change):
-    return next(self._execution_classes).Start(change)
+  def Start(self, change, index):
+    return next(self._execution_classes).Start(change, index)
 
 
 class QuestByChange(_QuestStub):
@@ -50,42 +50,42 @@ class QuestByChange(_QuestStub):
     """
     self._change_mapping = change_mapping
 
-  def Start(self, change):
-    return self._change_mapping[change].Start(change)
+  def Start(self, change, index):
+    return self._change_mapping[change].Start(change, index)
 
 
 class QuestException(_QuestStub):
 
-  def Start(self, change):
-    del change
+  def Start(self, change, index):
+    del change, index
     return execution_test.ExecutionException()
 
 
 class QuestFail(_QuestStub):
 
-  def Start(self, change):
-    del change
+  def Start(self, change, index):
+    del change, index
     return execution_test.ExecutionFail()
 
 
 class QuestFail2(_QuestStub):
 
-  def Start(self, change):
-    del change
+  def Start(self, change, index):
+    del change, index
     return execution_test.ExecutionFail2()
 
 
 class QuestPass(_QuestStub):
 
-  def Start(self, change):
-    del change
+  def Start(self, change, index):
+    del change, index
     return execution_test.ExecutionPass()
 
 
 class QuestSpin(_QuestStub):
 
-  def Start(self, change):
-    del change
+  def Start(self, change, index):
+    del change, index
     return execution_test.ExecutionSpin()
 
 

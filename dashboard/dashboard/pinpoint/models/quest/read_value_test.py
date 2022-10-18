@@ -315,7 +315,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         chart='chart',
         trace_or_story='trace')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
 
     self.assertReadValueSuccess(execution)
@@ -336,7 +336,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['base_perftests', 'perf_resultst.json'],
         chart='chart',
         trace_or_story='trace')
-    execution = quest.Start(None, None, None, {
+    execution = quest.Start(None, None, None, None, {
         'cas_instance': 'cas instance',
         'digest': {
             'hash': 'root hash',
@@ -355,7 +355,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['base_perftests', 'chartjson-output.json'],
         chart='metric',
         trace_or_story='test')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNoFile')
 
@@ -367,7 +367,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['base_perftests', 'chartjson-output.json'],
         chart='metric',
         trace_or_story='test')
-    execution = quest.Start(None, None, None, {
+    execution = quest.Start(None, None, None, None, {
         'cas_instance': 'cas instance',
         'digest': {
             'hash': 'root hash',
@@ -384,7 +384,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         chart='chart',
         trace_or_story='test')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueTraceNotFound')
 
@@ -406,7 +406,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         metric=hist.name,
         grouping_label='label',
         trace_or_story='story')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
 
     self.assertReadValueSuccess(execution)
@@ -420,7 +420,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric='metric',
         grouping_label='test')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
 
   def testReadHistogramsJsonValueStoryNeedsEscape(self):
@@ -440,7 +440,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         metric=hist.name,
         grouping_label='label',
         trace_or_story='http://story')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0, 1, 2))
@@ -464,7 +464,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         metric=hist.name,
         grouping_label='label',
         trace_or_story='story:has:colons:too')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0, 1, 2))
@@ -487,7 +487,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric=hist.name,
         trace_or_story='story:has:colons:too')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
 
     self.assertReadValueSuccess(execution)
@@ -512,7 +512,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         grouping_label='label',
         trace_or_story='story',
         statistic='avg')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (1,))
@@ -533,7 +533,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         grouping_label='label',
         trace_or_story='story',
         statistic='avg')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
 
     self.assertReadValueError(execution, 'ReadValueNoValues')
@@ -563,7 +563,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         metric=hist.name,
         grouping_label='label',
         trace_or_story='story')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0, 1, 2, 0, 1, 2))
@@ -588,7 +588,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_filename='chartjson-output.json',
         results_path=['chartjson-output.json'],
         metric=hist.name)
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0,))
@@ -633,7 +633,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_filename='chartjson-output.json',
         results_path=['chartjson-output.json'],
         metric=hist.name)
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0,))
@@ -672,7 +672,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric=hist.name,
         grouping_label='label')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0, 1, 2))
@@ -692,7 +692,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric=hist.name,
         trace_or_story='story')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0, 1, 2))
@@ -719,7 +719,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric=hists[0].name,
         grouping_label='label')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (sum(samples),))
@@ -762,7 +762,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_filename='chartjson-output.json',
         results_path=['chartjson-output.json'],
         metric=hists[0].name)
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (sum(samples),))
@@ -790,7 +790,7 @@ class ReadValueTest(_ReadValueExecutionTest):
     quest = read_value.ReadValue(
         results_filename='chartjson-output.json',
         results_path=['chartjson-output.json'])
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, ())
@@ -803,7 +803,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric='metric',
         grouping_label='test')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNotFound')
 
@@ -815,7 +815,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_filename='chartjson-output.json',
         results_path=['chartjson-output.json'],
         metric='does_not_exist')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNotFound')
 
@@ -827,7 +827,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_filename='chartjson-output.json',
         results_path=['chartjson-output.json'],
         metric='chart')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNotFound')
 
@@ -840,7 +840,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric='chart',
         grouping_label='label')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNotFound')
 
@@ -853,7 +853,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric='chart',
         trace_or_story='story')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNotFound')
 
@@ -872,7 +872,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric='metric',
         grouping_label='test')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueSuccess(execution)
 
@@ -884,7 +884,7 @@ class ReadValueTest(_ReadValueExecutionTest):
         results_path=['chartjson-output.json'],
         metric='metric',
         grouping_label='test')
-    execution = quest.Start(None, 'server', 'output hash')
+    execution = quest.Start(None, None, 'server', 'output hash')
     execution.Poll()
     self.assertReadValueError(execution, 'ReadValueNotFound')
 

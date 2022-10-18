@@ -48,7 +48,7 @@ class StartTest(unittest.TestCase):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
-    execution = quest.Start('change', 'https://isolate.server', 'isolate hash')
+    execution = quest.Start('change', 0, 'https://isolate.server', 'isolate hash')
     self.assertEqual(execution._extra_args, ['arg'])
 
 
@@ -197,9 +197,9 @@ class RunTestFullTest(_RunTestExecutionTest):
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
 
     execution = quest.Start(
-        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=0), 0, 'isolate server', 'input isolate hash')
     quest.Start(
-        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=1), 0, 'isolate server', 'input isolate hash')
 
     swarming_task_result.assert_not_called()
     swarming_tasks_new.assert_not_called()
@@ -304,10 +304,11 @@ class RunTestFullTest(_RunTestExecutionTest):
 
     change_a = change.Change("a", variant=0)
     change_b = change.Change("b", variant=1)
-    execution = quest.Start(change_a, 'cas_instance', 'hasha/111')
-    quest.Start(change_a, 'cas_instance', 'hasha/111')
-    quest.Start(change_b, 'cas_instance', 'hashb/111')
-    quest.Start(change_b, 'cas_instance', 'hashb/111')
+    quest._attempt_count = 2
+    execution = quest.Start(change_a, 0, 'cas_instance', 'hasha/111')
+    quest.Start(change_a, 1, 'cas_instance', 'hasha/111')
+    quest.Start(change_b, 0, 'cas_instance', 'hashb/111')
+    quest.Start(change_b, 1, 'cas_instance', 'hashb/111')
 
     swarming_task_result.assert_not_called()
 
@@ -368,9 +369,9 @@ class RunTestFullTest(_RunTestExecutionTest):
 
     change_a = change.Change("a", variant=0)
     change_b = change.Change("b", variant=1)
-    execution = quest.Start(change_a, 'cas_instance', 'hasha/111')
-    quest.Start(change_a, 'cas_instance', 'hasha/111')
-    quest.Start(change_b, 'cas_instance', 'hashb/111')
+    execution = quest.Start(change_a, 0, 'cas_instance', 'hasha/111')
+    quest.Start(change_a, 0, 'cas_instance', 'hasha/111')
+    quest.Start(change_b, 0, 'cas_instance', 'hashb/111')
 
     swarming_task_result.assert_not_called()
 
@@ -397,9 +398,9 @@ class RunTestFullTest(_RunTestExecutionTest):
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
 
     execution_a = quest.Start(
-        change.Change("a", variant=0), 'cas_instance', 'xxxxxxxx/111')
+        change.Change("a", variant=0), 0, 'cas_instance', 'xxxxxxxx/111')
     execution_b = quest.Start(
-        change.Change("b", variant=1), 'cas_instance', 'xxxxxxxx/111')
+        change.Change("b", variant=1), 0, 'cas_instance', 'xxxxxxxx/111')
 
     swarming_task_result.assert_not_called()
     swarming_tasks_new.assert_not_called()
@@ -510,9 +511,9 @@ class RunTestFullTest(_RunTestExecutionTest):
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
 
     execution_a = quest.Start(
-        change.Change("a", variant=0), 'cas_instance', 'xxxxxxxx/111')
+        change.Change("a", variant=0), 0, 'cas_instance', 'xxxxxxxx/111')
     execution_b = quest.Start(
-        change.Change("b", variant=1), 'cas_instance', 'xxxxxxxx/111')
+        change.Change("b", variant=1), 0, 'cas_instance', 'xxxxxxxx/111')
 
     swarming_task_result.assert_not_called()
     swarming_tasks_new.assert_not_called()
@@ -573,7 +574,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com', State(1), ['a'] , 'some_batch_id'))
-    quest.Start('change_1', 'isolate server', 'input isolate hash')
+    quest.Start('change_1', 0, 'isolate server', 'input isolate hash')
 
 
 @mock.patch('dashboard.services.swarming.IsBotAlive',
@@ -592,9 +593,9 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
     execution = quest.Start(
-        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=0), 0, 'isolate server', 'input isolate hash')
     quest.Start(
-        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=1), 0, 'isolate server', 'input isolate hash')
     execution.Poll()
     execution.Poll()
 
@@ -631,9 +632,9 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
     execution = quest.Start(
-        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=0), 0, 'isolate server', 'input isolate hash')
     quest.Start(
-        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=1), 0, 'isolate server', 'input isolate hash')
     execution.Poll()
     execution.Poll()
 
@@ -662,9 +663,9 @@ class BotIdHandlingTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
     execution_a = quest.Start(
-        change.Change("a", variant=0), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=0), 0, 'isolate server', 'input isolate hash')
     quest.Start(
-        change.Change("a", variant=1), 'isolate server', 'input isolate hash')
+        change.Change("a", variant=1), 0, 'isolate server', 'input isolate hash')
     execution_a.Poll()
     with self.assertRaises(errors.SwarmingExpired):
       execution_a.Poll()
@@ -679,7 +680,7 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
-    quest.Start('change_1', 'isolate server', 'input isolate hash')
+    quest.Start('change_1', 0, 'isolate server', 'input isolate hash')
 
   @mock.patch('dashboard.services.swarming.IsBotAlive',
               mock.MagicMock(return_value=True))
@@ -691,10 +692,10 @@ class BotIdHandlingTest(_RunTestExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'try',
                 'user@example.com', State(1), ['a'], 'some_batch_id'))
     execution_1 = quest.Start(
-        change.Change("a", variant=0), 'input isolate server',
+        change.Change("a", variant=0), 0, 'input isolate server',
         'input isolate hash')
     execution_2 = quest.Start(
-        change.Change("a", variant=1), 'input isolate server',
+        change.Change("a", variant=1), 0, 'input isolate server',
         'input isolate hash')
 
     swarming_tasks_new.return_value = {'task_id': 'task id'}

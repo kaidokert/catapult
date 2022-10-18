@@ -112,7 +112,7 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com'))
 
-    execution = quest.Start(change_test.Change(123))
+    execution = quest.Start(change_test.Change(123), index=None)
     execution.Poll()
 
     expected_result_arguments = {
@@ -152,7 +152,7 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com'))
 
-    execution = quest.Start(change_test.Change(999))
+    execution = quest.Start(change_test.Change(999), index=None)
     execution.Poll()
 
     expected_result_arguments = {
@@ -196,7 +196,7 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com'))
 
-    execution = quest.Start(change_test.Change(123))
+    execution = quest.Start(change_test.Change(123), index=None)
     execution.Poll()
 
     expected_result_arguments = {
@@ -239,7 +239,7 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com'))
 
-    execution = quest.Start(change_test.Change(123))
+    execution = quest.Start(change_test.Change(123), index=None)
     execution._build = True
     with mock.patch(
         'dashboard.services.buildbucket_service.GetJobStatus',
@@ -279,7 +279,7 @@ class BuildTest(_FindIsolateExecutionTest):
 
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
                                      'luci.bucket')
-    execution = quest.Start(change)
+    execution = quest.Start(change, index=None)
     del execution._bucket
 
     # Request a build.
@@ -292,7 +292,7 @@ class BuildTest(_FindIsolateExecutionTest):
     change = change_test.Change(123, 456, patch=True)
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
                                      'luci.bucket')
-    execution = quest.Start(change)
+    execution = quest.Start(change, index=None)
     del execution._bucket
 
     # Request a build.
@@ -333,7 +333,7 @@ class BuildTest(_FindIsolateExecutionTest):
     quest.PropagateJob(
         FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
                 'user@example.com'))
-    execution = quest.Start(change)
+    execution = quest.Start(change, index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
@@ -426,8 +426,8 @@ class BuildTest(_FindIsolateExecutionTest):
     change = change_test.Change(0)
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
                                      'luci.bucket')
-    execution_1 = quest.Start(change)
-    execution_2 = quest.Start(change)
+    execution_1 = quest.Start(change, index=None)
+    execution_2 = quest.Start(change, index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
@@ -461,7 +461,7 @@ class BuildTest(_FindIsolateExecutionTest):
   def testBuildFailure(self, put, get_job_status):
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
                                      'luci.bucket')
-    execution = quest.Start(change_test.Change(0))
+    execution = quest.Start(change_test.Change(0), index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
@@ -481,7 +481,7 @@ class BuildTest(_FindIsolateExecutionTest):
         'telemetry_perf_tests',
         'luci.bucket',
         comparison_mode='try')
-    execution = quest.Start(change_test.Change(0))
+    execution = quest.Start(change_test.Change(0), index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
@@ -498,7 +498,7 @@ class BuildTest(_FindIsolateExecutionTest):
   def testBuildCanceled(self, put, get_job_status):
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
                                      'luci.bucket')
-    execution = quest.Start(change_test.Change(0))
+    execution = quest.Start(change_test.Change(0), index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
@@ -522,7 +522,7 @@ class BuildTest(_FindIsolateExecutionTest):
         'telemetry_perf_tests',
         'luci.bucket',
         comparison_mode='try')
-    execution = quest.Start(change_test.Change(0))
+    execution = quest.Start(change_test.Change(0), index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
@@ -542,7 +542,7 @@ class BuildTest(_FindIsolateExecutionTest):
   def testBuildSucceededButIsolateIsMissing(self, put, get_job_status):
     quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests',
                                      'luci.bucket')
-    execution = quest.Start(change_test.Change(0))
+    execution = quest.Start(change_test.Change(0), index=None)
 
     # Request a build.
     put.return_value = self.FakePutReturn()
