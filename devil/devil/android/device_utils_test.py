@@ -716,6 +716,9 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_succeedsWithDefaults(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -723,14 +726,15 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_succeedsWithWifi(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -739,8 +743,6 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # wifi_enabled
         (self.call.adb.Shell('dumpsys wifi'),
          'stuff\nWi-Fi is enabled\nmore stuff\n')):
@@ -749,6 +751,9 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_succeedsWithDecryptFDE(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -757,16 +762,17 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         'trigger_restart_framework')):
+        (self.call.device.GetProp('vold.decrypt',
+                                  cache=False), 'trigger_restart_framework')):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=True)
 
   def testWaitUntilFullyBooted_succeedsWithDecryptNotFDE(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -775,8 +781,6 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # decryption_completed
         (self.call.device.GetProp('vold.decrypt', cache=False), '')):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=True)
@@ -784,6 +788,9 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_deviceIsRock960(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), 'rk3399'),
         (self.call.device.GetProp('sys.usb.config'), 'mtp,adb'),
@@ -794,14 +801,15 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_deviceNotInitiallyAvailable(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -817,14 +825,17 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_deviceBrieflyOffline(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed',
+                                  cache=False), self.AdbCommandError()),
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -832,17 +843,15 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False),
-         self.AdbCommandError()),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_sdCardReadyFails_noPath(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -853,6 +862,9 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_sdCardReadyFails_notExists(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -871,6 +883,9 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_devicePmFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -891,27 +906,22 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_bootFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
-        # is_device_connection_ready
-        (self.call.device.GetProp('ro.product.model'), ''),
-        # sd_card_ready
-        (self.call.device.GetExternalStoragePath(), '/fake/storage/path'),
-        (self.call.adb.Shell('test -d /fake/storage/path'), ''),
-        # pm_ready
-        (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
+        # is_boot_completed
         (self.call.device.GetProp('sys.boot_completed', cache=False), '0'),
-        # boot_completed
+        # is_boot_completed
         (self.call.device.GetProp('sys.boot_completed', cache=False), '0'),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False),
-         self.TimeoutError())):
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed',
+                                  cache=False), self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
         self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_wifiFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -920,8 +930,6 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # wifi_enabled
         (self.call.adb.Shell('dumpsys wifi'), 'stuff\nmore stuff\n'),
         # wifi_enabled
@@ -934,6 +942,9 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_decryptFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -942,17 +953,15 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         'trigger_restart_min_framework'),
+        (self.call.device.GetProp(
+            'vold.decrypt', cache=False), 'trigger_restart_min_framework'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         'trigger_restart_min_framework'),
+        (self.call.device.GetProp(
+            'vold.decrypt', cache=False), 'trigger_restart_min_framework'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         self.TimeoutError())):
+        (self.call.device.GetProp('vold.decrypt',
+                                  cache=False), self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
         self.device.WaitUntilFullyBooted(wifi=False, decrypt=True)
 
