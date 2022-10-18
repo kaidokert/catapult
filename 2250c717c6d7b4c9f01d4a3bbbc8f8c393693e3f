@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4058b0_e31de9b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-18T00:43:49Z",
+      "side": 1,
+      "message": "PTAL\n\nno way to test yet since ndb.key.Key would be None in stage",
+      "revId": "2250c717c6d7b4c9f01d4a3bbbc8f8c393693e3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
