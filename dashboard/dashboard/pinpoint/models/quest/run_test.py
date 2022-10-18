@@ -120,17 +120,16 @@ class RunTest(quest.Quest):
     logging.debug('crbug/1364271 - bots propagated %s',
                   [str(b) for b in self._bots])
 
-  def Start(self, change, isolate_server, isolate_hash):
-    return self._Start(change, isolate_server, isolate_hash, self._extra_args,
-                       {}, None)
+  def Start(self, change, index, isolate_server, isolate_hash):
+    return self._Start(change, index, isolate_server, isolate_hash,
+                       self._extra_args, {}, None)
 
-  def _Start(self, change, isolate_server, isolate_hash, extra_args,
+  def _Start(self, change, index, isolate_server, isolate_hash, extra_args,
              swarming_tags, execution_timeout_secs):
     if not hasattr(self, '_started_executions'):
       self._started_executions = {}
     if change not in self._started_executions:
-      self._started_executions[change] = []
-    index = len(self._started_executions[change])
+      self._started_executions[change] = [None] * self._attempt_count
 
     if self._swarming_tags:
       swarming_tags.update(self._swarming_tags)
@@ -150,7 +149,13 @@ class RunTest(quest.Quest):
         command=self.command,
         relative_cwd=self.relative_cwd,
         execution_timeout_secs=execution_timeout_secs)
-    self._started_executions[change].append(test_execution)
+    if len(self._started_executions[change]) < self._attempt_count:
+      # running on older version of code where ScheduleWork in attempt.py
+      # does not use indices
+      logging.debug('crbug/1364271 - older code version executed')
+      self._started_executions[change].append(test_execution)
+    else:
+      self._started_executions[change][index] = test_execution
     return test_execution
 
   def _StartAllTasks(self):
@@ -161,6 +166,9 @@ class RunTest(quest.Quest):
     logging.debug('crbug/1364271 - bots in quest: %s',
                   [str(b) for b in self._bots])
     a_list, b_list = self._started_executions.values()
+    if None in a_list or None in b_list:
+      logging.debug('crbug/1364271 - None in a_list or b_list')
+      return
     if len(a_list) != self._attempt_count or len(b_list) != self._attempt_count:
       logging.debug(
           'crbug/1364271 - len(a_list) or len(b_list) does not equal attempt_count'
