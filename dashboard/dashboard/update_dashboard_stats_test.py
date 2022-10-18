@@ -38,7 +38,8 @@ class _QuestStub(quest.Quest):
   def __str__(self):
     return 'Quest'
 
-  def Start(self, change):
+  def Start(self, change, index):
+    del index
     return ExecutionResults(change)
 
   @classmethod

@@ -87,8 +87,10 @@ class RunWebRtcTest(run_test.RunTest):
     return relative_cwd, command
 
   def Start(self, change, isolate_server, isolate_hash):
+    index=None
     return self._Start(
         change,
+        index,
         isolate_server,
         isolate_hash,
         self._extra_args,
