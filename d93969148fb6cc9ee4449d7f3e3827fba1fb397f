@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d48173c3_eb031c83",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-18T23:36:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53b8c9da_b146897c",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 57
+      },
+      "revId": "d93969148fb6cc9ee4449d7f3e3827fba1fb397f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c54ee1f2_6fb6c942",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-18T23:26:09Z",
       "side": 1,
       "message": "Calling make_response isn\u0027t necessary. You can just return a string. Calling make_response is useful when you need more control over the response (e.g., adding more headers).",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 22
+      },
+      "revId": "d93969148fb6cc9ee4449d7f3e3827fba1fb397f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29ab5041_876612fc",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-10-18T23:36:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c54ee1f2_6fb6c942",
       "range": {
         "startLine": 42,
         "startChar": 9,
