@@ -65,6 +65,16 @@ class PlatformBackend():
     return self._platform.is_host_platform
 
   @property
+  def interface(self):
+    '''Interface of device, if supported.'''
+    raise NotImplementedError
+
+  @property(self):
+  def has_interface(self):
+    '''Indicates whether interface is a supported property.'''
+    return False
+
+  @property
   def network_controller_backend(self):
     return self._network_controller_backend
 

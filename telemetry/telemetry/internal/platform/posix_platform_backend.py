@@ -26,12 +26,18 @@ def _BinaryExistsInSudoersFiles(path, sudoers_file_contents):
   return False
 
 
-def _CanRunElevatedWithSudo(path):
+def _CanRunElevatedWithSudo(path, interface=None):
   """Returns True if the binary at |path| appears in the sudoers file.
   If this function returns true then the binary at |path| can be run via sudo
   without prompting for a password.
   """
-  sudoers = subprocess.check_output(['/usr/bin/sudo', '-l'])
+  cmd = ['/usr/bin/sudo', '-l']
+  if interface:
+    rc, sudoers, _= interface.RunCmdOnDevice(cmd)
+    sudoers = sudoers.strip()
+    assert rc == 0, 'sudo -l failed to execute'
+  else:
+    sudoers = subprocess.check_output(cmd)
   return _BinaryExistsInSudoersFiles(path, sudoers)
 
 
@@ -40,25 +46,36 @@ class PosixPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
   # This is an abstract class. It is OK to have abstract methods.
   # pylint: disable=abstract-method
 
+  @property
+  def interface(self):
+    raise NotImplementedError
+
   def HasRootAccess(self):
-    return os.getuid() == 0
+    stdout, _  = self.interface.RunCmdOnDevice(['echo', '$UID'])
+    return stdout.strip() == 0
 
   def RunCommand(self, args):
-    return subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
+    stdout, _ = self.interface.RunCmdOnDevice(args)
+    return stdout
 
   def GetFileContents(self, path):
-    with open(path, 'r') as f:
-      return f.read()
+    return self.interface.GetFileContents(path)
+
+  def FindApplication(self, application):
+    if self.interface.local:
+      return spawn.find_executable(application)
+    _, stdout, _ = self.interface.RunCmdOnDeviceWithRC(['which', application])
+    return stdout
 
   def CanLaunchApplication(self, application):
-    return bool(spawn.find_executable(application))
+    return bool(self.FindApplication(application))
 
   def LaunchApplication(
       self, application, parameters=None, elevate_privilege=False):
     assert application, 'Must specify application to launch'
 
     if os.path.sep not in application:
-      application = spawn.find_executable(application)
+      application = self.FindApplication(application)
       assert application, 'Failed to find application in path'
 
     args = [application]
@@ -72,21 +89,30 @@ class PosixPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
       sudo will not prompt for a password. Returns False if not authenticated
       via sudo or if telemetry is run on a non-interactive TTY."""
       # `sudo -v` will always fail if run from a non-interactive TTY.
-      p = subprocess.Popen(
-          ['/usr/bin/sudo', '-nv'], stdin=subprocess.PIPE,
-          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-      stdout = p.communicate()[0]
+      rc, stdout, stderr = self.RunCmdOnDeviceWithRC(
+          ['/usr/bin/sudo', '-nv'])
+      stdout += stderr
       # Some versions of sudo set the returncode based on whether sudo requires
       # a password currently. Other versions return output when password is
       # required and no output when the user is already authenticated.
-      return not p.returncode and not stdout
+      return rc and not stdout
 
     def IsSetUID(path):
       """Returns True if the binary at |path| has the setuid bit set."""
-      return (os.stat(path).st_mode & stat.S_ISUID) == stat.S_ISUID
+      if self.interface.local:
+        return (os.stat(path).st_mode & stat.S_ISUID) == stat.S_ISUID
+      dirname, basename = os.path.split(path)
+      stdout, _ = self.interface.RunCmdOnDevice(['find', dirname, '-perm', '/4000',
+                                 '-name', basename
+                                 ])
+      return stdout.strip == path
+
 
     if elevate_privilege and not IsSetUID(application):
-      args = ['/usr/bin/sudo'] + args
+      if not self.interface.local:
+        logging.warning('Non-local platform interface is always running root')
+      else:
+        args = ['/usr/bin/sudo'] + args
       if not _CanRunElevatedWithSudo(application) and not IsElevated():
         if not sys.stdout.isatty():
           # Without an interactive terminal (or a configured 'askpass', but
@@ -107,9 +133,6 @@ class PosixPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
         # Synchronously authenticate.
         subprocess.check_call(['/usr/bin/sudo', '-v'])
 
-    stderror_destination = subprocess.PIPE
-    if logging.getLogger().isEnabledFor(logging.DEBUG):
-      stderror_destination = None
 
-    return subprocess.Popen(
-        args, stdout=subprocess.PIPE, stderr=stderror_destination)
+    return self.interface.StartCmd(
+        args)

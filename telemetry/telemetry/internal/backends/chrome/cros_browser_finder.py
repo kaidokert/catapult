@@ -34,7 +34,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   # anything in this file, so we can quote it here instead of everywhere it's
   # used.
   _CROS_MINIDUMP_DIR = cmd_helper.SingleQuote(
-      cros_interface.CrOSInterface.CROS_MINIDUMP_DIR)
+      cros_interface.CrOSInterface.MINIDUMP_DIR)
 
   _DEFAULT_CHROME_ENV = [
       'CHROME_HEADLESS=1',
