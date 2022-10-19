@@ -9,7 +9,7 @@ import os
 import subprocess
 
 
-def RunCmd(args, cwd=None, quiet=False):
+def RunCmd(args, cwd=None, quiet=False, env=None):
   """Opens a subprocess to execute a program and returns its return value.
 
   Args:
@@ -29,11 +29,12 @@ def RunCmd(args, cwd=None, quiet=False):
                          stdout=devnull,
                          stderr=devnull,
                          stdin=devnull,
-                         shell=False)
+                         shell=False,
+                         env=env)
     return p.wait()
 
 
-def GetAllCmdOutput(args, cwd=None, quiet=False):
+def GetAllCmdOutput(args, cwd=None, quiet=False, env=None):
   """Open a subprocess to execute a program and returns its output.
 
   Args:
@@ -53,14 +54,18 @@ def GetAllCmdOutput(args, cwd=None, quiet=False):
                          cwd=cwd,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE,
-                         stdin=devnull)
+                         stdin=devnull,
+                         env=env)
     stdout, stderr = p.communicate()
     if not quiet:
       logging.debug(' > stdout=[%s], stderr=[%s]', stdout, stderr)
     return stdout, stderr
 
 
-def StartCmd(args, cwd=None, quiet=False):
+def StartCmd(args, cwd=None, quiet=False,
+             stdout_pipe=None,
+             stderr_pipe=None,
+             env=None):
   """Starts a subprocess to execute a program and returns its handle.
 
   Args:
@@ -68,16 +73,22 @@ def StartCmd(args, cwd=None, quiet=False):
       the string or the first item in the args sequence.
     cwd: If not None, the subprocess's current directory will be changed to
       |cwd| before it's executed.
+    stdout_pipe: Optional pipe to override subprocess call.
+    stderr_pipe: Optional pipe 
+
 
   Returns:
      An instance of subprocess.Popen associated with the live process.
   """
   if not quiet:
     logging.debug(' '.join(args) + ' ' + (cwd or ''))
+  stdout_pipe = stdout_pipe or subprocess.PIPE
+  stderr_pipe = stderr_pipe or subprocess.PIPE
   return subprocess.Popen(args=args,
                           cwd=cwd,
-                          stdout=subprocess.PIPE,
-                          stderr=subprocess.PIPE)
+                          stdout=stdout_pipe,
+                          stderr=stderr_pipe,
+                          env=env)
 
 
 def HasSSH():

@@ -61,6 +61,7 @@ def GetPlatformForDevice(device, finder_options, logging=real_logging):
     return _REMOTE_PLATFORMS[device.guid]
   try:
     for platform_backend_class in _IterAllPlatformBackendClasses():
+
       if platform_backend_class.SupportsDevice(device):
         _REMOTE_PLATFORMS[device.guid] = (
             platform_backend_class.CreatePlatformForDevice(device,
@@ -447,6 +448,9 @@ class Platform():
     command = '"%s" -duration %d -file "%s"' % (ipg_path, duration, output_path)
     subprocess.Popen(command, shell=True, stderr=subprocess.STDOUT)
     return True
+
+  def GetDisplays(self):
+    return self._platform_backend.GetDisplays()
 
   def CollectIntelPowerGadgetResults(self, output_path, skip_duration=0,
                                      sample_duration=0):
