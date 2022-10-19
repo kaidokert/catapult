@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e23caa7_0dda05d9",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-19T17:08:29Z",
+      "side": 1,
+      "message": "This would be activated when index is 0. Please use `if index is None`.",
+      "parentUuid": "0fcd513e_8eefc050",
+      "revId": "0f952e0391e8d02512b43eeae16d0a4334edb9b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8641d87d_7a365600",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 11
@@ -83,6 +101,24 @@
       "side": 1,
       "message": "Looks like this leads to a presubmit failure: \ndashboard/pinpoint/models/quest/run\\_webrtc\\_test\\.py:89:2: W0221: Parameters differ from overridden \u0027Start\u0027 method \\(arguments\\-differ\\)\n\nNot sure if the best approach is to force it to ignore the presubmit or if there\u0027s a better way to fix the unit test",
       "parentUuid": "7ddd679f_15874ef0",
+      "revId": "0f952e0391e8d02512b43eeae16d0a4334edb9b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fbae22d_fb25daeb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-19T17:08:29Z",
+      "side": 1,
+      "message": "The right fix would be adding `index` argument to this `Start` method. Otherwise, I think webrtc tests won\u0027t work, because the caller would pass in the `index` argument, but this method doesn\u0027t expect it. Actually, I think we need to change the definition of `Start` method in all run_*_test.py files. Ugh, quite tedious.\n\nThinking more about this, maybe we should try a different approach. The idea is, make FindIsolate special, so that if the isolate isn\u0027t ready in the first attempt, then we don\u0027t try to check if it is ready in any of the other attempts.\n\nThe changes will be in job_state.py. First add an import:\n\nfrom dashboard.pinpoint.models import quest as quest_module\n\nThen modify its ScheduleWork method:\n\n    for attempts in self._attempts.values():\n      if (attempts\n          and attempts[0].executions\n          and attempts[0].executions[-1] is quest_module.FindIsolate):\n        # Currently running FindIsolate in the first attempt, do special check.\n        execution \u003d attempts[0].executions[-1]\n        execution.Poll()   # Update status, i.e., request build and check if isolate is ready\n        if not execution.completed:\n          # Isolate not ready for attempts[0], don\u0027t bother to check other attempts.\n          work_left \u003d True\n          continue\n        # Need to update status of FindIsolate execution for all attempts.\n        # Some future optimization is possible here.\n        for attempt in attempts:\n          if attempts.executions and attempt.executions[-1] is quest_module.FindIsolate:\n            attempt.executions[-1].Poll()\n          else:\n            logging.warning(...)  # Something unexpected\n      ...\n\nThis is more hacky, in the sense we\u0027re breaking some abstraction between job and quests (now job state knows about FindIsolate quest). The advantage is all changes are in just one file (plus maybe a few test cases).",
+      "parentUuid": "3bbf334e_4939477e",
       "revId": "0f952e0391e8d02512b43eeae16d0a4334edb9b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
