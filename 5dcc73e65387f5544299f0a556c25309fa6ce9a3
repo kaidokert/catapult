@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5d97792_77db37ef",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-19T18:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13c5ca48_e5867cbc",
+      "range": {
+        "startLine": 1108,
+        "startChar": 15,
+        "endLine": 1108,
+        "endChar": 18
+      },
+      "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e399e0d_01dd1e9c",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-10-19T16:51:27Z",
       "side": 1,
       "message": "I am wondering if this is the correct order to wait for. For example, sdcard mounting happens during [\u0027init.rc\u0027 phrase](https://cs.android.com/android/platform/superproject/+/master:system/core/rootdir/init.rc;drc\u003d40e1666fb927717a8f6b60cfbff3c24f4dc65657;l\u003d566), and after that, system services will be launched, including package manager and the call to setup [\"sys.boot_completed\"](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java;drc\u003d9494351464ab6df70d68594622a6e9e6d839b176;l\u003d5150).\n\nBefore committing, can you try this CL first on chromium/src? You can take crrev.com/c/2645424 as a reference.",
+      "range": {
+        "startLine": 1137,
+        "startChar": 26,
+        "endLine": 1137,
+        "endChar": 43
+      },
+      "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "865a7741_cfca32a8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-19T18:44:15Z",
+      "side": 1,
+      "message": "I created CL https://chromium-review.googlesource.com/c/chromium/src/+/3963796, and all of it\u0027s android CQ bots are green. My concern is that the other checks will timeout if booting is not completed. I looked at other android test harnesses like mobly and it checks if sys.boot_completed and dev.bootcomplete are set first before checking anything else.",
+      "parentUuid": "7e399e0d_01dd1e9c",
       "range": {
         "startLine": 1137,
         "startChar": 26,
