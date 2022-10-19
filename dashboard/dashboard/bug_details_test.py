@@ -61,8 +61,7 @@ class BugDetailsHandlerTest(testing_common.TestCase):
 
   # Mocks fetching bugs from issue tracker.
   @unittest.skipIf(sys.platform.startswith('linux'), 'oauth2 mock error')
-  @mock.patch('services.issue_tracker_service.discovery.build',
-              mock.MagicMock())
+  @mock.patch('dashboard.common.utils.CreateServiceClient', mock.MagicMock())
   @mock.patch.object(issue_tracker_service.IssueTrackerService, 'GetIssue',
                      mock.MagicMock(return_value=GET_ISSUE_DATA))
   @mock.patch.object(issue_tracker_service.IssueTrackerService,

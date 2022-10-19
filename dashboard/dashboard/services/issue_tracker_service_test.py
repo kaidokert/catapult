@@ -17,7 +17,7 @@ from dashboard.common import testing_common
 from dashboard.services import issue_tracker_service
 
 
-@mock.patch('services.issue_tracker_service.discovery.build', mock.MagicMock())
+@mock.patch('dashboard.common.utils.CreateServiceClient', mock.MagicMock())
 class IssueTrackerServiceTest(testing_common.TestCase):
 
   def testAddBugComment_Basic(self):
