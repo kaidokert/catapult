@@ -33,6 +33,52 @@
       "message": "Hi John\n\nThis CL changes the order of checks in WaitUntilFullyBooted so that the check for if the device is booted done first. I believe this will remove some flake in the emulator startups. Please take a look.\n\nRegards\nRakib Hasan",
       "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13c5ca48_e5867cbc",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-10-19T16:51:27Z",
+      "side": 1,
+      "message": "I would use `any`, as it appears `dev.bootcomplete` is [not always set](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java;drc\u003d9494351464ab6df70d68594622a6e9e6d839b176;l\u003d5152) when boot is completed.",
+      "range": {
+        "startLine": 1108,
+        "startChar": 15,
+        "endLine": 1108,
+        "endChar": 18
+      },
+      "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e399e0d_01dd1e9c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-10-19T16:51:27Z",
+      "side": 1,
+      "message": "I am wondering if this is the correct order to wait for. For example, sdcard mounting happens during [\u0027init.rc\u0027 phrase](https://cs.android.com/android/platform/superproject/+/master:system/core/rootdir/init.rc;drc\u003d40e1666fb927717a8f6b60cfbff3c24f4dc65657;l\u003d566), and after that, system services will be launched, including package manager and the call to setup [\"sys.boot_completed\"](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java;drc\u003d9494351464ab6df70d68594622a6e9e6d839b176;l\u003d5150).\n\nBefore committing, can you try this CL first on chromium/src? You can take crrev.com/c/2645424 as a reference.",
+      "range": {
+        "startLine": 1137,
+        "startChar": 26,
+        "endLine": 1137,
+        "endChar": 43
+      },
+      "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
