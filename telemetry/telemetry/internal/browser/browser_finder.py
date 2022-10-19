@@ -50,6 +50,9 @@ def _IsCrosBrowser(options):
   return (options.browser_type in
           ['cros-chrome', 'cros-chrome-guest', 'lacros-chrome'])
 
+def _IsRemoteBrowser(options):
+  return 'remote-' in options.browser_type
+
 def SetTargetPlatformsBasedOnBrowserType(options):
   """Sets options.target_platforms based on options.browser_type
 
@@ -95,10 +98,10 @@ def FindBrowser(options):
     raise browser_finder_exceptions.BrowserFinderException(
         '--browser-executable requires --browser=exact.')
 
-  if (not _IsCrosBrowser(options)  and
-      options.cros_remote is not None):
-    raise browser_finder_exceptions.BrowserFinderException(
-        '--remote requires --browser=[la]cros-chrome[-guest].')
+  if options.cros_remote != None:
+    if (not _IsCrosBrowser(options) and not _IsRemoteBrowser(options)):
+      raise browser_finder_exceptions.BrowserFinderException(
+        '--remote requires --browser=[la]cros-chrome[-guest] or --browser=remote-*')
 
   SetTargetPlatformsBasedOnBrowserType(options)
   devices = device_finder.GetDevicesMatchingOptions(options)
@@ -106,9 +109,9 @@ def FindBrowser(options):
   default_browsers = []
 
   browser_finders = _GetBrowserFinders(options.target_platforms)
-
   for device in devices:
     for finder in browser_finders:
+      all_types = finder.FindAllBrowserTypes()
       if(options.browser_type and options.browser_type != 'any' and
          options.browser_type not in finder.FindAllBrowserTypes()):
         continue

@@ -61,13 +61,15 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if not self._executable:
       raise Exception('Cannot create browser, no executable found!')
 
-    if self._flash_path and not os.path.exists(self._flash_path):
-      raise RuntimeError('Flash path does not exist: %s' % self._flash_path)
+    self._CheckFlashPathExists()
+    self._MaybeInitLogFilePath()
 
-    if self.is_logging_enabled:
-      self._log_file_path = os.path.join(tempfile.mkdtemp(), 'chrome.log')
-    else:
-      self._log_file_path = None
+  def _MaybeInitLogFilePath(self):
+    raise NotImplementedError
+
+  def _CheckFlashPathExists(self):
+    raise NotImplementedError
+
 
   @property
   def is_logging_enabled(self):
@@ -79,6 +81,22 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @property
   def log_file_path(self):
     return self._log_file_path
+
+  def _ExecuteWithOutput(self, cmd):
+    raise NotImplementedError
+
+  def IsFile(self, path):
+    raise NotImplementedError
+
+  def GetFileContents(self, path):
+    raise NotImplementedError
+
+  def GetLines(self, path):
+    return self.GetFileContents(path).splitlines()
+
+  @property
+  def path(self):
+    raise NotImplementedError
 
   @property
   def processes(self):
@@ -103,123 +121,47 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                    '        Ss   01:50   0:14 /sbin/init splash')
         assert re.search(REGEXP, EXAMPLE).group(1) == '12228'
         self.rss = re.search(REGEXP, s).group(1)
-    tmp = subprocess.getoutput('ps -aux | grep chrome')
+    tmp = self._ExecuteWithOutput('ps -aux | grep chrome')
     return [Process(line) for line in tmp.split('\n') if '--type=' in line]
 
   @property
   def supports_uploading_logs(self):
     return (self.browser_options.logs_cloud_bucket and self.log_file_path and
-            os.path.isfile(self.log_file_path))
+            self.IsFile(self.log_file_path))
 
   def _GetDevToolsActivePortPath(self):
-    return os.path.join(self.profile_directory, DEVTOOLS_ACTIVE_PORT_FILE)
+    return self.path.join(self.profile_directory, DEVTOOLS_ACTIVE_PORT_FILE)
+
+  def _GetDevToolsFileContents(self, file):
+    if not self.IsFile(file):
+      raise EnvironmentError('DevTools file doest not exist yet')
+
+    # Attempt to avoid reading the file until it's populated.
+    # Both stat and open may raise IOError if not ready, the caller will retry.
+    lines = self.GetLines(file)
+    if lines:
+      lines = [line.rstrip() for line in lines]
+    if not lines:
+      raise EnvironmentError('DevTools file empty')
+    return lines
 
   def _FindDevToolsPortAndTarget(self):
     devtools_file_path = self._GetDevToolsActivePortPath()
-    if not os.path.isfile(devtools_file_path):
-      raise EnvironmentError('DevTools file doest not exist yet')
-    # Attempt to avoid reading the file until it's populated.
-    # Both stat and open may raise IOError if not ready, the caller will retry.
-    lines = None
-    if os.stat(devtools_file_path).st_size > 0:
-      with open(devtools_file_path) as f:
-        lines = [line.rstrip() for line in f]
-    if not lines:
-      raise EnvironmentError('DevTools file empty')
+    lines = self._GetDevToolsFileContents(devtools_file_path)
 
     devtools_port = int(lines[0])
     browser_target = lines[1] if len(lines) >= 2 else None
     return devtools_port, browser_target
 
   def _FindUIDevtoolsPort(self):
-    devtools_file_path = os.path.join(self.profile_directory,
+    devtools_file_path = self.path.join(self.profile_directory,
                                       UI_DEVTOOLS_ACTIVE_PORT_FILE)
-    if not os.path.isfile(devtools_file_path):
-      raise EnvironmentError('UIDevTools file does not exist yet')
-    lines = None
-    if os.stat(devtools_file_path).st_size > 0:
-      with open(devtools_file_path) as f:
-        lines = [line.rstrip() for line in f]
-    if not lines:
-      raise EnvironmentError('UIDevTools file empty')
+    lines = self._GetDevToolsFileContents(devtools_file_path)
     devtools_port = int(lines[0])
     return devtools_port
 
   def Start(self, startup_args):
-    assert not self._proc, 'Must call Close() before Start()'
-
-    self._dump_finder = minidump_finder.MinidumpFinder(
-        self.browser.platform.GetOSName(), self.browser.platform.GetArchName())
-
-    # macOS displays a blocking crash resume dialog that we need to suppress.
-    if self.browser.platform.GetOSName() == 'mac':
-      # Default write expects either the application name or the
-      # path to the application. self._executable has the path to the app
-      # with a few other bits tagged on after .app. Thus, we shorten the path
-      # to end with .app. If this is ineffective on your mac, please delete
-      # the saved state of the browser you are testing on here:
-      # /Users/.../Library/Saved\ Application State/...
-      # http://stackoverflow.com/questions/20226802
-      dialog_path = re.sub(r'\.app\/.*', '.app', self._executable)
-      subprocess.check_call([
-          'defaults', 'write', '-app', dialog_path, 'NSQuitAlwaysKeepsWindows',
-          '-bool', 'false'
-      ])
-
-    cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
-      cmd.append('--use-mock-keychain')  # crbug.com/865247
-    cmd.extend(startup_args)
-    cmd.append('about:blank')
-    env = os.environ.copy()
-    env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
-    env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
-    if self.is_logging_enabled:
-      sys.stderr.write(
-          'Chrome log file will be saved in %s\n' % self.log_file_path)
-      env['CHROME_LOG_FILE'] = self.log_file_path
-    # Make sure we have predictable language settings that don't differ from the
-    # recording.
-    for name in ('LC_ALL', 'LC_MESSAGES', 'LANG'):
-      encoding = 'en_US.UTF-8'
-      if env.get(name, encoding) != encoding:
-        logging.warning('Overriding env[%s]=="%s" with default value "%s"',
-                        name, env[name], encoding)
-      env[name] = 'en_US.UTF-8'
-
-    self.LogStartCommand(cmd, env)
-
-    if not self.browser_options.show_stdout:
-      self._tmp_output_file = tempfile.NamedTemporaryFile('w')
-      self._proc = subprocess.Popen(
-          cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
-    else:
-      # There is weird behavior on Windows where stream redirection does not
-      # work as expected if we let the subprocess use the defaults. This results
-      # in browser logging not being visible on Windows on swarming. Explicitly
-      # setting the streams works around this. The except is in case we are
-      # being run through typ, whose _TeedStream replaces the default streams.
-      # This can't be used for subprocesses since it is all in-memory, and thus
-      # does not have a fileno.
-      if sys.platform == 'win32':
-        try:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
-        except io.UnsupportedOperation:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
-      else:
-        self._proc = subprocess.Popen(cmd, env=env)
-
-    self.BindDevToolsClient()
-    # browser is foregrounded by default on Windows and Linux, but not Mac.
-    if self.browser.platform.GetOSName() == 'mac':
-      subprocess.Popen([
-          'osascript', '-e',
-          ('tell application "%s" to activate' % self._executable)
-      ])
-    if self._supports_extensions:
-      self._WaitForExtensionsToLoad()
+    raise NotImplementedError
 
   def LogStartCommand(self, command, env):
     """Log the command used to start Chrome.
@@ -270,21 +212,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       return ''
 
   def _IsExecutableStripped(self):
-    if self.browser.platform.GetOSName() == 'mac':
-      try:
-        symbols = subprocess.check_output(['/usr/bin/nm', self._executable])
-      except subprocess.CalledProcessError as err:
-        logging.warning(
-            'Error when checking whether executable is stripped: %s',
-            err.output)
-        # Just assume that binary is stripped to skip breakpad symbol generation
-        # if this check failed.
-        return True
-      num_symbols = len(symbols.splitlines())
-      # We assume that if there are more than 10 symbols the executable is not
-      # stripped.
-      return num_symbols < 10
-    return False
+    raise NotImplementedError
 
   def _GetStackFromMinidump(self, minidump):
     # Create an executable-specific directory if necessary to store symbols
@@ -368,11 +296,11 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     # Second, try to politely shutdown with SIGINT.  Use SIGINT instead of
     # SIGTERM (or terminate()) here since the browser treats SIGTERM as a more
     # urgent shutdown signal and may not free all resources.
-    if self.IsBrowserRunning() and self.browser.platform.GetOSName() != 'win':
+    if self.IsBrowserRunning():
       self._proc.send_signal(signal.SIGINT)
       try:
         py_utils.WaitFor(lambda: not self.IsBrowserRunning(),
-                         timeout=int(os.getenv('CHROME_SHUTDOWN_TIMEOUT', '5'))
+                         timeout=int(os.getenv('CHROME_SHUTDOWN_TIMEOUT', 5))
                         )
         self._proc = None
       except py_utils.TimeoutException:
@@ -388,6 +316,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._tmp_output_file.close()
       self._tmp_output_file = None
 
+    # Need a remote minidummp path and these need to be synced.
     if self._tmp_minidump_dir:
       shutil.rmtree(self._tmp_minidump_dir, ignore_errors=True)
       self._tmp_minidump_dir = None
