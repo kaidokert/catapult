@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "cf9a91e1469813cc3896443aa95c7585985a09dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c935518_21690394",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-19T20:31:05Z",
+      "side": 1,
+      "message": "LGTM, assuming everything here [1] holds true \n\n[1] https://chromium-review.googlesource.com/c/catapult/+/3960559?tab\u003dcomments\n\nDo we have a sense of how to trigger these handlers?",
+      "revId": "cf9a91e1469813cc3896443aa95c7585985a09dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
