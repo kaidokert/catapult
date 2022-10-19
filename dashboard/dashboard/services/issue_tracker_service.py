@@ -10,8 +10,9 @@ from six.moves import http_client
 import json
 import logging
 
-from apiclient import discovery
 from apiclient import errors
+
+from dashboard.common import utils
 
 _DISCOVERY_URI = ('https://monorail-prod.appspot.com'
                   '/_ah/api/discovery/v1/apis/{api}/{apiVersion}/rest')
@@ -45,8 +46,8 @@ class IssueTrackerService(object):
     attempt = 1
     while attempt != MAX_DISCOVERY_RETRIES:
       try:
-        self._service = discovery.build(
-            'monorail', 'v1', discoveryServiceUrl=_DISCOVERY_URI, http=http)
+        self._service = utils.CreateServiceClient(
+            'monorail', 'v1', discovery_service_url=_DISCOVERY_URI, http=http)
         break
       except http_client.HTTPException as e:
         logging.error('Attempt #%d: %s', attempt, e)

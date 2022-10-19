@@ -25,7 +25,6 @@ else:
   except ImportError:
     # This is a work around to fix the discrepency on file tree in tests.
     import cloudstorage
-from apiclient.discovery import build
 from dashboard.common import utils
 from dashboard.common import oauth2_utils
 from dashboard.pinpoint.models import job_state
@@ -521,7 +520,8 @@ def _BQService():
   # pylint: disable=no-member
   credentials = oauth2_utils.GetAppDefaultCredentials(
       scope='https://www.googleapis.com/auth/bigquery')
-  return build('bigquery', 'v2', credentials=credentials)
+  client = utils.CreateServiceClient('bigquery', 'v2', credentials=credentials)
+  return client
 
 
 def _CreateRowDataLists(rows):

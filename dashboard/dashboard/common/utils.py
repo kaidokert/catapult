@@ -133,7 +133,7 @@ def TickMonitoringCustomMetric(metric_name):
     metric_name: The name of the metric being monitored.
   """
   credentials = oauth2_utils.GetAppDefaultCredentials()
-  monitoring = discovery.build('monitoring', 'v3', credentials=credentials)
+  monitoring = CreateServiceClient('monitoring', 'v3', credentials=credentials)
   now = _GetNowRfc3339()
   project_id = stored_object.Get(_PROJECT_ID_KEY)
   points = [{
@@ -604,10 +604,10 @@ def IsGroupMember(identity, group):
   try:
     discovery_url = ('https://chrome-infra-auth.appspot.com'
                      '/_ah/api/discovery/v1/apis/{api}/{apiVersion}/rest')
-    service = discovery.build(
+    service = CreateServiceClient(
         'auth',
         'v1',
-        discoveryServiceUrl=discovery_url,
+        discovery_service_url=discovery_url,
         http=ServiceAccountHttp())
     request = service.membership(identity=identity, group=group)
     response = request.execute()
@@ -675,6 +675,41 @@ def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
   http = httplib2.Http(timeout=timeout)
   credentials.authorize(http)
   return http
+
+
+class CreateServiceClientError(Exception):
+  pass
+
+
+def CreateServiceClient(service_name,
+                        version,
+                        http=None,
+                        credentials=None,
+                        discovery_service_url=None):
+  if not (http or credentials):
+    raise CreateServiceClientError(
+        'Need either HTTP or Credentials to build client.')
+
+  try:
+    if credentials:
+      service_client = discovery.build(
+          service_name,
+          version,
+          discoveryServiceUrl=discovery_service_url,
+          credentials=credentials)
+    else:
+      service_client = discovery.build(
+          service_name,
+          version,
+          discoveryServiceUrl=discovery_service_url,
+          http=http)
+  except (errors.HttpError, errors.UnknownApiNameOrVersion) as e:
+    request_type = 'credentials' if credentials else 'http'
+    six.raise_from(
+        CreateServiceClientError(
+            'Fail to build client with %s. service_name: %s, version: %s',
+            request_type, service_name, version), e)
+  return service_client
 
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)

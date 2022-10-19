@@ -8,7 +8,6 @@ from __future__ import print_function
 
 import logging
 
-from apiclient import discovery
 from dashboard.common import utils
 
 
@@ -35,7 +34,7 @@ class RBECASService(object):
     Args:
       http: A Http object that requests will be made through
     """
-    self._service = discovery.build(
+    self._service = utils.CreateServiceClient(
         'remotebuildexecution',
         'v2',
         http=utils.ServiceAccountHttp(scope=utils.CLOUD_SCOPE),
