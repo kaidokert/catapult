@@ -16,6 +16,23 @@
       "message": "Hi Haiyang \n\nThis CL changes the order of checks in WaitUntilFullyBooted so that the check for if the device is booted done first. I believe this will remove some flake in the emulator startups. Please take a look.\n\nRegards\nRakib Hasan",
       "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2399f011_d51fc6b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-19T15:32:44Z",
+      "side": 1,
+      "message": "Hi John\n\nThis CL changes the order of checks in WaitUntilFullyBooted so that the check for if the device is booted done first. I believe this will remove some flake in the emulator startups. Please take a look.\n\nRegards\nRakib Hasan",
+      "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
