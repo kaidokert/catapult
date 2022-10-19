@@ -14,7 +14,7 @@ from __future__ import absolute_import
 
 import logging
 
-from apiclient import discovery
+from dashboard.common import utils
 from dashboard.common import oauth2_utils
 
 DISCOVERY_URL = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
@@ -30,11 +30,11 @@ def GetRange(spreadsheet_id, sheet_name, range_in_sheet):
     range_in_sheet: The range, such as "A1:F14"
   """
   credentials = oauth2_utils.GetAppDefaultCredentials()
-  service = discovery.build(
+  service = utils.CreateServiceClient(
       'sheets',
       'v4',
       credentials=credentials,
-      discoveryServiceUrl=DISCOVERY_URL)
+      discovery_service_url=DISCOVERY_URL)
   sheet_range = '%s!%s' % (sheet_name, range_in_sheet)
   result = list(service.spreadsheets().values()).get(
       spreadsheetId=spreadsheet_id, range=sheet_range).execute()
