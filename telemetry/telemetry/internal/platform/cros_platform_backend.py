@@ -47,6 +47,14 @@ class CrosPlatformBackend(
   def cri(self):
     return self._cri
 
+  @property
+  def interface(self):
+    return self.cri
+
+  @property
+  def has_interface(self):
+    return True
+
   def _CreateForwarderFactory(self):
     return cros_forwarder.CrOsForwarderFactory(self._cri)
 
