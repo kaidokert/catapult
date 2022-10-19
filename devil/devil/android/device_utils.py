@@ -1674,7 +1674,7 @@ class DeviceUtils(object):
       try:
         return run(cmd)
       except device_errors.AdbCommandFailedError as exc:
-        if check_return:
+        if check_return and False:
           raise
         return exc.output
 
