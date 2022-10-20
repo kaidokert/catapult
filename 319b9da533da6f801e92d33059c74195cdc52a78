@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeae6e4b_a7aee729",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-20T06:13:15Z",
+      "side": 1,
+      "message": "This CL fixes an issue I discovered while running a benchmark on Samsung Foldable phone, which is can\u0027t be rooted. PTAL. The change has been verified by Pinpoint job https://pinpoint-dot-chromeperf.appspot.com/job/16ca37d51a0000.",
+      "revId": "319b9da533da6f801e92d33059c74195cdc52a78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
