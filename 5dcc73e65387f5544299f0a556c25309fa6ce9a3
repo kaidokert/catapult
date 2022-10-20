@@ -151,6 +151,30 @@
       },
       "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3852ec5d_c26a12fa",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-20T21:07:45Z",
+      "side": 1,
+      "message": "Will do!",
+      "parentUuid": "9b65dc4f_cd8a0d1e",
+      "range": {
+        "startLine": 1137,
+        "startChar": 26,
+        "endLine": 1137,
+        "endChar": 43
+      },
+      "revId": "5dcc73e65387f5544299f0a556c25309fa6ce9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
