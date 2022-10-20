@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dfbe3d7_899f8c0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-20T23:22:47Z",
+      "side": 1,
+      "message": "Example job on staging: https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/143f82bf000000",
+      "revId": "aef116b31f4f6df91a2cb0a7ea123bf7584a4e49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e48a8232_17a22a8b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-20T23:22:47Z",
+      "side": 1,
+      "message": "Added this to protect any pinpoint jobs that are still running when this CL takes effect.",
+      "revId": "aef116b31f4f6df91a2cb0a7ea123bf7584a4e49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
