@@ -114,6 +114,8 @@ class AssociateAlertsTest(testing_common.TestCase):
     self.assertIn('Invalid bug ID', response.body)
 
   # Mocks fetching bugs from issue tracker.
+  @mock.patch('dashboard.common.utils.ServiceAccountHttp',
+              mock.MagicMock())
   @mock.patch('services.issue_tracker_service.discovery.build',
               mock.MagicMock())
   @mock.patch.object(
