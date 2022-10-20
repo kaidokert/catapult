@@ -33,6 +33,52 @@
       "message": "LGTM, assuming everything here [1] holds true \n\n[1] https://chromium-review.googlesource.com/c/catapult/+/3960559?tab\u003dcomments\n\nDo we have a sense of how to trigger these handlers?",
       "revId": "cf9a91e1469813cc3896443aa95c7585985a09dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddd91dcd_04c4abf1",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-20T07:50:54Z",
+      "side": 1,
+      "message": "make_response is needed.",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 8
+      },
+      "revId": "cf9a91e1469813cc3896443aa95c7585985a09dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0720af9a_be22abf1",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-20T07:50:54Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 8
+      },
+      "revId": "cf9a91e1469813cc3896443aa95c7585985a09dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
