@@ -16,24 +16,48 @@ import dependency_manager  # pylint: disable=import-error
 from py_utils import file_util
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
+from telemetry.core import linux_interface
 from telemetry.internal.backends.chrome import chrome_startup_args
 from telemetry.internal.backends.chrome import desktop_browser_backend
+from telemetry.internal.backends.chrome import local_desktop_browser_backend
+from telemetry.internal.backends.chrome import remote_desktop_browser_backend
 from telemetry.internal.browser import browser
 from telemetry.internal.browser import possible_browser
 from telemetry.internal.platform import desktop_device
+from telemetry.internal.platform import linux_device
 from telemetry.internal.util import binary_manager
 from telemetry.internal.util import local_first_binary_manager
 # This is a workaround for https://goo.gl/1tGNgd
 from telemetry.internal.util import path as path_module
+from devil.utils import cmd_helper
 
-_BROWSER_STARTUP_TRIES = 3
+_BROWSER_STARTUP_TRIES = 1
 
 
 class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
   """A desktop browser that can be controlled."""
 
-  def __init__(self, browser_type, finder_options, executable, flash_path,
-               is_content_shell, browser_directory, is_local_build=False):
+  # The path contains spaces, so we need to quote it. We don't join it with
+  # anything in this file, so we can quote it here instead of everywhere it's
+  # used.
+  _LINUX_MINIDUMP_DIR = cmd_helper.SingleQuote(
+      linux_interface.LinuxInterface.MINIDUMP_DIR)
+  _DEFAULT_CHROME_ENV = {
+      'CHROME_HEADLESS': '1',
+      'BREAKPAD_DUMP_LOCATION': _LINUX_MINIDUMP_DIR,
+  }
+  COPY_FILES = []
+
+  def __init__(self,
+               browser_type,
+               finder_options,
+               executable,
+               flash_path,
+               is_content_shell,
+               browser_directory,
+               is_local_build=False,
+               remote_platform=None,
+               remote_browser_directory=None):
     """
     Args:
       browser_type: A string representing what type of browser this is, e.g.
@@ -50,11 +74,13 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
           |executable|, but not guaranteed.
       is_local_build: Whether the browser was built locally (as opposed to
           being downloaded).
+      remote_platform: Optional platform that will run the browser.
+      remote_browser_directory: Optional directory on remote platform with
+        browsers.
     """
     del finder_options
     target_os = sys.platform.lower()
-    super().__init__(
-        browser_type, target_os, not is_content_shell)
+    super().__init__(browser_type, target_os, not is_content_shell)
     assert browser_type in FindAllBrowserTypes(), (
         'Please add %s to desktop_browser_finder.FindAllBrowserTypes' %
         browser_type)
@@ -72,10 +98,31 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     # since a build directory without any useful debug artifacts is
     # equivalent to no build directory at all.
     self._build_dir = self._browser_directory
+    self._remote_platform = remote_platform
+    self._remote_executable = None
+    self._remote_flash = None
+    self._remote_browser_directory = remote_browser_directory
 
   def __repr__(self):
     return 'PossibleDesktopBrowser(type=%s, executable=%s, flash=%s)' % (
         self.browser_type, self._local_executable, self._flash_path)
+
+  @classmethod
+  def populate_copy_files(cls, chrome_browser_dir):
+    if not cls.COPY_FILES:
+      cls.COPY_FILES = list(os.listdir(chrome_browser_dir))
+
+  @property
+  def local_executable(self):
+    return self._local_executable
+
+  @property
+  def flash_path(self):
+    return self._flash_path
+
+  @property
+  def is_content_shell(self):
+    return self._is_content_shell
 
   @property
   def browser_directory(self):
@@ -102,7 +149,10 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     if self._platform:
       return
 
-    self._platform = platform_module.GetHostPlatform()
+    if self._remote_platform:
+      self._platform = self._remote_platform
+    else:
+      self._platform = platform_module.GetHostPlatform()
 
     # pylint: disable=protected-access
     self._platform_backend = self._platform._platform_backend
@@ -110,8 +160,89 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
   def _GetPathsForOsPageCacheFlushing(self):
     return [self.profile_directory, self.browser_directory]
 
+  def _CopyBrowserToRemote(self):
+    interface = self._remote_platform._platform_backend.interface
+    # If no remote_browser_dir given, and no local executable, make sure
+    # one exists.
+    # Browser directory is not needed.
+    if not self._remote_browser_directory:
+      self._remote_browser_directory = interface.MkdTemp(
+          '/tmp/browser_dir_XXXXXX')
+      # Only copy browser directory from local to remote if possible and given.
+      # If remote already exists this copy would not have happened.
+      if self._browser_directory and os.path.exists(self._browser_directory):
+        for f in os.listdir(self._browser_directory):
+          if f in self.COPY_FILES:
+            local_contents = os.path.join(self._browser_directory, f)
+            if os.path.exists(local_contents):
+              interface.PushFile(local_contents, self._remote_browser_directory)
+
+    if self._local_executable and os.path.exists(self._local_executable):
+      self._remote_executable = interface.path.join(
+          self._remote_browser_directory,
+          os.path.basename(self._local_executable))
+      if not interface.IsFile(self._remote_executable):
+        interface.PushFile(self._local_executable, self._remote_executable)
+
+    if self._flash_path and os.path.exists(self._flash_path):
+      self._remote_flash = interface.MkdTemp('/tmp/flash_XXXXX')
+      interface.PushFile(self._flash_path, self._remote_flash)
+
+  def _SetUpRemoteEnvironment(self):
+    # Profile directory
+    if not self._remote_platform._platform_backend.has_interface:
+      raise AssertionError('Cannot setup platform backend without interface')
+
+    # Make sure the browser and required files are present.
+    self._CopyBrowserToRemote()
+
+    if self._browser_options.dont_override_profile:
+      return
+
+    source_profile = self._browser_options.profile_dir
+    interface = self._remote_platform._platform_backend.interface
+    profile_dir = interface.MkdTemp('/tmp/profile_dir_XXXXXX')
+    self._profile_directory = profile_dir
+    if source_profile:
+      interface.PushFile(source_profile, profile_dir)
+      interface.Chown(profile_dir)
+
+      devtools_file_path = interface.path.join(
+          self._profile_directory,
+          desktop_browser_backend.DEVTOOLS_ACTIVE_PORT_FILE)
+      if interface.FileExistsOnDevice(devtools_file_path):
+        interface.RmRF(devtools_file_path)
+
+    for source, dest in self._browser_options.profile_files_to_copy:
+      full_dest_path = interface.path.join(self._profile_directory, dest)
+      if not interface.FileExistsOnDevice(full_dest_path):
+        interface.PushFile(source, full_dest_path)
+
+  def _TearDownRemoteEnviroment(self):
+    if not self._remote_platform._platform_backend.has_interface:
+      raise AssertionError('Cannot teardown remotely without interface')
+    interface = self._remote_platform._platform_backend.interface
+    dirs_to_remove = [
+        self._profile_directory, self._remote_browser_directory,
+        self._remote_executable, self._remote_flash
+    ]
+    for dir_to_remove in dirs_to_remove:
+      if dir_to_remove and interface.FileExistsOnDevice(dir_to_remove):
+        pass
+        #interface.RmRF(dir_to_remove)
+    interface.StopUI()
+    self._profile_directory = None
+    self._remote_browser_directory = None
+    self._remote_executable = None
+    self._remote_flash = None
+
   def SetUpEnvironment(self, browser_options):
     super().SetUpEnvironment(browser_options)
+
+    if self._remote_platform:
+      self._SetUpRemoteEnvironment()
+      return
+
     if self._browser_options.dont_override_profile:
       return
 
@@ -159,13 +290,22 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       shutil.rmtree(self._download_directory, ignore_errors=True)
       self._download_directory = None
 
+    if self._remote_platform:
+      self._TearDownRemoteEnviroment()
+      return
+
+    if self._profile_directory and os.path.exists(self._profile_directory):
+      # Remove the profile directory, which was hosted on a temp dir.
+      shutil.rmtree(self._profile_directory, ignore_errors=True)
+      self._profile_directory = None
+
   def Create(self):
     # Init the LocalFirstBinaryManager if this is the first time we're creating
     # a browser.
     if local_first_binary_manager.LocalFirstBinaryManager.NeedsInit():
       local_first_binary_manager.LocalFirstBinaryManager.Init(
-          self._build_dir, self._local_executable,
-          self.platform.GetOSName(), self.platform.GetArchName())
+          self._build_dir, self._local_executable, self.platform.GetOSName(),
+          self.platform.GetArchName())
 
     if self._flash_path and not os.path.exists(self._flash_path):
       logging.warning(
@@ -183,17 +323,40 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
         # may not be guaranteed the same each time
         # For example, see: crbug.com/865895#c17
         startup_args = self.GetBrowserStartupArgs(self._browser_options)
-        browser_backend = desktop_browser_backend.DesktopBrowserBackend(
-            self._platform_backend, self._browser_options,
-            self._browser_directory, self._profile_directory,
-            self._local_executable, self._flash_path, self._is_content_shell,
-            build_dir=self._build_dir)
-        new_browser = browser.Browser(
-            browser_backend, self._platform_backend, startup_args)
-        browser_backend.SetDownloadBehavior(
-            'allow', self._download_directory, 30)
+        if self._remote_platform:
+          browser_backend = (
+              remote_desktop_browser_backend.RemoteDesktopBrowserBackend(
+                  self._remote_platform._platform_backend,
+                  self._browser_options,
+                  # Should be available remotely and locally.
+                  self._browser_directory,
+                  # Should be remote.
+                  self._profile_directory,
+                  # Should be available remote.
+                  self._remote_executable,
+                  self._remote_flash,
+                  self._is_content_shell,
+                  # Needs to be local.
+                  build_dir=self._build_dir,
+                  env=self._DEFAULT_CHROME_ENV))
+        else:
+          browser_backend = (
+              local_desktop_browser_backend.LocalDesktopBrowserBackend(
+                  self._platform_backend,
+                  self._browser_options,
+                  self._browser_directory,
+                  self._profile_directory,
+                  self._local_executable,
+                  self._flash_path,
+                  self._is_content_shell,
+                  build_dir=self._build_dir,
+                  env=os.environ.copy()))
+        new_browser = browser.Browser(browser_backend, self._platform_backend,
+                                      startup_args)
+        browser_backend.SetDownloadBehavior('allow', self._download_directory,
+                                            30)
         return new_browser
-      except Exception: # pylint: disable=broad-except
+      except Exception:  # pylint: disable=broad-except
         retry = x < _BROWSER_STARTUP_TRIES - 1
         retry_message = 'retrying' if retry else 'giving up'
         logging.warning('Browser creation failed (attempt %d of %d), %s.',
@@ -217,8 +380,9 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
-    startup_args.extend(chrome_startup_args.GetReplayArgs(
-        self._platform_backend.network_controller_backend))
+    startup_args.extend(
+        chrome_startup_args.GetReplayArgs(
+            self._platform_backend.network_controller_backend))
 
     # Setting port=0 allows the browser to choose a suitable port.
     startup_args.append('--remote-debugging-port=0')
@@ -226,8 +390,10 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     startup_args.append('--disable-component-update')
 
     if not self._is_content_shell:
-      window_sizes = [arg for arg in browser_options.extra_browser_args
-                      if arg.startswith('--window-size=')]
+      window_sizes = [
+          arg for arg in browser_options.extra_browser_args
+          if arg.startswith('--window-size=')
+      ]
       if len(window_sizes) == 0:
         startup_args.append('--window-size=1280,1024')
       if self._flash_path:
@@ -242,8 +408,9 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       else:
         startup_args.append('--user-data-dir=%s' % self.profile_directory)
 
-    trace_config_file = (self._platform_backend.tracing_controller_backend
-                         .GetChromeTraceConfigFile())
+    trace_config_file = (
+        self._platform_backend.tracing_controller_backend
+        .GetChromeTraceConfigFile())
     if trace_config_file:
       startup_args.append('--trace-config-file=%s' % trace_config_file)
 
@@ -256,10 +423,28 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       # See crbug.com/991424.
       startup_args.append('--password-store=basic')
 
+    if self._remote_platform:
+      # Remote platforms run on root, which cannot run in sandbox.
+      startup_args.append('--no-sandbox')
+      startup_args = [
+          arg.replace('=<-loopback>', '="<-loopback>"') for arg in startup_args
+      ]
+
     startup_args.extend(
         [a for a in self.extra_browser_args if a not in startup_args])
 
-    return startup_args
+    new_args = []
+    for arg in startup_args:
+      if ' ' not in arg or '=' not in arg:
+        new_args.append(arg)
+        continue
+
+      flag, value = arg.split('=', 1)
+      value = value.replace('"', "'")
+      value = f'"{value}"'
+      new_args.append(f'{flag}={value}')
+
+    return new_args
 
   def SupportsOptions(self, browser_options):
     if ((len(browser_options.extensions_to_load) != 0)
@@ -288,42 +473,42 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
 def SelectDefaultBrowser(possible_browsers):
   local_builds_by_date = [
-      b for b in sorted(possible_browsers,
-                        key=lambda b: b.last_modification_time)
-      if b.is_local_build]
+      b for b in sorted(
+          possible_browsers, key=lambda b: b.last_modification_time)
+      if b.is_local_build
+  ]
   if local_builds_by_date:
     return local_builds_by_date[-1]
   return None
 
+
 def CanFindAvailableBrowsers():
   return not platform_module.GetHostPlatform().GetOSName() == 'chromeos'
 
+
 def FindAllBrowserTypes():
-  return [
-      'exact',
-      'reference',
-      'release',
-      'release_x64',
-      'debug',
-      'debug_x64',
-      'default',
-      'stable',
-      'beta',
-      'dev',
-      'canary',
-      'content-shell-debug',
-      'content-shell-debug_x64',
-      'content-shell-release',
-      'content-shell-release_x64',
-      'content-shell-default',
-      'system']
+  local_browsers = [
+      'exact', 'reference', 'release', 'release_x64', 'debug', 'debug_x64',
+      'default', 'stable', 'beta', 'dev', 'canary', 'content-shell-debug',
+      'content-shell-debug_x64', 'content-shell-release',
+      'content-shell-release_x64', 'content-shell-default', 'system'
+  ]
+  return local_browsers + ['remote-' + browser for browser in local_browsers]
+
 
 def FindAllAvailableBrowsers(finder_options, device):
   """Finds all the desktop browsers available on this machine."""
-  if not isinstance(device, desktop_device.DesktopDevice):
+  if not (isinstance(device,
+                     (desktop_device.DesktopDevice, linux_device.LinuxDevice))):
     return []
 
+  remote_plat = None
+
+  if isinstance(device, linux_device.LinuxDevice):
+    remote_plat = platform_module.GetPlatformForDevice(device, finder_options)
+
   browsers = []
+  remote_browsers = []
 
   if not CanFindAvailableBrowsers():
     return []
@@ -331,6 +516,10 @@ def FindAllAvailableBrowsers(finder_options, device):
   has_x11_display = True
   if sys.platform.startswith('linux') and os.getenv('DISPLAY') is None:
     has_x11_display = False
+
+  has_remote_x11_display = False
+  if remote_plat:
+    has_remote_x11_display = bool(remote_plat.GetDisplays())
 
   os_name = platform_module.GetHostPlatform().GetOSName()
   arch_name = platform_module.GetHostPlatform().GetArchName()
@@ -364,22 +553,27 @@ def FindAllAvailableBrowsers(finder_options, device):
         finder_options.browser_executable)
     if path_module.IsExecutable(normalized_executable):
       browser_directory = os.path.dirname(finder_options.browser_executable)
-      browsers.append(PossibleDesktopBrowser(
-          'exact', finder_options, normalized_executable, flash_path,
-          is_content_shell,
-          browser_directory))
+      browsers.append(
+          PossibleDesktopBrowser('exact', finder_options, normalized_executable,
+                                 flash_path, is_content_shell,
+                                 browser_directory))
     else:
       raise exceptions.PathMissingError(
           '%s specified by --browser-executable does not exist or is not '
-          'executable' %
-          normalized_executable)
+          'executable' % normalized_executable)
 
   def AddIfFound(browser_type, build_path, app_name, content_shell):
     app = os.path.join(build_path, app_name)
     if path_module.IsExecutable(app):
-      browsers.append(PossibleDesktopBrowser(
-          browser_type, finder_options, app, flash_path,
-          content_shell, build_path, is_local_build=True))
+      browsers.append(
+          PossibleDesktopBrowser(
+              browser_type,
+              finder_options,
+              app,
+              flash_path,
+              content_shell,
+              build_path,
+              is_local_build=True))
       return True
     return False
 
@@ -398,8 +592,8 @@ def FindAllAvailableBrowsers(finder_options, device):
     # raise an error just because they don't exist.
     os_name = platform_module.GetHostPlatform().GetOSName()
     arch_name = platform_module.GetHostPlatform().GetArchName()
-    reference_build = binary_manager.FetchPath(
-        'chrome_stable', os_name, arch_name)
+    reference_build = binary_manager.FetchPath('chrome_stable', os_name,
+                                               arch_name)
 
   # Mac-specific options.
   if sys.platform == 'darwin':
@@ -408,21 +602,21 @@ def FindAllAvailableBrowsers(finder_options, device):
     mac_system_root = '/Applications/Google Chrome.app'
     mac_system = mac_system_root + '/Contents/MacOS/Google Chrome'
     if path_module.IsExecutable(mac_canary):
-      browsers.append(PossibleDesktopBrowser('canary', finder_options,
-                                             mac_canary, None, False,
-                                             mac_canary_root))
+      browsers.append(
+          PossibleDesktopBrowser('canary', finder_options, mac_canary, None,
+                                 False, mac_canary_root))
 
     if path_module.IsExecutable(mac_system):
-      browsers.append(PossibleDesktopBrowser('system', finder_options,
-                                             mac_system, None, False,
-                                             mac_system_root))
+      browsers.append(
+          PossibleDesktopBrowser('system', finder_options, mac_system, None,
+                                 False, mac_system_root))
 
     if reference_build and path_module.IsExecutable(reference_build):
-      reference_root = os.path.dirname(os.path.dirname(os.path.dirname(
-          reference_build)))
-      browsers.append(PossibleDesktopBrowser('reference', finder_options,
-                                             reference_build, None, False,
-                                             reference_root))
+      reference_root = os.path.dirname(
+          os.path.dirname(os.path.dirname(reference_build)))
+      browsers.append(
+          PossibleDesktopBrowser('reference', finder_options, reference_build,
+                                 None, False, reference_root))
 
   # Linux specific options.
   if sys.platform.startswith('linux'):
@@ -433,16 +627,19 @@ def FindAllAvailableBrowsers(finder_options, device):
         'dev': '/opt/google/chrome-unstable'
     }
 
+    # this tells the class which files are needed for a remote copy.
+    PossibleDesktopBrowser.populate_copy_files(versions['stable'])
     for version, root in six.iteritems(versions):
       browser_path = os.path.join(root, 'chrome')
       if path_module.IsExecutable(browser_path):
-        browsers.append(PossibleDesktopBrowser(version, finder_options,
-                                               browser_path, None, False, root))
+        browsers.append(
+            PossibleDesktopBrowser(version, finder_options, browser_path, None,
+                                   False, root))
     if reference_build and path_module.IsExecutable(reference_build):
       reference_root = os.path.dirname(reference_build)
-      browsers.append(PossibleDesktopBrowser('reference', finder_options,
-                                             reference_build, None, False,
-                                             reference_root))
+      browsers.append(
+          PossibleDesktopBrowser('reference', finder_options, reference_build,
+                                 None, False, reference_root))
 
   # Win32-specific options.
   if sys.platform.startswith('win'):
@@ -451,27 +648,51 @@ def FindAllAvailableBrowsers(finder_options, device):
         ('canary', os.path.join('Google', 'Chrome SxS', 'Application')),
     ]
     if reference_build:
-      app_paths.append(
-          ('reference', os.path.dirname(reference_build)))
+      app_paths.append(('reference', os.path.dirname(reference_build)))
 
     for browser_name, app_path in app_paths:
       for chromium_app_name in chromium_app_names:
         full_path = path_module.FindInstalledWindowsApplication(
             os.path.join(app_path, chromium_app_name))
         if full_path:
-          browsers.append(PossibleDesktopBrowser(
-              browser_name, finder_options, full_path,
-              None, False, os.path.dirname(full_path)))
+          browsers.append(
+              PossibleDesktopBrowser(browser_name, finder_options, full_path,
+                                     None, False, os.path.dirname(full_path)))
 
   has_ozone_platform = False
   for arg in finder_options.browser_options.extra_browser_args:
     if "--ozone-platform" in arg:
       has_ozone_platform = True
 
+  remote_browsers = []
+  if remote_plat:
+    for local_browser in browsers:
+      remote_browsers.append(
+          PossibleDesktopBrowser(
+              'remote-' + local_browser.app_type,
+              # finder options are unused.
+              None,
+              local_browser.local_executable,
+              local_browser.flash_path,
+              local_browser.is_content_shell,
+              local_browser.browser_directory,
+              is_local_build=local_browser.is_local_build,
+              remote_platform=remote_plat))
+
+  all_browsers = set(browsers + remote_browsers)
+  logging.info('browsers: %s', browsers)
+  logging.info('remote_browsers: %s', remote_browsers)
   if browsers and not has_x11_display and not has_ozone_platform:
     logging.warning(
-        'Found (%s), but you do not have a DISPLAY environment set.', ','.join(
-            [b.browser_type for b in browsers]))
-    return []
+        'Found (%s), but you do not have a DISPLAY environment set.',
+        ','.join([b.browser_type for b in browsers]))
 
-  return browsers
+    all_browsers = all_browsers.difference(set(browsers))
+
+  if remote_browsers and not has_remote_x11_display and not has_ozone_platform:
+    logging.warning(
+        ('Found (%s), but remote platform does not have DISPLAY environment'
+         ' set.'), ','.join([b.browser_type for b in remote_browsers]))
+    all_browsers = all_browsers.difference(set(remote_browsers))
+
+  return list(all_browsers)

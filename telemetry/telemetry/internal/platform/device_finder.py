@@ -10,6 +10,7 @@ from telemetry.internal.platform import cast_device
 from telemetry.internal.platform import cros_device
 from telemetry.internal.platform import desktop_device
 from telemetry.internal.platform import fuchsia_device
+from telemetry.internal.platform import linux_device
 
 DEVICES = [
     android_device,
@@ -17,6 +18,7 @@ DEVICES = [
     cros_device,
     desktop_device,
     fuchsia_device,
+    linux_device,
 ]
 
 
@@ -32,6 +34,8 @@ def _GetDeviceFinders(supported_platforms):
     device_finders.append(cros_device)
   if 'fuchsia' in supported_platforms:
     device_finders.append(fuchsia_device)
+  if 'linux' in supported_platforms:
+    device_finders.append(linux_device)
   return device_finders
 
 
@@ -47,15 +51,16 @@ def GetDevicesMatchingOptions(options):
   """Returns a list of devices matching the options."""
   devices = []
   remote_platform_options = options.remote_platform_options
-  if (not remote_platform_options.device or
-      remote_platform_options.device == 'list'):
+  if (not remote_platform_options.device
+      or remote_platform_options.device == 'list'):
     devices = _GetAllAvailableDevices(options)
   elif remote_platform_options.device == 'android':
     devices = android_device.FindAllAvailableDevices(options)
   else:
     devices = _GetAllAvailableDevices(options)
-    devices = [d for d in devices if d.guid ==
-               options.remote_platform_options.device]
+    devices = [
+        d for d in devices if d.guid == options.remote_platform_options.device
+    ]
 
   devices.sort(key=lambda device: device.name)
   return devices

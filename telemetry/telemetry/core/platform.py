@@ -25,7 +25,7 @@ _REMOTE_PLATFORMS = {}
 
 
 def _InitHostPlatformIfNeeded():
-  global _HOST_PLATFORM # pylint: disable=global-statement
+  global _HOST_PLATFORM  # pylint: disable=global-statement
   if _HOST_PLATFORM:
     return
   backend = None
@@ -45,11 +45,11 @@ def GetHostPlatform():
 
 
 def _IterAllPlatformBackendClasses():
-  platform_dir = os.path.dirname(os.path.realpath(
-      platform_backend_module.__file__))
-  return six.itervalues(discover.DiscoverClasses(
-      platform_dir, util.GetTelemetryDir(),
-      platform_backend_module.PlatformBackend))
+  platform_dir = os.path.dirname(
+      os.path.realpath(platform_backend_module.__file__))
+  return six.itervalues(
+      discover.DiscoverClasses(platform_dir, util.GetTelemetryDir(),
+                               platform_backend_module.PlatformBackend))
 
 
 def GetPlatformForDevice(device, finder_options, logging=real_logging):
@@ -61,13 +61,14 @@ def GetPlatformForDevice(device, finder_options, logging=real_logging):
     return _REMOTE_PLATFORMS[device.guid]
   try:
     for platform_backend_class in _IterAllPlatformBackendClasses():
+
       if platform_backend_class.SupportsDevice(device):
         _REMOTE_PLATFORMS[device.guid] = (
-            platform_backend_class.CreatePlatformForDevice(device,
-                                                           finder_options))
+            platform_backend_class.CreatePlatformForDevice(
+                device, finder_options))
         return _REMOTE_PLATFORMS[device.guid]
     return None
-  except Exception: # pylint: disable=broad-except
+  except Exception:  # pylint: disable=broad-except
     logging.error('Fail to create platform instance for %s.', device.name)
     raise
 
@@ -224,9 +225,7 @@ class Platform():
       A popen style process handle for host platforms.
     """
     return self._platform_backend.LaunchApplication(
-        application,
-        parameters,
-        elevate_privilege=elevate_privilege)
+        application, parameters, elevate_privilege=elevate_privilege)
 
   def StartActivity(self, intent, blocking=False):
     """Starts an activity for the given intent on the device."""
@@ -379,8 +378,8 @@ class Platform():
     # Fuchsia browsers.
     if self._platform_backend.GetOSName() == 'fuchsia':
       self._forwarder = (
-          self._platform_backend.forwarder_factory.Create(server.port,
-                                                          server.port))
+          self._platform_backend.forwarder_factory.Create(
+              server.port, server.port))
     return True
 
   def StopAllLocalServers(self):
@@ -448,7 +447,12 @@ class Platform():
     subprocess.Popen(command, shell=True, stderr=subprocess.STDOUT)
     return True
 
-  def CollectIntelPowerGadgetResults(self, output_path, skip_duration=0,
+  def GetDisplays(self):
+    return self._platform_backend.GetDisplays()
+
+  def CollectIntelPowerGadgetResults(self,
+                                     output_path,
+                                     skip_duration=0,
                                      sample_duration=0):
     """Processes power data output from Intel Power Gadget.
 
@@ -500,8 +504,8 @@ class Platform():
         continue
       if skip_duration > 0 and float(tokens[col_time]) < skip_duration:
         continue
-      if (sample_duration > 0 and
-          float(tokens[col_time]) > skip_duration + sample_duration):
+      if (sample_duration > 0
+          and float(tokens[col_time]) > skip_duration + sample_duration):
         break
       samples += 1
       for ii, index in enumerate(indices):
