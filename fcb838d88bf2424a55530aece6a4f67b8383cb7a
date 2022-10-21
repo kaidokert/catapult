@@ -16,6 +16,23 @@
       "message": "More changes for the Samsung Foldable. PTAL.",
       "revId": "fcb838d88bf2424a55530aece6a4f67b8383cb7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fac338a_51d12565",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-21T17:43:17Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "fcb838d88bf2424a55530aece6a4f67b8383cb7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
