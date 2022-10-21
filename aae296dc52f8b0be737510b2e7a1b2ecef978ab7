@@ -16,6 +16,24 @@
       "message": "Can you fix the merge conflicts first?",
       "revId": "aae296dc52f8b0be737510b2e7a1b2ecef978ab7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56921228_fae34b88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-21T17:54:33Z",
+      "side": 1,
+      "message": "Used another approach to do this, which is easier:\nhttps://chromium-review.googlesource.com/c/catapult/+/3967714\nClosing this CL.",
+      "parentUuid": "6b8bccb7_cde5385e",
+      "revId": "aae296dc52f8b0be737510b2e7a1b2ecef978ab7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
