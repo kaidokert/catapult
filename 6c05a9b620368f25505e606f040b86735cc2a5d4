@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c044edc4_01a38a62",
+        "filename": "devil/devil/android/decorators.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-25T19:10:19Z",
+      "side": 1,
+      "message": "In it\u0027s current state, you need to pass the timeout and retries parameters when calling the decorated method. The decorator cannot retrieve the default values for the parameters. This CL makes a change so that the decorator can retrieve default values for function parameters.",
+      "parentUuid": "d7c2c549_bb4d53a9",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 19
+      },
+      "revId": "6c05a9b620368f25505e606f040b86735cc2a5d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e2a35bd_b3a0d118",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-25T18:46:43Z",
       "side": 1,
       "message": "Do you have any data to back support this 60 secs timeout for boot? Is it mainly for device, or emulators?",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "6c05a9b620368f25505e606f040b86735cc2a5d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ca827b1_9a4acac6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-25T19:10:19Z",
+      "side": 1,
+      "message": "No I have no data to support these values. I randomly chose them.",
+      "parentUuid": "2e2a35bd_b3a0d118",
       "range": {
         "startLine": 62,
         "startChar": 16,
