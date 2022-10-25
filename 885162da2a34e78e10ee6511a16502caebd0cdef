@@ -46,6 +46,30 @@
       },
       "revId": "885162da2a34e78e10ee6511a16502caebd0cdef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44de8356_d11ff06e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001385
+      },
+      "writtenOn": "2022-10-25T11:47:04Z",
+      "side": 1,
+      "message": "\u003e The web engine shell is now launched with `ffx test run`, which outputs a combination of its own output, the test\u0027s stdout, and the test\u0027s stderr to ffx\u0027s stdout. Once cast streaming shell is migrated to `ffx test run` it\u0027ll do the same, and these two browser types can be  collapsed into the same logic as it was before this change.\n\nAnd why is the output moving from stderr to stdout?\n\nGenerally we don\u0027t want error output being routed to stdout, so the `ffx test run` behaviour sounds like a bug?",
+      "parentUuid": "97a6e2db_0a8daa6d",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 61
+      },
+      "revId": "885162da2a34e78e10ee6511a16502caebd0cdef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
