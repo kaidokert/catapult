@@ -56,6 +56,30 @@
       },
       "revId": "6fa9f431c09ec06026b0b9c90e61b7a290226f72",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f0b798b_6bd51231",
+        "filename": "devil/devil/android/decorators.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-25T22:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f638a38_be326acb",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 28,
+        "endChar": 37
+      },
+      "revId": "6fa9f431c09ec06026b0b9c90e61b7a290226f72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
