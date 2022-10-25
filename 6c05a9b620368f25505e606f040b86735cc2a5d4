@@ -65,6 +65,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "471cb51d_0a8144f4",
+        "filename": "devil/devil/android/decorators.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-10-25T21:21:53Z",
+      "side": 1,
+      "message": "I see. Thanks for the explanation.",
+      "parentUuid": "c044edc4_01a38a62",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 19
+      },
+      "revId": "6c05a9b620368f25505e606f040b86735cc2a5d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e2a35bd_b3a0d118",
