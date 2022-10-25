@@ -20,6 +20,8 @@ from dashboard.common import namespaced_stored_object
 from dashboard.common import utils
 from dashboard.models import graph_data
 
+from flask import request
+
 # TestMetadata suite cache key.
 _LIST_SUITES_CACHE_KEY = 'list_tests_get_test_suites'
 
@@ -48,27 +50,41 @@ def FetchCachedTestSuites():
     cached = namespaced_stored_object.Get(_LIST_SUITES_CACHE_KEY)
   return cached
 
+def UpdateTestSuitesGet():
+  return UpdateTestSuitesPost()
 
-class UpdateTestSuitesHandler(request_handler.RequestHandler):
-  """A simple request handler to refresh the cached test suites info."""
+def UpdateTestSuitesPost():
+  if request.values.get('internal_only') == 'true':
+    logging.info('Going to update internal-only test suites data.')
+    # Update internal-only test suites data.
+    datastore_hooks.SetPrivilegedRequest(flask_flag=True)
+    return UpdateTestSuites(datastore_hooks.INTERNAL)
+  else:
+    logging.info('Going to update externally-visible test suites data.')
+    # Update externally-visible test suites data.
+    return UpdateTestSuites(datastore_hooks.EXTERNAL)
 
-  def get(self):
-    """Refreshes the cached test suites list."""
-    logging.debug('crbug/1298177 - update_test_suites GET triggered')
-    self.post()
+if six.PY2:
+  class UpdateTestSuitesHandler(request_handler.RequestHandler):
+    """A simple request handler to refresh the cached test suites info."""
 
-  def post(self):
-    """Refreshes the cached test suites list."""
-    logging.debug('crbug/1298177 - update_test_suites POST triggered')
-    if self.request.get('internal_only') == 'true':
-      logging.info('Going to update internal-only test suites data.')
-      # Update internal-only test suites data.
-      datastore_hooks.SetPrivilegedRequest()
-      UpdateTestSuites(datastore_hooks.INTERNAL)
-    else:
-      logging.info('Going to update externally-visible test suites data.')
-      # Update externally-visible test suites data.
-      UpdateTestSuites(datastore_hooks.EXTERNAL)
+    def get(self):
+      """Refreshes the cached test suites list."""
+      logging.debug('crbug/1298177 - update_test_suites GET triggered')
+      self.post()
+
+    def post(self):
+      """Refreshes the cached test suites list."""
+      logging.debug('crbug/1298177 - update_test_suites POST triggered')
+      if self.request.get('internal_only') == 'true':
+        logging.info('Going to update internal-only test suites data.')
+        # Update internal-only test suites data.
+        datastore_hooks.SetPrivilegedRequest()
+        UpdateTestSuites(datastore_hooks.INTERNAL)
+      else:
+        logging.info('Going to update externally-visible test suites data.')
+        # Update externally-visible test suites data.
+        UpdateTestSuites(datastore_hooks.EXTERNAL)
 
 
 def UpdateTestSuites(permissions_namespace):
@@ -79,7 +95,7 @@ def UpdateTestSuites(permissions_namespace):
                                               permissions_namespace)
   stored_object.Set(key, suite_dict)
 
-  stored_object.Set(
+  return stored_object.Set(
       namespaced_stored_object.NamespaceKey(TEST_SUITES_2_CACHE_KEY,
                                             permissions_namespace),
       _ListTestSuites())
