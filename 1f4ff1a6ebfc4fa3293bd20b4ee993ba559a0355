@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bc5528e_161eb23d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-10-25T21:22:41Z",
+      "side": 1,
+      "message": "This no longer true, right? \n\ns/but DOES NOT/and DOES/ or something like that?",
+      "range": {
+        "startLine": 649,
+        "startChar": 43,
+        "endLine": 649,
+        "endChar": 55
+      },
+      "revId": "1f4ff1a6ebfc4fa3293bd20b4ee993ba559a0355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bdf33ae_97c64cb5",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-10-25T21:22:41Z",
+      "side": 1,
+      "message": "here too",
+      "range": {
+        "startLine": 670,
+        "startChar": 40,
+        "endLine": 670,
+        "endChar": 52
+      },
+      "revId": "1f4ff1a6ebfc4fa3293bd20b4ee993ba559a0355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
