@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bffe91b_f01cf2bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-10-25T18:09:05Z",
+      "side": 1,
+      "message": "Hi Haiyang\n\nThis CL adds default retries and timeout for the the WaitUntilFullyBooted method.\nIn between each retry the adb server will be restarted if any command in WaitUntilFullyBooted times out. Please take a look.\n\nRegards\nRakib Hasan",
+      "revId": "6c05a9b620368f25505e606f040b86735cc2a5d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
