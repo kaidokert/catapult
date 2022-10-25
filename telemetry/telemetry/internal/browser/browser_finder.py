@@ -46,9 +46,16 @@ def FindAllBrowserTypes(browser_finders=None):
     browsers.extend(bf.FindAllBrowserTypes())
   return browsers
 
+
 def _IsCrosBrowser(options):
-  return (options.browser_type in
-          ['cros-chrome', 'cros-chrome-guest', 'lacros-chrome'])
+  return (options.browser_type in [
+      'cros-chrome', 'cros-chrome-guest', 'lacros-chrome'
+  ])
+
+
+def _IsRemoteBrowser(options):
+  return 'remote-' in options.browser_type
+
 
 def SetTargetPlatformsBasedOnBrowserType(options):
   """Sets options.target_platforms based on options.browser_type
@@ -73,6 +80,7 @@ def SetTargetPlatformsBasedOnBrowserType(options):
   if browser_type in fuchsia_browser_finder.FindAllBrowserTypes():
     options.target_platforms.append('fuchsia')
 
+
 @decorators.Cache
 def FindBrowser(options):
   """Finds the best PossibleBrowser object given a BrowserOptions object.
@@ -95,10 +103,11 @@ def FindBrowser(options):
     raise browser_finder_exceptions.BrowserFinderException(
         '--browser-executable requires --browser=exact.')
 
-  if (not _IsCrosBrowser(options)  and
-      options.cros_remote is not None):
-    raise browser_finder_exceptions.BrowserFinderException(
-        '--remote requires --browser=[la]cros-chrome[-guest].')
+  if options.cros_remote is not None:
+    if (not _IsCrosBrowser(options) and not _IsRemoteBrowser(options)):
+      raise browser_finder_exceptions.BrowserFinderException(
+          '--remote requires --browser=[la]cros-chrome[-guest] or '
+          '--browser=remote-*')
 
   SetTargetPlatformsBasedOnBrowserType(options)
   devices = device_finder.GetDevicesMatchingOptions(options)
@@ -106,11 +115,10 @@ def FindBrowser(options):
   default_browsers = []
 
   browser_finders = _GetBrowserFinders(options.target_platforms)
-
   for device in devices:
     for finder in browser_finders:
-      if(options.browser_type and options.browser_type != 'any' and
-         options.browser_type not in finder.FindAllBrowserTypes()):
+      if (options.browser_type and options.browser_type != 'any'
+          and options.browser_type not in finder.FindAllBrowserTypes()):
         continue
       curr_browsers = finder.FindAllAvailableBrowsers(options, device)
       new_default_browser = finder.SelectDefaultBrowser(curr_browsers)
@@ -123,8 +131,8 @@ def FindBrowser(options):
 
   if options.browser_type is None:
     if default_browsers:
-      default_browser = max(default_browsers,
-                            key=lambda b: b.last_modification_time)
+      default_browser = max(
+          default_browsers, key=lambda b: b.last_modification_time)
       logging.warning('--browser omitted. Using most recent local build: %s',
                       default_browser.browser_type)
       default_browser.UpdateExecutableIfNeeded()
@@ -146,17 +154,17 @@ def FindBrowser(options):
     chosen_browser = min(browsers, key=lambda b: types.index(b.browser_type))
   else:
     matching_browsers = [
-        b for b in browsers
-        if b.browser_type == options.browser_type and
-        b.SupportsOptions(options.browser_options)]
+        b for b in browsers if b.browser_type == options.browser_type
+        and b.SupportsOptions(options.browser_options)
+    ]
     if not matching_browsers:
       logging.warning('Cannot find any matched browser')
       return None
     if len(matching_browsers) > 1:
       logging.warning('Multiple browsers of the same type found: %r',
                       matching_browsers)
-    chosen_browser = max(matching_browsers,
-                         key=lambda b: b.last_modification_time)
+    chosen_browser = max(
+        matching_browsers, key=lambda b: b.last_modification_time)
 
   if chosen_browser:
     logging.info('Chose browser: %r', chosen_browser)

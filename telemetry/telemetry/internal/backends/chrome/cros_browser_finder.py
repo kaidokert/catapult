@@ -34,7 +34,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   # anything in this file, so we can quote it here instead of everywhere it's
   # used.
   _CROS_MINIDUMP_DIR = cmd_helper.SingleQuote(
-      cros_interface.CrOSInterface.CROS_MINIDUMP_DIR)
+      cros_interface.CrOSInterface.MINIDUMP_DIR)
 
   _DEFAULT_CHROME_ENV = [
       'CHROME_HEADLESS=1',
@@ -42,16 +42,17 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   ]
 
   def __init__(self, browser_type, finder_options, cros_platform, is_guest):
-    super().__init__(
-        browser_type,
-        'lacros' if browser_type == 'lacros-chrome' else 'cros', True)
+    super().__init__(browser_type,
+                     'lacros' if browser_type == 'lacros-chrome' else 'cros',
+                     True)
     assert browser_type in FindAllBrowserTypes(), (
         'Please add %s to cros_browser_finder.FindAllBrowserTypes()' %
         browser_type)
     del finder_options
     self._platform = cros_platform
-    self._platform_backend = (
-        cros_platform._platform_backend)  # pylint: disable=protected-access
+    # pylint: disable=protected-access
+    self._platform_backend = (cros_platform._platform_backend)
+    # pylint: enable=protected-access
     self._is_guest = is_guest
 
     self._existing_minidump_dir = None
@@ -94,14 +95,14 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
           ['mktemp', '-d', '/tmp/extension_XXXXX'])[0].rstrip()
       # TODO(crbug.com/807645): We should avoid having mutable objects
       # stored within the browser options.
-      extension.local_path = posixpath.join(
-          extension_dir, os.path.basename(extension.path))
+      extension.local_path = posixpath.join(extension_dir,
+                                            os.path.basename(extension.path))
       cri.PushFile(extension.path, extension_dir)
       cri.Chown(extension_dir)
 
     # Move any existing crash dumps temporarily so that they don't get deleted.
-    self._existing_minidump_dir = (
-        '/tmp/existing_minidumps_%s' % _GetRandomHash())
+    self._existing_minidump_dir = ('/tmp/existing_minidumps_%s' %
+                                   _GetRandomHash())
     cri.RunCmdOnDevice(
         ['mv', self._CROS_MINIDUMP_DIR, self._existing_minidump_dir])
 
@@ -113,8 +114,10 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
     # Delete test user's cryptohome vault (user data directory).
     if not self._browser_options.dont_override_profile:
-      cri.RunCmdOnDevice(['cryptohome', '--action=remove', '--force',
-                          '--user=%s' % self._browser_options.username])
+      cri.RunCmdOnDevice([
+          'cryptohome', '--action=remove', '--force',
+          '--user=%s' % self._browser_options.username
+      ])
 
   def _TearDownEnvironment(self):
     cri = self._platform_backend.cri
@@ -131,7 +134,10 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     # a browser.
     if local_first_binary_manager.LocalFirstBinaryManager.NeedsInit():
       local_first_binary_manager.LocalFirstBinaryManager.Init(
-          self._build_dir, None, 'linux', platform.machine(),
+          self._build_dir,
+          None,
+          'linux',
+          platform.machine(),
           # TODO(crbug.com/1084334): Remove crashpad_database_util once the
           # locally compiled version works.
           ignored_dependencies=['crashpad_database_util'])
@@ -139,15 +145,19 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
     os_browser_backend = cros_browser_backend.CrOSBrowserBackend(
-        self._platform_backend, self._browser_options,
-        self.browser_directory, self.profile_directory,
-        self._is_guest, self._DEFAULT_CHROME_ENV,
+        self._platform_backend,
+        self._browser_options,
+        self.browser_directory,
+        self.profile_directory,
+        self._is_guest,
+        self._DEFAULT_CHROME_ENV,
         build_dir=self._build_dir,
         enable_tracing=self._app_type != 'lacros-chrome')
 
     if self._browser_options.create_browser_with_oobe:
-      return cros_browser_with_oobe.CrOSBrowserWithOOBE(
-          os_browser_backend, self._platform_backend, startup_args)
+      return cros_browser_with_oobe.CrOSBrowserWithOOBE(os_browser_backend,
+                                                        self._platform_backend,
+                                                        startup_args)
     os_browser_backend.Start(startup_args)
 
     if self._app_type == 'lacros-chrome':
@@ -160,21 +170,21 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
               self._DEFAULT_CHROME_ENV,
               os_browser_backend,
               build_dir=self._build_dir))
-      return browser.Browser(
-          lacros_chrome_browser_backend, self._platform_backend, startup_args)
+      return browser.Browser(lacros_chrome_browser_backend,
+                             self._platform_backend, startup_args)
     return browser.Browser(os_browser_backend, self._platform_backend,
                            startup_args)
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
 
-    startup_args.extend(chrome_startup_args.GetReplayArgs(
-        self._platform_backend.network_controller_backend))
+    startup_args.extend(
+        chrome_startup_args.GetReplayArgs(
+            self._platform_backend.network_controller_backend))
 
-    vmodule = ','.join('%s=2' % pattern for pattern in [
-        '*/chromeos/net/*',
-        '*/chromeos/login/*',
-        'chrome_browser_main_posix'])
+    vmodule = ','.join(
+        '%s=2' % pattern for pattern in
+        ['*/chromeos/net/*', '*/chromeos/login/*', 'chrome_browser_main_posix'])
 
     startup_args.extend([
         '--enable-smooth-scrolling',
@@ -209,8 +219,9 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     if browser_options.disable_gaia_services:
       startup_args.append('--disable-gaia-services')
 
-    trace_config_file = (self._platform_backend.tracing_controller_backend
-                         .GetChromeTraceConfigFile())
+    trace_config_file = (
+        self._platform_backend.tracing_controller_backend
+        .GetChromeTraceConfigFile())
     if trace_config_file:
       startup_args.append('--trace-config-file=%s' % trace_config_file)
 
@@ -222,6 +233,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   def UpdateExecutableIfNeeded(self):
     pass
 
+
 def SelectDefaultBrowser(possible_browsers):
   if cros_device.IsRunningOnCrOS():
     for b in possible_browsers:
@@ -231,8 +243,8 @@ def SelectDefaultBrowser(possible_browsers):
 
 
 def CanFindAvailableBrowsers(finder_options):
-  return (cros_device.IsRunningOnCrOS() or finder_options.cros_remote or
-          cros_interface.HasSSH())
+  return (cros_device.IsRunningOnCrOS() or finder_options.cros_remote
+          or cros_interface.HasSSH())
 
 
 def FindAllBrowserTypes():
@@ -289,8 +301,7 @@ def FindAllAvailableBrowsers(finder_options, device):
     raise browser_finder_exceptions.BrowserFinderException(str(ex))
 
   browsers.extend([
-      PossibleCrOSBrowser(
-          'cros-chrome', finder_options, plat, is_guest=False),
+      PossibleCrOSBrowser('cros-chrome', finder_options, plat, is_guest=False),
       PossibleCrOSBrowser(
           'lacros-chrome', finder_options, plat, is_guest=False),
       PossibleCrOSBrowser(
