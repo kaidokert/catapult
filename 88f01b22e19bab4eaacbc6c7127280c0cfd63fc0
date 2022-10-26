@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "88f01b22e19bab4eaacbc6c7127280c0cfd63fc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3351486c_aef42326",
+        "filename": "dashboard/dashboard/chart_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-26T21:28:48Z",
+      "side": 1,
+      "message": "I think this is missing a return statement",
+      "revId": "88f01b22e19bab4eaacbc6c7127280c0cfd63fc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
