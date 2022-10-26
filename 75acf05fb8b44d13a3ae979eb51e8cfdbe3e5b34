@@ -39,6 +39,30 @@
       },
       "revId": "75acf05fb8b44d13a3ae979eb51e8cfdbe3e5b34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fcc72dc_06d5581b",
+        "filename": "dashboard/dashboard/update_test_suites.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-10-26T20:21:22Z",
+      "side": 1,
+      "message": "200 is the default status. There is no need to give it explicitly. All you need is `return \u0027\u0027`.",
+      "parentUuid": "6acb352e_4db3beea",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 22
+      },
+      "revId": "75acf05fb8b44d13a3ae979eb51e8cfdbe3e5b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
