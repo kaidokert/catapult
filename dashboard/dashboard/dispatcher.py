@@ -23,6 +23,7 @@ from dashboard import main
 from dashboard import navbar
 from dashboard import sheriff_config_poller
 from dashboard import short_uri
+from dashboard import update_test_suites
 from dashboard.api import alerts as api_alerts
 from dashboard.api import config
 from dashboard.api import describe
@@ -163,8 +164,12 @@ def ShortUriHandlerPost():
   return short_uri.ShortUriHandlerPost()
 
 
+@flask_app.route('/update_test_suites', methods=['GET','POST'])
+def UpdateTestSuitesPost():
+  return update_test_suites.UpdateTestSuitesPost()
+
+
 if six.PY2:
-  import gae_ts_mon
   import webapp2
 
   # pylint: disable=ungrouped-imports
@@ -178,7 +183,6 @@ if six.PY2:
   from dashboard import file_bug
   from dashboard import get_diagnostics
   from dashboard import get_histogram
-  from dashboard import jstsmon
   from dashboard import layered_cache_delete_expired
   from dashboard import list_tests
   from dashboard import load_from_prod
@@ -191,7 +195,6 @@ if six.PY2:
   from dashboard import speed_releasing
   from dashboard import update_dashboard_stats
   from dashboard import update_test_suite_descriptors
-  from dashboard import update_test_suites
   from dashboard import uploads_info
   from dashboard.api import bugs
   from dashboard.api import list_timeseries
@@ -205,7 +208,6 @@ if six.PY2:
   from dashboard.api import timeseries
 
   _URL_MAPPING = [
-      ('/_/jstsmon', jstsmon.JsTsMonHandler),
       ('/add_histograms', add_histograms.AddHistogramsHandler),
       ('/add_histograms/process', add_histograms.AddHistogramsProcessHandler),
       ('/add_histograms_queue', add_histograms_queue.AddHistogramsQueueHandler),
@@ -276,7 +278,6 @@ if six.PY2:
   ]
 
   webapp2_app = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
-  gae_ts_mon.initialize(webapp2_app)
 
 # After a handler is migrated to flask, add its handled url here.
 # The listed values will be used as *prefix* to match and redirect
@@ -302,6 +303,7 @@ _PATHS_HANDLED_BY_FLASK = [
     '/list_tests',
     '/navbar',
     '/short_uri',
+    '/update_test_suites',
 ]
 
 
