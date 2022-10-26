@@ -10,6 +10,8 @@ import shutil
 import stat
 import tempfile
 
+from devil.android import device_errors
+
 from py_utils import atexit_with_log
 
 from telemetry.internal.platform.tracing_agent import chrome_tracing_agent
@@ -64,12 +66,18 @@ class ChromeReturnAsStreamTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
     if os_name == 'android':
       self._trace_config_file = os.path.join(_CHROME_TRACE_CONFIG_DIR_ANDROID,
                                              _CHROME_TRACE_CONFIG_FILE_NAME)
-      self._platform_backend.device.WriteFile(
-          self._trace_config_file,
-          self._CreateTraceConfigFileString(config), as_root=True)
-      # The config file has fixed path on Android. We need to ensure it is
-      # always cleaned up.
-      atexit_with_log.Register(self._RemoveTraceConfigFile)
+      try:
+        self._platform_backend.device.WriteFile(
+            self._trace_config_file,
+            self._CreateTraceConfigFileString(config), as_root=True)
+        # The config file has fixed path on Android. We need to ensure it is
+        # always cleaned up.
+        atexit_with_log.Register(self._RemoveTraceConfigFile)
+      except device_errors.AdbCommandFailedError:
+        if not self._platform_backend._require_root:
+          logging.info(
+              'Unable to create trace config file on non-rooted deviced')
+          return False
       return True
     if os_name == 'chromeos':
       self._trace_config_file = os.path.join(_CHROME_TRACE_CONFIG_DIR_CROS,
