@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f487a2f7_0d816ab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-10-26T23:06:43Z",
+      "side": 1,
+      "message": "Surprised we didn\u0027t already have a util for this",
+      "revId": "2a33fec5d49a7207f9ba062cc96554985f1f6e29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
