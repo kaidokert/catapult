@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e46a925f_37034019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-26T21:40:23Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "88f01b22e19bab4eaacbc6c7127280c0cfd63fc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3351486c_aef42326",
@@ -49,6 +66,24 @@
       "side": 1,
       "message": "The original function should have updated the template_values by reference, as the PY2 implementation does not return either.\n\nThis was from Funing\u0027s CL and I only format the parameters to reduce the length.",
       "parentUuid": "3351486c_aef42326",
+      "revId": "88f01b22e19bab4eaacbc6c7127280c0cfd63fc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d233373b_3fd760a2",
+        "filename": "dashboard/dashboard/chart_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-26T21:40:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8575e56e_c9d296de",
       "revId": "88f01b22e19bab4eaacbc6c7127280c0cfd63fc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
