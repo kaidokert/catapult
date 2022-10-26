@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390f9a9d_e08acf95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-26T19:52:18Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "75acf05fb8b44d13a3ae979eb51e8cfdbe3e5b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6acb352e_4db3beea",
+        "filename": "dashboard/dashboard/update_test_suites.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-26T19:52:18Z",
+      "side": 1,
+      "message": "nit: you can use make_response(\u0027response body\u0027, 200)",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 22
+      },
+      "revId": "75acf05fb8b44d13a3ae979eb51e8cfdbe3e5b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
