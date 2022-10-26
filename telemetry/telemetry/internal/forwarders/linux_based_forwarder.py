@@ -3,17 +3,11 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
-import subprocess
-import tempfile
 
-from telemetry.core import util
-from telemetry.internal import forwarders
-from telemetry.internal.forwarders import do_nothing_forwarder
-from telemetry.internal.forwarders import forwarder_utils
-
-import py_utils
+from telemetry.internal.forwarders import linux_based_forwarder
 
 
+<<<<<<<< HEAD:telemetry/telemetry/internal/forwarders/linux_based_forwarder.py
 class LinuxBasedForwarderFactory(forwarders.ForwarderFactory):
 
   def __init__(self, interface):
@@ -76,3 +70,11 @@ class LinuxBasedSshForwarder(forwarders.Forwarder):
       self._proc.kill()
       self._proc = None
     super().Close()
+========
+class CrOsForwarderFactory(linux_based_forwarder.LinuxBasedForwarderFactory):
+  pass
+
+
+class CrOsSshForwarder(linux_based_forwarder.LinuxBasedSshForwarder):
+  pass
+>>>>>>>> ae9530a99 (Creates linux-forwarder):telemetry/telemetry/internal/forwarders/cros_forwarder.py
