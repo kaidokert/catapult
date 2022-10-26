@@ -33,6 +33,24 @@
       "message": "LTGM, with a question: We won\u0027t switch to Py3 runtime until all handlers are migrated?",
       "revId": "13eb545ff02fa2a4b81f238cf4d7c6b69bd61897",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f7c6cb_cbdce5cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-10-26T01:21:00Z",
+      "side": 1,
+      "message": "No. Webapp2 is not compatible in python 3.",
+      "parentUuid": "0ac5289a_28ae077f",
+      "revId": "13eb545ff02fa2a4b81f238cf4d7c6b69bd61897",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
