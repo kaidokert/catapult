@@ -36,6 +36,9 @@ def ClearStarupTracingStateIfNeeded(platform_backend):
 class ChromeReturnAsStreamTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
   @classmethod
   def IsSupported(cls, platform_backend):
+    if (platform_backend.GetOSName() == 'android' and
+        not platform_backend._require_root):
+      return False
     # TODO(crbug.com/1279968): Workaround to enable streaming for some fuchsia
     # platforms while progress is made on others.
     return True
