@@ -70,6 +70,30 @@
       },
       "revId": "885162da2a34e78e10ee6511a16502caebd0cdef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee1f65d_f79dedaa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1551707
+      },
+      "writtenOn": "2022-10-26T13:19:54Z",
+      "side": 1,
+      "message": "Honestly this is happening because we\u0027re misusing `ffx test run`. It\u0027s not designed for launching arbitrary programs on a target, it just happens to have the right feature set to unblock this migration.\n\nIdeally we\u0027ll be able to use something more general like `ffx component run`, but that\u0027s blocked on the CF team building out additional functionality for that (such as proper handling of stdout/stderr streams, setting command line arguments, and more). The CF team is discussing how to improve our tools here, and I\u0027ve been providing the team with Chromium\u0027s use cases here.\n\nUnfortunately I don\u0027t have a timeline for this work, and this workaround (using `ffx test run` and stdout here) will be tech debt until that\u0027s ready.\n\nIf this answer is unsatisfying to you I can look into working on more of a \"passthrough\" option for `ffx test run` and its handling of output streams, such that stderr is printed to the shell\u0027s stderr, but this change set does work without that.",
+      "parentUuid": "44de8356_d11ff06e",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 61
+      },
+      "revId": "885162da2a34e78e10ee6511a16502caebd0cdef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
