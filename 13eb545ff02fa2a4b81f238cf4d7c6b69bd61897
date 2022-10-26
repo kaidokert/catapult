@@ -16,6 +16,23 @@
       "message": "One line change. PTAL.",
       "revId": "13eb545ff02fa2a4b81f238cf4d7c6b69bd61897",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac5289a_28ae077f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-26T00:13:01Z",
+      "side": 1,
+      "message": "LTGM, with a question: We won\u0027t switch to Py3 runtime until all handlers are migrated?",
+      "revId": "13eb545ff02fa2a4b81f238cf4d7c6b69bd61897",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
