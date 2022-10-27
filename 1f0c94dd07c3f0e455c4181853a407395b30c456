@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5fc4689_03cb1672",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-10-27T16:25:24Z",
+      "side": 1,
+      "message": "PTAL. I\u0027ve omitted some of the files like tsmon-client.js but I can add them in. Wasn\u0027t sure the balance of things I could delete and things we want to keep.",
+      "revId": "1f0c94dd07c3f0e455c4181853a407395b30c456",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
