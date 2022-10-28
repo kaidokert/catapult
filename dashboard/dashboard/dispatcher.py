@@ -65,7 +65,7 @@ def AlertsHandlerPost():
   return alerts.AlertsHandlerPost()
 
 
-@flask_app.route('/api/alerts', methods=['POST'])
+@flask_app.route('/api/alerts', methods=['POST', 'OPTIONS'])
 def AlertsPost():
   return api_alerts.AlertsPost()
 
@@ -75,17 +75,12 @@ def ConfigHandlerPost():
   return config.ConfigHandlerPost()
 
 
-@flask_app.route('/api/describe', methods=['OPTIONS'])
-def DescribeOptions():
-  return describe.DescribeOptions()
-
-
-@flask_app.route('/api/describe', methods=['POST'])
+@flask_app.route('/api/describe', methods=['POST', 'OPTIONS'])
 def DescribePost():
   return describe.DescribePost()
 
 
-@flask_app.route('/api/test_suites', methods=['POST'])
+@flask_app.route('/api/test_suites', methods=['POST', 'OPTIONS'])
 def TestSuitesPost():
   return test_suites.TestSuitesPost()
 
