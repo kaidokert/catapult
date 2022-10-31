@@ -20,6 +20,7 @@ from dashboard import graph_json
 from dashboard import graph_revisions
 from dashboard import group_report
 from dashboard import main
+from dashboard import migrate_test_names
 from dashboard import navbar
 from dashboard import pinpoint_request
 from dashboard import sheriff_config_poller
@@ -150,6 +151,16 @@ def MainHandlerGet():
   return main.MainHandlerGet()
 
 
+@flask_app.route('/migrate_test_names', methods=['GET'])
+def MigrateTestNamesGet():
+  return migrate_test_names.MigrateTestNamesGet()
+
+
+@flask_app.route('/migrate_test_names', methods=['POST'])
+def MigrateTestNamesPost():
+  return migrate_test_names.MigrateTestNamesPost()
+
+
 @flask_app.route('/navbar', methods=['POST'])
 def NavbarHandlerPost():
   return navbar.NavbarHandlerPost()
@@ -213,7 +224,6 @@ if six.PY2:
   from dashboard import list_tests
   from dashboard import load_from_prod
   from dashboard import mark_recovered_alerts
-  from dashboard import migrate_test_names
   from dashboard import put_entities_task
   from dashboard import report
   from dashboard import speed_releasing
@@ -322,6 +332,7 @@ _PATHS_HANDLED_BY_FLASK = [
     '/graph_revisions',
     '/group_report',
     '/list_tests',
+    '/migrate_test_names',
     '/navbar',
     '/pinpoint/new/bisect',
     '/pinpoint/new/perf_try',
