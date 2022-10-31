@@ -60,21 +60,11 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self.devtools_client.DumpMemory(timeout=timeout,
                                            detail_level=detail_level)
 
-  def _ReadDevToolsPortFromStdout(self, search_regex):
+  def _ReadDevToolsPortFromPipe(self, search_regex, pipe):
     def TryReadingPort():
-      if not self._browser_log_proc.stderr:
+      if not pipe:
         return None
-      line = self._browser_log_proc.stdout.readline()
-      tokens = re.search(search_regex, line)
-      self._browser_log += line
-      return int(tokens.group(1)) if tokens else None
-    return py_utils.WaitFor(TryReadingPort, timeout=60)
-
-  def _ReadDevToolsPortFromStderr(self, search_regex):
-    def TryReadingPort():
-      if not self._browser_log_proc.stderr:
-        return None
-      line = self._browser_log_proc.stderr.readline()
+      line = pipe.readline()
       tokens = re.search(search_regex, line)
       self._browser_log += line
       return int(tokens.group(1)) if tokens else None
@@ -83,13 +73,16 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def _ReadDevToolsPort(self):
     if self.browser_type == WEB_ENGINE_SHELL:
       search_regex = r'Remote debugging port: (\d+)'
-      result = self._ReadDevToolsPortFromStdout(search_regex)
+      result = self._ReadDevToolsPortFromPipe(search_regex,
+                                              self._browser_log_proc.stdout)
     elif self.browser_type == CAST_STREAMING_SHELL:
       search_regex = r'Remote debugging port: (\d+)'
-      result = self._ReadDevToolsPortFromStderr(search_regex)
+      result = self._ReadDevToolsPortFromPipe(search_regex,
+                                              self._browser_log_proc.stderr)
     else:
       search_regex = r'DevTools listening on ws://127.0.0.1:(\d+)/devtools.*'
-      result = self._ReadDevToolsPortFromStderr(search_regex)
+      result = self._ReadDevToolsPortFromPipe(search_regex,
+                                              self._browser_log_proc.stderr)
     return result
 
   def _StartWebEngineShell(self, startup_args):
