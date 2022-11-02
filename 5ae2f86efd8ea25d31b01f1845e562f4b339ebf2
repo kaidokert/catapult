@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74c242c0_e959d767",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-02T06:58:49Z",
+      "side": 1,
+      "message": "This line should contain the bug ID, not full link, like this:\n\nBug: chromium:1377146\n\nTools like Gerrit will automatically convert bug ID into link.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 76
+      },
+      "revId": "5ae2f86efd8ea25d31b01f1845e562f4b339ebf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c346732c_e6a4c7ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-02T06:58:49Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "5ae2f86efd8ea25d31b01f1845e562f4b339ebf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
