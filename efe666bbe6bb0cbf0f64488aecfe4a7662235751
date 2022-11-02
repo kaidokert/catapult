@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d82ef5_cbe84632",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1521770
+      },
+      "writtenOn": "2022-11-02T04:20:24Z",
+      "side": 1,
+      "message": "Hi Rohan,\n\nIs it possible to remove this assert here or setting the cwd argument when calling RunCmdOnDevice?\n\nTake service_name as ui for example, there is a chance that the command\n`sh -c status ui` gives expected results in stdout, that contains string like \u0027running, process\u0027, but stderr contains \u0027No such file or directory\u0027 that comes from the `sh`.\n\nIt looks like this method could ignore the stderr and simply return the indicator of the service running. wdyt?\n\nThanks!",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "efe666bbe6bb0cbf0f64488aecfe4a7662235751",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
