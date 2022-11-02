@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97e6cc15_7a6f62e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2022-11-02T20:07:01Z",
+      "side": 1,
+      "message": "Thanks, LGTM! As noted in comment, you could remove the \"include all\" line, but it\u0027s also good to keep it if you think it\u0027s clearer or more explicit.",
+      "revId": "924bf8c9c5dc00f259666267c61a913917ecde6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c18cfdf0_8c4c7ea4",
@@ -31,6 +48,30 @@
       "writtenOn": "2022-11-02T18:59:04Z",
       "side": 1,
       "message": "Not sure if this line is necessary?",
+      "range": {
+        "startLine": 179,
+        "startChar": 16,
+        "endLine": 179,
+        "endChar": 55
+      },
+      "revId": "924bf8c9c5dc00f259666267c61a913917ecde6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "478a98c7_c763cca9",
+        "filename": "infra/config/main.star",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2022-11-02T20:07:01Z",
+      "side": 1,
+      "message": "It\u0027s not strictly necessary, the behavior would be the same if you removed this line, because if the first filter is an exclude filter then there\u0027s an implicit \"include all\" before the exclude filter (same as if only location_regexp_exclude is specified).\n\nAlso, `cq.location_filter(path_regexp \u003d \".*\")` is equivalent to `cq.location_filter()`.\n\nHowever, I think this way is good as is because it\u0027s more explicit.",
+      "parentUuid": "c18cfdf0_8c4c7ea4",
       "range": {
         "startLine": 179,
         "startChar": 16,
