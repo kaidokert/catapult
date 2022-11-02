@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58453d7b_ca7c257c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-02T18:59:04Z",
+      "side": 1,
+      "message": "I tried to follow the instructions in issue 1380564, but I\u0027m not sure if I did everything correctly. In particular, I don\u0027t know if the `cq.location_filter(path_regexp\u003d\".*\")` is needed. Could you PTAL? Thanks.",
+      "revId": "924bf8c9c5dc00f259666267c61a913917ecde6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c18cfdf0_8c4c7ea4",
+        "filename": "infra/config/main.star",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-02T18:59:04Z",
+      "side": 1,
+      "message": "Not sure if this line is necessary?",
+      "range": {
+        "startLine": 179,
+        "startChar": 16,
+        "endLine": 179,
+        "endChar": 55
+      },
+      "revId": "924bf8c9c5dc00f259666267c61a913917ecde6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
