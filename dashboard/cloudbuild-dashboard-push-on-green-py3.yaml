@@ -54,4 +54,35 @@ steps:
     # upload.yaml,
     pinpoint-py3.yaml,
   ]
+# We check in the target versions to avoid unintended traffic changes.
+- name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'default',
+    '--splits=cloud-build-aa7c33e=.7,cloud-build-3413510=.3'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'api',
+    '--splits=cloud-build-aa7c33e=.7,cloud-build-3413510=.3'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'default',
+    '--splits=cloud-build-aa7c33e=.7,cloud-build-07a32de=.3'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'api',
+    '--splits=cloud-build-aa7c33e=.7,cloud-build-07a32de=.3'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'pinpoint',
+    '--splits=cloud-build-3a19f7a=1'
+  ]
 images: ['gcr.io/$PROJECT_ID/dashboard-base:latest']
