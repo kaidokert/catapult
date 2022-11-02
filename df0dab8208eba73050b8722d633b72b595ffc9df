@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "900425dc_67b8d0ea",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-02T22:24:20Z",
+      "side": 1,
+      "message": "This function and _GenerateResponse() do not use properties of ApiRequestHandler we can probably remove the self parameter and reuse them in flask.",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 200,
+        "endChar": 32
+      },
+      "revId": "df0dab8208eba73050b8722d633b72b595ffc9df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
