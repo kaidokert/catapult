@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a55a929a_c96210db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-02T21:39:10Z",
+      "side": 1,
+      "message": "Do we need to manually deploy the index.yaml to make it effective, ike the cron.yaml?",
+      "revId": "ed16342e1c77a3225edb19a75fe42d70215f1aa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
