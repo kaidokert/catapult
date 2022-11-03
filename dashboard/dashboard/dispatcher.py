@@ -19,7 +19,9 @@ from dashboard import graph_csv
 from dashboard import graph_json
 from dashboard import graph_revisions
 from dashboard import group_report
+from dashboard import layered_cache_delete_expired
 from dashboard import main
+from dashboard import mark_recovered_alerts
 from dashboard import navbar
 from dashboard import pinpoint_request
 from dashboard import sheriff_config_poller
@@ -152,6 +154,11 @@ def MainHandlerGet():
   return main.MainHandlerGet()
 
 
+@flask_app.route('/mark_recovered_alerts', methods=['POST'])
+def MarkRecoveredAlertsPost():
+  return mark_recovered_alerts.MarkRecoveredAlertsPost()
+
+
 @flask_app.route('/navbar', methods=['POST'])
 def NavbarHandlerPost():
   return navbar.NavbarHandlerPost()
@@ -221,10 +228,8 @@ if six.PY2:
   from dashboard import file_bug
   from dashboard import get_diagnostics
   from dashboard import get_histogram
-  from dashboard import layered_cache_delete_expired
   from dashboard import list_tests
   from dashboard import load_from_prod
-  from dashboard import mark_recovered_alerts
   from dashboard import migrate_test_names
   from dashboard import put_entities_task
   from dashboard import report
@@ -325,6 +330,7 @@ _PATHS_HANDLED_BY_FLASK = [
     # '/add_histograms',
     # '/add_histograms/process',
     '/buildbucket_job_status',
+    '/delete_expired_entities',
     '/edit_anomalies',
     '/edit_site_config',
     '/graph_csv',
@@ -332,6 +338,7 @@ _PATHS_HANDLED_BY_FLASK = [
     '/graph_revisions',
     '/group_report',
     '/list_tests',
+    # '/mark_recovered_alerts',
     '/navbar',
     '/pinpoint/new/bisect',
     '/pinpoint/new/perf_try',
