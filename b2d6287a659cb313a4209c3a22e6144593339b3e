@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "915fd4fc_0f8bb29b",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-03T23:40:53Z",
+      "side": 1,
+      "message": "this one is erroring out frequently, might be broken to begin with. Funing says it might be due to vm size.",
+      "revId": "b2d6287a659cb313a4209c3a22e6144593339b3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47152d72_56a84dcf",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-03T23:40:53Z",
+      "side": 1,
+      "message": "Disabling for now. We can test this on either staging or a local deployment on production.",
+      "revId": "b2d6287a659cb313a4209c3a22e6144593339b3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
