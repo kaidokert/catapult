@@ -15,6 +15,7 @@ from dashboard import alerts
 from dashboard import buildbucket_job_status
 from dashboard import edit_anomalies
 from dashboard import edit_site_config
+from dashboard import file_bug
 from dashboard import graph_csv
 from dashboard import graph_json
 from dashboard import graph_revisions
@@ -110,6 +111,11 @@ def EditSiteConfigHandlerGet():
 @flask_app.route('/edit_site_config', methods=['POST'])
 def EditSiteConfigHandlerPost():
   return edit_site_config.EditSiteConfigHandlerPost()
+
+
+@flask_app.route('/file_bug', methods=['GET','POST'])
+def FileBugHandlerPost():
+  return file_bug.FileBugHandlerPost()
 
 
 @flask_app.route('/graph_csv', methods=['GET'])
@@ -327,6 +333,7 @@ _PATHS_HANDLED_BY_FLASK = [
     '/buildbucket_job_status',
     '/edit_anomalies',
     '/edit_site_config',
+    '/file_bug',
     '/graph_csv',
     '/graph_json',
     '/graph_revisions',
