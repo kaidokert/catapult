@@ -221,6 +221,8 @@ def GetIsolateTarget(bot_name, suite):
     return 'performance_weblayer_test_suite'
   if bot_name == 'android-pixel4-perf':
     return 'performance_test_suite_android_clank_trichrome_bundle'
+  if bot_name == 'android-go-wembley-perf':
+    return 'performance_test_suite_android_clank_trichrome_bundle'
   if bot_name == 'android-pixel4_weblayer-perf':
     return 'performance_weblayer_test_suite'
   if bot_name == 'android-pixel4a_power-perf':
