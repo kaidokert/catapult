@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "966b3afbc61aa98f976c277ad05582e03e394651",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c950f1_63580708",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-03T01:24:00Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "966b3afbc61aa98f976c277ad05582e03e394651",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f786999_93797858",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-03T01:24:00Z",
+      "side": 1,
+      "message": "Nit: Please keep the list more or less alphabetized, and move this next to android-go-perf. Same for the other file.",
+      "range": {
+        "startLine": 224,
+        "startChar": 2,
+        "endLine": 225,
+        "endChar": 66
+      },
+      "revId": "966b3afbc61aa98f976c277ad05582e03e394651",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
