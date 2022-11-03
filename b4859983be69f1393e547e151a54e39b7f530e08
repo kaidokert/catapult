@@ -18,6 +18,41 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a92386_bc24a586",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-03T18:34:14Z",
+      "side": 1,
+      "message": "This handler should not be used often (and I doubt any customers will do that on their own).\nI think we can do the followings:\n - update the message in html to warn customers about the ongoing migration\n - enable this in flask\n - use results under weblayer for testing, which is now deprecated.\n - revert the html warning when the test is done.",
+      "parentUuid": "c33efcd1_70812372",
+      "revId": "b4859983be69f1393e547e151a54e39b7f530e08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa432d5_fb9d6933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-03T18:34:14Z",
+      "side": 1,
+      "message": "lgtm with ideas for testing.",
+      "revId": "b4859983be69f1393e547e151a54e39b7f530e08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f0f4a09_dceb1469",
@@ -31,6 +66,24 @@
       "writtenOn": "2022-10-31T23:03:10Z",
       "side": 1,
       "message": "not sure about this return statement",
+      "revId": "b4859983be69f1393e547e151a54e39b7f530e08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfc61623_c987e8d2",
+        "filename": "dashboard/dashboard/migrate_test_names.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-03T18:34:14Z",
+      "side": 1,
+      "message": "Request with status should be from task queue. Returning empty lgtm.",
+      "parentUuid": "3f0f4a09_dceb1469",
       "revId": "b4859983be69f1393e547e151a54e39b7f530e08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
