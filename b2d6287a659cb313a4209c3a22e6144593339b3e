@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "155792a7_951a87fc",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T17:26:32Z",
+      "side": 1,
+      "message": "yeah my bad. Done.",
+      "parentUuid": "67830169_07eef6b0",
+      "revId": "b2d6287a659cb313a4209c3a22e6144593339b3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "915fd4fc_0f8bb29b",
@@ -53,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a6f4cbf_52dd9ad8",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T17:26:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0ca52c1_f1ff3068",
+      "revId": "b2d6287a659cb313a4209c3a22e6144593339b3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47152d72_56a84dcf",
@@ -83,6 +119,30 @@
       "writtenOn": "2022-11-04T03:42:19Z",
       "side": 1,
       "message": "nit: we don\u0027t need to keep the member functions. We can use the new ones you created here.",
+      "range": {
+        "startLine": 255,
+        "startChar": 13,
+        "endLine": 255,
+        "endChar": 39
+      },
+      "revId": "b2d6287a659cb313a4209c3a22e6144593339b3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a660b8e8_24a2e378",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T17:26:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "786d6b69_bbafd173",
       "range": {
         "startLine": 255,
         "startChar": 13,
