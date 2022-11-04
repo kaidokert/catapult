@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
+import logging
 import six
 
 from py_trace_event import trace_event
@@ -41,6 +42,8 @@ class NetworkController(
 
   def StartReplay(self, archive_path, make_javascript_deterministic=False,
                   extra_wpr_args=None):
+    self._network_controller_backend.ts_proxy_server.UpdateTrafficSettings(200, 10000, 1000)
+
     extra_wpr_args = tuple(extra_wpr_args) if extra_wpr_args else ()
     self._network_controller_backend.StartReplay(
         archive_path, make_javascript_deterministic, extra_wpr_args)
