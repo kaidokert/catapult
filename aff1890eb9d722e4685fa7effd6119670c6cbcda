@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "208be629_eca6134d",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T17:37:06Z",
+      "side": 1,
+      "message": "ditto of ? Let me know if this isn\u0027t the fix.",
+      "parentUuid": "a78f044c_0d43f8a4",
+      "range": {
+        "startLine": 154,
+        "startChar": 10,
+        "endLine": 154,
+        "endChar": 16
+      },
+      "revId": "aff1890eb9d722e4685fa7effd6119670c6cbcda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a6596ab_332362a1",
         "filename": "dashboard/dashboard/add_point.py",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-04T02:54:21Z",
       "side": 1,
       "message": "nit: This can be put after _AddTasks(data)",
+      "range": {
+        "startLine": 172,
+        "startChar": 2,
+        "endLine": 172,
+        "endChar": 26
+      },
+      "revId": "aff1890eb9d722e4685fa7effd6119670c6cbcda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "248c73b5_6e70f34a",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T17:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a6596ab_332362a1",
       "range": {
         "startLine": 172,
         "startChar": 2,
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-04T02:54:21Z",
       "side": 1,
       "message": "Actually the original logic does not raise here. It will continue to the next statement: ndb.Future.wait_all(). I think that exception means failing to add one point, but the other points may have been added.",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 67
+      },
+      "revId": "aff1890eb9d722e4685fa7effd6119670c6cbcda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef3afeb_47e9b5f8",
+        "filename": "dashboard/dashboard/add_point_queue.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T17:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb908f6a_913937ba",
       "range": {
         "startLine": 55,
         "startChar": 6,
