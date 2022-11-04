@@ -251,7 +251,7 @@ class SharedPageState(story_module.SharedState):
       self.browser.tabs[0].WaitForDocumentReadyStateToBeComplete()
 
     # Reset traffic shaping to speed up cache temperature setup.
-    self.platform.network_controller.UpdateTrafficSettings(0, 0, 0)
+    #self.platform.network_controller.UpdateTrafficSettings(0, 0, 0)
     cache_temperature.EnsurePageCacheTemperature(
         self._current_page, self.browser)
     if self._current_page.traffic_setting != traffic_setting.NONE:
