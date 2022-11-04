@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f218b0bd_d32cec0a",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T18:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bcc81f8_fb894605",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27f77ca1_8241e42d",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-21T17:54:55Z",
       "side": 1,
       "message": "Delete (duplicate of line 14).",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5527bd81_1092e4e5",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T18:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27f77ca1_8241e42d",
       "range": {
         "startLine": 97,
         "startChar": 2,
@@ -189,6 +237,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dcd6e64_5c4adb65",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T18:38:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "79ac1dd7_c958c8a0",
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95fc645d_a51f9808",
@@ -237,6 +303,30 @@
       "writtenOn": "2022-09-20T06:20:49Z",
       "side": 1,
       "message": "Remove.",
+      "range": {
+        "startLine": 98,
+        "startChar": 15,
+        "endLine": 98,
+        "endChar": 19
+      },
+      "revId": "25015185c87aaa0d83ce11befc9e6942a890dd7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b32cd245_8df1dbeb",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-04T18:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c837c256_a2f66da3",
       "range": {
         "startLine": 98,
         "startChar": 15,
