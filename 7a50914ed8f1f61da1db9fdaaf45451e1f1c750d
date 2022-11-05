@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59aaa1ff_0f17c0d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001385
+      },
+      "writtenOn": "2022-11-05T13:58:23Z",
+      "side": 1,
+      "message": "Performance, or something else?",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 56
+      },
+      "revId": "7a50914ed8f1f61da1db9fdaaf45451e1f1c750d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a258ac_95195296",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001385
+      },
+      "writtenOn": "2022-11-05T13:58:23Z",
+      "side": 1,
+      "message": "Please add the bug tracking the regression as a Bug: line, so that the original CL author has some way to investigate.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "7a50914ed8f1f61da1db9fdaaf45451e1f1c750d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
