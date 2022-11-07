@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5efdabae_8720b421",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-07T20:27:44Z",
+      "side": 1,
+      "message": "Tested with obsolete alerts and dummy bug.",
+      "revId": "0350e328c4386ef29da8c51cb18ff262a84e5bf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
