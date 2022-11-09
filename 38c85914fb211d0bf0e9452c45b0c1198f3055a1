@@ -16,6 +16,29 @@
       "message": "Took a while, but updated this CL. PTAL.",
       "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b16f52f_b2647e9d",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T07:23:53Z",
+      "side": 1,
+      "message": "Why /sdcard/Download folder is picked as the alternative?",
+      "range": {
+        "startLine": 608,
+        "startChar": 13,
+        "endLine": 608,
+        "endChar": 19
+      },
+      "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
