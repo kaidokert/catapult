@@ -39,6 +39,30 @@
       },
       "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cbe7148_19700ab9",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-11-09T18:28:09Z",
+      "side": 1,
+      "message": "It\u0027s a directory that seems to exist on all Android phones and we know that Chrome has read/write access to it since that\u0027s where downloaded files go.",
+      "parentUuid": "1b16f52f_b2647e9d",
+      "range": {
+        "startLine": 608,
+        "startChar": 13,
+        "endLine": 608,
+        "endChar": 19
+      },
+      "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
