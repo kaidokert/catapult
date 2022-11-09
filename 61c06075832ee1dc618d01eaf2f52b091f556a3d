@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "399e582d_67074b36",
+        "filename": "dashboard/dashboard/common/datastore_hooks_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T18:25:57Z",
+      "side": 1,
+      "message": "Thanks for catching it. I updated and skip running the flask tests in python 2. This is related the usage of IsUnalteredQueryPermitted. We may need another separate fix.",
+      "parentUuid": "209cd61c_f1c97645",
+      "revId": "61c06075832ee1dc618d01eaf2f52b091f556a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8586337a_9644ad30",
         "filename": "dashboard/dashboard/common/datastore_hooks_test.py",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2022-11-09T16:39:28Z",
       "side": 1,
       "message": "ditto",
+      "revId": "61c06075832ee1dc618d01eaf2f52b091f556a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "727c06db_87ee6fd7",
+        "filename": "dashboard/dashboard/common/datastore_hooks_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T18:25:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8586337a_9644ad30",
       "revId": "61c06075832ee1dc618d01eaf2f52b091f556a3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2022-11-09T16:39:28Z",
       "side": 1,
       "message": "ditto",
+      "revId": "61c06075832ee1dc618d01eaf2f52b091f556a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3209c6b2_92480349",
+        "filename": "dashboard/dashboard/common/datastore_hooks_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T18:25:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1524d680_46234210",
       "revId": "61c06075832ee1dc618d01eaf2f52b091f556a3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
