@@ -63,6 +63,30 @@
       },
       "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "716811ce_95aa0ba6",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T18:44:51Z",
+      "side": 1,
+      "message": "Thanks for clarifying it. In general it sounds good to me. One concern is that files in /data/local/tmp/ looks like will be cleaned up some time, while those in /sdcard/Download/ seems will be persisted. Will it be a problem when the same package is re-downloaded?",
+      "parentUuid": "4cbe7148_19700ab9",
+      "range": {
+        "startLine": 608,
+        "startChar": 13,
+        "endLine": 608,
+        "endChar": 19
+      },
+      "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
