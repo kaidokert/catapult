@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd60565a_cbedbb92",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2022-11-09T19:59:50Z",
+      "side": 1,
+      "message": "I updated it since `_WATERFALL_ENABLED_GTEST_NAMES` is not actually used in this if-block, while GTEST_EXECUTABLE_NAME is. If you want to keep it as _WATERFALL_ENABLED_GTEST_NAMES, I can revert it.",
+      "parentUuid": "57181a6e_7d356bbd",
+      "range": {
+        "startLine": 92,
+        "startChar": 20,
+        "endLine": 92,
+        "endChar": 41
+      },
+      "revId": "90cdf782fda54cee8b83ac0b921886e39b582020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c269bbc1_4560333b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-09T19:03:01Z",
       "side": 1,
       "message": "\u0027../../testing/scripts/run_performance_tests.py\u0027 is added in run_telemetry_test.py. Do we need this here as well?",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 13
+      },
+      "revId": "90cdf782fda54cee8b83ac0b921886e39b582020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8530c5d6_8b6a4e94",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_web_engine_telemetry_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2022-11-09T19:59:50Z",
+      "side": 1,
+      "message": "I specifically want to avoid run_telemetry_test.py for these tests, since bin/run_base_perftests (and any other binaries on Fuchsia) are wrapped scripts that handle deploying of the binary to the remote target.",
+      "parentUuid": "c269bbc1_4560333b",
       "range": {
         "startLine": 56,
         "startChar": 6,
