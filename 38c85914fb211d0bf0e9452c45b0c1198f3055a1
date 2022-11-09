@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ff8baab_e93edb6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T19:04:13Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b16f52f_b2647e9d",
@@ -103,6 +120,30 @@
       "side": 1,
       "message": "The directory contents should be routinely removed before every browser start due to `RemoveProfile()`. We added an additional `ClearApplicationState()` to make sure that other profile data is removed, but the contents of whatever `GetProfileDir()` returns will still be removed. AFAIK simply having that directory exist is not a problem.",
       "parentUuid": "716811ce_95aa0ba6",
+      "range": {
+        "startLine": 608,
+        "startChar": 13,
+        "endLine": 608,
+        "endChar": 19
+      },
+      "revId": "38c85914fb211d0bf0e9452c45b0c1198f3055a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38186d89_6ac21797",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-09T19:04:13Z",
+      "side": 1,
+      "message": "I see. SGTM.",
+      "parentUuid": "ef4abc5a_41749d5b",
       "range": {
         "startLine": 608,
         "startChar": 13,
