@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a553d41f_b3021090",
+        "filename": "dashboard/dashboard/common/datastore_hooks_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-09T18:36:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "399e582d_67074b36",
+      "revId": "61c06075832ee1dc618d01eaf2f52b091f556a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8586337a_9644ad30",
