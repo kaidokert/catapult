@@ -16,6 +16,29 @@
       "message": "PTAL\n\nsome stage UI examples:\nhttps://funing-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/13614da25a0000\nhttps://funing-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/12b4d80c5a0000\nhttps://funing-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/104e7b5a5a0000",
       "revId": "268887862c22c0df6695394837b6377ff1e4d508",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a80ef8b8_4887f997",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-10T16:49:07Z",
+      "side": 1,
+      "message": "Since extra args are optional, I think this should be hidden when args are not provided. Also, consider not displaying this in bisect jobs",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 46
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
