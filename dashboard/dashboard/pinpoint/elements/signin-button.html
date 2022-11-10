@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<!-- Simple page to display One Tap -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Identity Service Test App - RP OneTap</title>
+  <script>
+    function print(token) {
+      console.log(token);
+      document.getElementById('token').textContent = token.credential;
+    }
+  </script>
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id="g_id_onload"
+     data-client_id="22573382977-u263jlijs2uiio0uq7qm7vso3vuh7ec5.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="print"
+     data-close_on_tap_outside="false"
+     data-itp_support="true">
+</div>
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+<div id="token"></div>
+</body>
+</html>
