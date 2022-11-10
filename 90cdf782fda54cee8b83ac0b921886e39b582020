@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "094591d7_bf104e3c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2022-11-10T21:14:27Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "ea1813bf_30d76d92",
+      "range": {
+        "startLine": 92,
+        "startChar": 20,
+        "endLine": 92,
+        "endChar": 41
+      },
+      "revId": "90cdf782fda54cee8b83ac0b921886e39b582020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c269bbc1_4560333b",
