@@ -16,6 +16,69 @@
       "message": "PTAL\n\nThe GPU trace tests pass on Samsung devices with this CL applied.\n\nIf startup tracing support is needed in the future for some reason, there may be a magic path that\u0027s non-root-writable but also readable by Chrome. Alternatively, the tracing team suggested switching to system tracing/Perfetto, which might be a better long-term solution. The thread here has some more information https://groups.google.com/a/chromium.org/g/tracing/c/aPhEsxBtMgI/m/0993LK1-CQAJ?utm_medium\u003demail\u0026utm_source\u003dfooter",
       "revId": "e7eef6074830a5fa306bd4663b4f5465cd2a048a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80b60d80_99c3ab27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T02:45:33Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "e7eef6074830a5fa306bd4663b4f5465cd2a048a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c0b2a8_7c11c2ea",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T02:45:33Z",
+      "side": 1,
+      "message": "looks like we need to add this to the fake backend.",
+      "range": {
+        "startLine": 71,
+        "startChar": 36,
+        "endLine": 71,
+        "endChar": 48
+      },
+      "revId": "e7eef6074830a5fa306bd4663b4f5465cd2a048a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99b2e60e_20e3e74c",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T02:45:33Z",
+      "side": 1,
+      "message": "nit: would be better to add a log to indicate the reason.",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 20
+      },
+      "revId": "e7eef6074830a5fa306bd4663b4f5465cd2a048a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
