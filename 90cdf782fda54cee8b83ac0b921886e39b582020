@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea1813bf_30d76d92",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T02:31:58Z",
+      "side": 1,
+      "message": "I think we should keep _WATERFALL_ENABLED_GTEST_NAMES as it tells which gtests are enabled, while the _GTEST_EXECUTABLE_NAME is the mapping to find the related executables.",
+      "parentUuid": "cd60565a_cbedbb92",
+      "range": {
+        "startLine": 92,
+        "startChar": 20,
+        "endLine": 92,
+        "endChar": 41
+      },
+      "revId": "90cdf782fda54cee8b83ac0b921886e39b582020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c269bbc1_4560333b",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I specifically want to avoid run_telemetry_test.py for these tests, since bin/run_base_perftests (and any other binaries on Fuchsia) are wrapped scripts that handle deploying of the binary to the remote target.",
       "parentUuid": "c269bbc1_4560333b",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 13
+      },
+      "revId": "90cdf782fda54cee8b83ac0b921886e39b582020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8d5ccee_1603f474",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_web_engine_telemetry_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T02:31:58Z",
+      "side": 1,
+      "message": "I see. Thanks!",
+      "parentUuid": "8530c5d6_8b6a4e94",
       "range": {
         "startLine": 56,
         "startChar": 6,
