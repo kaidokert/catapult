@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39f6a137_5037ca85",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T18:53:40Z",
+      "side": 1,
+      "message": "Is it the args for bisect? Do we want to print those?",
+      "range": {
+        "startLine": 202,
+        "startChar": 40,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a80ef8b8_4887f997",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
         "patchSetId": 2
@@ -36,6 +59,52 @@
         "startChar": 4,
         "endLine": 23,
         "endChar": 46
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f0b79f8_b3534e5a",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T18:53:40Z",
+      "side": 1,
+      "message": "When there are multiple arguments, this line is likely to be truncated, as in your UI example.",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0868030b_677e3db5",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-10T18:53:40Z",
+      "side": 1,
+      "message": "Need to update the text.",
+      "range": {
+        "startLine": 271,
+        "startChar": 115,
+        "endLine": 271,
+        "endChar": 146
       },
       "revId": "268887862c22c0df6695394837b6377ff1e4d508",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
