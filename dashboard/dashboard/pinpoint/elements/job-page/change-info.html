@@ -20,6 +20,7 @@ found in the LICENSE file.
     <p><a href="[[url(change)]]" target="_blank">[[subject(change)]]</a></p>
     <p class="commit">[[commit(change)]]</p>
     <p class="byline">By [[author(change)]]</p>
+    <p class="byline">Extra Args: [[args]]</p>
   </template>
 
   <script>
@@ -30,7 +31,11 @@ found in the LICENSE file.
       properties: {
         change: {
           type: Object
-        }
+        },
+
+        args: {
+          type: String
+        },
       },
 
       visibleCommit_(change) {
