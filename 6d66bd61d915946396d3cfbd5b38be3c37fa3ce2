@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd34725b_013ebeb4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-10T03:57:46Z",
+      "side": 1,
+      "message": "Nit: By convention, the first line should be a short title, no more than 60 or 70 characters. The title is followed by an empty line, and then the rest of the change description.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 100
+      },
+      "revId": "6d66bd61d915946396d3cfbd5b38be3c37fa3ce2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cd89a14_32f995d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-10T03:57:46Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "6d66bd61d915946396d3cfbd5b38be3c37fa3ce2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d212b429_666927ff",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-10T03:57:46Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 15
+      },
+      "revId": "6d66bd61d915946396d3cfbd5b38be3c37fa3ce2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
