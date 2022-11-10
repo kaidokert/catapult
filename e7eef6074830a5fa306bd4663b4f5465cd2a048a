@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33a585d_0d39e467",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-11-10T19:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c0b2a8_7c11c2ea",
+      "range": {
+        "startLine": 71,
+        "startChar": 36,
+        "endLine": 71,
+        "endChar": 48
+      },
+      "revId": "e7eef6074830a5fa306bd4663b4f5465cd2a048a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99b2e60e_20e3e74c",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-11-10T02:45:33Z",
       "side": 1,
       "message": "nit: would be better to add a log to indicate the reason.",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 20
+      },
+      "revId": "e7eef6074830a5fa306bd4663b4f5465cd2a048a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d746f0_0e7df4cf",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-11-10T19:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99b2e60e_20e3e74c",
       "range": {
         "startLine": 72,
         "startChar": 8,
