@@ -16,6 +16,24 @@
       "message": "Two more tests need fixing\n\n```\nEXCEPT  tracing.ui.extras.about_tracing.inspector_tracing_controller_client_test.beginRecording_sendCategoriesAndOptions AssertionError: expected undefined to equal \u0027json\u0027\n    at i.s (http://localhost:44565/chai/chai.js:1:7663)\n    at i.e.\u003ccomputed\u003e [as equal] (http://localhost:44565/chai/chai.js:1:26744)\n    at Function.assert.strictEqual (http://localhost:44565/chai/chai.js:1:19784)\n    at TestCase.testFn_ (http://localhost:44565/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html.js:49:12)\n    at TestCase.run (http://localhost:44565/tracing/base/unittest/test_case.html.js:76:19)\n    at TestRunner.\u003canonymous\u003e (http://localhost:44565/tracing/base/unittest/test_runner.html.js:226:48)\n    at new Promise (\u003canonymous\u003e)\n    at TestRunner.runCurrentTestCase_ (http://localhost:44565/tracing/base/unittest/test_runner.html.js:223:14)\n    at TestRunner.runOneTestCase_ (http://localhost:44565/tracing/base/unittest/test_runner.html.js:171:12)\n    at http://localhost:44565/tracing/base/unittest/test_runner.html.js:128:43\nFAILED  tracing.ui.extras.about_tracing.inspector_tracing_controller_client_test.beginRecording_sendCategoriesAndOptions \nEXCEPT  tracing.ui.extras.about_tracing.inspector_tracing_controller_client_test.beginRecording_sendCategoriesAndOptionsWithProtoFormat AssertionError: expected undefined to equal \u0027proto\u0027\n    at i.s (http://localhost:44565/chai/chai.js:1:7663)\n    at i.e.\u003ccomputed\u003e [as equal] (http://localhost:44565/chai/chai.js:1:26744)\n    at Function.assert.strictEqual (http://localhost:44565/chai/chai.js:1:19784)\n    at TestCase.testFn_ (http://localhost:44565/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html.js:73:12)\n    at TestCase.run (http://localhost:44565/tracing/base/unittest/test_case.html.js:76:19)\n    at TestRunner.\u003canonymous\u003e (http://localhost:44565/tracing/base/unittest/test_runner.html.js:226:48)\n    at new Promise (\u003canonymous\u003e)\n    at TestRunner.runCurrentTestCase_ (http://localhost:44565/tracing/base/unittest/test_runner.html.js:223:14)\n    at TestRunner.runOneTestCase_ (http://localhost:44565/tracing/base/unittest/test_runner.html.js:171:12)\n    at http://localhost:44565/tracing/base/unittest/test_runner.html.js:128:43\nFAILED  tracing.ui.extras.about_tracing.inspector_tracing_controller_client_test.beginRecording_sendCategoriesAndOptionsWithProtoFormat \n```",
       "revId": "95322b31d4d82cf071b498543b2323dab3d5aec9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73994389_5ccbf691",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2022-11-11T20:04:26Z",
+      "side": 1,
+      "message": "Yup, done.",
+      "parentUuid": "473e5622_0fcf492a",
+      "revId": "95322b31d4d82cf071b498543b2323dab3d5aec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
