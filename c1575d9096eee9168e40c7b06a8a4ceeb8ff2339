@@ -33,6 +33,24 @@
       "message": "Out of curiosity, why is the change necessary? Doesn\u0027t this control the traffic? https://pantheon.corp.google.com/appengine/versions?project\u003dchromeperf\u0026serviceId\u003dpinpoint\u0026pageState\u003d(%22versionsTable%22:(%22f%22:%22%255B%255D%22))\n\nAlso nit in the commit message: default is misspelled.",
       "revId": "c1575d9096eee9168e40c7b06a8a4ceeb8ff2339",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37901bff_cfe9f5e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-11T20:59:32Z",
+      "side": 1,
+      "message": "Thanks for catching it! Typo updated. \n\nWith the set traffic command, every cloud build will reset the traffic to the versions defined in the script.",
+      "parentUuid": "3608e67b_fe5c6ed6",
+      "revId": "c1575d9096eee9168e40c7b06a8a4ceeb8ff2339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
