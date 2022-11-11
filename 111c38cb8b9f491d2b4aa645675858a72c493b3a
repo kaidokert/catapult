@@ -95,6 +95,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e3a137_2c401ab4",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2022-11-11T19:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26447653_6eccac62",
+      "range": {
+        "startLine": 119,
+        "startChar": 50,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "111c38cb8b9f491d2b4aa645675858a72c493b3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df107b79_5f6b14a9",
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "Haha, locally? 😊 I\u0027m just hacking this together using the cloud editor ;)\n\nJust hadn\u0027t gotten around to handling the CQ response, sorry! 😊",
       "parentUuid": "f3bf7b7e_8e7d488c",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 32
+      },
+      "revId": "111c38cb8b9f491d2b4aa645675858a72c493b3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c4edf5c_7629a8b5",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2022-11-11T19:23:15Z",
+      "side": 1,
+      "message": "PTAL, if the CQ now passes 😊",
+      "parentUuid": "58e6afb1_0b24aefd",
       "range": {
         "startLine": 125,
         "startChar": 0,
