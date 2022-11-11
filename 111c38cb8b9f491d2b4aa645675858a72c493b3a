@@ -70,6 +70,52 @@
       },
       "revId": "111c38cb8b9f491d2b4aa645675858a72c493b3a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26447653_6eccac62",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-11-11T18:27:43Z",
+      "side": 1,
+      "message": "nit: triple \u003d\u003d\u003d, because javascript.",
+      "range": {
+        "startLine": 119,
+        "startChar": 50,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "111c38cb8b9f491d2b4aa645675858a72c493b3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df107b79_5f6b14a9",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-11-11T18:27:43Z",
+      "side": 1,
+      "message": "missing a comma at the end here, which is why the bots are failing with syntax error.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 32
+      },
+      "revId": "111c38cb8b9f491d2b4aa645675858a72c493b3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
