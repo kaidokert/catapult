@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4464e48_5961be42",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2022-11-11T12:29:03Z",
+      "side": 1,
+      "message": "Isn\u0027t the only two allowed values json or proto? Should we just DCEHCK/assert that its one of those and directly pass recordingOptions.stream_format?\n\nOr is there some sort of type mismatch that I\u0027m missing?",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 79
+      },
+      "revId": "111c38cb8b9f491d2b4aa645675858a72c493b3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
