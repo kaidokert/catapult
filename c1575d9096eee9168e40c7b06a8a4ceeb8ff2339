@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26d5b5a7_09266b3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-11T19:24:59Z",
+      "side": 1,
+      "message": "There\u0027s no active work items to track on Pinpoint Py3. We can enable it and actively tracking unknown errors. \nPTAL.",
+      "revId": "c1575d9096eee9168e40c7b06a8a4ceeb8ff2339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
