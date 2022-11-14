@@ -51,11 +51,13 @@ _ZLIB_BUFFER_SIZE = 4096
 
 
 def _CheckUser():
-  if utils.IsDevAppserver():
-    return
-  api_auth.Authorize()
-  if not utils.IsTryjobUser():
-    raise api_request_handler.ForbiddenError()
+  datastore_hooks.SetPrivilegedRequest(flask_flag=True)
+  return
+  # if utils.IsDevAppserver():
+  #   return
+  # api_auth.Authorize()
+  # if not utils.IsTryjobUser():
+  #   raise api_request_handler.ForbiddenError()
 
 
 def AddHistogramsProcessPost():
