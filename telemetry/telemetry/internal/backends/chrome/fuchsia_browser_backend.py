@@ -60,29 +60,44 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self.devtools_client.DumpMemory(timeout=timeout,
                                            detail_level=detail_level)
 
+  def _ReadDevToolsPortFromStdout(self, search_regex):
+    def TryReadingPort():
+      if not self._browser_log_proc.stderr:
+        return None
+      line = self._browser_log_proc.stdout.readline()
+      tokens = re.search(search_regex, line)
+      self._browser_log += line
+      return int(tokens.group(1)) if tokens else None
+    return py_utils.WaitFor(TryReadingPort, timeout=600)
+
   def _ReadDevToolsPortFromStderr(self, search_regex):
     def TryReadingPort():
       if not self._browser_log_proc.stderr:
         return None
       line = self._browser_log_proc.stderr.readline()
+      print(line)
       tokens = re.search(search_regex, line)
       self._browser_log += line
       return int(tokens.group(1)) if tokens else None
-    return py_utils.WaitFor(TryReadingPort, timeout=60)
+    return py_utils.WaitFor(TryReadingPort, timeout=600)
 
   def _ReadDevToolsPort(self):
-    if (self.browser_type == WEB_ENGINE_SHELL or
-        self.browser_type == CAST_STREAMING_SHELL):
+    if self.browser_type == WEB_ENGINE_SHELL:
       search_regex = r'Remote debugging port: (\d+)'
+      result = self._ReadDevToolsPortFromStdout(search_regex)
+    elif self.browser_type == CAST_STREAMING_SHELL:
+      search_regex = r'Remote debugging port: (\d+)'
+      result = self._ReadDevToolsPortFromStderr(search_regex)
     else:
       search_regex = r'DevTools listening on ws://127.0.0.1:(\d+)/devtools.*'
-    return self._ReadDevToolsPortFromStderr(search_regex)
+      result = self._ReadDevToolsPortFromStderr(search_regex)
+    return result
 
   def _StartWebEngineShell(self, startup_args):
     browser_cmd = [
-        'component',
-        'run-legacy',
-        'fuchsia-pkg://%s/web_engine_shell#meta/web_engine_shell.cmx' %
+        'test',
+        'run',
+        'fuchsia-pkg://%s/web_engine_shell#meta/web_engine_shell.cm' %
         self._managed_repo
     ]
 
@@ -107,6 +122,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--gpu-rasterization-msaa-sample-count=0',
         '--min-height-for-gpu-raster-tile=128',
         '--webgl-msaa-sample-count=0',
+        '--v=1',
         '--max-decoded-image-size-mb=10'
     ])
     if startup_args:
@@ -117,11 +133,18 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _StartCastStreamingShell(self, startup_args):
     browser_cmd = [
-        'run',
+        'component',
+        'run-legacy',
         'fuchsia-pkg://%s/cast_streaming_shell#meta/cast_streaming_shell.cmx' %
         self._managed_repo,
-        '--remote-debugging-port=0',
     ]
+
+    # Flags forwarded to the cast_streaming_shell component.
+    browser_cmd.extend([
+        '--',
+        '--remote-debugging-port=0',
+        '--v=1',
+    ])
 
     # Use flags used on WebEngine in production devices.
     browser_cmd.extend([
@@ -134,10 +157,11 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--min-height-for-gpu-raster-tile=128',
         '--webgl-msaa-sample-count=0',
         '--max-decoded-image-size-mb=10',
+        '--v=1',
     ])
     if startup_args:
       browser_cmd.extend(startup_args)
-    self._browser_process = self._command_runner.RunCommandPiped(
+    self._browser_process = self._command_runner.run_continuous_ffx_command(
         browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     self._browser_log_proc = self._browser_process
 
