@@ -135,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4bda4ca_bfe67708",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T18:48:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a80ef8b8_4887f997",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 46
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0868030b_677e3db5",
