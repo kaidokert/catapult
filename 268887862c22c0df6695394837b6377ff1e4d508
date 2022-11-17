@@ -65,6 +65,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c20b21f_a509598b",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T21:35:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "cf6fb286_ee232a58",
+      "range": {
+        "startLine": 202,
+        "startChar": 40,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a80ef8b8_4887f997",
@@ -154,6 +178,30 @@
         "startChar": 4,
         "endLine": 23,
         "endChar": 46
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b7626cb_a057f9f9",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T21:35:00Z",
+      "side": 1,
+      "message": "won\u0027t fix",
+      "parentUuid": "d5966e1a_c2a6efef",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 42
       },
       "revId": "268887862c22c0df6695394837b6377ff1e4d508",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
