@@ -231,6 +231,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1235157b_195527cb",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T22:05:25Z",
+      "side": 1,
+      "message": "From this view John\u0027s comments are resolved, but for Wenbin\u0027s that won\u0027t fix. Let\u0027s say it\u0027s resolved.",
+      "parentUuid": "7b8a0fd6_dc3c7490",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0868030b_677e3db5",
