@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf6fb286_ee232a58",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T18:48:07Z",
+      "side": 1,
+      "message": "Could be, I was considering keeping it for compatibility. We could get rid of it.",
+      "parentUuid": "39f6a137_5037ca85",
+      "range": {
+        "startLine": 202,
+        "startChar": 40,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a80ef8b8_4887f997",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
         "patchSetId": 2
@@ -89,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5966e1a_c2a6efef",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T18:48:07Z",
+      "side": 1,
+      "message": "It could be copied and pasted to elsewhere. Don\u0027t find a good way to render that in UI.",
+      "parentUuid": "7f0b79f8_b3534e5a",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0868030b_677e3db5",
         "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
         "patchSetId": 2
@@ -100,6 +148,30 @@
       "writtenOn": "2022-11-10T18:53:40Z",
       "side": 1,
       "message": "Need to update the text.",
+      "range": {
+        "startLine": 271,
+        "startChar": 115,
+        "endLine": 271,
+        "endChar": 146
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf259fb7_7aa43344",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-17T18:48:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0868030b_677e3db5",
       "range": {
         "startLine": 271,
         "startChar": 115,
