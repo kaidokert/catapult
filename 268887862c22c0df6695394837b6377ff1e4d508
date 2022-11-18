@@ -255,6 +255,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef6b92ae_c083bcf9",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-18T06:46:48Z",
+      "side": 1,
+      "message": "If we have the extra args listed on the left, we may not need to show it under the commit info again.",
+      "parentUuid": "1235157b_195527cb",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "268887862c22c0df6695394837b6377ff1e4d508",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0868030b_677e3db5",
