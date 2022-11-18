@@ -33,6 +33,70 @@
       "message": "the one case I\u0027m not sure about is \"-123\". I presume this means `comment[\u0027updates\u0027].get(\u0027mergedInto\u0027) \u003d None` so this line never hits.",
       "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69df0088_da18986f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-18T18:58:20Z",
+      "side": 1,
+      "message": "This gets the correct issue ID, but when the mergedInto issue is something like v8:12943, we should also capture the project name (i.e., \"v8\" in the example).",
+      "parentUuid": "c38c7c4d_18ea825b",
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e37d6ba_82b2793a",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-18T18:58:20Z",
+      "side": 1,
+      "message": "I think we can simplify the code. We should be able to do\n\nmerged_into \u003d issue.get(\u0027mergedInto\u0027, {}).get(\u0027issueId\u0027, None)\nmerged_into_project \u003d issue.get(\u0027mergedInto\u0027, {}).get(\u0027projectId\u0027, self._group.bug.project)\n\nHowever I don\u0027t know how to verify this. Maybe add this as alternative code and then log its result, and compare with the result from original code.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 33
+      },
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a7cc99_0fed7429",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-18T18:58:20Z",
+      "side": 1,
+      "message": "This is not correct. For example, https://crbug.com/1332429 is a chromium bug that has been merged into a v8 bug. So in the code below, we can\u0027t always use self._group.bug.project. If the mergedInto has \":\", we should use the string in front of \":\" as the project. If no \":\", then use self._group.bug.project.",
+      "range": {
+        "startLine": 185,
+        "startChar": 10,
+        "endLine": 185,
+        "endChar": 77
+      },
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
