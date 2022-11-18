@@ -172,7 +172,8 @@ class AlertGroupWorkflow(object):
     latest_id = 0
     for comment in issue.get('comments', []):
       if comment['updates'].get('mergedInto') and comment['id'] >= latest_id:
-        merged_into = int(comment['updates'].get('mergedInto'))
+        merged_str = comment['updates'].get('mergedInto')
+        merged_into = int(merged_str.split(' ')[-1].split(':')[-1])
         latest_id = comment['id']
     if not merged_into:
       return None
