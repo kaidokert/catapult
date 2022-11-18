@@ -36,7 +36,7 @@ def _CheckUser():
     return
   if utils.IsDevAppserver():
     return
-  api_auth.Authorize()
+  api_auth.Authorize(flask_flag=True)
   if not utils.IsInternalUser():
     raise api_request_handler.ForbiddenError()
 

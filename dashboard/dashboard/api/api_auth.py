@@ -74,7 +74,7 @@ class InternalOnlyError(ApiAuthException):
     super(InternalOnlyError, self).__init__('User does not have access')
 
 
-def Authorize():
+def Authorize(flask_flag=False):
   try:
     email = utils.GetEmail()
   except oauth.OAuthRequestError as e:
@@ -102,4 +102,4 @@ def Authorize():
 
   logging.info('OAuth user logged in as: %s', email)
   if utils.IsInternalUser():
-    datastore_hooks.SetPrivilegedRequest()
+    datastore_hooks.SetPrivilegedRequest(flask_flag)

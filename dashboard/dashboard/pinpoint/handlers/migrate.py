@@ -28,7 +28,7 @@ if utils.IsRunningFlask():
   def _CheckUser():
     if utils.IsDevAppserver():
       return
-    api_auth.Authorize()
+    api_auth.Authorize(flask_flag=True)
     if not utils.IsAdministrator():
       raise api_request_handler.ForbiddenError()
 
