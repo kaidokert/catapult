@@ -53,7 +53,7 @@ _ZLIB_BUFFER_SIZE = 4096
 def _CheckUser():
   if utils.IsDevAppserver():
     return
-  api_auth.Authorize()
+  api_auth.Authorize(flask_flag=True)
   if not utils.IsTryjobUser():
     raise api_request_handler.ForbiddenError()
 

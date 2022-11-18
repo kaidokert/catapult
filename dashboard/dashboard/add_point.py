@@ -124,7 +124,7 @@ def AddPointPost():
   """
   datastore_hooks.SetPrivilegedRequest(flask_flag=True)
   try:
-    api_auth.Authorize()
+    api_auth.Authorize(flask_flag=True)
   except api_auth.ApiAuthException as error:
     logging.error('Auth error: %s', error)
     return request_handler.RequestHandlerReportError('User unauthorized.', 403)
