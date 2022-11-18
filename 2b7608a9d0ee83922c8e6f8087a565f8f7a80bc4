@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91dc24b8_4d2bcec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-18T03:53:43Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38c7c4d_18ea825b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-18T03:53:43Z",
+      "side": 1,
+      "message": "the one case I\u0027m not sure about is \"-123\". I presume this means `comment[\u0027updates\u0027].get(\u0027mergedInto\u0027) \u003d None` so this line never hits.",
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
