@@ -34,12 +34,6 @@ steps:
     'run', 'cloudbuild-prepare-deployment-py3'
   ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: '/bin/bash'
-  args: [
-      '-x', '-e', 'dashboard/dev_dockerfiles/cleanup_versions.sh',
-      'api', 'default', 'pinpoint', 'upload-processing', 'upload'
-  ]
-- name: 'gcr.io/cloud-builders/gcloud'
   dir: 'deploy-dashboard'
   args: [
     app, deploy, '--no-promote', '--version', 'cloud-build-${SHORT_SHA}-py3',
@@ -89,5 +83,11 @@ steps:
   args: [
     'app', 'services', 'set-traffic', 'pinpoint',
     '--splits=cloud-build-51caf6b-py3=1'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: '/bin/bash'
+  args: [
+      '-x', '-e', 'dashboard/dev_dockerfiles/cleanup_versions.sh',
+      'api', 'default', 'pinpoint', 'upload-processing', 'upload'
   ]
 images: ['gcr.io/$PROJECT_ID/dashboard-base:latest']
