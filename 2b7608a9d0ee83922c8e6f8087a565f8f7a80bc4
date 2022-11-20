@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84db6ee0_3914f5d2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-20T03:52:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69df0088_da18986f",
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e37d6ba_82b2793a",
@@ -78,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46c20502_405743ee",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-20T03:52:32Z",
+      "side": 1,
+      "message": "I took some snapshots and I think these lines you suggested should be correct. I was not able to track self._group.bug.project due to issues with the gae debugger.\n\nhttps://screenshot.googleplex.com/8QYZxjHtNJr4EqX\nhttps://screenshot.googleplex.com/3xX6mBSnqvwZsac",
+      "parentUuid": "2e37d6ba_82b2793a",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 33
+      },
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "65a7cc99_0fed7429",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 1
@@ -89,6 +131,30 @@
       "writtenOn": "2022-11-18T18:58:20Z",
       "side": 1,
       "message": "This is not correct. For example, https://crbug.com/1332429 is a chromium bug that has been merged into a v8 bug. So in the code below, we can\u0027t always use self._group.bug.project. If the mergedInto has \":\", we should use the string in front of \":\" as the project. If no \":\", then use self._group.bug.project.",
+      "range": {
+        "startLine": 185,
+        "startChar": 10,
+        "endLine": 185,
+        "endChar": 77
+      },
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b488838f_52cfaa84",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-11-20T03:52:32Z",
+      "side": 1,
+      "message": "Think the new approach means we don\u0027t have to do any string parsing.",
+      "parentUuid": "65a7cc99_0fed7429",
       "range": {
         "startLine": 185,
         "startChar": 10,
