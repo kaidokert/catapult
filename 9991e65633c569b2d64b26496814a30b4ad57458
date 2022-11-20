@@ -33,6 +33,24 @@
       "message": "Did we have them tested?",
       "revId": "9991e65633c569b2d64b26496814a30b4ad57458",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "897622f5_b7680dd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-20T06:02:06Z",
+      "side": 1,
+      "message": "Should the process be like that some prod instances get tested first? Dunno if those could be tested easily on stage.",
+      "parentUuid": "858a4a28_77c6c507",
+      "revId": "9991e65633c569b2d64b26496814a30b4ad57458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
