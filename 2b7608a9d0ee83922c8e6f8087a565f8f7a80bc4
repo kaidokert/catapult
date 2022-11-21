@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e5e1f64_95888f05",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-21T05:39:19Z",
+      "side": 1,
+      "message": "Looks good. We have been using self._group.bug.project in the old code, so it shouldn\u0027t be a problem.",
+      "parentUuid": "46c20502_405743ee",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 33
+      },
+      "revId": "2b7608a9d0ee83922c8e6f8087a565f8f7a80bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "65a7cc99_0fed7429",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 1
