@@ -39,6 +39,30 @@
       },
       "revId": "03c61923963deaba48c8eb3d71b9ba94c56d0d44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f2ed1a0_3e52e7a8",
+        "filename": "dashboard/dashboard/pinpoint/handlers/jobs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2022-11-21T17:48:47Z",
+      "side": 1,
+      "message": "Thank you very much, updated!",
+      "parentUuid": "f4f31f59_c8a4ad97",
+      "range": {
+        "startLine": 171,
+        "startChar": 2,
+        "endLine": 171,
+        "endChar": 78
+      },
+      "revId": "03c61923963deaba48c8eb3d71b9ba94c56d0d44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
