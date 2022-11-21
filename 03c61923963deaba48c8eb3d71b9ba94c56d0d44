@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf666ce_5c7940a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-21T05:56:11Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "03c61923963deaba48c8eb3d71b9ba94c56d0d44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f31f59_c8a4ad97",
+        "filename": "dashboard/dashboard/pinpoint/handlers/jobs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-21T05:56:11Z",
+      "side": 1,
+      "message": "This line should still be inside _FixupEmails. It\u0027s the doc for that function.",
+      "range": {
+        "startLine": 171,
+        "startChar": 2,
+        "endLine": 171,
+        "endChar": 78
+      },
+      "revId": "03c61923963deaba48c8eb3d71b9ba94c56d0d44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
