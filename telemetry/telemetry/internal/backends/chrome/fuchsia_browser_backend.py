@@ -110,6 +110,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--use-web-instance',
         '--enable-web-instance-tmp',
         '--with-webui',
+        '--v=100',
         'about:blank'
     ])
 
@@ -123,13 +124,16 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--gpu-rasterization-msaa-sample-count=0',
         '--min-height-for-gpu-raster-tile=128',
         '--webgl-msaa-sample-count=0',
-        '--max-decoded-image-size-mb=10'
+        '--max-decoded-image-size-mb=10',
+        '--v=100'
     ])
     if startup_args:
       browser_cmd.extend(startup_args)
+    # ffx merges stdout and stderr of the child proc into its own stdout.
     self._browser_process = self._command_runner.run_continuous_ffx_command(
-        browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     self._browser_log_proc = self._browser_process
+    self._browser_log_proc.stderr = self._browser_log_proc.stdout
 
   def _StartCastStreamingShell(self, startup_args):
     browser_cmd = [
@@ -202,7 +206,8 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         self._StartWebEngineShell(startup_args)
         browser_id_files = [
             os.path.join(output_root, 'shell', 'web_engine_shell', 'ids.txt'),
-            os.path.join(output_root, 'webengine', 'web_engine', 'ids.txt'),
+            os.path.join(output_root, 'webengine', 'web_engine_with_webui',
+                         'ids.txt'),
         ]
       elif self.browser_type == CAST_STREAMING_SHELL:
         self._StartCastStreamingShell(startup_args)
