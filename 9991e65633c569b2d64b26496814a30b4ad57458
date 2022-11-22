@@ -69,6 +69,24 @@
       "parentUuid": "897622f5_b7680dd6",
       "revId": "9991e65633c569b2d64b26496814a30b4ad57458",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26daf0f8_b136b110",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-22T20:52:01Z",
+      "side": 1,
+      "message": "/mark_recovered_alerts and /configs/update are crons job which can be triggered from Cloud Scheduler:\nhttps://pantheon.corp.google.com/cloudscheduler?project\u003dchromeperf-stage",
+      "parentUuid": "b0f6d0c9_d89faed0",
+      "revId": "9991e65633c569b2d64b26496814a30b4ad57458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
