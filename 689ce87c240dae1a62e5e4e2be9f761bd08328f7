@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f81bcbad_1b454f34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-22T21:00:32Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "689ce87c240dae1a62e5e4e2be9f761bd08328f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121346cb_6850f056",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/change-info.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-22T21:00:32Z",
+      "side": 1,
+      "message": "nit: is it still needed if we will no longer print the args for each change (under the author)?",
+      "range": {
+        "startLine": 35,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "689ce87c240dae1a62e5e4e2be9f761bd08328f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
