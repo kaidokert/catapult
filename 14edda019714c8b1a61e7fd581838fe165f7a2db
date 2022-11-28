@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "14edda019714c8b1a61e7fd581838fe165f7a2db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4ec6676_c7f871bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2022-11-28T21:33:56Z",
+      "side": 1,
+      "message": "I wouldn\u0027t really expect anything other than UTF-8 to work, but if this works for you, that\u0027s fine by me.",
+      "revId": "14edda019714c8b1a61e7fd581838fe165f7a2db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
