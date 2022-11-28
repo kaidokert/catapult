@@ -279,6 +279,10 @@ class ActionRunner(ActionRunnerBase):
     """
     if 'timeout' not in kwargs:
       kwargs['timeout'] = page_action.DEFAULT_TIMEOUT
+    timeout = kwargs['timeout']
+    kwargs['timeout'] = timeout * 10
+    logging.error('WaitForJavaScriptCondition: bumping timeout from %d to %d',
+                  timeout, kwargs['timeout'])
     return self._tab.WaitForJavaScriptCondition(*args, **kwargs)
 
   def Wait(self, seconds):
