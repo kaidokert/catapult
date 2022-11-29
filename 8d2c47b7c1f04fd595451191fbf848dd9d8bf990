@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d16c7e2_02758a6b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9dfc114_dd56ddcd",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "282123a3_6735f738",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-11-29T15:30:30Z",
       "side": 1,
       "message": "`FromLogFile`",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63383194_5dc71b0e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "282123a3_6735f738",
       "range": {
         "startLine": 68,
         "startChar": 23,
@@ -75,6 +117,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c5e2045_c5341464",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e1aabb1_04c6a1f7",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "403a4fdb_627cfedf",
@@ -88,6 +148,24 @@
       "writtenOn": "2022-11-29T15:30:30Z",
       "side": 1,
       "message": "revert this",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e57368_6a6cb303",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "403a4fdb_627cfedf",
       "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -109,6 +187,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f757fa67_0663f3ef",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89566e2f_0465975c",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54041c69_71e492c3",
@@ -122,6 +218,24 @@
       "writtenOn": "2022-11-29T15:30:30Z",
       "side": 1,
       "message": "document that we try SIGTERM first since that gives `ffx test run` a chance to gracefully cancel the test process.",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7382327_00134681",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54041c69_71e492c3",
       "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -143,6 +257,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ddbcba9_cf2ad864",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1073d190_b0dc4f4f",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8fb4583_c08bda26",
@@ -156,6 +288,24 @@
       "writtenOn": "2022-11-29T15:30:30Z",
       "side": 1,
       "message": "not needed -- maybe make this an assert since the only way it could happen is if `GetStandardOutput` is called after `Close`, which is not supported.",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9c86c58_868c4ccb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8fb4583_c08bda26",
       "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -177,6 +327,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f47d15_e419d87c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d45125f_8b2aabb9",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6999e43c_cde90ae2",
@@ -190,6 +358,24 @@
       "writtenOn": "2022-11-29T15:30:30Z",
       "side": 1,
       "message": "revert this change",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3f256e4_9e7ef251",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6999e43c_cde90ae2",
       "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
