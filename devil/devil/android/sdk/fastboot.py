@@ -17,6 +17,7 @@ from devil.utils import lazy
 _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
 _FLASH_TIMEOUT = _DEFAULT_TIMEOUT * 10
+_FLASHALL_TIMEOUT = _DEFAULT_TIMEOUT * 30
 
 
 class Fastboot(object):
@@ -43,11 +44,12 @@ class Fastboot(object):
     return self._device_serial
 
   @classmethod
-  def _RunFastbootCommand(cls, cmd):
+  def _RunFastbootCommand(cls, cmd, env=None):
     """Run a generic fastboot command.
 
     Args:
       cmd: Command to run. Must be list of args, the first one being the command
+      env: (Optional) a dict containing environments needed to run the command.
 
     Returns:
       output of command.
@@ -61,16 +63,18 @@ class Fastboot(object):
       raise TypeError('Command for _RunDeviceFastbootCommand must be a list.')
     # fastboot can't be trusted to keep non-error output out of stderr, so
     # capture stderr as part of stdout.
-    status, output = cmd_helper.GetCmdStatusAndOutput(cmd, merge_stderr=True)
+    status, output = cmd_helper.GetCmdStatusAndOutput(
+        cmd, env, merge_stderr=True)
     if int(status) != 0:
       raise device_errors.FastbootCommandFailedError(cmd, output, status)
     return output
 
-  def _RunDeviceFastbootCommand(self, cmd):
+  def _RunDeviceFastbootCommand(self, cmd, env=None):
     """Run a fastboot command on the device associated with this object.
 
     Args:
       cmd: Command to run. Must be list of args, the first one being the command
+      env: (Optional) a dict containing environments needed to run the command.
 
     Returns:
       output of command.
@@ -80,7 +84,7 @@ class Fastboot(object):
     """
     if isinstance(cmd, list):
       cmd = ['-s', self._device_serial] + cmd
-    return self._RunFastbootCommand(cmd)
+    return self._RunFastbootCommand(cmd, env=env)
 
   @decorators.WithTimeoutAndRetriesDefaults(_DEFAULT_TIMEOUT, _DEFAULT_RETRIES)
   def GetVar(self, variable, timeout=None, retries=None):
@@ -104,6 +108,22 @@ class Fastboot(object):
       image: location of image to flash with.
     """
     self._RunDeviceFastbootCommand(['flash', partition, image])
+
+  @decorators.WithTimeoutAndRetriesDefaults(_FLASHALL_TIMEOUT, 0)
+  def FlashAll(self, directory, wipe=False, force=False, timeout=None, retries=None):
+    """Flash all the image files from the given partition.
+
+    Args:
+      directory: Directory that contains all the images to flash with.
+    """
+    env = {'ANDROID_PRODUCT_OUT': directory}
+    cmd = []
+    if wipe:
+      cmd.append('-w')
+    if force:
+      cmd.append('--force')
+    cmd.append('flashall')
+    self._RunDeviceFastbootCommand(cmd, env=env)
 
   @classmethod
   @decorators.WithTimeoutAndRetriesDefaults(_DEFAULT_TIMEOUT, _DEFAULT_RETRIES)
