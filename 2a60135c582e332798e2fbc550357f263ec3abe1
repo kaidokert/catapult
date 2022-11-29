@@ -52,6 +52,24 @@
       "parentUuid": "5c9b5355_454a145b",
       "revId": "2a60135c582e332798e2fbc550357f263ec3abe1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "681fa906_00d3d340",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-29T20:09:53Z",
+      "side": 1,
+      "message": "Good point. Actually the failure was seen on the python 2 builds. The change seems safe on python 3.\nWe are working on the migration and targeting on finishing it next month.",
+      "parentUuid": "754f9132_51d5d2d2",
+      "revId": "2a60135c582e332798e2fbc550357f263ec3abe1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
