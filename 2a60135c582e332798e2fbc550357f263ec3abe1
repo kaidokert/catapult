@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f0867e6_d1a64d44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2022-11-29T19:42:15Z",
+      "side": 1,
+      "message": "Very strange. Could you give link to the failed build for reproducing?",
+      "revId": "2a60135c582e332798e2fbc550357f263ec3abe1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
