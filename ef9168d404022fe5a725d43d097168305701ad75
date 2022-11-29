@@ -16,6 +16,57 @@
       "message": "PTAL\n\nIn addition to the unittests, also confirmed that this works with the GPU tests.",
       "revId": "ef9168d404022fe5a725d43d097168305701ad75",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d5f3f79_fce37e59",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-11-29T21:25:28Z",
+      "side": 1,
+      "message": "The _invocation_level_url and _headers member variables don\u0027t have default values set outside of this if clause. You should add default values for these member variables.",
+      "revId": "ef9168d404022fe5a725d43d097168305701ad75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29f09a11_aee7130a",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-11-29T21:25:28Z",
+      "side": 1,
+      "message": "nits: Use the expression \u0027self._sink or self._output_file\u0027 instead.",
+      "revId": "ef9168d404022fe5a725d43d097168305701ad75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26f64998_d202aaa5",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-11-29T21:25:28Z",
+      "side": 1,
+      "message": "Can you figure out how to isolate changes to the _host member variable to each test or create a host instance for each test. Ideally tests shouldn\u0027t share state since that can lead to flakiness. This doesn\u0027t have to be fixed in this CL.",
+      "revId": "ef9168d404022fe5a725d43d097168305701ad75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
