@@ -1,0 +1,197 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e64748d4_728df06b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "self-review",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9dfc114_dd56ddcd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "document these",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "282123a3_6735f738",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "`FromLogFile`",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1aabb1_04c6a1f7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "revert this",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403a4fdb_627cfedf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "revert this",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89566e2f_0465975c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "document this",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54041c69_71e492c3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "document that we try SIGTERM first since that gives `ffx test run` a chance to gracefully cancel the test process.",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1073d190_b0dc4f4f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "document that a cached value is returned, if present, since this function may be called more than once while handling a single error.",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8fb4583_c08bda26",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "not needed -- maybe make this an assert since the only way it could happen is if `GetStandardOutput` is called after `Close`, which is not supported.",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d45125f_8b2aabb9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "mention in the CL description that symbolization is now deferred to the point where it\u0027s needed (when handling an error) rather than for every process.",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6999e43c_cde90ae2",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-11-29T15:30:30Z",
+      "side": 1,
+      "message": "revert this change",
+      "revId": "8d2c47b7c1f04fd595451191fbf848dd9d8bf990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
