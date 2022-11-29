@@ -3,11 +3,12 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
+import io
 import logging
 import os
 import re
-import select
 import subprocess
+import tempfile
 
 from telemetry.core import fuchsia_interface
 from telemetry.internal.backends.chrome import chrome_browser_backend
@@ -35,16 +36,20 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         supports_extensions=False,
         supports_tab_control=True)
     self._command_runner = fuchsia_platform_backend.command_runner
+    self._browser_id_files = None
+    self._tmp_output_file = None
+    # A system-wide log-listener used when starting Chrome. Its output is fed
+    # to the symbolizer.
+    self._log_listener_proc = None
+    # The process under test; Chrome browser or a shell.
     self._browser_process = None
+    self._browser_log = None
     self._devtools_port = None
-    self._symbolizer_proc = None
     if os.environ.get('CHROMIUM_OUTPUT_DIR'):
       self._output_dir = os.environ.get('CHROMIUM_OUTPUT_DIR')
     else:
       self._output_dir = os.path.abspath(os.path.dirname(
           fuchsia_platform_backend.ssh_config))
-    self._browser_log = ''
-    self._browser_log_proc = None
     self._managed_repo = fuchsia_platform_backend.managed_repo
 
   @property
@@ -60,44 +65,28 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self.devtools_client.DumpMemory(timeout=timeout,
                                            detail_level=detail_level)
 
-  def _ReadDevToolsPortFromPipe(self, search_regex, pipe):
+  def _ReadDevToolsPortFromLogProc(self, search_regex):
     def TryReadingPort():
-      if not pipe:
-        return None
-      line = pipe.readline()
+      line = log_file.readline()
       tokens = re.search(search_regex, line)
-      self._browser_log += line
       return int(tokens.group(1)) if tokens else None
-    return py_utils.WaitFor(TryReadingPort, timeout=60)
+    with open(self._tmp_output_file.name, encoding='utf-8') as log_file:
+      return py_utils.WaitFor(TryReadingPort, timeout=60)
 
   def _ReadDevToolsPort(self):
-    read_port_mapping = {
-        WEB_ENGINE_SHELL: {
-            'search_regex': r'Remote debugging port: (\d+)',
-            'pipe': self._browser_log_proc.stdout,
-        },
-        CAST_STREAMING_SHELL: {
-            'search_regex': r'Remote debugging port: (\d+)',
-            'pipe': self._browser_log_proc.stderr,
-        },
-        FUCHSIA_CHROME: {
-            'search_regex': ('DevTools listening on'
-                             r' ws://127.0.0.1:(\d+)/devtools.*'),
-            'pipe': self._browser_log_proc.stderr,
-        }
-    }
-    if self.browser_type not in read_port_mapping:
-      raise NotImplementedError(f'Browser {self.browser_type} is not supported')
-
-    result = self._ReadDevToolsPortFromPipe(
-        **read_port_mapping[self.browser_type])
-
-    return result
+    if (self.browser_type == WEB_ENGINE_SHELL or
+        self.browser_type == CAST_STREAMING_SHELL):
+      search_regex = r'Remote debugging port: (\d+)'
+    else:
+      search_regex = r'DevTools listening on ws://127.0.0.1:(\d+)/devtools.*'
+    return self._ReadDevToolsPortFromLogProc(search_regex)
 
   def _StartWebEngineShell(self, startup_args):
     browser_cmd = [
         'test',
         'run',
+        '--timeout',
+        '100000',
         'fuchsia-pkg://%s/web_engine_shell#meta/web_engine_shell.cm' %
         self._managed_repo,
     ]
@@ -123,13 +112,14 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--gpu-rasterization-msaa-sample-count=0',
         '--min-height-for-gpu-raster-tile=128',
         '--webgl-msaa-sample-count=0',
-        '--max-decoded-image-size-mb=10'
+        '--max-decoded-image-size-mb=10',
+        '--disable-gl-error-limit',
     ])
     if startup_args:
       browser_cmd.extend(startup_args)
+    # ffx merges stdout and stderr of the child proc into its own stdout.
     self._browser_process = self._command_runner.run_continuous_ffx_command(
-        browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    self._browser_log_proc = self._browser_process
+        browser_cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT)
 
   def _StartCastStreamingShell(self, startup_args):
     browser_cmd = [
@@ -160,8 +150,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if startup_args:
       browser_cmd.extend(startup_args)
     self._browser_process = self._command_runner.run_continuous_ffx_command(
-        browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    self._browser_log_proc = self._browser_process
+        browser_cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT)
 
   def _StartChrome(self, startup_args):
     browser_cmd = [
@@ -183,12 +172,10 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--since_now'
     ]
     # Combine to STDOUT, as this is used for symbolization
-    self._browser_log_proc = self._command_runner.RunCommandPiped(
+    self._log_listener_proc = self._command_runner.RunCommandPiped(
         logging_cmd,
-        stdout=subprocess.PIPE,
+        stdout=self._tmp_output_file,
         stderr=subprocess.STDOUT)
-    # Need stderr to replicate stdout for symbolization.
-    self._browser_log_proc.stderr = self._browser_log_proc.stdout
 
     logging.debug('Browser command: %s', ' '.join(browser_cmd))
     self._browser_process = self._command_runner.run_continuous_ffx_command(
@@ -197,33 +184,28 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def Start(self, startup_args):
     output_root = os.path.join(self._output_dir, 'gen', 'fuchsia_web')
 
+    self._tmp_output_file = tempfile.NamedTemporaryFile()
     try:
       if self.browser_type == WEB_ENGINE_SHELL:
         self._StartWebEngineShell(startup_args)
-        browser_id_files = [
+        self._browser_id_files = [
             os.path.join(output_root, 'shell', 'web_engine_shell', 'ids.txt'),
-            os.path.join(output_root, 'webengine', 'web_engine', 'ids.txt'),
+            os.path.join(output_root, 'webengine', 'web_engine_with_webui',
+                         'ids.txt'),
         ]
       elif self.browser_type == CAST_STREAMING_SHELL:
         self._StartCastStreamingShell(startup_args)
-        browser_id_files = [
+        self._browser_id_files = [
             os.path.join(output_root, 'shell', 'cast_streaming_shell',
                 'ids.txt'),
             os.path.join(output_root, 'webengine', 'web_engine', 'ids.txt'),
         ]
       else:
         self._StartChrome(startup_args)
-        browser_id_files = [
+        self._browser_id_files = [
             os.path.join(self._output_dir, 'gen', 'chrome', 'app', 'chrome',
                          'ids.txt'),
         ]
-
-      # Symbolize stderr of browser process if possible
-      self._symbolizer_proc = (
-          fuchsia_interface.StartSymbolizerForProcessIfPossible(
-              self._browser_log_proc.stderr, subprocess.PIPE, browser_id_files))
-      if self._symbolizer_proc:
-        self._browser_log_proc.stderr = self._symbolizer_proc.stdout
 
       self._dump_finder = minidump_finder.MinidumpFinder(
           self.browser.platform.GetOSName(),
@@ -259,27 +241,35 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     raise NotImplementedError
 
   def _CloseOnDeviceBrowsers(self):
-    if (self.browser_type == WEB_ENGINE_SHELL or
-        self.browser_type == CAST_STREAMING_SHELL):
-      close_cmd = ['killall', 'web_instance.cmx']
+    if self.browser_type == WEB_ENGINE_SHELL:
+      if self._browser_process:
+        logging.info('Terminating web_engine_shell.cm')
+        self._browser_process.terminate()
+        try:
+          self._browser_process.wait(5)
+        except subprocess.TimeoutExpired:
+          logging.info('web_engine_shell.cm still running after 5s; killing it')
+          self._browser_process.kill()
+          self._browser_process.wait()
     else:
-      close_cmd = ['killall', 'chrome_v1.cmx']
-    self._command_runner.RunCommand(
-        close_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      if self.browser_type == CAST_STREAMING_SHELL:
+        close_cmd = ['killall', 'web_instance.cmx']
+      else:
+        close_cmd = ['killall', 'chrome_v1.cmx']
+        self._command_runner.RunCommand(
+            close_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
   def Close(self):
     super().Close()
 
-    if self._browser_process:
-      logging.info('Shutting down browser process on Fuchsia')
-      self._browser_process.kill()
-    if self._browser_log_proc:
-      self._browser_log_proc.kill()
-    if self._symbolizer_proc:
-      self._symbolizer_proc.kill()
     self._CloseOnDeviceBrowsers()
     self._browser_process = None
-    self._browser_log_proc = None
+    if self._log_listener_proc:
+      self._log_listener_proc.kill()
+    self._log_listener_proc = None
+    if self._tmp_output_file:
+      self._tmp_output_file.close()
+      self._tmp_output_file = None
 
   def IsBrowserRunning(self):
     # TODO(crbug.com/1297717): this does not capture if the process is still
@@ -287,14 +277,32 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return bool(self._browser_process)
 
   def GetStandardOutput(self):
-    if self._browser_log_proc:
-      self._browser_log_proc.terminate()
-      self._CloseOnDeviceBrowsers()
+    if self._browser_log:
+      return self._browser_log
 
-      # Make sure there is something to read.
-      if select.select([self._browser_log_proc.stderr], [], [], 0.0)[0]:
-        self._browser_log += self._browser_log_proc.stderr.read()
-    return self._browser_log
+    if not self._tmp_output_file:
+      return None
+
+    self._CloseOnDeviceBrowsers()
+
+    self._tmp_output_file.flush()
+
+    output_data = None
+
+    # Symbolize the log output of the browser process if possible.
+    self._tmp_output_file.seek(0, io.SEEK_SET)
+    with fuchsia_interface.StartSymbolizerForProcessIfPossible(
+            self._tmp_output_file, subprocess.PIPE, self._browser_id_files) \
+            as symbolizer_proc:
+      if symbolizer_proc:
+        (output_data, _) = symbolizer_proc.communicate()
+
+    if not output_data:
+      output_data = self._tmp_output_file.read().decode()
+
+    self._browser_log = output_data
+
+    return output_data
 
   def SymbolizeMinidump(self, minidump_path):
     logging.warning('Symbolizing Minidump not supported on Fuchsia.')
