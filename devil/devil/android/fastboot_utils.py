@@ -41,7 +41,11 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
         'optional': lambda fu: fu.supports_ab
     }),
     ('system', {
-        'image': 'system.img'
+        'image': 'system*.img'
+    }),
+    ('product', {
+        'image': 'product.img',
+        'optional': True,
     }),
     ('userdata', {
         'image': 'userdata.img',
@@ -207,6 +211,7 @@ class FastbootUtils(object):
       min_default_timeout=_FASTBOOT_REBOOT_TIMEOUT)
   def Reboot(self,
              bootloader=False,
+             fastbootd=False,
              wait_for_reboot=True,
              timeout=None,
              retries=None):
@@ -217,9 +222,13 @@ class FastbootUtils(object):
 
     Args:
       bootloader: If set to True, reboots back into bootloader.
+      fastbootd: If set to True, reboots into fastbootd.
     """
     if bootloader:
       self.fastboot.RebootBootloader()
+      self.WaitForFastbootMode()
+    elif fastbootd:
+      self.fastboot.RebootFastbootd()
       self.WaitForFastbootMode()
     else:
       self.fastboot.Reboot()
@@ -292,6 +301,8 @@ class FastbootUtils(object):
       else:
         logger.info('Flashing %s with %s', partition,
                     flash_image_files[partition])
+        if partition == 'system':
+          self.Reboot(fastbootd=True)
         self.fastboot.Flash(partition, flash_image_files[partition])
         if _KNOWN_PARTITIONS[partition].get('restart', False):
           self.Reboot(bootloader=True)
@@ -344,12 +355,13 @@ class FastbootUtils(object):
       # Anything that runs after flashing.
     """
     self.EnableFastbootMode()
-    self.fastboot.SetOemOffModeCharge(False)
+    # self.fastboot.SetOemOffModeCharge(False)
     yield self
     # If something went wrong while it was in fastboot mode (eg: a failed
     # flash) rebooting may be harmful or cause boot loops. So only reboot if
     # no exception was thrown.
-    self.fastboot.SetOemOffModeCharge(True)
+    # TODO(need to go back to bootloader mode to run oem commands)
+    # self.fastboot.SetOemOffModeCharge(True)
     self.Reboot(wait_for_reboot=wait_for_reboot)
 
   def FlashDevice(self, directory, partitions=None, wipe=False):

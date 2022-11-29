@@ -14,15 +14,38 @@ from devil.android import device_errors
 from devil.utils import cmd_helper
 from devil.utils import lazy
 
+import os
+import sys
+
 _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
 _FLASH_TIMEOUT = _DEFAULT_TIMEOUT * 10
 
 
+def find_fastboot():
+  """Finds adb on the path.
+
+  This method is provided to avoid the issue of diskutils.spawn's
+  find_executable which first searches the current directory before
+  searching $PATH. That behavior results in issues where systrace.py
+  uses a different adb than the one in the path.
+  """
+  paths = os.environ['PATH'].split(os.pathsep)
+  executable = 'fastboot'
+  if sys.platform == 'win32':
+    executable = executable + '.exe'
+  for p in paths:
+    f = os.path.join(p, executable)
+    if os.path.isfile(f):
+      return f
+  return None
+
+
 class Fastboot(object):
 
-  _fastboot_path = lazy.WeakConstant(lambda: devil_env.config.FetchPath(
-      'fastboot'))
+  #_fastboot_path = lazy.WeakConstant(lambda: devil_env.config.FetchPath(
+  #    'fastboot'))
+  _fastboot_path = lazy.WeakConstant(lambda: find_fastboot())
 
   def __init__(self,
                device_serial,
@@ -118,8 +141,13 @@ class Fastboot(object):
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def RebootBootloader(self, timeout=None, retries=None):
-    """Reboot from fastboot, into fastboot."""
+    """Reboot from fastboot, into fastboot bootloader."""
     self._RunDeviceFastbootCommand(['reboot-bootloader'])
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def RebootFastbootd(self, timeout=None, retries=None):
+    """Reboot from fastboot, into fastbootd."""
+    self._RunDeviceFastbootCommand(['reboot', 'fastboot'])
 
   @decorators.WithTimeoutAndRetriesDefaults(_FLASH_TIMEOUT, 0)
   def Reboot(self, timeout=None, retries=None):

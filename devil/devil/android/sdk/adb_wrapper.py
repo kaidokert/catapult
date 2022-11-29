@@ -18,6 +18,7 @@ import logging
 import os
 import posixpath
 import re
+import sys
 import subprocess
 import threading
 import time
@@ -79,7 +80,28 @@ def _CreateAdbEnvironment():
   return adb_env
 
 
+def find_adb():
+  """Finds adb on the path.
+
+  This method is provided to avoid the issue of diskutils.spawn's
+  find_executable which first searches the current directory before
+  searching $PATH. That behavior results in issues where systrace.py
+  uses a different adb than the one in the path.
+  """
+  paths = os.environ['PATH'].split(os.pathsep)
+  executable = 'adb'
+  if sys.platform == 'win32':
+    executable = executable + '.exe'
+  for p in paths:
+    f = os.path.join(p, executable)
+    if os.path.isfile(f):
+      return f
+  return None
+
 def _FindAdb():
+  adb_path = find_adb()
+  if adb_path:
+    return adb_path
   try:
     return devil_env.config.LocalPath('adb')
   except dependency_manager.NoPathFoundError:
