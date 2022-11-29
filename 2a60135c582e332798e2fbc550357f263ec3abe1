@@ -34,6 +34,24 @@
       "parentUuid": "7f0867e6_d1a64d44",
       "revId": "2a60135c582e332798e2fbc550357f263ec3abe1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "754f9132_51d5d2d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2022-11-29T19:56:48Z",
+      "side": 1,
+      "message": "I\u0027ll try to fix this issue with |None| encoding. Perhaps, |io.StringIO| was used and this object have |None| encoding.\nAlso, does this code run on AppEngine with python3 or still python2 used?",
+      "parentUuid": "5c9b5355_454a145b",
+      "revId": "2a60135c582e332798e2fbc550357f263ec3abe1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
