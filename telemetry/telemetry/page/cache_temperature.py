@@ -69,6 +69,7 @@ def _WarmCache(page, tab, temperature):
     # Stop service worker after each cache warming to ensure service worker
     # script evaluation will be executed again in next navigation.
     tab.StopAllServiceWorkers()
+    logging.error('---service_worker_has_stopped_for_warm_cache')
 
 
 class CacheManipulator():
@@ -143,6 +144,7 @@ class WarmCacheManipulator(CacheManipulator):
           tab.WaitForDocumentReadyStateToBeComplete()
       # Stop all service workers before running tests to measure the starting
       # time of service worker too.
+      print("---service_worker_has_stopped_for_warm_cache_2")
       tab.StopAllServiceWorkers()
     else:
       _ClearCacheAndData(tab, page.url)

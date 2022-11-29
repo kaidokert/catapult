@@ -117,6 +117,7 @@ class SharedPageState(story_module.SharedState):
       logging.warning('Taking screenshots upon failures disabled.')
 
   def DidRunStory(self, results):
+    logging.error('---did_run_story')
     self._AllowInteractionForStage('after-run-story')
     try:
       if not self.ShouldReuseBrowserForAllStoryRuns():
@@ -196,6 +197,7 @@ class SharedPageState(story_module.SharedState):
     self._AllowInteractionForStage('after-start-browser')
 
   def WillRunStory(self, story):
+    logging.error('---will_run_story')
     reusing_browser = self.browser is not None
     page = story
     # Make sure we don't have accidentally diverging browser args.
