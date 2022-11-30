@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91e798d3_b79e0f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T19:08:27Z",
+      "side": 1,
+      "message": "LGTM with one more comment.",
+      "revId": "13eb2dad1109f8b8dee7850a5c5bc4b3061867c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "153c0562_8941bd12",
+        "filename": "dashboard/dashboard/services/issue_tracker_service_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T19:08:27Z",
+      "side": 1,
+      "message": "Forgot this earlier, which can help:\nhttps://six.readthedocs.io/#six.assertCountEqual",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "13eb2dad1109f8b8dee7850a5c5bc4b3061867c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
