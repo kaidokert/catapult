@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d51241ca_3770184a",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-11-30T18:26:16Z",
+      "side": 1,
+      "message": "isolate.py only works with old isolate servers, which no longer exist. https://source.chromium.org/search?q\u003ddashboard.services.isolate\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2F shows that the module is only imported by test files, so it\u0027s obsolete. We should clean it up sometime. In the mean time, there is really no need to test it any more.",
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "923d4369_7beb4f20",
         "filename": "dashboard/dashboard/services/isolate_test.py",
         "patchSetId": 2
