@@ -136,6 +136,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "898065dc_36faa087",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T19:46:06Z",
+      "side": 1,
+      "message": "Got it. Will remove all related lines.",
+      "parentUuid": "8d3c4d13_dd2dc810",
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "923d4369_7beb4f20",
