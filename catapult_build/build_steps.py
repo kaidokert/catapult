@@ -231,6 +231,7 @@ def main(args=None):
       os.path.join(dashboard_protos_path, p)
       for p in ['sheriff.proto', 'sheriff_config.proto']
   ]
+  dashboard_protos_path2 = os.path.join(args.api_path_checkout, 'dashboard')
 
   sheriff_proto_output_path = os.path.join(args.api_path_checkout, 'dashboard',
                                            'dashboard', 'sheriff_config')
@@ -267,7 +268,7 @@ def main(args=None):
           'cmd': [
               protoc_path,
               '--proto_path',
-              dashboard_protos_path,
+              dashboard_protos_path2,
               '--python_out',
               sheriff_proto_output_path,
           ] + dashboard_proto_files,
@@ -278,7 +279,7 @@ def main(args=None):
           'cmd': [
               protoc_path,
               '--proto_path',
-              dashboard_protos_path,
+              dashboard_protos_path2,
               '--python_out',
               dashboard_proto_output_path,
           ] + dashboard_proto_files,
