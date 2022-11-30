@@ -154,6 +154,30 @@
       },
       "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848bab95_1c74779c",
+        "filename": "dashboard/dashboard/services/swarming_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T05:55:41Z",
+      "side": 1,
+      "message": "no problem in py2, in py3 it gets sorted then not equal. May use other assert function but this looks simple.",
+      "parentUuid": "04f0461e_cc06407d",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 21
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
