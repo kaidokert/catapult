@@ -231,6 +231,8 @@ def main(args=None):
       os.path.join(dashboard_protos_path, p)
       for p in ['sheriff.proto', 'sheriff_config.proto']
   ]
+  if args.use_python3:
+    dashboard_protos_path = os.path.join(args.api_path_checkout, 'dashboard')
 
   sheriff_proto_output_path = os.path.join(args.api_path_checkout, 'dashboard',
                                            'dashboard', 'sheriff_config')
