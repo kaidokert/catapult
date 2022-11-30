@@ -119,9 +119,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _StartCastStreamingShell(self, startup_args):
     browser_cmd = [
-        'component',
-        'run-legacy',
-        'fuchsia-pkg://%s/cast_streaming_shell#meta/cast_streaming_shell.cmx' %
+        'test',
+        'run',
+        'fuchsia-pkg://%s/cast_streaming_shell#meta/cast_streaming_shell.cm' %
         self._managed_repo,
     ]
 
