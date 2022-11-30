@@ -43,8 +43,14 @@ class SheriffConfigClient(object):
     from dashboard.models.subscription import Subscription, AnomalyConfig
     # pylint: disable=import-outside-toplevel
     from google.protobuf import json_format
+
+    import os
+    os.listdir('/b/s/w/ir/x/w/catapult/dashboard/')
+    os.listdir('/b/s/w/ir/x/w/catapult/dashboard/dashboard/')
+    os.listdir('/b/s/w/ir/x/w/catapult/dashboard/dashboard/proto/')
+
     # pylint: disable=import-outside-toplevel
-    from dashboard import sheriff_config_pb2
+    from dashboard.proto import sheriff_config_pb2
     self._GetEmail = GetEmail  # pylint: disable=invalid-name
     SheriffConfigClient._Subscription = Subscription
     SheriffConfigClient._AnomalyConfig = AnomalyConfig
