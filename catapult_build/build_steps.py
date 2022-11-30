@@ -266,8 +266,8 @@ def main(args=None):
               'Generate Sheriff Config protocol buffers',
           'cmd': [
               protoc_path,
-              '--proto_path',
-              dashboard_protos_path,
+            #   '--proto_path',
+            #   dashboard_protos_path,
               '--python_out',
               sheriff_proto_output_path,
           ] + dashboard_proto_files,
@@ -277,8 +277,8 @@ def main(args=None):
               'Generate Dashboard protocol buffers',
           'cmd': [
               protoc_path,
-              '--proto_path',
-              dashboard_protos_path,
+            #   '--proto_path',
+            #   dashboard_protos_path,
               '--python_out',
               dashboard_proto_output_path,
           ] + dashboard_proto_files,
@@ -288,8 +288,8 @@ def main(args=None):
               'Generate Tracing protocol buffers',
           'cmd': [
               protoc_path,
-              '--proto_path',
-              tracing_protos_path,
+            #   '--proto_path',
+            #   tracing_protos_path,
               '--python_out',
               tracing_proto_output_path,
           ] + tracing_proto_files,
