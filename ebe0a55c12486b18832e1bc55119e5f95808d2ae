@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ba6300d3_bb0fbb32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T18:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c601fac_de43e24d",
+      "range": {
+        "startLine": 7,
+        "startChar": 34,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ca06ce9a_43da659f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -58,6 +82,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07bd170a_c85813fc",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T18:46:18Z",
+      "side": 1,
+      "message": "will remove in next cl, thanks!",
+      "parentUuid": "d51241ca_3770184a",
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "923d4369_7beb4f20",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-11-30T05:48:50Z",
       "side": 1,
       "message": "Using b\u0027file contents\u0027 should work in both cases.",
+      "range": {
+        "startLine": 23,
+        "startChar": 44,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da486c9a_64e4f0e9",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T18:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "923d4369_7beb4f20",
       "range": {
         "startLine": 23,
         "startChar": 44,
@@ -104,6 +170,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfea253b_5ad625c7",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T18:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98dba4ef_f34278c1",
+      "range": {
+        "startLine": 39,
+        "startChar": 31,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c78749b6_0dc7cbc2",
@@ -127,6 +217,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0b50095_f8441d85",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T18:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c78749b6_0dc7cbc2",
+      "range": {
+        "startLine": 60,
+        "startChar": 24,
+        "endLine": 60,
+        "endChar": 43
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "785fd577_a90302f3",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-11-30T05:48:50Z",
       "side": 1,
       "message": "nit: this should not be in the argument list.",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 48
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a72202_335c1a86",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T18:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "785fd577_a90302f3",
       "range": {
         "startLine": 85,
         "startChar": 8,
