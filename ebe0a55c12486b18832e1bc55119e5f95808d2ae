@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c601fac_de43e24d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T05:48:50Z",
+      "side": 1,
+      "message": "If all tests are passing now, we can enable them running in try job.",
+      "range": {
+        "startLine": 7,
+        "startChar": 34,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ca06ce9a_43da659f",
@@ -14,6 +37,121 @@
       "writtenOn": "2022-11-30T00:44:49Z",
       "side": 1,
       "message": "PTAL\n\ntested locally in py2/py3",
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "923d4369_7beb4f20",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T05:48:50Z",
+      "side": 1,
+      "message": "Using b\u0027file contents\u0027 should work in both cases.",
+      "range": {
+        "startLine": 23,
+        "startChar": 44,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98dba4ef_f34278c1",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T05:48:50Z",
+      "side": 1,
+      "message": "Try using six.ensure_str(), or compare with b\u0027file content\u0027.",
+      "range": {
+        "startLine": 39,
+        "startChar": 31,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c78749b6_0dc7cbc2",
+        "filename": "dashboard/dashboard/services/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T05:48:50Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 60,
+        "startChar": 24,
+        "endLine": 60,
+        "endChar": 43
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "785fd577_a90302f3",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T05:48:50Z",
+      "side": 1,
+      "message": "nit: this should not be in the argument list.",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 48
+      },
+      "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f0461e_cc06407d",
+        "filename": "dashboard/dashboard/services/swarming_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-11-30T05:48:50Z",
+      "side": 1,
+      "message": "Will the order change cause any issue when running on python2?",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 21
+      },
       "revId": "ebe0a55c12486b18832e1bc55119e5f95808d2ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
