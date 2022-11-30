@@ -232,10 +232,12 @@ def main(args=None):
       for p in ['sheriff.proto', 'sheriff_config.proto']
   ]
 
+  dashboard_protos_path = os.path.join(args.api_path_checkout, 'dashboard')
+
   sheriff_proto_output_path = os.path.join(args.api_path_checkout, 'dashboard',
                                            'dashboard', 'sheriff_config')
   dashboard_proto_output_path = os.path.join(args.api_path_checkout,
-                                             'dashboard', 'dashboard')
+                                             'dashboard', 'dashboard', 'proto')
 
   tracing_protos_path = os.path.join(args.api_path_checkout, 'tracing',
                                      'tracing', 'proto')
