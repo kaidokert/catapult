@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e587e1e4_d608c255",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-11-30T18:18:50Z",
+      "side": 1,
+      "message": "Hi Ben, before spending too much time updating the tests, I am sending this CL to you to get some early feedback.\nAnother TODO is to update the fastboot binary in devil to the latest version to get the up-to-date `flashall` code.\n\nThanks!",
+      "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
