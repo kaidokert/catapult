@@ -149,7 +149,11 @@ class Host(object):
 
     def print_(self, msg='', end='\n', stream=None):
         stream = stream or self.stdout
-        stream.write(str(msg) + end)
+        message = str(msg) + end
+        encoding = stream.encoding or 'ascii'
+        stream.write(
+            message.encode(encoding,
+                           errors='backslashreplace').decode(encoding))
         stream.flush()
 
     def read_text_file(self, *comps):
@@ -265,6 +269,10 @@ class _TeedStream(io.StringIO):
         self.stream = stream
         self.capturing = False
         self.diverting = False
+
+    @property
+    def encoding(self):
+        return self.stream.encoding
 
     def write(self, msg, *args, **kwargs):
         if self.capturing:
