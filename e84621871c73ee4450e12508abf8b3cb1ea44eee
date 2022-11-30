@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b9a4ce1_eeb2c190",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-11-30T22:03:13Z",
+      "side": 0,
+      "message": "According to https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/README.md;drc\u003d4755386202b94643c997cca2b8b817f128fe3a63;l\u003d94, we are generating the pb2 files to dashboard/dashboard, no need to change here if we are not putting the pb2 files into proto folder.",
+      "revId": "e84621871c73ee4450e12508abf8b3cb1ea44eee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
