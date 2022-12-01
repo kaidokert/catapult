@@ -436,7 +436,7 @@ _PATHS_HANDLED_BY_FLASK = [
     '/update_dashboard_stats',
     '/update_test_suites',
     '/update_test_suite_descriptors',
-    # '/uploads/',
+    '/uploads/',
 ]
 
 
