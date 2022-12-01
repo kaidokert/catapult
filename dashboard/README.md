@@ -90,8 +90,8 @@ location.
 
 ```
 catapult=~/chromium/src/third_party/catapult
-~/protoc/protoc --proto_path $catapult/dashboard/dashboard/proto --python_out $catapult/dashboard/dashboard/sheriff_config $catapult/dashboard/dashboard/proto/sheriff.proto $catapult/dashboard/dashboard/proto/sheriff_config.proto
-~/protoc/protoc --proto_path $catapult/dashboard/dashboard/proto --python_out $catapult/dashboard/dashboard $catapult/dashboard/dashboard/proto/sheriff.proto $catapult/dashboard/dashboard/proto/sheriff_config.proto
+~/protoc/protoc --proto_path $catapult/dashboard --python_out $catapult/dashboard/dashboard/sheriff_config $catapult/dashboard/dashboard/proto/sheriff.proto $catapult/dashboard/dashboard/proto/sheriff_config.proto
+~/protoc/protoc --proto_path $catapult/dashboard --python_out $catapult/dashboard $catapult/dashboard/dashboard/proto/sheriff.proto $catapult/dashboard/dashboard/proto/sheriff_config.proto
 ~/protoc/protoc --proto_path $catapult/tracing/tracing/proto --python_out $catapult/tracing/tracing/proto $catapult/tracing/tracing/proto/histogram.proto
 ```
 
