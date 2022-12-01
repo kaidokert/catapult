@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "c811e2a6c14ac636b1beadca87b1e4b4ac27432d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dee78e1_2ee48ec8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-01T00:54:44Z",
+      "side": 1,
+      "message": "Will let John to take a look as he added the original section.",
+      "revId": "c811e2a6c14ac636b1beadca87b1e4b4ac27432d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
