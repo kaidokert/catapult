@@ -39,6 +39,30 @@
       },
       "revId": "660a3491f98c7c35baa93aadba52e665990f5ac3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cb3fc61_2c713dc7",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-12-02T23:42:34Z",
+      "side": 1,
+      "message": "Please also see about updating other references to JSON in related code, e.g. the flag definition, since we\u0027re no longer outputting in standard JSON.",
+      "parentUuid": "83d76866_97635853",
+      "range": {
+        "startLine": 316,
+        "startChar": 22,
+        "endLine": 316,
+        "endChar": 38
+      },
+      "revId": "660a3491f98c7c35baa93aadba52e665990f5ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
