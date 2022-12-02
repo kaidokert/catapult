@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "945c8beb_c6e74ffd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-02T22:03:59Z",
+      "side": 1,
+      "message": "PTAL.\n(I\u0027m thinking whether we should still return u\u0027\u0027 if PY2. We used a ijson from third_party/, and the compat.py is implemented differently.)",
+      "revId": "f1fad85b9eb50c64b2d60518a63474815db6bcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
