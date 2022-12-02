@@ -16,6 +16,24 @@
       "message": "Hi Ben, before spending too much time updating the tests, I am sending this CL to you to get some early feedback.\nAnother TODO is to update the fastboot binary in devil to the latest version to get the up-to-date `flashall` code.\n\nThanks!",
       "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "326b1065_93b14fe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-12-02T00:00:19Z",
+      "side": 1,
+      "message": "Seems fine to me, the less we have to do ourselves (and the more we can rely on the sdk) the better.\n\nThe only concern is older versions/images. If this were to land, could it still be used to flash older images on older devices?\n\nThe docs technically say devil \"supports SDK level 16 and above\" (whcih would be J):\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/devil/README.md\n\nI don\u0027t actually know how true that is. But if this change means we can only flash M and newer, we may want to update those docs.",
+      "parentUuid": "e587e1e4_d608c255",
+      "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

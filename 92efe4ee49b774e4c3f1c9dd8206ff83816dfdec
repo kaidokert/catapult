@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a9b280_4047cf16",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-12-02T00:00:19Z",
+      "side": 1,
+      "message": "taken care of",
+      "range": {
+        "startLine": 256,
+        "startChar": 31,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "92efe4ee49b774e4c3f1c9dd8206ff83816dfdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "793ef4a8_3ad7bbb7",
+        "filename": "devil/devil/android/sdk/fastboot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-12-02T00:00:19Z",
+      "side": 1,
+      "message": "nit: how about instead expressing this as a multiplier of _FLASH_TIMEOUT? since _FLASH_TIMEOUT \u003d\u003d timeout for flashing one partition. So _FLASHALL_TIMEOUT should be the timeout for flashing all partitions, ie: `N * _FLASH_TIMEOUT` (though I don\u0027t know what a good number for N would be.. maybe something higher than 3 though?)",
+      "range": {
+        "startLine": 20,
+        "startChar": 20,
+        "endLine": 20,
+        "endChar": 41
+      },
+      "revId": "92efe4ee49b774e4c3f1c9dd8206ff83816dfdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e787f53_8e7c4bc0",
+        "filename": "devil/devil/android/sdk/fastboot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-12-02T00:00:19Z",
+      "side": 1,
+      "message": "Of course it couldn\u0027t be just a normal cmd line arg. Thanks android 🙄",
+      "range": {
+        "startLine": 151,
+        "startChar": 12,
+        "endLine": 151,
+        "endChar": 31
+      },
+      "revId": "92efe4ee49b774e4c3f1c9dd8206ff83816dfdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
