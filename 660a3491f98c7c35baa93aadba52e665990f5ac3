@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "535c8263_a61af361",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-12-02T23:41:16Z",
+      "side": 1,
+      "message": "You\u0027re going to need to update the unittests to work with the new expected output.",
+      "revId": "660a3491f98c7c35baa93aadba52e665990f5ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d76866_97635853",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-12-02T23:41:16Z",
+      "side": 1,
+      "message": "Please add a comment noting that this is effectively saving as jsonl instead of regular json since use of jsonl is not common elsewhere in Catapult/Chromium.",
+      "range": {
+        "startLine": 316,
+        "startChar": 22,
+        "endLine": 316,
+        "endChar": 38
+      },
+      "revId": "660a3491f98c7c35baa93aadba52e665990f5ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
