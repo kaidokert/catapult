@@ -51,6 +51,24 @@
       "message": "LGTM",
       "revId": "f1fad85b9eb50c64b2d60518a63474815db6bcc2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8762f74_2b138314",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-02T22:26:16Z",
+      "side": 1,
+      "message": "I think it worked because running encode on bytes (which is string) in python2 will not throw. In python 3, it throws attribute error.",
+      "parentUuid": "f6c32be3_9fa0a0b9",
+      "revId": "f1fad85b9eb50c64b2d60518a63474815db6bcc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
