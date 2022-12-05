@@ -126,10 +126,32 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         browser_cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT)
 
   def _StartCastStreamingShell(self, startup_args):
+    session_cmd = [
+      'session',
+      'launch',
+      'fuchsia-pkg://%s/smart_session#meta/smart_session.cm' %
+      self._managed_repo,
+    ]
+    logging.debug('Starting session: %s', ' '.join(session_cmd))
+    self._command_runner.run_ffx_command(
+        session_cmd,
+        stdout=self._tmp_output_file,
+        stderr=subprocess.STDOUT)
+
+    session_show_cmd = [
+      'session',
+      'show',
+    ]
+    logging.debug('Waiting for session: %s', ' '.join(session_cmd))
+    self._command_runner.run_ffx_command(
+        session_show_cmd,
+        stdout=self._tmp_output_file,
+        stderr=subprocess.STDOUT)
+
     browser_cmd = [
-        'component',
-        'run-legacy',
-        'fuchsia-pkg://%s/cast_streaming_shell#meta/cast_streaming_shell.cmx' %
+        'test',
+        'run',
+        'fuchsia-pkg://%s/cast_streaming_shell#meta/cast_streaming_shell.cm' %
         self._managed_repo,
     ]
 
@@ -249,20 +271,20 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     raise NotImplementedError
 
   def _CloseOnDeviceBrowsers(self):
-    if self.browser_type == WEB_ENGINE_SHELL:
+    if (self.browser_type == WEB_ENGINE_SHELL or
+        self.browser_type == CAST_STREAMING_SHELL):
       if self._browser_process:
-        logging.info('Terminating web_engine_shell.cm')
+        logging.info('Terminating %s.cm' % self.browser_type)
         # Send SIGTERM first since that gives `ffx test run` a chance to
         # gracefully cancel the component under test.
         self._browser_process.terminate()
         try:
           self._browser_process.wait(5)
         except subprocess.TimeoutExpired:
-          logging.info('web_engine_shell.cm still running after 5s; killing it')
+          logging.info('%s.cm still running after 5s; killing it' %
+                       self.browser_type)
           self._browser_process.kill()
           self._browser_process.wait()
-    if (self.browser_type == WEB_ENGINE_SHELL or
-        self.browser_type == CAST_STREAMING_SHELL):
       close_cmd = ['killall', 'web_instance.cmx']
     else:
       close_cmd = ['killall', 'chrome_v1.cmx']
