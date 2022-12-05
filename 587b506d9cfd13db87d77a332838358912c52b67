@@ -16,6 +16,24 @@
       "message": "hi @carolineliu@google.com. once https://chromium-review.googlesource.com/c/catapult/+/4061737 lands, please rebase this CL and add an `or self.browser_type \u003d\u003d CAST_STREAMING_SHELL` to the new block of code here that sends a SIGTERM to the `ffx test run` process. thanks.",
       "revId": "587b506d9cfd13db87d77a332838358912c52b67",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f2537c_9dc62cb0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1559142
+      },
+      "writtenOn": "2022-12-05T15:22:18Z",
+      "side": 1,
+      "message": "done, thanks!",
+      "parentUuid": "05756e01_2500afc3",
+      "revId": "587b506d9cfd13db87d77a332838358912c52b67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
