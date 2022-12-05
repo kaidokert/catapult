@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c40a55_fdd0235c",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-05T20:53:26Z",
+      "side": 1,
+      "message": "Looks like this is a restful api, the expected arguments need to be pre-defined, as what is done for BuildbucketJobStatusGet.",
+      "range": {
+        "startLine": 297,
+        "startChar": 19,
+        "endLine": 297,
+        "endChar": 26
+      },
+      "revId": "a307800006026f694eacb2f569c07a3554b149e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
