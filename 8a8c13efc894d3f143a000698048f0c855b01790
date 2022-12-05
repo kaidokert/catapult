@@ -39,6 +39,30 @@
       },
       "revId": "8a8c13efc894d3f143a000698048f0c855b01790",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d683bd73_f167244f",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2022-12-05T20:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27280bac_d36a7dc6",
+      "range": {
+        "startLine": 267,
+        "startChar": 29,
+        "endLine": 267,
+        "endChar": 32
+      },
+      "revId": "8a8c13efc894d3f143a000698048f0c855b01790",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
