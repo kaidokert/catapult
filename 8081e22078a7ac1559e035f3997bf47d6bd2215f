@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9214257b_7aefc303",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-05T21:58:39Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "8081e22078a7ac1559e035f3997bf47d6bd2215f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acc9a074_dff3ab4e",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "I considered that, but ClearApplicationState() is potentially called after every failed instrumentation test, so that\u0027s potentially a lot of added time on shards with lots of failed tests. Additionally, I\u0027m not aware of any actual cases of this being an issue outside of the GPU tests on non-rooted devices (just that it *could* be an issue elsewhere), so I\u0027d like to avoid adding overhead for now.\n\nMy current plan is to try to find a better/faster way to do this (grepping logcat for the intent finish should work, but hoping there\u0027s a less hacky way), at which point we can apply the fix to ClearApplicationState() directly.",
       "parentUuid": "acc9a074_dff3ab4e",
+      "range": {
+        "startLine": 589,
+        "startChar": 20,
+        "endLine": 589,
+        "endChar": 32
+      },
+      "revId": "8081e22078a7ac1559e035f3997bf47d6bd2215f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a60000a3_6861506c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-05T21:58:39Z",
+      "side": 1,
+      "message": "SGTM. Thanks!",
+      "parentUuid": "a9ccd20f_8a0ad337",
       "range": {
         "startLine": 589,
         "startChar": 20,
