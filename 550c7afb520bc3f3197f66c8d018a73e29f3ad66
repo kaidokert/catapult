@@ -22,6 +22,30 @@
       },
       "revId": "550c7afb520bc3f3197f66c8d018a73e29f3ad66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8cf5219_b133f3b9",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-06T01:10:45Z",
+      "side": 0,
+      "message": "That\u0027s the protobuf we use in py2 env, without it won\u0027t pass the tests",
+      "parentUuid": "15bf3fbe_ab131034",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 212,
+        "endChar": 49
+      },
+      "revId": "550c7afb520bc3f3197f66c8d018a73e29f3ad66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
