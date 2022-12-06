@@ -63,6 +63,30 @@
       },
       "revId": "dec3841368a6f9fa35bd81166058cf5512cd26df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6086960_ac32ba2f",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-06T18:41:31Z",
+      "side": 1,
+      "message": "Now on the main branch the tests are ok, abandoning",
+      "parentUuid": "660a365f_2999f63a",
+      "range": {
+        "startLine": 220,
+        "startChar": 19,
+        "endLine": 220,
+        "endChar": 38
+      },
+      "revId": "dec3841368a6f9fa35bd81166058cf5512cd26df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
