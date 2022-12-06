@@ -22,6 +22,30 @@
       },
       "revId": "44448c2d7756ace9b962266ece40f77af1d97da1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "038dfe3c_08f9c6ec",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1559142
+      },
+      "writtenOn": "2022-12-06T16:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19f02267_a707d133",
+      "range": {
+        "startLine": 255,
+        "startChar": 40,
+        "endLine": 255,
+        "endChar": 42
+      },
+      "revId": "44448c2d7756ace9b962266ece40f77af1d97da1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
