@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19f02267_a707d133",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2022-12-06T08:53:06Z",
+      "side": 1,
+      "message": "nit: `,` rather than ` %` here so that `logging.info` does the string formatting.\n\nsame comment on line 262",
+      "range": {
+        "startLine": 255,
+        "startChar": 40,
+        "endLine": 255,
+        "endChar": 42
+      },
+      "revId": "44448c2d7756ace9b962266ece40f77af1d97da1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
