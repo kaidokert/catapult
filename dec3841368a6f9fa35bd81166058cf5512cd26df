@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "dec3841368a6f9fa35bd81166058cf5512cd26df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8eb3044_3e0678f0",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-06T01:00:30Z",
+      "side": 1,
+      "message": "Have we tried this in production? We are trying to resolve the differences on testbed between py2 and py3, but this will change the non-test logic.",
+      "range": {
+        "startLine": 220,
+        "startChar": 19,
+        "endLine": 220,
+        "endChar": 38
+      },
+      "revId": "dec3841368a6f9fa35bd81166058cf5512cd26df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

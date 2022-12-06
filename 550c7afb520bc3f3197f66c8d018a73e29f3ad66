@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15bf3fbe_ab131034",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-06T01:00:30Z",
+      "side": 0,
+      "message": "Do we still need this?",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 212,
+        "endChar": 49
+      },
+      "revId": "550c7afb520bc3f3197f66c8d018a73e29f3ad66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
