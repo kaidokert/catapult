@@ -34,6 +34,24 @@
       "parentUuid": "e587e1e4_d608c255",
       "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519e1480_87654070",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-07T01:18:08Z",
+      "side": 1,
+      "message": "Thanks for the review, Ben :)\n\nThe flashall should work fine on the old images, as the android team still fix bugs ([example](https://issuetracker.google.com/158232468)) for old devices and versions, and android doc [instructs](https://source.android.com/docs/setup/build/running#flashing-a-device) devs to use `flashall` to flash devices, even for the old Nexus 7.\n\nI will also try to flash Nexus 5 or Nexus 5X locally before landing this CL.",
+      "parentUuid": "326b1065_93b14fe5",
+      "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

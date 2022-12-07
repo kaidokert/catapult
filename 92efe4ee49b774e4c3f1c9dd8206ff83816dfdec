@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4310882_8b007b83",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-07T01:18:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14a9b280_4047cf16",
+      "range": {
+        "startLine": 256,
+        "startChar": 31,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "92efe4ee49b774e4c3f1c9dd8206ff83816dfdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "793ef4a8_3ad7bbb7",
@@ -49,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "47e82a62_413e5760",
+        "filename": "devil/devil/android/sdk/fastboot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-07T01:18:08Z",
+      "side": 1,
+      "message": "Sure. Updated to `_FLASH_TIMEOUT * 6` (30 mins) which hopefully will be sufficient.",
+      "parentUuid": "793ef4a8_3ad7bbb7",
+      "range": {
+        "startLine": 20,
+        "startChar": 20,
+        "endLine": 20,
+        "endChar": 41
+      },
+      "revId": "92efe4ee49b774e4c3f1c9dd8206ff83816dfdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4e787f53_8e7c4bc0",
         "filename": "devil/devil/android/sdk/fastboot.py",
         "patchSetId": 5
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-02T00:00:19Z",
       "side": 1,
       "message": "Of course it couldn\u0027t be just a normal cmd line arg. Thanks android 🙄",
+      "range": {
+        "startLine": 151,
+        "startChar": 12,
+        "endLine": 151,
+        "endChar": 31
+      },
+      "revId": "92efe4ee49b774e4c3f1c9dd8206ff83816dfdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3bfd541_9f3f9c38",
+        "filename": "devil/devil/android/sdk/fastboot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-07T01:18:08Z",
+      "side": 1,
+      "message": "Indeed 😂",
+      "parentUuid": "4e787f53_8e7c4bc0",
       "range": {
         "startLine": 151,
         "startChar": 12,

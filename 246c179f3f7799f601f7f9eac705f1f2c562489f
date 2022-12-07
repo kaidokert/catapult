@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e8865d1_101496c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-07T01:18:08Z",
+      "side": 1,
+      "message": "Hey Ben,\n\nI did some further refactoring like namedtuple and updated the test which can be reviewed via crrev.com/c/4062675/5..6\n\nCan you take a look again? Thanks",
+      "revId": "246c179f3f7799f601f7f9eac705f1f2c562489f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
