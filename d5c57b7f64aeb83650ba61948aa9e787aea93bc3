@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "d5c57b7f64aeb83650ba61948aa9e787aea93bc3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf0b7d8e_adb8e457",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-07T22:51:55Z",
+      "side": 1,
+      "message": "LGTM. Please check in after test run on staging. Thanks!",
+      "revId": "d5c57b7f64aeb83650ba61948aa9e787aea93bc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
