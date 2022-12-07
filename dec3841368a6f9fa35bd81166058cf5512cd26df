@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dfefff24_64f513ce",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-07T23:10:55Z",
+      "side": 1,
+      "message": "Let\u0027s keep the original try-catch logic here.",
+      "range": {
+        "startLine": 211,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 42
+      },
+      "revId": "dec3841368a6f9fa35bd81166058cf5512cd26df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8eb3044_3e0678f0",
         "filename": "dashboard/dashboard/common/datastore_hooks.py",
         "patchSetId": 2
