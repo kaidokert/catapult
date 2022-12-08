@@ -38,6 +38,8 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
     # allow accessing the APIs by authorized users that generate tokens via
     # luci-auth command.
     '446450136466-2hr92jrq8e6i4tnsa56b52vacp7t3936.apps.googleusercontent.com',
+    # This oauth client id is used by Google Cloud Workflow.
+    '32555940559.apps.googleusercontent.com',
 ]
 if utils.IsStagingEnvironment():
   OAUTH_CLIENT_ID_ALLOWLIST = [
