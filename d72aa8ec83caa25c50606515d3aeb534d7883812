@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ece48e45_01f8f1ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-12-08T21:23:51Z",
+      "side": 1,
+      "message": "PTAL\n\nI ran the affected test for ~19 hours on swarming without a repro, so hopefully this fix will work as expected on the bot.",
+      "revId": "d72aa8ec83caa25c50606515d3aeb534d7883812",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
