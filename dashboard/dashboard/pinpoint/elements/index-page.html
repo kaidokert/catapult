@@ -33,7 +33,7 @@ found in the LICENSE file.
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
-    <navigation-bar auth-headers="{{authHeaders}}" user={{user}}></navigation-bar>
+    <navigation-bar  user={{user}}></navigation-bar>
 
     <!--
     The <iron-pages> element can be used as a simple content switcher. We have a
@@ -43,9 +43,9 @@ found in the LICENSE file.
     <div id="content">
       <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="error" on-iron-select="onSelectedPage" on-iron-deselect="onDeselectedPage">
         <error-page name="error"></error-page>
-        <job-page name="job" route="{{subroute}}" auth-headers="[[authHeaders]]"></job-page>
-        <jobs-page name="jobs" route="{{subroute}}" auth-headers="[[authHeaders]]" user="[[user]]"></jobs-page>
-        <migrate-page name="migrate" auth-headers="[[authHeaders]]"></migrate-page>
+        <job-page name="job" route="{{subroute}}" user="[[user]]" client="{{client}}"></job-page>
+        <jobs-page name="jobs" route="{{subroute}}" user="[[user]]" client="{{client}}"></jobs-page>
+        <migrate-page name="migrate"></migrate-page>
         <stats-page name="stats"></stats-page>
         <queue-stats-page name="queue-stats" route="{{subroute}}"></queue-stats-page>
       </iron-pages>
@@ -63,11 +63,40 @@ found in the LICENSE file.
           type: String,
           reflectToAttribute: true,
         },
+        client: {
+          type: Object,
+          value: {},
+          notify: true
+        },
+        authHeaders: {
+          type: Object,
+          notify: true
+        }
       },
 
       observers: [
         '_routePageChanged(routeData.page)',
       ],
+
+      ready() {
+        console.log('initClient');
+        this.client.gsi_client = google.accounts.oauth2.initTokenClient({
+          client_id: '22573382977-u263jlijs2uiio0uq7qm7vso3vuh7ec5.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/userinfo.email',
+          ux_mode: 'popup',
+          prompt: '',
+          callback: (response) => {
+            if (response && response.access_token) {
+              if (google.accounts.oauth2.hasGrantedAnyScope(response, "https://www.googleapis.com/auth/userinfo.email")) {
+                this.client.authHeaders = {
+                  Authorization: response.token_type + ' ' + response.access_token
+                };
+                console.log(this.client.authHeaders);
+              }
+            }
+          }
+        });
+      },
 
       onDeselectedPage(e) {
         const page = e.detail.item;
