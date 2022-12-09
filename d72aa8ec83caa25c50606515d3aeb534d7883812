@@ -16,6 +16,23 @@
       "message": "PTAL\n\nI ran the affected test for ~19 hours on swarming without a repro, so hopefully this fix will work as expected on the bot.",
       "revId": "d72aa8ec83caa25c50606515d3aeb534d7883812",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5478db21_9b616274",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-09T22:12:04Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "d72aa8ec83caa25c50606515d3aeb534d7883812",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
