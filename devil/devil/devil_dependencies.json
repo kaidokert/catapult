@@ -15,6 +15,10 @@
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
+        "darwin_x86_64": {
+          "cloud_storage_hash": "f01c4b0a47c6933880d424d713d25041d302c627",
+          "download_path": "../bin/deps/darwin/x86_64/bin/adb"
+        },
         "linux2_x86_64": {
           "cloud_storage_hash": "528d0e88a0d876b0549840f0797beffca4a6a796",
           "download_path": "../bin/deps/linux2/x86_64/bin/adb"
@@ -79,6 +83,10 @@
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
+        "darwin_x86_64": {
+          "cloud_storage_hash": "9c809fe3b318216e416b3eed3c9922bd33a34b26",
+          "download_path": "../bin/deps/darwin/x86_64/bin/fastboot"
+        },
         "linux2_x86_64": {
           "cloud_storage_hash": "fe84a6714192f6596bf09215caeea34ed937a42b",
           "download_path": "../bin/deps/linux2/x86_64/bin/fastboot"
@@ -146,6 +154,16 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "f2428a52730c6593267678c75f95cdc7dffb58df",
           "download_path": "../bin/deps/linux2/x86_64/bin/md5sum_host"
+        }
+      }
+    },
+    "mke2fs": {
+      "cloud_storage_base_folder": "binary_dependencies",
+      "cloud_storage_bucket": "chromium-telemetry",
+      "file_info": {
+        "darwin_x86_64": {
+          "cloud_storage_hash": "fe26bd9b015afaa40aed61a34cb9458d818397d4",
+          "download_path": "../bin/deps/darwin/x86_64/bin/mke2fs"
         }
       }
     },
