@@ -80,7 +80,7 @@
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
         "linux2_x86_64": {
-          "cloud_storage_hash": "fe84a6714192f6596bf09215caeea34ed937a42b",
+          "cloud_storage_hash": "f149e7b09d3e442f2d2e9848df86a6df79e9f4e9",
           "download_path": "../bin/deps/linux2/x86_64/bin/fastboot"
         }
       }
@@ -146,6 +146,16 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "f2428a52730c6593267678c75f95cdc7dffb58df",
           "download_path": "../bin/deps/linux2/x86_64/bin/md5sum_host"
+        }
+      }
+    },
+    "mke2fs": {
+      "cloud_storage_base_folder": "binary_dependencies",
+      "cloud_storage_bucket": "chromium-telemetry",
+      "file_info": {
+        "linux2_x86_64": {
+          "cloud_storage_hash": "61181df5d137b5be3c0c73e5261a6acea29c3dab",
+          "download_path": "../bin/deps/linux2/x86_64/bin/mke2fs"
         }
       }
     },
