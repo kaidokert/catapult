@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb399e6e_2be5e1be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-10T00:14:26Z",
+      "side": 1,
+      "message": "A couple of config update. PTAL.",
+      "revId": "b306e20968dd7029f5a1160d89fb135062882e41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
