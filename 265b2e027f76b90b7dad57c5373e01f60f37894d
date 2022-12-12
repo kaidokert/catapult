@@ -16,6 +16,40 @@
       "message": "PTAL",
       "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3382f41_e8e2164c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-12T18:07:03Z",
+      "side": 1,
+      "message": "LG, but waiting to approve for commit since the notebook link won\u0027t work yet.",
+      "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84c2aae8_03fc66b1",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-12T18:07:03Z",
+      "side": 1,
+      "message": "ok I suppose we should land this notebook before we push this change out 😊",
+      "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
