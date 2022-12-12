@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b5251b_ca5c86fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366833
+      },
+      "writtenOn": "2022-12-12T16:28:26Z",
+      "side": 1,
+      "message": "This change is meant to fix the following failures in `mac-rel` when the Chrome for Testing flag is enabled: https://ci.chromium.org/ui/p/chromium/builders/try/mac-rel/1205354/test-results?sortby\u003d\u0026groupby\u003d\u0026q\u003dtelemetry+",
+      "revId": "6eec8fae58a3ea81f66d8c7d090bd9d548417f0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
