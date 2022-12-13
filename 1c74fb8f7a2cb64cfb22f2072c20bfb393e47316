@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6a28dd9_a6c46314",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-13T18:33:57Z",
+      "side": 1,
+      "message": "Thanks for documenting this! I didn\u0027t know this handy functionality before!",
+      "parentUuid": "fe73766f_d7a29515",
+      "revId": "1c74fb8f7a2cb64cfb22f2072c20bfb393e47316",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9444a291_3f6931f6",

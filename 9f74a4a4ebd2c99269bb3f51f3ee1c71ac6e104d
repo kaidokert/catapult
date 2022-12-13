@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc4b6b9_47b05d55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-13T18:33:57Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "9f74a4a4ebd2c99269bb3f51f3ee1c71ac6e104d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bc08ac_eebf1f85",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-13T18:33:57Z",
+      "side": 1,
+      "message": "nit: looks like this can be removed with the ensure_binary().",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "9f74a4a4ebd2c99269bb3f51f3ee1c71ac6e104d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
