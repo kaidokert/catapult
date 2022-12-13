@@ -21,11 +21,41 @@ const errStatus = http.StatusInternalServerError
 
 func makeLogger(req *http.Request, quietMode bool) func(msg string, args ...interface{}) {
 	if quietMode {
-		return func(string, ...interface{}) { }
+		return func(string, ...interface{}) {}
 	}
 	prefix := fmt.Sprintf("ServeHTTP(%s): ", req.URL)
 	return func(msg string, args ...interface{}) {
 		log.Print(prefix + fmt.Sprintf(msg, args...))
+	}
+}
+
+func readChunks(r io.Reader, start time.Time) ([]ResponseChunk, error) {
+	b := make([]byte, 0, 1024*1024)
+	var chunks []ResponseChunk
+	addChunk := func(c []byte) {
+		if len(c) > 0 {
+			chunks = append(chunks, ResponseChunk{append([]byte{}, c...), time.Now().Sub(start)})
+		}
+	}
+	for {
+		if len(b) == cap(b) {
+			// Add more capacity (let append pick how much).
+			b = append(b, 0)[:len(b)]
+		}
+		chunkStart := time.Now()
+		n, err := r.Read(b[len(b):cap(b)])
+		b = b[:len(b)+n]
+		if time.Now().Sub(chunkStart).Milliseconds() > 10 {
+			addChunk(b)
+			b = b[:0]
+		}
+		if err != nil {
+			if err == io.EOF {
+				err = nil
+			}
+			addChunk(b)
+			return chunks, err
+		}
 	}
 }
 
@@ -67,7 +97,7 @@ func updateDates(h http.Header, now time.Time) {
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
-	return &replayingProxy{a, scheme, transformers, quietMode }
+	return &replayingProxy{a, scheme, transformers, quietMode}
 }
 
 type replayingProxy struct {
@@ -78,6 +108,7 @@ type replayingProxy struct {
 }
 
 func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	start := time.Now()
 	if req.URL.Path == "/web-page-replay-generate-200" {
 		w.WriteHeader(200)
 		return
@@ -97,12 +128,13 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	logf := makeLogger(req, proxy.quietMode)
 
 	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	_, timedResp, err := proxy.a.FindRequest(req)
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
+	storedResp := timedResp.Response
 	defer storedResp.Body.Close()
 
 	// Check if the stored Content-Encoding matches an encoding allowed by the client.
@@ -111,6 +143,7 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	originCE := strings.ToLower(storedResp.Header.Get("Content-Encoding"))
 	if !strings.Contains(clientAE, originCE) {
 		logf("translating Content-Encoding [%s] -> [%s]", originCE, clientAE)
+		timedResp.DeChunk()
 		body, err := ioutil.ReadAll(storedResp.Body)
 		if err != nil {
 			logf("error reading response body from archive: %v", err)
@@ -141,19 +174,33 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	// Update dates in response header.
 	updateDates(storedResp.Header, time.Now())
 
+	if len(timedResp.Chunks) == 0 {
+		body, err := ioutil.ReadAll(storedResp.Body)
+		if err != nil {
+			logf("error reading body: %v", err)
+			w.WriteHeader(http.StatusNotFound)
+			return
+		}
+		timedResp.Chunks = append(timedResp.Chunks, ResponseChunk{Data: body})
+	}
+
 	// Transform.
 	for _, t := range proxy.transformers {
-		t.Transform(req, storedResp)
+		t.Transform(req, timedResp)
 	}
 
 	// Forward the response.
-	logf("serving %v response", storedResp.StatusCode)
+	logf("serving %v response in %d chunk(s)", storedResp.StatusCode, len(timedResp.Chunks))
+	time.Sleep(timedResp.ResponseStart - time.Now().Sub(start))
 	for k, v := range storedResp.Header {
 		w.Header()[k] = append([]string{}, v...)
 	}
 	w.WriteHeader(storedResp.StatusCode)
-	if _, err := io.Copy(w, storedResp.Body); err != nil {
-		logf("warning: client response truncated: %v", err)
+	for _, c := range timedResp.Chunks {
+		time.Sleep(c.Delay - time.Now().Sub(start))
+		if n, err := io.Copy(w, bytes.NewReader(c.Data)); err != nil {
+			logf("warning: client response truncated (%d/%d bytes): %v", n, len(c.Data), err)
+		}
 	}
 }
 
@@ -171,6 +218,7 @@ type recordingProxy struct {
 }
 
 func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	logf := makeLogger(req, false)
 	if req.URL.Path == "/web-page-replay-generate-200" {
 		w.WriteHeader(200)
 		return
@@ -184,7 +232,6 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		return
 	}
 	fixupRequestURL(req, proxy.scheme)
-	logf := makeLogger(req, false)
 	// https://github.com/golang/go/issues/16036. Server requests always
 	// have non-nil body even for GET and HEAD. This prevents http.Transport
 	// from retrying requests on dead reused conns. Catapult Issue 3706.
@@ -212,7 +259,9 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 
 	// Make the external request.
 	// If RoundTrip fails, convert the response to a 500.
+	start := time.Now()
 	resp, err := proxy.tr.RoundTrip(req)
+	rtTime := time.Now().Sub(start)
 	if err != nil {
 		logf("RoundTrip failed: %v", err)
 		resp = &http.Response{
@@ -226,18 +275,19 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	}
 
 	// Copy the entire response body.
-	responseBody, err := ioutil.ReadAll(resp.Body)
+	chunks, err := readChunks(resp.Body, start)
 	if err != nil {
 		logf("warning: origin response truncated: %v", err)
 	}
 	resp.Body.Close()
 
 	// Restore req body (which was consumed by RoundTrip) and record original response without transformation.
-	resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	if err := proxy.a.RecordRequest(req, resp); err != nil {
+
+	timedResp := TimedResponse{Response: resp, ResponseStart: rtTime, Chunks: chunks}
+	if err := proxy.a.RecordRequest(req, &timedResp); err != nil {
 		logf("failed recording request: %v", err)
 	}
 
@@ -245,25 +295,30 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
+	timedResp.Chunks = append([]ResponseChunk{}, timedResp.Chunks...)
 
 	// Transform.
 	for _, t := range proxy.transformers {
-		t.Transform(req, resp)
+		t.Transform(req, &timedResp)
 	}
 
-	responseBodyAfterTransform, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		logf("warning: transformed response truncated: %v", err)
 	}
 
 	// Forward the response.
-	logf("serving %d, %d bytes", resp.StatusCode, len(responseBodyAfterTransform))
+	totalBytes := 0
+	for _, c := range timedResp.Chunks {
+		totalBytes += len(c.Data)
+	}
+	logf("serving %d, %d bytes", resp.StatusCode, totalBytes)
 	for k, v := range resp.Header {
 		w.Header()[k] = append([]string{}, v...)
 	}
 	w.WriteHeader(resp.StatusCode)
-	if n, err := io.Copy(w, bytes.NewReader(responseBodyAfterTransform)); err != nil {
-		logf("warning: client response truncated (%d/%d bytes): %v", n, len(responseBodyAfterTransform), err)
+	for _, c := range timedResp.Chunks {
+		if n, err := io.Copy(w, bytes.NewReader(c.Data)); err != nil {
+			logf("warning: client response truncated (%d/%d bytes): %v", n, len(c.Data), err)
+		}
 	}
 }

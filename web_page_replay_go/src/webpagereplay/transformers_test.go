@@ -138,33 +138,33 @@ func TestInjectScriptToGzipResponse(t *testing.T) {
 
 func TestInjectScriptToResponse(t *testing.T) {
 	tests := []struct {
-		desc string
+		desc  string
 		input string
-		want string
+		want  string
 	}{
 		{
-			desc:	"With CSP Nonce script-src",
+			desc:  "With CSP Nonce script-src",
 			input: "script-src 'strict-dynamic' 'nonce-2726c7f26c'",
-			want:	"<html><head><script nonce=\"2726c7f26c\">var foo = 1;</script>" +
-							"<script>document.write('<head></head>');</script></head></html>",
+			want: "<html><head><script nonce=\"2726c7f26c\">var foo = 1;</script>" +
+				"<script>document.write('<head></head>');</script></head></html>",
 		},
 		{
-			desc:	"With CSP Nonce default-src",
+			desc:  "With CSP Nonce default-src",
 			input: "default-src 'strict-dynamic' 'nonce-2726c7f26c'",
-			want:	"<html><head><script nonce=\"2726c7f26c\">var foo = 1;</script>" +
-							"<script>document.write('<head></head>');</script></head></html>",
+			want: "<html><head><script nonce=\"2726c7f26c\">var foo = 1;</script>" +
+				"<script>document.write('<head></head>');</script></head></html>",
 		},
 		{
-			desc:	"With CSP Nonce and both Default and Script",
+			desc:  "With CSP Nonce and both Default and Script",
 			input: "default-src 'self' https://foo.com;script-src 'strict-dynamic' 'nonce-2726cf26c'",
-			want:	"<html><head><script nonce=\"2726cf26c\">var foo = 1;</script>" +
-							"<script>document.write('<head></head>');</script></head></html>",
+			want: "<html><head><script nonce=\"2726cf26c\">var foo = 1;</script>" +
+				"<script>document.write('<head></head>');</script></head></html>",
 		},
 		{
-			desc:	"With CSP Nonce and both Default and Script override",
+			desc:  "With CSP Nonce and both Default and Script override",
 			input: "default-src 'self' 'nonce-99999cf26c';script-src 'strict-dynamic' 'nonce-2726cf26c'",
-			want:	"<html><head><script nonce=\"2726cf26c\">var foo = 1;</script>" +
-							"<script>document.write('<head></head>');</script></head></html>",
+			want: "<html><head><script nonce=\"2726cf26c\">var foo = 1;</script>" +
+				"<script>document.write('<head></head>');</script></head></html>",
 		},
 	}
 
@@ -178,7 +178,7 @@ func TestInjectScriptToResponse(t *testing.T) {
 				tc.input}}
 		resp := http.Response{
 			StatusCode: 200,
-			Header:		 responseHeader,
+			Header:     responseHeader,
 			Body: ioutil.NopCloser(bytes.NewReader([]byte("<html><head><script>" +
 				"document.write('<head></head>');</script></head></html>")))}
 		transformer.Transform(&req, &resp)
@@ -202,7 +202,7 @@ func TestInjectScriptToResponseWithCspHash(t *testing.T) {
 		"Content-Type": []string{"text/html"},
 		"Content-Security-Policy": []string{
 			"script-src 'strict-dynamic' " +
-			"'sha256-pwltXkdHyMvChFSLNauyy5WItOFOm+iDDsgqRTr8peI='"}}
+				"'sha256-pwltXkdHyMvChFSLNauyy5WItOFOm+iDDsgqRTr8peI='"}}
 	resp := http.Response{
 		StatusCode: 200,
 		Header:     responseHeader,
@@ -211,16 +211,16 @@ func TestInjectScriptToResponseWithCspHash(t *testing.T) {
 	transformer.Transform(&req, &resp)
 	assertEquals(t,
 		resp.Header.Get("Content-Security-Policy"),
-		"script-src 'strict-dynamic' " +
-			"'sha256-HbDPY0FOc-FyUADaVWybbiLpgaRgtVUzWzQFo0YhKWc=' " +
+		"script-src 'strict-dynamic' "+
+			"'sha256-HbDPY0FOc-FyUADaVWybbiLpgaRgtVUzWzQFo0YhKWc=' "+
 			"'sha256-pwltXkdHyMvChFSLNauyy5WItOFOm+iDDsgqRTr8peI=' ")
 }
 
 func TestTransformCsp(t *testing.T) {
 	tests := []struct {
-		desc string
+		desc  string
 		input string
-		want string
+		want  string
 	}{
 		{
 			desc:  "Just Script",
@@ -245,7 +245,7 @@ func TestTransformCsp(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		responseHeader := http.Header{"Content-Security-Policy": { tc.input } }
+		responseHeader := http.Header{"Content-Security-Policy": {tc.input}}
 		transformCSPHeader(responseHeader, "")
 		got := responseHeader.Get("Content-Security-Policy")
 		if diff := pretty.Compare(tc.want, got); diff != "" {
