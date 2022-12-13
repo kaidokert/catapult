@@ -16,6 +16,40 @@
       "message": "PTAL.",
       "revId": "d8661aded51efea6a5beec22ec053101d8539c36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd803fbd_b61a08c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-12-13T17:08:39Z",
+      "side": 1,
+      "message": "LGTM with a question",
+      "revId": "d8661aded51efea6a5beec22ec053101d8539c36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7698098_49b1df49",
+        "filename": "dashboard/dashboard/api/bugs_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-12-13T17:08:39Z",
+      "side": 1,
+      "message": "Any reason this can\u0027t use @skipIf? (Similarly for several other files)",
+      "revId": "d8661aded51efea6a5beec22ec053101d8539c36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
