@@ -110,7 +110,6 @@ if six.PY2:
 
 
 def GetOrCreatePageState(state):
-  state = state.encode('utf-8')
   state_id = GenerateHash(state)
   if not ndb.Key(page_state.PageState, state_id).get():
     page_state.PageState(id=state_id, value=state).put()
@@ -119,7 +118,7 @@ def GetOrCreatePageState(state):
 
 def GenerateHash(state_string):
   """Generates a hash for a state string."""
-  return hashlib.sha256(state_string).hexdigest()
+  return hashlib.sha256(six.ensure_binary(state_string)).hexdigest()
 
 
 def _UpgradeChart(chart):
