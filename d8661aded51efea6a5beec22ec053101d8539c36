@@ -50,6 +50,24 @@
       "message": "Any reason this can\u0027t use @skipIf? (Similarly for several other files)",
       "revId": "d8661aded51efea6a5beec22ec053101d8539c36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a9037f8_2ec0a82e",
+        "filename": "dashboard/dashboard/api/bugs_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-13T17:54:46Z",
+      "side": 1,
+      "message": "The reason is the import statements on the modules which are not migrated, such as:\n  from dashboard.api import bugs\nImporting those modules will try to load python 3 incompatible codes.\n\n@skipif can skip the class, but it cannot skip an import.",
+      "parentUuid": "f7698098_49b1df49",
+      "revId": "d8661aded51efea6a5beec22ec053101d8539c36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
