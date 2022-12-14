@@ -51,6 +51,24 @@
       "parentUuid": "6f722edf_2430a7e7",
       "revId": "d5686c6689089cb8193da2932ad7ae4f2cf30959",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9730d99_fb3e1135",
+        "filename": "dashboard/dashboard/api/describe_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-14T23:55:47Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "ff65ba03_78090c01",
+      "revId": "d5686c6689089cb8193da2932ad7ae4f2cf30959",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
