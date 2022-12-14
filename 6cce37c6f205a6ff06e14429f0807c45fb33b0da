@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0755aa31_a631e61f",
+        "filename": "dashboard/dashboard/pinpoint/elements/index-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-14T01:29:27Z",
+      "side": 1,
+      "message": "I wonder if one can replace this callback at client.requestAccessToken() call sites. See my other comment in this CL",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036c98dd_79867d33",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-14T01:29:27Z",
+      "side": 1,
+      "message": "this.client.gsi_client.requestAccessToken(\n  overrideConfig \u003d ({\n    callback: (response) \u003d\u003e { /* do something just for this call site */ }\n  })\n);\n\nor some such.  I don\u0027t see examples of overriding the *callback* field specifically in the docs\u0027 examples for requestAccessToken though, and the docs are not consistent:\n\nhttps://developers.google.com/identity/oauth2/web/reference/js-reference#OverridableTokenClientConfig does not list a \u0027scope\u0027 field, but here\u0027s it\u0027s getting set in the official docs\u0027 example code: https://developers.google.com/identity/oauth2/web/guides/use-token-model#ajax (expand the \"Docs to read\" or \"Upcoming events\" sections to see the example code).\n\nIf `callback` is a valid field on OverridableTokenClientConfig (i.e. the api doc is inaccurate) and we *can* use it in requestAccessToken calls, then I think we can make this CL work with that approach.  \n\nOtherwise the example code in the docs seems wrong, or at least uses an undocumented field (\"scope\") on OverridableTokenClientConfig, and should be updated to not confuse people.",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
