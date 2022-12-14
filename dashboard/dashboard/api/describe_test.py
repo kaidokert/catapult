@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask
 import json
 import six
 import unittest
@@ -19,15 +20,24 @@ from dashboard.common import utils
 
 TEST_SUITE_NAME = 'test_suite'
 
+flask_app = Flask(__name__)
 
-@unittest.skipIf(six.PY3, 'Skipping webapp2 handler tests for python 3.')
+
+@flask_app.route(r'/api/describe', methods=['POST', 'OPTIONS'])
+def DescribeHandlerPost():
+  return describe.DescribePost()
+
+
 class DescribeTest(testing_common.TestCase):
 
   def setUp(self):
     # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
     # pylint: disable=super-with-arguments
     super(DescribeTest, self).setUp()
-    self.SetUpApp([(r'/api/describe', describe.DescribeHandler)])
+    if six.PY2:
+      self.SetUpApp([(r'/api/describe', describe.DescribeHandler)])
+    else:
+      self.SetUpFlaskApp(flask_app)
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 
     external_key = update_test_suite_descriptors.CacheKey(
@@ -80,18 +90,28 @@ class DescribeTest(testing_common.TestCase):
   def _Post(self, suite):
     return json.loads(self.Post('/api/describe?test_suite=' + suite).body)
 
+  def _Post_Flask(self, **params):
+    return json.loads(self.Post('/api/describe', params).body)
+
   def testInternal(self):
     self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
-    response = self._Post(TEST_SUITE_NAME)
+    if six.PY2:
+      response = self._Post(TEST_SUITE_NAME)
+    else:
+      response = self._Post_Flask(test_suite=TEST_SUITE_NAME)
     self.assertEqual(2, len(response['bots']))
     self.assertEqual('external:bot', response['bots'][0])
     self.assertEqual('internal:bot', response['bots'][1])
 
   def testAnonymous(self):
     self.SetCurrentUserOAuth(None)
-    response = self._Post(TEST_SUITE_NAME)
+    if six.PY2:
+      response = self._Post(TEST_SUITE_NAME)
+    else:
+      response = self._Post_Flask(test_suite=TEST_SUITE_NAME)
     self.assertEqual(1, len(response['bots']))
     self.assertEqual('external:bot', response['bots'][0])
+
 
 
 if __name__ == '__main__':
