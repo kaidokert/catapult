@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "fe9b0135_d6520bbc",
         "filename": "/COMMIT_MSG",
@@ -14,10 +15,28 @@
       "side": 1,
       "message": "Prob want to link 777865 as well.",
       "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43511819_ad741e17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1544784
+      },
+      "writtenOn": "2022-12-14T06:58:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe9b0135_d6520bbc",
+      "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "19670bbc_1d5abd1b",
         "filename": "common/py_utils/py_utils/cloud_storage_unittest.py",
@@ -37,10 +56,10 @@
         "endChar": 38
       },
       "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "17b9e4a7_6d704f72",
         "filename": "common/py_utils/py_utils/cloud_storage_unittest.py",
@@ -61,8 +80,7 @@
         "endChar": 38
       },
       "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
