@@ -51,6 +51,24 @@
       "parentUuid": "f94e2cc6_573ab3cf",
       "revId": "6a83aa650006df0231de563f0d14c0a712e91880",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c613ce59_c9b686a4",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green-py3.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-12-14T23:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43b98025_c5535057",
+      "revId": "6a83aa650006df0231de563f0d14c0a712e91880",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
