@@ -68,6 +68,24 @@
       "parentUuid": "84c2aae8_03fc66b1",
       "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "138f5618_b17af986",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-15T22:10:44Z",
+      "side": 1,
+      "message": "Yuan landed the colab notebook so it\u0027s linkable now.\n\nI think you can replace this href value here with:\n\nhttps://colab.corp.google.com/google_src/files/head/depot/google3/chrome/engprod/perf/pinpoint/cabe-pinpoint-tryjob-results.ipynb#templateParams\u003d%7B%22pinpoint_job_id%22%3A%22[[job.job_id]]%22%7D\u0026sandboxMode\u003dtrue",
+      "parentUuid": "c0b78735_f3baa7ea",
+      "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
