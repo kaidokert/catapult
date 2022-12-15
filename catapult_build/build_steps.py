@@ -69,12 +69,14 @@ _CATAPULT_TESTS = [
     {
         'name': 'Devil Device Tests',
         'path': 'devil/bin/run_py_devicetests',
-        'disabled': ['win', 'mac', 'linux']
+        'disabled': ['win', 'mac', 'linux'],
+        'python_versions': [3],
     },
     {
         'name': 'Devil Python Tests',
-        'path': 'devil/bin/run_py_tests',
+        'path': 'devil/bin/run_py3_tests',
         'disabled': ['mac', 'win'],
+        'python_versions': [3],
     },
     {
         'name': 'Native Heap Symbolizer Tests',
@@ -306,7 +308,7 @@ def main(args=None):
             'name':
                 'Android: Recover Devices',
             'cmd': [
-                'python',
+                'python3',
                 os.path.join(args.api_path_checkout, 'devil', 'devil',
                              'android', 'tools', 'device_recovery.py')
             ],
@@ -315,7 +317,7 @@ def main(args=None):
             'name':
                 'Android: Provision Devices',
             'cmd': [
-                'python',
+                'python3',
                 os.path.join(args.api_path_checkout, 'devil', 'devil',
                              'android', 'tools', 'provision_devices.py')
             ],
@@ -324,7 +326,7 @@ def main(args=None):
             'name':
                 'Android: Device Status',
             'cmd': [
-                'python',
+                'python3',
                 os.path.join(args.api_path_checkout, 'devil', 'devil',
                              'android', 'tools', 'device_status.py')
             ],
@@ -350,16 +352,6 @@ def main(args=None):
     if python_version not in test.get('python_versions', [2, 3]):
       continue
 
-    # The test "Devil Python Tests" has two executables, run_py_tests and
-    # run_py3_tests. Those scripts define the vpython interpreter on shebang,
-    # and will quit when running on unexpected version. This script assumes one
-    # path for each test and thus we will conditionally replace the script name
-    # until python 2 is fully dropped.
-    # here,
-    test_path = test['path']
-    if args.use_python3 and test['name'] == 'Devil Python Tests':
-      test_path = 'devil/bin/run_py3_tests'
-
     step = {'name': test['name'], 'env': {}}
 
     if args.use_python3:
@@ -375,7 +367,7 @@ def main(args=None):
 
     step['cmd'] = [
         vpython_executable,
-        os.path.join(args.api_path_checkout, test_path)
+        os.path.join(args.api_path_checkout, test['path'])
     ]
     if step['name'] == 'Systrace Tests':
       step['cmd'] += ['--device=' + args.platform]
