@@ -50,6 +50,24 @@
       "message": "ok I suppose we should land this notebook before we push this change out 😊",
       "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b78735_f3baa7ea",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-15T19:21:13Z",
+      "side": 1,
+      "message": "Whoops, this should be the pinpoint *job* ID, not the batch ID. I\u0027ve updated the doc and mockup to reflect this: go/cabe-fishfood",
+      "parentUuid": "84c2aae8_03fc66b1",
+      "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
