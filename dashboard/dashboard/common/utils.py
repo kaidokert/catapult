@@ -109,7 +109,9 @@ def GetEmail():
     # return a non-None user.
     if 'HTTP_AUTHORIZATION' not in os.environ:
       # The user is not signed in. Avoid raising OAuthRequestError.
-      logging.info('Cannot get user email as the user is not signed in')
+      # crbug/1401211: We are seeing too much entries from this loggin
+      # statement. We need to disable it until we know why.
+      # logging.info('Cannot get user email as the user is not signed in')
       return None
     user = oauth.get_current_user(OAUTH_SCOPES)
   else:
