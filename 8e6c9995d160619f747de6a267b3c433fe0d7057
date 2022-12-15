@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb844400_e376dbf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-15T01:24:03Z",
+      "side": 1,
+      "message": "Hey Ben, can you help review the latest patch? The diff against previous review is crrev.com/c/4062675/5..11.\n\nI have tested the flash script on Nexus 5X (M and N) and Pixel 6 (T) and all works fine.",
+      "revId": "8e6c9995d160619f747de6a267b3c433fe0d7057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -70,6 +70,24 @@
       "parentUuid": "519e1480_87654070",
       "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a48e29_46333ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-15T01:24:03Z",
+      "side": 1,
+      "message": "Finally make the flash working on both old Nexus 5X (M and N) and Pixel 6 (T).",
+      "parentUuid": "58b653c3_f4249998",
+      "revId": "68196cffc35c4d8feca7f9ad50046cd238bdeaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
