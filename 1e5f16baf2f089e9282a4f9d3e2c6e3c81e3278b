@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a8d296_88d1254b",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-16T21:48:28Z",
+      "side": 1,
+      "message": "I\u0027m not sure whether the value in .+ can be loaded. I guess we need an argument here to pass the values to the upload_info.UploadsInfoGet(), where we need to add an argument for the function as well, similar to:\n@flask_app.route(\u0027/buildbucket_job_status/\u003cjob_id\u003e\u0027)\ndef BuildbucketJobStatusGet(job_id):\n  return buildbucket_job_status.BuildbucketJobStatusGet(job_id)",
+      "range": {
+        "startLine": 298,
+        "startChar": 18,
+        "endLine": 298,
+        "endChar": 20
+      },
+      "revId": "1e5f16baf2f089e9282a4f9d3e2c6e3c81e3278b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
