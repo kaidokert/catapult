@@ -86,6 +86,24 @@
       "parentUuid": "c0b78735_f3baa7ea",
       "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d78677e_0004ea38",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-16T00:29:50Z",
+      "side": 1,
+      "message": "Updated URL and removed batch id check",
+      "parentUuid": "138f5618_b17af986",
+      "revId": "265b2e027f76b90b7dad57c5373e01f60f37894d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
