@@ -22,6 +22,30 @@
       },
       "revId": "1e5f16baf2f089e9282a4f9d3e2c6e3c81e3278b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754bfda5_de61f8db",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-16T22:30:07Z",
+      "side": 1,
+      "message": "Here is a sample call from webapp2:\nhttps://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2022-12-16T21:38:38.865681Z;query\u003dresource.type%3D%22gae_app%22%0Aresource.labels.module_id%3D%22default%22%0A-log_name%3D%22projects%2Fchromeperf%2Flogs%2Fstderr%22%0A%22%2Fuploads%22%0Atimestamp%3D%222022-12-16T21:34:37.155473Z%22%0AinsertId%3D%22639ce46d00061593a2e5a573%22;resultsSearch\u003dalert?project\u003dchromeperf",
+      "parentUuid": "09a8d296_88d1254b",
+      "range": {
+        "startLine": 298,
+        "startChar": 18,
+        "endLine": 298,
+        "endChar": 20
+      },
+      "revId": "1e5f16baf2f089e9282a4f9d3e2c6e3c81e3278b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
