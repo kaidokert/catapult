@@ -7,13 +7,16 @@ from __future__ import division
 from __future__ import absolute_import
 
 import base64
+from flask import Flask
 import itertools
 import json
 import mock
 import random
+import six
 import string
 import sys
-import webapp2
+if six.PY2:
+  import webapp2
 import webtest
 import zlib
 
@@ -161,6 +164,21 @@ class BufferedFakeFile(object):
   def __enter__(self):
     return self
 
+flask_app = Flask(__name__)
+
+@flask_app.route('/add_histograms', methods=['POST'])
+def AddHistogramsPost():
+  return add_histograms.AddHistogramsPost()
+
+@flask_app.route('/add_histograms/process', methods=['POST'])
+def AddHistogramsProcessPost():
+  return add_histograms.AddHistogramsProcessPost()
+
+@flask_app.route('/add_histograms_queue', methods=['GET', 'POST'])
+def AddHistogramsQueuePost():
+  return add_histograms_queue.AddHistogramsQueuePost()
+
+
 
 class AddHistogramsBaseTest(testing_common.TestCase):
 
@@ -168,14 +186,17 @@ class AddHistogramsBaseTest(testing_common.TestCase):
     # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
     # pylint: disable=super-with-arguments
     super(AddHistogramsBaseTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/add_histograms', add_histograms.AddHistogramsHandler),
-        ('/add_histograms/process', add_histograms.AddHistogramsProcessHandler),
-        ('/add_histograms_queue',
-         add_histograms_queue.AddHistogramsQueueHandler),
-        ('/uploads/(.+)', uploads_info.UploadInfoHandler),
-    ])
-    self.testapp = webtest.TestApp(app)
+    if six.PY2:
+      app = webapp2.WSGIApplication([
+            ('/add_histograms', add_histograms.AddHistogramsHandler),
+            ('/add_histograms/process', add_histograms.AddHistogramsProcessHandler),
+            ('/add_histograms_queue',
+            add_histograms_queue.AddHistogramsQueueHandler),
+            ('/uploads/(.+)', uploads_info.UploadInfoHandler),
+      ])
+      self.testapp = webtest.TestApp(app)
+    else:
+      self.testapp = webtest.TestApp(flask_app)
     testing_common.SetIsInternalUser('foo@bar.com', True)
     self.SetCurrentUser('foo@bar.com', is_admin=True)
     oauth_patcher = mock.patch.object(api_auth, 'oauth')
