@@ -88,9 +88,13 @@ found in the LICENSE file.
           type: Boolean,
           value: true,
         },
+        client: {
+          type: Object,
+        }
       },
 
       openDialog() {
+        this.client.requestAccessToken();
         this.$.cancel_dialog.open();
       },
 

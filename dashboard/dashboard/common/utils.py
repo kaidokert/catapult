@@ -772,7 +772,7 @@ def FetchURL(request_url, skip_status_code=False):
   """
   logging.info('URL being fetched: %s', request_url)
   try:
-    response = urlfetch.fetch(request_url)
+    response = urlfetch.fetch(request_url, deadline=90)
   except urlfetch_errors.DeadlineExceededError:
     logging.error('Deadline exceeded error checking %s', request_url)
     return None
