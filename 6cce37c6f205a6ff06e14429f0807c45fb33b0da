@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "daffcbc9_77630cd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-18T03:34:44Z",
+      "side": 1,
+      "message": "I patched in your CL and made the changes I suggested here just to make sure they actually did what I thought they would: https://chromium-review.googlesource.com/c/catapult/+/4115561/1/dashboard/dashboard/pinpoint/elements/navigation-bar.html \n\nDemo: https://dev-seanmccullough-02883d1a-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/\n\nHappy to discuss further, here or in person, however you prefer.",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0755aa31_a631e61f",
@@ -31,6 +48,86 @@
       "writtenOn": "2022-12-14T01:29:27Z",
       "side": 1,
       "message": "this.client.gsi_client.requestAccessToken(\n  overrideConfig \u003d ({\n    callback: (response) \u003d\u003e { /* do something just for this call site */ }\n  })\n);\n\nor some such.  I don\u0027t see examples of overriding the *callback* field specifically in the docs\u0027 examples for requestAccessToken though, and the docs are not consistent:\n\nhttps://developers.google.com/identity/oauth2/web/reference/js-reference#OverridableTokenClientConfig does not list a \u0027scope\u0027 field, but here\u0027s it\u0027s getting set in the official docs\u0027 example code: https://developers.google.com/identity/oauth2/web/guides/use-token-model#ajax (expand the \"Docs to read\" or \"Upcoming events\" sections to see the example code).\n\nIf `callback` is a valid field on OverridableTokenClientConfig (i.e. the api doc is inaccurate) and we *can* use it in requestAccessToken calls, then I think we can make this CL work with that approach.  \n\nOtherwise the example code in the docs seems wrong, or at least uses an undocumented field (\"scope\") on OverridableTokenClientConfig, and should be updated to not confuse people.",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e100b34c_bc5248fd",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-18T03:34:44Z",
+      "side": 1,
+      "message": "TL;DR: `[[isSignedIn]]`\n\nVariable names inside `[[ ]]` in Polymer 1.0 templates are interpreted by Polymer (not the JS environment) as data binding references. So even though it kinda looks like you can put arbitrary JS statements in there, Polymer won\u0027t interpret them the way a full JS interpreter would.\n\nSo you won\u0027t want to use `this` in these cases (I know, JS is awful when it comes to making sense of `this`...), but rather think of these data binding terms as keys to be used in the `properties` defined inside the `Polymer({...})` call below. Something deep in the Polymer template machinery probably tried to interpret `properties[\u0027this.user\u0027]` and got `undefined`.\n\nOnce you get over *that* obstacle, you\u0027ll find that `[[user]]` and `[[!user]]` don\u0027t get evaluated as booleans in the way you expect, Because JavaScript(tm). \n\nSo instead I\u0027d use what Polymer calls a \"computed property\", say `isSignedIn` that takes a `user` value (whatever type `user` happens to be) and returns a boolean based on sane logic that you or I or any other human can inspect and reason about (vs whatever bizarre-o logic JS or Polymer uses by default).\n\n```\n  properties: {\n       // ...\n       \n       isSignedIn: {\n          type: Boolean,\n          computed: \u0027computeIsSignedIn(user)\u0027,\n        },\n   }\n```\n\nand this method (sibling to `created()` and `ready()` etc) to implement this /incredibly/ complex \"computation\" :) :\n\n```\n      computeIsSignedIn(user) {\n        return user !\u003d \u0027\u0027;\n      },\n```",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995d4a28_0b0c855e",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-18T03:34:44Z",
+      "side": 1,
+      "message": "The extraneous `)` char here was probably preventing the parser from interpreting the conditional `hidden$\u003d` value altogether, but regardless I think `[[!isSignedIn]]` is what you want to use here instead.\n\nPolymer templates have the one special case for `!` negation where it sort of interprets the stuff inside `[[...]]` like a JS statement, but not *really* like any arbitrary JS, just the one boolean negation op.",
+      "range": {
+        "startLine": 79,
+        "startChar": 29,
+        "endLine": 79,
+        "endChar": 30
+      },
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a53227f0_ede1b81a",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-18T03:34:44Z",
+      "side": 1,
+      "message": "make this check for window.location.hostname \u003d\u003d \u0027localhost\u0027 too, so it can use the -staging client ID with your local dev server.",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e4f96e8_bfdf8cb2",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-18T03:34:44Z",
+      "side": 1,
+      "message": "I just added `http://localhost` and `http://localhost:8080` to the authorized js origins for this client ID in the GCP console for -staging.  \n\nI tried it out on my workstation and I was able to do the full auth flow using my @google.com identity on a local dev server.  Hope that helps you with debugging locally, in case that wasn\u0027t working for you.",
+      "range": {
+        "startLine": 132,
+        "startChar": 34,
+        "endLine": 132,
+        "endChar": 66
+      },
       "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
