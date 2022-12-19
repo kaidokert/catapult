@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6680fc6c_d6f6545a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-19T23:25:17Z",
+      "side": 1,
+      "message": "Would you add more context about what this CL does and what it does not, regarding the final goal of enabling all py3 tests?",
+      "revId": "c75d4b105f66f35e06ded41195690cb6cf43cad0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
