@@ -688,7 +688,7 @@ class DecompressFileWrapper(object):
     # We want to read chunks of data from the buffer, chunks at a time.
     temporary_buffer = self.decompressor.unconsumed_tail
     if len(temporary_buffer) < self.buffer_size / 2:
-      raw_buffer = self.source_file.read(size)
+      raw_buffer = six.ensure_binary(self.source_file.read(size))
       if raw_buffer:
         temporary_buffer += raw_buffer
 
