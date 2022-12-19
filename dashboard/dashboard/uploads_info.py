@@ -102,8 +102,8 @@ def UploadsInfoGet(*args):
   """Returns json, that describes state of the token.
 
   Can be called by get request to /uploads/<token_id>. Measurements info can
-  be requested with GET parameter ?additional_info=measurements. If dimentions
-  info is also required use ?additional_info=measurements,dimentions.
+  be requested with GET parameter ?additional_info=measurements. If dimensions
+  info is also required use ?additional_info=measurements,dimensions.
 
   Response is json of the form:
   {
@@ -120,7 +120,7 @@ def UploadsInfoGet(*args):
         "monitored": True|False,
         "lastUpdated": "...",
         "error_message": "...",
-        "dimentions": [
+        "dimensions": [
           {
             "name": "...",
             "values": ["...", ...]
@@ -154,7 +154,7 @@ def UploadsInfoGet(*args):
       - monitored: A boolean indicating whether the path is monitored by a
         sheriff configuration.
       - lastUpdated: Date and time of last update.
-      - dimentions: List of relevant for /add_histogram api diagnostics,
+      - dimensions: List of relevant for /add_histogram api diagnostics,
         associated to the histogram, that is represented by the measurement.
         This field will be present in response only after the histogram has
         been added to Datastore. This field may be absent if full information
@@ -200,8 +200,8 @@ if six.PY2:
       """Returns json, that describes state of the token.
 
       Can be called by get request to /uploads/<token_id>. Measurements info can
-      be requested with GET parameter ?additional_info=measurements. If dimentions
-      info is also required use ?additional_info=measurements,dimentions.
+      be requested with GET parameter ?additional_info=measurements. If dimensions
+      info is also required use ?additional_info=measurements,dimensions.
 
       Response is json of the form:
       {
@@ -218,7 +218,7 @@ if six.PY2:
             "monitored": True|False,
             "lastUpdated": "...",
             "error_message": "...",
-            "dimentions": [
+            "dimensions": [
               {
                 "name": "...",
                 "values": ["...", ...]
@@ -252,7 +252,7 @@ if six.PY2:
           - monitored: A boolean indicating whether the path is monitored by a
             sheriff configuration.
           - lastUpdated: Date and time of last update.
-          - dimentions: List of relevant for /add_histogram api diagnostics,
+          - dimensions: List of relevant for /add_histogram api diagnostics,
             associated to the histogram, that is represented by the measurement.
             This field will be present in response only after the histogram has
             been added to Datastore. This field may be absent if full information
