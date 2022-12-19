@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#!/usr/bin/env vpython3
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -43,11 +43,7 @@ if __name__ == '__main__':
     # Before all tests are passing, we will run tests in some sub-folders.
     # This is a temporary solution which will exit if any sub-folder fails.
     root = [
-      'dashboard/api',
-      'dashboard/common',
-      'dashboard/models',
-      'dashboard/pinpoint',
-      'dashboard/services'
+      'dashboard'
       ]
     for r in root:
       print('Running unit tests in %s', r)
