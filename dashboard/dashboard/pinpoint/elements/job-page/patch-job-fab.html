@@ -69,6 +69,18 @@ found in the LICENSE file.
       properties: {
         error: Object,
         job: Object,
+        authHeaders: {
+          type: Object,
+          notify: true,
+          readonly: true
+        },
+        client: {
+          type: Object
+        },
+        user: {
+          type: String,
+          value: ''
+        }
       },
 
       getArguments(job) {
@@ -96,7 +108,18 @@ found in the LICENSE file.
       },
 
       openDialog() {
-        this.$.try_dialog.open();
+        this.client.callback = (response) => {
+          if (response && response.access_token) {
+            var scope = "https://www.googleapis.com/auth/userinfo.email";
+            if (google.accounts.oauth2.hasGrantedAnyScope(response, scope)) {
+              this.authHeaders = {
+                Authorization: response.token_type + ' ' + response.access_token
+              };
+              this.$.try_dialog.open();
+            }
+          }
+        }
+        this.client.requestAccessToken({hint: this.user});
       },
 
       submit() {
