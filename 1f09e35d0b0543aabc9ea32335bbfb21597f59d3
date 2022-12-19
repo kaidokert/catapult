@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad49e7a8_43aaa30f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Hi! After much caffeine and your much needed help, I\u0027ve \"finished\" the migration logic. I uploaded the changes to staging here: https://eduardo-ui-priv-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/. So far I\u0027ve tested the following scenarios:\n- Successfully Started/Canceled a job using my LDAP.\n- Successfully failed to start a job with my personal email.\n- Successfully login and logout using the new button.\n\nI\u0027d like help testing more complicated scenarios, make sure we anticipate everything. For example, playing around with cookies, revoking permissions, anticipating uncommon errors, etc.\n\nWould also like help tidying up the code. JavaScript style is still an enigma to me. Let me know if you have any questions. Thanks!",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

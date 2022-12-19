@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b374fd8_57e5ff0a",
+        "filename": "dashboard/dashboard/pinpoint/elements/index-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0755aa31_a631e61f",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "036c98dd_79867d33",
@@ -52,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "447a47a1_8f080de9",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "036c98dd_79867d33",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e100b34c_bc5248fd",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-12-18T03:34:44Z",
       "side": 1,
       "message": "TL;DR: `[[isSignedIn]]`\n\nVariable names inside `[[ ]]` in Polymer 1.0 templates are interpreted by Polymer (not the JS environment) as data binding references. So even though it kinda looks like you can put arbitrary JS statements in there, Polymer won\u0027t interpret them the way a full JS interpreter would.\n\nSo you won\u0027t want to use `this` in these cases (I know, JS is awful when it comes to making sense of `this`...), but rather think of these data binding terms as keys to be used in the `properties` defined inside the `Polymer({...})` call below. Something deep in the Polymer template machinery probably tried to interpret `properties[\u0027this.user\u0027]` and got `undefined`.\n\nOnce you get over *that* obstacle, you\u0027ll find that `[[user]]` and `[[!user]]` don\u0027t get evaluated as booleans in the way you expect, Because JavaScript(tm). \n\nSo instead I\u0027d use what Polymer calls a \"computed property\", say `isSignedIn` that takes a `user` value (whatever type `user` happens to be) and returns a boolean based on sane logic that you or I or any other human can inspect and reason about (vs whatever bizarre-o logic JS or Polymer uses by default).\n\n```\n  properties: {\n       // ...\n       \n       isSignedIn: {\n          type: Boolean,\n          computed: \u0027computeIsSignedIn(user)\u0027,\n        },\n   }\n```\n\nand this method (sibling to `created()` and `ready()` etc) to implement this /incredibly/ complex \"computation\" :) :\n\n```\n      computeIsSignedIn(user) {\n        return user !\u003d \u0027\u0027;\n      },\n```",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c23db0_31e30ede",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Thank you. It worked 😊",
+      "parentUuid": "e100b34c_bc5248fd",
       "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -92,6 +146,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ae2fc3c_23a4e872",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "995d4a28_0b0c855e",
+      "range": {
+        "startLine": 79,
+        "startChar": 29,
+        "endLine": 79,
+        "endChar": 30
+      },
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a53227f0_ede1b81a",
@@ -109,6 +187,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdce767a_c824c42b",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a53227f0_ede1b81a",
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e4f96e8_bfdf8cb2",
@@ -122,6 +218,30 @@
       "writtenOn": "2022-12-18T03:34:44Z",
       "side": 1,
       "message": "I just added `http://localhost` and `http://localhost:8080` to the authorized js origins for this client ID in the GCP console for -staging.  \n\nI tried it out on my workstation and I was able to do the full auth flow using my @google.com identity on a local dev server.  Hope that helps you with debugging locally, in case that wasn\u0027t working for you.",
+      "range": {
+        "startLine": 132,
+        "startChar": 34,
+        "endLine": 132,
+        "endChar": 66
+      },
+      "revId": "6cce37c6f205a6ff06e14429f0807c45fb33b0da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c11ccfe_db821a28",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-19T16:20:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e4f96e8_bfdf8cb2",
       "range": {
         "startLine": 132,
         "startChar": 34,
