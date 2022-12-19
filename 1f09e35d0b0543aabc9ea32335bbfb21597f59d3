@@ -16,6 +16,143 @@
       "message": "Hi! After much caffeine and your much needed help, I\u0027ve \"finished\" the migration logic. I uploaded the changes to staging here: https://eduardo-ui-priv-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/. So far I\u0027ve tested the following scenarios:\n- Successfully Started/Canceled a job using my LDAP.\n- Successfully failed to start a job with my personal email.\n- Successfully login and logout using the new button.\n\nI\u0027d like help testing more complicated scenarios, make sure we anticipate everything. For example, playing around with cookies, revoking permissions, anticipating uncommon errors, etc.\n\nWould also like help tidying up the code. JavaScript style is still an enigma to me. Let me know if you have any questions. Thanks!",
       "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58fba6cc_d8cf3b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "LG; in the interest of wrapping up this issue I\u0027m inclined to just approve it, but the callback handling blocks make me a little nervous about incurring tech debt.",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c38a9fb_71ef9360",
+        "filename": "dashboard/dashboard/pinpoint/elements/cancel-job-dialog.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "js style is single quotes for string literals",
+      "range": {
+        "startLine": 108,
+        "startChar": 24,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef7f62bf_9dcd1510",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/patch-job-fab.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "This block looks very similar to the one in cancel-job-dialog.html. I sense an opportunity to encapsulate it in a single shared location, but I\u0027m not sure what that would look like exactly. I\u0027ll think on it some, but in the mean time do you have any ideas?",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6eec5b1_154ac274",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "same with this block, re: deduplicating the logic",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00120e7b_a7ea4262",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "nit: single quotes, here and elsewhere",
+      "range": {
+        "startLine": 118,
+        "startChar": 30,
+        "endLine": 118,
+        "endChar": 31
+      },
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565018fd_abbc6b05",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "Include ` || window.location.href.hostname \u003d\u003d \u0027localhost\u0027` here, so we can use the -staging client ID for local dev too.",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5a6949e_306bba42",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-19T18:43:13Z",
+      "side": 1,
+      "message": "nit: trailing `;`",
+      "range": {
+        "startLine": 169,
+        "startChar": 35,
+        "endLine": 169,
+        "endChar": 36
+      },
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
