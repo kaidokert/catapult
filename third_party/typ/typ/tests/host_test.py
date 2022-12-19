@@ -178,7 +178,7 @@ class TestHost(unittest.TestCase):
         ret, out, err = h.call(
             [h.python_interpreter,
              '-c', 'import sys; sys.stdout.write(sys.stdin.read())'],
-            stdin='foo', env={})
+            stdin='foo')
         self.assertEqual(ret, 0)
         self.assertEqual(out, 'foo')
         self.assertEqual(err, '')

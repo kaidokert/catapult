@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import atexit
 import copy
 import io
 import logging
 import sys
 
 from typ import python_2_3_compat
-from typ.host import _TeedStream
+from typ.teed_streams import PipeTeedStream
 
 
 is_python3 = bool(sys.version_info.major == 3)
@@ -39,8 +40,8 @@ class FakeHost(object):
     def __init__(self):
         self.logger = logging.getLogger()
         self.stdin = io.StringIO()
-        self.stdout = io.StringIO()
-        self.stderr = io.StringIO()
+        self.stdout = self._stdout = io.StringIO()
+        self.stderr = self._stderr = io.StringIO()
         self.platform = 'linux2'
         self.env = {}
         self.sep = '/'
@@ -55,6 +56,10 @@ class FakeHost(object):
         self.cmds = []
         self.cwd = '/tmp'
         self._orig_logging_handlers = []
+        self._tap_output()
+
+    def __del__(self):
+        self._untap_output()
 
     def __getstate__(self):
         d = copy.copy(self.__dict__)
@@ -162,6 +167,9 @@ class FakeHost(object):
             p = '/'.join(comps)
         return p
 
+    def normpath(self, path):
+        return path
+
     def maybe_make_directory(self, *comps):
         path = self.abspath(self.join(*comps))
         if path not in self.dirs:
@@ -249,14 +257,16 @@ class FakeHost(object):
         return resp
 
     def _tap_output(self):
-        self.stdout = _TeedStream(self.stdout)
-        self.stderr = _TeedStream(self.stderr)
+        self.stdout = PipeTeedStream(self.stdout)
+        self.stderr = PipeTeedStream(self.stderr)
         if True:
             sys.stdout = self.stdout
             sys.stderr = self.stderr
+        atexit.register(self._untap_output)
 
     def _untap_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        if not isinstance(self.stdout, PipeTeedStream):
+            return
         self.stdout = self.stdout.stream
         self.stderr = self.stderr.stream
         if True:
@@ -264,7 +274,6 @@ class FakeHost(object):
             sys.stderr = self.stderr
 
     def capture_output(self, divert=True):
-        self._tap_output()
         self._orig_logging_handlers = self.logger.handlers
         if self._orig_logging_handlers:
             self.logger.handlers = [logging.StreamHandler(self.stderr)]
@@ -272,12 +281,11 @@ class FakeHost(object):
         self.stderr.capture(divert=divert)
 
     def restore_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        assert isinstance(self.stdout, PipeTeedStream)
         out, err = (self.stdout.restore(), self.stderr.restore())
         out = python_2_3_compat.bytes_to_str(out)
         err = python_2_3_compat.bytes_to_str(err)
         self.logger.handlers = self._orig_logging_handlers
-        self._untap_output()
         return out, err
 
 

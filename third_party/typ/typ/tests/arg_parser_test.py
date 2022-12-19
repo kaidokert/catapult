@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import optparse
+import sys
 import unittest
 
 from typ import ArgumentParser
@@ -42,14 +43,21 @@ class ArgumentParserTest(unittest.TestCase):
         check(['--version'])
         check(['--coverage', '--coverage-omit', 'foo'])
         check(['--jobs', '3'])
-        check(['-vv'], ['--verbose', '--verbose'])
+        if sys.stdout.isatty():
+            check(['-vv'], ['--overwrite', '--verbose', '--verbose'])
+        else:
+            check(['-vv'], ['--verbose', '--verbose'])
 
     def test_argv_from_args_foreign_argument(self):
         parser = ArgumentParser()
         parser.add_argument('--some-foreign-argument', default=False,
                             action='store_true')
         args = parser.parse_args(['--some-foreign-argument', '--verbose'])
-        self.assertEqual(['--verbose'], ArgumentParser().argv_from_args(args))
+        if sys.stdout.isatty():
+            expected_args = ['--overwrite', '--verbose']
+        else:
+            expected_args = ['--verbose']
+        self.assertEqual(expected_args, ArgumentParser().argv_from_args(args))
 
     def test_valid_shard_options(self):
         parser = ArgumentParser()

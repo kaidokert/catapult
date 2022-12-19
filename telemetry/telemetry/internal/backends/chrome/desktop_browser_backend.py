@@ -16,6 +16,7 @@ import signal
 import subprocess
 import sys
 import tempfile
+import time
 
 import py_utils
 from py_utils import cloud_storage
@@ -198,18 +199,15 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # work as expected if we let the subprocess use the defaults. This results
       # in browser logging not being visible on Windows on swarming. Explicitly
       # setting the streams works around this. The except is in case we are
-      # being run through typ, whose _TeedStream replaces the default streams.
-      # This can't be used for subprocesses since it is all in-memory, and thus
-      # does not have a fileno.
+      # being run through typ with a _StringIoTeedStream, which can potentially
+      # replace the default streams. This can't be used for subprocesses since
+      # it is all in-memory, and thus does not have a fileno.
       if sys.platform == 'win32':
-        try:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
-        except io.UnsupportedOperation:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
+        self._proc = subprocess.Popen(
+            cmd, stdout=sys.stdout, stderr=sys.stderr, env=env,
+            close_fds=False)
       else:
-        self._proc = subprocess.Popen(cmd, env=env)
+        self._proc = subprocess.Popen(cmd, env=env, close_fds=False)
 
     self.BindDevToolsClient()
     # browser is foregrounded by default on Windows and Linux, but not Mac.

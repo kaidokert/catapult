@@ -15,6 +15,7 @@
 import io
 import json
 import os
+import posixpath
 import sys
 import textwrap
 
@@ -230,10 +231,25 @@ class TestCli(test_case.MainTestCase):
                    out='Error: malformed --metadata "foo"\n')
 
     def test_basic(self):
+        # If we're running directly in a terminal, then typ will attempt to
+        # overwrite intermediate messages using carriage returns. Since we
+        # capture into a essentially a string buffer, these get interpreted as
+        # newlines. If we're running this under TestCli and not TestMain, then
+        # we'll end up running the test in another subprocess, which will have
+        # pipes for stdout/stderr. This will in turn cause the test's stdout
+        # to return False for isatty().
+        if sys.stdout.isatty() and self.__class__ == TestMain:
+            expected_output = ('[0/1] pass_test.PassingTest.test_pass\n'
+                               '                                     \n'
+                               '[1/1] pass_test.PassingTest.test_pass passed\n'
+                               '                                            \n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
+        else:
+            expected_output = ('[1/1] pass_test.PassingTest.test_pass passed\n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
         self.check([], files=PASS_TEST_FILES,
                    ret=0,
-                   out=('[1/1] pass_test.PassingTest.test_pass passed\n'
-                        '1 test passed, 0 skipped, 0 failures.\n'), err='')
+                   out=expected_output, err='')
 
     def test_coverage(self):
         # TODO(crbug.com/1217850): Figure out why this isn't working
@@ -274,11 +290,18 @@ class TestCli(test_case.MainTestCase):
             self.assertIn('(Pdb) ', out)
 
     def test_dryrun(self):
+        # See test_basic for an explanation of why this is necessary.
+        if sys.stdout.isatty() and self.__class__ == TestMain:
+            expected_output = ('[0/1] pass_test.PassingTest.test_pass\n'
+                               '                                     \n'
+                               '[1/1] pass_test.PassingTest.test_pass passed\n'
+                               '                                            \n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
+        else:
+            expected_output = ('[1/1] pass_test.PassingTest.test_pass passed\n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
         self.check(['-n'], files=PASS_TEST_FILES, ret=0, err='',
-                   out=d("""\
-                         [1/1] pass_test.PassingTest.test_pass passed
-                         1 test passed, 0 skipped, 0 failures.
-                         """))
+                   out=expected_output)
 
     def test_error(self):
         files = {'err_test.py': d("""\
@@ -618,13 +641,27 @@ class TestCli(test_case.MainTestCase):
                                            def test_interrupt(self):
                                                raise KeyboardInterrupt()
                                         """)}
-        self.check(['-j', '1'], files=files, ret=130, out='',
+        # See test_basic for an explanation on why this is necessary.
+        if sys.stdout.isatty() and self.__class__ == TestMain:
+            expected_output = '[0/1] interrupt_test.Foo.test_interrupt'
+        else:
+            expected_output = ''
+        self.check(['-j', '1'], files=files, ret=130, out=expected_output,
                    err='interrupted, exiting\n')
 
     def test_isolate(self):
+        # See test_basic for an explanation on why this is necessary.
+        if sys.stdout.isatty() and self.__class__ == TestMain:
+            expected_output = ('[0/1] pass_test.PassingTest.test_pass\n'
+                               '                                     \n'
+                               '[1/1] pass_test.PassingTest.test_pass passed\n'
+                               '                                            \n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
+        else:
+            expected_output = ('[1/1] pass_test.PassingTest.test_pass passed\n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
         self.check(['--isolate', '*test_pass*'], files=PASS_TEST_FILES, ret=0,
-                   out=('[1/1] pass_test.PassingTest.test_pass passed\n'
-                        '1 test passed, 0 skipped, 0 failures.\n'), err='')
+                   out=expected_output, err='')
 
     def test_load_tests_failure(self):
         files = {'foo_test.py': d("""\
@@ -670,21 +707,39 @@ class TestCli(test_case.MainTestCase):
                         'along with --test-result-server\n'), err='')
 
     def test_ninja_status_env(self):
+        # When running under TestCli, the output test is run under a separate
+        # process and its stderr is automatically diverted to a string buffer
+        # instead of actually being forwarded on to the pipe that subprocess
+        # provides for stderr. When run under TestMain, the call()
+        # implementation starts capturing before running the test AND provides
+        # main() with the same host, so the inner capture/restore ends up being
+        # a no-op. Ultimately, this means that the output gets captured by the
+        # capture/restore in call() and gets returned as the call's
+        # stdout/stderr.
+        if self.__class__ == TestCli:
+            expected_output = ('ns: output_test.PassTest.test_out passed\n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
+        else:
+            expected_output = ('hello on stdout\n'
+                               'ns: output_test.PassTest.test_out passed\n'
+                               '1 test passed, 0 skipped, 0 failures.\n')
         self.check(['-v', 'output_test.PassTest.test_out'],
                    files=OUTPUT_TEST_FILES, aenv={'NINJA_STATUS': 'ns: '},
-                   out=d("""\
-                         ns: output_test.PassTest.test_out passed
-                         1 test passed, 0 skipped, 0 failures.
-                         """), err='')
+                   out=expected_output, err='')
 
     def test_output_for_failures(self):
+        # See test_ninja_status_env for the reason why this is necessary.
+        if self.__class__ == TestCli:
+            expected_err = ''
+        else:
+            expected_err = 'hello on stderr\n'
         _, out, _, _ = self.check(['output_test.FailTest'],
                                   files=OUTPUT_TEST_FILES,
-                                  ret=1, err='')
+                                  ret=1, err=expected_err)
         self.assertIn('[1/1] output_test.FailTest.test_out_err_fail '
-                      'failed unexpectedly:\n'
-                      '  hello on stdout\n'
-                      '  hello on stderr\n', out)
+                      'failed unexpectedly:\n', out)
+        self.assertIn('Tests that regressed (failed unexpectedly)\n'
+                      '  output_test.FailTest.test_out_err_fail\n', out)
 
     def test_quiet(self):
         self.check(['-q'], files=PASS_TEST_FILES, ret=0, err='', out='')
@@ -742,8 +797,11 @@ class TestCli(test_case.MainTestCase):
         _, out, _, _ = self.check(['-j', '1', '-v', '-v'], files=SF_TEST_FILES,
                                   ret=1, err='')
 
+        # See test_verbose_2 for an explanation of why this is necessary.
+
         # We do a bunch of assertIn()'s to work around the non-portable
         # tracebacks.
+        sys.__stderr__.write(out)
         self.assertIn(('[1/9] sf_test.ExpectedFailures.test_fail failed as expected:\n'
                        '  Traceback '), out)
         self.assertIn(('[2/9] sf_test.ExpectedFailures.test_pass '
@@ -821,8 +879,17 @@ class TestCli(test_case.MainTestCase):
             exp_out = ''
             total_tests = len(tests)
             for i, test in enumerate(tests):
-                exp_out += ('[%d/%d] shard_test.ShardTest.test_%s passed\n' %
-                            (i + 1, total_tests, test))
+                # See test_basic for an explanation on why this is necessary.
+                if self.__class__ == TestMain:
+                    start_line = ('[%d/%d] shard_test.ShardTest.test_%s\n' %
+                                  (i, total_tests, test))
+                    exp_out += start_line
+                    exp_out += '%s\n' % (' ' * (len(start_line) - 1))
+                end_line = ('[%d/%d] shard_test.ShardTest.test_%s passed\n' %
+                             (i + 1, total_tests, test))
+                exp_out += end_line
+                if self.__class__ == TestMain:
+                    exp_out += '%s\n' % (' ' * (len(end_line) - 1))
             exp_out += '%d test%s passed, 0 skipped, 0 failures.\n' % (
                 total_tests, "" if total_tests == 1 else "s")
             self.assertEqual(out, exp_out)
@@ -1233,19 +1300,32 @@ class TestCli(test_case.MainTestCase):
             os.path.join('test_produce_artifact_for_retries', 'test.txt'),
             os.path.join('test_produce_artifact_for_retries',
                          'retry_1', 'test.txt')])
+        # MainTestCase's _read_files, which gets called under the hood to get
+        # the updated files dict, replaces the os separator with /, so use
+        # posixpath instead of os.path.
         self.assertIn(
-            os.path.join('artifacts', 'test_produce_artifact_for_retries',
+            posixpath.join('artifacts', 'test_produce_artifact_for_retries',
                          'test.txt'), files)
         self.assertIn(
-            os.path.join('artifacts', 'test_produce_artifact_for_retries',
+            posixpath.join('artifacts', 'test_produce_artifact_for_retries',
                          'retry_1', 'test.txt'), files)
 
     def test_matches_partial_filter(self):
+        # When running under TestCli, the output test is run under a separate
+        # process and its stderr is automatically diverted to a string buffer
+        # instead of actually being forwarded on to the pipe that subprocess
+        # provides for stderr. When run under TestMain, it's run in the same
+        # process AND a new host is created, which means that the output of the
+        # test is captured and returned.
+        if self.__class__ == TestCli:
+            expected_err = ''
+        else:
+            expected_err = 'hello on stderr\n'
         _, out, _, files = self.check(
             ['--test-name-prefix', 'output_test.',
              '--partial-match-filter', 'PassTest'],
-            files=OUTPUT_TEST_FILES, ret=0, err='')
-        self.assertIn('2 tests passed, 0 skipped, 0 failures.',out)
+            files=OUTPUT_TEST_FILES, ret=0, err=expected_err)
+        self.assertIn('2 tests passed, 0 skipped, 0 failures.', out)
 
     def test_test_prefix_exclusion_in_partial_filter_match(self):
         _, out, _, files = self.check(
@@ -1272,15 +1352,29 @@ class TestCli(test_case.MainTestCase):
         self.assertIn('test_fail', out)
 
     def test_verbose_2(self):
+        # Similar to the reasoning in test_ninja_status_env. When run via
+        # TestCli, test output is properly captured and _print_test_finished
+        # is able to properly print out the captured stdout/stderr. When run
+        # via TestMain, the inner capture around the test is a no-op since
+        # call() is already capturing, which means that the inner restore gets
+        # nothing back, and thus _print_test_finished doesn't have anything to
+        # print. Instead, we capture the "hello on x" directly from the test.
+        if self.__class__ == TestCli:
+            expected_output = ('[1/2] output_test.PassTest.test_err passed:\n'
+                               '  hello on stderr\n'
+                               '[2/2] output_test.PassTest.test_out passed:\n'
+                               '  hello on stdout\n'
+                               '2 tests passed, 0 skipped, 0 failures.\n')
+            expected_err = ''
+        else:
+            expected_output = ('[1/2] output_test.PassTest.test_err passed\n'
+                               'hello on stdout\n'
+                               '[2/2] output_test.PassTest.test_out passed\n'
+                               '2 tests passed, 0 skipped, 0 failures.\n')
+            expected_err = 'hello on stderr\n'
         self.check(['-vv', '-j', '1', 'output_test.PassTest'],
                    files=OUTPUT_TEST_FILES, ret=0,
-                   out=d("""\
-                         [1/2] output_test.PassTest.test_err passed:
-                           hello on stderr
-                         [2/2] output_test.PassTest.test_out passed:
-                           hello on stdout
-                         2 tests passed, 0 skipped, 0 failures.
-                         """), err='')
+                   out=expected_output, err=expected_err)
 
     def test_verbose_3(self):
         self.check(['-vvv', '-j', '1', 'output_test.PassTest'],

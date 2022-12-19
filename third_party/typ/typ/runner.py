@@ -654,7 +654,6 @@ class Runner(object):
             pool_group.close_parallel_pool()
         finally:
             self.final_responses.extend(pool_group.join_parallel_pool())
-
         pool = pool_group.make_serial_pool()
         try:
             self._run_list(stats, result_set,
@@ -761,6 +760,7 @@ class Runner(object):
             for l in err.splitlines():
                 self.print_('  %s' % l)
         elif not self.args.quiet:
+            #sys.__stderr__.write('ASDF verbose count: %d out: %s err: %s' % (self.args.verbose, out, err))
             if self.args.verbose > 1 and (out or err):
                 suffix += ':\n'
             self.update(stats.format() + result.name + suffix,

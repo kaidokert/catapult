@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import io
+import atexit
 import logging
 import multiprocessing
 import os
@@ -23,6 +23,7 @@ import tempfile
 import time
 
 from typ import python_2_3_compat
+from typ import teed_streams
 
 
 if sys.version_info.major == 2:  # pragma: python2
@@ -52,6 +53,10 @@ class Host(object):
         self.stdin = sys.stdin
         self.env = os.environ
         self.platform = sys.platform
+        self._tap_output()
+
+    def __del__(self):
+        self._untap_output()
 
     def abspath(self, *comps):
         return os.path.abspath(self.join(*comps))
@@ -75,16 +80,18 @@ class Host(object):
         if stdin_pipe:
             proc.stdin.write(stdin.encode('utf-8'))
         stdout, stderr = proc.communicate()
+        # sys.__stderr__.write('ASDF subprocess stdout: "%s"\n' % stdout.decode('utf-8'))
+        # sys.__stderr__.write('ASDF subprocess stderr: "%s"\n' % stderr.decode('utf-8'))
 
         # pylint type checking bug - pylint: disable=E1103
         return proc.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
 
     def call_inline(self, argv, env=None):
-        if isinstance(self.stdout, _TeedStream):  # pragma: no cover
-            ret, out, err = self.call(argv, env)
-            self.print_(out, end='')
-            self.print_(err, end='', stream=self.stderr)
-            return ret
+        # if isinstance(self.stdout, teed_streams.PipeTeedStream):  # pragma: no cover
+        #     ret, out, err = self.call(argv, env)
+        #     self.print_(out, end='')
+        #     self.print_(err, end='', stream=self.stderr)
+        #     return ret
         return subprocess.call(argv, stdin=self.stdin, stdout=self.stdout,
                                stderr=self.stderr, env=env)
 
@@ -128,6 +135,9 @@ class Host(object):
 
     def join(self, *comps):
         return os.path.join(*comps)
+
+    def normpath(self, path):
+        return os.path.normpath(path)
 
     def maybe_make_directory(self, *comps):
         path = self.abspath(self.join(*comps))
@@ -232,16 +242,21 @@ class Host(object):
             return 0
 
     def _tap_output(self):
-        self.stdout = sys.stdout = _TeedStream(self.stdout)
-        self.stderr = sys.stderr = _TeedStream(self.stderr)
+        self.stdout = sys.stdout = teed_streams.PipeTeedStream(
+                self.stdout)
+        self.stderr = sys.stderr = teed_streams.PipeTeedStream(
+                self.stderr, always_flush=True)
+        atexit.register(self._untap_output)
 
     def _untap_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        if not isinstance(self.stdout, teed_streams.PipeTeedStream):
+            return
+        self.stdout.close()
+        self.stderr.close()
         self.stdout = sys.stdout = self.stdout.stream
         self.stderr = sys.stderr = self.stderr.stream
 
     def capture_output(self, divert=True):
-        self._tap_output()
         self._orig_logging_handlers = self.logger.handlers
         if self._orig_logging_handlers:
             self.logger.handlers = [logging.StreamHandler(self.stderr)]
@@ -249,46 +264,9 @@ class Host(object):
         self.stderr.capture(divert)
 
     def restore_output(self):
-        assert isinstance(self.stdout, _TeedStream)
+        assert isinstance(self.stdout, teed_streams.PipeTeedStream)
         out, err = (self.stdout.restore(), self.stderr.restore())
         out = python_2_3_compat.bytes_to_str(out)
         err = python_2_3_compat.bytes_to_str(err)
         self.logger.handlers = self._orig_logging_handlers
-        self._untap_output()
         return out, err
-
-
-class _TeedStream(io.StringIO):
-
-    def __init__(self, stream):
-        super(_TeedStream, self).__init__()
-        self.stream = stream
-        self.capturing = False
-        self.diverting = False
-
-    def write(self, msg, *args, **kwargs):
-        if self.capturing:
-            if (sys.version_info.major == 2 and
-                    isinstance(msg, str)):  # pragma: python2
-                msg = unicode(msg)
-            super(_TeedStream, self).write(msg, *args, **kwargs)
-        if not self.diverting:
-            self.stream.write(msg, *args, **kwargs)
-
-    def flush(self):
-        if self.capturing:
-            super(_TeedStream, self).flush()
-        if not self.diverting:
-            self.stream.flush()
-
-    def capture(self, divert=True):
-        self.truncate(0)
-        self.capturing = True
-        self.diverting = divert
-
-    def restore(self):
-        msg = self.getvalue()
-        self.truncate(0)
-        self.capturing = False
-        self.diverting = False
-        return msg
