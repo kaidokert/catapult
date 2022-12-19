@@ -16,6 +16,41 @@
       "message": "Thanks for writing that up. We should prob document those steps in a README next to devil_dependencies.json. (No need to do that yourself though)",
       "revId": "f8ebf100f9885f127b247f272f52c7e3487d1220",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec39c1cd_5f7c1e66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-19T21:10:18Z",
+      "side": 1,
+      "message": "Yeah, that would be very helpful.",
+      "parentUuid": "c1bf31e4_6f1d6a5b",
+      "revId": "f8ebf100f9885f127b247f272f52c7e3487d1220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18509be2_af673dc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-12-19T21:10:18Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "f8ebf100f9885f127b247f272f52c7e3487d1220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
