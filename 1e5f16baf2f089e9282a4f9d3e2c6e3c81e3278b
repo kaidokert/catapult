@@ -46,6 +46,30 @@
       },
       "revId": "1e5f16baf2f089e9282a4f9d3e2c6e3c81e3278b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e91fd620_a20e2aaa",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-12-19T21:47:35Z",
+      "side": 1,
+      "message": "Done. Thanks for the pointers.",
+      "parentUuid": "754bfda5_de61f8db",
+      "range": {
+        "startLine": 298,
+        "startChar": 18,
+        "endLine": 298,
+        "endChar": 20
+      },
+      "revId": "1e5f16baf2f089e9282a4f9d3e2c6e3c81e3278b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
