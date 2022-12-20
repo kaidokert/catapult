@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecf9613d_f0be4d28",
+        "filename": ".vpython3",
+        "patchSetId": 10
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-20T01:06:29Z",
+      "side": 1,
+      "message": "These two are added in a previous CL already.",
+      "range": {
+        "startLine": 288,
+        "startChar": 1,
+        "endLine": 296,
+        "endChar": 1
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4914805b_939485ca",
+        "filename": "dashboard/bin/run_py_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-20T01:06:29Z",
+      "side": 1,
+      "message": "nit: We don\u0027t need the for loop any more when we only have dashboard as root.",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86922ef7_1ab3cd02",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-20T01:06:29Z",
+      "side": 1,
+      "message": "Why do we need this? Looks like the add_histograms is working fine in py3 in prod.",
+      "range": {
+        "startLine": 691,
+        "startChar": 19,
+        "endLine": 691,
+        "endChar": 36
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ededf3b_65986fd4",
+        "filename": "dashboard/dashboard/buildbucket_job_status_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-12-20T01:06:29Z",
+      "side": 1,
+      "message": "Let\u0027s put a skipif here for easier to track.",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 32
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
