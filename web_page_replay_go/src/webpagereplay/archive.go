@@ -20,9 +20,33 @@ import (
 	"reflect"
 	"strings"
 	"sync"
+	"time"
 )
 
 var ErrNotFound = errors.New("not found")
+
+type ResponseChunk struct {
+	Data  []byte
+	Delay time.Duration
+}
+
+type TimedResponse struct {
+	Response      *http.Response
+	ResponseStart time.Duration
+	Chunks        []ResponseChunk
+}
+
+func (r *TimedResponse) DeChunk() {
+	if len(r.Chunks) == 0 {
+		return
+	}
+	var body []byte
+	for _, c := range r.Chunks {
+		body = append(body, c.Data...)
+	}
+	r.Response.Body = ioutil.NopCloser(bytes.NewReader(body))
+	r.Chunks = nil
+}
 
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
@@ -30,20 +54,22 @@ type ArchivedRequest struct {
 	SerializedRequest   []byte
 	SerializedResponse  []byte // if empty, the request failed
 	LastServedSessionId uint32
+	ResponseStart       time.Duration
+	Chunks              []ResponseChunk
 }
 
 // RequestMatch represents a match when querying the archive for responses to a request
 type RequestMatch struct {
 	Match      *ArchivedRequest
 	Request    *http.Request
-	Response   *http.Response
+	Response   *TimedResponse
 	MatchRatio float64
 }
 
 func (requestMatch *RequestMatch) SetMatch(
 	match *ArchivedRequest,
 	request *http.Request,
-	response *http.Response,
+	response *TimedResponse,
 	ratio float64) {
 	requestMatch.Match = match
 	requestMatch.Request = request
@@ -51,7 +77,7 @@ func (requestMatch *RequestMatch) SetMatch(
 	requestMatch.MatchRatio = ratio
 }
 
-func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
+func serializeRequest(req *http.Request, resp *TimedResponse) (*ArchivedRequest, error) {
 	ar := &ArchivedRequest{}
 	{
 		var buf bytes.Buffer
@@ -62,15 +88,23 @@ func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest,
 	}
 	{
 		var buf bytes.Buffer
-		if err := resp.Write(&buf); err != nil {
+
+		var body []byte
+		for _, c := range resp.Chunks {
+			body = append(body, c.Data...)
+		}
+		resp.Response.Body = ioutil.NopCloser(bytes.NewReader(body))
+		if err := resp.Response.Write(&buf); err != nil {
 			return nil, fmt.Errorf("failed writing response for %s: %v", req.URL.String(), err)
 		}
 		ar.SerializedResponse = buf.Bytes()
 	}
+	ar.ResponseStart = resp.ResponseStart
+	ar.Chunks = resp.Chunks
 	return ar, nil
 }
 
-func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Response, error) {
+func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *TimedResponse, error) {
 	req, err := http.ReadRequest(bufio.NewReader(bytes.NewReader(ar.SerializedRequest)))
 	if err != nil {
 		return nil, nil, fmt.Errorf("couldn't unmarshal request: %v", err)
@@ -88,7 +122,10 @@ func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Respon
 		}
 		return nil, nil, fmt.Errorf("couldn't unmarshal response: %v", err)
 	}
-	return req, resp, nil
+	if len(ar.Chunks) > 0 {
+		resp.Body = ioutil.NopCloser(bytes.NewReader([]byte{}))
+	}
+	return req, &TimedResponse{Response: resp, ResponseStart: ar.ResponseStart, Chunks: ar.Chunks}, nil
 }
 
 // Archive contains an archive of requests. Immutable except when embedded in
@@ -156,7 +193,7 @@ func OpenArchive(path string) (*Archive, error) {
 }
 
 // ForEach applies f to all requests in the archive.
-func (a *Archive) ForEach(f func(req *http.Request, resp *http.Response) error) error {
+func (a *Archive) ForEach(f func(req *http.Request, resp *TimedResponse) error) error {
 	for _, urlmap := range a.Requests {
 		for urlString, requests := range urlmap {
 			fullURL, _ := url.Parse(urlString)
@@ -206,7 +243,7 @@ func assertCompleteURL(url *url.URL) {
 // (https://bugs.chromium.org/p/chromium/issues/detail?id=1215668)
 //
 // TODO: conditional requests
-func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response, error) {
+func (a *Archive) FindRequest(req *http.Request) (*http.Request, *TimedResponse, error) {
 	// Clear the input channel on large uploads to prevent WPR
 	// from resetting the connection, and causing the upload
 	// to fail.
@@ -297,7 +334,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 func (a *Archive) findBestMatchInArchivedRequestSet(
 	incomingReq *http.Request,
 	archivedReqs []*ArchivedRequest) (
-	*http.Request, *http.Response, error) {
+	*http.Request, *TimedResponse, error) {
 	scheme := incomingReq.URL.Scheme
 
 	if len(archivedReqs) == 0 {
@@ -371,7 +408,7 @@ const (
 	AddModeSkipExisting      AddMode = 2
 )
 
-func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response, mode AddMode) error {
+func (a *Archive) addArchivedRequest(req *http.Request, resp *TimedResponse, mode AddMode) error {
 	// Always use the absolute URL in this mapping.
 	assertCompleteURL(req.URL)
 	archivedRequest, err := serializeRequest(req, resp)
@@ -412,9 +449,9 @@ func (a *Archive) StartNewReplaySession() {
 // Edit iterates over all requests in the archive. For each request, it calls f to
 // edit the request. If f returns a nil pair, the request is deleted.
 // The edited archive is returned, leaving the current archive is unchanged.
-func (a *Archive) Edit(edit func(req *http.Request, resp *http.Response) (*http.Request, *http.Response, error)) (*Archive, error) {
+func (a *Archive) Edit(edit func(req *http.Request, resp *TimedResponse) (*http.Request, *TimedResponse, error)) (*Archive, error) {
 	clone := newArchive()
-	err := a.ForEach(func(oldReq *http.Request, oldResp *http.Response) error {
+	err := a.ForEach(func(oldReq *http.Request, oldResp *TimedResponse) error {
 		newReq, newResp, err := edit(oldReq, oldResp)
 		if err != nil {
 			return err
@@ -438,7 +475,7 @@ func (a *Archive) Edit(edit func(req *http.Request, resp *http.Response) (*http.
 func (a *Archive) Merge(other *Archive) error {
 	var numAddedRequests = 0
 	var numSkippedRequests = 0
-	err := other.ForEach(func(req *http.Request, resp *http.Response) error {
+	err := other.ForEach(func(req *http.Request, resp *TimedResponse) error {
 		foundReq, _, notFoundErr := a.FindRequest(req)
 		if notFoundErr == ErrNotFound || req.URL.String() != foundReq.URL.String() {
 			if err := a.addArchivedRequest(req, resp, AddModeAppend); err != nil {
@@ -460,7 +497,7 @@ func (a *Archive) Merge(other *Archive) error {
 func (a *Archive) Trim(trimMatch func(r *http.Request) (bool, error)) (*Archive, error) {
 	var numRemovedRequests = 0
 	clone := newArchive()
-	err := a.ForEach(func(req *http.Request, resp *http.Response) error {
+	err := a.ForEach(func(req *http.Request, resp *TimedResponse) error {
 		trimReq, err := trimMatch(req)
 		if err != nil {
 			return err
@@ -506,7 +543,7 @@ func (a *Archive) Add(method string, urlString string, mode AddMode) error {
 		return fmt.Errorf("Error fetching url: %v", err)
 	}
 
-	if err = a.addArchivedRequest(req, resp, mode); err != nil {
+	if err = a.addArchivedRequest(req, &TimedResponse{Response: resp}, mode); err != nil {
 		return err
 	}
 
@@ -542,7 +579,7 @@ func OpenWritableArchive(path string) (*WritableArchive, error) {
 }
 
 // RecordRequest records a request/response pair in the archive.
-func (a *WritableArchive) RecordRequest(req *http.Request, resp *http.Response) error {
+func (a *WritableArchive) RecordRequest(req *http.Request, resp *TimedResponse) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	return a.addArchivedRequest(req, resp, AddModeAppend)

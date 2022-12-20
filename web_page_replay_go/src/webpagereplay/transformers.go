@@ -54,80 +54,129 @@ func cloneHeaders(h http.Header) http.Header {
 // tf is passed an uncompressed body and should return an uncompressed body.
 // The final response will be compressed if allowed by
 // resp.Header[ContentEncoding].
-func transformResponseBody(resp *http.Response, f func([]byte) []byte) error {
+func transformResponseBody(resp *TimedResponse, f func([]byte) []byte) error {
 	failEarly := func(body []byte, err error) error {
-		resp.Body = ioutil.NopCloser(&readerWithError{bytes.NewReader(body), err})
+		resp.Response.Body = ioutil.NopCloser(&readerWithError{bytes.NewReader(body), err})
 		return err
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Response.Body)
 	if err != nil {
 		return failEarly(body, err)
 	}
-	resp.Body.Close()
+	resp.Response.Body.Close()
 
 	var isCompressed bool
 	var ce string
-	if encodings, ok := resp.Header["Content-Encoding"]; ok && len(encodings) > 0 {
+	if encodings, ok := resp.Response.Header["Content-Encoding"]; ok && len(encodings) > 0 {
 		// TODO(xunjieli): Use the last CE for now. Support chained CEs.
 		ce = strings.ToLower(encodings[len(encodings)-1])
 		isCompressed = (ce != "" && ce != "identity")
 	}
 
 	// Decompress as needed.
+	var decompressedChunks [][]byte
 	if isCompressed {
-		body, err = decompressBody(ce, body)
+		if len(resp.Chunks) > 0 {
+			decompressedChunks, err = decompressResponseChunks(ce, resp.Chunks)
+		} else {
+			body, err = decompressBody(ce, body)
+			decompressedChunks = append(decompressedChunks, body)
+		}
 		if err != nil {
 			return failEarly(body, err)
 		}
+	} else {
+		decompressedChunks = append(decompressedChunks, body)
 	}
 
 	// Transform and recompress as needed.
-	body = f(body)
+	// decompressedChunks[0] = f(decompressedChunks[0])
 	if isCompressed {
-		body, _, err = CompressBody(ce, body)
+		ret, _, err := compressChunkedBody(ce, decompressedChunks)
+		sum := 0
+		var data []byte
+		if len(resp.Chunks) > 0 {
+			for i, r := range ret {
+				data = append(data, r...)
+				sum += len(r)
+				resp.Chunks[i].Data = r
+			}
+		} else {
+			body = ret[0]
+			data = body
+		}
 		if err != nil {
 			return failEarly(body, err)
 		}
 	}
-	resp.Body = ioutil.NopCloser(bytes.NewReader(body))
+	resp.Response.Body = ioutil.NopCloser(bytes.NewReader(body))
 
 	// ContentLength has changed, so update the outgoing headers accordingly.
-	if resp.ContentLength >= 0 {
-		resp.ContentLength = int64(len(body))
-		resp.Header.Set("Content-Length", strconv.Itoa(len(body)))
+	if resp.Response.ContentLength >= 0 {
+		resp.Response.ContentLength = int64(len(body))
+		resp.Response.Header.Set("Content-Length", strconv.Itoa(len(body)))
 	}
 	return nil
 }
 
 // Decompresses Response Body in place.
-func DecompressResponse(resp *http.Response) error {
-	ce := strings.ToLower(resp.Header.Get("Content-Encoding"))
+func DecompressResponse(resp *TimedResponse) error {
+	ce := strings.ToLower(resp.Response.Header.Get("Content-Encoding"))
 	isCompressed := (ce != "" && ce != "identity")
 	if isCompressed {
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := ioutil.ReadAll(resp.Response.Body)
 		if err != nil {
 			return err
 		}
-		resp.Body.Close()
-		body, err = decompressBody(ce, body)
+		resp.Response.Body.Close()
+		if len(body) > 0 {
+			body, err = decompressBody(ce, body)
+		}
 		if err != nil {
 			return err
 		}
-		resp.ContentLength = int64(len(body))
-		resp.Body = ioutil.NopCloser(bytes.NewReader(body))
+		chunks, err := decompressResponseChunks(ce, resp.Chunks)
+		if err != nil {
+			return err
+		}
+		contentLength := int64(len(body))
+		for i, c := range chunks {
+			resp.Chunks[i].Data = c
+			contentLength += int64(len(c))
+		}
+		resp.Response.ContentLength = contentLength
+		resp.Response.Body = ioutil.NopCloser(bytes.NewReader(body))
 	}
 	return nil
+}
+
+func decompressResponseChunks(ce string, chunks []ResponseChunk) ([][]byte, error) {
+	var decompressedChunks [][]byte
+	var data []byte
+	lastLen := 0
+	for _, c := range chunks {
+		data = append(data, c.Data...)
+		decomp, err := decompressBody(ce, data)
+		if err != nil && err != io.ErrUnexpectedEOF {
+			return nil, err
+		}
+		decompressedChunks = append(decompressedChunks, decomp[lastLen:])
+		lastLen = len(decomp)
+	}
+	return decompressedChunks, nil
 }
 
 // decompressBody reads a response body and decompresses according to the
 // given Content-Encoding.
 func decompressBody(ce string, compressed []byte) ([]byte, error) {
 	var r io.ReadCloser
+	var br *bytes.Reader
 	switch strings.ToLower(ce) {
 	case "gzip":
 		var err error
-		r, err = gzip.NewReader(bytes.NewReader(compressed))
+		br = bytes.NewReader(compressed)
+		r, err = gzip.NewReader(br)
 		if err != nil {
 			return nil, err
 		}
@@ -142,12 +191,14 @@ func decompressBody(ce string, compressed []byte) ([]byte, error) {
 	return ioutil.ReadAll(r)
 }
 
-// CompressBody reads a response body and compresses according to the given
-// Accept-Encoding.
-// The chosen compressed encoding is returned along with the compressed body.
-func CompressBody(ae string, uncompressed []byte) ([]byte, string, error) {
+type writer interface {
+	io.WriteCloser
+	Flush() error
+}
+
+func compressChunkedBody(ae string, uncompressed [][]byte) ([][]byte, string, error) {
 	var buf bytes.Buffer
-	var w io.WriteCloser
+	var w writer
 	outCE := ""
 	ae = strings.ToLower(ae)
 	switch {
@@ -161,11 +212,33 @@ func CompressBody(ae string, uncompressed []byte) ([]byte, string, error) {
 		// Unknown compression type or compression not allowed.
 		return uncompressed, "identity", errors.New("unknown compression: " + ae)
 	}
-	if _, err := io.Copy(w, bytes.NewReader(uncompressed)); err != nil {
-		return buf.Bytes(), outCE, err
+	lastLen := 0
+	var ret [][]byte
+	var err error
+	for i, c := range uncompressed {
+		if _, err = io.Copy(w, bytes.NewReader(c)); err != nil {
+			return nil, outCE, err
+		}
+		if i == len(uncompressed)-1 {
+			err = w.Close()
+		} else {
+			err = w.Flush()
+		}
+		if err != nil {
+			return nil, outCE, err
+		}
+		ret = append(ret, buf.Bytes()[lastLen:])
+		lastLen = len(buf.Bytes())
 	}
-	err := w.Close()
-	return buf.Bytes(), outCE, err
+	return ret, outCE, err
+}
+
+// CompressBody reads a response body and compresses according to the given
+// Accept-Encoding.
+// The chosen compressed encoding is returned along with the compressed body.
+func CompressBody(ae string, uncompressed []byte) ([]byte, string, error) {
+	chunks, outCE, err := compressChunkedBody(ae, [][]byte{uncompressed})
+	return chunks[0], outCE, err
 }
 
 // getCSPScriptSrcDirectiveFromHeaders returns a Content-Security-Policy (CSP)
@@ -236,10 +309,10 @@ func transformCSPHeader(header http.Header, injectedScriptSha256 string) {
 	for index, directive := range directives {
 		directive = strings.TrimSpace(directive)
 		if strings.HasPrefix(directive, "script-src") ||
-		   strings.HasPrefix(directive, "default-src") {
+			strings.HasPrefix(directive, "default-src") {
 			updateIndex = index
 			if strings.HasPrefix(directive, "script-src") {
-			  break
+				break
 			}
 		}
 	}
@@ -300,7 +373,7 @@ type ResponseTransformer interface {
 	// Transform applies transformations to the response. for example, by
 	// updating resp.Header or wrapping resp.Body. The transformer may inspect
 	// the request but should not modify the request.
-	Transform(req *http.Request, resp *http.Response)
+	Transform(req *http.Request, resp *TimedResponse)
 }
 
 // NewScriptInjector constructs a transformer that injects the given script
@@ -365,7 +438,7 @@ func (si *scriptInjector) getScriptWithNonce(nonce string) []byte {
 	var buffer bytes.Buffer
 	buffer.Write([]byte("<script"))
 	if nonce != "" {
-		buffer.Write([]byte(" nonce=\""+nonce+"\""))
+		buffer.Write([]byte(" nonce=\"" + nonce + "\""))
 	}
 	buffer.Write([]byte(">"))
 	buffer.Write(si.script)
@@ -373,16 +446,15 @@ func (si *scriptInjector) getScriptWithNonce(nonce string) []byte {
 	return buffer.Bytes()
 }
 
-func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
+func (si *scriptInjector) Transform(req *http.Request, resp *TimedResponse) {
 	// Skip non-HTML non-200 responses.
 	if !strings.HasPrefix(
-		strings.ToLower(resp.Header.Get("Content-Type")), "text/html") {
+		strings.ToLower(resp.Response.Header.Get("Content-Type")), "text/html") {
 		return
 	}
-	if resp.StatusCode != http.StatusOK {
+	if resp.Response.StatusCode != http.StatusOK {
 		return
 	}
-
 	transformResponseBody(resp, func(body []byte) []byte {
 		// Don't inject if the script has already been injected.
 		if bytes.Contains(body, si.script) {
@@ -400,7 +472,7 @@ func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
 		if idx == nil {
 			log.Printf(
 				"ScriptInjector(%s): no start tags found, skip injecting script",
-				resp.Request.URL)
+				resp.Response.Request.URL)
 			return body
 		}
 		n := idx[1]
@@ -414,8 +486,7 @@ func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
 		// token to injected scripts. Please see http://crbug.com/904534 for a
 		// detailed case study.
 		nonce := ""
-		if directive := getCSPScriptSrcDirectiveFromHeaders(resp.Header);
-			directive != "" {
+		if directive := getCSPScriptSrcDirectiveFromHeaders(resp.Response.Header); directive != "" {
 			nonce = getNonceTokenFromCSPHeaderScriptSrc(directive)
 		}
 
@@ -427,7 +498,7 @@ func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
 		// Having injected script, transform the response's
 		// content-security-policy directive to allow the injected script to
 		// execute.
-		transformCSPHeader(resp.Header, si.sha256)
+		transformCSPHeader(resp.Response.Header, si.sha256)
 		return buffer.Bytes()
 	})
 }
@@ -532,14 +603,14 @@ func (r *TransformerRule) shortString() string {
 }
 
 func (rt *ruleBasedTransformer) Transform(
-	req *http.Request, resp *http.Response) {
+	req *http.Request, resp *TimedResponse) {
 	for _, r := range rt.rules {
 		if !r.matches(req) {
 			continue
 		}
 		log.Printf("Rule(%s): matched rule %v", req.URL, r.shortString())
 		for k, v := range r.ExtraHeaders {
-			resp.Header[k] = append(resp.Header[k], v...)
+			resp.Response.Header[k] = append(resp.Response.Header[k], v...)
 		}
 		/*
 			if disabled {

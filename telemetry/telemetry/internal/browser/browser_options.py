@@ -73,6 +73,7 @@ class BrowserFinderOptions(optparse.Values):
     self.experimental_system_tracing = False
     self.experimental_system_data_sources = False
     self.force_sideload_perfetto = False
+    self.url_file = None
 
   def __repr__(self):
     return str(sorted(self.__dict__.items()))
@@ -350,6 +351,12 @@ class BrowserFinderOptions(optparse.Values):
         'Eg: "record -e cycles -c 4000000 -g". Note: "-a" flag is added to the '
         'perf command by default. Do not pass options that are incompatible '
         'with the system-wide profile collection.')
+    parser.add_option_group(group)
+
+    group = optparse.OptionGroup(parser, 'URL options')
+    group.add_option(
+        '--url-file',
+        help='File with list of URLs for loading stories, one per line.')
     parser.add_option_group(group)
 
     # Browser options.

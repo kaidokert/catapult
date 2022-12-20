@@ -24,7 +24,7 @@ import (
 const usage = "%s [ls|cat|edit|merge|add|addAll] [options] archive_file [output_file] [url]"
 
 type Config struct {
-	method, host, fullPath                              string
+	method, host, fullPath                                           string
 	decodeResponseBody, skipExisting, overwriteExisting, invertMatch bool
 }
 
@@ -95,7 +95,7 @@ func (cfg *Config) requestEnabled(req *http.Request) bool {
 }
 
 func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
-	return a.ForEach(func(req *http.Request, resp *http.Response) error {
+	return a.ForEach(func(req *http.Request, resp *webpagereplay.TimedResponse) error {
 		if !cfg.requestEnabled(req) {
 			return nil
 		}
@@ -107,8 +107,14 @@ func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
 			if err != nil {
 				return fmt.Errorf("Unable to decompress body:\n%v", err)
 			}
-			resp.Write(os.Stdout)
+			resp.Response.Write(os.Stdout)
 			fmt.Fprint(os.Stdout, "\n")
+			if resp.ResponseStart != 0 {
+				fmt.Fprintf(os.Stdout, "Response start time: %v, num chunks: %v\n", resp.ResponseStart, len(resp.Chunks))
+			}
+			for i, c := range resp.Chunks {
+				fmt.Fprintf(os.Stdout, "\nChunk %d start time: %v, size: %v\n%v\n", i, c.Delay, len(c.Data), string(c.Data))
+			}
 		} else {
 			fmt.Fprintf(os.Stdout, "%s %s %s\n", req.Method, req.Host, req.URL)
 		}
@@ -127,7 +133,7 @@ func trim(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 		} else {
 			fmt.Printf("Trimming request: host=%s uri=%s\n", req.Host, req.URL.String())
 			return true, nil
-	  }
+		}
 	})
 	if err != nil {
 		return fmt.Errorf("error editing archive:\n%v", err)
@@ -142,21 +148,22 @@ func edit(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 		editor = "vi"
 	}
 
-	marshalForEdit := func(w io.Writer, req *http.Request, resp *http.Response) error {
+	marshalForEdit := func(w io.Writer, req *http.Request, resp *webpagereplay.TimedResponse) error {
 		// WriteProxy writes absolute URI in the Start line including the
 		// scheme and host. It is necessary for unmarshaling later.
 		if err := req.WriteProxy(w); err != nil {
 			return err
 		}
+		resp.DeChunk()
 		if cfg.decodeResponseBody {
 			if err := webpagereplay.DecompressResponse(resp); err != nil {
 				return fmt.Errorf("couldn't decompress body: %v", err)
 			}
 		}
-		return resp.Write(w)
+		return resp.Response.Write(w)
 	}
 
-	unmarshalAfterEdit := func(r io.Reader) (*http.Request, *http.Response, error) {
+	unmarshalAfterEdit := func(r io.Reader) (*http.Request, *webpagereplay.TimedResponse, error) {
 		br := bufio.NewReader(r)
 		req, err := http.ReadRequest(br)
 		if err != nil {
@@ -182,10 +189,10 @@ func edit(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 			return nil, nil, fmt.Errorf("couldn't unmarshal response body: %v", err)
 		}
 		resp.Body = ioutil.NopCloser(bytes.NewReader(body))
-		return req, resp, nil
+		return req, &webpagereplay.TimedResponse{Response: resp}, nil
 	}
 
-	newA, err := a.Edit(func(req *http.Request, resp *http.Response) (*http.Request, *http.Response, error) {
+	newA, err := a.Edit(func(req *http.Request, resp *webpagereplay.TimedResponse) (*http.Request, *webpagereplay.TimedResponse, error) {
 		if !cfg.requestEnabled(req) {
 			return req, resp, nil
 		}
@@ -361,7 +368,7 @@ func main() {
 			ArgsUsage: "archive",
 			Flags:     cfg.DefaultFlags(),
 			Before:    checkArgs("ls", 1),
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return list(cfg, loadArchiveOrDie(c, 0), false)
 			},
 		},
@@ -371,7 +378,7 @@ func main() {
 			ArgsUsage: "archive",
 			Flags:     cfg.DefaultFlags(),
 			Before:    checkArgs("cat", 1),
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return list(cfg, loadArchiveOrDie(c, 0), true)
 			},
 		},
@@ -381,7 +388,7 @@ func main() {
 			ArgsUsage: "input_archive output_archive",
 			Flags:     cfg.DefaultFlags(),
 			Before:    checkArgs("edit", 2),
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return edit(cfg, loadArchiveOrDie(c, 0), c.Args().Get(1))
 			},
 		},
@@ -390,7 +397,7 @@ func main() {
 			Usage:     "Merge the requests/responses of two archives",
 			ArgsUsage: "base_archive input_archive output_archive",
 			Before:    checkArgs("merge", 3),
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return merge(cfg, loadArchiveOrDie(c, 0), loadArchiveOrDie(c, 1), c.Args().Get(2))
 			},
 		},
@@ -399,13 +406,13 @@ func main() {
 			Usage:     "Add a simple GET request from the network to the archive",
 			ArgsUsage: "input_archive output_archive [urls...]",
 			Flags:     cfg.AddFlags(),
-			Before:    func(c *cli.Context) error {
+			Before: func(c *cli.Context) error {
 				if c.Args().Len() < 3 {
 					return fmt.Errorf("Expected at least 3 arguments but got %d", c.Args().Len())
 				}
 				return nil
 			},
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return add(cfg, loadArchiveOrDie(c, 0), c.Args().Get(1), c.Args().Tail())
 			},
 		},
@@ -415,7 +422,7 @@ func main() {
 			ArgsUsage: "input_archive output_archive urls_file",
 			Flags:     cfg.AddFlags(),
 			Before:    checkArgs("add", 3),
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return addAll(cfg, loadArchiveOrDie(c, 0), c.Args().Get(1), c.Args().Get(2))
 			},
 		},
@@ -425,7 +432,7 @@ func main() {
 			ArgsUsage: "input_archive output_archive",
 			Flags:     cfg.TrimFlags(),
 			Before:    checkArgs("trim", 2),
-			Action:    func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				return trim(cfg, loadArchiveOrDie(c, 0), c.Args().Get(1))
 			},
 		},
