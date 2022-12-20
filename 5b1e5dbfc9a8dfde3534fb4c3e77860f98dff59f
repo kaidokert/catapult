@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93920d45_cc2a36bd",
+        "filename": ".vpython3",
+        "patchSetId": 10
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-20T19:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecf9613d_f0be4d28",
+      "range": {
+        "startLine": 288,
+        "startChar": 1,
+        "endLine": 296,
+        "endChar": 1
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4914805b_939485ca",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-20T01:06:29Z",
       "side": 1,
       "message": "nit: We don\u0027t need the for loop any more when we only have dashboard as root.",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1479ae82_ae6e8f5c",
+        "filename": "dashboard/bin/run_py_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-20T19:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4914805b_939485ca",
       "range": {
         "startLine": 46,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b23b3a_b36922fe",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-20T19:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86922ef7_1ab3cd02",
+      "range": {
+        "startLine": 691,
+        "startChar": 19,
+        "endLine": 691,
+        "endChar": 36
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ededf3b_65986fd4",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-20T01:06:29Z",
       "side": 1,
       "message": "Let\u0027s put a skipif here for easier to track.",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 32
+      },
+      "revId": "5b1e5dbfc9a8dfde3534fb4c3e77860f98dff59f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee0a8b31_a04db501",
+        "filename": "dashboard/dashboard/buildbucket_job_status_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-20T19:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ededf3b_65986fd4",
       "range": {
         "startLine": 105,
         "startChar": 8,
