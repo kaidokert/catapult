@@ -34,12 +34,13 @@ RESULT_TAGS = {
     ResultType.Skip: 'Skip'
 }
 
+_RESET_TAG = 'Reset'
 _SLOW_TAG = 'Slow'
 _RETRY_ON_FAILURE_TAG = 'RetryOnFailure'
 
 VALID_RESULT_TAGS = set(
     list(_EXPECTATION_MAP.keys()) +
-    [_SLOW_TAG, _RETRY_ON_FAILURE_TAG])
+    [_SLOW_TAG, _RESET_TAG, _RETRY_ON_FAILURE_TAG])
 
 
 class ConflictResolutionTypes(object):
@@ -65,7 +66,7 @@ class ParseError(Exception):
 
 class Expectation(object):
     def __init__(self, reason=None, test='*', tags=None, results=None, lineno=0,
-                 retry_on_failure=False, is_slow_test=False,
+                 retry_on_failure=False, is_slow_test=False, needs_reset=False,
                  conflict_resolution=ConflictResolutionTypes.UNION, raw_tags=None, raw_results=None,
                  is_glob=False, trailing_comments=None):
         """Constructor for expectations.
@@ -96,6 +97,7 @@ class Expectation(object):
         self._raw_results = raw_results
         self.should_retry_on_failure = retry_on_failure
         self.is_slow_test = is_slow_test
+        self.needs_reset = needs_reset
         self.conflict_resolution = conflict_resolution
         self._is_glob = is_glob
         self._trailing_comments = trailing_comments
@@ -104,6 +106,7 @@ class Expectation(object):
         return (self.reason == other.reason and self.test == other.test
                 and self.should_retry_on_failure == other.should_retry_on_failure
                 and self.is_slow_test == other.is_slow_test
+                and self.needs_reset == other.needs_reset
                 and self.tags == other.tags and self.results == other.results
                 and self.lineno == other.lineno
                 and self.trailing_comments == other.trailing_comments)
@@ -155,6 +158,8 @@ class Expectation(object):
             self._raw_results = {RESULT_TAGS[t] for t in self._results}
             if self.is_slow_test:
                 self._raw_results.add(_SLOW_TAG)
+            if self.needs_reset:
+                self._raw_results.add(_RESET_TAG)
             if self.should_retry_on_failure:
                 self._raw_results.add(_RETRY_ON_FAILURE_TAG)
         return self._raw_results
@@ -275,6 +280,7 @@ class TaggedTestListParser(object):
                 if right_bracket == -1:
                     # multi-line tag set
                     tag_set = set([t for t in line[len(token):].split()])
+                    print('tag_set = ', tag_set, ' #1')
                     lineno += 1
                     while lineno <= num_lines and right_bracket == -1:
                         line = lines[lineno - 1].strip()
@@ -285,10 +291,12 @@ class TaggedTestListParser(object):
                         right_bracket = line.find(']')
                         if right_bracket == -1:
                             tag_set.update([t for t in line[1:].split()])
+                            print('tag_set = ', tag_set, ' #1a')
                             lineno += 1
                         else:
                             tag_set.update(
                                 [t for t in line[1:right_bracket].split()])
+                            print('tag_set = ', tag_set, ' #1b')
                             if line[right_bracket+1:]:
                                 raise ParseError(
                                     lineno,
@@ -302,6 +310,7 @@ class TaggedTestListParser(object):
                             'bracket')
                     tag_set = set(
                         [t for t in line[len(token):right_bracket].split()])
+                    print('tag_set = ', tag_set, ' #2')
                 if token == self.TAG_TOKEN:
                     tag_set = set([t.lower() for t in tag_set])
                     tag_sets_intersection.update(
@@ -318,6 +327,7 @@ class TaggedTestListParser(object):
                                 'the list of known values [%s]' %
                                 (', '.join(tag_set),
                                  ', '.join(VALID_RESULT_TAGS)))
+                    print('Updating: set = ', self._allowed_results, ', new = ', tag_set)
                     self._allowed_results.update(tag_set)
             elif line.startswith(self.CONFLICT_RESOLUTION):
                 value = line[len(self.CONFLICT_RESOLUTION):].lower()
@@ -402,8 +412,10 @@ class TaggedTestListParser(object):
         results = []
         retry_on_failure = False
         is_slow_test = False
+        needs_reset = False
         for r in raw_results.split():
             if r not in self._allowed_results:
+                print('wjm: set = ', self._allowed_results, ", r = ", r)
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
             try:
                 # The test expectations may contain expected results and
@@ -414,6 +426,8 @@ class TaggedTestListParser(object):
                     retry_on_failure = True
                 elif r == _SLOW_TAG:
                     is_slow_test = True
+                elif r == _RESET_TAG:
+                    needs_reset = True
                 else:
                     raise KeyError
             except KeyError:
@@ -434,6 +448,7 @@ class TaggedTestListParser(object):
         # the Runner instance which are also stored in lower case.
         return Expectation(
             reason, test, tags, results, lineno, retry_on_failure, is_slow_test,
+            needs_reset,
             self.conflict_resolution, raw_tags=raw_tags, raw_results=raw_results,
             is_glob=is_glob, trailing_comments=trailing_comments)
 
@@ -471,7 +486,7 @@ class TestExpectations(object):
         # This function will be used to validate if each tag in the tags list
         # is declared in a test expectations file. This validation will make
         # sure that the tags written in the test expectations files match tags
-        # that are generated by the test runner.
+#that are generated by the test runner.
         def _pluralize_unknown(missing):
             if len(missing) > 1:
                 return ('s %s ' % ', '.join(missing[:-1]) + 'and %s ' % missing[-1] + 'are',
@@ -505,8 +520,9 @@ class TestExpectations(object):
         try:
             parser = TaggedTestListParser(raw_data, conflict_resolution)
         except ParseError as e:
+            print('wjm: got here ...')
             return 1, str(e)
-        # TODO(crbug.com/1148060): Properly update self._tags as well using
+# TODO(crbug.com/1148060): Properly update self._tags as well using
         # self.set_tags().
         self.tag_sets = parser.tag_sets
         self._tags_conflict = tags_conflict
@@ -580,6 +596,7 @@ class TestExpectations(object):
         self._exp_tags = set()
         self._should_retry_on_failure = False
         self._is_slow_test = False
+        self._needs_reset = False
         self._trailing_comments = str()
 
         def _update_expected_results(exp):
@@ -589,6 +606,7 @@ class TestExpectations(object):
                         self._results.update(exp.results)
                     self._should_retry_on_failure |= exp.should_retry_on_failure
                     self._is_slow_test |= exp.is_slow_test
+                    self._needs_reset |= exp.needs_reset
                     self._exp_tags.update(exp.tags)
                     if exp.trailing_comments:
                         self._trailing_comments += exp.trailing_comments + '\n'
@@ -598,6 +616,7 @@ class TestExpectations(object):
                     self._results = set(exp.results)
                     self._should_retry_on_failure = exp.should_retry_on_failure
                     self._is_slow_test = exp.is_slow_test
+                    self._needs_reset = exp.needs_reset
                     self._exp_tags = set(exp.tags)
                     self._trailing_comments = exp.trailing_comments
                     if exp.reason:
@@ -612,7 +631,9 @@ class TestExpectations(object):
                     test=test, results=self._results, tags=self._exp_tags,
                     retry_on_failure=self._should_retry_on_failure,
                     conflict_resolution=self._conflict_resolution,
-                    is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
+                    is_slow_test=self._is_slow_test,
+                    needs_reset=self._needs_reset,
+                    reason=' '.join(sorted(self._reasons)),
                     trailing_comments=self._trailing_comments)
 
         # If we didn't find an exact match, check for matching globs. Match by
@@ -631,7 +652,9 @@ class TestExpectations(object):
                             test=test, results=self._results, tags=self._exp_tags,
                             retry_on_failure=self._should_retry_on_failure,
                             conflict_resolution=self._conflict_resolution,
-                            is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
+                            is_slow_test=self._is_slow_test,
+                            needs_reset=self._needs_reset,
+                            reason=' '.join(sorted(self._reasons)),
                             trailing_comments=self._trailing_comments)
 
         # Nothing matched, so by default, the test is expected to pass.
