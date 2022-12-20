@@ -22,6 +22,30 @@
       },
       "revId": "e500d8b9e1ffc5b0f33e776ee0888afb6ab0f26b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a50d0e30_f19ebf7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2022-12-20T22:52:58Z",
+      "side": 1,
+      "message": "Old patchset. Removed it from the commit message already 😊",
+      "parentUuid": "dc6e6bdc_37910504",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "e500d8b9e1ffc5b0f33e776ee0888afb6ab0f26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
