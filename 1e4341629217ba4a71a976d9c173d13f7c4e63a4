@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4979e1e_1f94e865",
+        "filename": "dashboard/dashboard/common/datastore_hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-12-20T19:40:42Z",
+      "side": 0,
+      "message": "optional: maybe comment out these lines instead",
+      "revId": "1e4341629217ba4a71a976d9c173d13f7c4e63a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
