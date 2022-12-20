@@ -16,6 +16,24 @@
       "message": "why is this needed?",
       "revId": "397152c7a7eb368690d4b56b96448d3d624b504a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d26411e_6f735483",
+        "filename": "dashboard/dashboard/templates/migrate_test_names.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2022-12-20T21:56:33Z",
+      "side": 1,
+      "message": "The nav-bar at the top was not showing up in the existing page without this added. Just sneaking in a small UI improvement 😊\nCurrent: https://chromeperf.appspot.com/migrate_test_names\nAfter adding this: https://screenshot.googleplex.com/3QCrfVNT8e8h39r",
+      "parentUuid": "be0d038b_7f0d0815",
+      "revId": "397152c7a7eb368690d4b56b96448d3d624b504a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
