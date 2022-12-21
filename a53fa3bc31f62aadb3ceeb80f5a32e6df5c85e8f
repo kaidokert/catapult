@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c4b995_3826ed69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-12-21T17:19:08Z",
+      "side": 1,
+      "message": "Hi John\n\nThis CL adds the chrome version to the webview update dumpsys dictionary. Please take a look.\n\nRegards\nRakib Hasan",
+      "revId": "a53fa3bc31f62aadb3ceeb80f5a32e6df5c85e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
