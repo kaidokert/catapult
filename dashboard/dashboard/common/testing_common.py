@@ -141,7 +141,8 @@ class TestCase(unittest.TestCase):
           self.Post(
               handler_name,
               six.moves.urllib.parse.unquote_plus(
-                  base64.b64decode(task['body']))))
+                six.ensure_str(
+                  base64.b64decode(task['body'])))))
       if recurse:
         responses.extend(
             self.ExecuteTaskQueueTasks(handler_name, task_queue_name))
