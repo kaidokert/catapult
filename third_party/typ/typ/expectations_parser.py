@@ -34,12 +34,13 @@ RESULT_TAGS = {
     ResultType.Skip: 'Skip'
 }
 
+_RESET_TAG = 'Reset'
 _SLOW_TAG = 'Slow'
 _RETRY_ON_FAILURE_TAG = 'RetryOnFailure'
 
 VALID_RESULT_TAGS = set(
     list(_EXPECTATION_MAP.keys()) +
-    [_SLOW_TAG, _RETRY_ON_FAILURE_TAG])
+    [_SLOW_TAG, _RESET_TAG, _RETRY_ON_FAILURE_TAG])
 
 
 class ConflictResolutionTypes(object):
@@ -65,7 +66,7 @@ class ParseError(Exception):
 
 class Expectation(object):
     def __init__(self, reason=None, test='*', tags=None, results=None, lineno=0,
-                 retry_on_failure=False, is_slow_test=False,
+                 retry_on_failure=False, is_slow_test=False, needs_reset=False,
                  conflict_resolution=ConflictResolutionTypes.UNION, raw_tags=None, raw_results=None,
                  is_glob=False, trailing_comments=None):
         """Constructor for expectations.
@@ -96,6 +97,7 @@ class Expectation(object):
         self._raw_results = raw_results
         self.should_retry_on_failure = retry_on_failure
         self.is_slow_test = is_slow_test
+        self.needs_reset = needs_reset
         self.conflict_resolution = conflict_resolution
         self._is_glob = is_glob
         self._trailing_comments = trailing_comments
@@ -104,6 +106,7 @@ class Expectation(object):
         return (self.reason == other.reason and self.test == other.test
                 and self.should_retry_on_failure == other.should_retry_on_failure
                 and self.is_slow_test == other.is_slow_test
+                and self.needs_reset == other.needs_reset
                 and self.tags == other.tags and self.results == other.results
                 and self.lineno == other.lineno
                 and self.trailing_comments == other.trailing_comments)
@@ -155,6 +158,8 @@ class Expectation(object):
             self._raw_results = {RESULT_TAGS[t] for t in self._results}
             if self.is_slow_test:
                 self._raw_results.add(_SLOW_TAG)
+            if self.needs_reset:
+                self._raw_results.add(_RESET_TAG)
             if self.should_retry_on_failure:
                 self._raw_results.add(_RETRY_ON_FAILURE_TAG)
         return self._raw_results
@@ -402,6 +407,7 @@ class TaggedTestListParser(object):
         results = []
         retry_on_failure = False
         is_slow_test = False
+        needs_reset = False
         for r in raw_results.split():
             if r not in self._allowed_results:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
@@ -414,6 +420,8 @@ class TaggedTestListParser(object):
                     retry_on_failure = True
                 elif r == _SLOW_TAG:
                     is_slow_test = True
+                elif r == _RESET_TAG:
+                    needs_reset = True
                 else:
                     raise KeyError
             except KeyError:
@@ -434,6 +442,7 @@ class TaggedTestListParser(object):
         # the Runner instance which are also stored in lower case.
         return Expectation(
             reason, test, tags, results, lineno, retry_on_failure, is_slow_test,
+            needs_reset,
             self.conflict_resolution, raw_tags=raw_tags, raw_results=raw_results,
             is_glob=is_glob, trailing_comments=trailing_comments)
 
@@ -580,6 +589,7 @@ class TestExpectations(object):
         self._exp_tags = set()
         self._should_retry_on_failure = False
         self._is_slow_test = False
+        self._needs_reset = False
         self._trailing_comments = str()
 
         def _update_expected_results(exp):
@@ -589,6 +599,7 @@ class TestExpectations(object):
                         self._results.update(exp.results)
                     self._should_retry_on_failure |= exp.should_retry_on_failure
                     self._is_slow_test |= exp.is_slow_test
+                    self._needs_reset |= exp.needs_reset
                     self._exp_tags.update(exp.tags)
                     if exp.trailing_comments:
                         self._trailing_comments += exp.trailing_comments + '\n'
@@ -598,6 +609,7 @@ class TestExpectations(object):
                     self._results = set(exp.results)
                     self._should_retry_on_failure = exp.should_retry_on_failure
                     self._is_slow_test = exp.is_slow_test
+                    self._needs_reset = exp.needs_reset
                     self._exp_tags = set(exp.tags)
                     self._trailing_comments = exp.trailing_comments
                     if exp.reason:
@@ -612,7 +624,9 @@ class TestExpectations(object):
                     test=test, results=self._results, tags=self._exp_tags,
                     retry_on_failure=self._should_retry_on_failure,
                     conflict_resolution=self._conflict_resolution,
-                    is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
+                    is_slow_test=self._is_slow_test,
+                    needs_reset=self._needs_reset,
+                    reason=' '.join(sorted(self._reasons)),
                     trailing_comments=self._trailing_comments)
 
         # If we didn't find an exact match, check for matching globs. Match by
@@ -631,7 +645,9 @@ class TestExpectations(object):
                             test=test, results=self._results, tags=self._exp_tags,
                             retry_on_failure=self._should_retry_on_failure,
                             conflict_resolution=self._conflict_resolution,
-                            is_slow_test=self._is_slow_test, reason=' '.join(sorted(self._reasons)),
+                            is_slow_test=self._is_slow_test,
+                            needs_reset=self._needs_reset,
+                            reason=' '.join(sorted(self._reasons)),
                             trailing_comments=self._trailing_comments)
 
         # Nothing matched, so by default, the test is expected to pass.
