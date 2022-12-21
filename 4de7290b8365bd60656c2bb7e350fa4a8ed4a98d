@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "132db1bb_6f3956c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-12-21T18:24:28Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "4de7290b8365bd60656c2bb7e350fa4a8ed4a98d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fbff349_4ec6a36a",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-12-21T18:24:28Z",
+      "side": 1,
+      "message": "I think it\u0027s clearer to use b\u0027\u0027 instead. (Don\u0027t know why the original code didn\u0027t use \u0027\u0027.)",
+      "range": {
+        "startLine": 133,
+        "startChar": 26,
+        "endLine": 133,
+        "endChar": 33
+      },
+      "revId": "4de7290b8365bd60656c2bb7e350fa4a8ed4a98d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
