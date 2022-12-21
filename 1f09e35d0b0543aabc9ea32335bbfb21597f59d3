@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c05c19c_e8dc2dfa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad49e7a8_43aaa30f",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c38a9fb_71ef9360",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-12-19T18:43:13Z",
       "side": 1,
       "message": "js style is single quotes for string literals",
+      "range": {
+        "startLine": 108,
+        "startChar": 24,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff349365_e09fb413",
+        "filename": "dashboard/dashboard/pinpoint/elements/cancel-job-dialog.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c38a9fb_71ef9360",
       "range": {
         "startLine": 108,
         "startChar": 24,
@@ -75,6 +117,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8201a695_a2661047",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/patch-job-fab.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "I gave it a go. I now define the template callback function in index-page.html. Then in this file and cancel-job-dialog,I overwrite the this.client.open_dialog function, instead of the callback. Please do check if this is \"acceptable style\".",
+      "parentUuid": "ef7f62bf_9dcd1510",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6eec5b1_154ac274",
@@ -88,6 +148,24 @@
       "writtenOn": "2022-12-19T18:43:13Z",
       "side": 1,
       "message": "same with this block, re: deduplicating the logic",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fe6fece_10f25db7",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6eec5b1_154ac274",
       "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -115,6 +193,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11661468_10d47b8c",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00120e7b_a7ea4262",
+      "range": {
+        "startLine": 118,
+        "startChar": 30,
+        "endLine": 118,
+        "endChar": 31
+      },
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "565018fd_abbc6b05",
@@ -132,6 +234,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78b35d41_e2ba701b",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "565018fd_abbc6b05",
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5a6949e_306bba42",
@@ -145,6 +265,30 @@
       "writtenOn": "2022-12-19T18:43:13Z",
       "side": 1,
       "message": "nit: trailing `;`",
+      "range": {
+        "startLine": 169,
+        "startChar": 35,
+        "endLine": 169,
+        "endChar": 36
+      },
+      "revId": "1f09e35d0b0543aabc9ea32335bbfb21597f59d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "364f9358_1e31e459",
+        "filename": "dashboard/dashboard/pinpoint/elements/navigation-bar.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-12-21T01:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5a6949e_306bba42",
       "range": {
         "startLine": 169,
         "startChar": 35,
