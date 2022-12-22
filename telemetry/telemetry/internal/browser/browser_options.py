@@ -171,15 +171,10 @@ class BrowserFinderOptions(optparse.Values):
         action='store_true',
         help='Sideload perfetto binaries from the cloud even if the device '
              'already has Perfetto installed.')
-    identity = None
-    testing_rsa = os.path.join(
-        util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
-    if os.path.exists(testing_rsa):
-      identity = testing_rsa
     group.add_option(
         '--identity',
         dest='ssh_identity',
-        default=identity,
+        default=None,
         help='The identity file to use when ssh\'ing into the ChromeOS device')
     parser.add_option_group(group)
 
