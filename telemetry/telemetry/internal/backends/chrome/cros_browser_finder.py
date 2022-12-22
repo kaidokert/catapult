@@ -273,8 +273,11 @@ def FindAllAvailableBrowsers(finder_options, device):
       logging.warning('Could not ssh into %s. Your device must be configured',
                       finder_options.remote)
       logging.warning('to allow passwordless login as root.')
+      logging.warning('fetch rsa file in chromiumos/codesearch:')
+      logging.warning('src/third_party/chromiumos-overlay/chromeos-base/')
+      logging.warning('chromeos-ssh-testkeys/files/testing_rsa')
       logging.warning('For a test-build device, pass this to your script:')
-      logging.warning('   --identity $(CHROMITE)/ssh_keys/testing_rsa')
+      logging.warning('   --identity $(testing_rsa)')
       logging.warning('')
       logging.warning('For a developer-mode device, the steps are:')
       logging.warning(' - Ensure you have an id_rsa.pub (etc) on this computer')
