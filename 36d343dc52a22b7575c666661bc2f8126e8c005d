@@ -16,6 +16,24 @@
       "message": "This CL causes several unit test failures on chromeos - see https://ci.chromium.org/ui/p/chromium/builders/try/chromeos-amd64-generic-rel/1376901/overview. Need to figure out how to make those tests work again, otherwise catapult to chromium roll will fail.",
       "revId": "36d343dc52a22b7575c666661bc2f8126e8c005d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "584296ea_052cda92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-22T22:13:48Z",
+      "side": 1,
+      "message": "Thanks, I see it\u0027s stilling fetching the ssh cred somehow, looking into it.",
+      "parentUuid": "eda04e3a_32f6baf1",
+      "revId": "36d343dc52a22b7575c666661bc2f8126e8c005d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
