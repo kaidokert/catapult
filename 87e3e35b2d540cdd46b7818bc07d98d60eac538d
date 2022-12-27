@@ -16,6 +16,23 @@
       "message": "updated unit tests.",
       "revId": "87e3e35b2d540cdd46b7818bc07d98d60eac538d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98cd0b0f_09cf1f7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-12-27T18:43:35Z",
+      "side": 1,
+      "message": "LGTM with unit tests",
+      "revId": "87e3e35b2d540cdd46b7818bc07d98d60eac538d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
