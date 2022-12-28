@@ -199,6 +199,30 @@
       },
       "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e1f553_149b7687",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-28T19:11:17Z",
+      "side": 1,
+      "message": "Yeah because the layout is different between starting a new job/ copying from an existing one(no radio group), I kind of feel old html components being put together(radio group/textbox) on the top and paper-input in the middle. But Making the textbox into a paper-input will be an easy solution to get rid of a different component, I will try this way.",
+      "parentUuid": "9940c22c_c99e0257",
+      "range": {
+        "startLine": 263,
+        "startChar": 34,
+        "endLine": 263,
+        "endChar": 47
+      },
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
