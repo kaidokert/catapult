@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39bbec4e_8232080b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-12-28T17:22:33Z",
+      "side": 1,
+      "message": "Is there a bug for this? Without more context (why do we need to change this UI?), I can at least agree that the overlapping obscured text in Wenbin\u0027s screenshots is an issue.  \n\nTo fix that, you might* want to wrap the `\u003ch2\u003e` and `\u003cp\u003e` in an intervening container `\u003cdiv class\u003d\u0027job-type-heading\u0027\u003e`, between them and the containing `\u003ctemplate\u003e` elements (or just use one `\u003cdiv\u003e` for both `\u003ctemplates\u003e` and place it between `\u003cpaper-dialog\u003e` and the two `\u003ctemplate\u003e` elements.  Then you can set flexbox on the `job-type-heading` container \u0027\u003cdiv\u003e` with something like:\n\n```\n.job-type-heading {\n    display: flex;\n    flex-direction: column;\n}\n```\n\n*Note this is just one approach. As with most things in web layout there are many possible solutions. This suggestion uses CSS flexbox, which is more modern than display:block/inline techniques, but pinpoint already contains a mix of both approaches so pretty much anything that achieves the visual result should suffice.",
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38090f3c_03aa3e9a",
