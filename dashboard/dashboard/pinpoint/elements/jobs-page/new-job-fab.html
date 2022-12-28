@@ -33,6 +33,14 @@ found in the LICENSE file.
         --paper-fab-background: white;
       }
 
+      h2 {
+        display: inline;
+      }
+
+      paper-radio-group {
+        display: block;
+      }
+
       paper-progress {
         display: block;
         width: 100%;
@@ -80,6 +88,14 @@ found in the LICENSE file.
         margin-right: 0.5em;
       }
 
+      #initial_attempt_count {
+        float: right;
+      }
+
+      #initial_attempt_count_label {
+        float: right;
+      }
+
       #statisticDropdown {
         width: 25%;
       }
@@ -100,21 +116,17 @@ found in the LICENSE file.
     <paper-dialog id="try_dialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
       <template is="dom-if" if="[[isBisectJob(comparisonMode)]]">
         <h2>Run a bisect job</h2>
+        <p style="display: inline;">
+          Narrow down a regression to a cl or set of cl's. A bisect job bisects the commit range, and looks for changes in the specified metric.
+        </p>
       </template>
       <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
         <h2>Run a try job</h2>
+        <p style="display: inline;">
+          Run an A/B experiment.
+        </p>
       </template>
       <div>
-        <template is="dom-if" if="[[isBisectJob(comparisonMode)]]">
-          <p>
-            Narrow down a regression to a cl or set of cl's. A bisect job bisects the commit range, and looks for changes in the specified metric.
-          </p>
-        </template>
-        <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
-          <p>
-            Run an A/B experiment.
-          </p>
-        </template>
         <template is="dom-if" if="[[error]]">
           <p class="error">Base and Experiment Git hashes must both be populated! If they are, this error may help: [[error]]
         </template>
@@ -149,10 +161,17 @@ found in the LICENSE file.
             </div>
 
             <template is="dom-if" if="[[!hasJob(job)]]">
-              <paper-radio-group id="comparison_mode" selected="{{comparisonMode}}">
-                <paper-radio-button name="try">Try Job</paper-radio-button>
-                <paper-radio-button name="performance">Bisect</paper-radio-button>
-              </paper-radio-group>
+                <paper-radio-group id="comparison_mode" selected="{{comparisonMode}}">
+                  <paper-radio-button name="try">Try Job</paper-radio-button>
+                  <paper-radio-button name="performance">Bisect</paper-radio-button>
+                  <input hidden="[[isBisectJob(comparisonMode)]]"
+                         id="initial_attempt_count"
+                         value="{{initial_attempt_count}}"
+                         label="Attempt Count"/>
+                  <label hidden="[[isBisectJob(comparisonMode)]]"
+                         id="initial_attempt_count_label"
+                         for="initial_attempt_count">Attempt Count: </label>
+                </paper-radio-group>
             </template>
 
             <div class="horizontal">
@@ -207,12 +226,6 @@ found in the LICENSE file.
               </div>
             </div>
 
-            <div class="horizontal" hidden="[[isBisectJob(comparisonMode)]]">
-              <paper-input name="initial_attempt_count"
-                           value="{{initial_attempt_count}}"
-                           label="Attempt Count"></paper-input>
-            </div>
-
             <div class="horizontal" hidden="[[!isBisectJob(comparisonMode)]]">
               <div class="column rightPad">
                 <div class="horizontal">
@@ -239,8 +252,16 @@ found in the LICENSE file.
               </div>
             </div>
 
-            <paper-input hidden="[[!isBisectJob(comparisonMode)]]" name="extra_test_args" value="{{extra_test_args}}" label="Extra Test Arguments (optional)"></paper-input>
-
+            <paper-input hidden="[[!isBisectJob(comparisonMode)]]"
+                         name="extra_test_args"
+                         value="{{extra_test_args}}"
+                         label="Extra Test Arguments (optional)"></paper-input>
+            <template is="dom-if" if="[[renderAttemptCountBelow(comparisonMode, job)]]">
+              <paper-input class="column rightPad"
+                           name="attempt_count"
+                           value="10"
+                           label="Attempt Count"></paper-input>
+            </template>
             <div class="divider">
               <span>Job Configuration</span>
             </div>
@@ -420,6 +441,10 @@ found in the LICENSE file.
 
       isStoryOrTagsSet(story, storyTags) {
         return story !== '' || storyTags !== '';
+      },
+
+      renderAttemptCountBelow(comparisonMode, job) {
+        return (comparisonMode !== 'performance') && (job !== null);
       },
 
       isBisectJob(comparisonMode) {
