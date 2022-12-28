@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f45d6a2_59062b74",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-28T18:18:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38090f3c_03aa3e9a",
+      "range": {
+        "startLine": 119,
+        "startChar": 18,
+        "endLine": 119,
+        "endChar": 25
+      },
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fb2b60b_120f38de",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "077d96f4_057411b0",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-28T18:18:54Z",
+      "side": 1,
+      "message": "It\u0027s the subtitle, font is ok I feel, just the layout needs a change",
+      "parentUuid": "3fb2b60b_120f38de",
+      "range": {
+        "startLine": 125,
+        "startChar": 18,
+        "endLine": 125,
+        "endChar": 25
+      },
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a92972e_db2ec2fc",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-12-28T08:19:45Z",
       "side": 1,
       "message": "The input field is in a \u0027box\u0027 like style. I think it should look the same as the exiting ones.",
+      "range": {
+        "startLine": 263,
+        "startChar": 34,
+        "endLine": 263,
+        "endChar": 47
+      },
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0a85e1_0fd07bbb",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-28T18:18:54Z",
+      "side": 1,
+      "message": "I feel it\u0027s a bit awkward to use paper-input on the top but it\u0027s good to have the same style here in the middle. What do you think @seanmccullough@google.com",
+      "parentUuid": "2a92972e_db2ec2fc",
       "range": {
         "startLine": 263,
         "startChar": 34,
