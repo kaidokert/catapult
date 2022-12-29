@@ -64,11 +64,21 @@ class CustomFormatter(logging.Formatter):
     self._creation_time = time.time()
 
   # override
+  def formatTime(self, record, datefmt=None):
+    """Format time like 14:29:50.411"""
+    ct = self.converter(record.created)
+    if datefmt:
+      return time.strftime(datefmt, ct)
+    t = time.strftime("%H:%M:%S", ct)
+    return "%s.%03d" % (t, record.msecs)
+
+  # override
   def format(self, record):
     # Can't use super() because in older Python versions logging.Formatter does
     # not inherit from object.
     msg = logging.Formatter.format(self, record)
     if 'MainThread' in msg[:19]:
       msg = msg.replace('MainThread', 'Main', 1)
-    timediff = time.time() - self._creation_time
-    return '%s %8.3fs %s' % (record.levelname[0], timediff, msg)
+    time_str = self.formatTime(record)
+    timediff = record.created - self._creation_time
+    return '%s %s %8.3fs %s' % (record.levelname[0], time_str, timediff, msg)
