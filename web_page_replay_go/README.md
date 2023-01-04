@@ -157,6 +157,20 @@ cd path/to/web_page_replay_go
 go run src/httparchive.go ls /tmp/archive.wprgo --host=example.com --full-path=/index.html
 ```
 
+## Altering an archive
+
+httparchive.go also provides methods to alter a wprgo archive. Use commands such
+as `add`, `merge` and `trim`. These will add new traffic, merge two archives to
+create a third, or trim request response pairs by host (`--host`) or path
+(`--full-path`). See `--help` for more information.
+
+E.g.
+
+```
+cd path/to/web_page_replay_go
+go run src/httparchive.go trim /tmp/archive.wprgo --host=example.com  /tmp/trimmed.wprgo
+```
+
 ## Running unit tests
 Run all tests in a specific file. Use '-v' flag to show results.
 Note: proxy_test requires more includes than just proxy.go.
