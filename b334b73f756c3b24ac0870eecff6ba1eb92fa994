@@ -16,6 +16,29 @@
       "message": "Small documentation update - PTAL?",
       "revId": "b334b73f756c3b24ac0870eecff6ba1eb92fa994",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f213592_9c503bf0",
+        "filename": "web_page_replay_go/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2023-01-05T23:33:59Z",
+      "side": 1,
+      "message": "hmm. maybe \n```shell\ncd path/to/web_page_replay_go\ngo run src/httparchive.go trim /tmp/archive.wprgo --host\u003dexample.com  /tmp/trimmed.wprgo\n```\n\nper go/g3doc-markdown#code-blocks",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 3
+      },
+      "revId": "b334b73f756c3b24ac0870eecff6ba1eb92fa994",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
