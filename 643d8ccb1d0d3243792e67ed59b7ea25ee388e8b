@@ -16,6 +16,23 @@
       "message": "Friendly ping :)",
       "revId": "643d8ccb1d0d3243792e67ed59b7ea25ee388e8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "353c6147_2e32cd3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-01-06T18:05:25Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "643d8ccb1d0d3243792e67ed59b7ea25ee388e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
