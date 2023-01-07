@@ -95,6 +95,9 @@ _MIGRATE_TEST_LOOKUP_PATTERNS = 'migrate-lookup-patterns'
 _MIGRATE_TEST_CREATE = 'migrate-test-create'
 _MIGRATE_TEST_COPY_DATA = 'migrate-test-copy-data'
 
+_ACCESS_GROUP_NAME = 'chromeperf-test-rename-access'
+_ACCESS_GROUP_URL = 'https://chrome-infra-auth.appspot.com/auth/groups/chromeperf-test-rename-access'  # pylint: disable=line-too-long
+
 
 class BadInputPatternError(Exception):
   pass
@@ -102,6 +105,24 @@ class BadInputPatternError(Exception):
 
 def MigrateTestNamesGet():
   """Displays a simple UI form to kick off migrations."""
+
+  # First let's check if the current user is a member of the authz group
+  user_email = utils.GetEmail()
+
+  if utils.IsDevAppserver():
+    is_allowed = False
+  else:
+    is_allowed = utils.IsGroupMember(user_email, _ACCESS_GROUP_NAME)
+
+  if not is_allowed:
+    # Display the unauthorized access page
+    return request_handler.RequestHandlerRenderHtml(
+        'migrate_test_names_unauthorized.html', {
+            'test_migration_group_name': _ACCESS_GROUP_NAME,
+            'test_migration_group_url': _ACCESS_GROUP_URL
+        })
+
+  # Display the migration tool page
   return request_handler.RequestHandlerRenderHtml('migrate_test_names.html', {})
 
 
@@ -115,6 +136,21 @@ def MigrateTestNamesPost():
   the parameters old_test_key and new_test_key, which should both be keys
   of TestMetadata entities in urlsafe form.
   """
+
+  # First let's check if the current user is a member of the authz group
+  user_email = utils.GetEmail()
+
+  if utils.IsDevAppserver():
+    is_allowed = True
+  else:
+    is_allowed = utils.IsGroupMember(user_email, _ACCESS_GROUP_NAME)
+
+  if not is_allowed:
+    return request_handler.RequestHandlerReportError(
+        'Unauthorized access to the test migration tool. ' +
+        'Please contact browser-perf-engprod@google.com for access.',
+        status=401)
+
   datastore_hooks.SetPrivilegedRequest(flask_flag=True)
 
   status = request.values.get('status')
@@ -155,7 +191,23 @@ if six.PY2:
 
     def get(self):
       """Displays a simple UI form to kick off migrations."""
-      self.RenderHtml('migrate_test_names.html', {})
+      user_email = utils.GetEmail()
+
+      if utils.IsDevAppserver():
+        is_allowed = True
+      else:
+        is_allowed = utils.IsGroupMember(user_email, _ACCESS_GROUP_NAME)
+
+      if not is_allowed:
+        # Display the unauthorized access page
+        return self.RenderHtml(
+            'migrate_test_names_unauthorized.html', {
+                'test_migration_group_name': _ACCESS_GROUP_NAME,
+                'test_migration_group_url': _ACCESS_GROUP_URL
+            })
+
+      # Display the migration tool page
+      return self.RenderHtml('migrate_test_names.html', {})
 
     def post(self):
       """Starts migration of old TestMetadata entity names to new ones.
@@ -167,6 +219,21 @@ if six.PY2:
       the parameters old_test_key and new_test_key, which should both be keys
       of TestMetadata entities in urlsafe form.
       """
+
+      # First let's check if the current user is a member of the authz group
+      user_email = utils.GetEmail()
+
+      if utils.IsDevAppserver():
+        is_allowed = True
+      else:
+        is_allowed = utils.IsGroupMember(user_email, _ACCESS_GROUP_NAME)
+
+      if not is_allowed:
+        self.ReportError(
+            'Unauthorized access to the test migration tool. ' +
+            'Please contact browser-perf-engprod@google.com for access.',
+            status=401)
+
       datastore_hooks.SetPrivilegedRequest()
 
       status = self.request.get('status')
