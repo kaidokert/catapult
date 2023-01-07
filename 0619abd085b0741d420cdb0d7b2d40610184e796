@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5787bd8f_0f9d19f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2023-01-07T16:19:29Z",
+      "side": 1,
+      "message": "Hi Rohan. I noticed that we pass --show-stdout when we run these tests, but the switch didn\u0027t do anything. This CL makes it do what it\u0027s advertised as doing. Have a look at https://chromium-review.googlesource.com/c/chromium/src/+/4142564 for tryruns with this CL applied. While there is a lot of redness, I think they\u0027re all pre-existing failures. WDYT? Thanks for taking a look.",
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
