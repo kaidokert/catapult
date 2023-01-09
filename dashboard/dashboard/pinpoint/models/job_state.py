@@ -80,7 +80,8 @@ class JobState(object):
 
     # A mapping from a Change to a list of Attempts on that Change.
     self._attempts = {}
-    self._initial_attempt_count = initial_attempt_count if initial_attempt_count else MIN_ATTEMPTS
+    self._initial_attempt_count = initial_attempt_count if \
+      initial_attempt_count else MIN_ATTEMPTS
 
   def PropagateJob(self, job):
     """Propagate a Job to every Quest.
@@ -243,10 +244,30 @@ class JobState(object):
     """
     differences = []
 
+    # crbug/1401821
+    # checking if b is an auto-roll commit
     def Comparison(a, b):
       if not a:
         return b
       if self._Compare(a, b) == compare.DIFFERENT:
+        deps_b = b.deps
+        if len(deps_b) > 1:
+          # reconstruct a change from commit
+          data = {}
+          if b.patch:
+            data['patch'] = b.patch.AsDict()
+          data['label'] = b.label
+          data['args'] = b.args
+          data['variant'] = b.variant
+          for commit in deps_b:
+            data_change = data.copy()
+            data_change['commits'] = [commit.AsDict()]
+            c = change_module.Change.FromDict(data_change)
+            if self._Compare(a, c) == compare.DIFFERENT:
+              differences.append((a, c))
+              return b
+          raise AssertionError("Difference found in this deps change " +
+                               str(b) + " not in its deps commits")
         differences.append((a, b))
       return b
 
