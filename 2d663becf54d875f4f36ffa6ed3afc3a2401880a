@@ -22,6 +22,30 @@
       },
       "revId": "2d663becf54d875f4f36ffa6ed3afc3a2401880a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5824fda8_9eaf21bb",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-09T21:45:59Z",
+      "side": 1,
+      "message": "If deps commits are a bit away from each other, could only part of them be in a bisect job? \n\nLike change_b, x, x, x, change_c(culprit), x, x, x, x, change_d then deps(change_a, change_b, change_c, change_d), if that could be happen, need to find change_c not change_d.",
+      "parentUuid": "44b45b0e_59b32e02",
+      "range": {
+        "startLine": 262,
+        "startChar": 10,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "2d663becf54d875f4f36ffa6ed3afc3a2401880a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
