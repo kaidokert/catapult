@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b45b0e_59b32e02",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-09T21:40:45Z",
+      "side": 1,
+      "message": "IIUC from the bug, the issue only happens when the culprit is the last commit of the auto-roll batch. Can we simply use b.deps[-1]?",
+      "range": {
+        "startLine": 262,
+        "startChar": 10,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "2d663becf54d875f4f36ffa6ed3afc3a2401880a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
