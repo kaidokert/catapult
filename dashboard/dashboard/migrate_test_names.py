@@ -95,13 +95,49 @@ _MIGRATE_TEST_LOOKUP_PATTERNS = 'migrate-lookup-patterns'
 _MIGRATE_TEST_CREATE = 'migrate-test-create'
 _MIGRATE_TEST_COPY_DATA = 'migrate-test-copy-data'
 
+_ACCESS_GROUP_NAME = 'chromeperf-test-rename-access'
+_ACCESS_GROUP_URL = 'https://chrome-infra-auth.appspot.com/auth/groups/chromeperf-test-rename-access'  # pylint: disable=line-too-long
+
 
 class BadInputPatternError(Exception):
   pass
 
 
+def IsRequestAllowed():
+  """Checks if the currently logged in user is a member of the authz group"""
+
+  if utils.IsDevAppserver():
+    is_allowed = True
+  else:
+    user_email = utils.GetEmail()
+    is_allowed = utils.IsGroupMember(user_email, _ACCESS_GROUP_NAME)
+
+  return is_allowed
+
+
+def LogRequest(request_obj):
+  user_email = utils.GetEmail()
+  request_dict = {}
+  for key in request_obj.keys():
+    request_dict[key] = request_obj.get(key)
+
+  logging.info('Test Migration request from %s. Request details:%s', user_email,
+               request_dict)
+
+
 def MigrateTestNamesGet():
   """Displays a simple UI form to kick off migrations."""
+
+  is_allowed = IsRequestAllowed()
+  if not is_allowed:
+    # Display the unauthorized access page
+    return request_handler.RequestHandlerRenderHtml(
+        'migrate_test_names_unauthorized.html', {
+            'test_migration_group_name': _ACCESS_GROUP_NAME,
+            'test_migration_group_url': _ACCESS_GROUP_URL
+        })
+
+  # Display the migration tool page
   return request_handler.RequestHandlerRenderHtml('migrate_test_names.html', {})
 
 
@@ -115,6 +151,19 @@ def MigrateTestNamesPost():
   the parameters old_test_key and new_test_key, which should both be keys
   of TestMetadata entities in urlsafe form.
   """
+
+  is_allowed = IsRequestAllowed()
+  LogRequest(request.values)
+
+  if not is_allowed:
+    user_email = utils.GetEmail()
+    logging.error('Unauthorized access: User %s', user_email)
+
+    return request_handler.RequestHandlerReportError(
+        'Unauthorized access to the test migration tool. ' +
+        'Please contact browser-perf-engprod@google.com for access.',
+        status=401)
+
   datastore_hooks.SetPrivilegedRequest(flask_flag=True)
 
   status = request.values.get('status')
@@ -155,7 +204,18 @@ if six.PY2:
 
     def get(self):
       """Displays a simple UI form to kick off migrations."""
-      self.RenderHtml('migrate_test_names.html', {})
+
+      is_allowed = IsRequestAllowed()
+      if not is_allowed:
+        # Display the unauthorized access page
+        return self.RenderHtml(
+            'migrate_test_names_unauthorized.html', {
+                'test_migration_group_name': _ACCESS_GROUP_NAME,
+                'test_migration_group_url': _ACCESS_GROUP_URL
+            })
+
+      # Display the migration tool page
+      return self.RenderHtml('migrate_test_names.html', {})
 
     def post(self):
       """Starts migration of old TestMetadata entity names to new ones.
@@ -167,34 +227,47 @@ if six.PY2:
       the parameters old_test_key and new_test_key, which should both be keys
       of TestMetadata entities in urlsafe form.
       """
-      datastore_hooks.SetPrivilegedRequest()
 
-      status = self.request.get('status')
+      is_allowed = IsRequestAllowed()
+      LogRequest(self.request)
 
-      if not status:
-        try:
-          old_pattern = self.request.get('old_pattern')
-          new_pattern = self.request.get('new_pattern')
-          _MigrateTestBegin(old_pattern, new_pattern)
-          self.RenderHtml('result.html',
-                          {'headline': 'Test name migration task started.'})
-        except BadInputPatternError as error:
-          self.ReportError('Error: %s' % str(error), status=400)
-      elif status:
-        if status == _MIGRATE_TEST_LOOKUP_PATTERNS:
-          old_pattern = self.request.get('old_pattern')
-          new_pattern = self.request.get('new_pattern')
-          _MigrateTestLookupPatterns(old_pattern, new_pattern)
-        elif status == _MIGRATE_TEST_CREATE:
-          old_test_key = ndb.Key(urlsafe=self.request.get('old_test_key'))
-          new_test_key = ndb.Key(urlsafe=self.request.get('new_test_key'))
-          _MigrateTestCreateTest(old_test_key, new_test_key)
-        elif status == _MIGRATE_TEST_COPY_DATA:
-          old_test_key = ndb.Key(urlsafe=self.request.get('old_test_key'))
-          new_test_key = ndb.Key(urlsafe=self.request.get('new_test_key'))
-          _MigrateTestCopyData(old_test_key, new_test_key)
+      if not is_allowed:
+        user_email = utils.GetEmail()
+        logging.error('Unauthorized access: User %s', user_email)
+        self.ReportError(
+            'Unauthorized access to the test migration tool. ' +
+            'Please contact browser-perf-engprod@google.com for access.',
+            status=401)
       else:
-        self.ReportError('Missing required parameters of /migrate_test_names.')
+        datastore_hooks.SetPrivilegedRequest()
+
+        status = self.request.get('status')
+
+        if not status:
+          try:
+            old_pattern = self.request.get('old_pattern')
+            new_pattern = self.request.get('new_pattern')
+            _MigrateTestBegin(old_pattern, new_pattern)
+            self.RenderHtml('result.html',
+                            {'headline': 'Test name migration task started.'})
+          except BadInputPatternError as error:
+            self.ReportError('Error: %s' % str(error), status=400)
+        elif status:
+          if status == _MIGRATE_TEST_LOOKUP_PATTERNS:
+            old_pattern = self.request.get('old_pattern')
+            new_pattern = self.request.get('new_pattern')
+            _MigrateTestLookupPatterns(old_pattern, new_pattern)
+          elif status == _MIGRATE_TEST_CREATE:
+            old_test_key = ndb.Key(urlsafe=self.request.get('old_test_key'))
+            new_test_key = ndb.Key(urlsafe=self.request.get('new_test_key'))
+            _MigrateTestCreateTest(old_test_key, new_test_key)
+          elif status == _MIGRATE_TEST_COPY_DATA:
+            old_test_key = ndb.Key(urlsafe=self.request.get('old_test_key'))
+            new_test_key = ndb.Key(urlsafe=self.request.get('new_test_key'))
+            _MigrateTestCopyData(old_test_key, new_test_key)
+        else:
+          self.ReportError(
+              'Missing required parameters of /migrate_test_names.')
 
 
 def _MigrateTestBegin(old_pattern, new_pattern):
