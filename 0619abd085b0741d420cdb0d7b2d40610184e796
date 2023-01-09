@@ -16,6 +16,47 @@
       "message": "Hi Rohan. I noticed that we pass --show-stdout when we run these tests, but the switch didn\u0027t do anything. This CL makes it do what it\u0027s advertised as doing. Have a look at https://chromium-review.googlesource.com/c/chromium/src/+/4142564 for tryruns with this CL applied. While there is a lot of redness, I think they\u0027re all pre-existing failures. WDYT? Thanks for taking a look.",
       "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fe3239_b2225dc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2023-01-09T22:40:04Z",
+      "side": 1,
+      "message": "This is a great change, but you need to be wary about the redness: \n\nfuchsia-fyi-astro and fuchsia-fyi-sherlock are expected to be passing. The fact that they\u0027re failing on cast_streaming_tests (on the same error: Error trying to read the debugging port) tells me something is missing in this CL for that particular browser.\n\nAt a minimum, those two suites should be green.",
+      "parentUuid": "5787bd8f_0f9d19f6",
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b21a0c_69896d2d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2023-01-09T22:40:04Z",
+      "side": 1,
+      "message": "There is a higher flakiness in reading the ports (I believe) due to this line here.\n\nBefore, output goes from: \n- browser process -\u003e tmp_output_file. This is where it is read for the debugging port.\n\nNow it is:\n- browser process -\u003e symbolizer (optionally, and most of the time) -\u003e tee/cat. Output is now read.\n\nCan the debugging port be read at an earlier stage (preferably directly from the browser process)?",
+      "range": {
+        "startLine": 185,
+        "startChar": 21,
+        "endLine": 185,
+        "endChar": 44
+      },
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
