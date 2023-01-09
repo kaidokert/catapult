@@ -46,6 +46,30 @@
       },
       "revId": "2d663becf54d875f4f36ffa6ed3afc3a2401880a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604c7d0a_f6f9a398",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-09T23:51:36Z",
+      "side": 1,
+      "message": "if change_d is the last change in the aoto-roll, I think pinpoint will be able to locate change_c correctly. \nJohn did the research and he would have a better idea.",
+      "parentUuid": "5824fda8_9eaf21bb",
+      "range": {
+        "startLine": 262,
+        "startChar": 10,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "2d663becf54d875f4f36ffa6ed3afc3a2401880a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
