@@ -99,6 +99,30 @@
       },
       "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf6f2a71_82274b39",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2023-01-10T12:15:46Z",
+      "side": 1,
+      "message": "hmm. i see that there\u0027s a failure on `fuchsia-fyi-atlas` that looks related to my change here. i\u0027ll keep digging. flipping back to WIP while i investigate.",
+      "parentUuid": "dcd8afb6_e08d40a2",
+      "range": {
+        "startLine": 185,
+        "startChar": 21,
+        "endLine": 185,
+        "endChar": 44
+      },
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
