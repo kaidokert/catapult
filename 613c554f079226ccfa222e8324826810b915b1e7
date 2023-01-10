@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b245ee7e_31af5dfd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T06:11:23Z",
+      "side": 1,
+      "message": "The commit message is permanent, but the stage URL is temporary. I\u0027d suggest removing this link before submitting.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 73
+      },
+      "revId": "613c554f079226ccfa222e8324826810b915b1e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed7078a_e65c76fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T06:11:23Z",
+      "side": 1,
+      "message": "This links to the top of the doc. You can use https://docs.google.com/document/d/1gOsQrmsrzMl6Mc8k-TN_R2nhtq2Wfnqp82LrD1awTgc/edit#heading\u003dh.bdeydunbqkxg instead to link directly to the Patch section.",
+      "range": {
+        "startLine": 10,
+        "startChar": 22,
+        "endLine": 10,
+        "endChar": 129
+      },
+      "revId": "613c554f079226ccfa222e8324826810b915b1e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31fce31f_65a9d6f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T06:11:23Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "613c554f079226ccfa222e8324826810b915b1e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

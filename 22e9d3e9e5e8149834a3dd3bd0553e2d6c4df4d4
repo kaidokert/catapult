@@ -295,6 +295,30 @@
       },
       "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b23a2bc_fa2c5305",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T06:11:23Z",
+      "side": 1,
+      "message": "I see. Thanks for the context.",
+      "parentUuid": "2cc27921_808bac49",
+      "range": {
+        "startLine": 263,
+        "startChar": 34,
+        "endLine": 263,
+        "endChar": 47
+      },
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
