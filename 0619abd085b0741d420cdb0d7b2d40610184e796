@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9922b191_608c30ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2023-01-10T10:52:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53fe3239_b2225dc8",
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54b21a0c_69896d2d",
@@ -49,6 +67,30 @@
       "writtenOn": "2023-01-09T22:40:04Z",
       "side": 1,
       "message": "There is a higher flakiness in reading the ports (I believe) due to this line here.\n\nBefore, output goes from: \n- browser process -\u003e tmp_output_file. This is where it is read for the debugging port.\n\nNow it is:\n- browser process -\u003e symbolizer (optionally, and most of the time) -\u003e tee/cat. Output is now read.\n\nCan the debugging port be read at an earlier stage (preferably directly from the browser process)?",
+      "range": {
+        "startLine": 185,
+        "startChar": 21,
+        "endLine": 185,
+        "endChar": 44
+      },
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd8afb6_e08d40a2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2023-01-10T10:52:55Z",
+      "side": 1,
+      "message": "ah, yes. it was broken for the `--browser\u003dcast-streaming-shell` case. the problem was that the output of `session launch` and `session show` was being directed to the temp file, thereby interfering with the normal logging. i\u0027ve changed things so that the output of those two commands is either streamed to stdout (in case of `--show-stdout`) or piped to `/dev/null` (otherwise). cast_streaming_tests are passing now on sherlock and astro. wdyt?",
+      "parentUuid": "54b21a0c_69896d2d",
       "range": {
         "startLine": 185,
         "startChar": 21,
