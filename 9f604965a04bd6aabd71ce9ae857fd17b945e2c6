@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983ebf83_ea8c652f",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T00:03:52Z",
+      "side": 1,
+      "message": "Easier to do:\n\nself._initial_attempt_count \u003d initial_attempt_count or MIN_ATTEMPTS",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 45
+      },
+      "revId": "9f604965a04bd6aabd71ce9ae857fd17b945e2c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed016845_9841171a",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T00:03:52Z",
+      "side": 1,
+      "message": "I don\u0027t believe this will work. https://paste.googleplex.com/5169915135787008 shows the commits included in each change in Pinpoint job https://pinpoint-dot-chromeperf.appspot.com/job/1319ea1eda0000 (the one mentioned in https://crbug.com/1401821). Note that the culprit change has only one commit 4e9658eb016fffe6ff9c5cdf5c69d52e02344277 (line 69). Since the deps property is simply the list of commits excluding the first one (https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/change/change.py;l\u003d115), len(deps_b) is 0 in this case.\n\nI think we\u0027ll need to modify the code that parses DEPS files, so that the proper commit is added to change b.",
+      "range": {
+        "startLine": 254,
+        "startChar": 7,
+        "endLine": 254,
+        "endChar": 27
+      },
+      "revId": "9f604965a04bd6aabd71ce9ae857fd17b945e2c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
