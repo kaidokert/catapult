@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23d9a19b_008e0939",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-10T02:45:48Z",
+      "side": 1,
+      "message": "added class",
+      "parentUuid": "30d30f16_e826402b",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "f05ae360c50da7a8adf9018a8c77a633570ae725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "179c20f1_9b9a0824",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-10T01:46:52Z",
       "side": 1,
       "message": "This doesn\u0027t seem to be used anywhere.",
+      "range": {
+        "startLine": 446,
+        "startChar": 6,
+        "endLine": 446,
+        "endChar": 29
+      },
+      "revId": "f05ae360c50da7a8adf9018a8c77a633570ae725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c5ab32b_7a0da425",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-10T02:45:48Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "179c20f1_9b9a0824",
       "range": {
         "startLine": 446,
         "startChar": 6,
