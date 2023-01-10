@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6edb473c_b88c58ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-10T18:55:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b245ee7e_31af5dfd",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 73
+      },
+      "revId": "613c554f079226ccfa222e8324826810b915b1e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ed7078a_e65c76fd",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-10T06:11:23Z",
       "side": 1,
       "message": "This links to the top of the doc. You can use https://docs.google.com/document/d/1gOsQrmsrzMl6Mc8k-TN_R2nhtq2Wfnqp82LrD1awTgc/edit#heading\u003dh.bdeydunbqkxg instead to link directly to the Patch section.",
+      "range": {
+        "startLine": 10,
+        "startChar": 22,
+        "endLine": 10,
+        "endChar": 129
+      },
+      "revId": "613c554f079226ccfa222e8324826810b915b1e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c85a68a3_a47f76cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-10T18:55:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ed7078a_e65c76fd",
       "range": {
         "startLine": 10,
         "startChar": 22,
