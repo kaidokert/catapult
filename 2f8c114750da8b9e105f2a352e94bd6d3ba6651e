@@ -16,6 +16,24 @@
       "message": "What\u0027s the context for this? There\u0027s much scattered throughout devil that I would suspect wouldn\u0027t behave properly on mac.",
       "revId": "2f8c114750da8b9e105f2a352e94bd6d3ba6651e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531e42ce_1adde476",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-01-10T22:19:40Z",
+      "side": 1,
+      "message": "This is to make devil scripts like flash_devices.py work on Mac x64 without a local patch.\nflash_devices.py works fine on my local mac. But I have not tested other scripts/fuctions.",
+      "parentUuid": "f6c5be90_6de2c639",
+      "revId": "2f8c114750da8b9e105f2a352e94bd6d3ba6651e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
