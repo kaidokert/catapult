@@ -247,6 +247,30 @@
       },
       "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecae6b7b_125f3132",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-10T01:46:52Z",
+      "side": 1,
+      "message": "I\u0027m confused by this thread of comments. The latest version is still using \u003cinput\u003e instead of \u003cpaper-input\u003e, and is visually inconsistent with other inputs on the page.",
+      "parentUuid": "81fd23b5_204868b9",
+      "range": {
+        "startLine": 263,
+        "startChar": 34,
+        "endLine": 263,
+        "endChar": 47
+      },
+      "revId": "22e9d3e9e5e8149834a3dd3bd0553e2d6c4df4d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
