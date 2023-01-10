@@ -32,5 +32,8 @@ PyCryptodome==3.14.1
 #https://pypi.org/project/pyparsing/
 pyparsing==3.0.9
 
+six==1.15.0
+
 uritemplate==3.0.1
+urllib3==1.26.6
 Werkzeug==1.0.1
