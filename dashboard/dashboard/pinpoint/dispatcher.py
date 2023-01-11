@@ -18,9 +18,12 @@ import pickle
 pickle.HIGHEST_PROTOCOL = 2
 
 import sys
+import logging
 
 from dashboard.common import utils
 from dashboard.pinpoint import handlers
+from dashboard.pinpoint.handlers import start_chrome_health
+
 
 if utils.IsRunningFlask():
 
@@ -80,6 +83,11 @@ if utils.IsRunningFlask():
   def IsolateCleanupHandler():
     return handlers.isolate.IsolateCleanupHandler()
 
+  @APP.route('/cron/start-chrome-health')
+  def StartChromeHealthHandler():
+    logging.debug('chrome health trigger handler in dispatcher')
+    return start_chrome_health.StartChromeHealthHandler()
+
   @APP.route('/api/results2/<job_id>')
   def Results2Handler(job_id):
     return handlers.results2.Results2Handler(job_id)
@@ -106,6 +114,9 @@ if utils.IsRunningFlask():
 
 else:
   import webapp2
+  logging.debug('webapp2 handlers enabled')
+
+  from dashboard.pinpoint.handlers import start_chrome_health
 
   _URL_MAPPING = [
       # Public API.
@@ -134,6 +145,7 @@ else:
       webapp2.Route(r'/cron/isolate-cleanup', handlers.IsolateCleanup),
       webapp2.Route(r'/cron/refresh-jobs', handlers.RefreshJobs),
       webapp2.Route(r'/cron/fifo-scheduler', handlers.FifoScheduler),
+      webapp2.Route(r'/cron/start-chrome-health', start_chrome_health.StartChromeHealth),
 
       # The /_ah/push-handlers/* paths have a special meaning for PubSub
       # notifications, and is treated especially by the AppEngine environment.

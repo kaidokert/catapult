@@ -76,6 +76,7 @@ if utils.IsRunningFlask():
   @api_request_handler.RequestHandlerDecoratorFactory(_CheckUser)
   def NewHandlerPost():
     # TODO(dberris): Validate the inputs based on the type of job requested.
+    logging.error('chrome health request %s', request)
     job = _CreateJob(request)
 
     # We apply the cost-based scheduling at job creation time, so that we can

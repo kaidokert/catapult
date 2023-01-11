@@ -57,6 +57,11 @@ cron:
   schedule: every 1 minutes
   target: pinpoint
 
+- description: Schedule Chrome Health jobs
+  url: /cron/start-chrome-health
+  schedule: every 24 hours
+  target: pinpoint
+
 # The backup cron job is disabled temporarily in order to check whether
 # it is responsible for increased cost on the weekends.
 # See: https://github.com/catapult-project/catapult/issues/1944

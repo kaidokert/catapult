@@ -40,6 +40,8 @@ OAUTH_SCOPES = ('https://www.googleapis.com/auth/userinfo.email',)
 OAUTH_ENDPOINTS = ['/api/', '/add_histograms', '/add_point', '/uploads']
 # testing endpoints for flask
 OAUTH_ENDPOINTS += ['/add_histograms_flask', '/add_point_flask']
+# # testing endpoints for chrome health
+OAUTH_ENDPOINTS += ['/cron/start-chrome-health']
 LEGACY_SERVICE_ACCOUNT = (
     '425761728072-pa1bs18esuhp2cp2qfa1u9vb6p1v6kfu@developer.gserviceaccount.com'
 )
@@ -101,6 +103,7 @@ def GetEmail():
     OAuthRequestError: The request was not a valid OAuth request.
     OAuthServiceFailureError: An unknown error occurred.
   """
+  logging.debug('chrome health os environment info %s', os.environ)
   request_uri = os.environ.get('PATH_INFO', '')
   if any(request_uri.startswith(e) for e in OAUTH_ENDPOINTS):
     # Prevent a CSRF whereby a malicious site posts an api request without an
