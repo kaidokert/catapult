@@ -25,6 +25,7 @@ from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import performance_bisection
 from dashboard.pinpoint.models.tasks import read_value
+
 if utils.IsRunningFlask():
   from flask import request
 
@@ -32,6 +33,9 @@ _ERROR_BUG_ID = 'Bug ID must be an integer.'
 _ERROR_TAGS_DICT = 'Tags must be a dict of key/value string pairs.'
 _ERROR_UNSUPPORTED = 'This benchmark (%s) is unsupported.'
 _ERROR_PRIORITY = 'Priority must be an integer.'
+
+_EXTRA_BROWSER_ARGS_PREFIX = '--extra-browser-args'
+_ENABLE_FEATURES_PREFIX = '--enable-features'
 
 REGULAR_TELEMETRY_TESTS = {
     'performance_webview_test_suite',
@@ -63,7 +67,6 @@ for test in SUFFIXED_REGULAR_TELEMETRY_TESTS:
   for suffix in SUFFIXES:
     REGULAR_TELEMETRY_TESTS_WITH_FALLBACKS[test + suffix] = test
 
-
 if utils.IsRunningFlask():
 
   def _CheckUser():
@@ -72,6 +75,7 @@ if utils.IsRunningFlask():
     api_auth.Authorize()
     if not utils.IsTryjobUser():
       raise api_request_handler.ForbiddenError()
+
 
   @api_request_handler.RequestHandlerDecoratorFactory(_CheckUser)
   def NewHandlerPost():
@@ -262,7 +266,30 @@ def _ParseExtraArgs(args):
       extra_args = json.loads(args)
     except ValueError:
       extra_args = shlex.split(args)
-  return extra_args
+  return _RearrangeExtraArgs(extra_args)
+
+
+def _RearrangeExtraArgs(extra_args):
+  res, tmp = [], []
+  n = len(extra_args)
+  if n == 1:  # break into 2
+    extra_args = extra_args[0].split('=')
+    n = len(extra_args)
+    if n == 1:
+      raise ValueError("Invalid extra argument(s)")
+  n //= 2
+  for i in range(n):
+    idx = 2 * i
+    if extra_args[idx] == _ENABLE_FEATURES_PREFIX:
+      tmp.append(extra_args[idx + 1])
+    else:  # reverse, put other params together
+      res.append(extra_args[idx + 1])
+      res.append(extra_args[idx])
+  for s in tmp:
+    for param in s.split(','):
+      res.append(_ENABLE_FEATURES_PREFIX + '=' + param)
+      res.append(_EXTRA_BROWSER_ARGS_PREFIX)
+  return res[::-1]
 
 
 def _ArgumentsWithConfiguration(original_arguments):
@@ -552,7 +579,7 @@ def _ValidateTags(tags):
 
   for k, v in tags_dict.items():
     if not isinstance(k, six.string_types) or \
-       not isinstance(v, six.string_types):
+        not isinstance(v, six.string_types):
       raise ValueError(_ERROR_TAGS_DICT)
 
   return tags_dict
