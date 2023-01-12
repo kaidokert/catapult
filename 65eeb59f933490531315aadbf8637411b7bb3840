@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e95136_6c0ae863",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-12T01:36:21Z",
+      "side": 1,
+      "message": "Thanks for digging into it! Just curious: does it mean the current implementation never works before?",
+      "range": {
+        "startLine": 9,
+        "startChar": 110,
+        "endLine": 9,
+        "endChar": 138
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c77f23e_8204b8ec",
+        "filename": "dashboard/dashboard/migrate_test_names_tasks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-12T01:36:21Z",
+      "side": 1,
+      "message": "nit:2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
