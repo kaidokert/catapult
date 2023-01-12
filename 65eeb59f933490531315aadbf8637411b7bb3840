@@ -88,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ff8d295_8b20a23d",
+        "filename": "dashboard/dashboard/migrate_test_names.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-01-12T23:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01c90367_c0b1349f",
+      "range": {
+        "startLine": 89,
+        "startChar": 29,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c77f23e_8204b8ec",
@@ -159,6 +183,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1086f9d7_75a00027",
+        "filename": "dashboard/dashboard/migrate_test_names_tasks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-01-12T23:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60f1097a_d8288859",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18368a0e_014fdcbe",
@@ -172,6 +220,30 @@
       "writtenOn": "2023-01-12T23:13:27Z",
       "side": 1,
       "message": "This template uses cc chrome-perf-dashboard-team@google.com, which is marked as deprecated. Suggest changing to browser-perf-engprod@google.com",
+      "range": {
+        "startLine": 18,
+        "startChar": 83,
+        "endLine": 18,
+        "endChar": 152
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4c2e0de_7a588b34",
+        "filename": "dashboard/dashboard/templates/migrate_test_names_unauthorized.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-01-12T23:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18368a0e_014fdcbe",
       "range": {
         "startLine": 18,
         "startChar": 83,
