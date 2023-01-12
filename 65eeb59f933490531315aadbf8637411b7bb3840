@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea81afa_329d6cb8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-01-12T18:23:21Z",
+      "side": 1,
+      "message": "Not really. In my last change earlier this week I moved the page to login:required instead of admin in order to allow non-admin (but elevated) users to access it. This did not cause any exceptions in the service and only returned http 302 without any logs. Before that change it worked and this fixes the issue",
+      "parentUuid": "55e95136_6c0ae863",
+      "range": {
+        "startLine": 9,
+        "startChar": 110,
+        "endLine": 9,
+        "endChar": 138
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c77f23e_8204b8ec",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-12T01:36:21Z",
       "side": 1,
       "message": "nit:2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "65eeb59f933490531315aadbf8637411b7bb3840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96ad46a0_83e93005",
+        "filename": "dashboard/dashboard/migrate_test_names_tasks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-01-12T18:23:21Z",
+      "side": 1,
+      "message": "The code is almost entirely old and only moved to a new file. Does that still apply?",
+      "parentUuid": "7c77f23e_8204b8ec",
       "range": {
         "startLine": 1,
         "startChar": 12,
