@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "567e2e0e_4cccbbd7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T18:35:01Z",
+      "side": 1,
+      "message": "I see, just need to fill in _EXTRA_BROWSER_ARGS_PREFIX if not there.",
+      "parentUuid": "23ccfdf5_a69f61e2",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 8
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bae6d825_538c8023",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 3
