@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23ccfdf5_a69f61e2",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-13T18:28:51Z",
+      "side": 1,
+      "message": "The fix doesn\u0027t handle the case where _EXTRA_BROWSER_ARGS_PREFIX is followed by some switch other than _ENABLE_FEATURES_PREFIX.",
+      "parentUuid": "ddf7f6bb_8e5a33a9",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 8
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bae6d825_538c8023",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 3
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "I am trying to resolve \"a\u003db\u003dc\" case, don\u0027t know if runner could handle that if \"b\u003dc\" is quoted or not",
       "parentUuid": "bae6d825_538c8023",
+      "range": {
+        "startLine": 285,
+        "startChar": 6,
+        "endLine": 285,
+        "endChar": 34
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d73fa9df_866828da",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-13T18:28:51Z",
+      "side": 1,
+      "message": "It should be able to handle a\u003db\u003dc.",
+      "parentUuid": "f3b9162c_bfee96c6",
       "range": {
         "startLine": 285,
         "startChar": 6,
