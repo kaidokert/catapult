@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad79ca86_98a443b7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T18:17:30Z",
+      "side": 1,
+      "message": "Nice catch, removing ele if ele \u003d\u003d _EXTRA_BROWSER_ARGS_PREFIX",
+      "parentUuid": "235a804e_1fd69930",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 8
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bae6d825_538c8023",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-13T17:58:31Z",
       "side": 1,
       "message": "Why is this necessary? Our benchmark runner can handle --foo\u003dbar format.",
+      "range": {
+        "startLine": 285,
+        "startChar": 6,
+        "endLine": 285,
+        "endChar": 34
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b9162c_bfee96c6",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T18:17:30Z",
+      "side": 1,
+      "message": "I am trying to resolve \"a\u003db\u003dc\" case, don\u0027t know if runner could handle that if \"b\u003dc\" is quoted or not",
+      "parentUuid": "bae6d825_538c8023",
       "range": {
         "startLine": 285,
         "startChar": 6,
