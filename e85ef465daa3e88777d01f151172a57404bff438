@@ -120,6 +120,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04705241_73c8a339",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T18:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "567e2e0e_4cccbbd7",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 8
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bae6d825_538c8023",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "It should be able to handle a\u003db\u003dc.",
       "parentUuid": "f3b9162c_bfee96c6",
+      "range": {
+        "startLine": 285,
+        "startChar": 6,
+        "endLine": 285,
+        "endChar": 34
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09f65b4e_329d098d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T18:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d73fa9df_866828da",
       "range": {
         "startLine": 285,
         "startChar": 6,
