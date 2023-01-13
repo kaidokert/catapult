@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3783e66_2ad2f1af",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T01:45:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60f377a0_2704e9c7",
+      "range": {
+        "startLine": 273,
+        "startChar": 2,
+        "endLine": 273,
+        "endChar": 10
+      },
+      "revId": "2b3677c955c22248786b5c1b09c945dbc0fbbaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65a404a6_0a458081",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-13T00:15:15Z",
       "side": 1,
       "message": "This won\u0027t handle cases like: [\"--foo\u003dbar\", \"--abc\u003dxyz\"].",
+      "range": {
+        "startLine": 275,
+        "startChar": 2,
+        "endLine": 275,
+        "endChar": 12
+      },
+      "revId": "2b3677c955c22248786b5c1b09c945dbc0fbbaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3afe1fa_aef98c2a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T01:45:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65a404a6_0a458081",
       "range": {
         "startLine": 275,
         "startChar": 2,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd80dad8_8dd421ed",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T01:45:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20df0886_966ec729",
+      "range": {
+        "startLine": 278,
+        "startChar": 4,
+        "endLine": 279,
+        "endChar": 51
+      },
+      "revId": "2b3677c955c22248786b5c1b09c945dbc0fbbaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f68b797_c3f5c7cd",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-01-13T00:15:15Z",
       "side": 1,
       "message": "Why reverse the parameters and then use res[::-1]?",
+      "range": {
+        "startLine": 286,
+        "startChar": 6,
+        "endLine": 287,
+        "endChar": 33
+      },
+      "revId": "2b3677c955c22248786b5c1b09c945dbc0fbbaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf618dd2_e85d1285",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T01:45:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f68b797_c3f5c7cd",
       "range": {
         "startLine": 286,
         "startChar": 6,
@@ -133,6 +229,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3946f8da_b6802caa",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T01:45:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "984333d9_423eaa7c",
+      "range": {
+        "startLine": 289,
+        "startChar": 17,
+        "endLine": 289,
+        "endChar": 29
+      },
+      "revId": "2b3677c955c22248786b5c1b09c945dbc0fbbaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea010cae_c003aec7",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-01-13T00:15:15Z",
       "side": 1,
       "message": "If there is no configuration, or if the configuration doesn\u0027t contain extra_test_args, then the extra_test_args in original_arguments is never passed to _ParseExtraArgs, and thus won\u0027t be handled by the new feature.",
+      "range": {
+        "startLine": 298,
+        "startChar": 18,
+        "endLine": 298,
+        "endChar": 36
+      },
+      "revId": "2b3677c955c22248786b5c1b09c945dbc0fbbaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f2872a9_d084e4a9",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-13T01:45:16Z",
+      "side": 1,
+      "message": "Done. Also covered bisect jobs here.",
+      "parentUuid": "ea010cae_c003aec7",
       "range": {
         "startLine": 298,
         "startChar": 18,
