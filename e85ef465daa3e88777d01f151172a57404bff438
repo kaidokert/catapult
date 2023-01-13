@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "235a804e_1fd69930",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-13T17:58:31Z",
+      "side": 1,
+      "message": "Another case to check is ele \u003d\u003d _EXTRA_BROWSER_ARGS_PREFIX, in which case both current and next item should be added to single_args. I.e., if the user specifies [\u0027--extra-browser-args\u0027, \u0027--enable-features\u003dfoo\u0027], don\u0027t add another copy of \u0027--extra-browser-args\u0027.",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 8
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae6d825_538c8023",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-13T17:58:31Z",
+      "side": 1,
+      "message": "Why is this necessary? Our benchmark runner can handle --foo\u003dbar format.",
+      "range": {
+        "startLine": 285,
+        "startChar": 6,
+        "endLine": 285,
+        "endChar": 34
+      },
+      "revId": "e85ef465daa3e88777d01f151172a57404bff438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
