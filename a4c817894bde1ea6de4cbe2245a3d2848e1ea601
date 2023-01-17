@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695daa98_be6c4fe5",
+        "filename": "infra/config/main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-17T23:57:18Z",
+      "side": 0,
+      "message": "I\u0027ll suggest making the change in recipe first to stop relying on the argument \u0027use_python3\u0027, then we can remove the usages of \u0027use_python3\u0027 here.",
+      "range": {
+        "startLine": 204,
+        "startChar": 133,
+        "endLine": 204,
+        "endChar": 144
+      },
+      "revId": "a4c817894bde1ea6de4cbe2245a3d2848e1ea601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260d74cb_8ba534b2",
+        "filename": "infra/config/main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-17T23:57:18Z",
+      "side": 0,
+      "message": "nit: remove Py3 to have the same naming conversion with the others.",
+      "range": {
+        "startLine": 210,
+        "startChar": 39,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "a4c817894bde1ea6de4cbe2245a3d2848e1ea601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
