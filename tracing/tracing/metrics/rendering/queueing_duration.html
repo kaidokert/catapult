@@ -27,9 +27,9 @@ found in the LICENSE file.
  */
 tr.exportTo('tr.metrics.rendering', function() {
   // Various tracing events.
-  const BEGIN_MAIN_FRAME_EVENT = 'ThreadProxy::BeginMainFrame';
+  const BEGIN_MAIN_FRAME_EVENT = 'ProxyMain::BeginMainFrame';
   const SEND_BEGIN_FRAME_EVENT =
-      'ThreadProxy::ScheduledActionSendBeginMainFrame';
+      'ProxyImpl::ScheduledActionSendBeginMainFrame';
 
   function getEventTimesByBeginFrameId_(thread, title, ranges) {
     const out = new Map();
