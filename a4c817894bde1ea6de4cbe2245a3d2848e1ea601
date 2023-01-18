@@ -93,6 +93,30 @@
       },
       "revId": "a4c817894bde1ea6de4cbe2245a3d2848e1ea601",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0388d8_2dce19ab",
+        "filename": "infra/config/main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-18T00:03:59Z",
+      "side": 0,
+      "message": "Yes, we can use the name without \u0027py3\u0027 but with the config of py3.",
+      "parentUuid": "043419f1_5d0351f5",
+      "range": {
+        "startLine": 210,
+        "startChar": 39,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "a4c817894bde1ea6de4cbe2245a3d2848e1ea601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
