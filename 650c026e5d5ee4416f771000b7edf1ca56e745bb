@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9caa432_8e3caf3e",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-01-18T19:40:02Z",
+      "side": 1,
+      "message": "Remove this please",
+      "revId": "650c026e5d5ee4416f771000b7edf1ca56e745bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
