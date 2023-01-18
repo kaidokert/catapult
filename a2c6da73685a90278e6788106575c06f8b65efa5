@@ -16,6 +16,29 @@
       "message": "PTAL.",
       "revId": "a2c6da73685a90278e6788106575c06f8b65efa5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9734bb_a2269f38",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-18T20:46:55Z",
+      "side": 1,
+      "message": "This endpoint is very useful for local testing, and I\u0027d recommend keeping it if possible. It is mentioned at https://chromium.googlesource.com/catapult/+/HEAD/dashboard/docs/getting-set-up.md#running-a-local-instance.",
+      "range": {
+        "startLine": 334,
+        "startChar": 5,
+        "endLine": 334,
+        "endChar": 21
+      },
+      "revId": "a2c6da73685a90278e6788106575c06f8b65efa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
