@@ -86,6 +86,30 @@
       },
       "revId": "a2c6da73685a90278e6788106575c06f8b65efa5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e66191_a7b06bda",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-18T21:37:37Z",
+      "side": 1,
+      "message": "https://cloud.google.com/appengine/docs/legacy/standard/go111/tools/local-devserver-command\n\nThe local dev_appservier does not support python 3 for now. Though, flask works in both python2 and python3. Our code should run in python2 as well. Will migrate those two handlers.",
+      "parentUuid": "bbb27771_0607471f",
+      "range": {
+        "startLine": 334,
+        "startChar": 5,
+        "endLine": 334,
+        "endChar": 21
+      },
+      "revId": "a2c6da73685a90278e6788106575c06f8b65efa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
