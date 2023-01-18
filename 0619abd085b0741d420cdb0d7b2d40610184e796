@@ -123,6 +123,30 @@
       },
       "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55131311_a7299e28",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2023-01-18T12:13:15Z",
+      "side": 1,
+      "message": "@rohpavone@chromium.org: could you take a look at the failures in https://crrev.com/c/4142564? since `fuchsia-fyi-atlas` isn\u0027t normally green, it\u0027s hard for me to see if these are new failures or the same-old-same-old. wdyt about landing this CL as-is?",
+      "parentUuid": "cf6f2a71_82274b39",
+      "range": {
+        "startLine": 185,
+        "startChar": 21,
+        "endLine": 185,
+        "endChar": 44
+      },
+      "revId": "0619abd085b0741d420cdb0d7b2d40610184e796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
