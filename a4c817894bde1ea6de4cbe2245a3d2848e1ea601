@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8567c07a_732e48ed",
+        "filename": "infra/config/main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-18T00:02:13Z",
+      "side": 0,
+      "message": "If submitted I will do in another CL",
+      "parentUuid": "695daa98_be6c4fe5",
+      "range": {
+        "startLine": 204,
+        "startChar": 133,
+        "endLine": 204,
+        "endChar": 144
+      },
+      "revId": "a4c817894bde1ea6de4cbe2245a3d2848e1ea601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "260d74cb_8ba534b2",
         "filename": "infra/config/main.star",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-17T23:57:18Z",
       "side": 0,
       "message": "nit: remove Py3 to have the same naming conversion with the others.",
+      "range": {
+        "startLine": 210,
+        "startChar": 39,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "a4c817894bde1ea6de4cbe2245a3d2848e1ea601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "043419f1_5d0351f5",
+        "filename": "infra/config/main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-18T00:02:13Z",
+      "side": 0,
+      "message": "Shall we change the name? Or py3 pipeline falls to the py2 one, data would be inconsistent.",
+      "parentUuid": "260d74cb_8ba534b2",
       "range": {
         "startLine": 210,
         "startChar": 39,
