@@ -30,6 +30,8 @@ import typ
 class RunTestsCommand(command_line.OptparseCommand):
   """Run unit tests"""
 
+
+  print("WE ARE HERE")
   usage = (
       '\n\n  ./run_tests [test_name_1 test_name_2 ...] [<options>]\n\n'
       'You can get a list of potential test names by running\n\n'
@@ -70,6 +72,8 @@ class RunTestsCommand(command_line.OptparseCommand):
                       action='append', default=[])
     parser.add_option('--disable-logging-config', action='store_true',
                       default=False, help='Configure logging (default on)')
+    parser.add_option('--use-persistent-shell', action='store_true',
+                      help='Uses a persistent shell adb connection when set.')
     parser.add_option('-v', '--verbose', action='count', dest='verbosity',
                       help='Increase verbosity level (repeat as needed)')
 
