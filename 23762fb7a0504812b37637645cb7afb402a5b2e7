@@ -16,6 +16,24 @@
       "message": "Let\u0027s leave the files in tracing/test_data unmodified, as they are real traces generated from chrome, so I wouldn\u0027t mess with them in case they end up internally inconsistent somehow. Otherwise LGTM!",
       "revId": "23762fb7a0504812b37637645cb7afb402a5b2e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f354b8d8_4d78b834",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2023-01-18T19:46:00Z",
+      "side": 1,
+      "message": "Making this unresolved as there\u0027s action item here",
+      "parentUuid": "6adc5667_133d51ac",
+      "revId": "23762fb7a0504812b37637645cb7afb402a5b2e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
