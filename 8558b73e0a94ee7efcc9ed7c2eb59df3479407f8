@@ -39,6 +39,30 @@
       },
       "revId": "8558b73e0a94ee7efcc9ed7c2eb59df3479407f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55492b10_648aabb6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1178124
+      },
+      "writtenOn": "2023-01-19T10:22:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ef62327_4a86e2ce",
+      "range": {
+        "startLine": 260,
+        "startChar": 10,
+        "endLine": 260,
+        "endChar": 16
+      },
+      "revId": "8558b73e0a94ee7efcc9ed7c2eb59df3479407f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
