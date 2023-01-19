@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0853a72_f7ec3402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-19T20:06:16Z",
+      "side": 1,
+      "message": "LGTM with comment",
+      "revId": "aab31e049fe49218babc98b577a65a401609605a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56650029_f4d8ee7e",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-19T20:06:16Z",
+      "side": 1,
+      "message": "Missing \"/\"",
+      "range": {
+        "startLine": 451,
+        "startChar": 5,
+        "endLine": 451,
+        "endChar": 20
+      },
+      "revId": "aab31e049fe49218babc98b577a65a401609605a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
