@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07ba0821_a87cd055",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-01-20T00:11:26Z",
+      "side": 1,
+      "message": "LGTM with nits",
+      "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "019d2cdf_c21bad55",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-01-20T00:11:26Z",
+      "side": 1,
+      "message": "ditto from pinpoint/dispatcher",
+      "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c8197e9_a57a0274",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-01-20T00:11:26Z",
+      "side": 1,
+      "message": "didn\u0027t know you could do this. neat.",
+      "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec39bb38_df797399",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-01-20T00:11:26Z",
+      "side": 1,
+      "message": "nit: logging.error feels more appropriate",
+      "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
