@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ea48d5_6834e6dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-20T02:55:38Z",
+      "side": 1,
+      "message": "LGTM with same nits as Leina.",
+      "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "019d2cdf_c21bad55",
@@ -65,6 +82,24 @@
       "writtenOn": "2023-01-20T00:11:26Z",
       "side": 1,
       "message": "nit: logging.error feels more appropriate",
+      "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab2e4a37_66ebc062",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-20T02:55:38Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "ec39bb38_df797399",
       "revId": "357eaef613979cb26a4dd78912f8746ba47e1fc9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
