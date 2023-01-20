@@ -16,6 +16,23 @@
       "message": "Fixing the annoying problem with tools/perf/process_perf_results.pydeps. PTAL.",
       "revId": "d8ad660ad6a02514328ccd4245f55b7fdebd9bd4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "906ad8e2_f96e1a00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-20T18:52:48Z",
+      "side": 1,
+      "message": "LGTM. Thanks for fixing this!",
+      "revId": "d8ad660ad6a02514328ccd4245f55b7fdebd9bd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
