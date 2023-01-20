@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9cd64c9_ff0cb8cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-20T06:06:43Z",
+      "side": 1,
+      "message": "Fixing the annoying problem with tools/perf/process_perf_results.pydeps. PTAL.",
+      "revId": "d8ad660ad6a02514328ccd4245f55b7fdebd9bd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
