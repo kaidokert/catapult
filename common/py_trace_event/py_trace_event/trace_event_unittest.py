@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env vpython3
 # Copyright 2014 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -32,6 +32,10 @@ class TraceEventTests(unittest.TestCase):
       finally:
         if disable:
           trace_event.trace_disable()
+
+  def child(resp):
+    # test tracing is not controllable in the child
+    resp.put(trace_event.is_tracing_controllable())
 
   def testNoImpl(self):
     orig_impl = trace_event.trace_event_impl
@@ -397,13 +401,9 @@ class TraceEventTests(unittest.TestCase):
 
   @unittest.skipIf(sys.platform == 'win32', 'crbug.com/945819')
   def testTracingControlDisabledInChildButNotInParent(self):
-    def child(resp):
-      # test tracing is not controllable in the child
-      resp.put(trace_event.is_tracing_controllable())
-
     with self._test_trace():
       q = multiprocessing.Queue()
-      p = multiprocessing.Process(target=child, args=[q])
+      p = multiprocessing.Process(target=self.child, args=[q])
       p.start()
       # test tracing is controllable in the parent
       self.assertTrue(trace_event.is_tracing_controllable())
