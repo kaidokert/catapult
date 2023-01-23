@@ -69,6 +69,7 @@ from gslib.storage_url import HaveFileUrls
 from gslib.storage_url import HaveProviderUrls
 from gslib.storage_url import StorageUrlFromString
 from gslib.storage_url import UrlsAreForSingleProvider
+from gslib.storage_url import UrlsAreMixOfBucketsAndObjects
 from gslib.third_party.storage_apitools import storage_v1_messages as apitools_messages
 from gslib.thread_message import FinalMessage
 from gslib.thread_message import MetadataMessage
@@ -92,9 +93,11 @@ from gslib.utils.parallelism_framework_util import ShouldProhibitMultiprocessing
 from gslib.utils.parallelism_framework_util import UI_THREAD_JOIN_TIMEOUT
 from gslib.utils.parallelism_framework_util import ZERO_TASKS_TO_DO_ARGUMENT
 from gslib.utils.rsync_util import RsyncDiffToApply
+from gslib.utils.shim_util import GcloudStorageCommandMixin
 from gslib.utils.system_util import GetTermLines
 from gslib.utils.system_util import IS_WINDOWS
 from gslib.utils.translation_helper import AclTranslation
+from gslib.utils.translation_helper import GetNonMetadataHeaders
 from gslib.utils.translation_helper import PRIVATE_DEFAULT_OBJ_ACL
 from gslib.wildcard_iterator import CreateWildcardIterator
 from six.moves import queue as Queue
@@ -490,7 +493,7 @@ CommandSpec = namedtuple(
     ])
 
 
-class Command(HelpProvider):
+class Command(HelpProvider, GcloudStorageCommandMixin):
   """Base class for all gsutil commands."""
 
   # Each subclass must override this with an instance of CommandSpec.
@@ -611,6 +614,7 @@ class Command(HelpProvider):
     because it will make changing the __init__ interface more painful.
     """
     # Save class values from constructor params.
+    super().__init__()
     self.command_runner = command_runner
     self.unparsed_args = args
     self.headers = headers
@@ -637,12 +641,17 @@ class Command(HelpProvider):
       for log_filter in logging_filters:
         self.logger.addFilter(log_filter)
 
+    if self.headers is not None:
+      self.non_metadata_headers = GetNonMetadataHeaders(self.headers)
+    else:
+      self.non_metadata_headers = None
+
     if self.command_spec is None:
       raise CommandException('"%s" command implementation is missing a '
                              'command_spec definition.' % self.command_name)
 
-    quiet_mode = not self.logger.isEnabledFor(logging.INFO)
-    ui_controller = UIController(quiet_mode=quiet_mode,
+    self.quiet_mode = not self.logger.isEnabledFor(logging.INFO)
+    ui_controller = UIController(quiet_mode=self.quiet_mode,
                                  dump_status_messages_file=boto.config.get(
                                      'GSUtil', 'dump_status_messages_file',
                                      None))
@@ -682,6 +691,7 @@ class Command(HelpProvider):
                                         MainThreadUIQueue(
                                             sys.stderr, ui_controller),
                                         debug=self.debug,
+                                        http_headers=self.non_metadata_headers,
                                         trace_token=self.trace_token,
                                         perf_trace_token=self.perf_trace_token,
                                         user_project=self.user_project)
@@ -725,25 +735,46 @@ class Command(HelpProvider):
                (self.command_spec.usage_synopsis, self.command_name))
     raise CommandException(message)
 
-  def ParseSubOpts(self, check_args=False):
+  def ParseSubOpts(self,
+                   check_args=False,
+                   args=None,
+                   should_update_sub_opts_and_args=True):
     """Parses sub-opt args.
 
     Args:
       check_args: True to have CheckArguments() called after parsing.
+      args: List of args. If None, self.args will be used.
+      should_update_sub_opts_and_args: True if self.sub_opts and self.args
+        should be updated with the values returned after parsing. Else return a
+        tuple of sub_opts, args returned by getopt.getopt. This is done
+        to allow this method to be called from get_gcloud_storage_args in which
+        case we do not want to update self.sub_opts and self.args.
 
-    Populates:
-      (self.sub_opts, self.args) from parsing.
-
-    Raises: RaiseInvalidArgumentException if invalid args specified.
+    Raises:
+      RaiseInvalidArgumentException: Invalid args specified.
     """
+    if args is None:
+      unparsed_args = self.args
+    else:
+      unparsed_args = args
     try:
-      self.sub_opts, self.args = getopt.getopt(
-          self.args, self.command_spec.supported_sub_args,
+      parsed_sub_opts, parsed_args = getopt.getopt(
+          unparsed_args, self.command_spec.supported_sub_args,
           self.command_spec.supported_private_args or [])
     except getopt.GetoptError:
       self.RaiseInvalidArgumentException()
-    if check_args:
-      self.CheckArguments()
+    if should_update_sub_opts_and_args:
+      self.sub_opts, self.args = parsed_sub_opts, parsed_args
+      if check_args:
+        self.CheckArguments()
+    else:
+      if check_args:
+        # This is just for sanity check. Only get_gcloud_storage_args will
+        # call this method with should_update_sub_opts_and_args=False, and it
+        # does not set check_args to True.
+        raise TypeError('Requested to check arguments'
+                        ' but sub_opts and args have not been updated.')
+      return parsed_sub_opts, parsed_args
 
   def CheckArguments(self):
     """Checks that command line arguments match the command_spec.
@@ -814,6 +845,7 @@ class Command(HelpProvider):
           logging.getLogger('dummy'),
           glob_status_queue,
           debug=self.debug,
+          http_headers=self.non_metadata_headers,
           trace_token=self.trace_token,
           perf_trace_token=self.perf_trace_token,
           user_project=self.user_project)
@@ -854,12 +886,17 @@ class Command(HelpProvider):
       CommandException if an ACL could not be set.
     """
     multi_threaded_url_args = []
+
+    urls = list(map(StorageUrlFromString, url_strs))
+
+    if (UrlsAreMixOfBucketsAndObjects(urls) and not self.recursion_requested):
+      raise CommandException('Cannot operate on a mix of buckets and objects.')
+
     # Handle bucket ACL setting operations single-threaded, because
     # our threading machinery currently assumes it's working with objects
     # (name_expansion_iterator), and normally we wouldn't expect users to need
     # to set ACLs on huge numbers of buckets at once anyway.
-    for url_str in url_strs:
-      url = StorageUrlFromString(url_str)
+    for url in urls:
       if url.IsCloudUrl() and url.IsBucket():
         if self.recursion_requested:
           # If user specified -R option, convert any bucket args to bucket
@@ -873,10 +910,15 @@ class Command(HelpProvider):
           for blr in self.WildcardIterator(
               url.url_string).IterBuckets(bucket_fields=['id']):
             name_expansion_for_url = NameExpansionResult(
-                url, False, False, blr.storage_url, None)
+                source_storage_url=url,
+                is_multi_source_request=False,
+                is_multi_top_level_source_request=False,
+                names_container=False,
+                expanded_storage_url=blr.storage_url,
+                expanded_result=None)
             acl_func(self, name_expansion_for_url)
       else:
-        multi_threaded_url_args.append(url_str)
+        multi_threaded_url_args.append(url.url_string)
 
     if len(multi_threaded_url_args) >= 1:
       name_expansion_iterator = NameExpansionIterator(
@@ -948,8 +990,8 @@ class Command(HelpProvider):
       gsutil_api: gsutil Cloud API to use for the ACL set. Must support XML
           passthrough functions.
     """
+    orig_prefer_api = gsutil_api.prefer_api
     try:
-      orig_prefer_api = gsutil_api.prefer_api
       gsutil_api.prefer_api = ApiSelector.XML
       gsutil_api.XmlPassThroughSetAcl(self.acl_arg,
                                       url,
@@ -1563,7 +1605,12 @@ class Command(HelpProvider):
     # Create a WorkerThread to handle all of the logic needed to actually call
     # the function. Note that this thread will never be started, and all work
     # is done in the current thread.
-    worker_thread = WorkerThread(None, False, user_project=self.user_project)
+    worker_thread = WorkerThread(None,
+                                 False,
+                                 headers=self.non_metadata_headers,
+                                 perf_trace_token=self.perf_trace_token,
+                                 trace_token=self.trace_token,
+                                 user_project=self.user_project)
     args_iterator = iter(args_iterator)
     # Count of sequential calls that have been made. Used for producing
     # suggestion to use gsutil -m.
@@ -1718,6 +1765,9 @@ class Command(HelpProvider):
                    gsutil_api_map=self.gsutil_api_map,
                    debug=self.debug,
                    status_queue=glob_status_queue,
+                   headers=self.non_metadata_headers,
+                   perf_trace_token=self.perf_trace_token,
+                   trace_token=self.trace_token,
                    user_project=self.user_project)
 
     if process_count > 1:  # Handle process pool creation.
@@ -1762,6 +1812,9 @@ class Command(HelpProvider):
                        gsutil_api_map=self.gsutil_api_map,
                        debug=self.debug,
                        status_queue=glob_status_queue,
+                       headers=self.non_metadata_headers,
+                       perf_trace_token=self.perf_trace_token,
+                       trace_token=self.trace_token,
                        user_project=self.user_project)
         finally:
           worker_checking_level_lock.release()
@@ -1904,6 +1957,9 @@ class Command(HelpProvider):
         gsutil_api_map=self.gsutil_api_map,
         debug=self.debug,
         status_queue=status_queue,
+        headers=self.non_metadata_headers,
+        perf_trace_token=self.perf_trace_token,
+        trace_token=self.trace_token,
         user_project=self.user_project)
 
     num_enqueued = 0
@@ -2193,6 +2249,9 @@ class WorkerPool(object):
                gsutil_api_map=None,
                debug=0,
                status_queue=None,
+               headers=None,
+               perf_trace_token=None,
+               trace_token=None,
                user_project=None):
     # In the multi-process case, a worker sempahore is required to ensure
     # even work distribution.
@@ -2204,6 +2263,9 @@ class WorkerPool(object):
     #
     # Thus, exactly one of task_queue or worker_semaphore must be provided.
     assert (worker_semaphore is None) != (task_queue is None)
+    self.headers = headers
+    self.perf_trace_token = perf_trace_token
+    self.trace_token = trace_token
     self.user_project = user_project
 
     self.task_queue = task_queue or _NewThreadsafeQueue()
@@ -2217,6 +2279,9 @@ class WorkerPool(object):
           gsutil_api_map=gsutil_api_map,
           debug=debug,
           status_queue=status_queue,
+          headers=self.headers,
+          perf_trace_token=self.perf_trace_token,
+          trace_token=self.trace_token,
           user_project=self.user_project)
       self.threads.append(worker_thread)
       worker_thread.start()
@@ -2251,6 +2316,9 @@ class WorkerThread(threading.Thread):
                gsutil_api_map=None,
                debug=0,
                status_queue=None,
+               headers=None,
+               perf_trace_token=None,
+               trace_token=None,
                user_project=None):
     """Initializes the worker thread.
 
@@ -2278,6 +2346,9 @@ class WorkerThread(threading.Thread):
     self.daemon = True
     self.cached_classes = {}
     self.shared_vars_updater = _SharedVariablesUpdater()
+    self.headers = headers
+    self.perf_trace_token = perf_trace_token
+    self.trace_token = trace_token
     self.user_project = user_project
 
     # Note that thread_gsutil_api is not initialized in the sequential
@@ -2285,12 +2356,16 @@ class WorkerThread(threading.Thread):
     # to retrieve the main thread's CloudApiDelegator in that case.
     self.thread_gsutil_api = None
     if bucket_storage_uri_class and gsutil_api_map:
-      self.thread_gsutil_api = CloudApiDelegator(bucket_storage_uri_class,
-                                                 gsutil_api_map,
-                                                 logger,
-                                                 status_queue,
-                                                 debug=debug,
-                                                 user_project=self.user_project)
+      self.thread_gsutil_api = CloudApiDelegator(
+          bucket_storage_uri_class,
+          gsutil_api_map,
+          logger,
+          status_queue,
+          debug=debug,
+          http_headers=self.headers,
+          perf_trace_token=self.perf_trace_token,
+          trace_token=self.trace_token,
+          user_project=self.user_project)
 
   @CaptureThreadStatException
   def _StartBlockedTime(self):

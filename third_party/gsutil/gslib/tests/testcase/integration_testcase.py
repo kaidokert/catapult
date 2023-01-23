@@ -115,9 +115,10 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
   GROUP_TEST_ADDRESS = 'gs-discussion@googlegroups.com'
   GROUP_TEST_ID = (
       '00b4903a97d097895ab58ef505d535916a712215b79c3e54932c2eb502ad97f5')
-  USER_TEST_ADDRESS = 'gsutiltestuser@gmail.com'
+  USER_TEST_ADDRESS = 'gsutiltesting123@gmail.com'
+  # This is the legacy CanonicalID for the above email.
   USER_TEST_ID = (
-      '00b4903a97b201e40d2a5a3ddfe044bb1ab79c75b2e817cbe350297eccc81c84')
+      '00b4903a97f0baa2680740f5adb90b2dcf9c8b878abd84ba1bdba653de949619')
   DOMAIN_TEST = 'google.com'
   # No one can create this bucket without owning the gmail.com domain, and we
   # won't create this bucket, so it shouldn't exist.
@@ -142,6 +143,9 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
     self.kms_api = KmsApi(logging.getLogger())
 
     self.multiregional_buckets = util.USE_MULTIREGIONAL_BUCKETS
+
+    self._use_gcloud_storage = config.getbool('GSUtil', 'use_gcloud_storage',
+                                              False)
 
     if util.RUN_S3_TESTS:
       self.nonexistent_bucket_name = (
@@ -399,7 +403,9 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       encryption_key: expected CSEK key.
     """
     with SetBotoConfigForTest([('GSUtil', 'prefer_api', 'json')]):
-      stdout = self.RunGsUtil(['stat', object_uri_str], return_stdout=True)
+      stdout = self.RunGsUtil(['stat', object_uri_str],
+                              return_stdout=True,
+                              force_gsutil=True)
     self.assertIn(
         Base64Sha256FromBase64EncryptionKey(encryption_key).decode('ascii'),
         stdout, 'Object %s did not use expected encryption key with hash %s. '
@@ -418,7 +424,9 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       encryption_key: expected CMEK key.
     """
     with SetBotoConfigForTest([('GSUtil', 'prefer_api', 'json')]):
-      stdout = self.RunGsUtil(['stat', object_uri_str], return_stdout=True)
+      stdout = self.RunGsUtil(['stat', object_uri_str],
+                              return_stdout=True,
+                              force_gsutil=True)
     self.assertRegexpMatches(stdout, r'KMS key:\s+%s' % encryption_key)
 
   def AssertObjectUnencrypted(self, object_uri_str):
@@ -431,7 +439,9 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       object_uri_str: uri for the object.
     """
     with SetBotoConfigForTest([('GSUtil', 'prefer_api', 'json')]):
-      stdout = self.RunGsUtil(['stat', object_uri_str], return_stdout=True)
+      stdout = self.RunGsUtil(['stat', object_uri_str],
+                              return_stdout=True,
+                              force_gsutil=True)
     self.assertNotIn('Encryption key SHA256', stdout)
     self.assertNotIn('KMS key', stdout)
 
@@ -939,6 +949,7 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
     self.assertEqual(expected_value, value)
 
   def VerifyPublicAccessPreventionValue(self, bucket_uri, value):
+    # TODO: Delete this method in favor of VerifyCommandGet
     stdout = self.RunGsUtil(['publicaccessprevention', 'get',
                              suri(bucket_uri)],
                             return_stdout=True)
@@ -949,6 +960,15 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
         'pap_val')
     self.assertEqual(str(value), public_access_prevention_val)
 
+  def VerifyCommandGet(self, bucket_uri, command, expected):
+    """Verifies if <command> get returns the expected value."""
+    stdout = self.RunGsUtil([command, 'get', suri(bucket_uri)],
+                            return_stdout=True)
+    output_regex = re.compile('{}: (?P<actual>.+)$'.format(suri(bucket_uri)))
+    output_match = re.search(output_regex, stdout)
+    actual = output_match.group('actual')
+    self.assertEqual(actual, expected)
+
   def RunGsUtil(self,
                 cmd,
                 return_status=False,
@@ -956,7 +976,8 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
                 return_stderr=False,
                 expected_status=0,
                 stdin=None,
-                env_vars=None):
+                env_vars=None,
+                force_gsutil=False):
     """Runs the gsutil command.
 
     Args:
@@ -970,6 +991,8 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       stdin: A string of data to pipe to the process as standard input.
       env_vars: A dictionary of variables to extend the subprocess's os.environ
                 with.
+      force_gsutil: If True, will always run the command using gsutil,
+        irrespective of the value provided for use_gcloud_storage.
 
     Returns:
       If multiple return_* values were specified, this method returns a tuple
@@ -978,67 +1001,13 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       If only one return_* value was specified, that value is returned directly
       rather than being returned within a 1-tuple.
     """
-    cmd = [
-        gslib.GSUTIL_PATH, '--testexceptiontraces', '-o',
-        'GSUtil:default_project_id=' + PopulateProjectId()
-    ] + cmd
-    if stdin is not None:
-      if six.PY3:
-        if not isinstance(stdin, bytes):
-          stdin = stdin.encode(UTF8)
-      else:
-        stdin = stdin.encode(UTF8)
-    # checking to see if test was invoked from a par file (bundled archive)
-    # if not, add python executable path to ensure correct version of python
-    # is used for testing
-    cmd = [str(sys.executable)] + cmd if not InvokedFromParFile() else cmd
-    env = os.environ.copy()
-    if env_vars:
-      env.update(env_vars)
-    # Ensuring correct text types
-    envstr = dict()
-    for k, v in six.iteritems(env):
-      envstr[six.ensure_str(k)] = six.ensure_str(v)
-    cmd = [six.ensure_str(part) for part in cmd]
+    full_gsutil_command = util.GetGsutilCommand(cmd, force_gsutil=force_gsutil)
+    process = util.GetGsutilSubprocess(full_gsutil_command, env_vars=env_vars)
 
-    # executing command - the setsid allows us to kill the process group below
-    # if the execution times out.  With python 2.7, there's no other way to
-    # stop the execution (p.kill() doesn't work).  Since setsid is not available
-    # on Windows, we just deal with the occasional timeouts on Windows.
-    preexec_fn = os.setsid if hasattr(os, 'setsid') else None
-    p = subprocess.Popen(cmd,
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE,
-                         stdin=subprocess.PIPE,
-                         env=envstr,
-                         preexec_fn=preexec_fn)
-    comm_kwargs = {'input': stdin}
-
-    def Kill():
-      os.killpg(os.getpgid(p.pid), signal.SIGKILL)
-
-    if six.PY3:
-      # TODO(b/135936279): Make this number configurable in .boto
-      comm_kwargs['timeout'] = 180
-    else:
-      timer = threading.Timer(180, Kill)
-      timer.start()
-
-    c_out = p.communicate(**comm_kwargs)
-
-    if not six.PY3:
-      timer.cancel()
-
-    try:
-      c_out = [six.ensure_text(output) for output in c_out]
-    except UnicodeDecodeError:
-      c_out = [
-          six.ensure_text(output, locale.getpreferredencoding(False))
-          for output in c_out
-      ]
+    c_out = util.CommunicateWithTimeout(process, stdin=stdin)
     stdout = c_out[0].replace(os.linesep, '\n')
     stderr = c_out[1].replace(os.linesep, '\n')
-    status = p.returncode
+    status = process.returncode
 
     if expected_status is not None:
       cmd = map(six.ensure_text, cmd)
@@ -1165,7 +1134,10 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       # variables.
       with SetEnvironmentForTest({
           'DEVSHELL_CLIENT_PORT': None,
-          'AWS_SECRET_ACCESS_KEY': '_'
+          'AWS_SECRET_ACCESS_KEY': '_',
+          'AWS_ACCESS_KEY_ID': '_',
+          # If shim is used, gcloud might attempt to load credentials.
+          'CLOUDSDK_AUTH_DISABLE_CREDENTIALS': 'True',
       }):
         yield
 
@@ -1274,22 +1246,3 @@ class GsUtilIntegrationTestCase(base.GsUtilTestCase):
       contents: String of the new contents of the object
     """
     return storage_uri.set_contents_from_string(contents)
-
-
-class KmsTestingResources(object):
-  """Constants for KMS resource names to be used in integration testing."""
-  KEYRING_LOCATION = 'us-central1'
-  # Since KeyRings and their child resources cannot be deleted, we minimize the
-  # number of resources created by using a hard-coded keyRing name.
-  KEYRING_NAME = 'keyring-for-gsutil-integration-tests'
-
-  # Used by tests where we don't need to alter the state of a cryptoKey and/or
-  # its IAM policy bindings once it's initialized the first time.
-  CONSTANT_KEY_NAME = 'key-for-gsutil-integration-tests'
-  CONSTANT_KEY_NAME2 = 'key-for-gsutil-integration-tests2'
-  # Pattern used for keys that should only be operated on by one tester at a
-  # time. Because multiple integration test invocations can run at the same
-  # time, we want to minimize the risk of them operating on each other's key,
-  # while also not creating too many one-time-use keys (as they cannot be
-  # deleted). Tests should fill in the %d entries with a digit between 0 and 9.
-  MUTABLE_KEY_NAME_TEMPLATE = 'cryptokey-for-gsutil-integration-tests-%d%d%d'
