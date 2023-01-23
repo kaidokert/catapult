@@ -16,6 +16,24 @@
       "message": "could we get the same result by setting use_adc\u003dTrue by default here? https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/utils.py;l\u003d614\n\nalso, is there any reason to even keep the non-adc code paths around?",
       "revId": "f729fc161a4d05a4686ab6c6f78adfc76e281fad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2713ac_d47d95b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-01-23T23:33:42Z",
+      "side": 1,
+      "message": "Eventually we will get there. This CL puts a few services in the ADC mode first so that I can verify the account access for these services in prod. Once all the services have their ADC access verified, I will remove the non-ADC paths. Doing it this way allows migrating services one at a time rather than all at once",
+      "parentUuid": "6eaa537c_2ef75e1e",
+      "revId": "f729fc161a4d05a4686ab6c6f78adfc76e281fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
