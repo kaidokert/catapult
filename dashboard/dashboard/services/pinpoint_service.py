@@ -13,7 +13,7 @@ from dashboard.common import datastore_hooks
 from dashboard.common import utils
 from dashboard.services import request
 
-_PINPOINT_URL = 'https://pinpoint-dot-chromeperf.appspot.com'
+_PINPOINT_URL = 'https://ashwintest-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com'
 
 
 def NewJob(params):
