@@ -64,16 +64,16 @@ _DETAILED_HELP_TEXT = ("""
 
 
 <B>DESCRIPTION</B>
-  The ``gsutil config`` command applies to users who have installed gsutil as a
-  standalone tool. If you installed gsutil via the Cloud SDK, ``gsutil config``
-  fails unless you are specifically using the ``-a`` flag or have configured
-  gcloud to not pass its managed credentials to gsutil (via the command ``gcloud
-  config set pass_credentials_to_gsutil false``). For all other use cases, Cloud
-  SDK users should use the ``gcloud auth`` group of commands instead, which
-  configures OAuth2 credentials that gcloud implicitly passes to gsutil at
-  runtime. To check if you are using gsutil from the Cloud SDK or as a
-  stand-alone, use ``gsutil version -l`` and in the output look for "using cloud
-  sdk".
+  The ``gsutil config`` command applies to users who have legacy stand-alone
+  installations of gsutil. If you installed gsutil via the Cloud SDK, ``gsutil
+  config`` fails unless you are specifically using the ``-a`` flag or have
+  configured gcloud to not pass its managed credentials to gsutil (via the
+  command ``gcloud config set pass_credentials_to_gsutil false``). For all other
+  use cases, Cloud SDK users should use the ``gcloud auth`` group of commands
+  instead, which configures OAuth2 credentials that gcloud implicitly passes to
+  gsutil at runtime. To check if you are using gsutil from the Cloud SDK or as a
+  legacy stand-alone, use ``gsutil version -l`` and in the output look for
+  "using cloud sdk".
 
   The ``gsutil config`` command obtains access credentials for Google Cloud
   Storage and writes a `boto/gsutil configuration file
@@ -128,8 +128,9 @@ _DETAILED_HELP_TEXT = ("""
 
 <B>CONFIGURING SERVICE ACCOUNT CREDENTIALS</B>
   Service accounts are useful for authenticating on behalf of a service or
-  application (as opposed to a user). If you use gsutil as a standalone tool,
-  you configure credentials for service accounts using the ``-e`` option:
+  application (as opposed to a user). If you use gsutil as a legacy
+  stand-alone tool, you configure credentials for service accounts using the
+  ``-e`` option:
 
     gsutil config -e
 
@@ -528,6 +529,14 @@ content_language = en
 # If this option is not supplied, those tests will be skipped.
 #test_notification_url = https://yourdomain.url/notification-endpoint
 
+# Used in conjunction with --stet flag on cp command for end-to-end encryption.
+# STET binary path. If not specified, gsutil checks PATH for "stet".
+#stet_binary_path = <Path to binary "/usr/local/bin/stet">
+
+# STET config path. If not specified, the STET binary will run with its default
+# settings.
+#stet_config_path = ~/.config/my_config.yaml
+
 """ % {
     'hash_fast_else_fail': CHECK_HASH_IF_FAST_ELSE_FAIL,
     'hash_fast_else_skip': CHECK_HASH_IF_FAST_ELSE_SKIP,
@@ -865,6 +874,17 @@ class ConfigCommand(Command):
                                                ' ')
         self._CheckPrivateKeyFilePermissions(gs_service_key_file)
       elif cred_type == CredTypes.OAUTH2_USER_ACCOUNT:
+        if not system_util.InvokedViaCloudSdk():
+          sys.stdout.write(
+              '\n********************************************************\n' +
+              textwrap.fill(
+                  "WARNING: The following authentication flow will fail on "
+                  "or after Febuary 1 2023. Tokens generated before this date "
+                  "will continue to work. To authenticate with your user "
+                  "account after this date, install gsutil via Cloud SDK and "
+                  "run \"gcloud auth login\"",
+                  width=55) +
+              '\n********************************************************\n\n')
         oauth2_client = oauth2_helper.OAuth2ClientFromBotoConfig(
             boto.config, cred_type)
         try:

@@ -20,13 +20,21 @@ from __future__ import division
 from __future__ import unicode_literals
 
 import os
+import sys
 
+from gslib.exception import CommandException
 from gslib import storage_url
 from gslib.exception import InvalidUrlError
-import gslib.tests.testcase as testcase
+from gslib.tests.testcase import base
+
+from unittest import mock
+
+_UNSUPPORTED_DOUBLE_WILDCARD_WARNING_TEXT = (
+    '** behavior is undefined if directly preceeded or followed by'
+    ' with characters other than / in the cloud and {} locally.'.format(os.sep))
 
 
-class TestStorageUrl(testcase.GsUtilUnitTestCase):
+class TestStorageUrl(base.GsUtilTestCase):
   """Unit tests for storage URLs."""
 
   def setUp(self):
@@ -68,3 +76,98 @@ class TestStorageUrl(testcase.GsUtilUnitTestCase):
 
     with self.assertRaises(InvalidUrlError):
       storage_url.StorageUrlFromString('gs://////')
+
+  @mock.patch.object(sys.stderr, 'write', autospec=True)
+  def test_does_not_warn_if_supported_double_wildcard(self, mock_stderr):
+    storage_url.StorageUrlFromString('**')
+    storage_url.StorageUrlFromString('gs://bucket/**')
+
+    storage_url.StorageUrlFromString('**' + os.sep)
+    storage_url.StorageUrlFromString('gs://bucket/**/')
+
+    storage_url.StorageUrlFromString(os.sep + '**')
+    storage_url.StorageUrlFromString('gs://bucket//**')
+
+    storage_url.StorageUrlFromString(os.sep + '**' + os.sep)
+
+    mock_stderr.assert_not_called()
+
+  @mock.patch.object(sys.stderr, 'write', autospec=True)
+  def test_warns_if_unsupported_double_wildcard(self, mock_stderr):
+    storage_url.StorageUrlFromString('abc**')
+    storage_url.StorageUrlFromString('gs://bucket/object**')
+
+    storage_url.StorageUrlFromString('**abc')
+    storage_url.StorageUrlFromString('gs://bucket/**object')
+
+    storage_url.StorageUrlFromString('abc**' + os.sep)
+    storage_url.StorageUrlFromString('gs://bucket/object**/')
+
+    storage_url.StorageUrlFromString(os.sep + '**abc')
+    storage_url.StorageUrlFromString('gs://bucket//**object')
+
+    storage_url.StorageUrlFromString(os.sep + '**' + os.sep + 'abc**')
+    storage_url.StorageUrlFromString('gs://bucket/**/abc**')
+
+    storage_url.StorageUrlFromString('abc**' + os.sep + 'abc')
+    storage_url.StorageUrlFromString('gs://bucket/abc**/abc')
+
+    storage_url.StorageUrlFromString(os.sep + 'abc**' + os.sep + '**')
+    storage_url.StorageUrlFromString('gs://bucket/abc**/**')
+
+    storage_url.StorageUrlFromString('gs://b**')
+    storage_url.StorageUrlFromString('gs://**b')
+
+    mock_stderr.assert_has_calls(
+        [mock.call(_UNSUPPORTED_DOUBLE_WILDCARD_WARNING_TEXT)] * 14)
+
+  def test_urls_are_mix_of_objects_and_buckets_is_false_for_all_buckets(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b1', 'gs://b2']))
+    self.assertFalse(storage_url.UrlsAreMixOfBucketsAndObjects(urls))
+
+  def test_urls_are_mix_of_objects_and_buckets_is_false_for_all_objects(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b/o', 'gs://b/p']))
+    self.assertFalse(storage_url.UrlsAreMixOfBucketsAndObjects(urls))
+
+  def test_urls_are_mix_of_objects_and_buckets_is_true_for_a_mix(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b/o', 'gs://b']))
+    self.assertTrue(storage_url.UrlsAreMixOfBucketsAndObjects(urls))
+
+  def test_urls_are_mix_of_objects_and_buckets_is_null_for_invalid(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b', 'f:o@o:o']))
+    self.assertIsNone(storage_url.UrlsAreMixOfBucketsAndObjects(urls))
+
+  def test_urls_raise_error_if_bucket_followed_by_object(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b1', 'gs://b/o']))
+    with self.assertRaisesRegex(
+        CommandException, 'Cannot operate on a mix of buckets and objects.'):
+      storage_url.RaiseErrorIfUrlsAreMixOfBucketsAndObjects(
+          urls, recursion_requested=False)
+
+  def test_urls_raise_error_if_object_followed_by_bucket(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b/o', 'gs://b']))
+    with self.assertRaisesRegex(
+        CommandException, 'Cannot operate on a mix of buckets and objects.'):
+      storage_url.RaiseErrorIfUrlsAreMixOfBucketsAndObjects(
+          urls, recursion_requested=False)
+
+  def test_accepts_mix_of_objects_and_buckets_if_recursion_requested(self):
+    # No error raised.
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b1', 'gs://b/o']))
+    storage_url.RaiseErrorIfUrlsAreMixOfBucketsAndObjects(
+        urls, recursion_requested=True)
+
+  def test_not_raising_error_if_multiple_objects_without_recursion(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b/o', 'gs://b/p']))
+    storage_url.RaiseErrorIfUrlsAreMixOfBucketsAndObjects(
+        urls, recursion_requested=False)
+
+  def test_not_raising_error_if_multiple_buckets_with_recursion(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b/o', 'gs://b/p']))
+    storage_url.RaiseErrorIfUrlsAreMixOfBucketsAndObjects(
+        urls, recursion_requested=True)
+
+  def test_not_raising_error_if_multiple_objects_with_recursion(self):
+    urls = list(map(storage_url.StorageUrlFromString, ['gs://b/o', 'gs://b/p']))
+    storage_url.RaiseErrorIfUrlsAreMixOfBucketsAndObjects(
+        urls, recursion_requested=True)

@@ -56,10 +56,12 @@ from gslib.utils.copy_helper import Manifest
 from gslib.utils.copy_helper import SkipUnsupportedObjectError
 from gslib.utils.posix_util import ConvertModeToBase8
 from gslib.utils.posix_util import DeserializeFileAttributesFromObjectMetadata
-from gslib.utils.posix_util import InitializeUserGroups
+from gslib.utils.posix_util import InitializePreservePosixData
 from gslib.utils.posix_util import POSIXAttributes
 from gslib.utils.posix_util import SerializeFileAttributesToObjectMetadata
 from gslib.utils.posix_util import ValidateFilePermissionAccess
+from gslib.utils.shim_util import GcloudStorageFlag
+from gslib.utils.shim_util import GcloudStorageMap
 from gslib.utils.system_util import GetStreamFromFileUrl
 from gslib.utils.system_util import StdinIterator
 from gslib.utils.system_util import StdinIteratorCls
@@ -88,9 +90,15 @@ _DESCRIPTION_TEXT = """
     gsutil cp *.txt gs://my-bucket
 
   You can also download data from a bucket. The following command downloads
-  all text files from a bucket to your current directory:
+  all text files from the top-level of a bucket to your current directory:
 
     gsutil cp gs://my-bucket/*.txt .
+
+  You can use the ``-n`` option to prevent overwriting the content of
+  existing files. The following example downloads text files from a bucket
+  without clobbering the data in your directory:
+
+    gsutil cp -n gs://my-bucket/*.txt .
 
   Use the ``-r`` option to copy an entire directory tree.
   For example, to upload the directory tree ``dir``:
@@ -119,8 +127,8 @@ _DESCRIPTION_TEXT = """
   NOTE: Shells like ``bash`` and ``zsh`` sometimes attempt to expand
   wildcards in ways that can be surprising. You may also encounter issues when
   attempting to copy files whose names contain wildcard characters. For more
-  details about these issues, see "Potentially Surprising Behavior When Using Wildcards"
-  under "gsutil help wildcards".
+  details about these issues, see `Wildcard behavior considerations
+  <https://cloud.google.com/storage/docs/wildcards#surprising-behavior>`_.
 """
 
 _NAME_CONSTRUCTION_TEXT = """
@@ -147,7 +155,8 @@ _NAME_CONSTRUCTION_TEXT = """
 
   Note that in the above example, the '**' wildcard matches all names
   anywhere under ``dir``. The wildcard '*' matches names just one level deep. For
-  more details, see "gsutil help wildcards".
+  more details, see `URI wildcards
+  <https://cloud.google.com/storage/docs/wildcards#surprising-behavior>`_.
 
   The same rules apply for uploads and downloads: recursive copies of buckets and
   bucket subdirectories produce a mirrored filename structure, while copying
@@ -243,7 +252,7 @@ _COPY_IN_CLOUD_TEXT = """
 
     gsutil cp gs://bucket1/obj gs://bucket2
 
-   To also copy noncurrent versions, use the ``-A`` flag:
+  To also copy noncurrent versions, use the ``-A`` flag:
 
     gsutil cp -A gs://bucket1/obj gs://bucket2
 
@@ -275,8 +284,8 @@ _CHECKSUM_VALIDATION_TEXT = """
     Copying file://obj [Content-Type=text/plain]...
     Uploading   gs://your-bucket/obj:                                182 b/182 B
 
-    If the checksums don't match, the service rejects the upload and
-    gsutil prints a message like:
+  If the checksums don't match, the service rejects the upload and
+  gsutil prints a message like:
 
     BadRequestException: 400 Provided MD5 hash "VgyllJgiiaRAbyUUIqDMmw=="
     doesn't match calculated MD5 hash "7gyllJgiiaRAbyUUIqDMmw==".
@@ -323,31 +332,15 @@ _RETRY_HANDLING_TEXT = """
 
 _RESUMABLE_TRANSFERS_TEXT = """
 <B>RESUMABLE TRANSFERS</B>
-  gsutil automatically performs a resumable upload whenever you use the ``cp``
-  command to upload an object that is larger than 8 MiB. If your upload is
-  interrupted, you can restart the upload by running the same ``cp`` command that
-  you used to start the upload. If your upload includes multiple files, you should
-  use the ``-n`` flag when restarting the upload in order to prevent re-uploading
-  files that have already completed successfully. You can adjust the minimum size
-  for performing resumable uploads by changing the ``resumable_threshold``
-  parameter in the boto configuration file.
+  gsutil automatically resumes interrupted downloads and interrupted `resumable
+  uploads <https://cloud.google.com/storage/docs/resumable-uploads#gsutil>`_,
+  except when performing streaming transfers. In the case of an interrupted
+  download, a partially downloaded temporary file is visible in the destination
+  directory with the suffix ``_.gstmp`` in its name. Upon completion, the
+  original file is deleted and replaced with the downloaded contents.
 
-  Until the upload has completed successfully, it is not visible at the destination
-  object and does not supersede any existing object the upload is intended to
-  replace. However, `parallel composite uploads
-  <https://cloud.google.com/storage/docs/uploads-downloads#parallel-composite-uploads>`_
-  may leave temporary component objects in place during the upload process.
-
-  Similarly, gsutil automatically performs resumable downloads using standard
-  HTTP Range GET operations whenever you use the ``cp`` command, unless the
-  destination is a stream. In this case, a partially downloaded temporary file
-  is visible in the destination directory. Upon completion, the original
-  file is deleted and replaced with the downloaded contents.
-
-  Resumable uploads and downloads store state information in files under
-  ~/.gsutil, named by the destination object or file. If you attempt to resume a
-  transfer from a machine with a different directory, the transfer starts
-  over from scratch.
+  Resumable transfers store state information in files under
+  ~/.gsutil, named by the destination object or file.
 
   See "gsutil help prod" for details on using resumable transfers
   in production.
@@ -355,65 +348,37 @@ _RESUMABLE_TRANSFERS_TEXT = """
 
 _STREAMING_TRANSFERS_TEXT = """
 <B>STREAMING TRANSFERS</B>
-  Use '-' in place of src_url or dst_url to perform a streaming
-  transfer. For example:
-
-    long_running_computation | gsutil cp - gs://my-bucket/obj
+  Use '-' in place of src_url or dst_url to perform a `streaming transfer
+  <https://cloud.google.com/storage/docs/streaming>`_.
 
   Streaming uploads using the `JSON API
   <https://cloud.google.com/storage/docs/request-endpoints#gsutil>`_ are buffered
-  in memory part-way back into the file and can thus retry in the event of network
-  or service problems.
+  in memory part-way back into the file and can thus sometimes resume in the event
+  of network or service problems.
 
-  Streaming transfers using the XML API do not support resumable
-  uploads or downloads. If you have a large amount of data to upload or download,
-  over 100 MiB for example, we recommend that you write the data to a local file and
-  copy that file rather than streaming it.
-
-  CAUTION: When performing a streaming transfer to or from Cloud Storage,
-  neither Cloud Storage nor gsutil compute a checksum. If you require data
-  validation, use a non-streaming transfer, which performs integrity checking
-  automatically.
-
-  NOTE: Streaming transfers are not allowed when the top-level gsutil ``-m`` flag
-  is used.
+  gsutil does not support resuming streaming uploads using the XML API or
+  resuming streaming downloads for either JSON or XML. If you have a large amount
+  of data to transfer in these cases, we recommend that you write the data to a
+  local file and copy that file rather than streaming it.
 """
 
 _SLICED_OBJECT_DOWNLOADS_TEXT = """
 <B>SLICED OBJECT DOWNLOADS</B>
-  gsutil uses HTTP Range GET requests to perform "sliced" downloads in parallel
-  when downloading large objects from Cloud Storage. This means that disk
-  space for the temporary download destination file is pre-allocated and
-  byte ranges (slices) within the file are downloaded in parallel. Once all
-  slices have completed downloading, the temporary file is renamed to the
-  destination file. No additional local disk space is required for this
-  operation.
-
-  This feature is only available for Cloud Storage objects because it
-  requires a fast composable checksum (CRC32C) to verify the
-  data integrity of the slices. Because sliced object downloads depend on CRC32C,
-  they require a compiled crcmod on the machine performing the download. If compiled
-  crcmod is not available, a non-sliced object download is performed instead.
-
-  NOTE: Since sliced object downloads cause multiple writes to occur at various
-  locations on disk, this mechanism can degrade performance for disks with slow
-  seek times, especially for large numbers of slices. While the default number
-  of slices is set small to avoid this problem, you can disable sliced object
-  download if necessary by setting the "sliced_object_download_threshold"
-  variable in the ``.boto`` config file to 0.
-
-
+  gsutil can automatically use ranged ``GET`` requests to perform downloads in
+  parallel for large files being downloaded from Cloud Storage. See `sliced object
+  download documentation
+  <https://cloud.google.com/storage/docs/sliced-object-downloads>`_
+  for a complete discussion.
 """
 
 _PARALLEL_COMPOSITE_UPLOADS_TEXT = """
 <B>PARALLEL COMPOSITE UPLOADS</B>
-
   gsutil can automatically use
   `object composition <https://cloud.google.com/storage/docs/composite-objects>`_
   to perform uploads in parallel for large, local files being uploaded to
-  Cloud Storage. See the `Uploads and downloads documentation
-  <https://cloud.google.com/storage/docs/uploads-downloads#parallel-composite-uploads>`_
-  for a complete discussion.
+  Cloud Storage. See the `parallel composite uploads documentation
+  <https://cloud.google.com/storage/docs/parallel-composite-uploads>`_ for a
+  complete discussion.
 """
 
 _CHANGING_TEMP_DIRECTORIES_TEXT = """
@@ -519,8 +484,9 @@ _OPTIONS_TEXT = """
                  uploaded objects retain the ``Content-Type`` and name of the
                  original files.
 
-                 Note that if you want to use the top-level ``-m`` option to
-                 parallelize copies along with the ``-j/-J`` options, your
+                 Note that if you want to use `the top-level ``-m`` option
+                 <https://cloud.google.com/storage/docs/gsutil/addlhelp/GlobalCommandLineOptions>`_
+                 to parallelize copies along with the ``-j/-J`` options, your
                  performance may be bottlenecked by the
                  "max_upload_compression_buffer_size" boto config option,
                  which is set to 2 GiB by default. You can change this
@@ -629,8 +595,8 @@ _OPTIONS_TEXT = """
                  use these URLs to safely make concurrent upload requests, because
                  Cloud Storage refuses to perform an update if the current
                  object version doesn't match the version-specific URL. See
-                 `Generation numbers and preconditions
-                 <https://cloud.google.com/storage/docs/generations-preconditions>`_
+                 `generation numbers
+                 <https://cloud.google.com/storage/docs/metadata#generation-number>`_
                  for more details.
 
   -z <ext,...>   Applies gzip content-encoding to any file upload whose
@@ -679,6 +645,9 @@ _OPTIONS_TEXT = """
                  CAUTION: If some of the source files don't compress well, such
                  as binary data, using this option may result in files taking up
                  more space in the cloud than they would if left uncompressed.
+
+  --stet         If the STET binary can be found in boto or PATH, cp will
+                 use the split-trust encryption tool for end-to-end encryption.
 """
 
 _DETAILED_HELP_TEXT = '\n\n'.join([
@@ -699,6 +668,30 @@ _DETAILED_HELP_TEXT = '\n\n'.join([
 ])
 
 CP_SUB_ARGS = 'a:AcDeIL:MNnpPrRs:tUvz:Zj:J'
+# May be used by mv or rsync.
+GENERIC_COPY_COMMAND_SHIM_FLAG_MAP = {
+    '-A': GcloudStorageFlag('--all-versions'),
+    '-a': GcloudStorageFlag('--predefined-acl'),
+    '-c': GcloudStorageFlag('--continue-on-error'),
+    '-D': GcloudStorageFlag('--daisy-chain'),
+    '-e': GcloudStorageFlag('--ignore-symlinks'),
+    '-I': GcloudStorageFlag('--read-paths-from-stdin'),
+    '-J': GcloudStorageFlag('--gzip-in-flight-all'),
+    '-j': GcloudStorageFlag('--gzip-in-flight'),
+    '-L': GcloudStorageFlag('--manifest-path'),
+    '-n': GcloudStorageFlag('--no-clobber'),
+    '-P': GcloudStorageFlag('--preserve-posix'),
+    '-p': GcloudStorageFlag('--preserve-acl'),
+    '-s': GcloudStorageFlag('--storage-class'),
+    '-v': GcloudStorageFlag('--print-created-message'),
+    '-Z': GcloudStorageFlag('--gzip-local-all'),
+    '-z': GcloudStorageFlag('--gzip-local'),
+}
+# Adds recursion flags.
+CP_SHIM_FLAG_MAP = {
+    k: v for k, v in list(GENERIC_COPY_COMMAND_SHIM_FLAG_MAP.items()) +
+    [('-r', GcloudStorageFlag('-r')), ('-R', GcloudStorageFlag('-r'))]
+}
 
 
 def _CopyFuncWrapper(cls, args, thread_state=None):
@@ -756,7 +749,7 @@ class CpCommand(Command):
       gs_default_api=ApiSelector.JSON,
       # Unfortunately, "private" args are the only way to support non-single
       # character flags.
-      supported_private_args=['testcallbackfile='],
+      supported_private_args=['stet', 'testcallbackfile='],
       argparse_arguments=[
           CommandArgument.MakeZeroOrMoreCloudOrFileURLsArgument(),
       ],
@@ -769,6 +762,12 @@ class CpCommand(Command):
       help_one_line_summary='Copy files and objects',
       help_text=_DETAILED_HELP_TEXT,
       subcommand_help_text={},
+  )
+
+  # TODO(b/206151615) Add mappings for remaining flags.
+  gcloud_storage_map = GcloudStorageMap(
+      gcloud_command=['alpha', 'storage', 'cp'],
+      flag_map=CP_SHIM_FLAG_MAP,
   )
 
   # pylint: disable=too-many-statements
@@ -817,21 +816,13 @@ class CpCommand(Command):
         exp_src_url.url_string):
       return
 
-    if copy_helper_opts.perform_mv:
-      if copy_object_info.names_container:
-        # Use recursion_requested when performing name expansion for the
-        # directory mv case so we can determine if any of the source URLs are
-        # directories (and then use cp -r and rm -r to perform the move, to
-        # match the behavior of Linux mv (which when moving a directory moves
-        # all the contained files).
-        self.recursion_requested = True
-        # Disallow wildcard src URLs when moving directories, as supporting it
-        # would make the name transformation too complex and would also be
-        # dangerous (e.g., someone could accidentally move many objects to the
-        # wrong name, or accidentally overwrite many objects).
-        if ContainsWildcard(src_url.url_string):
-          raise CommandException('The mv command disallows naming source '
-                                 'directories using wildcards')
+    if copy_helper_opts.perform_mv and copy_object_info.names_container:
+      # Use recursion_requested when performing name expansion for the
+      # directory mv case so we can determine if any of the source URLs are
+      # directories (and then use cp -r and rm -r to perform the move, to
+      # match the behavior of Linux mv (which when moving a directory moves
+      # all the contained files).
+      self.recursion_requested = True
 
     if (copy_object_info.exp_dst_url.IsFileUrl() and
         not os.path.exists(copy_object_info.exp_dst_url.object_name) and
@@ -848,6 +839,7 @@ class CpCommand(Command):
         exp_src_url,
         src_url_names_container,
         have_multiple_srcs,
+        copy_object_info.is_multi_top_level_source_request,
         copy_object_info.exp_dst_url,
         copy_object_info.have_existing_dst_container,
         self.recursion_requested,
@@ -908,6 +900,35 @@ class CpCommand(Command):
     try:
       if copy_helper_opts.use_manifest:
         self.manifest.Initialize(exp_src_url.url_string, dst_url.url_string)
+
+      if (self.recursion_requested and
+          copy_object_info.exp_dst_url.object_name and dst_url.IsFileUrl()):
+
+        # exp_dst_url is the wildcard-expanded path passed by the user:
+        #   exp_dst_url => ~/dir
+        #   container => /usr/name/dir
+        container = os.path.abspath(copy_object_info.exp_dst_url.object_name)
+
+        # dst_url holds the complete path of the object's destination:
+        #   dst_url => /usr/name/dir/../file.txt
+        #   abspath => /usr/name/file.txt
+        #
+        # Taking the common path of this and container yields: /usr/name,
+        # which does not start with container when the inclusion of '..' strings
+        # results in a copy outside of the container.
+        if not os.path.commonpath([
+            container, os.path.abspath(dst_url.object_name)
+        ]).startswith(container):
+          self.logger.warn(
+              'Skipping copy of source URL %s because it would be copied '
+              'outside the expected destination directory: %s.' %
+              (exp_src_url, container))
+          if copy_helper_opts.use_manifest:
+            self.manifest.SetResult(
+                exp_src_url.url_string, 0, 'skip',
+                'Would have copied outside the destination directory.')
+          return
+
       _, bytes_transferred, result_url, md5 = copy_helper.PerformCopy(
           self.logger,
           exp_src_url,
@@ -1086,6 +1107,9 @@ class CpCommand(Command):
         copy_helper_opts.daisy_chain,
     )
 
+    copy_helper.TriggerReauthForDestinationProviderIfNecessary(
+        dst_url, self.gsutil_api, self.parallel_operations)
+
     seek_ahead_iterator = None
     # Cannot seek ahead with stdin args, since we can only iterate them
     # once without buffering in memory.
@@ -1241,7 +1265,7 @@ class CpCommand(Command):
           preserve_acl = True
         elif o == '-P':
           self.preserve_posix_attrs = True
-          InitializeUserGroups()
+          InitializePreservePosixData()
         elif o == '-r' or o == '-R':
           self.recursion_requested = True
         elif o == '-s':
@@ -1256,6 +1280,8 @@ class CpCommand(Command):
         elif o == '-Z':
           gzip_local = True
           gzip_arg_all = GZIP_ALL_FILES
+        elif o == '--stet':
+          self.use_stet = True
 
     if preserve_acl and canned_acl:
       raise CommandException(

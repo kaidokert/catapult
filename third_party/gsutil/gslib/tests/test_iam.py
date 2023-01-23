@@ -21,7 +21,9 @@ from __future__ import unicode_literals
 
 from collections import defaultdict
 import json
+import os
 
+from gslib.commands import iam
 from gslib.exception import CommandException
 from gslib.project_id import PopulateProjectId
 import gslib.tests.testcase as testcase
@@ -29,6 +31,7 @@ from gslib.tests.testcase.integration_testcase import SkipForS3
 from gslib.tests.testcase.integration_testcase import SkipForXML
 from gslib.tests.util import GenerationFromURI as urigen
 from gslib.tests.util import SetBotoConfigForTest
+from gslib.tests.util import SetEnvironmentForTest
 from gslib.tests.util import unittest
 from gslib.third_party.storage_apitools import storage_v1_messages as apitools_messages
 from gslib.utils.constants import UTF8
@@ -39,6 +42,11 @@ from gslib.utils.iam_helper import DiffBindings
 from gslib.utils.iam_helper import IsEqualBindings
 from gslib.utils.iam_helper import PatchBindings
 from gslib.utils.retry_util import Retry
+
+from six import add_move, MovedModule
+
+add_move(MovedModule('mock', 'mock', 'unittest.mock'))
+from six.moves import mock
 
 bvle = apitools_messages.Policy.BindingsValueListEntry
 
@@ -84,6 +92,30 @@ def gen_binding(role, members=None, condition=None):
   if condition:
     binding['condition'] = condition
   return [binding]
+
+
+def patch_binding(policy, role, new_policy):
+  """Returns a patched Python object representation of a Policy.
+
+  Given replaces the original role:members binding in policy with new_policy.
+
+  Args:
+    policy: Python dict representation of a Policy instance.
+    role: An IAM policy role (e.g. "roles/storage.objectViewer"). Fully
+          specified in BindingsValueListEntry.
+    new_policy: A Python dict representation of a Policy instance, with a
+                single BindingsValueListEntry entry.
+
+  Returns:
+    A Python dict representation of the patched IAM Policy object.
+  """
+  bindings = [
+      b for b in policy.get('bindings', []) if b.get('role', '') != role
+  ]
+  bindings.extend(new_policy)
+  policy = dict(policy)
+  policy['bindings'] = bindings
+  return policy
 
 
 class TestIamIntegration(testcase.GsUtilIntegrationTestCase):
@@ -380,6 +412,22 @@ class TestIamHelpers(testcase.GsUtilUnitTestCase):
     self.assertEquals(len(bindings), 1)
     self.assertIn(bvle(members=['allUsers'], role='roles/storage.a'), bindings)
 
+  def test_removing_project_convenience_groups(self):
+    """Tests that project convenience roles can be removed."""
+    (_, bindings) = bstt(False, 'projectViewer:123424:admin')
+    self.assertEquals(len(bindings), 1)
+    self.assertIn(
+        bvle(members=['projectViewer:123424'], role='roles/storage.admin'),
+        bindings)
+    (_, bindings) = bstt(False, 'projectViewer:123424')
+    self.assertEquals(len(bindings), 1)
+    self.assertIn(bvle(members=['projectViewer:123424'], role=''), bindings)
+
+  def test_adding_project_convenience_groups(self):
+    """Tests that project convenience roles cannot be added."""
+    with self.assertRaises(CommandException):
+      bstt(True, 'projectViewer:123424:admin')
+
   def test_invalid_input(self):
     """Tests invalid input handling."""
     with self.assertRaises(CommandException):
@@ -388,8 +436,6 @@ class TestIamHelpers(testcase.GsUtilUnitTestCase):
       bstt(True, 'non_valid_type:id:role')
     with self.assertRaises(CommandException):
       bstt(True, 'user:r')
-    with self.assertRaises(CommandException):
-      bstt(True, 'projectViewer:123424:admin')
     with self.assertRaises(CommandException):
       bstt(True, 'deleted:user')
     with self.assertRaises(CommandException):
@@ -435,6 +481,27 @@ class TestIamCh(TestIamIntegration):
                             return_stderr=True,
                             expected_status=1)
     self.assertIn('CommandException', stderr)
+
+  def test_path_mix_of_buckets_and_objects(self):
+    """Tests expected failure if both buckets and objects are provided."""
+    stderr = self.RunGsUtil([
+        'iam', 'ch',
+        '%s:%s' % (self.user, IAM_BUCKET_READ_ROLE_ABBREV), self.bucket.uri,
+        self.object.uri
+    ],
+                            return_stderr=True,
+                            expected_status=1)
+    self.assertIn('CommandException', stderr)
+
+  def test_path_file_url(self):
+    """Tests expected failure is caught when a file url is provided."""
+    stderr = self.RunGsUtil([
+        'iam', 'ch',
+        '%s:%s' % (self.user, IAM_BUCKET_READ_ROLE_ABBREV), 'file://somefile'
+    ],
+                            return_stderr=True,
+                            expected_status=1)
+    self.assertIn('AttributeError', stderr)
 
   def test_patch_single_grant_single_bucket(self):
     """Tests granting single role."""
@@ -581,6 +648,27 @@ class TestIamCh(TestIamIntegration):
         return_stderr=True,
         expected_status=1)
     self.assertIn('not supported', stderr)
+
+  def test_patch_remove_disallowed_binding_type(self):
+    """Tests that we can remove project convenience values."""
+    # Set up the bucket to include a disallowed member which we can then remove.
+    disallowed_member = 'projectViewer:%s' % PopulateProjectId()
+    policy_file_path = self.CreateTempFile(contents=json.dumps(
+        patch_binding(
+            json.loads(self.bucket_iam_string), IAM_OBJECT_READ_ROLE,
+            gen_binding(IAM_OBJECT_READ_ROLE, members=[disallowed_member
+                                                      ]))).encode(UTF8))
+    self.RunGsUtil(['iam', 'set', policy_file_path, self.bucket.uri])
+    # Confirm the disallowed member was actually added.
+    iam_string = self.RunGsUtil(['iam', 'get', self.bucket.uri],
+                                return_stdout=True)
+    self.assertHas(iam_string, disallowed_member, IAM_OBJECT_READ_ROLE)
+    # Use iam ch to remove the disallowed member.
+    self.RunGsUtil(['iam', 'ch', '-d', disallowed_member, self.bucket.uri])
+    # Confirm the disallowed member was actually removed.
+    iam_string = self.RunGsUtil(['iam', 'get', self.bucket.uri],
+                                return_stdout=True)
+    self.assertHasNo(iam_string, disallowed_member, IAM_OBJECT_READ_ROLE)
 
   def test_patch_multiple_objects(self):
     """Tests IAM patch against multiple objects."""
@@ -742,29 +830,6 @@ class TestIamCh(TestIamIntegration):
 class TestIamSet(TestIamIntegration):
   """Integration tests for iam set command."""
 
-  def _patch_binding(self, policy, role, new_policy):
-    """Returns a patched Python object representation of a Policy.
-
-    Given replaces the original role:members binding in policy with new_policy.
-
-    Args:
-      policy: Python dict representation of a Policy instance.
-      role: An IAM policy role (e.g. "roles/storage.objectViewer"). Fully
-            specified in BindingsValueListEntry.
-      new_policy: A Python dict representation of a Policy instance, with a
-                  single BindingsValueListEntry entry.
-
-    Returns:
-      A Python dict representation of the patched IAM Policy object.
-    """
-    bindings = [
-        b for b in policy.get('bindings', []) if b.get('role', '') != role
-    ]
-    bindings.extend(new_policy)
-    policy = dict(policy)
-    policy['bindings'] = bindings
-    return policy
-
   # TODO(iam-beta): Replace gen_binding, _patch_binding with generators from
   # iam_helper.
   def setUp(self):
@@ -796,7 +861,7 @@ class TestIamSet(TestIamIntegration):
     # Using the existing bucket's policy, make an altered policy that allows
     # allUsers to be "legacyBucketReader"s. Some tests will later apply this
     # policy.
-    self.new_bucket_iam_policy = self._patch_binding(
+    self.new_bucket_iam_policy = patch_binding(
         json.loads(self.bucket_iam_string), IAM_BUCKET_READ_ROLE,
         self.public_bucket_read_binding)
     self.new_bucket_iam_path = self.CreateTempFile(
@@ -812,8 +877,8 @@ class TestIamSet(TestIamIntegration):
         contents=json.dumps(self.new_bucket_policy_with_conditions_policy))
 
     # Create an object to fetch its policy, used as a base for other policies.
-    tmp_object = self.CreateObject(contents='foobar')
-    self.object_iam_string = self.RunGsUtil(['iam', 'get', tmp_object.uri],
+    self.object = self.CreateObject(contents='foobar')
+    self.object_iam_string = self.RunGsUtil(['iam', 'get', self.object.uri],
                                             return_stdout=True)
     self.old_object_iam_path = self.CreateTempFile(
         contents=self.object_iam_string.encode(UTF8))
@@ -821,7 +886,7 @@ class TestIamSet(TestIamIntegration):
     # Using the existing object's policy, make an altered policy that allows
     # allUsers to be "legacyObjectReader"s. Some tests will later apply this
     # policy.
-    self.new_object_iam_policy = self._patch_binding(
+    self.new_object_iam_policy = patch_binding(
         json.loads(self.object_iam_string), IAM_OBJECT_READ_ROLE,
         self.public_object_read_binding)
     self.new_object_iam_path = self.CreateTempFile(
@@ -841,6 +906,24 @@ class TestIamSet(TestIamIntegration):
           return_stderr=True)
       self.assertIn('Estimated work for this command: objects: 1\n', stderr)
 
+  def test_set_mix_of_buckets_and_objects(self):
+    """Tests that failure is thrown when buckets and objects are provided."""
+
+    stderr = self.RunGsUtil([
+        'iam', 'set', self.new_object_iam_path, self.bucket.uri, self.object.uri
+    ],
+                            return_stderr=True,
+                            expected_status=1)
+    self.assertIn('CommandException', stderr)
+
+  def test_set_file_url(self):
+    """Tests that failure is thrown when a file url is provided."""
+    stderr = self.RunGsUtil(
+        ['iam', 'set', self.new_object_iam_path, 'file://somefile'],
+        return_stderr=True,
+        expected_status=1)
+    self.assertIn('AttributeError', stderr)
+
   def test_set_invalid_iam_bucket(self):
     """Ensures invalid content returns error on input check."""
     # TODO(b/135780661): Remove retry after bug resolved
@@ -850,7 +933,9 @@ class TestIamSet(TestIamIntegration):
       stderr = self.RunGsUtil(['iam', 'set', inpath, self.bucket.uri],
                               return_stderr=True,
                               expected_status=1)
-      self.assertIn('ArgumentException', stderr)
+      error_message = ('JSONDecodeError'
+                       if self._use_gcloud_storage else 'ArgumentException')
+      self.assertIn(error_message, stderr)
 
     # TODO(b/135780661): Remove retry after bug resolved
     @Retry(AssertionError, tries=3, timeout_secs=1)
@@ -860,7 +945,9 @@ class TestIamSet(TestIamIntegration):
           ['iam', 'set', 'nonexistent/path', self.bucket.uri],
           return_stderr=True,
           expected_status=1)
-      self.assertIn('ArgumentException', stderr)
+      error_message = ('No such file or directory'
+                       if self._use_gcloud_storage else 'ArgumentException')
+      self.assertIn(error_message, stderr)
 
     _Check1()
     _Check2()
@@ -870,13 +957,17 @@ class TestIamSet(TestIamIntegration):
     stderr = self.RunGsUtil(['iam', 'get', self.nonexistent_bucket_name],
                             return_stderr=True,
                             expected_status=1)
-    self.assertIn('CommandException', stderr)
+    error_message = ('AttributeError'
+                     if self._use_gcloud_storage else 'CommandException')
+    self.assertIn(error_message, stderr)
 
     stderr = self.RunGsUtil(
         ['iam', 'get', 'gs://%s' % self.nonexistent_bucket_name],
         return_stderr=True,
         expected_status=1)
-    self.assertIn('BucketNotFoundException', stderr)
+    error_message = ('not found'
+                     if self._use_gcloud_storage else 'BucketNotFoundException')
+    self.assertIn(error_message, stderr)
 
     # N.B.: The call to wildcard_iterator.WildCardIterator here will invoke
     # ListBucket, which only promises eventual consistency. We use @Retry here
@@ -888,7 +979,9 @@ class TestIamSet(TestIamIntegration):
       stderr = self.RunGsUtil(['iam', 'get', 'gs://*'],
                               return_stderr=True,
                               expected_status=1)
-      self.assertIn('CommandException', stderr)
+      error_message = ('The specified bucket is not valid'
+                       if self._use_gcloud_storage else 'CommandException')
+      self.assertIn(error_message, stderr)
 
     _Check()
 
@@ -959,6 +1052,7 @@ class TestIamSet(TestIamIntegration):
 
     set_iam_string = self.RunGsUtil(['iam', 'get', self.bucket.uri],
                                     return_stdout=True)
+
     self.RunGsUtil([
         'iam', 'set', '-e',
         json.loads(set_iam_string)['etag'], self.old_bucket_iam_path,
@@ -1006,7 +1100,9 @@ class TestIamSet(TestIamIntegration):
     ],
                             return_stderr=True,
                             expected_status=1)
-    self.assertIn('ArgumentException', stderr)
+    error_message = ('DecodeError'
+                     if self._use_gcloud_storage else 'ArgumentException')
+    self.assertIn(error_message, stderr)
 
   def test_set_mismatched_etag(self):
     """Tests setting mismatched etag raises an error."""
@@ -1024,7 +1120,9 @@ class TestIamSet(TestIamIntegration):
     ],
                             return_stderr=True,
                             expected_status=1)
-    self.assertIn('PreconditionException', stderr)
+    error_message = ('pre-conditions you specified did not hold'
+                     if self._use_gcloud_storage else 'PreconditionException')
+    self.assertIn(error_message, stderr)
 
   def _create_multiple_objects(self):
     """Creates two versioned objects and return references to all versions.
@@ -1152,7 +1250,9 @@ class TestIamSet(TestIamIntegration):
                             expected_status=1)
 
     # The program has exited due to a bucket lookup 404.
-    self.assertIn('BucketNotFoundException', stderr)
+    error_message = ('not found'
+                     if self._use_gcloud_storage else 'BucketNotFoundException')
+    self.assertIn(error_message, stderr)
     set_iam_string = self.RunGsUtil(['iam', 'get', bucket.uri],
                                     return_stdout=True)
     set_iam_string2 = self.RunGsUtil(['iam', 'get', bucket2.uri],
@@ -1184,7 +1284,9 @@ class TestIamSet(TestIamIntegration):
                             expected_status=1)
 
     # The program asserts that an error has occured (due to 404).
-    self.assertIn('CommandException', stderr)
+    error_message = ('not found'
+                     if self._use_gcloud_storage else 'CommandException')
+    self.assertIn(error_message, stderr)
 
     set_iam_string = self.RunGsUtil(['iam', 'get', bucket.uri],
                                     return_stdout=True)
@@ -1226,7 +1328,9 @@ class TestIamSet(TestIamIntegration):
       ],
                               return_stderr=True,
                               expected_status=1)
-      self.assertIn('BucketNotFoundException', stderr)
+      error_message = ('not found' if self._use_gcloud_storage else
+                       'BucketNotFoundException')
+      self.assertIn(error_message, stderr)
 
     # TODO(b/135780661): Remove retry after bug resolved
     @Retry(AssertionError, tries=3, timeout_secs=1)
@@ -1318,3 +1422,136 @@ class TestIamSet(TestIamIntegration):
     self.assertEqualsPoliciesString(self.object_iam_string, reset_iam_string)
     self.assertIn(self.public_object_read_binding[0],
                   json.loads(set_iam_string)['bindings'])
+
+
+class TestIamShim(testcase.GsUtilUnitTestCase):
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_get_object(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand('iam', ['get', 'gs://bucket/object'],
+                                           return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage objects get-iam-policy'
+             ' --format=json gs://bucket/object').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_get_bucket(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand('iam', ['get', 'gs://bucket'],
+                                           return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage buckets get-iam-policy'
+             ' --format=json gs://bucket').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_set_object(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand(
+            'iam', ['set', 'policy-file', 'gs://b/o1', 'gs://b/o2'],
+            return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage objects set-iam-policy'
+             ' --format=json gs://b/o1 gs://b/o2 policy-file').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_set_bucket(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand(
+            'iam', ['set', 'policy-file', 'gs://b1', 'gs://b2'],
+            return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage buckets set-iam-policy'
+             ' --format=json gs://b1 gs://b2 policy-file').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_set_mix_of_bucket_and_objects_if_recursive(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand(
+            'iam', ['set', '-r', 'policy-file', 'gs://b1', 'gs://b2/o'],
+            return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage objects set-iam-policy'
+             ' --format=json --recursive gs://b1 gs://b2/o policy-file').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_raises_for_iam_set_mix_of_bucket_and_objects(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        with self.assertRaisesRegex(
+            CommandException,
+            'Cannot operate on a mix of buckets and objects.'):
+          self.RunCommand('iam', ['set', 'policy-file', 'gs://b', 'gs://b/o'])
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_set_handles_valid_etag(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand(
+            'iam', ['set', '-e', 'abc=', 'policy-file', 'gs://b'],
+            return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage buckets set-iam-policy'
+             ' --format=json --etag abc= gs://b policy-file').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)
+
+  @mock.patch.object(iam.IamCommand, 'RunCommand', new=mock.Mock())
+  def test_shim_translates_iam_set_handles_empty_etag(self):
+    with SetBotoConfigForTest([('GSUtil', 'use_gcloud_storage', 'True'),
+                               ('GSUtil', 'hidden_shim_mode', 'dry_run')]):
+      with SetEnvironmentForTest({
+          'CLOUDSDK_CORE_PASS_CREDENTIALS_TO_GSUTIL': 'True',
+          'CLOUDSDK_ROOT_DIR': 'fake_dir',
+      }):
+        mock_log_handler = self.RunCommand(
+            'iam', ['set', '-e', '', 'policy-file', 'gs://b'],
+            return_log_handler=True)
+        info_lines = '\n'.join(mock_log_handler.messages['info'])
+        self.assertIn(
+            ('Gcloud Storage Command: {} alpha storage buckets set-iam-policy'
+             ' --format=json --etag= gs://b policy-file').format(
+                 os.path.join('fake_dir', 'bin', 'gcloud')), info_lines)

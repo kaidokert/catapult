@@ -41,7 +41,15 @@ if [[ $KOKORO_JOB_NAME =~ "macos" ]]; then
   export LANG=en_US.UTF-8
 fi
 
-function latest_python_release {
+function preferred_python_release {
+  if [[ $PYVERSION =~ "3.5" && $KOKORO_JOB_NAME =~ "linux" ]]; then
+    # The latest version of certain dependencies break with Python 3.5.2 or
+    # lower. Hence we want to make sure that we run these tests with 3.5.2.
+    # There is too much overhead to run this for MacOS because of OpenSSL 1.0
+    # requirement for Python 3.5.2. Hence, we force 3.5.2 only for linux.
+    echo "3.5.2"
+    return
+  fi
   # Return string with latest Python version triplet for a given version tuple.
   # Example: PYVERSION="2.7"; latest_python_release -> "2.7.15"
   pyenv install --list \
@@ -81,7 +89,7 @@ function init_python {
   # Ensure latest release of desired Python version is installed, and that
   # dependencies from pip, e.g. crcmod, are installed.
   install_pyenv
-  PYVERSIONTRIPLET=$(latest_python_release)
+  PYVERSIONTRIPLET=$(preferred_python_release)
   install_python
   pyenv global "$PYVERSIONTRIPLET"
   # Check if Python version is same as set by the config
@@ -119,17 +127,3 @@ python "$GSUTIL_ENTRYPOINT" \
   -o "Credentials:gs_json_host=storage-psc.p.googleapis.com" \
   -o "Credentials:gs_json_host_header=www.googleapis.com" \
   test gslib.tests.test_psc
-
-# Run mTLS authentication test.
-if [[ $API == "json" ]]; then
-  MTLS_TEST_ACCOUNT_REFRESH_TOKEN="/tmpfs/src/keystore/74008_mtls_test_account_refresh_token"
-  MTLS_TEST_ACCOUNT_CLIENT_ID="/tmpfs/src/keystore/74008_mtls_test_account_client_id"
-  MTLS_TEST_ACCOUNT_CLIENT_SECRET="/tmpfs/src/keystore/74008_mtls_test_account_client_secret"
-  MTLS_TEST_CERT_PATH="/tmpfs/src/keystore/74008_mtls_test_cert"
-
-  # Generate .boto config specifically for mTLS tests.
-  bash "$CFG_GENERATOR" "" "$API" "$BOTO_CONFIG" "$MTLS_TEST_ACCOUNT_REFRESH_TOKEN" "$MTLS_TEST_ACCOUNT_CLIENT_ID" "$MTLS_TEST_ACCOUNT_CLIENT_SECRET" "$MTLS_TEST_CERT_PATH"
-
-  # Run mTLS E2E test.
-  python "$GSUTIL_ENTRYPOINT" test gslib.tests.test_mtls.TestMtls
-fi
