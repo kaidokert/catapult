@@ -22,7 +22,6 @@ from apitools.base.protorpclite import messages as _messages
 from apitools.base.py import encoding
 from apitools.base.py import extra_types
 
-
 package = 'storage'
 
 
@@ -30,8 +29,11 @@ class Bucket(_messages.Message):
   r"""A bucket.
 
   Messages:
+    AutoclassValue: The bucket's Autoclass configuration.
     BillingValue: The bucket's billing configuration.
     CorsValueListEntry: A CorsValueListEntry object.
+    CustomPlacementConfigValue: The bucket's custom placement configuration
+      for Custom Dual Regions.
     EncryptionValue: Encryption configuration for a bucket.
     IamConfigurationValue: The bucket's IAM configuration.
     LabelsValue: User-provided labels, in key/value pairs.
@@ -58,8 +60,11 @@ class Bucket(_messages.Message):
 
   Fields:
     acl: Access controls on the bucket.
+    autoclass: The bucket's Autoclass configuration.
     billing: The bucket's billing configuration.
     cors: The bucket's Cross-Origin Resource Sharing (CORS) configuration.
+    customPlacementConfig: The bucket's custom placement configuration for
+      Custom Dual Regions.
     defaultEventBasedHold: The default value for event-based hold on newly
       created objects in this bucket. Event-based hold is a way to retain
       objects indefinitely until an event occurs, signified by the hold's
@@ -105,14 +110,17 @@ class Bucket(_messages.Message):
       retention policy cannot be removed or shortened in duration for the
       lifetime of the bucket. Attempting to remove or decrease period of a
       locked retention policy will result in a PERMISSION_DENIED error.
+    rpo: The Recovery Point Objective (RPO) of this bucket. Set to
+      ASYNC_TURBO to turn on turbo replication on a bucket.
+    satisfiesPZS: Reserved for future use.
     selfLink: The URI of this bucket.
     storageClass: The bucket's default storage class, used whenever no
       storageClass is specified for a newly-created object. This defines how
       objects in the bucket are stored and determines the SLA and the cost of
       storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE,
-      COLDLINE, and DURABLE_REDUCED_AVAILABILITY. If this value is not
-      specified when the bucket is created, it will default to STANDARD. For
-      more information, see storage classes.
+      COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is
+      not specified when the bucket is created, it will default to STANDARD.
+      For more information, see storage classes.
     timeCreated: The creation time of the bucket in RFC 3339 format.
     updated: The modification time of the bucket in RFC 3339 format.
     versioning: The bucket's versioning configuration.
@@ -120,6 +128,18 @@ class Bucket(_messages.Message):
       behaves when accessing bucket contents as a web site. See the Static
       Website Examples for more information.
   """
+
+  class AutoclassValue(_messages.Message):
+    r"""The bucket's Autoclass configuration.
+
+    Fields:
+      enabled: Whether or not Autoclass is enabled on this bucket
+      toggleTime: A date and time in RFC 3339 format representing the instant
+        at which "enabled" was last toggled.
+    """
+
+    enabled = _messages.BooleanField(1)
+    toggleTime = _message_types.DateTimeField(2)
 
   class BillingValue(_messages.Message):
     r"""The bucket's billing configuration.
@@ -151,6 +171,15 @@ class Bucket(_messages.Message):
     origin = _messages.StringField(3, repeated=True)
     responseHeader = _messages.StringField(4, repeated=True)
 
+  class CustomPlacementConfigValue(_messages.Message):
+    r"""The bucket's custom placement configuration for Custom Dual Regions.
+
+    Fields:
+      dataLocations: The list of regional locations in which data is placed.
+    """
+
+    dataLocations = _messages.StringField(1, repeated=True)
+
   class EncryptionValue(_messages.Message):
     r"""Encryption configuration for a bucket.
 
@@ -169,6 +198,8 @@ class Bucket(_messages.Message):
 
     Fields:
       bucketPolicyOnly: The bucket's Bucket Policy Only configuration.
+      publicAccessPrevention: The bucket's public access prevention
+        configuration. Valid values are `unspecified` and `enforced`.
     """
 
     class BucketPolicyOnlyValue(_messages.Message):
@@ -188,6 +219,7 @@ class Bucket(_messages.Message):
       lockedTime = _message_types.DateTimeField(2)
 
     bucketPolicyOnly = _messages.MessageField('BucketPolicyOnlyValue', 1)
+    publicAccessPrevention = _messages.StringField(2)
 
   @encoding.MapUnrecognizedFields('additionalProperties')
   class LabelsValue(_messages.Message):
@@ -211,7 +243,9 @@ class Bucket(_messages.Message):
       key = _messages.StringField(1)
       value = _messages.StringField(2)
 
-    additionalProperties = _messages.MessageField('AdditionalProperty', 1, repeated=True)
+    additionalProperties = _messages.MessageField('AdditionalProperty',
+                                                  1,
+                                                  repeated=True)
 
   class LifecycleValue(_messages.Message):
     r"""The bucket's lifecycle configuration. See lifecycle management for
@@ -259,13 +293,30 @@ class Bucket(_messages.Message):
           createdBefore: A date in RFC 3339 format with only the date part
             (for instance, "2013-01-15"). This condition is satisfied when an
             object is created before midnight of the specified date in UTC.
+          customTimeBefore: A date in RFC 3339 format with only the date part
+            (for instance, "2013-01-15"). This condition is satisfied when the
+            custom time on an object is before this date in UTC.
+          daysSinceCustomTime: Number of days elapsed since the user-specified
+            timestamp set on an object. The condition is satisfied if the days
+            elapsed is at least this number. If no custom timestamp is
+            specified on an object, the condition does not apply.
+          daysSinceNoncurrentTime: Number of days elapsed since the noncurrent
+            timestamp of an object. The condition is satisfied if the days
+            elapsed is at least this number. This condition is relevant only
+            for versioned objects. The value of the field must be a
+            nonnegative integer. If it's zero, the object version will become
+            eligible for Lifecycle action as soon as it becomes noncurrent.
           isLive: Relevant only for versioned objects. If the value is true,
             this condition matches live objects; if the value is false, it
             matches archived objects.
           matchesStorageClass: Objects having any of the storage classes
             specified by this condition will be matched. Values include
-            MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, and
-            DURABLE_REDUCED_AVAILABILITY.
+            MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, STANDARD,
+            and DURABLE_REDUCED_AVAILABILITY.
+          noncurrentTimeBefore: A date in RFC 3339 format with only the date
+            part (for instance, "2013-01-15"). This condition is satisfied
+            when the noncurrent time on an object is before this date in UTC.
+            This condition is relevant only for versioned objects.
           numNewerVersions: Relevant only for versioned objects. If the value
             is N, this condition is satisfied when there are at least N
             versions (including the live version) newer than this version of
@@ -274,9 +325,16 @@ class Bucket(_messages.Message):
 
         age = _messages.IntegerField(1, variant=_messages.Variant.INT32)
         createdBefore = extra_types.DateField(2)
+        customTimeBefore = extra_types.DateField(6)
+        daysSinceCustomTime = _messages.IntegerField(
+            7, variant=_messages.Variant.INT32)
+        daysSinceNoncurrentTime = _messages.IntegerField(
+            8, variant=_messages.Variant.INT32)
         isLive = _messages.BooleanField(3)
         matchesStorageClass = _messages.StringField(4, repeated=True)
-        numNewerVersions = _messages.IntegerField(5, variant=_messages.Variant.INT32)
+        noncurrentTimeBefore = extra_types.DateField(9)
+        numNewerVersions = _messages.IntegerField(
+            5, variant=_messages.Variant.INT32)
 
       action = _messages.MessageField('ActionValue', 1)
       condition = _messages.MessageField('ConditionValue', 2)
@@ -364,31 +422,36 @@ class Bucket(_messages.Message):
     notFoundPage = _messages.StringField(2)
 
   acl = _messages.MessageField('BucketAccessControl', 1, repeated=True)
-  billing = _messages.MessageField('BillingValue', 2)
-  cors = _messages.MessageField('CorsValueListEntry', 3, repeated=True)
-  defaultEventBasedHold = _messages.BooleanField(4)
-  defaultObjectAcl = _messages.MessageField('ObjectAccessControl', 5, repeated=True)
-  encryption = _messages.MessageField('EncryptionValue', 6)
-  etag = _messages.StringField(7)
-  iamConfiguration = _messages.MessageField('IamConfigurationValue', 8)
-  id = _messages.StringField(9)
-  kind = _messages.StringField(10, default=u'storage#bucket')
-  labels = _messages.MessageField('LabelsValue', 11)
-  lifecycle = _messages.MessageField('LifecycleValue', 12)
-  location = _messages.StringField(13)
-  locationType = _messages.StringField(14)
-  logging = _messages.MessageField('LoggingValue', 15)
-  metageneration = _messages.IntegerField(16)
-  name = _messages.StringField(17)
-  owner = _messages.MessageField('OwnerValue', 18)
-  projectNumber = _messages.IntegerField(19, variant=_messages.Variant.UINT64)
-  retentionPolicy = _messages.MessageField('RetentionPolicyValue', 20)
-  selfLink = _messages.StringField(21)
-  storageClass = _messages.StringField(22)
-  timeCreated = _message_types.DateTimeField(23)
-  updated = _message_types.DateTimeField(24)
-  versioning = _messages.MessageField('VersioningValue', 25)
-  website = _messages.MessageField('WebsiteValue', 26)
+  autoclass = _messages.MessageField('AutoclassValue', 2)
+  billing = _messages.MessageField('BillingValue', 3)
+  cors = _messages.MessageField('CorsValueListEntry', 4, repeated=True)
+  customPlacementConfig = _messages.MessageField('CustomPlacementConfigValue',
+                                                 5)
+  defaultEventBasedHold = _messages.BooleanField(6)
+  defaultObjectAcl = _messages.MessageField('ObjectAccessControl', 7, repeated=True)
+  encryption = _messages.MessageField('EncryptionValue', 8)
+  etag = _messages.StringField(9)
+  iamConfiguration = _messages.MessageField('IamConfigurationValue', 10)
+  id = _messages.StringField(11)
+  kind = _messages.StringField(12, default=u'storage#bucket')
+  labels = _messages.MessageField('LabelsValue', 13)
+  lifecycle = _messages.MessageField('LifecycleValue', 14)
+  location = _messages.StringField(15)
+  locationType = _messages.StringField(16)
+  logging = _messages.MessageField('LoggingValue', 17)
+  metageneration = _messages.IntegerField(18)
+  name = _messages.StringField(19)
+  owner = _messages.MessageField('OwnerValue', 20)
+  projectNumber = _messages.IntegerField(21, variant=_messages.Variant.UINT64)
+  retentionPolicy = _messages.MessageField('RetentionPolicyValue', 22)
+  rpo = _messages.StringField(23)
+  satisfiesPZS = _messages.BooleanField(24)
+  selfLink = _messages.StringField(25)
+  storageClass = _messages.StringField(26)
+  timeCreated = _message_types.DateTimeField(27)
+  updated = _message_types.DateTimeField(28)
+  versioning = _messages.MessageField('VersioningValue', 29)
+  website = _messages.MessageField('WebsiteValue', 30)
 
 
 class BucketAccessControl(_messages.Message):
@@ -519,7 +582,9 @@ class Channel(_messages.Message):
       key = _messages.StringField(1)
       value = _messages.StringField(2)
 
-    additionalProperties = _messages.MessageField('AdditionalProperty', 1, repeated=True)
+    additionalProperties = _messages.MessageField('AdditionalProperty',
+                                                  1,
+                                                  repeated=True)
 
   address = _messages.StringField(1)
   expiration = _messages.IntegerField(2)
@@ -531,6 +596,7 @@ class Channel(_messages.Message):
   resourceUri = _messages.StringField(8)
   token = _messages.StringField(9)
   type = _messages.StringField(10)
+
 
 class Channels(_messages.Message):
   r"""A channels list response.
@@ -564,6 +630,7 @@ class Channels(_messages.Message):
 
   items = _messages.MessageField('ItemsValueListEntry', 1, repeated=True)
   kind = _messages.StringField(2, default=u'storage#channels')
+
 
 class ComposeRequest(_messages.Message):
   r"""A Compose request.
@@ -613,7 +680,9 @@ class ComposeRequest(_messages.Message):
 
   destination = _messages.MessageField('Object', 1)
   kind = _messages.StringField(2, default=u'storage#composeRequest')
-  sourceObjects = _messages.MessageField('SourceObjectsValueListEntry', 3, repeated=True)
+  sourceObjects = _messages.MessageField('SourceObjectsValueListEntry',
+                                         3,
+                                         repeated=True)
   userProject = _messages.StringField(4)
 
 
@@ -695,7 +764,9 @@ class Notification(_messages.Message):
       key = _messages.StringField(1)
       value = _messages.StringField(2)
 
-    additionalProperties = _messages.MessageField('AdditionalProperty', 1, repeated=True)
+    additionalProperties = _messages.MessageField('AdditionalProperty',
+                                                  1,
+                                                  repeated=True)
 
   custom_attributes = _messages.MessageField('CustomAttributesValue', 1)
   etag = _messages.StringField(2)
@@ -747,6 +818,8 @@ class Object(_messages.Message):
     crc32c: CRC32c checksum, as described in RFC 4960, Appendix B; encoded
       using base64 in big-endian byte order. For more information about using
       the CRC32c checksum, see Hashes and ETags: Best Practices.
+    customTime: A timestamp in RFC 3339 format specified by the user for an
+      object.
     customerEncryption: Metadata of customer-supplied encryption key, if the
       object is encrypted by such a key.
     etag: HTTP 1.1 Entity tag for the object.
@@ -840,7 +913,9 @@ class Object(_messages.Message):
       key = _messages.StringField(1)
       value = _messages.StringField(2)
 
-    additionalProperties = _messages.MessageField('AdditionalProperty', 1, repeated=True)
+    additionalProperties = _messages.MessageField('AdditionalProperty',
+                                                  1,
+                                                  repeated=True)
 
   class OwnerValue(_messages.Message):
     r"""The owner of the object. This will always be the uploader of the
@@ -863,6 +938,7 @@ class Object(_messages.Message):
   contentLanguage = _messages.StringField(7)
   contentType = _messages.StringField(8)
   crc32c = _messages.StringField(9)
+  customTime = _message_types.DateTimeField(32)
   customerEncryption = _messages.MessageField('CustomerEncryptionValue', 10)
   etag = _messages.StringField(11)
   eventBasedHold = _messages.BooleanField(12)
@@ -1283,7 +1359,8 @@ class StorageBucketsGetIamPolicyRequest(_messages.Message):
 
   bucket = _messages.StringField(1, required=True)
   provisionalUserProject = _messages.StringField(2)
-  optionsRequestedPolicyVersion = _messages.IntegerField(3, variant=_messages.Variant.INT32)
+  optionsRequestedPolicyVersion = _messages.IntegerField(
+      3, variant=_messages.Variant.INT32)
   userProject = _messages.StringField(4)
 
 
@@ -1404,7 +1481,8 @@ class StorageBucketsInsertRequest(_messages.Message):
 
   bucket = _messages.MessageField('Bucket', 1)
   predefinedAcl = _messages.EnumField('PredefinedAclValueValuesEnum', 2)
-  predefinedDefaultObjectAcl = _messages.EnumField('PredefinedDefaultObjectAclValueValuesEnum', 3)
+  predefinedDefaultObjectAcl = _messages.EnumField(
+      'PredefinedDefaultObjectAclValueValuesEnum', 3)
   project = _messages.StringField(4, required=True)
   projection = _messages.EnumField('ProjectionValueValuesEnum', 5)
   userProject = _messages.StringField(6)
@@ -1437,12 +1515,15 @@ class StorageBucketsListRequest(_messages.Message):
     full = 0
     noAcl = 1
 
-  maxResults = _messages.IntegerField(1, variant=_messages.Variant.UINT32, default=1000)
+  maxResults = _messages.IntegerField(1,
+                                      variant=_messages.Variant.UINT32,
+                                      default=1000)
   pageToken = _messages.StringField(2)
   prefix = _messages.StringField(3)
   project = _messages.StringField(4, required=True)
   projection = _messages.EnumField('ProjectionValueValuesEnum', 5)
   userProject = _messages.StringField(6)
+
 
 class StorageBucketsListChannelsRequest(_messages.Message):
   r"""A StorageBucketsListChannelsRequest object.
@@ -1558,7 +1639,8 @@ class StorageBucketsPatchRequest(_messages.Message):
   ifMetagenerationMatch = _messages.IntegerField(3)
   ifMetagenerationNotMatch = _messages.IntegerField(4)
   predefinedAcl = _messages.EnumField('PredefinedAclValueValuesEnum', 5)
-  predefinedDefaultObjectAcl = _messages.EnumField('PredefinedDefaultObjectAclValueValuesEnum', 6)
+  predefinedDefaultObjectAcl = _messages.EnumField(
+      'PredefinedDefaultObjectAclValueValuesEnum', 6)
   projection = _messages.EnumField('ProjectionValueValuesEnum', 7)
   userProject = _messages.StringField(8)
 
@@ -1678,7 +1760,8 @@ class StorageBucketsUpdateRequest(_messages.Message):
   ifMetagenerationMatch = _messages.IntegerField(3)
   ifMetagenerationNotMatch = _messages.IntegerField(4)
   predefinedAcl = _messages.EnumField('PredefinedAclValueValuesEnum', 5)
-  predefinedDefaultObjectAcl = _messages.EnumField('PredefinedDefaultObjectAclValueValuesEnum', 6)
+  predefinedDefaultObjectAcl = _messages.EnumField(
+      'PredefinedDefaultObjectAclValueValuesEnum', 6)
   projection = _messages.EnumField('ProjectionValueValuesEnum', 7)
   userProject = _messages.StringField(8)
 
@@ -2060,7 +2143,8 @@ class StorageObjectsComposeRequest(_messages.Message):
   composeRequest = _messages.MessageField('ComposeRequest', 1)
   destinationBucket = _messages.StringField(2, required=True)
   destinationObject = _messages.StringField(3, required=True)
-  destinationPredefinedAcl = _messages.EnumField('DestinationPredefinedAclValueValuesEnum', 4)
+  destinationPredefinedAcl = _messages.EnumField(
+      'DestinationPredefinedAclValueValuesEnum', 4)
   ifGenerationMatch = _messages.IntegerField(5)
   ifMetagenerationMatch = _messages.IntegerField(6)
   kmsKeyName = _messages.StringField(7)
@@ -2157,7 +2241,8 @@ class StorageObjectsCopyRequest(_messages.Message):
 
   destinationBucket = _messages.StringField(1, required=True)
   destinationObject = _messages.StringField(2, required=True)
-  destinationPredefinedAcl = _messages.EnumField('DestinationPredefinedAclValueValuesEnum', 3)
+  destinationPredefinedAcl = _messages.EnumField(
+      'DestinationPredefinedAclValueValuesEnum', 3)
   ifGenerationMatch = _messages.IntegerField(4)
   ifGenerationNotMatch = _messages.IntegerField(5)
   ifMetagenerationMatch = _messages.IntegerField(6)
@@ -2416,7 +2501,9 @@ class StorageObjectsListRequest(_messages.Message):
   bucket = _messages.StringField(1, required=True)
   delimiter = _messages.StringField(2)
   includeTrailingDelimiter = _messages.BooleanField(3)
-  maxResults = _messages.IntegerField(4, variant=_messages.Variant.UINT32, default=1000)
+  maxResults = _messages.IntegerField(4,
+                                      variant=_messages.Variant.UINT32,
+                                      default=1000)
   pageToken = _messages.StringField(5)
   prefix = _messages.StringField(6)
   projection = _messages.EnumField('ProjectionValueValuesEnum', 7)
@@ -2608,7 +2695,8 @@ class StorageObjectsRewriteRequest(_messages.Message):
   destinationBucket = _messages.StringField(1, required=True)
   destinationKmsKeyName = _messages.StringField(2)
   destinationObject = _messages.StringField(3, required=True)
-  destinationPredefinedAcl = _messages.EnumField('DestinationPredefinedAclValueValuesEnum', 4)
+  destinationPredefinedAcl = _messages.EnumField(
+      'DestinationPredefinedAclValueValuesEnum', 4)
   ifGenerationMatch = _messages.IntegerField(5)
   ifGenerationNotMatch = _messages.IntegerField(6)
   ifMetagenerationMatch = _messages.IntegerField(7)
@@ -2792,7 +2880,9 @@ class StorageObjectsWatchAllRequest(_messages.Message):
   channel = _messages.MessageField('Channel', 2)
   delimiter = _messages.StringField(3)
   includeTrailingDelimiter = _messages.BooleanField(4)
-  maxResults = _messages.IntegerField(5, variant=_messages.Variant.UINT32, default=1000)
+  maxResults = _messages.IntegerField(5,
+                                      variant=_messages.Variant.UINT32,
+                                      default=1000)
   pageToken = _messages.StringField(6)
   prefix = _messages.StringField(7)
   projection = _messages.EnumField('ProjectionValueValuesEnum', 8)
@@ -2893,8 +2983,9 @@ class StorageProjectsHmacKeysListRequest(_messages.Message):
   projectId = _messages.StringField(1, required=True)
   serviceAccountEmail = _messages.StringField(2)
   showDeletedKeys = _messages.BooleanField(3)
-  maxResults = _messages.IntegerField(
-      4, variant=_messages.Variant.UINT32, default=1000)
+  maxResults = _messages.IntegerField(4,
+                                      variant=_messages.Variant.UINT32,
+                                      default=1000)
   pageToken = _messages.StringField(5)
 
 

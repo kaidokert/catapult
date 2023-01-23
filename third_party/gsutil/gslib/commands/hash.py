@@ -19,7 +19,6 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import unicode_literals
 
-from hashlib import md5
 import logging
 import os
 import time
@@ -54,23 +53,23 @@ _DETAILED_HELP_TEXT = ("""
 
 
 <B>DESCRIPTION</B>
-  The hash command calculates hashes on a local file that can be used to compare
-  with gsutil ls -L output. If a specific hash option is not provided, this
-  command calculates all gsutil-supported hashes for the file.
+  Calculate hashes on local files, which can be used to compare with
+  ``gsutil ls -L`` output. If a specific hash option is not provided, this
+  command calculates all gsutil-supported hashes for the files.
 
   Note that gsutil automatically performs hash validation when uploading or
   downloading files, so this command is only needed if you want to write a
-  script that separately checks the hash for some reason.
+  script that separately checks the hash.
 
-  If you calculate a CRC32c hash for the file without a precompiled crcmod
+  If you calculate a CRC32c hash for files without a precompiled crcmod
   installation, hashing will be very slow. See "gsutil help crcmod" for details.
 
 <B>OPTIONS</B>
-  -c          Calculate a CRC32c hash for the file.
+  -c          Calculate a CRC32c hash for the specified files.
 
   -h          Output hashes in hex format. By default, gsutil uses base64.
 
-  -m          Calculate a MD5 hash for the file.
+  -m          Calculate a MD5 hash for the specified files.
 """)
 
 
@@ -165,7 +164,7 @@ class HashCommand(Command):
     if calc_crc32c:
       hash_dict['crc32c'] = crcmod.predefined.Crc('crc-32c')
     if calc_md5:
-      hash_dict['md5'] = md5()
+      hash_dict['md5'] = hashing_helper.GetMd5()
     return hash_dict
 
   def RunCommand(self):
@@ -223,12 +222,11 @@ class HashCommand(Command):
             hash_dict['md5'] = obj_metadata.md5Hash
           if crc32c_present:
             hash_dict['crc32c'] = obj_metadata.crc32c
-        text_util.print_to_fd('Hashes [%s] for %s:' %
-                              (output_format, file_name))
+        print('Hashes [%s] for %s:' % (output_format, file_name))
         for name, digest in six.iteritems(hash_dict):
-          text_util.print_to_fd('\tHash (%s):\t\t%s' %
-                                (name, (format_func(digest) if url.IsFileUrl()
-                                        else cloud_format_func(digest))))
+          print('\tHash (%s):\t\t%s' % (name,
+                                        (format_func(digest) if url.IsFileUrl()
+                                         else cloud_format_func(digest))))
 
     if not matched_one:
       raise CommandException('No files matched')

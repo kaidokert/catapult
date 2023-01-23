@@ -39,20 +39,17 @@ requires = [
     'argcomplete>=1.9.4',
     'crcmod>=1.7',
     'fasteners>=0.14.1',
-    'gcs-oauth2-boto-plugin>=2.5',
-    'google-apitools>=0.5.30',
-    'httplib2>=0.11.3',
+    'gcs-oauth2-boto-plugin>=3.0',
+    'google-apitools>=0.5.32',
+    'httplib2>=0.18',
     'google-reauth>=0.1.0',
-    # TODO: Sync submodule with tag referenced here once #339 is fixed in mock.
-    'mock==2.0.0',
+    # mock is part of the standard library in Python 3.3 onwards.
+    # 3.0.5 is the last version that supports Python 3.3 or lower.
+    'mock>=2.0.0, <=3.0.5; python_version < "3.3"',
     'monotonic>=1.4',
-    'oauth2client==4.1.3',
     'pyOpenSSL>=0.13',
     'retry_decorator>=1.0.0',
     'six>=1.12.0',
-    # Not using 1.02 because of:
-    #   https://code.google.com/p/socksipy-branch/issues/detail?id=3
-    'SocksiPy-branch==1.01',
 ]
 
 CURDIR = os.path.abspath(os.path.dirname(__file__))
@@ -111,7 +108,7 @@ setup(
     download_url='https://cloud.google.com/storage/docs/gsutil_install',
     license='Apache 2.0',
     author='Google Inc.',
-    author_email='gs-team@google.com',
+    author_email='buganizer-system+187143@google.com',
     description=('A command line tool for interacting with cloud storage '
                  'services.'),
     long_description=long_desc,
@@ -125,17 +122,17 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: System :: Filesystems',
         'Topic :: Utilities',
     ],
-    # Gsutil supports Python 2.7, 3.5+
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4',
+    # Gsutil supports Python 3.5+
+    python_requires='!=2.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4',
     platforms='any',
     packages=find_packages(
         exclude=[

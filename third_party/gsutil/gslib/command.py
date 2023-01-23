@@ -32,7 +32,6 @@ import copy
 import getopt
 import json
 import logging
-import multiprocessing
 import os
 import signal
 import sys
@@ -85,6 +84,7 @@ from gslib.utils.constants import UTF8
 import gslib.utils.parallelism_framework_util
 from gslib.utils.parallelism_framework_util import AtomicDict
 from gslib.utils.parallelism_framework_util import CheckMultiprocessingAvailableAndInit
+from gslib.utils.parallelism_framework_util import multiprocessing_context
 from gslib.utils.parallelism_framework_util import ProcessAndThreadSafeInt
 from gslib.utils.parallelism_framework_util import PutToQueueWithTimeout
 from gslib.utils.parallelism_framework_util import SEEK_AHEAD_JOIN_TIMEOUT
@@ -107,6 +107,7 @@ except ImportError:
 # pylint: enable=g-import-not-at-top
 
 OFFER_GSUTIL_M_SUGGESTION_THRESHOLD = 5
+OFFER_GSUTIL_M_SUGGESTION_FREQUENCY = 1000
 
 
 def CreateOrGetGsutilLogger(command_name):
@@ -193,7 +194,7 @@ def _CryptoRandomAtFork():
 
 
 def _NewMultiprocessingQueue():
-  new_queue = multiprocessing.Queue(MAX_QUEUE_SIZE)
+  new_queue = multiprocessing_context.Queue(MAX_QUEUE_SIZE)
   queues.append(new_queue)
   return new_queue
 
@@ -332,7 +333,7 @@ def InitializeMultiprocessingVariables():
   global class_map, worker_checking_level_lock, failure_count, glob_status_queue
   global concurrent_compressed_upload_lock
 
-  manager = multiprocessing.Manager()
+  manager = multiprocessing_context.Manager()
 
   # List of ConsumerPools - used during shutdown to clean up child processes.
   consumer_pools = []
@@ -495,8 +496,8 @@ class Command(HelpProvider):
   # Each subclass must override this with an instance of CommandSpec.
   command_spec = None
 
-  _commands_with_subcommands_and_subopts = ('acl', 'defacl', 'kms', 'label',
-                                            'logging', 'notification',
+  _commands_with_subcommands_and_subopts = ('acl', 'defacl', 'iam', 'kms',
+                                            'label', 'logging', 'notification',
                                             'retention', 'web')
 
   # This keeps track of the recursive depth of the current call to Apply.
@@ -610,6 +611,7 @@ class Command(HelpProvider):
     because it will make changing the __init__ interface more painful.
     """
     # Save class values from constructor params.
+    super().__init__()
     self.command_runner = command_runner
     self.unparsed_args = args
     self.headers = headers
@@ -724,25 +726,46 @@ class Command(HelpProvider):
                (self.command_spec.usage_synopsis, self.command_name))
     raise CommandException(message)
 
-  def ParseSubOpts(self, check_args=False):
+  def ParseSubOpts(self,
+                   check_args=False,
+                   args=None,
+                   should_update_sub_opts_and_args=True):
     """Parses sub-opt args.
 
     Args:
       check_args: True to have CheckArguments() called after parsing.
+      args: List of args. If None, self.args will be used.
+      should_update_sub_opts_and_args: True if self.sub_opts and self.args
+        should be updated with the values returned after parsing. Else return a 
+        tuple of sub_opts, args returned by getopt.getopt. This is done
+        to allow this method to be called from get_gcloud_storage_args in which
+        case we do not want to update self.sub_opts and self.args.
 
-    Populates:
-      (self.sub_opts, self.args) from parsing.
-
-    Raises: RaiseInvalidArgumentException if invalid args specified.
+    Raises:
+      RaiseInvalidArgumentException: Invalid args specified.
     """
+    if args is None:
+      unparsed_args = self.args
+    else:
+      unparsed_args = args
     try:
-      self.sub_opts, self.args = getopt.getopt(
-          self.args, self.command_spec.supported_sub_args,
+      parsed_sub_opts, parsed_args = getopt.getopt(
+          unparsed_args, self.command_spec.supported_sub_args,
           self.command_spec.supported_private_args or [])
     except getopt.GetoptError:
       self.RaiseInvalidArgumentException()
-    if check_args:
-      self.CheckArguments()
+    if should_update_sub_opts_and_args:
+      self.sub_opts, self.args = parsed_sub_opts, parsed_args
+      if check_args:
+        self.CheckArguments()
+    else:
+      if check_args:
+        # This is just for sanity check. Only get_gcloud_storage_args will
+        # call this method with should_update_sub_opts_and_args=False, and it
+        # does not set check_args to True.
+        raise TypeError('Requested to check arguments'
+                        ' but sub_opts and args have not been updated.')
+      return parsed_sub_opts, parsed_args
 
   def CheckArguments(self):
     """Checks that command line arguments match the command_spec.
@@ -1265,11 +1288,14 @@ class Command(HelpProvider):
     # the server to avoid writes from different OS processes interleaving
     # onto the same socket (and garbling the underlying SSL session).
     # We ensure each process gets its own set of connections here by
-    # closing all connections in the storage provider connection pool.
+    # reinitializing state that tracks connections.
     connection_pool = StorageUri.provider_pool
     if connection_pool:
       for i in connection_pool:
         connection_pool[i].connection.close()
+
+    StorageUri.provider_pool = {}
+    StorageUri.connection = None
 
   def _GetProcessAndThreadCount(self, process_count, thread_count,
                                 parallel_operations_override):
@@ -1322,9 +1348,18 @@ class Command(HelpProvider):
                'update your config file(s) (located at %s) and set '
                '"parallel_process_count = 1".') %
               (os_name, ', '.join(GetFriendlyConfigFilePaths())))))
+    is_main_thread = self.recursive_apply_level == 0
+    if os_name == 'macOS' and process_count > 1 and is_main_thread:
+      self.logger.info(
+          'If you experience problems with multiprocessing on MacOS, they '
+          'might be related to https://bugs.python.org/issue33725. You can '
+          'disable multiprocessing by editing your .boto config or by adding '
+          'the following flag to your command: '
+          '`-o "GSUtil:parallel_process_count=1"`. Note that multithreading is '
+          'still available even if you disable multiprocessing.\n')
+
     self.logger.debug('process count: %d', process_count)
     self.logger.debug('thread count: %d', thread_count)
-
     return (process_count, thread_count)
 
   def _SetUpPerCallerState(self):
@@ -1375,9 +1410,10 @@ class Command(HelpProvider):
       raise CommandException('Recursion depth of Apply calls is too great.')
     for _ in range(num_processes):
       recursive_apply_level = len(consumer_pools)
-      p = multiprocessing.Process(target=self._ApplyThreads,
-                                  args=(num_threads, num_processes,
-                                        recursive_apply_level, status_queue))
+      p = multiprocessing_context.Process(target=self._ApplyThreads,
+                                          args=(num_threads, num_processes,
+                                                recursive_apply_level,
+                                                status_queue))
       p.daemon = True
       processes.append(p)
       _CryptoRandomAtFork()
@@ -1575,9 +1611,11 @@ class Command(HelpProvider):
           continue
 
       sequential_call_count += 1
-      if sequential_call_count == OFFER_GSUTIL_M_SUGGESTION_THRESHOLD:
-        # Output suggestion near beginning of run, so user sees it early and can
-        # ^C and try gsutil -m.
+      if (sequential_call_count == OFFER_GSUTIL_M_SUGGESTION_THRESHOLD or
+          sequential_call_count % OFFER_GSUTIL_M_SUGGESTION_FREQUENCY == 0):
+        # Output suggestion near beginning of run, so user sees it early, and
+        # every so often while the command is executing, so they can ^C and try
+        # gsutil -m.
         self._MaybeSuggestGsutilDashM()
       if arg_checker(self, args):
         # Now that we actually have the next argument, perform the task.
@@ -1585,7 +1623,9 @@ class Command(HelpProvider):
                     should_return_results, arg_checker, fail_on_error)
         worker_thread.PerformTask(task, self)
 
-    if sequential_call_count >= GetTermLines():
+    lines_since_suggestion_last_printed = (sequential_call_count %
+                                           OFFER_GSUTIL_M_SUGGESTION_FREQUENCY)
+    if lines_since_suggestion_last_printed >= GetTermLines():
       # Output suggestion at end of long run, in case user missed it at the
       # start and it scrolled off-screen.
       self._MaybeSuggestGsutilDashM()

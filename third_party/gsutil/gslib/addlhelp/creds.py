@@ -24,10 +24,11 @@ from gslib.help_provider import HelpProvider
 _DETAILED_HELP_TEXT = ("""
 <B>OVERVIEW</B>
   gsutil currently supports several types of credentials/authentication, as
-  well as the ability to access public data anonymously (see "gsutil help anon"
-  for more on anonymous access). Each of these type of credentials is discussed
-  in more detail below, along with information about configuring and using
-  credentials via either the Cloud SDK or standalone installations of gsutil.
+  well as the ability to `access public data anonymously
+  <https://cloud.google.com/storage/docs/access-public-data>`_. Each of these
+  type of credentials is discussed in more detail below, along with
+  information about configuring and using credentials via either the Cloud SDK
+  or standalone installations of gsutil.
 
 
 <B>Configuring/Using Credentials via Cloud SDK Distribution of gsutil</B>
@@ -37,8 +38,8 @@ _DETAILED_HELP_TEXT = ("""
   gcloud auth command). If you need to set up multiple credentials (e.g., one
   for an individual user account and a second for a service account), the
   gcloud auth command manages the credentials for you, and you switch between
-  credentials using the gcloud auth command as well (for more details see
-  https://developers.google.com/cloud/sdk/gcloud/#gcloud.auth).
+  credentials using the gcloud auth command as well (for more details, see
+  https://cloud.google.com/sdk/gcloud/reference/auth).
 
   Once credentials have been configured via gcloud auth, those credentials will
   be used regardless of whether the user has any boto configuration files (which
@@ -98,8 +99,8 @@ _DETAILED_HELP_TEXT = ("""
     "gcloud init" for Cloud SDK installs), you can edit the generated ~/.boto
     config file and look for comments for where other credentials can be added.
 
-    For more details about HMAC authentication, see:
-      https://developers.google.com/storage/docs/reference/v1/getting-startedv1#keys
+    For more details about HMAC authentication, see 
+    https://developers.google.com/storage/docs/reference/v1/getting-startedv1#keys
 
   OAuth2 Service Account:
     This is the preferred type of credential to use when authenticating on
@@ -120,14 +121,14 @@ _DETAILED_HELP_TEXT = ("""
     permissions on a bucket.
 
     To set up a service account for use with "gsutil config -e" or "gcloud auth
-    activate-service-account", see:
-     https://cloud.google.com/storage/docs/authentication#generating-a-private-key
+    activate-service-account", see 
+    https://cloud.google.com/storage/docs/authentication#generating-a-private-key
 
-    For more details about OAuth2 service accounts, see:
-      https://developers.google.com/accounts/docs/OAuth2ServiceAccount
+    For more details about OAuth2 service accounts, see 
+    https://developers.google.com/accounts/docs/OAuth2ServiceAccount
 
-    For further information about account roles, see:
-      https://developers.google.com/console/help/#DifferentRoles
+    For further information about account roles, see 
+    https://developers.google.com/console/help/#DifferentRoles
 
   Google Compute Engine Internal Service Account:
     This is the type of service account used for accounts hosted by App Engine
@@ -136,11 +137,11 @@ _DETAILED_HELP_TEXT = ("""
     creates command and the credentials can be controlled with the --scopes
     flag.
 
-    For more details about Google Compute Engine service accounts, see:
-      https://developers.google.com/compute/docs/authentication;
+    For more details about Google Compute Engine service accounts, see 
+    https://developers.google.com/compute/docs/authentication;
 
-    For more details about App Engine service accounts, see:
-      https://developers.google.com/appengine/docs/python/appidentity/overview
+    For more details about App Engine service accounts, see 
+    https://developers.google.com/appengine/docs/python/appidentity/overview
 
   Service Account Impersonation:
     Impersonating a service account is useful in scenarios where you need to
@@ -150,12 +151,12 @@ _DETAILED_HELP_TEXT = ("""
 
     You can specify which service account to use for impersonation by running
     "gsutil -i", "gsutil config" and editing the boto configuration file, or
-    "gcloud config set auth/impersonate_service_account".
+    "gcloud config set auth/impersonate_service_account [service_account_email_address]".
 
     In order to impersonate, your original credentials need to be granted
     roles/iam.serviceAccountTokenCreator on the target service account.
-    For more information see:
-      https://cloud.google.com/iam/docs/creating-short-lived-service-account-credentials
+    For more information see 
+    https://cloud.google.com/iam/docs/creating-short-lived-service-account-credentials
 """)
 
 
