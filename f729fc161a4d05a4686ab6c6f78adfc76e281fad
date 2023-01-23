@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eaa537c_2ef75e1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-01-23T22:58:51Z",
+      "side": 1,
+      "message": "could we get the same result by setting use_adc\u003dTrue by default here? https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/utils.py;l\u003d614\n\nalso, is there any reason to even keep the non-adc code paths around?",
+      "revId": "f729fc161a4d05a4686ab6c6f78adfc76e281fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
