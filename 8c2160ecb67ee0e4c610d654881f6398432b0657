@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50f14888_de56d29f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2023-01-23T14:55:07Z",
+      "side": 1,
+      "message": "example build: https://ci.chromium.org/ui/p/angle/builders/ci/win10-nvidia-gtx1660-perf/775/overview\n\noddly, this passed presubmits but then crashed CI. Might be sensitive to environment, loading order etc",
+      "revId": "8c2160ecb67ee0e4c610d654881f6398432b0657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
