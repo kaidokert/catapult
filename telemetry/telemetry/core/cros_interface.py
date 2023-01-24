@@ -62,11 +62,37 @@ class CrOSInterface(linux_based_interface.LinuxBasedInterface):
           return {'pid': pid, 'path': path_match.group(), 'args': process}
     return None
 
-  def GetChromePid(self):
-    """Returns pid of main chrome browser process."""
-    result = self.GetChromeProcess()
-    if result and 'pid' in result:
-      return result['pid']
+  def IsRunningOnVM(self):
+    if self._is_running_on_vm is None:
+      self._is_running_on_vm = self.RunCmdOnDevice(['crossystem', 'inside_vm'
+                                                   ])[0] != '0'
+    return self._is_running_on_vm
+
+  def GetDeviceTypeName(self):
+    """DEVICETYPE in /etc/lsb-release is CHROMEBOOK, CHROMEBIT, etc."""
+    if self._device_type_name is None:
+      self._device_type_name = self.LsbReleaseValue(
+          key='DEVICETYPE', default='CHROMEBOOK')
+    return self._device_type_name
+
+  def GetBoard(self):
+    """Gets the name of the board of the device, e.g. "kevin".
+
+    Returns:
+      The name of the board as a string, or None if it can't be retrieved.
+    """
+    if self._board is None:
+      self._board = self.LsbReleaseValue(
+          key='CHROMEOS_RELEASE_BOARD', default=None)
+    return self._board
+
+  def _GetSessionManagerPid(self, procs):
+    """Returns the pid of the session_manager process, given the list of
+    processes."""
+    for pid, process, _, _ in procs:
+      argv = process.split()
+      if argv and os.path.basename(argv[0]) == 'session_manager':
+        return pid
     return None
 
   def IsRunningOnVM(self):

@@ -18,11 +18,13 @@ CROS_INFO_PATH = '/etc/lsb-release'
 
 class CrosPlatformBackend(
     linux_based_platform_backend.LinuxBasedPlatformBackend):
+
   def __init__(self, device=None):
     super().__init__(device)
     if device and not device.is_local:
-      self._cri = cros_interface.CrOSInterface(
-          device.host_name, device.ssh_port, device.ssh_identity)
+      self._cri = cros_interface.CrOSInterface(device.host_name,
+                                               device.ssh_port,
+                                               device.ssh_identity)
       self._cri.TryLogin()
     else:
       self._cri = cros_interface.CrOSInterface()
@@ -46,6 +48,14 @@ class CrosPlatformBackend(
   @property
   def cri(self):
     return self._cri
+
+  @property
+  def interface(self):
+    return self.cri
+
+  @property
+  def has_interface(self):
+    return True
 
   def _CreateForwarderFactory(self):
     return linux_based_forwarder.LinuxBasedForwarderFactory(self._cri)

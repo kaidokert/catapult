@@ -65,6 +65,16 @@ class PlatformBackend():
     return self._platform.is_host_platform
 
   @property
+  def interface(self):
+    '''Interface of device, if supported.'''
+    raise NotImplementedError
+
+  @property
+  def has_interface(self):
+    '''Indicates whether interface is a supported property.'''
+    return False
+
+  @property
   def network_controller_backend(self):
     return self._network_controller_backend
 
@@ -86,7 +96,6 @@ class PlatformBackend():
 
   def GetSystemLog(self):
     return None
-
 
   def IsRemoteDevice(self):
     """Check if target platform is on remote device.
@@ -162,8 +171,10 @@ class PlatformBackend():
   def FlushDnsCache(self):
     pass
 
-  def LaunchApplication(
-      self, application, parameters=None, elevate_privilege=False):
+  def LaunchApplication(self,
+                        application,
+                        parameters=None,
+                        elevate_privilege=False):
     raise NotImplementedError()
 
   def StartActivity(self, intent, blocking):
