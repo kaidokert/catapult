@@ -62,13 +62,6 @@ class CrOSInterface(linux_based_interface.LinuxBasedInterface):
           return {'pid': pid, 'path': path_match.group(), 'args': process}
     return None
 
-  def GetChromePid(self):
-    """Returns pid of main chrome browser process."""
-    result = self.GetChromeProcess()
-    if result and 'pid' in result:
-      return result['pid']
-    return None
-
   def IsRunningOnVM(self):
     if self._is_running_on_vm is None:
       self._is_running_on_vm = self.RunCmdOnDevice(['crossystem', 'inside_vm'
