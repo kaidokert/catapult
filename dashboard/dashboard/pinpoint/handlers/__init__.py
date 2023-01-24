@@ -22,6 +22,7 @@ if utils.IsRunningFlask():
   import dashboard.pinpoint.handlers.refresh_jobs
   import dashboard.pinpoint.handlers.isolate
   import dashboard.pinpoint.handlers.results2
+  import dashboard.pinpoint.handlers.request_build
   import dashboard.pinpoint.handlers.run
   import dashboard.pinpoint.handlers.isolate
   import dashboard.pinpoint.handlers.stats
@@ -41,6 +42,7 @@ else:
   from dashboard.pinpoint.handlers.isolate import IsolateCleanup
   from dashboard.pinpoint.handlers.results2 import Results2
   from dashboard.pinpoint.handlers.results2 import Results2Generator
+  from dashboard.pinpoint.handlers.request_build import RequestBuild
   from dashboard.pinpoint.handlers.run import Run
   from dashboard.pinpoint.handlers.isolate import Isolate
   from dashboard.pinpoint.handlers.stats import Stats

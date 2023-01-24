@@ -72,6 +72,10 @@ if utils.IsRunningFlask():
   def FifoSchedulerHandler():
     return handlers.fifo_scheduler.FifoSchedulerHandler()
 
+  @APP.route('/api/request-build', methods=['POST'])
+  def RequestBuilderHandlerPost():
+    return handlers.request_build.RequestBuildHandlerPost()
+
   @APP.route('/cron/refresh-jobs')
   def RefreshJobsHandler():
     return handlers.refresh_jobs.RefreshJobsHandler()
@@ -131,6 +135,7 @@ else:
 
       # Used internally by Pinpoint. Not accessible from the public API.
       webapp2.Route(r'/api/run/<job_id>', handlers.Run),
+      webapp2.Route(r'/api/request-build', handlers.RequestBuild),
       webapp2.Route(r'/cron/isolate-cleanup', handlers.IsolateCleanup),
       webapp2.Route(r'/cron/refresh-jobs', handlers.RefreshJobs),
       webapp2.Route(r'/cron/fifo-scheduler', handlers.FifoScheduler),
