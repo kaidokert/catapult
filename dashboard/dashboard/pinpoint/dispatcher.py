@@ -54,6 +54,11 @@ def JobHandlerGet(job_id):
   return handlers.job.JobHandlerGet(job_id)
 
 
+@APP.route('/api/request-build', methods=['POST'])
+def RequestBuilderHandlerPost():
+  return handlers.request_build.RequestBuildHandlerPost()
+
+
 @APP.route('/api/queue-stats/<configuration>')
 def QueueStatsHandlerGet(configuration):
   return handlers.queue_stats.QueueStatsHandlerGet(configuration)

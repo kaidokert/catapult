@@ -80,9 +80,10 @@ def Put(bucket, tags, parameters):
   if gitiles_commit:
     body['gitilesCommit'] = gitiles_commit
   logging.info("bbv2 Put body: \n%s\n", json.dumps(body))
+  logging.info('adc')
 
   return request.RequestJson(
-      API_BASE_URL2 + 'ScheduleBuild', method='POST', body=body)
+      API_BASE_URL2 + 'ScheduleBuild', method='POST', body=body, use_adc=True)
 
 
 # TODO: Rename to Get().
@@ -91,7 +92,7 @@ def GetJobStatus(job_id):
   body = {'id': job_id}
   logging.info("bbv2 GetJobStatus body: \n%s\n", json.dumps(body))
   return request.RequestJson(
-      API_BASE_URL2 + 'GetBuild', method='POST', body=body)
+      API_BASE_URL2 + 'GetBuild', method='POST', body=body, use_adc=True)
 
 
 # TODO(robertocn): Implement CancelJobByID
