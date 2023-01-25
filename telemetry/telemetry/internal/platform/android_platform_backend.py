@@ -173,6 +173,15 @@ class AndroidPlatformBackend(
     return self._device
 
   @property
+  def interface(self):
+    # Android does not have the same device interface as CrOS or linux.
+    return None
+
+  @property
+  def has_interface(self):
+    return False
+
+  @property
   def require_root(self):
     return self._require_root
 
