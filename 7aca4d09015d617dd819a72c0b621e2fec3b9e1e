@@ -16,6 +16,40 @@
       "message": "PTAL",
       "revId": "7aca4d09015d617dd819a72c0b621e2fec3b9e1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a321ed90_3e4d3340",
+        "filename": "tracing/tracing/ui/base/table.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1736,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-01-25T20:50:33Z",
+      "side": 1,
+      "message": "add a check for `undefined` values of `value` here (or at the call site)? I think this is causing some tests to fail.",
+      "revId": "7aca4d09015d617dd819a72c0b621e2fec3b9e1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d500d2_f1bef09e",
+        "filename": "tracing/tracing/ui/base/table.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-01-25T20:50:33Z",
+      "side": 1,
+      "message": "does innerText work here instead of innerHTML? The latter is a known security hole. This code probably uses innerHTML all over the place already, but if we can avoid adding more instances that would be preferable.",
+      "revId": "7aca4d09015d617dd819a72c0b621e2fec3b9e1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
