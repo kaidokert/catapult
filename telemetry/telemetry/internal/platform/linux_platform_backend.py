@@ -5,7 +5,6 @@
 from __future__ import absolute_import
 import logging
 import os
-import platform
 import shlex
 import subprocess
 import sys
@@ -14,9 +13,12 @@ from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry.internal.util import binary_manager
 from telemetry.core import os_version
-from telemetry.core import util
+from telemetry.core import linux_interface
 from telemetry import decorators
 from telemetry.internal.platform import linux_based_platform_backend
+from telemetry.internal.platform import linux_device
+from telemetry.core import platform
+from telemetry.internal.forwarders import linux_based_forwarder
 from telemetry.internal.platform import posix_platform_backend
 
 
@@ -40,12 +42,31 @@ def _GetOSVersion(value):
 class LinuxPlatformBackend(
     posix_platform_backend.PosixPlatformBackend,
     linux_based_platform_backend.LinuxBasedPlatformBackend):
-  def __init__(self):
+
+  def __init__(self, device=None):
     super().__init__()
+    if device and not device.is_local:
+      self._li = linux_interface.LinuxInterface(device.host_name,
+                                                device.ssh_port,
+                                                device.ssh_identity)
+    else:
+      self._li = linux_interface.LinuxInterface()
 
   @classmethod
   def IsPlatformBackendForHost(cls):
-    return sys.platform.startswith('linux') and not util.IsRunningOnCrosDevice()
+    # Its for the host if the device is local.
+    # TODO: How to check this??
+    return sys.platform.startswith('linux')
+
+  @classmethod
+  def SupportsDevice(cls, device):
+    return isinstance(device, linux_device.LinuxDevice)
+
+  @classmethod
+  def CreatePlatformForDevice(cls, device, finder_options):
+    del finder_options
+    assert cls.SupportsDevice(device)
+    return platform.Platform(LinuxPlatformBackend(device))
 
   def IsThermallyThrottled(self):
     raise NotImplementedError()
@@ -53,15 +74,31 @@ class LinuxPlatformBackend(
   def HasBeenThermallyThrottled(self):
     raise NotImplementedError()
 
+  def _CreateForwarderFactory(self):
+    logging.debug('Creating forwarder factory in LinuxPlatformBackend')
+    logging.debug('Interface is local? %s', str(self.interface.local))
+    return linux_based_forwarder.LinuxBasedForwarderFactory(self.interface)
+
   @decorators.Cache
   def GetArchName(self):
-    return platform.machine()
+    return self.interface.GetArchName()
+
+  @property
+  def interface(self):
+    return self._li
+
+  @property
+  def has_interface(self):
+    return True
+
+  def GetDisplays(self):
+    return self.interface.GetDisplays()
 
   def GetOSName(self):
     return 'linux'
 
   def _ReadReleaseFile(self, file_path):
-    if not os.path.exists(file_path):
+    if self.has_interface and not self._li.FileExistsOnDevice(file_path):
       return None
 
     release_data = {}
@@ -106,12 +143,11 @@ class LinuxPlatformBackend(
     raise NotImplementedError('Missing Linux OS name or version')
 
   def CanTakeScreenshot(self):
-    return_code = subprocess.call(['which', 'gnome-screenshot'])
-    return return_code == 0
+    rc, _, _ = self._li.RunCmdOnDeviceWithRC(['which', 'gnome-screenshot'])
+    return rc == 0
 
   def TakeScreenshot(self, file_path):
-    return_code = subprocess.call(['gnome-screenshot', '-f', file_path])
-    return return_code == 0
+    return self._li.TakeScreenshot(file_path)
 
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
@@ -120,14 +156,15 @@ class LinuxPlatformBackend(
     return self.HasRootAccess()
 
   def FlushEntireSystemCache(self):
-    p = subprocess.Popen(['/sbin/sysctl', '-w', 'vm.drop_caches=3'])
-    p.wait()
-    assert p.returncode == 0, 'Failed to flush system cache'
+    rc, _, _ = self._li.RunCmdOnDeviceWithRC(
+        ['/sbin/sysctl', '-w', 'vm.drop_caches=3'])
+    assert rc == 0, 'Failed to flush system cache'
 
   def CanLaunchApplication(self, application):
     if application == 'ipfw' and not self._IsIpfwKernelModuleInstalled():
       return False
-    return super().CanLaunchApplication(application)
+    rc, _, _ = self._li.RunCmdOnDeviceWithRC(['which', application])
+    return rc == 0
 
   def InstallApplication(self, application):
     if application == 'ipfw':
@@ -137,24 +174,29 @@ class LinuxPlatformBackend(
     elif application in _POSSIBLE_PERFHOST_APPLICATIONS:
       self._InstallBinary(application)
     else:
-      raise NotImplementedError(
-          'Please teach Telemetry how to install ' + application)
+      raise NotImplementedError('Please teach Telemetry how to install ' +
+                                application)
 
   def _IsIpfwKernelModuleInstalled(self):
-    return 'ipfw_mod' in subprocess.Popen(
-        ['lsmod'], stdout=subprocess.PIPE).communicate()[0]
+    stdout, _ = self._li.RunCmdOnDevice(['lsmod'])
+    return 'ipfw_mod' in stdout
 
   def _InstallIpfw(self):
-    ipfw_bin = binary_manager.FindPath(
-        'ipfw', self.GetArchName(), self.GetOSName())
-    ipfw_mod = binary_manager.FindPath(
-        'ipfw_mod.ko', self.GetArchName(), self.GetOSName())
+    # Only supported in local case for now.
+    # TODO: I believe this is used for port-forwarding from the host.
+    # Could be host-only, in that case.
+    if not self._li.local:
+      raise NotImplementedError
+    ipfw_bin = binary_manager.FetchPath('ipfw', self.GetArchName(),
+                                        self.GetOSName())
+    ipfw_mod = binary_manager.FetchPath('ipfw_mod.ko', self.GetArchName(),
+                                        self.GetOSName())
 
     try:
-      changed = cloud_storage.GetIfChanged(
-          ipfw_bin, cloud_storage.INTERNAL_BUCKET)
-      changed |= cloud_storage.GetIfChanged(
-          ipfw_mod, cloud_storage.INTERNAL_BUCKET)
+      changed = cloud_storage.GetIfChanged(ipfw_bin,
+                                           cloud_storage.INTERNAL_BUCKET)
+      changed |= cloud_storage.GetIfChanged(ipfw_mod,
+                                            cloud_storage.INTERNAL_BUCKET)
     except cloud_storage.CloudStorageError as e:
       logging.error(str(e))
       logging.error('You may proceed by manually building and installing'
@@ -175,7 +217,12 @@ class LinuxPlatformBackend(
         'your kernel. See: http://info.iet.unipi.it/~luigi/dummynet/'
 
   def _InstallBinary(self, bin_name):
-    bin_path = binary_manager.FetchPath(
-        bin_name, self.GetOSName(), self.GetArchName())
+    if not self._li.local:
+      raise NotImplementedError
+    bin_path = binary_manager.FetchPath(bin_name, self.GetOSName(),
+                                        self.GetArchName())
     os.environ['PATH'] += os.pathsep + os.path.dirname(bin_path)
     assert self.CanLaunchApplication(bin_name), 'Failed to install ' + bin_name
+
+  def IsRemoteDevice(self):
+    return not self._li.local

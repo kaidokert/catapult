@@ -9,6 +9,7 @@ import unittest
 from telemetry import decorators
 from telemetry.core import util
 from telemetry.internal.platform import linux_platform_backend
+from telemetry.core import linux_interface
 import mock
 
 
@@ -23,8 +24,9 @@ class LinuxPlatformBackendTest(unittest.TestCase):
     with open(path) as f:
       unbuntu_saucy_lsb_release_content = f.read()
 
-    with mock.patch.object(os.path, 'exists',
-                           side_effect=_PathMatches('/etc/lsb-release')):
+    with mock.patch.object(linux_interface.LinuxInterface,
+                           'FileExistsOnDevice',
+                          side_effect=_PathMatches('/etc/lsb-release')):
       with mock.patch.object(
           linux_platform_backend.LinuxPlatformBackend, 'GetFileContents',
           return_value=unbuntu_saucy_lsb_release_content) as mock_method:
@@ -38,8 +40,9 @@ class LinuxPlatformBackendTest(unittest.TestCase):
     with open(path) as f:
       arch_os_release_content = f.read()
 
-    with mock.patch.object(os.path, 'exists',
-                           side_effect=_PathMatches('/usr/lib/os-release')):
+    with mock.patch.object(linux_interface.LinuxInterface,
+                           'FileExistsOnDevice',
+                          side_effect=_PathMatches('/usr/lib/os-release')):
       with mock.patch.object(
           linux_platform_backend.LinuxPlatformBackend, 'GetFileContents',
           return_value=arch_os_release_content) as mock_method:
@@ -53,8 +56,9 @@ class LinuxPlatformBackendTest(unittest.TestCase):
     with open(path) as f:
       fedora_os_release_content = f.read()
 
-    with mock.patch.object(os.path, 'exists',
-                           side_effect=_PathMatches('/etc/os-release')):
+    with mock.patch.object(linux_interface.LinuxInterface,
+                           'FileExistsOnDevice',
+                          side_effect=_PathMatches('/etc/os-release')):
       with mock.patch.object(
           linux_platform_backend.LinuxPlatformBackend, 'GetFileContents',
           return_value=fedora_os_release_content) as mock_method:

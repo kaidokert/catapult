@@ -431,7 +431,7 @@ class LinuxBasedInterface:
                            (self._hostname, self._REMOTE_USER, stdout))
 
   def FileExistsOnDevice(self, file_name):
-    return self.TestFile(file_name, exists=True)
+    return self.TestFile(file_name, exists=True, is_file=True)
 
   def IsFile(self, file_name):
     logging.debug('Verify: %s', file_name)
@@ -443,6 +443,16 @@ class LinuxBasedInterface:
   def TestFile(self, path, exists=False, is_file=False, is_dir=False):
     assert exists or is_file or is_dir, 'Must specify an existence condition'
     assert not (is_file and is_dir), 'Cannot specify both is_file and is_dir'
+
+    # While below also works, this saves a subprocess call.
+    if self.local:
+      if exists:
+        return os.path.exists(path)
+      if is_file:
+        return os.path.isfile(path)
+      if is_dir:
+        return os.path.isdir(path)
+
     if exists:
       condition = '-e'
 
