@@ -50,6 +50,24 @@
       "message": "does innerText work here instead of innerHTML? The latter is a known security hole. This code probably uses innerHTML all over the place already, but if we can avoid adding more instances that would be preferable.",
       "revId": "7aca4d09015d617dd819a72c0b621e2fec3b9e1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "782fee97_2b5f1aaf",
+        "filename": "tracing/tracing/ui/base/table.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-25T21:08:22Z",
+      "side": 1,
+      "message": "I\u0027ve tried innerText but it alters outer style somehow, which fails a style check later. Since the input is also legal innerHTML that should be looking good.",
+      "parentUuid": "b4d500d2_f1bef09e",
+      "revId": "7aca4d09015d617dd819a72c0b621e2fec3b9e1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
