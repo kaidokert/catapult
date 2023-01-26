@@ -148,9 +148,7 @@ def StoreConfigs(client, configs):
     client.put_multi(list(entities.values()) + [subscription_index])
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Matcher(object):
+class Matcher:
 
   def __init__(self, subscription):
     self._match_subscription = matcher_module.CompileRules(

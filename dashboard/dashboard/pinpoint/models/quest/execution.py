@@ -19,9 +19,7 @@ else:
   TokenRefreshError = exceptions.RefreshError
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Execution(object):
+class Execution:
   """Object tracking the execution of a Quest.
 
   An Execution object is created for each Quest when it starts running.
