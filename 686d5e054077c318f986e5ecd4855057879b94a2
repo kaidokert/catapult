@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "686d5e054077c318f986e5ecd4855057879b94a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1441c3d_bad350e5",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-26T22:26:04Z",
+      "side": 1,
+      "message": "Now that we don\u0027t have backward compatibility requirements, I think we should just remove this line.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "686d5e054077c318f986e5ecd4855057879b94a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
