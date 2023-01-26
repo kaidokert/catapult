@@ -75,9 +75,8 @@ class CloudStorageError(Exception):
             '  2. If you have a @google.com account, use that account.\n'
             '  3. For the project-id, just enter 0.' % command)
 
-# TODO(https://crbug.com/1262295): Rename this after Python2 trybots retire.
-# pylint: disable=redefined-builtin
-class PermissionError(CloudStorageError):
+
+class CloudStoragePermissionError(CloudStorageError):
 
   def __init__(self):
     super().__init__(

@@ -20,10 +20,6 @@ THIRD_PARTY_LIBRARIES = [
     'gae_ts_mon',
     'jquery',
     'polymer',
-    'polymer-svg-template',
-    'polymer2/bower_components',
-    'polymer2/bower_components/chopsui',
-    'redux/redux.min.js',
 ]
 
 # Add third party libraries needed *copying* for python 2. When running in
@@ -49,6 +45,10 @@ THIRD_PARTY_LIBRARIES_PY2 = THIRD_PARTY_LIBRARIES + [
     'mock',
     'oauth2client',
     'pipeline',
+    'polymer-svg-template',
+    'polymer2/bower_components',
+    'polymer2/bower_components/chopsui',
+    'redux/redux.min.js',
     'pyasn1',
     'pyasn1_modules',
     'pyparsing',
