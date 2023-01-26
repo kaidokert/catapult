@@ -17,7 +17,7 @@ import logging
 # This hack will be relied on only during the transition time to Python 3. It
 # will allow fallback to Python 2 if needed.
 import pickle
-pickle.HIGHEST_PROTOCOL = 2
+pickle.HIGHEST_PROTOCOL = 5
 
 from dashboard.pinpoint import handlers
 
@@ -134,9 +134,10 @@ def ObsoleteEndpointsHandler(builder_name=None, git_hash=None, target=None):
   del builder_name, git_hash, target
   obsolete_endpoint = flask_request.endpoint
   logging.error(
-      'Request on deleted endpoint: %s. It was considered obsolete in Python 3 migration.',
-      obsolete_endpoint)
+      'Request on deleted endpoint: %s. '
+      'It was considered obsolete in Python 3 migration.', obsolete_endpoint)
 
   return make_response(
-      'This endpoint is obsolete: %s. Please contact browser-perf-engprod@google.com for more info.'
-      % obsolete_endpoint, 404)
+      'This endpoint is obsolete: %s. '
+      'Please contact browser-perf-engprod@google.com for more info.' %
+      obsolete_endpoint, 404)
