@@ -79,6 +79,54 @@
       },
       "revId": "1e266c7b4e347fa6fce7d3317a1da666b930f152",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d694c096_8ab14c6c",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-26T00:54:05Z",
+      "side": 1,
+      "message": "Yeah I just put it here in case someone else keep trying.",
+      "parentUuid": "8fb542a9_183ec3c6",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 403,
+        "endChar": 42
+      },
+      "revId": "1e266c7b4e347fa6fce7d3317a1da666b930f152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ee6c958_7f38c3a0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-26T00:54:05Z",
+      "side": 1,
+      "message": "Pickle prefer global objects, defining a function outside helps with serialization. In py2 it didn\u0027t run this way.",
+      "parentUuid": "d7df84f1_f09daa21",
+      "range": {
+        "startLine": 403,
+        "startChar": 13,
+        "endLine": 403,
+        "endChar": 23
+      },
+      "revId": "1e266c7b4e347fa6fce7d3317a1da666b930f152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
