@@ -196,21 +196,26 @@ class CloudStorageTest(unittest.TestCase):
     self.cloud_storage.SetPermissionLevelForTesting(
         self.cloud_storage.PUBLIC_PERMISSION)
     self.assertRaises(
-        self.cloud_storage.PermissionError, self.cloud_storage.Get,
+        self.cloud_storage.CloudStoragePermissionError,
+        self.cloud_storage.Get,
         self.cloud_storage.INTERNAL_BUCKET, 'preset_internal_file.wpr',
         os.path.join(os.path.sep, 'path', 'to', 'preset_internal_file.wpr'))
     self.assertRaises(
-        self.cloud_storage.PermissionError, self.cloud_storage.GetIfChanged,
+        self.cloud_storage.CloudStoragePermissionError,
+        self.cloud_storage.GetIfChanged,
         os.path.join(os.path.sep, 'path', 'to', 'preset_internal_file.wpr'),
         self.cloud_storage.INTERNAL_BUCKET)
     self.assertRaises(
-        self.cloud_storage.PermissionError, self.cloud_storage.List,
+        self.cloud_storage.CloudStoragePermissionError,
+        self.cloud_storage.List,
         self.cloud_storage.INTERNAL_BUCKET)
     self.assertRaises(
-        self.cloud_storage.PermissionError, self.cloud_storage.Exists,
+        self.cloud_storage.CloudStoragePermissionError,
+        self.cloud_storage.Exists,
         self.cloud_storage.INTERNAL_BUCKET, 'preset_internal_file.wpr')
     self.assertRaises(
-        self.cloud_storage.PermissionError, self.cloud_storage.Insert,
+        self.cloud_storage.CloudStoragePermissionError,
+        self.cloud_storage.Insert,
         self.cloud_storage.INTERNAL_BUCKET, 'success.wpr',
         os.path.join(os.path.sep, 'path', 'to', 'success.wpr'))
     # Reset state.
