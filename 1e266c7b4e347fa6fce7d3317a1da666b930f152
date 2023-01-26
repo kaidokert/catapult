@@ -151,6 +151,54 @@
       },
       "revId": "1e266c7b4e347fa6fce7d3317a1da666b930f152",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f10037_b2fd76bc",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-26T01:00:48Z",
+      "side": 1,
+      "message": "The wording \"still no\" makes it sounds like this will become available at some time, and is a little misleading.",
+      "parentUuid": "d694c096_8ab14c6c",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 403,
+        "endChar": 42
+      },
+      "revId": "1e266c7b4e347fa6fce7d3317a1da666b930f152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7588941d_e29af588",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-26T01:00:48Z",
+      "side": 1,
+      "message": "In py2 we used \"fork\" instead of \"forkserver\", and it didn\u0027t require pickle. Not sure if we really need to move to forkserver, but I\u0027m OK either way.",
+      "parentUuid": "975e3ca1_879dbad0",
+      "range": {
+        "startLine": 403,
+        "startChar": 13,
+        "endLine": 403,
+        "endChar": 23
+      },
+      "revId": "1e266c7b4e347fa6fce7d3317a1da666b930f152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
