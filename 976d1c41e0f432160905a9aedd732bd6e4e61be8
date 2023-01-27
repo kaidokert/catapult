@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2799d4f7_dfd3f02a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-27T07:11:40Z",
+      "side": 1,
+      "message": "I think deleting the old yamls and keeping the -py3 yamls will make this CL more clear. Either way works though.",
+      "revId": "976d1c41e0f432160905a9aedd732bd6e4e61be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a614169e_c016545a",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green-py3.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-27T07:11:40Z",
+      "side": 1,
+      "message": "Version updates should be in a separate CL.",
+      "range": {
+        "startLine": 70,
+        "startChar": 26,
+        "endLine": 70,
+        "endChar": 33
+      },
+      "revId": "976d1c41e0f432160905a9aedd732bd6e4e61be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
