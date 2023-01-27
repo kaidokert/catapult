@@ -1,5 +1,5 @@
 # Copyright 2015 The Chromium Authors. All rights reserved.
-# Use of this source code is governed by a BSD-style license that can be
+# Use of this source code is governed by a BSD-style license that can be test
 # found in the LICENSE file.
 """Functions for fetching and updating a list of top-level tests."""
 from __future__ import print_function
