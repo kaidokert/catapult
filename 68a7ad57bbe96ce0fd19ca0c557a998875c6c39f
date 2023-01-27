@@ -16,6 +16,23 @@
       "message": "Not sure the ideal way to approach this. This CL is the easiest fix.\n\nThe alternative fix is to truncate bot_ids and drop other columns.",
       "revId": "68a7ad57bbe96ce0fd19ca0c557a998875c6c39f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efb49131_cdb2e814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-27T22:53:31Z",
+      "side": 1,
+      "message": "LGTM. Thanks!",
+      "revId": "68a7ad57bbe96ce0fd19ca0c557a998875c6c39f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
