@@ -140,7 +140,7 @@ class CloudStorageModuleStub():
   class CloudStorageError(Exception):
     pass
 
-  class PermissionError(CloudStorageError):
+  class CloudStoragePermissionError(CloudStorageError):
     pass
 
   class CredentialsError(CloudStorageError):
@@ -167,10 +167,10 @@ class CloudStorageModuleStub():
       raise CloudStorageModuleStub.CredentialsError()
     if bucket == CloudStorageModuleStub.PARTNER_BUCKET:
       if self.permission_level < CloudStorageModuleStub.PARTNER_PERMISSION:
-        raise CloudStorageModuleStub.PermissionError()
+        raise CloudStorageModuleStub.CloudStoragePermissionError()
     elif bucket == CloudStorageModuleStub.INTERNAL_BUCKET:
       if self.permission_level < CloudStorageModuleStub.INTERNAL_PERMISSION:
-        raise CloudStorageModuleStub.PermissionError()
+        raise CloudStorageModuleStub.CloudStoragePermissionError()
     elif bucket not in self.remote_paths:
       raise CloudStorageModuleStub.NotFoundError()
 
