@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43fc6e99_f8b27e9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-01-27T21:44:37Z",
+      "side": 1,
+      "message": "Not sure the ideal way to approach this. This CL is the easiest fix.\n\nThe alternative fix is to truncate bot_ids and drop other columns.",
+      "revId": "68a7ad57bbe96ce0fd19ca0c557a998875c6c39f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
