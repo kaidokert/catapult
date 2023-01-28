@@ -6,7 +6,6 @@ from __future__ import absolute_import
 import re
 import sys
 import unittest
-import six
 
 from py_utils import exc_util
 
@@ -56,13 +55,6 @@ class FaultyClient():
 
 
 class ReraiseTests(unittest.TestCase):
-  def assertCountEqualPy23(self, expected, actual):
-    if six.PY2:
-      # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-      # pylint: disable=deprecated-method, no-member
-      self.assertItemsEqual(expected, actual)
-    else:
-      self.assertCountEqual(expected, actual) # pylint: disable=no-member
 
   def assertLogMatches(self, pattern):
     # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
@@ -92,7 +84,7 @@ class ReraiseTests(unittest.TestCase):
         r'While handling a FakeConnectionError, .* was also raised:\n'
         r'.*'
         r'FakeDisconnectionError: Oops!\n', re.DOTALL))
-    self.assertCountEqualPy23(client.called, ['Connect', 'Disconnect'])
+    self.assertCountEqual(client.called, ['Connect', 'Disconnect'])
 
   def testTryRaisesExceptDoesnt(self):
     client = FaultyClient(FakeConnectionError)
@@ -107,7 +99,7 @@ class ReraiseTests(unittest.TestCase):
         raise
 
     self.assertLogNotMatches('FakeDisconnectionError')
-    self.assertCountEqualPy23(client.called, ['Connect', 'Disconnect'])
+    self.assertCountEqual(client.called, ['Connect', 'Disconnect'])
 
   def testTryPassesNoException(self):
     client = FaultyClient(FakeDisconnectionError)
@@ -122,7 +114,7 @@ class ReraiseTests(unittest.TestCase):
 
     self.assertLogNotMatches('FakeConnectionError')
     self.assertLogNotMatches('FakeDisconnectionError')
-    self.assertCountEqualPy23(client.called, ['Connect'])
+    self.assertCountEqual(client.called, ['Connect'])
 
   def testTryRaisesFinallyRaises(self):
     worker = FaultyClient(FakeProcessingError, FakeCleanupError)
@@ -142,7 +134,7 @@ class ReraiseTests(unittest.TestCase):
         r'While handling a FakeProcessingError, .* was also raised:\n'
         r'.*'
         r'FakeCleanupError: Oops!\n', re.DOTALL))
-    self.assertCountEqualPy23(worker.called, ['Process', 'Cleanup'])
+    self.assertCountEqual(worker.called, ['Process', 'Cleanup'])
 
   def testTryRaisesFinallyDoesnt(self):
     worker = FaultyClient(FakeProcessingError)
@@ -160,7 +152,7 @@ class ReraiseTests(unittest.TestCase):
 
     self.assertLogNotMatches('FakeProcessingError')
     self.assertLogNotMatches('FakeCleanupError')
-    self.assertCountEqualPy23(worker.called, ['Process', 'Cleanup'])
+    self.assertCountEqual(worker.called, ['Process', 'Cleanup'])
 
   def testTryPassesFinallyRaises(self):
     worker = FaultyClient(FakeCleanupError)
@@ -175,7 +167,7 @@ class ReraiseTests(unittest.TestCase):
 
     self.assertLogNotMatches('FakeProcessingError')
     self.assertLogNotMatches('FakeCleanupError')
-    self.assertCountEqualPy23(worker.called, ['Process', 'Cleanup'])
+    self.assertCountEqual(worker.called, ['Process', 'Cleanup'])
 
   def testTryRaisesExceptRaisesFinallyRaises(self):
     worker = FaultyClient(
@@ -194,5 +186,5 @@ class ReraiseTests(unittest.TestCase):
 
     self.assertLogMatches('FakeDisconnectionError')
     self.assertLogMatches('FakeCleanupError')
-    self.assertCountEqualPy23(worker.called,
-                              ['Process', 'Disconnect', 'Cleanup'])
+    self.assertCountEqual(worker.called,
+                          ['Process', 'Disconnect', 'Cleanup'])
