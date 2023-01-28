@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23649f07_fd6bbc9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-01-28T00:13:02Z",
+      "side": 1,
+      "message": "+johnchen@ for catapult_build/build_steps.py",
+      "revId": "3ee9b65bb5a1a80febb085a508efc9f0c23b07a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
