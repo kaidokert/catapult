@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f8704a_1631c874",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "The tests which are disabled due to ExecuteTaskQueueTasks are waiting to be fixed. Some test setup is not configured right in python 3 but we still want it. \nI created a bug afterwards but forgot to add them in the comments. Would you please help adding them here? The bug is crbug/1403845.",
+      "range": {
+        "startLine": 508,
+        "startChar": 24,
+        "endLine": 508,
+        "endChar": 45
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e28141_56af8948",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 815,
+        "startChar": 24,
+        "endLine": 815,
+        "endChar": 45
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dcafeeb_41d966df",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 832,
+        "startChar": 24,
+        "endLine": 832,
+        "endChar": 45
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd0872d_b91ed276",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "Suggest keeping this for the same reason of keeping dump_graph_json_tests.",
+      "range": {
+        "startLine": 1810,
+        "startChar": 29,
+        "endLine": 1810,
+        "endChar": 41
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60c30f56_a754d553",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1873,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 1873,
+        "startChar": 24,
+        "endLine": 1873,
+        "endChar": 45
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8670c379_32358812",
+        "filename": "dashboard/dashboard/add_point_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 943,
+        "startChar": 24,
+        "endLine": 943,
+        "endChar": 45
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "688c14d8_8331e3c8",
+        "filename": "dashboard/dashboard/add_point_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 963,
+        "startChar": 24,
+        "endLine": 963,
+        "endChar": 45
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5da6ad74_092355be",
+        "filename": "dashboard/dashboard/common/xsrf_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "nit: remove the suffix _Flask.",
+      "range": {
+        "startLine": 49,
+        "startChar": 42,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b97f2aa_b25f6ae0",
+        "filename": "dashboard/dashboard/common/xsrf_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "nit: _Flask.",
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78dedf66_be041570",
+        "filename": "dashboard/dashboard/common/xsrf_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "nit: _Flask.",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 50
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca9d1ab_59c76353",
+        "filename": "dashboard/dashboard/dump_graph_json_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-01-30T19:58:16Z",
+      "side": 0,
+      "message": "For this endpoint, John pointed out that it is in used in dev_appserver. However, there is no py3 support for dev_appserver so far. I\u0027m hoping that once the support is ready, we can reenable the tests here. So I\u0027ll suggest keeping this file for now. \n(Please help fix the typo in appservier)",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
