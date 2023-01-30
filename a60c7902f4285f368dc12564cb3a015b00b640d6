@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e363c0eb_13bc069a",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green-py3.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-30T18:48:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "258b7bcd_f8273aa7",
+      "range": {
+        "startLine": 39,
+        "startChar": 71,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "a60c7902f4285f368dc12564cb3a015b00b640d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffc60b5b_5a27f62f",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-30T18:20:39Z",
       "side": 1,
       "message": "This needs to be cleaned up in the future if not in this CL.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 95
+      },
+      "revId": "a60c7902f4285f368dc12564cb3a015b00b640d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ff88eda_3271d8ee",
+        "filename": "dashboard/dev_dockerfiles/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-01-30T18:48:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffc60b5b_5a27f62f",
       "range": {
         "startLine": 30,
         "startChar": 0,
