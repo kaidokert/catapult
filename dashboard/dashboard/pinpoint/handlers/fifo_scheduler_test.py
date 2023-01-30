@@ -8,15 +8,12 @@ from __future__ import division
 from __future__ import absolute_import
 
 import mock
-import sys
-import unittest
 
 from dashboard.common import namespaced_stored_object
 from dashboard.common import bot_configurations
 from dashboard.pinpoint import test
 from dashboard.pinpoint.models import job
 from dashboard.pinpoint.models import scheduler
-from dashboard.pinpoint.models.tasks import bisection_test_util
 
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
@@ -248,37 +245,6 @@ class FifoSchedulerTest(test.TestCase):
     self.assertEqual(response.status_code, 200)
     self.ExecuteDeferredTasks('default')
     self.assertEqual(mock_job_start.call_count, 3)
-
-
-# TODO(dberris): Need to mock *all* of the back-end services that the various
-# "live" bisection operations will be looking into.
-@mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
-            mock.MagicMock(return_value=["a"]))
-@unittest.skipIf(sys.version_info.major == 3,
-                 'Skipping as execution Engine setup not ready for python 3.')
-class FifoSchedulerExecutionEngineTest(bisection_test_util.BisectionTestBase):
-
-  def setUp(self):
-    super().setUp()
-    namespaced_stored_object.Set(bot_configurations.BOT_CONFIGURATIONS_KEY,
-                                 {'mock': {}})
-
-  def testJobRunInExecutionEngine(self):
-    j = job.Job.New((), (),
-                    arguments={'configuration': 'mock'},
-                    comparison_mode='performance',
-                    use_execution_engine=True)
-    self.PopulateSimpleBisectionGraph(j)
-    scheduler.Schedule(j)
-    j.Start = mock.MagicMock(side_effect=j._Complete)
-
-    response = self.testapp.get('/cron/fifo-scheduler')
-    self.assertEqual(response.status_code, 200)
-    self.ExecuteDeferredTasks('default')
-
-    self.assertTrue(j.Start.called)
-    job_id, _ = scheduler.PickJobs('mock')[0]
-    self.assertIsNone(job_id)
 
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',

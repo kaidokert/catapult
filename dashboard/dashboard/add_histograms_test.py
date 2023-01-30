@@ -15,7 +15,6 @@ import random
 import six
 import string
 import sys
-import unittest
 import webtest
 import zlib
 
@@ -504,97 +503,6 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
                                add_histograms.TASK_QUEUE_NAME)
     self.assertTrue(mock_process_test.called)
 
-  @unittest.skipIf(six.PY3, '''
-    http requests after ExecuteTaskQueueTasks are not routed correctly for py3.
-    ''')
-  @mock.patch.object(add_histograms_queue.graph_revisions,
-                     'AddRowsToCacheAsync', mock.MagicMock())
-  @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync',
-                     mock.MagicMock())
-  def testPost_DeduplicateByName(self):
-    hs = _CreateHistogram(
-        master='m',
-        bot='b',
-        benchmark='s',
-        stories=['s1', 's2'],
-        commit_position=1111,
-        device='device1',
-        owner='owner1',
-        samples=[42])
-    self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    # There should be the 4 suite level and 2 histogram level diagnostics
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(6, len(diagnostics))
-
-    hs = _CreateHistogram(
-        master='m',
-        bot='b',
-        benchmark='s',
-        stories=['s1', 's2'],
-        commit_position=1112,
-        device='device1',
-        owner='owner1',
-        samples=[42])
-    self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    # There should STILL be the 4 suite level and 2 histogram level diagnostics
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(6, len(diagnostics))
-
-    hs = _CreateHistogram(
-        master='m',
-        bot='b',
-        benchmark='s',
-        stories=['s1', 's2'],
-        commit_position=1113,
-        device='device2',
-        owner='owner1',
-        samples=[42])
-    self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    # There should one additional device diagnostic since that changed
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(7, len(diagnostics))
-
-    hs = _CreateHistogram(
-        master='m',
-        bot='b',
-        benchmark='s',
-        stories=['s1', 's2'],
-        commit_position=1114,
-        device='device2',
-        owner='owner2')
-    self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    # Now there's an additional owner diagnostic
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(8, len(diagnostics))
-
-    hs = _CreateHistogram(
-        master='m',
-        bot='b',
-        benchmark='s',
-        stories=['s1', 's2'],
-        commit_position=1115,
-        device='device2',
-        owner='owner2',
-        samples=[42])
-    self.PostAddHistogram({'data': json.dumps(hs.AsDicts())})
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    # No more new diagnostics
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(8, len(diagnostics))
 
   @mock.patch.object(add_histograms_queue.graph_revisions,
                      'AddRowsToCacheAsync', mock.MagicMock())
@@ -810,40 +718,6 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     for k in expected.keys():
       self.assertFalse(expected[k])
-
-  @unittest.skipIf(six.PY3, '''
-    http requests after ExecuteTaskQueueTasks are not routed correctly for py3.
-    ''')
-  def testPost_OutOfOrder_SuiteLevel(self):
-    self._AddAtCommit(1, 'd1', 'o1')
-    self._AddAtCommit(10, 'd1', 'o1')
-    self._AddAtCommit(20, 'd1', 'o1')
-    self._AddAtCommit(30, 'd1', 'o1')
-    self._AddAtCommit(15, 'd1', 'o2')
-
-    expected = {
-        'deviceIds': [(1, sys.maxsize, [u'd1'])],
-        'owners': [(1, 14, [u'o1']), (15, 19, [u'o2']),
-                   (20, sys.maxsize, [u'o1'])]
-    }
-    self._CheckOutOfOrderExpectations(expected)
-
-  @unittest.skipIf(six.PY3, '''
-    http requests after ExecuteTaskQueueTasks are not routed correctly for py3.
-    ''')
-  def testPost_OutOfOrder_HistogramLevel(self):
-    self._AddAtCommit(1, 'd1', 'o1')
-    self._AddAtCommit(10, 'd1', 'o1')
-    self._AddAtCommit(20, 'd1', 'o1')
-    self._AddAtCommit(30, 'd1', 'o1')
-    self._AddAtCommit(15, 'd2', 'o1')
-
-    expected = {
-        'deviceIds': [(1, 14, [u'd1']), (15, 19, [u'd2']),
-                      (20, sys.maxsize, [u'd1'])],
-        'owners': [(1, sys.maxsize, [u'o1'])]
-    }
-    self._CheckOutOfOrderExpectations(expected)
 
 
 @mock.patch.object(SheriffConfigClient, '__init__',
@@ -1805,26 +1679,6 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
     self.assertEqual(len(measurements), 1)
     self.assertEqual(measurements[0].monitored, True)
 
-  # (crbug/1298177) The setup for Flask is not ready yet. We will force the test
-  # to run in the old setup for now.
-  @unittest.skipIf(six.PY3, 'DevAppserver not ready yet for python 3.')
-  @mock.patch.object(utils, 'IsRunningFlask',
-                     mock.MagicMock(return_value=False))
-  @mock.patch.object(utils, 'IsDevAppserver', mock.MagicMock(return_value=True))
-  def testPost_DevAppserverSucceeds(self):
-    token_info = self.PostAddHistogram(self.histogram_data)
-    self.assertTrue('token' in token_info)
-    self.assertTrue('file' in token_info)
-
-    token = upload_completion_token.Token.get_by_id(token_info['token'])
-    self.assertEqual(token_info['file'], None)
-    self.assertEqual(token.state, upload_completion_token.State.PROCESSING)
-    self.assertEqual(token.internal_only, utils.IsInternalUser())
-
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-    token = upload_completion_token.Token.get_by_id(token_info['token'])
-    self.assertEqual(token.state, upload_completion_token.State.COMPLETED)
 
   @mock.patch('logging.info')
   def testPostLogs_Succeeds(self, mock_log):
@@ -1868,61 +1722,6 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
                   token_info['token'], 'FAILED'),
     ]
     mock_log.assert_has_calls(log_calls, any_order=True)
-
-  @unittest.skipIf(six.PY3, '''
-    http requests after ExecuteTaskQueueTasks are not routed correctly for py3.
-    ''')
-  def testFullCycle_Success(self):
-    token_info = self.PostAddHistogram({'data': self.histogram_data})
-
-    uploads_response = self.GetUploads(token_info['token'])
-    self.assertEqual(uploads_response['token'], token_info['token'])
-    self.assertEqual(uploads_response['state'], 'PENDING')
-    self.assertTrue(uploads_response.get('error_message') is None)
-    self.assertTrue(uploads_response.get('file') is not None)
-    self.assertTrue(uploads_response.get('created') is not None)
-    self.assertTrue(uploads_response.get('lastUpdated') is not None)
-    self.assertTrue(uploads_response.get('measurements') is None)
-
-    self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
-
-    uploads_response = self.GetUploads(token_info['token'])
-    self.assertEqual(uploads_response['state'], 'PROCESSING')
-    self.assertEqual(len(uploads_response.get('measurements')), 1)
-
-    measurement = uploads_response['measurements'][0]
-    self.assertEqual(measurement['name'], 'master/bot/benchmark/hist')
-    self.assertEqual(measurement['state'], 'PROCESSING')
-    self.assertEqual(measurement['monitored'], False)
-    self.assertTrue(measurement.get('dimensions') is None)
-    self.assertTrue(measurement.get('lastUpdated') is not None)
-
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    uploads_response = self.GetUploads(token_info['token'])
-    measurement = uploads_response['measurements'][0]
-    self.assertEqual(uploads_response['state'], 'COMPLETED')
-    self.assertEqual(measurement['state'], 'COMPLETED')
-    self.assertEqual(len(measurement['dimensions']), 5)
-
-  @unittest.skipIf(six.PY3, '''
-    http requests after ExecuteTaskQueueTasks are not routed correctly for py3.
-    ''')
-  @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync',
-                     mock.MagicMock(side_effect=Exception('Test error')))
-  def testFullCycle_MeasurementFails(self):
-    token_info = self.PostAddHistogram({'data': self.histogram_data})
-    self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
-    self.ExecuteTaskQueueTasks('/add_histograms_queue',
-                               add_histograms.TASK_QUEUE_NAME)
-
-    uploads_response = self.GetUploads(token_info['token'])
-    self.assertEqual(uploads_response['state'], 'FAILED')
-    self.assertEqual(len(uploads_response.get('measurements')), 1)
-    self.assertEqual(uploads_response['measurements'][0]['state'], 'FAILED')
-    self.assertEqual(uploads_response['measurements'][0]['error_message'],
-                     'Test error')
 
 
 def RandomChars(length):
