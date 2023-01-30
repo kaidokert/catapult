@@ -7,16 +7,18 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import mock
 import sys
 import unittest
+
+import mock
 
 from dashboard.common import namespaced_stored_object
 from dashboard.common import bot_configurations
 from dashboard.pinpoint import test
 from dashboard.pinpoint.models import job
 from dashboard.pinpoint.models import scheduler
-from dashboard.pinpoint.models.tasks import bisection_test_util
+
+from dashboard.dashboard.pinpoint.models.tasks import bisection_test_util
 
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',

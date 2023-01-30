@@ -148,23 +148,14 @@ def _AllSdkThirdPartyLibraryPaths():
 
   try:
     # pylint: disable=import-outside-toplevel
-    if sys.version_info.major == 2:
-      import dev_appserver
-    else:
-      # dev_appserver is not ready for python 3. Try import google.appengine
-      # for validation purpose.
-      import google.appengine  # pylint: disable=unused-import
+    import google.appengine  # pylint: disable=unused-import
   except ImportError:
     # TODO: Put the Cloud SDK in the path with the binary dependency manager.
     # https://github.com/catapult-project/catapult/issues/2135
     print('This script requires the Google Cloud SDK to be in PYTHONPATH.')
-    print(
-        'See https://chromium.googlesource.com/catapult/+/HEAD/dashboard/README.md'
-    )
+    print('See https://chromium.googlesource.com/catapult/+'
+          '/HEAD/dashboard/README.md')
     sys.exit(1)
-
-  if sys.version_info.major == 2:
-    paths.extend(dev_appserver.EXTRA_PATHS)
   return paths
 
 
@@ -174,9 +165,7 @@ def _CatapultThirdPartyLibraryPaths():
   paths.append(
       os.path.join(_CATAPULT_PATH, 'common', 'node_runner', 'node_runner',
                    'node_modules', '@chopsui'))
-  third_party_libraries = (
-      THIRD_PARTY_LIBRARIES_PY3 if sys.version_info.major == 3
-      else THIRD_PARTY_LIBRARIES_PY2)
+  third_party_libraries = THIRD_PARTY_LIBRARIES_PY3
   for library in third_party_libraries:
     paths.append(os.path.join(_CATAPULT_PATH, 'third_party', library))
   return paths
