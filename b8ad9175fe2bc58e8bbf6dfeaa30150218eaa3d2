@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1478f77_04e2233c",
+        "filename": "dashboard/dashboard/pinpoint/handlers/fifo_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-30T23:34:05Z",
+      "side": 0,
+      "message": "Recommend keeping this class, and mark it unconditionally skipped. We should remove it only if/when we remove the execution engine.",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 78
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8030b92_c66fbc1d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-30T23:34:05Z",
+      "side": 0,
+      "message": "Why was this test skipped? Just tried it locally and it worked fine.",
+      "range": {
+        "startLine": 335,
+        "startChar": 1,
+        "endLine": 336,
+        "endChar": 69
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a534c8_79a6bbc1",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-30T23:34:05Z",
+      "side": 0,
+      "message": "Feels like this should be fixed instead of deleted.",
+      "range": {
+        "startLine": 458,
+        "startChar": 6,
+        "endLine": 458,
+        "endChar": 36
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e8dc29b_c87c4020",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-01-30T23:34:05Z",
+      "side": 0,
+      "message": "ditto",
+      "range": {
+        "startLine": 1032,
+        "startChar": 6,
+        "endLine": 1032,
+        "endChar": 33
+      },
+      "revId": "b8ad9175fe2bc58e8bbf6dfeaa30150218eaa3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
