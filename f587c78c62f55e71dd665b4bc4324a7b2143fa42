@@ -16,6 +16,23 @@
       "message": "CC\u0027ing dpranke@ as the author of the test list format doc.",
       "revId": "f587c78c62f55e71dd665b4bc4324a7b2143fa42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d52da36_04ba5bf9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2023-01-31T22:34:10Z",
+      "side": 1,
+      "message": "The limitation to only allow wildcards at the end of the test name is intentional. If you do things this way then it\u0027s easy to reason about which files are (and aren\u0027t) affected, because they\u0027ll all be next to each other in the directory tree.\n\nIf you add wildcards in the middle of the test name, that\u0027s no longer true and you don\u0027t know where the affected files might be. It also probably becomes much harder to reason about how different expections interact with each other.\n\nE.g., suppose you have\n\npointerevents/*_touch.html [ Skip ]\npointerevents/multipoint* [ Crash ] \n\nwhat would the expected results be, the merger of the two? Or do you want one to take priority over the other, the way longer test paths override shorter ones?\n\nIt\u0027s possible that we could allow \u0027*\u0027 in the base name part of the path and that would be good enough, but I\u0027m not sure how scattered the files you want to affect are across the tree. And, I don\u0027t know if doing so would be enough of an improvement to justify the change.\n\nThat said, I\u0027m not the owner of this stuff any more. If you decide to allow it, that\u0027s fine, just update the spec :). If we don\u0027t change things, we should probably update the spec to explain why this isn\u0027t allowed. This topic comes up once every year or two :).",
+      "revId": "f587c78c62f55e71dd665b4bc4324a7b2143fa42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
