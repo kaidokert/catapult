@@ -456,6 +456,20 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         exp = expectations.expectations_for('b1/s1')
         self.assertEqual(exp.results, set([ResultType.Failure]))
 
+    def testGetExpectationsFromGlobWithSuffix(self):
+        raw_data = (
+            '# tags: [ Linux ]\n'
+            '# results: [ Failure ]\n'
+            'crbug.com/23456 [ linux ] a*a [ Failure ]\n')
+        expectations = expectations_parser.TestExpectations(tags=['linux'])
+        expectations.parse_tagged_list(raw_data)
+        exp = expectations.expectations_for('aa')
+        self.assertEqual(exp.results, set([ResultType.Failure]))
+        exp = expectations.expectations_for('a/b/c/d/a')
+        self.assertEqual(exp.results, set([ResultType.Failure]))
+        exp = expectations.expectations_for('a')
+        self.assertEqual(exp.results, set([ResultType.Pass]))
+
     def testGetExpectationsFromGlobShorterThanLongestMatchingGlob(self):
         raw_data = (
             '# tags: [ Linux Mac ]\n'
@@ -667,26 +681,28 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                                      retry_on_failure=True, is_slow_test=False,
                                      reason='crbug.com/23456', tags={'linux'}))
 
-    def testGlobsCanExistInMiddleofPatternUsingEscapeCharacter(self):
+    def testGlobsCanExistInMiddleofPattern(self):
         raw_data = (
             '# tags: [ Linux ]\n'
             '# results: [ RetryOnFailure ]\n'
-            'crbug.com/23456 [ Linux ] b1/\*/c [ RetryOnFailure ]\n')
-        expectations_parser.TaggedTestListParser(raw_data)
+            'crbug.com/23456 [ Linux ] b1/c\*d*/e [ RetryOnFailure ]\n')
+        (exp,) = expectations_parser.TaggedTestListParser(raw_data).expectations
+        self.assertEqual('b1/c*d*/e', exp.test)
+        self.assertTrue(exp.is_glob)
 
-    def testGlobsCanOnlyHaveStarInEnd(self):
+    def testGlobsCanOnlyHaveOneWildcard(self):
         raw_data = (
             '# tags: [ Linux ]\n'
             '# results: [ RetryOnFailure ]\n'
-            'crbug.com/23456 [ Linux ] b1/*/c [ RetryOnFailure ]\n')
+            'crbug.com/23456 [ Linux ] b1/c*d* [ RetryOnFailure ]\n')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
 
-    def testGlobsCanOnlyHaveStarInEnd1(self):
+    def testGlobsForbidsLiteralAsteriskAfterWildcard(self):
         raw_data = (
             '# tags: [ Linux ]\n'
             '# results: [ RetryOnFailure ]\n'
-            'crbug.com/23456 [ Linux ] */c [ RetryOnFailure ]\n')
+            'crbug.com/23456 [ Linux ] b1/c*d\* [ RetryOnFailure ]\n')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
 
@@ -828,6 +844,14 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             ['a/b/c/d', 'a/b', 'a/b/c'])
         self.assertEqual(broken_expectations[0].test, 'a/b/d*')
 
+    def testExpectationWithGlobWithSuffixIsBroken(self):
+        test_expectations = '# results: [ Failure ]\na/b/d*e [ Failure ]'
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations, 'test.txt')
+        broken_expectations = expectations.check_for_broken_expectations(
+            ['a/b/d'])
+        self.assertEqual(broken_expectations[0].test, 'a/b/d*e')
+
     def testExpectationWithGlobIsNotBroken(self):
         test_expectations = '# results: [ Failure ]\na/b* [ Failure ]'
         expectations = expectations_parser.TestExpectations()
@@ -932,6 +956,12 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                           retry_on_failure=True, is_glob=True)
         self.assertEqual(
             exp.to_string(), 'crbug.com/123 [ Intel ] a/\*/test.html?* [ Failure Pass RetryOnFailure Slow ]')
+
+    def testGlobExpectationToStringWithSuffix(self):
+        exp = Expectation(reason='crbug.com/123', test='a/*/*/prefix_*_suffix.html',
+                          results={ResultType.Failure}, is_glob=True)
+        self.assertEqual(
+            exp.to_string(), 'crbug.com/123 a/\*/\*/prefix_*_suffix.html [ Failure ]')
 
     def testExpectationToStringUsingRawSpecifiers(self):
         raw_expectations = (

@@ -118,10 +118,11 @@ class Expectation(object):
         # If this instance is for a glob type expectation then do not escape
         # the last asterisk
         if self.is_glob:
-            assert len(self._test) and self._test[-1] == '*', (
+            num_asterisks = self._test.count('*')
+            assert len(self._test) and num_asterisks, (
                 'For Expectation instances for glob type expectations, the test value '
-                'must end in an asterisk')
-            pattern = self._test[:-1].replace('*', '\\*') + '*'
+                'must contain an asterisk')
+            pattern = self._test.replace('*', '\\*', num_asterisks - 1)
         else:
             pattern = self._test.replace('*', '\\*')
         pattern = uri_encode_spaces(pattern)
@@ -179,9 +180,10 @@ class Expectation(object):
     def test(self, v):
         if not len(v):
             raise ValueError('Cannot set test to empty string')
-        if self.is_glob and v[-1] != '*':
+        if self.is_glob and not TaggedTestListParser.GLOB_PATTERN.search(v):
             raise ValueError(
-                'test value for glob type expectations must end with an asterisk')
+                'test value for glob type expectations must have '
+                'an unescaped asterisk')
         self._test = v
 
     @property
@@ -241,6 +243,7 @@ class TaggedTestListParser(object):
     _MATCH_STRING += r'\[ ([^\[.]+) \]'  # The expectation field.
     _MATCH_STRING += r'(\s+#.*)?$'  # End comment (optional).
     MATCHER = re.compile(_MATCH_STRING)
+    GLOB_PATTERN = re.compile(r'(^|[^\\])\*')
 
     def __init__(self, raw_data, conflict_resolution=ConflictResolutionTypes.UNION):
         self.tag_sets = []
@@ -376,14 +379,8 @@ class TaggedTestListParser(object):
 
         tags = [raw_tag.lower() for raw_tag in raw_tags.split()] if raw_tags else []
         tag_set_ids = set()
-
-        for i in range(len(test)-1):
-            if test[i] == '*' and ((i > 0 and test[i-1] != '\\') or i == 0):
-                raise ParseError(lineno,
-                    'Invalid glob, \'*\' can only be at the end of the pattern')
-
         for t in tags:
-            if not t in  self._tag_to_tag_set:
+            if not t in self._tag_to_tag_set:
                 raise ParseError(lineno, 'Unknown tag "%s"' % t)
             else:
                 tag_set_ids.add(self._tag_to_tag_set[t])
@@ -419,11 +416,22 @@ class TaggedTestListParser(object):
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
+        is_glob = False
+        globs = list(self.GLOB_PATTERN.finditer(test))
+        if len(globs) > 1:
+            raise ParseError(
+                lineno,
+                "Invalid glob: can only have one unescaped '*' per pattern")
+        elif globs:
+            if '*' in test[globs[0].end():]:
+                raise ParseError(
+                    lineno,
+                    "Invalid glob: literal '*' cannot follow glob")
+            is_glob = True
+
         # replace %20 in test path to ' '
         test = uri_decode_spaces(test)
-
         # remove escapes for asterisks
-        is_glob = not test.endswith('\\*') and test.endswith('*')
         test = test.replace('\\*', '*')
         if raw_tags:
             raw_tags = raw_tags.split()
@@ -619,8 +627,7 @@ class TestExpectations(object):
         # the most specific (i.e., longest) glob first. Because self.globs_exps
         # is ordered by length, this is a simple linear search
         for glob, exps in self.glob_exps.items():
-            glob = glob[:-1]
-            if test.startswith(glob):
+            if self._glob_matches_test(glob, test):
                 for exp in exps:
                     _update_expected_results(exp)
                 # if *any* of the exps matched, results will be non-empty,
@@ -690,28 +697,18 @@ class TestExpectations(object):
             if pattern not in test_names:
                 broken_exps.extend(exps)
 
-        # look for broken glob expectations
-        # first create a trie of test names
-        trie = {}
-        broken_glob_exps = []
-        for test in test_names:
-            _trie = trie.setdefault(test[0], {})
-            for l in test[1:]:
-                _trie = _trie.setdefault(l, {})
-            _trie.setdefault('\0', {})
-
         # look for globs that do not match any test names and append their
         # expectations to glob_broken_exps
         for pattern, exps in self.glob_exps.items():
-            _trie = trie
-            for i, l in enumerate(pattern):
-                if l == '*' and i == len(pattern) - 1:
-                    break
-                if l not in _trie:
-                    broken_glob_exps.extend(exps)
-                    break
-                _trie = _trie[l]
-        return broken_exps + broken_glob_exps
+            if not any(self._glob_matches_test(pattern, test_name)
+                       for test_name in test_names):
+                broken_exps.extend(exps)
+        return broken_exps
+
+    def _glob_matches_test(self, glob, test):
+        prefix, _, suffix = glob.rpartition('*')
+        return test.startswith(prefix) and test[len(prefix):].endswith(suffix)
+
 
 def uri_encode_spaces(s):
   s = s.replace('%', '%25')
