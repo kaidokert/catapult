@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8830cfba_7d78ea2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1553262
+      },
+      "writtenOn": "2023-01-31T00:14:30Z",
+      "side": 1,
+      "message": "Hi Kouhei, just doing a little bit of tidying. Thanks!",
+      "revId": "7a2771ebfab4eb7d4d3665ad8f26d7b909224542",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
