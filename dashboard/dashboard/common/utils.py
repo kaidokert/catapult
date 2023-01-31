@@ -605,31 +605,13 @@ def ServiceAccountEmail(scope=EMAIL_SCOPE):
 
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)
-def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None, use_adc=False):
+def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
   """Returns the Credentials of the service account if available."""
-  logging.info('Use_ADC=%s', use_adc)
-  if not use_adc:
-    account_details = stored_object.Get(SERVICE_ACCOUNT_KEY)
-    if not account_details:
-      raise KeyError('Service account credentials not found.')
-
   assert scope, "ServiceAccountHttp scope must not be None."
 
-  from google.auth import crypt  # pylint: disable=import-outside-toplevel
-  from google.oauth2 import service_account  # pylint: disable=import-outside-toplevel
   import google_auth_httplib2  # pylint: disable=import-outside-toplevel
 
-  if use_adc:
-    credentials = oauth2_utils.GetAppDefaultCredentials(scope)
-  else:
-    signer = crypt.RSASigner.from_string(account_details['private_key'])
-    default_token_uri = 'https://accounts.google.com/o/oauth2/token'
-    credentials = service_account.Credentials(
-        signer=signer,
-        service_account_email=account_details['client_email'],
-        token_uri=default_token_uri,
-        scopes=[scope])
-
+  credentials = oauth2_utils.GetAppDefaultCredentials(scope)
   http = google_auth_httplib2.AuthorizedHttp(credentials)
   if timeout:
     http.timeout = timeout
