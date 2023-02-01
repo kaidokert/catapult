@@ -8,6 +8,7 @@ from __future__ import division
 from __future__ import print_function
 
 from google.auth import app_engine
+import json
 
 
 class InternalServerError(Exception):
@@ -88,11 +89,25 @@ class SheriffConfigClient:
         anomaly_configs=anomaly_configs,
     )
 
+  def _HasResponseData(self, response_text):
+    is_valid = False
+    if response_text:
+      try:
+        response_data = json.loads(response_text)
+        is_valid = bool(response_data)
+      except ValueError:
+        is_valid = False
+
+    return is_valid
+
   def Match(self, path, check=False):
     response = self._session.post(
         'https://sheriff-config-dot-chromeperf.appspot.com/subscriptions/match',
         json={'path': path})
-    if response.status_code == 404:  # If no subscription matched
+    # If no subscription matched
+    if response.status_code == 404 or (
+        response.status_code == 200
+        and not self._HasResponseData(response.text)):
       return [], None
     if not response.ok:
       err_msg = '%r\n%s' % (response, response.text)
