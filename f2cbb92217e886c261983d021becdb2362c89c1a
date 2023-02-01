@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1704c973_a4743393",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-01T23:07:24Z",
+      "side": 1,
+      "message": "nit: I believe 200 is the default and we can ignore it here.",
+      "range": {
+        "startLine": 198,
+        "startChar": 26,
+        "endLine": 198,
+        "endChar": 29
+      },
+      "revId": "f2cbb92217e886c261983d021becdb2362c89c1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cba2afb_7d10d083",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-01T23:07:24Z",
+      "side": 1,
+      "message": "After the handler change in __init__.py, the future 404 will no longer mean \u0027no subscription matched\u0027.",
+      "range": {
+        "startLine": 108,
+        "startChar": 31,
+        "endLine": 108,
+        "endChar": 34
+      },
+      "revId": "f2cbb92217e886c261983d021becdb2362c89c1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
