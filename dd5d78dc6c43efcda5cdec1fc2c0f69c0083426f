@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e40ca3c_6e5220bb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3438,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-01T22:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e6ccf50_88fc17fa",
+      "range": {
+        "startLine": 3438,
+        "startChar": 6,
+        "endLine": 3438,
+        "endChar": 24
+      },
+      "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e3ef784_6779e39d",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e207480_7e77f8aa",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3604,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-01T22:13:09Z",
+      "side": 1,
+      "message": "I wrote a docstring explaining the return type and I added a link to//android_webview/docs/webview-providers.md instead since it is shorter.",
+      "parentUuid": "7e3ef784_6779e39d",
+      "range": {
+        "startLine": 3604,
+        "startChar": 6,
+        "endLine": 3604,
+        "endChar": 24
+      },
+      "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60ef9e5d_51719c99",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-02-01T21:12:17Z",
       "side": 1,
       "message": "I think this setting was introduced in Android N. Devil still supports lower OS versions so you\u0027ll need to throw an error if sdk_int \u003c N.",
+      "range": {
+        "startLine": 3605,
+        "startChar": 4,
+        "endLine": 3605,
+        "endChar": 60
+      },
+      "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc9dcd04_6354803e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3605,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-01T22:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ef9e5d_51719c99",
       "range": {
         "startLine": 3605,
         "startChar": 4,
