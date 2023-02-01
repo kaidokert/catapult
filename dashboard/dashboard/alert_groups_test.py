@@ -8,10 +8,10 @@ from __future__ import absolute_import
 
 import mock
 import datetime
-
+from flask import Flask
 import logging
+import six
 import unittest
-import webapp2
 import webtest
 
 from dashboard import alert_groups
@@ -29,13 +29,19 @@ from dashboard.services import pinpoint_service
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
 
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/alert_groups_update')
+def AlertGroupsGet():
+  return alert_groups.AlertGroupsGet()
+
+
 @mock.patch.object(utils, 'ServiceAccountEmail',
                    lambda: _SERVICE_ACCOUNT_EMAIL)
 class GroupReportTestBase(testing_common.TestCase):
   def __init__(self, *args, **kwargs):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(GroupReportTestBase, self).__init__(*args, **kwargs)
+    super().__init__(*args, **kwargs)
     self.fake_issue_tracker = testing_common.FakeIssueTrackerService()
     self.fake_issue_tracker.comments.append({
         'id': 1,
@@ -49,13 +55,9 @@ class GroupReportTestBase(testing_common.TestCase):
         infos={}, revisions={})
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(GroupReportTestBase, self).setUp()
+    super().setUp()
     self.maxDiff = None
-    app = webapp2.WSGIApplication([('/alert_groups_update',
-                                    alert_groups.AlertGroupsHandler)])
-    self.testapp = webtest.TestApp(app)
+    self.testapp = webtest.TestApp(flask_app)
 
   def _CallHandler(self):
     result = self.testapp.get('/alert_groups_update')
@@ -159,8 +161,8 @@ class GroupReportTest(GroupReportTestBase):
         for g in alert_group.AlertGroup.Get(
             'test_suite', alert_group.AlertGroup.Type.test_suite)
     }
-    self.assertItemsEqual(groups['master'].anomalies, [a1, a2, a4])
-    self.assertItemsEqual(groups['other'].anomalies, [a3])
+    six.assertCountEqual(self, groups['master'].anomalies, [a1, a2, a4])
+    six.assertCountEqual(self, groups['other'].anomalies, [a3])
 
   def testMultipleAltertsGroupingDifferentDomain_AfterGroupCreated(
       self, mock_get_sheriff_client):
@@ -186,8 +188,8 @@ class GroupReportTest(GroupReportTestBase):
         for g in alert_group.AlertGroup.Get(
             'test_suite', alert_group.AlertGroup.Type.test_suite)
     }
-    self.assertItemsEqual(groups['master'].anomalies, [a1, a2, a4])
-    self.assertItemsEqual(groups['other'].anomalies, [a3])
+    six.assertCountEqual(self, groups['master'].anomalies, [a1, a2, a4])
+    six.assertCountEqual(self, groups['other'].anomalies, [a3])
 
   def testMultipleAltertsGroupingDifferentBot(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -206,7 +208,7 @@ class GroupReportTest(GroupReportTestBase):
         'test_suite',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a1, a2, a3, a4])
+    six.assertCountEqual(self, group.anomalies, [a1, a2, a3, a4])
 
   def testMultipleAltertsGroupingDifferentSuite(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -225,12 +227,12 @@ class GroupReportTest(GroupReportTestBase):
         'test_suite',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a1, a2, a4])
+    six.assertCountEqual(self, group.anomalies, [a1, a2, a4])
     group = alert_group.AlertGroup.Get(
         'other',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a3])
+    six.assertCountEqual(self, group.anomalies, [a3])
 
   def testMultipleAltertsGroupingOverrideSuite(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -260,22 +262,22 @@ class GroupReportTest(GroupReportTestBase):
         'test_suite',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a1, a2])
+    six.assertCountEqual(self, group.anomalies, [a1, a2])
     group = alert_group.AlertGroup.Get(
         'test_suite',
         alert_group.AlertGroup.Type.logical,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a3])
+    six.assertCountEqual(self, group.anomalies, [a3])
     group = alert_group.AlertGroup.Get(
         'test_suite_other1',
         alert_group.AlertGroup.Type.logical,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a3, a4])
+    six.assertCountEqual(self, group.anomalies, [a3, a4])
     group = alert_group.AlertGroup.Get(
         'test_suite_other2',
         alert_group.AlertGroup.Type.logical,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a4])
+    six.assertCountEqual(self, group.anomalies, [a4])
 
   def testMultipleAltertsGroupingMultipleSheriff(self,
                                                  mock_get_sheriff_client):
@@ -325,11 +327,11 @@ class GroupReportTest(GroupReportTestBase):
         for g in alert_group.AlertGroup.Get(
             'test_suite', alert_group.AlertGroup.Type.test_suite)
     }
-    self.assertItemsEqual(
-        list(groups.keys()), ['sheriff1', 'sheriff2', 'sheriff3'])
-    self.assertItemsEqual(groups['sheriff1'].anomalies, [a1, a2])
-    self.assertItemsEqual(groups['sheriff2'].anomalies, [a1, a3])
-    self.assertItemsEqual(groups['sheriff3'].anomalies, [a3])
+    six.assertCountEqual(self, list(groups.keys()),
+                         ['sheriff1', 'sheriff2', 'sheriff3'])
+    six.assertCountEqual(self, groups['sheriff1'].anomalies, [a1, a2])
+    six.assertCountEqual(self, groups['sheriff2'].anomalies, [a1, a3])
+    six.assertCountEqual(self, groups['sheriff3'].anomalies, [a3])
 
   def testMultipleAltertsGroupingPointRange(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -346,7 +348,7 @@ class GroupReportTest(GroupReportTestBase):
         'test_suite',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
-    self.assertItemsEqual(group.anomalies, [a1, a2])
+    six.assertCountEqual(self, group.anomalies, [a1, a2])
 
   def testArchiveAltertsGroup(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -426,17 +428,17 @@ class GroupReportTest(GroupReportTestBase):
         alert_group.AlertGroup.Type.test_suite,
     )[0]
     self.assertEqual(group.status, alert_group.AlertGroup.Status.triaged)
-    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['components'],
-                          ['Foo>Bar'])
-    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['labels'], [
-        'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
-        'Chromeperf-Auto-Triaged'
-    ])
+    six.assertCountEqual(self,
+                         self.fake_issue_tracker.new_bug_kwargs['components'],
+                         ['Foo>Bar'])
+    six.assertCountEqual(self, self.fake_issue_tracker.new_bug_kwargs['labels'],
+                         [
+                             'Pri-2', 'Restrict-View-Google',
+                             'Type-Bug-Regression', 'Chromeperf-Auto-Triaged'
+                         ])
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected measurements in bot:')
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)
     # Make sure we don't file the issue again for this alert group.
@@ -474,25 +476,21 @@ class GroupReportTest(GroupReportTestBase):
         alert_group.AlertGroup.Type.test_suite,
     )[0]
     self.assertEqual(group.status, alert_group.AlertGroup.Status.triaged)
-    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['components'],
-                          ['Foo>Bar'])
-    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['labels'], [
-        'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
-        'Chromeperf-Auto-Triaged'
-    ])
+    six.assertCountEqual(self,
+                         self.fake_issue_tracker.new_bug_kwargs['components'],
+                         ['Foo>Bar'])
+    six.assertCountEqual(self, self.fake_issue_tracker.new_bug_kwargs['labels'],
+                         [
+                             'Pri-2', 'Restrict-View-Google',
+                             'Type-Bug-Regression', 'Chromeperf-Auto-Triaged'
+                         ])
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 4 affected measurements in bot:')
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected in test_suite:')
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected in other_test_suite:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 4 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected in test_suite:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected in other_test_suite:')
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)
     # Make sure we don't file the issue again for this alert group.
@@ -528,12 +526,14 @@ class GroupReportTest(GroupReportTestBase):
         alert_group.AlertGroup.Type.test_suite,
     )[0]
     self.assertEqual(group.status, alert_group.AlertGroup.Status.triaged)
-    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['components'],
-                          ['Foo>Bar'])
-    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['labels'], [
-        'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
-        'Chromeperf-Auto-Triaged'
-    ])
+    six.assertCountEqual(self,
+                         self.fake_issue_tracker.new_bug_kwargs['components'],
+                         ['Foo>Bar'])
+    six.assertCountEqual(self, self.fake_issue_tracker.new_bug_kwargs['labels'],
+                         [
+                             'Pri-2', 'Restrict-View-Google',
+                             'Type-Bug-Regression', 'Chromeperf-Auto-Triaged'
+                         ])
     self.assertEqual(a.get().bug_id, 12345)
 
   def testAddAlertsAfterTriage(self, mock_get_sheriff_client):
@@ -565,12 +565,11 @@ class GroupReportTest(GroupReportTestBase):
       self.assertEqual(a.get().bug_id, 12345)
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.add_comment_args[1])
     self.assertEqual(self.fake_issue_tracker.add_comment_args[0], 12345)
-    self.assertItemsEqual(
-        self.fake_issue_tracker.add_comment_kwargs['components'], ['Foo>Bar'])
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
-                             r'Top 2 affected measurements in bot:')
+    six.assertCountEqual(
+        self, self.fake_issue_tracker.add_comment_kwargs['components'],
+        ['Foo>Bar'])
+    self.assertRegex(self.fake_issue_tracker.add_comment_args[1],
+                     r'Top 2 affected measurements in bot:')
 
   def testMultipleAltertsNonoverlapThreshold(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -603,7 +602,7 @@ class GroupReportTest(GroupReportTestBase):
     anomaly_groups = [group.anomalies for group in groups]
     expected_anomaly_groups = [[a1, a5], [a2, a5], [a4], [a6, a7]]
 
-    self.assertItemsEqual(anomaly_groups, expected_anomaly_groups)
+    six.assertCountEqual(self, anomaly_groups, expected_anomaly_groups)
 
 
 @mock.patch.object(utils, 'ServiceAccountEmail',
@@ -611,9 +610,7 @@ class GroupReportTest(GroupReportTestBase):
 @mock.patch('dashboard.sheriff_config_client.GetSheriffConfigClient')
 class RecoveredAlertsTests(GroupReportTestBase):
   def __init__(self, *args, **kwargs):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(RecoveredAlertsTests, self).__init__(*args, **kwargs)
+    super().__init__(*args, **kwargs)
     self.anomalies = []
 
   def InitAfterMocks(self):
@@ -646,10 +643,8 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self.InitAfterMocks()
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected measurements in bot:')
 
   def testClosesIssueOnAllRecovered(self, mock_get_sheriff_client):
     # Ensure that we close the issue if all regressions in the group have been
@@ -658,19 +653,15 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self.InitAfterMocks()
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.new_bug_args[1],
-                             r'Top 1 affected measurements in bot:')
+    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+                     r'Top 1 affected measurements in bot:')
     # Mark one of the anomalies recovered.
     recovered_anomaly = self.anomalies[0].get()
     recovered_anomaly.recovered = True
     recovered_anomaly.put()
     self._CallHandler()
     self.assertEqual(self.fake_issue_tracker.issue['state'], 'closed')
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(
+    self.assertRegex(
         self.fake_issue_tracker.add_comment_args[1],
         r'All regressions for this issue have been marked recovered; closing.')
 
@@ -690,15 +681,11 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.add_comment_args[1])
     self.assertEqual(self.fake_issue_tracker.issue["state"], 'open')
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(
+    self.assertRegex(
         self.fake_issue_tracker.add_comment_args[1],
         r'Reopened due to new regressions detected for this alert group:')
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
-                             r'test_suite/measurement/other_test_case')
+    self.assertRegex(self.fake_issue_tracker.add_comment_args[1],
+                     r'test_suite/measurement/other_test_case')
 
   def testManualClosedIssuesWithNewRegressions(self, mock_get_sheriff_client):
     # pylint: disable=no-value-for-parameter
@@ -723,10 +710,8 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self._CallHandler()
     logging.debug('Rendered:\n%s', self.fake_issue_tracker.add_comment_args[1])
     self.assertEqual(self.fake_issue_tracker.issue["state"], 'closed')
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
-                             r'test_suite/measurement/other_test_case')
+    self.assertRegex(self.fake_issue_tracker.add_comment_args[1],
+                     r'test_suite/measurement/other_test_case')
 
   def testStartAutoBisection(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -762,7 +747,7 @@ class RecoveredAlertsTests(GroupReportTestBase):
         'test_suite',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
-    self.assertItemsEqual(group.bisection_ids, ['123456'])
+    six.assertCountEqual(self, group.bisection_ids, ['123456'])
 
 
 @mock.patch.object(utils, 'ServiceAccountEmail',
@@ -811,14 +796,15 @@ class NonChromiumAutoTriage(GroupReportTestBase):
         alert_group.AlertGroup.Type.test_suite,
     )
     self.assertEqual(2, len(groups))
-    self.assertItemsEqual(['chromium', 'v8'], [g.project_id for g in groups])
+    six.assertCountEqual(self, ['chromium', 'v8'],
+                         [g.project_id for g in groups])
     for group in groups:
       group.created = datetime.datetime.utcnow() - datetime.timedelta(hours=2)
       group.put()
 
     # And that we've filed two issues.
     self._CallHandler()
-    self.assertItemsEqual([{
+    six.assertCountEqual(self, [{
         'method': 'NewBug',
         'args': (mock.ANY, mock.ANY),
         'kwargs': {
@@ -861,7 +847,7 @@ class NonChromiumAutoTriage(GroupReportTestBase):
       group.created = datetime.datetime.utcnow() - datetime.timedelta(hours=2)
       group.put()
     self._CallHandler()
-    self.assertItemsEqual([{
+    six.assertCountEqual(self, [{
         'method': 'NewBug',
         'args': (mock.ANY, mock.ANY),
         'kwargs': {

@@ -14,28 +14,16 @@ _CATAPULT_PATH = os.path.abspath(
 
 # Directories in catapult/third_party required by dashboard.
 THIRD_PARTY_LIBRARIES = [
-    'certifi',
     'cloudstorage',
     'depot_tools',
     'flot',
     'gae_ts_mon',
-    'graphy',
-    'html5lib-python',
-    'idna',
-    'ijson',
     'jquery',
-    'mapreduce',
-    'pipeline',
     'polymer',
     'polymer-svg-template',
     'polymer2/bower_components',
     'polymer2/bower_components/chopsui',
     'redux/redux.min.js',
-    'requests',
-    'requests_toolbelt',
-    'six',
-    'urllib3',
-    'webapp2',
 ]
 
 # Add third party libraries needed *copying* for python 2. When running in
@@ -44,21 +32,33 @@ THIRD_PARTY_LIBRARIES_PY2 = THIRD_PARTY_LIBRARIES + [
     'apiclient',
     'beautifulsoup4',
     'cachetools',
+    'certifi',
     'chardet',
     'click',
     'flask',
     'google-auth',
+    'graphy',
+    'html5lib-python',
     'httplib2/python2/httplib2',
+    'idna',
+    'ijson',
     'itsdangerous',
     'jinja2',
+    'mapreduce',
     'markupsafe',
     'mock',
     'oauth2client',
+    'pipeline',
     'pyasn1',
     'pyasn1_modules',
     'pyparsing',
+    'requests',
+    'requests_toolbelt',
     'rsa',
+    'six',
     'uritemplate',
+    'urllib3',
+    'webapp2',
     'webtest',
     'werkzeug',
 ]
@@ -75,7 +75,6 @@ DASHBOARD_FILES = [
     'dispatch.yaml',
     'index.yaml',
     'pinpoint.yaml',
-    'pinpoint-py3.yaml',  # remove after py3 migration is finalized.
     'queue.yaml',
     'requirements.txt',
     'scripts.yaml',
@@ -174,8 +173,7 @@ def _CatapultThirdPartyLibraryPaths():
   paths = []
   paths.append(
       os.path.join(_CATAPULT_PATH, 'common', 'node_runner', 'node_runner',
-                   'node_modules', '@chopsui', 'tsmon-client',
-                   'tsmon-client.js'))
+                   'node_modules', '@chopsui'))
   third_party_libraries = (
       THIRD_PARTY_LIBRARIES_PY3 if sys.version_info.major == 3
       else THIRD_PARTY_LIBRARIES_PY2)

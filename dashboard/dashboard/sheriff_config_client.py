@@ -7,6 +7,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from google.auth import app_engine
+
 
 class InternalServerError(Exception):
   """An error indicating that something unexpected happens."""
@@ -23,9 +25,7 @@ def GetSheriffConfigClient():
   return GetSheriffConfigClient._client
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class SheriffConfigClient(object):
+class SheriffConfigClient:
   """Wrapping of sheriff-config HTTP API."""
 
   _Subscription = None
@@ -42,7 +42,7 @@ class SheriffConfigClient(object):
     # pylint: disable=import-outside-toplevel
     from google.protobuf import json_format
     # pylint: disable=import-outside-toplevel
-    from dashboard import sheriff_config_pb2
+    from dashboard.protobuf import sheriff_config_pb2
     self._GetEmail = GetEmail  # pylint: disable=invalid-name
     SheriffConfigClient._Subscription = Subscription
     SheriffConfigClient._AnomalyConfig = AnomalyConfig
@@ -51,12 +51,10 @@ class SheriffConfigClient(object):
 
   def _InitSession(self):
     # pylint: disable=import-outside-toplevel
-    import google.auth
-    # pylint: disable=import-outside-toplevel
     from google.auth import jwt
     # pylint: disable=import-outside-toplevel
     from google.auth.transport.requests import AuthorizedSession
-    credentials, _ = google.auth.default(
+    credentials = app_engine.Credentials(
         scopes=['https://www.googleapis.com/auth/userinfo.email'])
     jwt_credentials = jwt.Credentials.from_signing_credentials(
         credentials, 'sheriff-config-dot-chromeperf.appspot.com')

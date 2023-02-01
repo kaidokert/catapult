@@ -22,7 +22,6 @@ from dashboard import graph_revisions
 from dashboard import sheriff_config_client
 from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
-from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
@@ -33,6 +32,8 @@ from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import reserved_infos
+
+from flask import request, make_response
 
 # Note: annotation names should shorter than add_point._MAX_COLUMN_NAME_LENGTH.
 DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES = {
@@ -83,73 +84,66 @@ def _CheckRequest(condition, msg):
     raise BadRequestError(msg)
 
 
-class AddHistogramsQueueHandler(request_handler.RequestHandler):
-  """Request handler to process a histogram and add it to the datastore.
+def AddHistogramsQueuePost():
+  """Adds a single histogram or sparse shared diagnostic to the datastore.
+
+  The |data| request parameter can be either a histogram or a sparse shared
+  diagnostic; the set of diagnostics that are considered sparse (meaning that
+  they don't normally change on every upload for a given benchmark from a
+  given bot) is shown in histogram_helpers.SPARSE_DIAGNOSTIC_TYPES.
+
+  See https://goo.gl/lHzea6 for detailed information on the JSON format for
+  histograms and diagnostics.
 
   This request handler is intended to be used only by requests using the
   task queue; it shouldn't be directly from outside.
+
+  Request parameters:
+    data: JSON encoding of a histogram or shared diagnostic.
+    revision: a revision, given as an int.
+    test_path: the test path to which this diagnostic or histogram should be
+        attached.
   """
+  datastore_hooks.SetPrivilegedRequest()
 
-  def get(self):
-    self.post()
+  params = json.loads(request.get_data())
 
-  def post(self):
-    """Adds a single histogram or sparse shared diagnostic to the datastore.
+  _PrewarmGets(params)
 
-    The |data| request parameter can be either a histogram or a sparse shared
-    diagnostic; the set of diagnostics that are considered sparse (meaning that
-    they don't normally change on every upload for a given benchmark from a
-    given bot) is shown in histogram_helpers.SPARSE_DIAGNOSTIC_TYPES.
+  # Roughly, the processing of histograms and the processing of rows can be
+  # done in parallel since there are no dependencies.
 
-    See https://goo.gl/lHzea6 for detailed information on the JSON format for
-    histograms and diagnostics.
+  histogram_futures = []
+  token_state_futures = []
 
-    Request parameters:
-      data: JSON encoding of a histogram or shared diagnostic.
-      revision: a revision, given as an int.
-      test_path: the test path to which this diagnostic or histogram should be
-          attached.
-    """
-    logging.debug('crbug/1298177 - add_histograms_queue POST triggered')
-    datastore_hooks.SetPrivilegedRequest()
-
-    params = json.loads(self.request.body)
-
-    _PrewarmGets(params)
-
-    # Roughly, the processing of histograms and the processing of rows can be
-    # done in parallel since there are no dependencies.
-
-    histogram_futures = []
-    token_state_futures = []
-
-    try:
-      for p in params:
-        histogram_futures.append((p, _ProcessRowAndHistogram(p)))
-    except Exception as e:  # pylint: disable=broad-except
-      for param, futures_info in zip_longest(params, histogram_futures):
-        if futures_info is not None:
-          continue
-        token_state_futures.append(
-            upload_completion_token.Measurement.UpdateStateByPathAsync(
-                param.get('test_path'), param.get('token'),
-                upload_completion_token.State.FAILED, str(e)))
-      ndb.Future.wait_all(token_state_futures)
-      raise
-
-    for info, futures in histogram_futures:
-      operation_state = upload_completion_token.State.COMPLETED
-      error_message = None
-      for f in futures:
-        exception = f.get_exception()
-        if exception is not None:
-          operation_state = upload_completion_token.State.FAILED
-          error_message = exception.message
+  try:
+    for p in params:
+      histogram_futures.append((p, _ProcessRowAndHistogram(p)))
+  except Exception as e:  # pylint: disable=broad-except
+    for param, futures_info in zip_longest(params, histogram_futures):
+      if futures_info is not None:
+        continue
       token_state_futures.append(
           upload_completion_token.Measurement.UpdateStateByPathAsync(
-              info.get('test_path'), info.get('token'), operation_state,
-              error_message))
+              param.get('test_path'), param.get('token'),
+              upload_completion_token.State.FAILED, str(e)))
     ndb.Future.wait_all(token_state_futures)
+    raise
+
+  for info, futures in histogram_futures:
+    operation_state = upload_completion_token.State.COMPLETED
+    error_message = None
+    for f in futures:
+      exception = f.get_exception()
+      if exception is not None:
+        operation_state = upload_completion_token.State.FAILED
+        error_message = str(exception)
+    token_state_futures.append(
+        upload_completion_token.Measurement.UpdateStateByPathAsync(
+            info.get('test_path'), info.get('token'), operation_state,
+            error_message))
+  ndb.Future.wait_all(token_state_futures)
+  return make_response('')
 
 
 def _GetStoryFromDiagnosticsDict(diagnostics):

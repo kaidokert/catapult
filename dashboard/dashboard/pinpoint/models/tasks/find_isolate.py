@@ -22,9 +22,7 @@ from dashboard.services import request
 FAILURE_MAPPING = {'FAILURE': 'failed', 'CANCELLED': 'cancelled'}
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class ScheduleBuildAction(object):
+class ScheduleBuildAction:
   """Action to schedule a build via BuildBucket.
 
   This action will schedule a build via the BuildBucket API, and ensure that
@@ -264,9 +262,7 @@ class UpdateBuildStatusAction(
                                                           self.task.id)
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class InitiateEvaluator(object):
+class InitiateEvaluator:
 
   def __init__(self, job):
     self.job = job
@@ -315,9 +311,7 @@ class InitiateEvaluator(object):
     return None
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class UpdateEvaluator(object):
+class UpdateEvaluator:
 
   def __init__(self, job):
     self.job = job
@@ -340,9 +334,7 @@ class UpdateEvaluator(object):
 class Evaluator(evaluators.SequenceEvaluator):
 
   def __init__(self, job):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(Evaluator, self).__init__(
+    super().__init__(
         evaluators=(
             evaluators.TaskPayloadLiftingEvaluator(),
             evaluators.FilteringEvaluator(
@@ -402,9 +394,7 @@ def BuildSerializer(task, _, accumulator):
 class Serializer(evaluators.FilteringEvaluator):
 
   def __init__(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(Serializer, self).__init__(
+    super().__init__(
         predicate=evaluators.TaskTypeEq('find_isolate'),
         delegate=BuildSerializer)
 

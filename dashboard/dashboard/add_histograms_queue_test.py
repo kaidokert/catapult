@@ -7,11 +7,11 @@ from __future__ import division
 from __future__ import absolute_import
 
 import copy
+from flask import Flask
 import json
 import mock
 import sys
 import uuid
-import webapp2
 import webtest
 
 from google.appengine.ext import ndb
@@ -75,18 +75,19 @@ TEST_OWNERS = {
     'type': 'GenericSet'
 }
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/add_histograms_queue', methods=['GET', 'POST'])
+def AddHistogramsQueuePost():
+  return add_histograms_queue.AddHistogramsQueuePost()
+
 
 class AddHistogramsQueueTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(AddHistogramsQueueTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/add_histograms_queue',
-         add_histograms_queue.AddHistogramsQueueHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
     self.SetCurrentUser('foo@bar.com', is_admin=True)
 
   def testPostHistogram(self):
@@ -620,14 +621,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(AddHistogramsQueueTestWithUploadCompletionToken, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/add_histograms_queue',
-         add_histograms_queue.AddHistogramsQueueHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
     testing_common.SetIsInternalUser('foo@bar.com', True)
     self.SetCurrentUser('foo@bar.com')
 

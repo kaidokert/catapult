@@ -149,7 +149,14 @@ class Host(object):
 
     def print_(self, msg='', end='\n', stream=None):
         stream = stream or self.stdout
-        stream.write(str(msg) + end)
+        message = str(msg) + end
+        encoding = stream.encoding or 'ascii'
+        if sys.version_info.major == 2:
+            stream.write(message)
+        else:
+            stream.write(
+                message.encode(encoding,
+                               errors='backslashreplace').decode(encoding))
         stream.flush()
 
     def read_text_file(self, *comps):
@@ -180,6 +187,9 @@ class Host(object):
 
     def time(self):
         return time.time()
+
+    def append_text_file(self, path, content):
+        return self._write(path, content, mode='a')
 
     def write_text_file(self, path, contents):
         return self._write(path, contents, mode='w')
@@ -265,6 +275,10 @@ class _TeedStream(io.StringIO):
         self.stream = stream
         self.capturing = False
         self.diverting = False
+
+    @property
+    def encoding(self):
+        return self.stream.encoding
 
     def write(self, msg, *args, **kwargs):
         if self.capturing:

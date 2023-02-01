@@ -8,7 +8,6 @@ from __future__ import absolute_import
 
 import json
 import mock
-import six
 
 from dashboard.api import api_auth
 from dashboard.common import datastore_hooks
@@ -22,10 +21,7 @@ from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import quest as quest_module
 from dashboard.pinpoint.models.change import change_test
 
-if six.PY2:
-  _JOB_URL_HOST = 'https://testbed.example.com'
-else:
-  _JOB_URL_HOST = 'https://localhost:80'
+_JOB_URL_HOST = 'https://localhost:80'
 
 # All arguments must have string values.
 _BASE_REQUEST = {
@@ -55,9 +51,7 @@ _CONFIGURATION_ARGUMENTS = {
 class _NewTest(test.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(_NewTest, self).setUp()
+    super().setUp()
 
     self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])

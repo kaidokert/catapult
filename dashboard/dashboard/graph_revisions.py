@@ -24,40 +24,30 @@ from google.appengine.ext import ndb
 
 from dashboard.common import datastore_hooks
 from dashboard.common import namespaced_stored_object
-from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import graph_data
+
+from flask import request, make_response
 
 _CACHE_KEY = 'num_revisions_%s'
 
 
-class GraphRevisionsHandler(request_handler.RequestHandler):
-  """URL endpoint to list all the revisions for each test, for x-axis slider."""
+def GraphRevisionsPost():
+  test_path = request.values.get('test_path')
+  rows = namespaced_stored_object.Get(_CACHE_KEY % test_path)
+  if not rows:
+    rows = _UpdateCache(utils.TestKey(test_path))
 
-  def post(self):
-    """Fetches a list of revisions and values for a given test.
+  # TODO(simonhatch): Need to filter out NaN values.
+  # https://github.com/catapult-project/catapult/issues/3474
+  def _NaNtoNone(x):
+    if math.isnan(x):
+      return None
+    return x
 
-    Request parameters:
-      test_path: Full test path for a TestMetadata entity.
-
-    Outputs:
-      A JSON list of 3-item lists [revision, value, timestamp].
-    """
-    test_path = self.request.get('test_path')
-    rows = namespaced_stored_object.Get(_CACHE_KEY % test_path)
-    if not rows:
-      rows = _UpdateCache(utils.TestKey(test_path))
-
-    # TODO(simonhatch): Need to filter out NaN values.
-    # https://github.com/catapult-project/catapult/issues/3474
-    def _NaNtoNone(x):
-      if math.isnan(x):
-        return None
-      return x
-
-    rows = [(_NaNtoNone(r[0]), _NaNtoNone(r[1]), _NaNtoNone(r[2])) for r in rows
-           ]
-    self.response.out.write(json.dumps(rows))
+  rows = [(_NaNtoNone(r[0]), _NaNtoNone(r[1]), _NaNtoNone(r[2])) for r in rows
+          ]
+  return make_response(json.dumps(rows))
 
 
 @ndb.synctasklet

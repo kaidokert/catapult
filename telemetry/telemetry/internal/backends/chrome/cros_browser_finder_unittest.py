@@ -115,7 +115,7 @@ class CrOSBrowserMockCreationTest(unittest.TestCase):
 
 
 def IsRemote():
-  return bool(options_for_unittests.GetCopy().cros_remote)
+  return bool(options_for_unittests.GetCopy().remote)
 
 
 class CrOSBrowserEnvironmentTest(unittest.TestCase):
@@ -125,9 +125,9 @@ class CrOSBrowserEnvironmentTest(unittest.TestCase):
   """
   def _CreateBrowser(self):
     device = cros_device.CrOSDevice(
-        options_for_unittests.GetCopy().cros_remote,
-        options_for_unittests.GetCopy().cros_remote_ssh_port,
-        options_for_unittests.GetCopy().cros_ssh_identity,
+        options_for_unittests.GetCopy().remote,
+        options_for_unittests.GetCopy().remote_ssh_port,
+        options_for_unittests.GetCopy().ssh_identity,
         not IsRemote())
     plat = cros_platform_backend.CrosPlatformBackend.CreatePlatformForDevice(
         device, options_for_unittests.GetCopy())
@@ -145,7 +145,7 @@ class CrOSBrowserEnvironmentTest(unittest.TestCase):
     if cri.local:
       return
     remote_path = cmd_helper.SingleQuote(
-        posixpath.join(cri.CROS_MINIDUMP_DIR, 'test_dump'))
+        posixpath.join(cri.MINIDUMP_DIR, 'test_dump'))
     cri.RunCmdOnDevice(['touch', remote_path])
     self.assertTrue(cri.FileExistsOnDevice(remote_path))
     browser.SetUpEnvironment(options_for_unittests.GetCopy().browser_options)
@@ -163,16 +163,16 @@ class CrOSBrowserEnvironmentTest(unittest.TestCase):
     if cri.local:
       return
     remote_path = cmd_helper.SingleQuote(
-        posixpath.join(cri.CROS_MINIDUMP_DIR, 'test_dump'))
+        posixpath.join(cri.MINIDUMP_DIR, 'test_dump'))
     if cri.FileExistsOnDevice(remote_path):
       cri.RmRF(remote_path)
     browser.SetUpEnvironment(options_for_unittests.GetCopy().browser_options)
 
-    # SetUpEnvironment may finish too early, CROS_MINIDUMP_DIR might not exist
+    # SetUpEnvironment may finish too early, MINIDUMP_DIR might not exist
     # yet. First waits for its existence, and then create a test dump.
     def minidump_dir_exists():
       return cri.FileExistsOnDevice(
-          cmd_helper.SingleQuote(cri.CROS_MINIDUMP_DIR))
+          cmd_helper.SingleQuote(cri.MINIDUMP_DIR))
     py_utils.WaitFor(minidump_dir_exists, timeout=10)
 
     cri.RunCmdOnDevice(['touch', remote_path])

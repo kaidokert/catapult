@@ -7,10 +7,9 @@ from __future__ import division
 from __future__ import absolute_import
 
 import datetime
+from flask import Flask
 import json
 import unittest
-
-import webapp2
 import webtest
 
 from dashboard import graph_revisions
@@ -19,16 +18,19 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import graph_data
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/graph_revisions', methods=['POST'])
+def GraphRevisionsPost():
+  return graph_revisions.GraphRevisionsPost()
+
 
 class GraphRevisionsTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(GraphRevisionsTest, self).setUp()
-    app = webapp2.WSGIApplication([('/graph_revisions',
-                                    graph_revisions.GraphRevisionsHandler)])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
     self.PatchDatastoreHooksRequest()
 
   def _AddMockData(self):

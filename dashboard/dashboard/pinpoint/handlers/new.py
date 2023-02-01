@@ -25,6 +25,7 @@ from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import performance_bisection
 from dashboard.pinpoint.models.tasks import read_value
+
 if utils.IsRunningFlask():
   from flask import request
 
@@ -33,8 +34,10 @@ _ERROR_TAGS_DICT = 'Tags must be a dict of key/value string pairs.'
 _ERROR_UNSUPPORTED = 'This benchmark (%s) is unsupported.'
 _ERROR_PRIORITY = 'Priority must be an integer.'
 
+_EXTRA_BROWSER_ARGS_PREFIX = '--extra-browser-args'
+_ENABLE_FEATURES_PREFIX = '--enable-features'
+
 REGULAR_TELEMETRY_TESTS = {
-    'performance_weblayer_test_suite',
     'performance_webview_test_suite',
 }
 SUFFIXED_REGULAR_TELEMETRY_TESTS = {
@@ -46,7 +49,6 @@ SUFFIXES = {
     '_android_chrome',
     '_android_monochrome',
     '_android_monochrome_bundle',
-    '_android_weblayer',
     '_android_webview',
     '_android_clank_chrome',
     '_android_clank_monochrome',
@@ -65,7 +67,6 @@ for test in SUFFIXED_REGULAR_TELEMETRY_TESTS:
   for suffix in SUFFIXES:
     REGULAR_TELEMETRY_TESTS_WITH_FALLBACKS[test + suffix] = test
 
-
 if utils.IsRunningFlask():
 
   def _CheckUser():
@@ -74,6 +75,7 @@ if utils.IsRunningFlask():
     api_auth.Authorize()
     if not utils.IsTryjobUser():
       raise api_request_handler.ForbiddenError()
+
 
   @api_request_handler.RequestHandlerDecoratorFactory(_CheckUser)
   def NewHandlerPost():
@@ -154,7 +156,7 @@ def _CreateJob(req):
 
   # If this is a try job, we assume it's higher priority than bisections, so
   # we'll set it at a negative priority.
-  if priority not in arguments and comparison_mode == job_state.TRY:
+  if not priority and comparison_mode == job_state.TRY:
     priority = -1
 
   # TODO(dberris): Make this the default when we've graduated the beta.
@@ -186,26 +188,29 @@ def _CreateJob(req):
     initial_attempt_count = None
 
   # Create job.
-  job = job_module.Job.New(
-      quests if not use_execution_engine else (),
-      changes,
-      arguments=original_arguments,
-      bug_id=bug_id,
-      comparison_mode=comparison_mode,
-      comparison_magnitude=comparison_magnitude,
-      gerrit_server=gerrit_server,
-      gerrit_change_id=gerrit_change_id,
-      name=name,
-      pin=pin,
-      tags=tags,
-      user=user,
-      priority=priority,
-      use_execution_engine=use_execution_engine,
-      project=project,
-      batch_id=batch_id,
-      initial_attempt_count=initial_attempt_count,
-      dimensions=arguments.get('dimensions'),
-      swarming_server=arguments.get('swarming_server'))
+  try:
+    job = job_module.Job.New(
+        quests if not use_execution_engine else (),
+        changes,
+        arguments=original_arguments,
+        bug_id=bug_id,
+        comparison_mode=comparison_mode,
+        comparison_magnitude=comparison_magnitude,
+        gerrit_server=gerrit_server,
+        gerrit_change_id=gerrit_change_id,
+        name=name,
+        pin=pin,
+        tags=tags,
+        user=user,
+        priority=priority,
+        use_execution_engine=use_execution_engine,
+        project=project,
+        batch_id=batch_id,
+        initial_attempt_count=initial_attempt_count,
+        dimensions=arguments.get('dimensions'),
+        swarming_server=arguments.get('swarming_server'))
+  except errors.SwarmingNoBots as e:
+    six.raise_from(ValueError(str(e)), e)
 
   if use_execution_engine:
     # TODO(dberris): We need to figure out a way to get the arguments to be more
@@ -261,14 +266,27 @@ def _ParseExtraArgs(args):
       extra_args = json.loads(args)
     except ValueError:
       extra_args = shlex.split(args)
+  _RearrangeExtraArgs(extra_args)
   return extra_args
+
+
+def _RearrangeExtraArgs(extra_args):
+  n = len(extra_args)
+  for i in range(n):
+    if extra_args[i].startswith(_ENABLE_FEATURES_PREFIX):
+      if i == 0 or extra_args[i-1] != _EXTRA_BROWSER_ARGS_PREFIX:
+        extra_args[i] = _EXTRA_BROWSER_ARGS_PREFIX + '=' + extra_args[i]
 
 
 def _ArgumentsWithConfiguration(original_arguments):
   # "configuration" is a special argument that maps to a list of preset
   # arguments. Pull any arguments from the specified "configuration", if any.
   new_arguments = original_arguments.copy()
-
+  provided_args = new_arguments.get('extra_test_args', '')
+  extra_test_args = []
+  if provided_args:
+    extra_test_args = _ParseExtraArgs(provided_args)
+  new_arguments['extra_test_args'] = json.dumps(extra_test_args)
   configuration = original_arguments.get('configuration')
   if configuration:
     try:
@@ -285,14 +303,6 @@ def _ArgumentsWithConfiguration(original_arguments):
         # we can respect the value set in bot_configurations in addition to
         # those provided from the UI.
         if k == 'extra_test_args':
-          # First, parse whatever is already there. We'll canonicalise the
-          # inputs as a JSON list of strings.
-          provided_args = new_arguments.get('extra_test_args', '')
-          extra_test_args = []
-
-          if provided_args:
-            extra_test_args = _ParseExtraArgs(provided_args)
-
           configured_args = _ParseExtraArgs(v)
           new_arguments['extra_test_args'] = json.dumps(
               extra_test_args + configured_args,)
@@ -302,8 +312,6 @@ def _ArgumentsWithConfiguration(original_arguments):
   return new_arguments
 
 
-# TODO(https://crbug.com/1262292): raise directly after Python2 trybots retire.
-# pylint: disable=inconsistent-return-statements
 def _ValidateBugId(bug_id, project):
   if not bug_id:
     return None, None
@@ -315,11 +323,9 @@ def _ValidateBugId(bug_id, project):
     # the inputs are valid.
     return int(bug_id), project
   except ValueError as e:
-    six.raise_from(ValueError(_ERROR_BUG_ID), e)
+    raise ValueError(_ERROR_BUG_ID) from e
 
 
-# TODO(https://crbug.com/1262292): raise directly after Python2 trybots retire.
-# pylint: disable=inconsistent-return-statements
 def _ValidatePriority(priority):
   if not priority:
     return None
@@ -327,7 +333,7 @@ def _ValidatePriority(priority):
   try:
     return int(priority)
   except ValueError as e:
-    six.raise_from(ValueError(_ERROR_PRIORITY), e)
+    raise ValueError(_ERROR_PRIORITY) from e
 
 
 def _ValidateChangesForTry(arguments):
@@ -391,8 +397,6 @@ def _ValidateChangesForTry(arguments):
   return change_1, change_2
 
 
-# TODO(https://crbug.com/1262292): raise directly after Python2 trybots retire.
-# pylint: disable=inconsistent-return-statements
 def _ValidateChanges(comparison_mode, arguments):
   try:
     changes = arguments.get('changes')
@@ -435,7 +439,7 @@ def _ValidateChanges(comparison_mode, arguments):
 
     return change_1, change_2
   except errors.BuildGerritURLInvalid as e:
-    six.raise_from(ValueError(str(e)), e)
+    raise ValueError(str(e)) from e
 
 
 def _ValidatePatch(patch_data):
@@ -551,7 +555,7 @@ def _ValidateTags(tags):
 
   for k, v in tags_dict.items():
     if not isinstance(k, six.string_types) or \
-       not isinstance(v, six.string_types):
+        not isinstance(v, six.string_types):
       raise ValueError(_ERROR_TAGS_DICT)
 
   return tags_dict

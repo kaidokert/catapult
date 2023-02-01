@@ -59,8 +59,12 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
+_BOOT_TIMEOUT = 60
+_BOOT_RETRIES = 2
 _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
+
+
 # TODO(agrieve): Would be better to make this timeout based off of data size.
 # Needs to be large for remote devices & speed depends on internet connection.
 # Debug Chrome builds can be 200mb+.
@@ -272,7 +276,7 @@ _PARCEL_RESULT_RE = re.compile(
 _WAIT_FOR_DEVICE_TIMEOUT_STR = 'timeout expired while waiting for device'
 
 _WEBVIEW_SYSUPDATE_CURRENT_PKG_RE = re.compile(
-    r'Current WebView package.*:.*\(([a-z.]*),')
+    r'Current WebView package.*:.*\(([a-z.]*),\s+(\d+\.\d+\.\d+\.\d+)\)')
 _WEBVIEW_SYSUPDATE_NULL_PKG_RE = re.compile(r'Current WebView package is null')
 _WEBVIEW_SYSUPDATE_FALLBACK_LOGIC_RE = re.compile(
     r'Fallback logic enabled: (true|false)')
@@ -294,7 +298,7 @@ _EMULATOR_RE = re.compile(r'^(generic_|emulator64_).*$')
 # Matches lines like "Package [com.google.android.youtube] (c491050):".
 # or "Package [org.chromium.trichromelibrary_425300033] (e476383):"
 _DUMPSYS_PACKAGE_RE_STR =\
-    r'^\s*Package\s*\[%s(_(?P<version_code>\d*))?\]\s*\(\w*\):$'
+    r'^\s*Package\s*\[%s(_(?P<library_version>\d*))?\]\s*\(\w*\):$'
 
 PS_COLUMNS = ('name', 'pid', 'ppid')
 ProcessInfo = collections.namedtuple('ProcessInfo', PS_COLUMNS)
@@ -766,14 +770,17 @@ class DeviceUtils(object):
     raise device_errors.CommandFailedError('Unable to fetch IMEI.')
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def IsApplicationInstalled(
-      self, package, version_code=None, timeout=None, retries=None):
+  def IsApplicationInstalled(self,
+                             package,
+                             library_version=None,
+                             timeout=None,
+                             retries=None):
     """Determines whether a particular package is installed on the device.
 
     Args:
       package: Name of the package.
-      version_code: The version of the package to check for as an int, if
-          applicable. Only used for static shared libraries, otherwise ignored.
+      library_version: Required for shared-library apks. The version of the
+          package to check for as an int.
 
     Returns:
       True if the application is installed, False otherwise.
@@ -781,7 +788,7 @@ class DeviceUtils(object):
     # `pm list packages` doesn't include the version code, so if it was
     # provided, skip this since we can't guarantee that the installed
     # version is the requested version.
-    if version_code is None:
+    if library_version is None:
       # `pm list packages` allows matching substrings, but we want exact matches
       # only.
       matching_packages = self.RunShellCommand(
@@ -794,20 +801,21 @@ class DeviceUtils(object):
     # Some packages do not properly show up via `pm list packages`, so fall back
     # to checking via `dumpsys package`.
     matcher = re.compile(_DUMPSYS_PACKAGE_RE_STR % package)
+    # If the package exists, only its information is outputted. Otherwise, all
+    # packages are output making for very large output.
+    package_with_version = package
+    if library_version:
+      package_with_version += '_' + str(library_version)
     dumpsys_output = self.RunShellCommand(
-        ['dumpsys', 'package'], check_return=True, large_output=True)
+        ['dumpsys', 'package', package_with_version],
+        check_return=True,
+        large_output=True)
     for line in dumpsys_output:
       match = matcher.match(line)
-      # We should have one of these cases:
-      # 1. The package is a regular app, in which case it will show up without
-      #    its version code in the line we're filtering for.
-      # 2. The package is a static shared library, in which case one or more
-      #    entries with the version code can show up, but not one without the
-      #    version code.
       if match:
-        installed_version_code = match.groupdict().get('version_code')
-        if (installed_version_code is None
-            or installed_version_code == str(version_code)):
+        installed_version = match.groupdict().get('library_version')
+        if (installed_version is None
+            or installed_version == str(library_version)):
           return True
     return False
 
@@ -1026,12 +1034,13 @@ class DeviceUtils(object):
           cmd, check_return=True, shell=True, timeout=timeout, retries=retries)
       self.PullFile(device_tmp_file.name, path)
 
-  @decorators.WithTimeoutAndRetriesFromInstance()
+  @decorators.WithTimeoutAndConditionalRetries(
+      adb_wrapper.ShouldRetryAfterAdbServerRestart)
   def WaitUntilFullyBooted(self,
                            wifi=False,
                            decrypt=False,
-                           timeout=None,
-                           retries=None):
+                           timeout=_BOOT_TIMEOUT,
+                           retries=_BOOT_RETRIES):
     """Wait for the device to fully boot.
 
     This means waiting for the device to boot, the package manager to be
@@ -1083,7 +1092,7 @@ class DeviceUtils(object):
             'Failed to get prop "sys.usb.config": device unreachable')
         return False
 
-    def sd_card_ready():
+    def is_sd_card_ready():
       try:
         self.RunShellCommand(
             ['test', '-d', self.GetExternalStoragePath()], check_return=True)
@@ -1094,7 +1103,7 @@ class DeviceUtils(object):
       except device_errors.AdbCommandFailedError:
         return False
 
-    def pm_ready():
+    def is_pm_ready():
       try:
         return self._GetApplicationPathsInternal('android', skip_cache=True)
       except device_errors.DeviceUnreachableError:
@@ -1103,20 +1112,22 @@ class DeviceUtils(object):
       except device_errors.CommandFailedError:
         return False
 
-    def boot_completed():
+    def is_boot_completed():
       try:
-        return self.GetProp('sys.boot_completed', cache=False) == '1'
+        return any(
+            self.GetProp(prop, cache=False) == '1'
+            for prop in ('sys.boot_completed', 'dev.bootcomplete'))
       except device_errors.DeviceUnreachableError:
         logging.warning('Failed to check boot_completed: device unreachable')
         return False
       except device_errors.CommandFailedError:
         return False
 
-    def wifi_enabled():
+    def is_wifi_enabled():
       return 'Wi-Fi is enabled' in self.RunShellCommand(['dumpsys', 'wifi'],
                                                         check_return=False)
 
-    def decryption_completed():
+    def is_decryption_completed():
       try:
         decrypt = self.GetProp('vold.decrypt', cache=False)
         # The prop "void.decrypt" will only be set when the device uses
@@ -1131,15 +1142,16 @@ class DeviceUtils(object):
         return False
 
     self.adb.WaitForDevice()
+    # Check that the device has booted
+    timeout_retry.WaitFor(is_boot_completed)
     # Rock960 devices connected twice. Wait for device ready.
     timeout_retry.WaitFor(is_device_connection_ready)
-    timeout_retry.WaitFor(sd_card_ready)
-    timeout_retry.WaitFor(pm_ready)
-    timeout_retry.WaitFor(boot_completed)
+    timeout_retry.WaitFor(is_sd_card_ready)
+    timeout_retry.WaitFor(is_pm_ready)
     if wifi:
-      timeout_retry.WaitFor(wifi_enabled)
+      timeout_retry.WaitFor(is_wifi_enabled)
     if decrypt:
-      timeout_retry.WaitFor(decryption_completed)
+      timeout_retry.WaitFor(is_decryption_completed)
 
   REBOOT_DEFAULT_TIMEOUT = 10 * _DEFAULT_TIMEOUT
 
@@ -1535,11 +1547,11 @@ class DeviceUtils(object):
     # There have been cases of APKs not being detected after being explicitly
     # installed, so perform a sanity check now and fail early if the
     # installation somehow failed.
-    apk_version = apk.GetVersionCode()
-    if not self.IsApplicationInstalled(package_name, apk_version):
+    library_version = apk.GetLibraryVersion()
+    if not self.IsApplicationInstalled(package_name, library_version):
       raise device_errors.CommandFailedError(
           'Package %s with version %s not installed on device after explicit '
-          'install attempt.' % (package_name, apk_version))
+          'install attempt.' % (package_name, library_version))
 
     if (permissions is None
         and self.build_version_sdk >= version_codes.MARSHMALLOW):
@@ -1991,6 +2003,40 @@ class DeviceUtils(object):
       timeout_retry.WaitFor(dismiss_popups, wait_period=1)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
+  def Unlock(self, timeout=None, retries=None):
+    """Wakes up the device screen and unlocks (if not PIN protected).
+
+    This is a NOOP if the device screen is already unlocked.
+
+    Args:
+      timeout: timeout in seconds
+      retries: number of retries
+
+    Raises:
+      CommandFailedError if device cannot be unlocked (ex. if PIN protected).
+      CommandTimeoutError on timeout.
+      DeviceUnreachableError on missing device.
+    """
+    # Must wake up the screen before unlocking. This is a NOOP if already awake.
+    self.SendKeyEvent(keyevent.KEYCODE_WAKEUP)
+
+    def is_screen_locked():
+      lines = self.RunShellCommand(['dumpsys', 'nfc'])
+      screen_locked = False
+      screen_locked_pattern = re.compile(r'mScreenState=.*\bON_LOCKED$')
+      for line in lines:
+        if screen_locked_pattern.match(line):
+          screen_locked = True
+          break
+      return screen_locked
+
+    if is_screen_locked():
+      self.SendKeyEvent(keyevent.KEYCODE_MENU)
+      if is_screen_locked():
+        raise device_errors.CommandFailedError('Screen is still locked. Is the '
+                                               'device password protected?')
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
   def ForceStop(self, package, timeout=None, retries=None):
     """Close the application.
 
@@ -2011,7 +2057,8 @@ class DeviceUtils(object):
                             package,
                             permissions=None,
                             timeout=None,
-                            retries=None):
+                            retries=None,
+                            wait_for_asynchronous_intent=False):
     """Clear all state for the given package.
 
     Args:
@@ -2019,6 +2066,9 @@ class DeviceUtils(object):
       permissions: List of permissions to set after clearing data.
       timeout: timeout in seconds
       retries: number of retries
+      wait_for_asynchronous_intent: Wait for the asynchronous MediaProvider
+          intent to finish before returning. This intent can end up deleting
+          data after this function returns if not waited for.
 
     Raises:
       CommandTimeoutError on timeout.
@@ -2029,8 +2079,62 @@ class DeviceUtils(object):
     # may never return.
     if ((self.build_version_sdk >= version_codes.JELLY_BEAN_MR2)
         or self._GetApplicationPathsInternal(package)):
+      last_timestamp = None
+      if wait_for_asynchronous_intent:
+        # Figure out what the last log line's timestamp was so we can be sure we
+        # wait for the right thing later.
+        logcat_output = self.RunShellCommand(
+            ['logcat', '--format=year', '-t', '1'], check_return=True)
+        # We only request one line, but logcat outputs a line indicating where
+        # output is coming from first, so don't assume the first line is
+        # actually what we want.
+        last_timestamp = logcat_output[-1]
+        # Logcat format as requested is "YYYY-MM-DD HH:MM:SS.MS ...", so we only
+        # care about the first two space-separated fields.
+        split_timestamp = last_timestamp.split()
+        # We could convert this to an actual timestamp, but string comparison
+        # should work fine for our purposes.
+        last_timestamp = '%s %s' % (split_timestamp[0], split_timestamp[1])
+
       self.RunShellCommand(['pm', 'clear', package], check_return=True)
       self.GrantPermissions(package, permissions)
+
+      if wait_for_asynchronous_intent:
+
+        def intent_test():
+          # We look for a MediaProvider intent end related to clearing our
+          # package that's newer than the last timestamp before we requested the
+          # clear.
+          # LogcatMonitor already has a WaitFor that accepts a regex, but it
+          # does not work well for this since we need to ensure that the found
+          # line is new.
+          # Sample line that we expect back as a result (line breaks added for
+          # readability):
+          # 12-08 04:41:18.543  3479  4356 I MediaProvider: End Intent {
+          #   act=android.intent.action.PACKAGE_DATA_CLEARED
+          #   dat=package:org.chromium.chrome
+          #   flg=0x1000010
+          #   cmp=com.google.android.providers.media.module/
+          #     com.android.providers.media.MediaService (has extras) }
+          intent_end_regex = (
+              r'End Intent.*android.intent.action.PACKAGE_DATA_CLEARED.*' +
+              package)
+          logcat_output = self.RunShellCommand([
+              'logcat',
+              '-d',
+              '-s',
+              '--format=year',
+              '--regex=%s' % intent_end_regex,
+              'MediaProvider:I',
+          ],
+                                               check_return=True)
+          for line in logcat_output:
+            # Avoid any non-log output like "--------- beginning of main".
+            if 'MediaProvider' in line and line > last_timestamp:
+              return True
+          return False
+
+        timeout_retry.WaitFor(intent_test, wait_period=2, max_tries=15)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def SendKeyEvent(self, keycode, timeout=None, retries=None):
@@ -3497,6 +3601,7 @@ class DeviceUtils(object):
       A dictionary with these possible entries:
         FallbackLogicEnabled: True|False
         CurrentWebViewPackage: "package name" or None
+        CurrentWebViewVersion: Version of the current WebView provider
         MinimumWebViewVersionCode: int
         WebViewPackages: Dict of installed WebView providers, mapping "package
             name" to "reason it's valid/invalid."
@@ -3523,6 +3628,7 @@ class DeviceUtils(object):
       match = re.search(_WEBVIEW_SYSUPDATE_CURRENT_PKG_RE, line)
       if match:
         result['CurrentWebViewPackage'] = match.group(1)
+        result['CurrentWebViewVersion'] = match.group(2)
       match = re.search(_WEBVIEW_SYSUPDATE_NULL_PKG_RE, line)
       if match:
         result['CurrentWebViewPackage'] = None

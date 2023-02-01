@@ -9,8 +9,6 @@ from __future__ import absolute_import
 import pickle
 import unittest
 
-from oauth2client import client
-
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution
 import six
@@ -36,7 +34,7 @@ class ExecutionException2(_ExecutionStub):
   """This Execution always fails on first Poll()."""
 
   def _Poll(self):
-    raise client.AccessTokenRefreshError()
+    raise execution.TokenRefreshError()
 
 
 class ExecutionFail(_ExecutionStub):
@@ -111,10 +109,8 @@ class ExecutionTest(unittest.TestCase):
 
     self.assertTrue(e.completed)
     self.assertTrue(e.failed)
-    if six.PY2:
-      expected = 'InformationalError: Expected error for testing.'
-    else:
-      expected = 'dashboard.pinpoint.models.errors.InformationalError: Expected error for testing.'
+    expected = 'dashboard.pinpoint.models.errors.InformationalError: ' \
+               'Expected error for testing.'
     self.assertEqual(e.exception['traceback'].splitlines()[-1], expected)
     self.assertEqual(e.result_values, ())
     self.assertEqual(e.result_arguments, {})

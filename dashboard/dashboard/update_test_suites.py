@@ -14,11 +14,12 @@ from google.appengine.ext import ndb
 
 from dashboard.common import datastore_hooks
 from dashboard.common import descriptor
-from dashboard.common import request_handler
 from dashboard.common import stored_object
 from dashboard.common import namespaced_stored_object
 from dashboard.common import utils
 from dashboard.models import graph_data
+
+from flask import request, make_response
 
 # TestMetadata suite cache key.
 _LIST_SUITES_CACHE_KEY = 'list_tests_get_test_suites'
@@ -49,26 +50,17 @@ def FetchCachedTestSuites():
   return cached
 
 
-class UpdateTestSuitesHandler(request_handler.RequestHandler):
-  """A simple request handler to refresh the cached test suites info."""
-
-  def get(self):
-    """Refreshes the cached test suites list."""
-    logging.debug('crbug/1298177 - update_test_suites GET triggered')
-    self.post()
-
-  def post(self):
-    """Refreshes the cached test suites list."""
-    logging.debug('crbug/1298177 - update_test_suites POST triggered')
-    if self.request.get('internal_only') == 'true':
-      logging.info('Going to update internal-only test suites data.')
-      # Update internal-only test suites data.
-      datastore_hooks.SetPrivilegedRequest()
-      UpdateTestSuites(datastore_hooks.INTERNAL)
-    else:
-      logging.info('Going to update externally-visible test suites data.')
-      # Update externally-visible test suites data.
-      UpdateTestSuites(datastore_hooks.EXTERNAL)
+def UpdateTestSuitesPost():
+  if request.values.get('internal_only') == 'true':
+    logging.info('Going to update internal-only test suites data.')
+    # Update internal-only test suites data.
+    datastore_hooks.SetPrivilegedRequest()
+    UpdateTestSuites(datastore_hooks.INTERNAL)
+  else:
+    logging.info('Going to update externally-visible test suites data.')
+    # Update externally-visible test suites data.
+    UpdateTestSuites(datastore_hooks.EXTERNAL)
+  return make_response('')
 
 
 def UpdateTestSuites(permissions_namespace):

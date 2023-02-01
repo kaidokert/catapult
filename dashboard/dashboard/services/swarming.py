@@ -19,9 +19,7 @@ from dashboard.services import request
 _API_PATH = '_ah/api/swarming/v1'
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Swarming(object):
+class Swarming:
 
   def __init__(self, server):
     self._server = server
@@ -39,9 +37,7 @@ class Swarming(object):
     return Tasks(self._server)
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Bot(object):
+class Bot:
 
   def __init__(self, server, bot_id):
     self._server = server
@@ -60,12 +56,10 @@ class Bot(object):
 
   def _Request(self, path, **kwargs):
     url = '%s/%s/bot/%s/%s' % (self._server, _API_PATH, self._bot_id, path)
-    return request.RequestJson(url, **kwargs)
+    return request.RequestJson(url, use_adc=True, **kwargs)
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Bots(object):
+class Bots:
 
   def __init__(self, server):
     self._server = server
@@ -88,12 +82,11 @@ class Bots(object):
         dimensions=dimensions,
         is_dead=is_dead,
         limit=limit,
-        quarantined=quarantined)
+        quarantined=quarantined,
+        use_adc=True)
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Task(object):
+class Task:
 
   def __init__(self, server, task_id):
     self._server = server
@@ -125,12 +118,10 @@ class Task(object):
 
   def _Request(self, path, **kwargs):
     url = '%s/%s/task/%s/%s' % (self._server, _API_PATH, self._task_id, path)
-    return request.RequestJson(url, **kwargs)
+    return request.RequestJson(url, use_adc=True, **kwargs)
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Tasks(object):
+class Tasks:
 
   def __init__(self, server):
     self._server = server
@@ -143,7 +134,7 @@ class Tasks(object):
     in the task request.
     """
     url = '%s/%s/tasks/new' % (self._server, _API_PATH)
-    return request.RequestJson(url, method='POST', body=body)
+    return request.RequestJson(url, method='POST', body=body, use_adc=True)
 
 
 def _IsAlive(response):

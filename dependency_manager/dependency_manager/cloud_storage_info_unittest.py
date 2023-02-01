@@ -146,7 +146,7 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
     self.fs.RemoveObject(self.download_path)
     cs_get_mock.side_effect = [True]
     self.assertRaises(
-        exceptions.FileNotFoundError, self.cs_info.GetRemotePath)
+        exceptions.FileNotFoundAtError, self.cs_info.GetRemotePath)
 
   @mock.patch(
       'dependency_manager.dependency_manager_util.UnzipArchive')
@@ -224,8 +224,8 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
     self.assertRaises(cloud_storage.NotFoundError,
                       self.cs_info.GetRemotePath)
 
-    cs_get_mock.side_effect = cloud_storage.PermissionError
-    self.assertRaises(cloud_storage.PermissionError,
+    cs_get_mock.side_effect = cloud_storage.CloudStoragePermissionError
+    self.assertRaises(cloud_storage.CloudStoragePermissionError,
                       self.cs_info.GetRemotePath)
 
     cs_get_mock.side_effect = cloud_storage.CredentialsError

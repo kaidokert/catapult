@@ -6,8 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask
 import unittest
-import webapp2
 import webtest
 
 from google.appengine.ext import ndb
@@ -20,17 +20,19 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import graph_data
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/update_test_suites', methods=['GET', 'POST'])
+def UpdateTestSuitesPost():
+  return update_test_suites.UpdateTestSuitesPost()
+
 
 class ListTestSuitesTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(ListTestSuitesTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     self.UnsetCurrentUser()
     stored_object.Set(descriptor.PARTIAL_TEST_SUITES_KEY, [

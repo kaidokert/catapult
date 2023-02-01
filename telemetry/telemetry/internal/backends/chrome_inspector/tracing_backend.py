@@ -183,7 +183,7 @@ class TracingBackend():
     """Send a Tracing.start request and wait for a response.
 
     Args:
-      trace_config: A dictionary speficying to Chrome what should be traced.
+      trace_config: A dictionary specifying to Chrome what should be traced.
         For example: {'recordMode': 'recordUntilFull', 'includedCategories':
         ['x', 'y'], ...}. It is required to start tracing via DevTools, and
         should be omitted if startup tracing was already started.
@@ -351,10 +351,13 @@ class TracingBackend():
 
         elapsed_time = time.time() - start_time
         if elapsed_time > timeout:
+          trace_parts = [
+            name for name, _ in self._trace_data_builder.IterTraceParts()]
           raise TracingTimeoutException(
               'Only received partial trace data due to timeout after %s '
               'seconds. If the trace data is big, you may want to increase '
-              'the timeout amount.' % elapsed_time)
+              'the timeout amount.\nTrace Parts: %s' % (
+                  elapsed_time, trace_parts))
     finally:
       self._trace_data_builder = None
     logging.info('Successfully collected all trace data after %f seconds.'

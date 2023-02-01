@@ -114,9 +114,7 @@ class ReadValueExecution(execution.Execution):
   def __init__(self, results_filename, results_path, metric, grouping_label,
                trace_or_story, statistic, chart, isolate_server, isolate_hash,
                cas_root_ref=None):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(ReadValueExecution, self).__init__()
+    super().__init__()
     self._results_filename = results_filename
     self._results_path = results_path
     self._metric = metric
@@ -191,7 +189,8 @@ class ReadValueExecution(execution.Execution):
         result_values = self._ParseGraphJson(json_data)
         self._mode = 'graphjson'
         logging.debug('Succeess.')
-      # TODO(https://crbug.com/1262292): use `faise from` when Python2 trybots retire.
+      # We're catching a subset of InformationalError here. The latest version
+      # of pylint will handle this use case.
       # pylint: disable=try-except-raise
       except (errors.ReadValueChartNotFound, errors.ReadValueTraceNotFound,
               errors.FatalError):
@@ -212,10 +211,8 @@ class ReadValueExecution(execution.Execution):
         histograms.ImportDicts(json_data)
       elif proto_data is not None:
         histograms.ImportProto(proto_data)
-    except BaseException:
-      # TODO(https://crbug.com/1262292): use `faise from` when Python2 trybots retire.
-      # pylint: disable=raise-missing-from
-      raise errors.ReadValueUnknownFormat(self._results_filename)
+    except BaseException as e:
+      raise errors.ReadValueUnknownFormat(self._results_filename) from e
 
     self._trace_urls = FindTraceUrls(histograms)
     histograms_by_path = CreateHistogramSetByTestPathDict(histograms)
@@ -514,9 +511,7 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
 
   def __init__(self, results_filename, hist_name, grouping_label,
                trace_or_story, statistic, isolate_server, isolate_hash):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(_ReadHistogramsJsonValueExecution, self).__init__()
+    super().__init__()
     self._results_filename = results_filename
     self._hist_name = hist_name
     self._grouping_label = grouping_label
@@ -630,9 +625,7 @@ class _ReadGraphJsonValueExecution(execution.Execution):
 
   def __init__(self, results_filename, chart, trace, isolate_server,
                isolate_hash):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(_ReadGraphJsonValueExecution, self).__init__()
+    super().__init__()
     self._results_filename = results_filename
     self._chart = chart
     self._trace = trace

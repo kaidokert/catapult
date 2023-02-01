@@ -10,6 +10,7 @@ import json
 import unittest
 
 import mock
+import six
 
 from dashboard import auto_bisect
 from dashboard.common import namespaced_stored_object
@@ -21,9 +22,7 @@ from dashboard.models import anomaly
 class StartNewBisectForBugTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(StartNewBisectForBugTest, self).setUp()
+    super().setUp()
     self.SetCurrentUser('internal@chromium.org')
     namespaced_stored_object.Set('bot_configurations', {
         'linux-pinpoint': {},
@@ -101,7 +100,7 @@ class StartNewBisectForBugTest(testing_common.TestCase):
         'issue_url': 'http://pinpoint/123'
     }, result)
     self.assertEqual('123', a.get().pinpoint_bisects[0])
-    self.assertEqual({
+    six.assertCountEqual(self, {
         'alert': a.urlsafe(),
         'test_path': test_key.id()
     }, json.loads(mock_new.call_args[0][0]['tags']))

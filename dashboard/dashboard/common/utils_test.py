@@ -23,9 +23,7 @@ from dashboard.models import graph_data
 class UtilsTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(UtilsTest, self).setUp()
+    super().setUp()
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     testing_common.SetIsAdministrator('admin@chromium.org', True)
@@ -382,7 +380,7 @@ class UtilsTest(testing_common.TestCase):
     self.assertEqual('new_test', step)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
-  @mock.patch('common.utils.discovery.build')
+  @mock.patch('apiclient.discovery.build')
   def testIsGroupMember_PositiveCase(self, mock_discovery_build):
     mock_request = mock.MagicMock()
     mock_request.execute = mock.MagicMock(return_value={'is_member': True})
@@ -395,7 +393,7 @@ class UtilsTest(testing_common.TestCase):
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   @mock.patch('logging.error')
-  @mock.patch('common.utils.discovery.build')
+  @mock.patch('apiclient.discovery.build')
   def testIsGroupMember_RequestFails_LogsErrorAndReturnsFalse(
       self, mock_discovery_build, mock_logging_error):
     mock_service = mock.MagicMock()
@@ -482,6 +480,22 @@ class UtilsTest(testing_common.TestCase):
   def testIsMonitored_Negative(self):
     sheriff_client = sheriff_config_client.GetSheriffConfigClient()
     self.assertFalse(utils.IsMonitored(sheriff_client, 'test'))
+
+
+  def testConvertBytesBeforeJsonDumps(self):
+    none_obj = None
+    self.assertEqual(None, utils.ConvertBytesBeforeJsonDumps(none_obj),
+                     'Fail converting none object')
+
+    dict_obj = {'a': b'aa', 'b': [b'bb', 'cc']}
+    self.assertEqual('{"a": "aa", "b": ["bb", "cc"]}',
+                     json.dumps(utils.ConvertBytesBeforeJsonDumps(dict_obj)),
+                     'Fail converting dict object')
+
+    list_obj = [{'a': b'aa', 'b': b'bb'}, {'c': b'cc'}]
+    self.assertEqual('[{"a": "aa", "b": "bb"}, {"c": "cc"}]',
+                     json.dumps(utils.ConvertBytesBeforeJsonDumps(list_obj)),
+                     'Fail converting list object')
 
 
 def _MakeMockFetch(base64_encoded=True, status=200):

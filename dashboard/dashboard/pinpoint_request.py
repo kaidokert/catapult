@@ -14,7 +14,6 @@ from google.appengine.ext import ndb
 
 from dashboard.common import descriptor
 from dashboard.common import math_utils
-from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.common import defaults
 from dashboard.models import anomaly
@@ -22,6 +21,8 @@ from dashboard.models import anomaly_config
 from dashboard.models import graph_data
 from dashboard.services import crrev_service
 from dashboard.services import pinpoint_service
+
+from flask import request
 
 _NON_CHROME_TARGETS = ['v8']
 _SUITE_CRREV_CONFIGS = {
@@ -34,21 +35,22 @@ class InvalidParamsError(Exception):
   pass
 
 
-class PinpointNewPrefillRequestHandler(request_handler.RequestHandler):
-
-  def post(self):
-    logging.debug('crbug/1298177 - pinpoint_request prefill POST triggered')
-    t = utils.TestKey(self.request.get('test_path')).get()
-    self.response.write(json.dumps({'story_filter': t.unescaped_story_name}))
+def PinpointNewBisectPost():
+  return json.dumps(NewPinpointBisect(request.values))
 
 
-class PinpointNewBisectRequestHandler(request_handler.RequestHandler):
+def PinpointNewPrefillPost():
+  t = utils.TestKey(request.values.get('test_path')).get()
+  return json.dumps({'story_filter': t.unescaped_story_name})
 
-  def post(self):
-    logging.debug('crbug/1298177 - pinpoint_request new bisect POST triggered')
-    job_params = dict(
-        (a, self.request.get(a)) for a in self.request.arguments())
-    self.response.write(json.dumps(NewPinpointBisect(job_params)))
+
+def PinpointNewPerfTryPost():
+  try:
+    pinpoint_params = PinpointParamsFromPerfTryParams(request.values)
+  except InvalidParamsError as e:
+    return json.dumps({'error': str(e)})
+
+  return json.dumps(pinpoint_service.NewJob(pinpoint_params))
 
 
 def NewPinpointBisect(job_params):
@@ -72,21 +74,6 @@ def NewPinpointBisect(job_params):
       alert.put()
 
   return results
-
-
-class PinpointNewPerfTryRequestHandler(request_handler.RequestHandler):
-
-  def post(self):
-    job_params = dict(
-        (a, self.request.get(a)) for a in self.request.arguments())
-
-    try:
-      pinpoint_params = PinpointParamsFromPerfTryParams(job_params)
-    except InvalidParamsError as e:
-      self.response.write(json.dumps({'error': str(e)}))
-      return
-
-    self.response.write(json.dumps(pinpoint_service.NewJob(pinpoint_params)))
 
 
 def _GitHashToCommitPosition(commit_position):
@@ -180,32 +167,32 @@ def GetIsolateTarget(bot_name, suite):
   # Each Android binary has its own target, and different bots use different
   # binaries. Mapping based off of Chromium's
   # //tools/perf/core/perf_data_generator.py
-  if bot_name == 'android-pixel2-perf-calibration':
-    return 'performance_test_suite_android_clank_monochrome_64_32_bundle'
-  if bot_name == 'android-nexus5x-perf-fyi':
-    return 'performance_test_suite_android_clank_chrome'
-  if bot_name == 'android-pixel2-perf-fyi':
-    return 'performance_test_suite_android_clank_chrome'
-  if bot_name == 'android-pixel2-perf-aab-fyi':
-    return 'performance_test_suite_android_clank_monochrome_bundle'
   if bot_name == 'android-go-perf':
     return 'performance_test_suite_android_clank_chrome'
-  if bot_name == 'Android Nexus5 Perf':
-    return 'performance_test_suite_android_chrome'
-  if bot_name == 'android-pixel2-perf':
-    return 'performance_test_suite_android_clank_monochrome_64_32_bundle'
-  if bot_name == 'android-pixel2_weblayer-perf':
-    return 'performance_weblayer_test_suite'
-  if bot_name == 'android-pixel4-perf':
+  if bot_name == 'android-go-wembley-perf':
     return 'performance_test_suite_android_clank_trichrome_bundle'
-  if bot_name == 'android-pixel4_weblayer-perf':
-    return 'performance_weblayer_test_suite'
-  if bot_name == 'android-pixel4a_power-perf':
-    return 'performance_test_suite_android_clank_chrome'
   if bot_name == 'android-new-pixel-perf':
     return 'performance_test_suite_android_clank_trichrome_chrome_google_64_32_bundle'
   if bot_name == 'android-new-pixel-pro-perf':
     return 'performance_test_suite_android_clank_trichrome_chrome_google_64_32_bundle'
+  if bot_name == 'android-nexus5x-perf-fyi':
+    return 'performance_test_suite_android_clank_chrome'
+  if bot_name == 'android-pixel2-perf-calibration':
+    return 'performance_test_suite_android_clank_monochrome_64_32_bundle'
+  if bot_name == 'android-pixel2-perf-fyi':
+    return 'performance_test_suite_android_clank_chrome'
+  if bot_name == 'android-pixel2-perf-aab-fyi':
+    return 'performance_test_suite_android_clank_monochrome_bundle'
+  if bot_name == 'Android Nexus5 Perf':
+    return 'performance_test_suite_android_chrome'
+  if bot_name == 'android-pixel2-perf':
+    return 'performance_test_suite_android_clank_monochrome_64_32_bundle'
+  if bot_name == 'android-pixel4-perf':
+    return 'performance_test_suite_android_clank_trichrome_bundle'
+  if bot_name == 'android-pixel4a_power-perf':
+    return 'performance_test_suite_android_clank_chrome'
+  if bot_name == 'android-samsung-foldable-perf':
+    return 'performance_test_suite_android_clank_trichrome_bundle'
   if 'android' in bot_name.lower():
     raise InvalidParamsError(
         'Given Android bot %s does not have an isolate mapped to it' % bot_name)

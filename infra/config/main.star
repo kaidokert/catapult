@@ -102,7 +102,7 @@ luci.cq_group(
 )
 
 # Matches any file under the 'dashboard' root directory.
-DASHBOARD_RE = ".+[+]/dashboard/.+"
+DASHBOARD_RE = "dashboard/.+"
 
 def try_builder(
         name,
@@ -146,14 +146,12 @@ def try_builder(
         name = "catapult",
         cipd_package = "infra/recipe_bundles/chromium.googlesource.com/chromium/tools/build",
         use_bbagent = True,
-        use_python3 = True,
     )
     if is_presubmit:
         executable = luci.recipe(
             name = "run_presubmit",
             cipd_package = "infra/recipe_bundles/chromium.googlesource.com/chromium/tools/build",
             use_bbagent = True,
-            use_python3 = True,
         )
         props["repo_name"] = "catapult"
     if is_dashboard:
@@ -175,7 +173,10 @@ def try_builder(
     # Presubmit sees all changes
     if not is_presubmit:
         if not is_dashboard:
-            verifier_kwargs["location_regexp_exclude"] = [DASHBOARD_RE]
+            verifier_kwargs["location_filters"] = [
+                cq.location_filter(path_regexp = ".*"),
+                cq.location_filter(path_regexp = DASHBOARD_RE, exclude = True),
+            ]
     if experiment != None:
         verifier_kwargs["experiment_percentage"] = experiment
 
@@ -186,22 +187,16 @@ def try_builder(
         **verifier_kwargs
     )
 
-try_builder("Catapult Linux Tryserver", "Ubuntu", properties = {"use_python3": True})
-try_builder("Catapult Linux Tryserver Py2", "Ubuntu")
+try_builder("Catapult Linux Tryserver", "Ubuntu")
 
-try_builder("Catapult Windows Tryserver Py2", "Windows-10")
-try_builder("Catapult Windows Tryserver", "Windows-10", properties = {"use_python3": True})
+try_builder("Catapult Windows Tryserver", "Windows-10")
 
-try_builder("Catapult Mac Tryserver Py2", "Mac", dimensions = {"cpu": "x86-64"})
-try_builder("Catapult Mac Tryserver", "Mac", dimensions = {"cpu": "x86-64"}, properties = {"use_python3": True})
+try_builder("Catapult Mac Tryserver", "Mac", dimensions = {"cpu": "x86-64"})
 
-try_builder("Catapult Mac M1 Tryserver Py2", "Mac", dimensions = {"cpu": "arm"}, experiment = 100)
-try_builder("Catapult Mac M1 Tryserver", "Mac", dimensions = {"cpu": "arm"}, properties = {"use_python3": True})
+try_builder("Catapult Mac M1 Tryserver", "Mac", dimensions = {"cpu": "arm"})
 
-try_builder("Catapult Android Tryserver", "Android", dimensions = {"device_type": "bullhead"}, properties = {"platform": "android", "use_python3": True})
-try_builder("Catapult Android Tryserver Py2", "Android", dimensions = {"device_type": "bullhead"}, properties = {"platform": "android"})
+try_builder("Catapult Android Tryserver", "Android", dimensions = {"device_type": "bullhead"}, properties = {"platform": "android"})
 
 try_builder("Catapult Presubmit", "Ubuntu", is_presubmit = True)
 
 try_builder("Dashboard Linux Tryserver", "Ubuntu", is_dashboard = True)
-try_builder("Dashboard Linux Tryserver Py3", "Ubuntu", is_dashboard = True, properties = {"use_python3": True})

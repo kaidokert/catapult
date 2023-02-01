@@ -6,10 +6,10 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask
 import json
 import unittest
-
-import webapp2
+import six
 import webtest
 
 from google.appengine.ext import ndb
@@ -21,16 +21,21 @@ from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models.subscription import Subscription
 
+flask_app = Flask(__name__)
 
+
+@flask_app.route('/dump_graph_json', methods=['GET'])
+def DumpGraphJsonHandler():
+  return dump_graph_json.DumpGraphJsonHandlerGet()
+
+
+@unittest.skipIf(six.PY3,
+                 'Testing endpoint for dev_appserver only in Python 2.')
 class DumpGraphJsonTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(DumpGraphJsonTest, self).setUp()
-    app = webapp2.WSGIApplication([('/dump_graph_json',
-                                    dump_graph_json.DumpGraphJsonHandler)])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
 
   def testGet_DumpJson_Basic(self):
     # Insert a test with no rows or alerts.

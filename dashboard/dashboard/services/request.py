@@ -25,9 +25,7 @@ _VULNERABILITY_PREFIX = b")]}'\n"
 class RequestError(http_client.HTTPException):
 
   def __init__(self, msg, headers, content):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(RequestError, self).__init__(msg)
+    super().__init__(msg)
     self.headers = headers
     self.content = content
 
@@ -42,7 +40,7 @@ def RequestJson(*args, **kwargs):
   See the documentation for Request() for details
   about the arguments and exceptions.
   """
-  content = Request(*args, **kwargs)
+  content = six.ensure_binary(Request(*args, **kwargs))
   if content.startswith(_VULNERABILITY_PREFIX):
     content = content[len(_VULNERABILITY_PREFIX):]
   return json.loads(content)
@@ -54,6 +52,7 @@ def Request(url,
             use_cache=False,
             use_auth=True,
             scope=utils.EMAIL_SCOPE,
+            use_adc=False,
             **parameters):
   """Fetch a URL while authenticated as the service account.
 
@@ -81,8 +80,8 @@ def Request(url,
         del parameters[key]
       if isinstance(value, bool):
         parameters[key] = str(value).lower()
-    url += '?' + six.moves.urllib.parse.urlencode(  # pylint: disable=too-many-function-args
-        sorted(parameters.items()), True)
+    params = sorted(parameters.items())
+    url += '?' + six.moves.urllib.parse.urlencode(params, True)
 
   kwargs = {'method': method}
   if body:
@@ -99,13 +98,15 @@ def Request(url,
       return content
 
   try:
-    content = _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs)
+    content = _RequestAndProcessHttpErrors(url, use_auth, scope, use_adc,
+                                           **kwargs)
   except NotFoundError:
     raise
   except (http_client.HTTPException, socket.error,
           urlfetch_errors.InternalTransientError):
     # Retry once.
-    content = _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs)
+    content = _RequestAndProcessHttpErrors(url, use_auth, scope, use_adc,
+                                           **kwargs)
 
   if use_cache:
     try:
@@ -117,10 +118,10 @@ def Request(url,
   return content
 
 
-def _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs):
+def _RequestAndProcessHttpErrors(url, use_auth, scope, use_adc=False, **kwargs):
   """Requests a URL, converting HTTP errors to Python exceptions."""
   if use_auth:
-    http = utils.ServiceAccountHttp(timeout=60, scope=scope)
+    http = utils.ServiceAccountHttp(timeout=60, scope=scope, use_adc=use_adc)
   else:
     http = httplib2.Http(timeout=60)
   logging.info('url: %s; use_auth: %s; kwargs: %s', url, use_auth, kwargs)
@@ -134,7 +135,13 @@ def _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs):
         response, content)
   if not response['status'].startswith('2'):
     logging.debug('Response headers: %s, body: %s', response, content)
-    raise RequestError(
-        'Failure in request for `%s`; HTTP status code %s: %s' %
-        (url, response['status'], repr(content[0:200])), response, content)
+    if use_adc and response['status'] in ['401', '403']:
+      logging.info(
+          'Received unauthorized with ADC account. Retrying with the legacy account.'
+      )
+      _RequestAndProcessHttpErrors(url, use_auth, scope, False, **kwargs)
+    else:
+      raise RequestError(
+          'Failure in request for `%s`; HTTP status code %s: %s' %
+          (url, response['status'], repr(content[0:200])), response, content)
   return content

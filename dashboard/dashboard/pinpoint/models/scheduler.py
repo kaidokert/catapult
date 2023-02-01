@@ -21,6 +21,7 @@ import collections
 import datetime
 import functools
 import random
+import logging
 
 from google.appengine.ext import ndb
 
@@ -109,9 +110,7 @@ class ConfigurationQueue(ndb.Model):
     ]
     if len(self.samples) > 50:
       self.samples = random.sample(self.samples, 50)
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(ConfigurationQueue, self).put()
+    super().put()
 
 
 class Error(Exception):
@@ -245,6 +244,7 @@ def QueueStats(configuration):
   queue = ConfigurationQueue.get_by_id(
       configuration, parent=ndb.Key('Queues', 'root'))
   if not queue:
+    logging.warning('Failed to find queue for configuration: %s', configuration)
     raise QueueNotFound()
 
   def StatCombiner(status_map, job):

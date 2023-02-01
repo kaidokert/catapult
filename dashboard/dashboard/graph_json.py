@@ -17,6 +17,7 @@ import logging
 import math
 import re
 
+import six
 from google.appengine.ext import ndb
 
 from dashboard import alerts
@@ -27,6 +28,8 @@ from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
+
+from flask import request, make_response
 
 # Default number of points to fetch per test.
 # This can be overridden by specifying num_points or start_rev and end_rev.
@@ -44,73 +47,63 @@ _BETTER_DICT = {
 }
 
 
-class GraphJsonHandler(request_handler.RequestHandler):
-  """Request handler for requests for graph data."""
+def GraphJsonPost():
+  graphs = request.values.get('graphs')
+  arguments = _ParseRequestArguments(graphs)
+  if not arguments:
+    resp = request_handler.RequestHandlerReportError('Bad Graph JSON Request')
+  else:
+    resp = make_response(GetGraphJson(**arguments))
+  resp.headers['Access-Control-Allow-Origin'] = '*'
+  return resp
 
-  def post(self):
-    """Fetches and prepares data for a graph.
 
-    Request parameters:
-      graphs: A JSON serialization of a dict that contains the arguments
-          for GetGraphJson.
+def _ParseRequestArguments(graphs):
+  """Parses parameters from a request and checks for errors.
 
-    Outputs:
-      JSON serialization of data to be used for plotting a graph.
-    """
-    self.response.headers.add_header('Access-Control-Allow-Origin', '*')
-    arguments = self._ParseRequestArguments()
-    if not arguments:
-      self.ReportError('Bad Graph JSON Request')
-      return
-    self.response.out.write(GetGraphJson(**arguments))
+  The post request is expected to pass one parameter, called 'graphs',
+  whose value is a JSON serialization of a dict of parameters.
 
-  def _ParseRequestArguments(self):
-    """Parses parameters from a request and checks for errors.
+  Returns:
+    A dict of arguments that can be given to GetGraphJson, or None if
+    no valid dict of arguments can be constructed.
+  """
+  if graphs is None:
+    logging.error('No graph names specified')
+    return None
+  try:
+    graphs = json.loads(graphs)
+  except ValueError:
+    logging.error('Invalid JSON string for graphs')
+    return None
 
-    The post request is expected to pass one parameter, called 'graphs',
-    whose value is a JSON serialization of a dict of parameters.
+  test_path_dict = graphs.get('test_path_dict')
+  test_path_list = graphs.get('test_path_list')
+  is_selected = graphs.get('is_selected')
 
-    Returns:
-      A dict of arguments that can be given to GetGraphJson, or None if
-      no valid dict of arguments can be constructed.
-    """
-    graphs = self.request.get('graphs')
-    if graphs is None:
-      logging.error('No graph names specified')
-      return None
-    try:
-      graphs = json.loads(graphs)
-    except ValueError:
-      logging.error('Invalid JSON string for graphs')
-      return None
+  if test_path_dict and test_path_list:
+    logging.error(
+        'Only one of test_path_dict and test_path_list may be specified')
+    return None
+  if test_path_dict:
+    test_paths = _ResolveTestPathDict(test_path_dict, is_selected)
+  elif test_path_list:
+    test_paths = test_path_list
+  else:
+    logging.error(
+        'Exactly one of test_path_dict or test_path_list must be specified')
+    return None
 
-    test_path_dict = graphs.get('test_path_dict')
-    test_path_list = graphs.get('test_path_list')
-    is_selected = graphs.get('is_selected')
-
-    if test_path_dict and test_path_list:
-      logging.error(
-          'Only one of test_path_dict and test_path_list may be specified')
-      return None
-    if test_path_dict:
-      test_paths = _ResolveTestPathDict(test_path_dict, is_selected)
-    elif test_path_list:
-      test_paths = test_path_list
-    else:
-      logging.error(
-          'Exactly one of test_path_dict or test_path_list must be specified')
-      return None
-
-    arguments = {
-        'test_paths': test_paths,
-        'rev': _PositiveIntOrNone(graphs.get('rev')),
-        'num_points': (_PositiveIntOrNone(graphs.get('num_points'))
-                       or _DEFAULT_NUM_POINTS),
-        'is_selected': is_selected,
-        'start_rev': _PositiveIntOrNone(graphs.get('start_rev')),
-        'end_rev': _PositiveIntOrNone(graphs.get('end_rev')),
-    }
-    return arguments
+  arguments = {
+      'test_paths': test_paths,
+      'rev': _PositiveIntOrNone(graphs.get('rev')),
+      'num_points': (_PositiveIntOrNone(graphs.get('num_points'))
+                     or _DEFAULT_NUM_POINTS),
+      'is_selected': is_selected,
+      'start_rev': _PositiveIntOrNone(graphs.get('start_rev')),
+      'end_rev': _PositiveIntOrNone(graphs.get('end_rev')),
+  }
+  return arguments
 
 
 def _ResolveTestPathDict(test_path_dict, is_selected):
@@ -275,7 +268,10 @@ def _PointInfoDict(row, anomaly_annotation_map):
 def _IsMarkdownLink(value):
   """Checks whether |value| is a markdown link."""
   if not isinstance(value, str):
-    return False
+    if isinstance(value, bytes):
+      value = six.ensure_str(value)
+    else:
+      return False
   return re.match(r'\[.+?\]\(.+?\)', value)
 
 
@@ -435,11 +431,11 @@ def _GetFlotJson(revision_map, tests):
       series_dict.setdefault(data_index, data_dict)
 
   return json.dumps(
-      {
+      utils.ConvertBytesBeforeJsonDumps({
           'data': cols,
           'annotations': flot_annotations,
           'error_bars': error_bars,
-      },
+      }),
       allow_nan=False)
 
 

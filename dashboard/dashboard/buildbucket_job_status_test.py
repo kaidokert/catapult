@@ -6,21 +6,21 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask, Response
 import json
-import re
 import unittest
 
 import mock
-import webapp2
 import webtest
 
+from dashboard import common
+from dashboard import services
 from dashboard import buildbucket_job_status
 from dashboard.common import testing_common
-from dashboard.common import utils
 from dashboard.services import request
 
 SAMPLE_RESPONSE = r"""{
- "build": {
+  "build": {
   "status": "COMPLETED",
   "created_ts": "1430771172999340",
   "url": "http://build.chromium.org/p/tryserver.chromium.perf/builders\
@@ -88,67 +88,43 @@ rasterize_and_record_micro.key_mobile_sites_smooth\", \
 \"test_type\": \"perf\"}}}",
   "completed_ts": "1430771433288680",
   "updated_ts": "1430771433288850"
- },
- "kind": "buildbucket#resourcesItem",
- "etag": "\"mWAxLWqIHM8gXvavjiTVUApk92U/AaU08KGmhFQcdRWOCVgNYJBBlgI\""
+  },
+  "kind": "buildbucket#resourcesItem",
+  "etag": "\"mWAxLWqIHM8gXvavjiTVUApk92U/AaU08KGmhFQcdRWOCVgNYJBBlgI\""
 }""".replace('\\\n', '')
 
 SAMPLE_RESPONSE_NOT_FOUND = r"""{
- "error": {
+  "error": {
   "message": "",
   "reason": "BUILD_NOT_FOUND"
- },
- "kind": "buildbucket#resourcesItem",
- "etag": "\"mWAxLWqIHM8gXvavjiTVUApk92U/vcsTyxWNZoEnszG8qWqlQLOhpl8\""
+  },
+  "kind": "buildbucket#resourcesItem",
+  "etag": "\"mWAxLWqIHM8gXvavjiTVUApk92U/vcsTyxWNZoEnszG8qWqlQLOhpl8\""
 }"""
+
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/buildbucket_job_status/<job_id>')
+def BuildbucketJobStatusGet(job_id):
+  return buildbucket_job_status.BuildbucketJobStatusGet(job_id)
 
 
 class BuildbucketJobStatusTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(BuildbucketJobStatusTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        (r'/buildbucket_job_status/(\d+)',
-         buildbucket_job_status.BuildbucketJobStatusHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
-
-  @mock.patch.object(buildbucket_job_status.buildbucket_service, 'GetJobStatus',
-                     mock.MagicMock(return_value=json.loads(SAMPLE_RESPONSE)))
-  @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: False)
-  def testGet_ExistingJob(self):
-    response = self.testapp.get('/buildbucket_job_status/9046721402459257808')
-    # Verify that a human-readable creation time is presented. We check for the
-    # minute:second string to avoid localization from breaking this test.
-    self.assertIn('26:12', response.body)
-    # Verify that both the good and bad revisions are displayed somewhere.
-    self.assertIn('328115', response.body)
-    self.assertIn('328111', response.body)
-    # Verify that a link to buildbot is provided somewhere.
-    self.assertTrue(
-        re.search('href\\s*=\\s*[\'"]http://build.chromium.org/p/tryserver',
-                  response.body, re.IGNORECASE))
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
 
   @mock.patch.object(
-      buildbucket_job_status.buildbucket_service, 'GetJobStatus',
-      mock.MagicMock(return_value=json.loads(SAMPLE_RESPONSE_NOT_FOUND)))
-  @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: False)
-  def testGet_JobNotFound(self):
-    response = self.testapp.get('/buildbucket_job_status/9046721402459257808')
-    # If the error code is shown somewhere in the page and no exception is
-    # raised, that's good enough.
-    self.assertIn('BUILD_NOT_FOUND', response)
-
-  @mock.patch.object(
-      buildbucket_job_status.buildbucket_service, 'GetJobStatus',
+      services.buildbucket_service, 'GetJobStatus',
       mock.MagicMock(return_value=json.loads(r"""{"status": "SUCCESS"}""")))
-  @mock.patch.object(buildbucket_job_status.BuildbucketJobStatusHandler,
-                     'RenderHtml')
-  @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: True)
-  def testGet_ExistingJobV2(self, render):
-    self.testapp.get('/buildbucket_job_status/12345')
+  def testGet_ExistingJob(self):
+    with mock.patch.object(
+        common.request_handler,
+        'RequestHandlerRenderHtml',
+        return_value=Response()) as render:
+      self.testapp.get('/buildbucket_job_status/12345')
     render.assert_called_once_with(
         'buildbucket_job_status.html', {
             'job_id': '12345',
@@ -162,15 +138,16 @@ class BuildbucketJobStatusTest(testing_common.TestCase):
             }
         })
 
-  @mock.patch.object(buildbucket_job_status.buildbucket_service, 'GetJobStatus',
+  @mock.patch.object(services.buildbucket_service, 'GetJobStatus',
                      mock.MagicMock(
                          side_effect=request.NotFoundError(
                              'oops', {'x-prpc-grpc-code': '5'}, 'Error msg.')))
-  @mock.patch.object(buildbucket_job_status.BuildbucketJobStatusHandler,
-                     'RenderHtml')
-  @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: True)
-  def testGet_JobNotFoundV2(self, render):
-    self.testapp.get('/buildbucket_job_status/12345')
+  def testGet_JobNotFound(self):
+    with mock.patch.object(
+        common.request_handler,
+        'RequestHandlerRenderHtml',
+        return_value=Response()) as render:
+      self.testapp.get('/buildbucket_job_status/12345')
     render.assert_called_once_with(
         'buildbucket_job_status.html', {
             'job_id': '12345',

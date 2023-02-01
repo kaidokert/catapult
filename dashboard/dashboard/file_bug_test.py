@@ -8,17 +8,13 @@ from __future__ import division
 from __future__ import absolute_import
 
 import datetime
+from flask import Flask
 import json
+
 import mock
 import sys
-import webapp2
+import six
 import webtest
-
-# Importing mock_oauth2_decorator before file_bug mocks out
-# OAuth2Decorator usage in that file.
-# pylint: disable=unused-import
-from dashboard import mock_oauth2_decorator
-# pylint: enable=unused-import
 
 from dashboard import file_bug
 from dashboard.common import namespaced_stored_object
@@ -32,13 +28,18 @@ from dashboard.models.subscription import Subscription
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/file_bug', methods=['GET', 'POST'])
+def FileBugHandlerGet():
+  return file_bug.FileBugHandlerGet()
+
 
 class FileBugTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(FileBugTest, self).setUp()
+    super().setUp()
     testing_common.SetSheriffDomains(['chromium.org'])
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
@@ -47,13 +48,10 @@ class FileBugTest(testing_common.TestCase):
     self.PatchObject(file_bug.file_bug.issue_tracker_service,
                      'IssueTrackerService',
                      lambda *_: self._issue_tracker_service)
-    app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
-    self.testapp = webtest.TestApp(app)
+    self.testapp = webtest.TestApp(flask_app)
 
   def tearDown(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(FileBugTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def _AddSampleAlerts(self, master='ChromiumPerf', has_commit_positions=True):
@@ -183,8 +181,8 @@ class FileBugTest(testing_common.TestCase):
     # When a request is made and no keys parameter is given,
     # an error message is shown in the reply.
     response = self.testapp.get('/file_bug?summary=s&description=d&finish=true')
-    self.assertIn('<div class="error">', response.body)
-    self.assertIn('No alerts specified', response.body)
+    self.assertIn(b'<div class="error">', response.body)
+    self.assertIn(b'No alerts specified', response.body)
 
   def testGet_WithNoFinish_ShowsForm(self):
     # When a GET request is sent with keys specified but the finish parameter
@@ -192,10 +190,10 @@ class FileBugTest(testing_common.TestCase):
     # in bug details (summary, description, etc).
     alert_keys = self._AddSampleAlerts()
     response = self.testapp.get('/file_bug?summary=s&description=d&keys=%s' %
-                                alert_keys[0].urlsafe())
+                                six.ensure_str(alert_keys[0].urlsafe()))
     self.assertEqual(1, len(response.html('form')))
-    self.assertIn('<input name="cc" type="text" value="foo@chromium.org">',
-                  str(response.html('form')[0]))
+    expected = '<input name="cc" type="text" value="foo@chromium.org"/>'
+    self.assertIn(expected, str(response.html('form')[0]))
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   def testInternalBugLabel(self):
@@ -208,8 +206,8 @@ class FileBugTest(testing_common.TestCase):
     anomaly_entity.internal_only = True
     anomaly_entity.put()
     response = self.testapp.get('/file_bug?summary=s&description=d&keys=%s' %
-                                alert_keys[0].urlsafe())
-    self.assertIn('Restrict-View-Google', response.body)
+                                six.ensure_str(alert_keys[0].urlsafe()))
+    self.assertIn(b'Restrict-View-Google', response.body)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   def testGet_SetsBugLabelsComponents(self):
@@ -219,12 +217,12 @@ class FileBugTest(testing_common.TestCase):
     bug_label_patterns.AddBugLabelPattern('Cr-Performance-Blink',
                                           '*/*/*/mean_frame_time')
     response = self.testapp.get(
-        '/file_bug?summary=s&description=d&keys=%s,%s' %
-        (alert_keys[0].urlsafe(), alert_keys[1].urlsafe()))
-    self.assertIn('label1-foo', response.body)
-    self.assertIn('Performance&gt;Blink', response.body)
-    self.assertIn('Performance-Sheriff', response.body)
-    self.assertIn('Blink&gt;Javascript', response.body)
+        '/file_bug?summary=s&description=d&keys=%s,%s' % (six.ensure_str(
+            alert_keys[0].urlsafe()), six.ensure_str(alert_keys[1].urlsafe())))
+    self.assertIn(b'label1-foo', response.body)
+    self.assertIn(b'Performance&gt;Blink', response.body)
+    self.assertIn(b'Performance-Sheriff', response.body)
+    self.assertIn(b'Blink&gt;Javascript', response.body)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   @mock.patch('google.appengine.api.app_identity.get_default_version_hostname',
@@ -245,7 +243,8 @@ class FileBugTest(testing_common.TestCase):
     if is_single_rev:
       alert_keys = alert_keys[2].urlsafe()
     else:
-      alert_keys = '%s,%s' % (alert_keys[0].urlsafe(), alert_keys[1].urlsafe())
+      alert_keys = '%s,%s' % (six.ensure_str(
+          alert_keys[0].urlsafe()), six.ensure_str(alert_keys[1].urlsafe()))
     response = self.testapp.post('/file_bug', [
         ('keys', alert_keys),
         ('summary', 's'),
@@ -274,7 +273,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug()
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # The anomaly entities should be updated.
     for anomaly_entity in anomaly.Anomaly.query().fetch():
@@ -318,7 +317,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug()
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # The anomaly entities should be updated.
     for anomaly_entity in anomaly.Anomaly.query().fetch():
@@ -367,7 +366,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug(is_single_rev=True)
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
@@ -409,7 +408,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug(is_single_rev=True)
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # Two HTTP requests are made when filing a bug; only test 2nd request.
     comment = self._issue_tracker_service.add_comment_args[1]
@@ -434,7 +433,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug(is_single_rev=True, master='ClankInternal')
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
@@ -462,7 +461,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug(is_single_rev=True, master='FakeMaster')
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
@@ -501,7 +500,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug(is_single_rev=True, master='Foo')
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
@@ -542,7 +541,7 @@ class FileBugTest(testing_common.TestCase):
     response = self._PostSampleBug(is_single_rev=True)
 
     # The response page should have a bug number.
-    self.assertIn('277761', response.body)
+    self.assertIn(b'277761', response.body)
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
@@ -722,23 +721,25 @@ class FileBugTest(testing_common.TestCase):
         subscription_names=[subscription.name],
         ownership=ownership_samples[1]).put()
     response = self.testapp.post('/file_bug', [
-        ('keys', '%s,%s' % (anomaly_1.urlsafe(), anomaly_2.urlsafe())),
+        ('keys', '%s,%s' % (six.ensure_str(
+            anomaly_1.urlsafe()), six.ensure_str(anomaly_2.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
         ('label', 'two'),
         ('component', 'Foo>Bar'),
     ])
-    self.assertIn('<input type="text" name="owner" value="">', response.body)
+    self.assertIn(b'<input type="text" name="owner" value="">', response.body)
     response_changed_order = self.testapp.post('/file_bug', [
-        ('keys', '%s,%s' % (anomaly_2.urlsafe(), anomaly_1.urlsafe())),
+        ('keys', '%s,%s' % (six.ensure_str(
+            anomaly_2.urlsafe()), six.ensure_str(anomaly_1.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
         ('label', 'two'),
         ('component', 'Foo>Bar'),
     ])
-    self.assertIn('<input type="text" name="owner" value="">',
+    self.assertIn(b'<input type="text" name="owner" value="">',
                   response_changed_order.body)
 
   def testGet_OwnersNotFilledWhenNoOwnership(self):
@@ -756,14 +757,14 @@ class FileBugTest(testing_common.TestCase):
         subscription_names=[subscription.name],
     ).put()
     response = self.testapp.post('/file_bug', [
-        ('keys', '%s' % (anomaly_entity.urlsafe())),
+        ('keys', '%s' % (six.ensure_str(anomaly_entity.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
         ('label', 'two'),
         ('component', 'Foo>Bar'),
     ])
-    self.assertIn('<input type="text" name="owner" value="">', response.body)
+    self.assertIn(b'<input type="text" name="owner" value="">', response.body)
 
   def testGet_WithAllOwnershipComponents(self):
     ownership_samples = [{
@@ -802,7 +803,7 @@ class FileBugTest(testing_common.TestCase):
         subscription_names=[subscription.name],
         ownership=ownership_samples[1]).put()
     response = self.testapp.post('/file_bug', [
-        ('keys', '%s' % (anomaly_1.urlsafe())),
+        ('keys', '%s' % six.ensure_str((anomaly_1.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
@@ -810,10 +811,11 @@ class FileBugTest(testing_common.TestCase):
         ('component', 'Foo>Bar'),
     ])
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="Abc&gt;Xyz">',
+        b'<input type="checkbox" checked name="component" value="Abc&gt;Xyz">',
         response.body)
     response_with_both_anomalies = self.testapp.post('/file_bug', [
-        ('keys', '%s,%s' % (anomaly_1.urlsafe(), anomaly_2.urlsafe())),
+        ('keys', '%s,%s' % (six.ensure_str(
+            anomaly_1.urlsafe()), six.ensure_str(anomaly_2.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
@@ -821,10 +823,10 @@ class FileBugTest(testing_common.TestCase):
         ('component', 'Foo>Bar'),
     ])
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="Abc&gt;Xyz">',
+        b'<input type="checkbox" checked name="component" value="Abc&gt;Xyz">',
         response_with_both_anomalies.body)
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="Def&gt;123">',
+        b'<input type="checkbox" checked name="component" value="Def&gt;123">',
         response_with_both_anomalies.body)
 
   def testGet_UsesOnlyMostRecentComponents(self):
@@ -866,7 +868,8 @@ class FileBugTest(testing_common.TestCase):
         ownership=ownership_samples[1],
         timestamp=now_datetime + datetime.timedelta(10)).put()
     response = self.testapp.post('/file_bug', [
-        ('keys', '%s,%s' % (older_alert.urlsafe(), newer_alert.urlsafe())),
+        ('keys', '%s,%s' % (six.ensure_str(
+            older_alert.urlsafe()), six.ensure_str(newer_alert.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
@@ -874,13 +877,14 @@ class FileBugTest(testing_common.TestCase):
         ('component', 'Foo>Bar'),
     ])
     self.assertNotIn(
-        '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
+        b'<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="123&gt;456">',
+        b'<input type="checkbox" checked name="component" value="123&gt;456">',
         response.body)
     response_inverted_order = self.testapp.post('/file_bug', [
-        ('keys', '%s,%s' % (newer_alert.urlsafe(), older_alert.urlsafe())),
+        ('keys', '%s,%s' % (six.ensure_str(
+            newer_alert.urlsafe()), six.ensure_str(older_alert.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
@@ -888,10 +892,10 @@ class FileBugTest(testing_common.TestCase):
         ('component', 'Foo>Bar'),
     ])
     self.assertNotIn(
-        '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
+        b'<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response_inverted_order.body)
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="123&gt;456">',
+        b'<input type="checkbox" checked name="component" value="123&gt;456">',
         response_inverted_order.body)
 
   def testGet_ComponentsChosenPerTest(self):
@@ -937,8 +941,8 @@ class FileBugTest(testing_common.TestCase):
         ownership=ownership_samples[1],
         timestamp=now_datetime + datetime.timedelta(10)).put()
     response = self.testapp.post('/file_bug', [
-        ('keys', '%s,%s' %
-         (alert_test_key_0.urlsafe(), alert_test_key_1.urlsafe())),
+        ('keys', '%s,%s' % (six.ensure_str(alert_test_key_0.urlsafe()),
+                            six.ensure_str(alert_test_key_1.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
@@ -946,10 +950,10 @@ class FileBugTest(testing_common.TestCase):
         ('component', 'Foo>Bar'),
     ])
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
+        b'<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="123&gt;456">',
+        b'<input type="checkbox" checked name="component" value="123&gt;456">',
         response.body)
 
   def testGet_UsesFirstDefinedComponent(self):
@@ -1011,9 +1015,10 @@ class FileBugTest(testing_common.TestCase):
         timestamp=now_datetime + datetime.timedelta(30)).put()
     response = self.testapp.post('/file_bug', [
         ('keys', '%s,%s,%s,%s' %
-         (alert_without_ownership.urlsafe(), alert_without_component.urlsafe(),
-          alert_with_empty_component.urlsafe(),
-          alert_with_component.urlsafe())),
+         (six.ensure_str(alert_without_ownership.urlsafe()),
+          six.ensure_str(alert_without_component.urlsafe()),
+          six.ensure_str(alert_with_empty_component.urlsafe()),
+          six.ensure_str(alert_with_component.urlsafe()))),
         ('summary', 's'),
         ('description', 'd\n'),
         ('label', 'one'),
@@ -1021,5 +1026,5 @@ class FileBugTest(testing_common.TestCase):
         ('component', 'Foo>Bar'),
     ])
     self.assertIn(
-        '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
+        b'<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)

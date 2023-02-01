@@ -18,81 +18,75 @@ from dashboard import graph_revisions
 from dashboard import units_to_direction
 from dashboard import sheriff_config_client
 from dashboard.common import datastore_hooks
-from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 
+from flask import request, make_response
 
-class AddPointQueueHandler(request_handler.RequestHandler):
-  """Request handler to process points and add them to the datastore.
 
-  This request handler is intended to be used only by requests using the
-  task queue; it shouldn't be directly from outside.
+def AddPointQueuePost():
+  """Adds a set of points from the post data.
+
+  Request parameters:
+    data: JSON encoding of a list of dictionaries. Each dictionary represents
+        one point to add. For each dict, one Row entity will be added, and
+        any required TestMetadata or Master or Bot entities will be created.
   """
+  datastore_hooks.SetPrivilegedRequest()
 
-  def get(self):
-    """A get request is the same a post request for this endpoint."""
-    logging.debug('crbug/1298177 - add_point_queue GET triggered')
-    self.post()
+  data = json.loads(request.values.get('data'))
+  _PrewarmGets(data)
 
-  def post(self):
-    """Adds a set of points from the post data.
+  all_put_futures = []
+  added_rows = []
+  parent_tests = []
+  for row_dict in data:
+    try:
+      new_row, parent_test, put_futures = _AddRow(row_dict)
+      added_rows.append(new_row)
+      parent_tests.append(parent_test)
+      all_put_futures.extend(put_futures)
 
-    Request parameters:
-      data: JSON encoding of a list of dictionaries. Each dictionary represents
-          one point to add. For each dict, one Row entity will be added, and
-          any required TestMetadata or Master or Bot entities will be created.
-    """
-    logging.debug('crbug/1298177 - add_point_queue POST triggered')
-    datastore_hooks.SetPrivilegedRequest()
+    except add_point.BadRequestError as e:
+      logging.error('Could not add %s, it was invalid.', str(e))
+    except datastore_errors.BadRequestError as e:
+      logging.info('While trying to store %s', row_dict)
+      logging.error('Datastore request failed: %s.', str(e))
+      # We should return a response with more information. We kept an
+      # empty response here to align with the webapp2 implementation.
+      # A possible option:
+      #   return request_handler.RequestHandlerReportError(
+      #     'Datastore request failed: %s.' % str(e), status=400)
+      return make_response('')
 
-    data = json.loads(self.request.get('data'))
-    _PrewarmGets(data)
+  ndb.Future.wait_all(all_put_futures)
 
-    all_put_futures = []
-    added_rows = []
-    parent_tests = []
-    for row_dict in data:
-      try:
-        new_row, parent_test, put_futures = _AddRow(row_dict)
-        added_rows.append(new_row)
-        parent_tests.append(parent_test)
-        all_put_futures.extend(put_futures)
+  client = sheriff_config_client.GetSheriffConfigClient()
+  tests_keys = []
+  for t in parent_tests:
+    reason = []
+    subscriptions, _ = client.Match(t.test_path, check=True)
+    if not subscriptions:
+      reason.append('subscriptions')
+    if not t.has_rows:
+      reason.append('has_rows')
+    if IsRefBuild(t.key):
+      reason.append('RefBuild')
+    if reason:
+      logging.info('Skip test: %s reason=%s', t.key, ','.join(reason))
+      continue
+    logging.info('Process test: %s', t.key)
+    tests_keys.append(t.key)
 
-      except add_point.BadRequestError as e:
-        logging.error('Could not add %s, it was invalid.', str(e))
-      except datastore_errors.BadRequestError as e:
-        logging.info('While trying to store %s', row_dict)
-        logging.error('Datastore request failed: %s.', str(e))
-        return
-
-    ndb.Future.wait_all(all_put_futures)
-
-    client = sheriff_config_client.GetSheriffConfigClient()
-    tests_keys = []
-    for t in parent_tests:
-      reason = []
-      subscriptions, _ = client.Match(t.test_path, check=True)
-      if not subscriptions:
-        reason.append('subscriptions')
-      if not t.has_rows:
-        reason.append('has_rows')
-      if IsRefBuild(t.key):
-        reason.append('RefBuild')
-      if reason:
-        logging.info('Skip test: %s reason=%s', t.key, ','.join(reason))
-        continue
-      logging.info('Process test: %s', t.key)
-      tests_keys.append(t.key)
-
-    # Updating of the cached graph revisions should happen after put because
-    # it requires the new row to have a timestamp, which happens upon put.
-    futures = [
-        graph_revisions.AddRowsToCacheAsync(added_rows),
-        find_anomalies.ProcessTestsAsync(tests_keys)
-    ]
-    ndb.Future.wait_all(futures)
+  # Updating of the cached graph revisions should happen after put because
+  # it requires the new row to have a timestamp, which happens upon put.
+  futures = [
+      graph_revisions.AddRowsToCacheAsync(added_rows),
+      find_anomalies.ProcessTestsAsync(tests_keys)
+  ]
+  ndb.Future.wait_all(futures)
+  return make_response('')
 
 
 def _PrewarmGets(data):

@@ -7,26 +7,26 @@ from __future__ import division
 from __future__ import absolute_import
 
 import unittest
-
-import webapp2
+from flask import Flask
 import webtest
 
 from dashboard import layered_cache_delete_expired
 from dashboard.common import layered_cache
 from dashboard.common import testing_common
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/delete_expired_entities')
+def LayeredCacheDeleteExpiredGet():
+  return layered_cache_delete_expired.LayeredCacheDeleteExpiredGet()
+
 
 class LayeredCacheDeleteExpiredTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(LayeredCacheDeleteExpiredTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/delete_expired_entities',
-         layered_cache_delete_expired.LayeredCacheDeleteExpiredHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
     self.UnsetCurrentUser()
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)

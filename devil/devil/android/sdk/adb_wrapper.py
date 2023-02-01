@@ -117,6 +117,18 @@ def _GetReleaseVersion():
   return None
 
 
+def ShouldRetryAfterAdbServerRestart(exc):
+  try:
+    if isinstance(exc, device_errors.CommandTimeoutError):
+      logger.info('Restarting the adb server')
+      RestartServer()
+    return True
+  except Exception:  # pylint: disable=broad-except
+    logger.exception(('Caught an exception when deciding'
+                      ' to retry a function'))
+    return False
+
+
 def _ShouldRetryAdbCmd(exc):
   # Errors are potentially transient and should be retried, with the exception
   # of NoAdbError. Exceptions [e.g. generated from SIGTERM handler] should be
@@ -262,7 +274,8 @@ class AdbWrapper(object):
 
     def Stop(self):
       """Stops the ADB process if it is still running."""
-      if self._process is not None:
+      # If command is called with closed, then process may be 0.
+      if self._process is not None and self._process.poll() != 0:
         self._process.stdin.write(six.ensure_binary('exit\n'))
         self._process.stdin.flush()
         self._process = None
@@ -362,7 +375,8 @@ class AdbWrapper(object):
         last generated output is an integer status code.
       """
       if close:
-        send_cmd = '( %s ); echo $?; exit;\n' % command
+        send_cmd = '( %s ); echo %s$?; exit;\n' % (
+            command, self._SHELL_OUTPUT_END_MARKER)
         # This could be simplified with a communicate call, but py2 throws
         # an error from the thread reader and communicate accessing the same
         # fd.
@@ -374,15 +388,18 @@ class AdbWrapper(object):
             self._process.stdout.flush()
             line = six.ensure_str(self._outq.get(timeout=DEFAULT_TIMEOUT))
             if not _IsExtraneousLine(line, send_cmd):
+              # This allows us to check for the exit code to know when to stop
+              # looking for output.
+              if line.startswith(self._SHELL_OUTPUT_END_MARKER):
+                exit_code = int(line[len(self._SHELL_OUTPUT_END_MARKER):])
+                break
               output_lines.append(line)
           except Empty:
-            self._terminating = True
             break
 
+        self._terminating = True
         if include_status:
-          output_lines[-1] = int(output_lines[-1])
-        else:
-          output_lines = output_lines[:-1]
+          output_lines.append(exit_code)
 
         for x in output_lines:
           yield x
@@ -438,13 +455,11 @@ class AdbWrapper(object):
           # explicit output start marker allows us to skip over these bad
           # lines.
           if not self._start_found:
-            if output_line[:len(self._SHELL_OUTPUT_START_MARKER
-                                )] == self._SHELL_OUTPUT_START_MARKER:
+            if output_line.startswith(self._SHELL_OUTPUT_START_MARKER):
               self._start_found = True
             continue
 
-          if output_line[:len(self._SHELL_OUTPUT_END_MARKER
-                              )] == self._SHELL_OUTPUT_END_MARKER:
+          if output_line.startswith(self._SHELL_OUTPUT_END_MARKER):
             self._start_found = False
             if include_status:
               yield int(output_line[len(self._SHELL_OUTPUT_END_MARKER):])
@@ -469,13 +484,6 @@ class AdbWrapper(object):
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
 
-    for _ in range(5):
-      if not self.is_ready:
-        # Sometimes emulators that are being started up will indicate they're
-        # available to 'adb devices' but will not be ready to connect on adb.
-        time.sleep(3)
-        break
-
     # A queue of persistent shells that are waiting for a command to execute.
     # When a persistent shell is done executing a command, it is usually put
     # back into the queue to await the next command.
@@ -486,9 +494,19 @@ class AdbWrapper(object):
     self._all_persistent_shells = []
     self._lock = threading.Lock()
 
-    # TODO: Persistent Shell has issues when it is used to initialize a
-    # previously non running emulator.
-    # if persistent_shell and not self.is_emulator:
+    # The test blinkpy.web_tests.port.android_unittest.AndroidPortTest.
+    # test_default_child_processes doesn't work with checking for a
+    # real device on some builders.
+    if not persistent_shell:
+      return
+
+    for _ in range(5):
+      if not self.is_ready:
+        # Sometimes emulators that are being started up will indicate they're
+        # available to 'adb devices' but will not be ready to connect on adb.
+        time.sleep(3)
+        break
+
     if persistent_shell:
       if not self.is_ready:
         raise device_errors.DeviceUnreachableError(self._device_serial)
@@ -618,7 +636,7 @@ class AdbWrapper(object):
     # Best effort to catch errors from adb; unfortunately adb is very
     # inconsistent with error reporting so many command failures present
     # differently.
-    if status != 0 or (check_error and output.startswith('error:')):
+    if check_error and (status != 0 or output.startswith('error:')):
       not_found_m = _DEVICE_NOT_FOUND_RE.search(output)
       device_waiting_m = _WAITING_FOR_DEVICE_RE.match(output)
       if (device_waiting_m is not None
@@ -640,8 +658,8 @@ class AdbWrapper(object):
       timeout: Timeout in seconds.
       retries: Number of retries.
       check_error: Check that the command doesn't return an error message. This
-        does check the error status of adb but DOES NOT check the exit status
-        of shell commands.
+        checks both the error status of adb and the exit status of shell
+        commands.
 
     Returns:
       The output of the command.
@@ -688,12 +706,16 @@ class AdbWrapper(object):
       retries: (optional) Number of retries to attempt.
 
     Returns:
-      The output of the shell command as a string.
+      A tuple: the first value is the output of the shell command as a string;
+      the second value is the integer status code of the command if
+      expect_status=True, otherwise this is None.
+    Raises:
+      DeviceUnreachableError on missing device.
     """
     # Pipe stderr->stdout to ensure the echo'ed exit code is not interleaved
     # with the command's stderr (as seen in https://crbug.com/1314912).
     args = ['shell', '( %s ) 2>&1;echo %%$?' % command.rstrip()]
-    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
+    output = self._RunDeviceAdbCmd(args, timeout, retries)
     # If we don't care about the status, just return output and unchecked
     # status.
     if expect_status is None:

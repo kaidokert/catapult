@@ -19,8 +19,6 @@ import sys
 import unittest
 import six
 import six.moves.urllib.parse
-if six.PY2:
-  import webapp2
 import webtest
 
 from google.appengine.api import oauth
@@ -44,9 +42,7 @@ EXTERNAL_USER = users.User(
     email='external@example.com', _auth_domain='example.com')
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeRequestObject(object):
+class FakeRequestObject:
   """Fake Request object which can be used by datastore_hooks mocks."""
 
   def __init__(self, remote_addr=None):
@@ -54,9 +50,7 @@ class FakeRequestObject(object):
     self.remote_addr = remote_addr
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeResponseObject(object):
+class FakeResponseObject:
   """Fake Response Object which can be returned by urlfetch mocks."""
 
   def __init__(self, status_code, content):
@@ -94,9 +88,8 @@ class TestCase(unittest.TestCase):
     self.logger.addHandler(self.stream_handler)
     self.addCleanup(self.logger.removeHandler, self.stream_handler)
 
-  def SetUpApp(self, handlers):
-    if six.PY2:
-      self.testapp = webtest.TestApp(webapp2.WSGIApplication(handlers))
+  def SetUpFlaskApp(self, flask_app):
+    self.testapp = webtest.TestApp(flask_app)
 
   def PatchEnviron(self, path):
     environ_patch = {'PATH_INFO': path}
@@ -114,7 +107,7 @@ class TestCase(unittest.TestCase):
         environ_patch['HTTP_AUTHORIZATION'] = ''
     except oauth.Error:
       pass
-    if six.PY3:
+    if self.testapp:
       # In Python 3, the 'HTTP_AUTHORIZATION' is found removed in the handler.
       self.testapp.extra_environ.update(environ_patch)
     return mock.patch.dict(os.environ, environ_patch)
@@ -134,11 +127,12 @@ class TestCase(unittest.TestCase):
     task_queue.FlushQueue(task_queue_name)
     responses = []
     for task in tasks:
-      responses.append(
-          self.Post(
-              handler_name,
-              six.moves.urllib.parse.unquote_plus(
-                  base64.b64decode(task['body']))))
+      # In python 3.8, unquote_plus() and unquote() accept string only. From
+      # python 3.9, unquote() accept bytes as well. For now, vpython is on
+      # 3.8 and thus we have to use six.ensure_str.
+      data = six.moves.urllib.parse.unquote_plus(
+          six.ensure_str(base64.b64decode(task['body'])))
+      responses.append(self.Post(handler_name, data))
       if recurse:
         responses.extend(
             self.ExecuteTaskQueueTasks(handler_name, task_queue_name))
@@ -180,6 +174,10 @@ class TestCase(unittest.TestCase):
     """Sets the user in the environment to have no email and be non-admin."""
     self.testbed.setup_env(
         user_is_admin='0', user_email='', user_id='', overwrite=True)
+
+  def SetUserGroupMembership(self, user_email, group_name, is_member):
+    """Sets the group membership of the user"""
+    utils.SetCachedIsGroupMember(user_email, group_name, is_member)
 
   def GetEmbeddedVariable(self, response, var_name):
     """Gets a variable embedded in a script element in a response.
@@ -347,9 +345,7 @@ def SetIpAllowlist(ip_addresses):
 
 
 # TODO(fancl): Make it a "real" fake issue tracker.
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeIssueTrackerService(object):
+class FakeIssueTrackerService:
   """A fake version of IssueTrackerService that saves call values."""
 
   def __init__(self):
@@ -391,6 +387,7 @@ class FakeIssueTrackerService(object):
             'Blink>ServiceWorker',
             'Foo>Bar',
         ],
+        'mergedInto': {},
         'published': '2017-06-28T01:26:53',
         'updated': '2018-03-01T16:16:22',
     }
@@ -463,9 +460,7 @@ class FakeIssueTrackerService(object):
     return self.issue_comments.get((project, issue_id), [])
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeSheriffConfigClient(object):
+class FakeSheriffConfigClient:
 
   def __init__(self):
     self.patterns = {}
@@ -479,9 +474,7 @@ class FakeSheriffConfigClient(object):
     return [], None
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeCrrev(object):
+class FakeCrrev:
 
   def __init__(self):
     self._response = None
@@ -498,9 +491,7 @@ class FakeCrrev(object):
     return self._response
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakePinpoint(object):
+class FakePinpoint:
 
   def __init__(self):
     self.new_job_request = None
@@ -518,9 +509,7 @@ class FakePinpoint(object):
     return self._response
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeGitiles(object):
+class FakeGitiles:
 
   def __init__(self, repo_commit_list=None):
     self._repo_commit_list = repo_commit_list or {}
@@ -530,9 +519,7 @@ class FakeGitiles(object):
     return self._repo_commit_list.get(repo, {}).get(revision, {})
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeRevisionInfoClient(object):
+class FakeRevisionInfoClient:
 
   def __init__(self, infos, revisions):
     self._infos = infos
@@ -559,9 +546,7 @@ class FakeRevisionInfoClient(object):
     return infos
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeCASClient(object):
+class FakeCASClient:
 
   _trees = {}
   _files = {}
@@ -587,8 +572,6 @@ class FakeCASClient(object):
     digests = [self._NormalizeDigest(d) for d in digests]
 
     def EncodeData(data):
-      if six.PY2:
-        return base64.b64encode(data)
       return base64.b64encode(data.encode('utf-8')).decode()
 
     return {

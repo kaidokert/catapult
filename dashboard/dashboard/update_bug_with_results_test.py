@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import unittest
 
 import mock
+import six
 
 from dashboard import update_bug_with_results
 from dashboard.common import layered_cache
@@ -44,16 +45,11 @@ class MockIssueTrackerService():
 # requests, which are normally made when the IssueTrackerService is initialized.
 @mock.patch('apiclient.discovery.build', mock.MagicMock())
 @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
-@mock.patch.object(utils, 'TickMonitoringCustomMetric', mock.MagicMock())
 class UpdateBugWithResultsTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(UpdateBugWithResultsTest, self).setUp()
-
+    super().setUp()
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
-
     namespaced_stored_object.Set(
         'repositories', {
             'chromium': {
@@ -175,13 +171,13 @@ class UpdateBugWithResultsTest(testing_common.TestCase):
     anomalies1 = anomaly.Anomaly.query(
         anomaly.Anomaly.bug_id == 12345,
         anomaly.Anomaly.project_id == 'chromium').fetch(keys_only=True)
-    self.assertItemsEqual(anomalies1, [self.a1, self.a2])
+    six.assertCountEqual(self, anomalies1, [self.a1, self.a2])
 
     # And bug 2 should have zero anomalies.
     anomalies2 = anomaly.Anomaly.query(
         anomaly.Anomaly.bug_id == 54321,
         anomaly.Anomaly.project_id == 'chromium').fetch(keys_only=True)
-    self.assertItemsEqual(anomalies2, [])
+    six.assertCountEqual(self, anomalies2, [])
 
   def testMapAnomaliesToMergeIntoBug(self):
 
@@ -196,12 +192,12 @@ class UpdateBugWithResultsTest(testing_common.TestCase):
     anomalies1 = anomaly.Anomaly.query(
         anomaly.Anomaly.bug_id == 12345,
         anomaly.Anomaly.project_id == 'chromium').fetch(keys_only=True)
-    self.assertItemsEqual(anomalies1, [self.a1, self.a2])
+    six.assertCountEqual(self, anomalies1, [self.a1, self.a2])
 
     anomalies2 = anomaly.Anomaly.query(
         anomaly.Anomaly.bug_id == 54321,
         anomaly.Anomaly.project_id == 'chromium').fetch(keys_only=True)
-    self.assertItemsEqual(anomalies2, [])
+    six.assertCountEqual(self, anomalies2, [])
 
 
 if __name__ == '__main__':

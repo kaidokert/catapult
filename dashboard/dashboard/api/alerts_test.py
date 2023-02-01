@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import datetime
+from flask import Flask
 import json
 import unittest
 
@@ -18,14 +19,19 @@ from dashboard.models import anomaly
 from dashboard.models import report_template
 from dashboard.models.subscription import Subscription
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/api/alerts', methods=['POST', 'OPTIONS'])
+def ApiAlertsPost():
+  return alerts.AlertsPost()
+
 
 class AlertsGeneralTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(AlertsGeneralTest, self).setUp()
-    self.SetUpApp([('/api/alerts', alerts.AlertsHandler)])
+    super().setUp()
+    self.SetUpFlaskApp(flask_app)
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 
   def _Post(self, **params):

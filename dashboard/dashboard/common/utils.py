@@ -7,13 +7,17 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
+import functools
 import logging
 import os
 import re
+import six
+import six.moves.urllib.parse
 import time
 
 from apiclient import discovery
 from apiclient import errors
+import flask
 from google.appengine.api import app_identity
 from google.appengine.api import memcache
 from google.appengine.api import oauth
@@ -21,12 +25,9 @@ from google.appengine.api import urlfetch
 from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
 from google.appengine.ext import ndb
-import httplib2
-from oauth2client import client
 
+from dashboard.common import oauth2_utils
 from dashboard.common import stored_object
-import six
-import six.moves.urllib.parse
 
 SHERIFF_DOMAINS_KEY = 'sheriff_domains_key'
 IP_ALLOWLIST_KEY = 'ip_whitelist'
@@ -38,9 +39,10 @@ _PROJECT_ID_KEY = 'project_id'
 _DEFAULT_CUSTOM_METRIC_VAL = 1
 OAUTH_SCOPES = ('https://www.googleapis.com/auth/userinfo.email',)
 OAUTH_ENDPOINTS = ['/api/', '/add_histograms', '/add_point', '/uploads']
-LEGACY_SERVICE_ACCOUNT = (
-    '425761728072-pa1bs18esuhp2cp2qfa1u9vb6p1v6kfu@developer.gserviceaccount.com'
-)
+# testing endpoints for flask
+OAUTH_ENDPOINTS += ['/add_histograms_flask', '/add_point_flask']
+LEGACY_SERVICE_ACCOUNT = ('425761728072-pa1bs18esuhp2cp2qfa1u9vb6p1v6kfu'
+                          '@developer.gserviceaccount.com')
 _CACHE_TIME = 60*60*2 # 2 hours
 
 _AUTOROLL_DOMAINS = (
@@ -87,11 +89,6 @@ def IsStagingEnvironment():
     return False
 
 
-def _GetNowRfc3339():
-  """Returns the current time formatted per RFC 3339."""
-  return time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
-
-
 def GetEmail():
   """Returns email address of the current user.
 
@@ -116,45 +113,12 @@ def GetEmail():
       return None
     user = oauth.get_current_user(OAUTH_SCOPES)
   else:
-    user = users.GetCurrentUser() if six.PY3 else users.get_current_user()
+    user = GetGaeCurrentUser()
   return user.email() if user else None
 
 
-@ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)
-def TickMonitoringCustomMetric(metric_name):
-  """Increments the stackdriver custom metric with the given name.
-
-  This is used for cron job monitoring; if these metrics stop being received
-  an alert mail is sent. For more information on custom metrics, see
-  https://cloud.google.com/monitoring/custom-metrics/using-custom-metrics
-
-  Args:
-    metric_name: The name of the metric being monitored.
-  """
-  credentials = client.GoogleCredentials.get_application_default()
-  monitoring = discovery.build('monitoring', 'v3', credentials=credentials)
-  now = _GetNowRfc3339()
-  project_id = stored_object.Get(_PROJECT_ID_KEY)
-  points = [{
-      'interval': {
-          'startTime': now,
-          'endTime': now,
-      },
-      'value': {
-          'int64Value': _DEFAULT_CUSTOM_METRIC_VAL,
-      },
-  }]
-  write_request = monitoring.projects().timeSeries().create(
-      name='projects/%s' % project_id,
-      body={
-          'timeSeries': [{
-              'metric': {
-                  'type': 'custom.googleapis.com/%s' % metric_name,
-              },
-              'points': points
-          }]
-      })
-  write_request.execute()
+def GetGaeCurrentUser():
+  return users.GetCurrentUser()
 
 
 def TestPath(key):
@@ -335,7 +299,7 @@ def MostSpecificMatchingPattern(test, pattern_data_tuples):
     # 0 to indicate that we've found an equality.
     return 0
 
-  matching_patterns.sort(cmp=CmpPatterns)  # pylint: disable=using-cmp-argument
+  matching_patterns.sort(key=functools.cmp_to_key(CmpPatterns))
 
   return matching_patterns[0][1]
 
@@ -582,8 +546,6 @@ class GroupMemberAuthFailed(Exception):
   pass
 
 
-# TODO(https://crbug.com/1262292): raise directly after Python2 trybots retire.
-# pylint: disable=inconsistent-return-statements
 def IsGroupMember(identity, group):
   """Checks if a user is a group member of using chrome-infra-auth.appspot.com.
 
@@ -615,7 +577,7 @@ def IsGroupMember(identity, group):
     return is_member
   except (errors.HttpError, KeyError, AttributeError) as e:
     logging.error('Failed to check membership of %s: %s', identity, str(e))
-    six.raise_from(GroupMemberAuthFailed('Failed to authenticate user.'), e)
+    raise GroupMemberAuthFailed('Failed to authenticate user.') from e
 
 
 def GetCachedIsGroupMember(identity, group):
@@ -643,36 +605,34 @@ def ServiceAccountEmail(scope=EMAIL_SCOPE):
 
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)
-def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
+def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None, use_adc=False):
   """Returns the Credentials of the service account if available."""
-  account_details = stored_object.Get(SERVICE_ACCOUNT_KEY)
-  if not account_details:
-    raise KeyError('Service account credentials not found.')
+  logging.info('Use_ADC=%s', use_adc)
+  if not use_adc:
+    account_details = stored_object.Get(SERVICE_ACCOUNT_KEY)
+    if not account_details:
+      raise KeyError('Service account credentials not found.')
 
   assert scope, "ServiceAccountHttp scope must not be None."
 
-  client.logger.setLevel(logging.WARNING)
-  if six.PY2:
-    credentials = client.SignedJwtAssertionCredentials(
-        service_account_name=account_details['client_email'],
-        private_key=account_details['private_key'],
-        scope=scope)
+  from google.auth import crypt  # pylint: disable=import-outside-toplevel
+  from google.oauth2 import service_account  # pylint: disable=import-outside-toplevel
+  import google_auth_httplib2  # pylint: disable=import-outside-toplevel
+
+  if use_adc:
+    credentials = oauth2_utils.GetAppDefaultCredentials(scope)
   else:
-    # We need oauth2client at v2.0+ in Python 3, where
-    # SignedJwtAssertionCredentials is removed.
-    from oauth2client.service_account import ServiceAccountCredentials  # pylint: disable=import-outside-toplevel
-    from oauth2client import crypt  # pylint: disable=import-outside-toplevel
-
-    key_string = six.ensure_binary(account_details['private_key'])
-    signer = crypt.Signer.from_string(key_string)
-    credentials = ServiceAccountCredentials(
-        service_account_email=account_details['client_email'],
+    signer = crypt.RSASigner.from_string(account_details['private_key'])
+    default_token_uri = 'https://accounts.google.com/o/oauth2/token'
+    credentials = service_account.Credentials(
         signer=signer,
-        scopes=scope)
-    credentials._private_key_pkcs8_pem = key_string
+        service_account_email=account_details['client_email'],
+        token_uri=default_token_uri,
+        scopes=[scope])
 
-  http = httplib2.Http(timeout=timeout)
-  credentials.authorize(http)
+  http = google_auth_httplib2.AuthorizedHttp(credentials)
+  if timeout:
+    http.timeout = timeout
   return http
 
 
@@ -872,11 +832,6 @@ def IsMonitored(sheriff_client, test_path):
   return False
 
 
-# temp helper during migration to bbv2
-def IsRunningBuildBucketV2():
-  return True
-
-
 def GetBuildbucketUrl(build_id):
   if build_id:
     return 'https://ci.chromium.org/b/%s' % build_id
@@ -908,4 +863,47 @@ def RequestParamsMixed(req):
 
 
 def IsRunningFlask():
-  return IsStagingEnvironment() or six.PY3
+  return flask.has_request_context() or six.PY3
+
+
+def SanitizeArgs(args, key_name, default):
+  if key_name not in args:
+    logging.warning(
+        '%s is not found in the query arguments. Using "%s" as default.',
+        key_name, default)
+    return default
+  value = args[key_name]
+  if value in ('', 'undefined'):
+    logging.warning('%s has %s as the value. Using "%s" as default.', key_name,
+                    value, default)
+    return default
+  return value
+
+
+def LogObsoleteHandlerUsage(handler, method):
+  class_name = type(handler).__name__
+  logging.warning('Obsolete PY2 handler is called unexpectedly. %s:%s',
+                  class_name, method)
+
+
+def ConvertBytesBeforeJsonDumps(src):
+  """ convert a json object to safe to do json.dumps()
+
+  During the python 3 migration, we have seen multiple cases that raw data
+  is loaded as part of a json object but in bytes. This will fail the
+  json.dumps() calls on this object. We want to convert all the bytes to
+  avoid this situation.
+  """
+
+  if isinstance(src, dict):
+    for k, v in src.items():
+      if isinstance(v, bytes):
+        src[k] = six.ensure_str(v)
+      else:
+        src[k] = ConvertBytesBeforeJsonDumps(v)
+  elif isinstance(src, list):
+    for i, v in enumerate(src):
+      src[i] = ConvertBytesBeforeJsonDumps(v)
+  elif isinstance(src, bytes):
+    return six.ensure_str(src)
+  return src

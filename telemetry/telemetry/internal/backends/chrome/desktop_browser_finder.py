@@ -120,9 +120,13 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     if source_profile and self._is_content_shell:
       raise RuntimeError('Profiles cannot be used with content shell')
 
-    self._profile_directory = tempfile.mkdtemp()
+    if not self._browser_options.profile_type == 'exact':
+      self._profile_directory = tempfile.mkdtemp()
+    else:
+      self._profile_directory = source_profile
+
     self._download_directory = tempfile.mkdtemp()
-    if source_profile:
+    if not self._browser_options.profile_type == 'exact' and source_profile:
       logging.info('Seeding profile directory from: %s', source_profile)
       # copytree requires the directory to not exist, so just delete the empty
       # directory and re-create it.
@@ -146,8 +150,9 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
   def _TearDownEnvironment(self):
     if self._profile_directory and os.path.exists(self._profile_directory):
-      # Remove the profile directory, which was hosted on a temp dir.
-      shutil.rmtree(self._profile_directory, ignore_errors=True)
+      if not self._browser_options.profile_type == 'exact':
+        # Remove the profile directory, which was hosted on a temp dir.
+        shutil.rmtree(self._profile_directory, ignore_errors=True)
       self._profile_directory = None
     if self._download_directory and os.path.exists(self._download_directory):
       # Remove the download directory, which was hosted on a temp dir.
@@ -338,6 +343,8 @@ def FindAllAvailableBrowsers(finder_options, device):
   if sys.platform == 'darwin':
     chromium_app_names.append('Chromium.app/Contents/MacOS/Chromium')
     chromium_app_names.append('Google Chrome.app/Contents/MacOS/Google Chrome')
+    chromium_app_names.append('Google Chrome for Testing.app/' +
+                              'Contents/MacOS/Google Chrome for Testing')
     content_shell_app_name = 'Content Shell.app/Contents/MacOS/Content Shell'
   elif sys.platform.startswith('linux'):
     chromium_app_names.append('chrome')
@@ -381,7 +388,7 @@ def FindAllAvailableBrowsers(finder_options, device):
   # Add local builds
   for build_path in path_module.GetBuildDirectories(finder_options.chrome_root):
     # TODO(agrieve): Extract browser_type from args.gn's is_debug.
-    browser_type = os.path.basename(build_path).lower()
+    browser_type = os.path.basename(build_path.rstrip(os.sep)).lower()
     for chromium_app_name in chromium_app_names:
       AddIfFound(browser_type, build_path, chromium_app_name, False)
     AddIfFound('content-shell-' + browser_type, build_path,

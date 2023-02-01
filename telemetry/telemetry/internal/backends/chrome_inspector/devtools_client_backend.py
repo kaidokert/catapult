@@ -439,7 +439,6 @@ class _DevToolsClientBackend():
   def CollectChromeTracingData(self, trace_data_builder, timeout=120):
     if not self._tracing_backend:
       return
-
     self._tracing_backend.CollectTraceData(trace_data_builder, timeout)
 
   # This call may be made early during browser bringup and may cause the

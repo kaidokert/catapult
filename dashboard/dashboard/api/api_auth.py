@@ -38,6 +38,9 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
     # allow accessing the APIs by authorized users that generate tokens via
     # luci-auth command.
     '446450136466-2hr92jrq8e6i4tnsa56b52vacp7t3936.apps.googleusercontent.com',
+    # This oauth client id will become default LUCI auth at some point.
+    # https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/4004539.
+    '446450136466-mj75ourhccki9fffaq8bc1e50di315po.apps.googleusercontent.com',
 ]
 if utils.IsStagingEnvironment():
   OAUTH_CLIENT_ID_ALLOWLIST = [
@@ -53,25 +56,19 @@ class ApiAuthException(Exception):
 class OAuthError(ApiAuthException):
 
   def __init__(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(OAuthError, self).__init__('User authentication error')
+    super().__init__('User authentication error')
 
 
 class NotLoggedInError(ApiAuthException):
 
   def __init__(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(NotLoggedInError, self).__init__('User not authenticated')
+    super().__init__('User not authenticated')
 
 
 class InternalOnlyError(ApiAuthException):
 
   def __init__(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(InternalOnlyError, self).__init__('User does not have access')
+    super().__init__('User does not have access')
 
 
 def Authorize():

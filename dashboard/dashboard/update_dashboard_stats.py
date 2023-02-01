@@ -8,8 +8,8 @@ from __future__ import absolute_import
 
 import collections
 import datetime
+from flask import make_response
 from six.moves import http_client
-import logging
 import time
 
 from google.appengine.ext import deferred
@@ -17,7 +17,6 @@ from google.appengine.ext import ndb
 
 from dashboard import add_histograms
 from dashboard.common import datastore_hooks
-from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.pinpoint.models import job as job_module
@@ -31,15 +30,13 @@ from tracing.value.diagnostics import reserved_infos
 _MAX_JOBS_TO_FETCH = 100
 
 
-class UpdateDashboardStatsHandler(request_handler.RequestHandler):
+def UpdateDashboardStatsGet():
   """A simple request handler to refresh the cached test suites info."""
-
-  def get(self):
-    logging.debug('crbug/1298177 - update_dashboard_stats GET triggered')
-    datastore_hooks.SetPrivilegedRequest()
-    deferred.defer(_ProcessAlerts)
-    deferred.defer(_ProcessPinpointStats)
-    deferred.defer(_ProcessPinpointJobs)
+  datastore_hooks.SetPrivilegedRequest()
+  deferred.defer(_ProcessAlerts)
+  deferred.defer(_ProcessPinpointStats)
+  deferred.defer(_ProcessPinpointJobs)
+  return make_response('Dashboard stats updated', 200)
 
 
 def _FetchCompletedPinpointJobs(start_date):

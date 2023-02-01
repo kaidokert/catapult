@@ -17,21 +17,18 @@ import json
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 
-if six.PY2:
+try:
+  import cloudstorage.cloudstorage as cloudstorage
+except ImportError:
+  # This is a work around to fix the discrepency on file tree in tests.
   import cloudstorage
-else:
-  try:
-    import cloudstorage.cloudstorage as cloudstorage
-  except ImportError:
-    # This is a work around to fix the discrepency on file tree in tests.
-    import cloudstorage
 from apiclient.discovery import build
 from dashboard.common import utils
+from dashboard.common import oauth2_utils
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models.quest import read_value
 from dashboard.pinpoint.models.quest import run_test
 from dashboard.services import swarming
-from oauth2client import client
 from tracing_build import render_histograms_viewer
 from tracing.value import gtest_json_converter
 from tracing.value.diagnostics import generic_set
@@ -171,9 +168,7 @@ class CachedResults2(ndb.Model):
   job_id = ndb.StringProperty()
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class _GcsFileStream(object):
+class _GcsFileStream:
   """Wraps a gcs file providing a FileStream like api."""
 
   # pylint: disable=invalid-name
@@ -201,8 +196,10 @@ def _GetCloudStorageName(job_id):
 
 
 def GetCachedResults2(job):
+  logging.info('JobQueueDebug: Running result2. ID: %s', job.job_id)
   filename = _GetCloudStorageName(job.job_id)
   results = cloudstorage.listbucket(filename)
+  logging.info('JobQueueDebug: Finished result2. ID: %s', job.job_id)
 
   for _ in results:
     return 'https://storage.cloud.google.com' + filename
@@ -215,6 +212,7 @@ def ScheduleResults2Generation(job):
   try:
     # Don't want several tasks creating results2, so create task with specific
     # name to deduplicate.
+    logging.info('JobQueueDebug: Adding result2. ID: %s', job.job_id)
     task_name = 'results2-public-%s' % job.job_id
     taskqueue.add(
         queue_name='job-queue',
@@ -257,7 +255,8 @@ def GenerateResults2(job):
                 filename, filename)
 
   # Only save A/B tests to the Chrome Health BigQuery
-  if job.comparison_mode != job_state.FUNCTIONAL and job.comparison_mode != job_state.PERFORMANCE:
+  if job.comparison_mode != job_state.FUNCTIONAL and \
+      job.comparison_mode != job_state.PERFORMANCE:
     try:
       _SaveJobToChromeHealthBigQuery(job)
     except Exception as e:  # pylint: disable=broad-except
@@ -519,10 +518,8 @@ def _RequestInsertBQRows(service,
 def _BQService():
   """Returns an initialized and authorized BigQuery client."""
   # pylint: disable=no-member
-  credentials = client.GoogleCredentials.get_application_default()
-  if credentials.create_scoped_required():
-    credentials = credentials.create_scoped(
-        'https://www.googleapis.com/auth/bigquery')
+  credentials = oauth2_utils.GetAppDefaultCredentials(
+      scope='https://www.googleapis.com/auth/bigquery')
   return build('bigquery', 'v2', credentials=credentials)
 
 

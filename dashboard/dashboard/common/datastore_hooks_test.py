@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask
 import unittest
 
 from google.appengine.ext import ndb
@@ -16,9 +17,7 @@ from dashboard.common import utils
 from dashboard.models import graph_data
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class FakeRequest(object):
+class FakeRequest:
 
   def __init__(self):
     self.registry = {}
@@ -27,9 +26,7 @@ class FakeRequest(object):
 class DatastoreHooksTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(DatastoreHooksTest, self).setUp()
+    super().setUp()
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     self._AddDataToDatastore()
@@ -37,9 +34,7 @@ class DatastoreHooksTest(testing_common.TestCase):
     self.PatchDatastoreHooksRequest()
 
   def tearDown(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(DatastoreHooksTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def _AddDataToDatastore(self):
@@ -167,21 +162,25 @@ class DatastoreHooksTest(testing_common.TestCase):
     self._CheckQueryResults(True)
 
   def testQuery_PrivilegedRequest_InternalOnlyFetched(self):
-    self.UnsetCurrentUser()
-    datastore_hooks.SetPrivilegedRequest()
-    self._CheckQueryResults(True)
+    app = Flask(__name__)
+    with app.test_request_context('dummy/path', 'GET'):
+      self.UnsetCurrentUser()
+      datastore_hooks.SetPrivilegedRequest()
+      self._CheckQueryResults(True)
 
   def testQuery_SinglePrivilegedRequest_InternalOnlyFetched(self):
-    self.UnsetCurrentUser()
-    datastore_hooks.SetSinglePrivilegedRequest()
-    # Not using _CheckQueryResults because this only affects a single query.
-    # First query has internal results.
-    bots = graph_data.Bot.query().fetch()
-    self.assertEqual(2, len(bots))
+    app = Flask(__name__)
+    with app.test_request_context('dummy/path', 'GET'):
+      self.UnsetCurrentUser()
+      datastore_hooks.SetSinglePrivilegedRequest()
+      # Not using _CheckQueryResults because this only affects a single query.
+      # First query has internal results.
+      bots = graph_data.Bot.query().fetch()
+      self.assertEqual(2, len(bots))
 
-    # Second query does not.
-    bots = graph_data.Bot.query().fetch()
-    self.assertEqual(1, len(bots))
+      # Second query does not.
+      bots = graph_data.Bot.query().fetch()
+      self.assertEqual(1, len(bots))
 
   def _CheckGet(self, include_internal):
     m = ndb.Key('Master', 'ChromiumPerf').get()
@@ -225,9 +224,11 @@ class DatastoreHooksTest(testing_common.TestCase):
     self._CheckGet(include_internal=True)
 
   def testGet_PrivilegedRequest(self):
-    self.UnsetCurrentUser()
-    datastore_hooks.SetPrivilegedRequest()
-    self._CheckGet(include_internal=True)
+    app = Flask(__name__)
+    with app.test_request_context('dummy/path', 'GET'):
+      self.UnsetCurrentUser()
+      datastore_hooks.SetPrivilegedRequest()
+      self._CheckGet(include_internal=True)
 
 
 if __name__ == '__main__':

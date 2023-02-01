@@ -318,7 +318,7 @@ class Job(ndb.Model):
           initial_attempt_count=10,
           dimensions=None,
           swarming_server=None):
-    """Creates a new Job, adds Changes to it, and puts it in the Datstore.
+    """Creates a new Job, adds Changes to it, and puts it in the Datastore.
 
     Args:
       quests: An iterable of Quests for the Job to run.
@@ -351,8 +351,6 @@ class Job(ndb.Model):
     bots = swarming.GetAliveBotsByDimensions(dimensions, swarming_server)
     if not bots:
       raise errors.SwarmingNoBots()
-    logging.debug('crbug/1364271 - alive bots from swarming %s',
-                  [str(b) for b in bots])
 
     # For A/B ordering to be equal, we need an even number of bots (or one)
     if len(bots) % 2 and len(bots) != 1:
@@ -366,8 +364,6 @@ class Job(ndb.Model):
         initial_attempt_count=GetIterationCount(initial_attempt_count,
                                                 len(bots)))
     args = arguments or {}
-    logging.debug('crbug/1364271 - bots used to create job object %s',
-                  [str(b) for b in bots])
     job = cls(
         state=state,
         arguments=args,
@@ -741,6 +737,7 @@ class Job(ndb.Model):
     # we don't need to worry about duplicate tasks.
     # https://github.com/catapult-project/catapult/issues/3900
     task_name = str(uuid.uuid4())
+    logging.info('JobQueueDebug: Adding jobrun. ID: %s', self.job_id)
     try:
       task = taskqueue.add(
           queue_name='job-queue',
@@ -779,6 +776,7 @@ class Job(ndb.Model):
     self.exception_details = None  # In case the Job succeeds on retry.
     self.task = None  # In case an exception is thrown.
 
+    logging.info('JobQueueDebug: Starting jobrun. ID: %s', self.job_id)
     try:
       if scheduler.IsStopped(self):
         # When a user manually cancels a Pinpoint job, job.Cancel() is
@@ -806,6 +804,7 @@ class Job(ndb.Model):
         self._Complete()
         return
 
+      logging.info('JobQueueDebug: Scheduling jobrun. ID: %s', self.job_id)
       if not self._IsTryJob():
         self.state.Explore()
       work_left = self.state.ScheduleWork()
@@ -815,6 +814,8 @@ class Job(ndb.Model):
         self._Schedule()
       else:
         self._Complete()
+
+      logging.info('JobQueueDebug: Scheduled jobrun. ID: %s', self.job_id)
 
       self.retry_count = 0
     except errors.RecoverableError as e:
@@ -827,6 +828,7 @@ class Job(ndb.Model):
       self.Fail()
       raise
     finally:
+      logging.info('JobQueueDebug: Finishing jobrun. ID: %s', self.job_id)
       # Don't use `auto_now` for `updated`. When we do data migration, we need
       # to be able to modify the Job without changing the Job's completion time.
       self.updated = datetime.datetime.now()
@@ -854,6 +856,7 @@ class Job(ndb.Model):
         job.updated = datetime.datetime.now()
         job.put()
         raise
+      logging.info('JobQueueDebug: Done jobrun. ID: %s', self.job_id)
 
   def AsDict(self, options=None):
     def IsoFormatOrNone(attr):
@@ -953,7 +956,7 @@ def _PostBugCommentDeferred(bug_id, *args, **kwargs):
     return
 
   issue_tracker = issue_tracker_service.IssueTrackerService(
-      utils.ServiceAccountHttp())
+      utils.ServiceAccountHttp(use_adc=False))
   issue_tracker.AddBugComment(bug_id, *args, **kwargs)
 
 

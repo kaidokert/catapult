@@ -88,9 +88,7 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):
     self.maxDiff = None
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(ExecutionEngineTaskUpdatesTest, self).setUp()
+    super().setUp()
 
   def testHandlerGoodCase(self, buildbucket_getjobstatus, buildbucket_put):
     buildbucket_put.return_value = {'build': {'id': '92384098123'}}
@@ -143,9 +141,7 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
         }))
 
   def testPostInvalidData(self, *_):
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    with self.assertRaisesRegexp(ValueError, 'Failed decoding `data`'):
+    with self.assertRaisesRegex(ValueError, 'Failed decoding `data`'):
       task_updates.HandleTaskUpdate(
           json.dumps({
               'message': {
@@ -156,9 +152,7 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
               },
           }))
 
-    # TODO(https://crbug.com/1262295): Update this after Python2 trybots retire.
-    # pylint: disable=deprecated-method
-    with self.assertRaisesRegexp(ValueError, 'Failed JSON parsing `data`'):
+    with self.assertRaisesRegex(ValueError, 'Failed JSON parsing `data`'):
       task_updates.HandleTaskUpdate(
           json.dumps({
               'message': {

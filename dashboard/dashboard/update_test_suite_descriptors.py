@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import logging
+import os
 import six
 
 from google.appengine.ext import deferred
@@ -16,13 +17,14 @@ from dashboard import list_tests
 from dashboard import update_test_suites
 from dashboard.common import datastore_hooks
 from dashboard.common import namespaced_stored_object
-from dashboard.common import request_handler
 from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.models import graph_data
 from dashboard.models import histogram
 from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import generic_set
+
+from flask import request, make_response
 
 
 def CacheKey(master, test_suite):
@@ -61,20 +63,12 @@ def FetchCachedTestSuiteDescriptor(master, test_suite):
   return desc
 
 
-class UpdateTestSuiteDescriptorsHandler(request_handler.RequestHandler):
-
-  def get(self):
-    logging.debug(
-        'crbug/1298177 - update_test_suites_descriptors GET triggered')
-    self.post()
-
-  def post(self):
-    logging.debug(
-        'crbug/1298177 - update_test_suites_descriptors POST triggered')
-    namespace = datastore_hooks.EXTERNAL
-    if self.request.get('internal_only') == 'true':
-      namespace = datastore_hooks.INTERNAL
-    UpdateTestSuiteDescriptors(namespace)
+def UpdateTestSuiteDescriptorsPost():
+  namespace = datastore_hooks.EXTERNAL
+  if request.values.get('internal_only') == 'true':
+    namespace = datastore_hooks.INTERNAL
+  UpdateTestSuiteDescriptors(namespace)
+  return make_response('')
 
 
 def UpdateTestSuiteDescriptors(namespace):
@@ -132,7 +126,21 @@ def _UpdateDescriptor(master,
                len(measurements), len(bots), len(cases))
   # This function always runs in the taskqueue as an anonymous user.
   if namespace == datastore_hooks.INTERNAL:
-    datastore_hooks.SetPrivilegedRequest()
+    try:
+      datastore_hooks.SetPrivilegedRequest()
+    except RuntimeError:
+      # _UpdateDescriptor is called from deferred queue, and the value of
+      # PATH_INFO, '/_ah/queue/deferred', will qualify the request as
+      # privileged. We should be safe to skip the SetPrivilegedRequest here.
+      path_info = os.environ.get('PATH_INFO', None)
+      if path_info:
+        logging.info(
+            'No flask context found. Privileged request check will rely on PATH_INFO: %s',
+            path_info)
+      else:
+        logging.error(
+            'Failed to set privileged request for internal descriptor update.')
+        return
 
   measurements = set(measurements)
   bots = set(bots)

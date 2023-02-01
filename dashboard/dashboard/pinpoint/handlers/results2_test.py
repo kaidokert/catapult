@@ -18,9 +18,7 @@ from dashboard.pinpoint import test
 class _Results2Test(test.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(_Results2Test, self).setUp()
+    super().setUp()
 
     self._job_from_id = mock.MagicMock()
     patcher = mock.patch.object(results2.job_module, 'JobFromId',
@@ -96,15 +94,11 @@ class Results2GeneratorPostTest(_Results2Test):
     self.assertIn(b'foo', response.body)
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class _TaskStub(object):
+class _TaskStub:
   pass
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class _JobStub(object):
+class _JobStub:
 
   def __init__(self, job_id, started=True, task=None):
     self.job_id = job_id

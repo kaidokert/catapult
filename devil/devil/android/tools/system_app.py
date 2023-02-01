@@ -100,12 +100,8 @@ def InstallPrivilegedApps(device, apk_tuples):
     device.RunShellCommand(['am', 'restart'])
 
 
-# TODO(crbug.com/1298252): Remove the package_name arg and set replacement_apk
-# back to a non-default argument
 @contextlib.contextmanager
-def ReplaceSystemApp(device,
-                     replacement_apk=None,
-                     install_timeout=None):
+def ReplaceSystemApp(device, replacement_apk, install_timeout=None):
   """A context manager that replaces the given system app while in scope.
 
   Args:
@@ -179,24 +175,13 @@ _MODIFICATION_RETRIES = 2
 _ENABLE_MODIFICATION_PROP = 'devil.modify_sys_apps'
 
 
-def _ShouldRetryModification(exc):
-  try:
-    if isinstance(exc, device_errors.CommandTimeoutError):
-      logger.info('Restarting the adb server')
-      adb_wrapper.RestartServer()
-    return True
-  except Exception: # pylint: disable=broad-except
-    logger.exception(('Caught an exception when deciding'
-                      ' to retry system modification'))
-    return False
-
-
 # timeout and retries are both required by the decorator, but neither
 # are used within the body of the function.
 # pylint: disable=unused-argument
 
 
-@decorators.WithTimeoutAndConditionalRetries(_ShouldRetryModification)
+@decorators.WithTimeoutAndConditionalRetries(
+    adb_wrapper.ShouldRetryAfterAdbServerRestart)
 def _SetUpSystemAppModification(device, timeout=None, retries=None):
   # Ensure that the device is online & available before proceeding to
   # handle the case where something fails in the middle of set up and
@@ -247,7 +232,8 @@ def _SetUpSystemAppModification(device, timeout=None, retries=None):
   return should_restore_root
 
 
-@decorators.WithTimeoutAndConditionalRetries(_ShouldRetryModification)
+@decorators.WithTimeoutAndConditionalRetries(
+    adb_wrapper.ShouldRetryAfterAdbServerRestart)
 def _TearDownSystemAppModification(device,
                                    should_restore_root,
                                    timeout=None,
@@ -388,7 +374,7 @@ def main(raw_args):
 
   @contextlib.contextmanager
   def replace_system_app(device, args):
-    with ReplaceSystemApp(device, replacement_apk=args.replace_with):
+    with ReplaceSystemApp(device, args.replace_with):
       yield
 
   replace_parser = subparsers.add_parser('replace')

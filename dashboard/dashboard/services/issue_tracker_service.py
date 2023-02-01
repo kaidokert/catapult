@@ -12,6 +12,7 @@ import logging
 
 from apiclient import discovery
 from apiclient import errors
+from dashboard.common import utils
 
 _DISCOVERY_URI = ('https://monorail-prod.appspot.com'
                   '/_ah/api/discovery/v1/apis/{api}/{apiVersion}/rest')
@@ -21,9 +22,7 @@ MAX_DISCOVERY_RETRIES = 3
 MAX_REQUEST_RETRIES = 5
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class IssueTrackerService(object):
+class IssueTrackerService:
   """Class for updating bug issues."""
 
   def __init__(self, http):
@@ -321,7 +320,9 @@ class IssueTrackerService(object):
     Returns:
       The response if there was one, or else None.
     """
-    response = request.execute(num_retries=MAX_REQUEST_RETRIES)
+    response = request.execute(
+        num_retries=MAX_REQUEST_RETRIES,
+        http=utils.ServiceAccountHttp(use_adc=False))
     return response
 
 

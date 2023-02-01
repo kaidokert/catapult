@@ -25,7 +25,8 @@ _logger = logging.getLogger(__name__)
 _MANIFEST_ATTRIBUTE_RE = re.compile(r'\s*A: ([^\(\)= ]*)(?:\([^\(\)= ]*\))?='
                                     r'(?:"(.*)" \(Raw: .*\)|\(type.*?\)(.*))$')
 _MANIFEST_ELEMENT_RE = re.compile(r'\s*(?:E|N): (\S*) .*$')
-_BASE_APK_APKS_RE = re.compile(r'^splits/base-master.*\.apk$')
+_BASE_APK_APKS_RE = re.compile(
+    r'^splits/base-master.*\.apk$|^standalones/standalone.*\.apex$')
 
 
 class ApkHelperError(base_error.BaseError):
@@ -330,6 +331,15 @@ class BaseApkHelper(object):
       return [(x.get('android:name'), x.get('android:value')) for x in metadata]
     except KeyError:
       return []
+
+  def GetLibraryVersion(self):
+    """Returns the version of the <static-library> or None if not applicable."""
+    manifest_info = self._GetManifest()
+    try:
+      application = manifest_info['manifest'][0]['application'][0]
+      return int(application['static-library'][0]['android:version'], 16)
+    except KeyError:
+      return None
 
   def GetVersionCode(self):
     """Returns the versionCode as an integer, or None if not available."""

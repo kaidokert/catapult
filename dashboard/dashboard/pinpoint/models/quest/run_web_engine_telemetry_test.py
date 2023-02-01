@@ -14,15 +14,22 @@ import six
 
 _DEFAULT_EXTRA_ARGS = [
     '-d',
-    '--os-check=check',
+    '--os-check=update',
 ]
-DEFAULT_IMAGE_PATH = ('--system-image-dir=../../third_party/fuchsia-sdk'
-                      '/images-internal/%s/%s')
+IMAGE_FLAG = '--system-image-dir='
+DEFAULT_IMAGE_PATH = ('../../third_party/fuchsia-sdk/images-internal/%s/%s')
 IMAGE_MAP = {
     'astro': ('astro-release', 'smart_display_eng_arrested'),
+    'nelson': ('nelson-release', 'smart_display_m3_eng_paused'),
     'sherlock': ('sherlock-release', 'smart_display_max_eng_arrested'),
-    'atlas': ('chromebook-x64-release', 'sucrose_eng'),
 }
+
+PB_IMAGE_MAP = {
+    'atlas': 'workstation_eng.chromebook-x64',
+    'nuc': 'workstation_eng.x64',
+}
+
+_DEFAULT_EXEC_PREFIX = 'bin/run_'
 
 
 class RunWebEngineTelemetryTest(run_telemetry_test.RunTelemetryTest):
@@ -31,28 +38,44 @@ class RunWebEngineTelemetryTest(run_telemetry_test.RunTelemetryTest):
   def _ExtraTestArgs(cls, arguments):
     extra_test_args = super(RunWebEngineTelemetryTest,
                             cls)._ExtraTestArgs(arguments)
-    image_path = (None, None)
+    image_path = None
     dimensions = arguments.get('dimensions')
     if isinstance(dimensions, six.string_types):
       dimensions = json.loads(dimensions)
     for key_value in dimensions:
       if key_value['key'] == 'device_type':
-        image_path = IMAGE_MAP[key_value['value'].lower()]
+        board = key_value['value'].lower()
+        if IMAGE_MAP.get(board):
+          image_path = DEFAULT_IMAGE_PATH % IMAGE_MAP[board]
+        elif PB_IMAGE_MAP.get(board):
+          image_path = PB_IMAGE_MAP[board]
+        else:
+          raise NotImplementedError('Board %s is not supported' % board)
         break
     extra_test_args += copy.copy(_DEFAULT_EXTRA_ARGS)
-    if all(image_path) and len(image_path) == 2:
-      extra_test_args.append(DEFAULT_IMAGE_PATH % image_path)
+    if image_path:
+      extra_test_args.append(IMAGE_FLAG + image_path)
     return extra_test_args
 
   @classmethod
   def _ComputeCommand(cls, arguments):
+    benchmark = arguments.get('benchmark')
     command = [
         'luci-auth',
         'context',
         '--',
         'vpython3',
+        '../../testing/test_env.py',
         '../../testing/scripts/run_performance_tests.py',
-        '../../content/test/gpu/run_telemetry_benchmark_fuchsia.py',
     ]
+    if benchmark in run_telemetry_test.GTEST_EXECUTABLE_NAME:
+      command.extend([
+          _DEFAULT_EXEC_PREFIX +
+          run_telemetry_test.GTEST_EXECUTABLE_NAME[benchmark]
+      ])
+    else:
+      command.extend([
+          '../../content/test/gpu/run_telemetry_benchmark_fuchsia.py',
+      ])
     relative_cwd = arguments.get('relative_cwd', 'out/Release')
     return relative_cwd, command

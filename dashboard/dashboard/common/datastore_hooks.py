@@ -10,18 +10,16 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import g as flask_global
+from flask import request as flask_request
+import logging
+import os
+
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.api import users
 from google.appengine.datastore import datastore_pb
 
 from dashboard.common import utils
-import six
-
-if utils.IsRunningFlask():
-  from flask import g as flask_global
-  from flask import request as flask_request
-else:
-  import webapp2
 
 # The list below contains all kinds that have an internal_only property.
 # IMPORTANT: any new data types with internal_only properties must be added
@@ -62,11 +60,7 @@ def SetPrivilegedRequest():
 
   This should be set once per request, before accessing the data store.
   """
-  if utils.IsRunningFlask():
-    flask_global.privilege = True
-  else:
-    request = webapp2.get_request()
-    request.registry['privileged'] = True
+  flask_global.privileged = True
 
 
 def SetSinglePrivilegedRequest():
@@ -76,65 +70,45 @@ def SetSinglePrivilegedRequest():
   before making a query. It will be automatically unset when the next query is
   made.
   """
-  if utils.IsRunningFlask():
-    flask_global.single_privileged = True
-  else:
-    request = webapp2.get_request()
-    request.registry['single_privileged'] = True
+  flask_global.single_privileged = True
 
 
 def CancelSinglePrivilegedRequest():
-  """Disallows the current request to act as a privileged user only."""
-  if utils.IsRunningFlask():
-    flask_global.single_privileged = False
-  else:
-    request = webapp2.get_request()
-    request.registry['single_privileged'] = False
+  """Disallows the current request to act as a privileged user only.
+
+  """
+  flask_global.single_privileged = False
 
 
 def _IsServicingPrivilegedRequest():
-  """Checks whether the request is considered privileged."""
-  if utils.IsRunningFlask():
-    try:
-      path = flask_request.path
-    except RuntimeError:
-      # This happens in unit tests, when code gets called outside of a request.
-      return False
-    if path.startswith('/mapreduce'):
-      return True
-    if path.startswith('/_ah/queue/deferred'):
-      return True
-    if path.startswith('/_ah/pipeline/'):
-      return True
-    if 'privileged' in flask_global and flask_global.privilege:
+  """Checks whether the request is considered privileged.
+
+  """
+  try:
+    if 'privileged' in flask_global and flask_global.privileged:
       return True
     if 'single_privileged' in flask_global and flask_global.single_privileged:
       flask_global.pop('single_privileged')
       return True
-    allowlist = utils.GetIpAllowlist()
-    if allowlist and hasattr(flask_request, 'remote_addr'):
-      return flask_request.remote_addr in allowlist
-  else:
+    path = flask_request.path
+  except RuntimeError:
+    # This happens in defer queue and unit tests, when code gets called
+    # without any context of a flask request.
     try:
-      request = webapp2.get_request()
-    except AssertionError:
-      # This happens in unit tests, when code gets called outside of a request.
+      path = os.environ['PATH_INFO']
+    except KeyError:
+      logging.error(
+          'Cannot tell whether a request is privileged without request path.')
       return False
-    path = getattr(request, 'path', '')
-    if path.startswith('/mapreduce'):
-      return True
-    if path.startswith('/_ah/queue/deferred'):
-      return True
-    if path.startswith('/_ah/pipeline/'):
-      return True
-    if request.registry.get('privileged', False):
-      return True
-    if request.registry.get('single_privileged', False):
-      request.registry['single_privileged'] = False
-      return True
-    allowlist = utils.GetIpAllowlist()
-    if allowlist and hasattr(request, 'remote_addr'):
-      return request.remote_addr in allowlist
+  if path.startswith('/mapreduce'):
+    return True
+  if path.startswith('/_ah/queue/deferred'):
+    return True
+  if path.startswith('/_ah/pipeline/'):
+    return True
+  # We have been checking on utils.GetIpAllowlist() here. Though, the list
+  # has been empty and we are infinite recursive calls in crbug/1402197.
+  # Thus, we remove the check here.
   return False
 
 
@@ -148,13 +122,13 @@ def IsUnalteredQueryPermitted():
   Returns:
     True for users with google.com emails and privileged requests.
   """
+  if _IsServicingPrivilegedRequest():
+    return True
   if utils.IsInternalUser():
     return True
-  if users.is_current_user_admin():
-    # It's possible to be an admin with a non-internal account; For example,
-    # the default login for dev appserver instances is test@example.com.
-    return True
-  return _IsServicingPrivilegedRequest()
+  # It's possible to be an admin with a non-internal account; For example,
+  # the default login for dev appserver instances is test@example.com.
+  return users.is_current_user_admin()
 
 
 def GetNamespace():
@@ -179,21 +153,15 @@ def _DatastorePreHook(service, call, request, _):
   assert service == 'datastore_v3'
   if call != 'RunQuery':
     return
-  request_kind = request.kind() if six.PY2 else request.kind
-  if request_kind not in _INTERNAL_ONLY_KINDS:
-    return
   if IsUnalteredQueryPermitted():
     return
 
   # Add a filter for internal_only == False, because the user is external.
-  try:
-    external_filter = request.filter_list().add()
-  except AttributeError:
-    # This is required to support proto1, which may be used by the unit tests.
-    # Later, if we don't need to support proto1, then this can be removed.
-    external_filter = request.add_filter()
-  external_filter.set_op(datastore_pb.Query_Filter.EQUAL)
-  new_property = external_filter.add_property()
-  new_property.set_name('internal_only')
-  new_property.mutable_value().set_booleanvalue(False)
-  new_property.set_multiple(False)
+  if request.kind not in _INTERNAL_ONLY_KINDS:
+    return
+  query_filter = request.filter.add()
+  query_filter.op = datastore_pb.Query.Filter.EQUAL
+  filter_property = query_filter.property.add()
+  filter_property.name = 'internal_only'
+  filter_property.value.booleanValue = False
+  filter_property.multiple = False

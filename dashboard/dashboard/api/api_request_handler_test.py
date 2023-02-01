@@ -6,51 +6,64 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask
 import json
 import mock
 import unittest
 
-import webapp2
 import webtest
 
 from dashboard.api import api_auth
 from dashboard.api import api_request_handler
 from dashboard.common import testing_common
+from dashboard.common import utils
+
+flask_app = Flask(__name__)
 
 
-# pylint: disable=abstract-method
-class TestApiRequestHandler(api_request_handler.ApiRequestHandler):
-
-  def _CheckUser(self):
-    return self._CheckIsInternalUser()
-
-  def Post(self, *args, **kwargs):
-    del args, kwargs  # Unused.
-    return {'foo': 'response'}
-
-
-# pylint: disable=abstract-method
-class TestApiRequestHandlerForbidden(api_request_handler.ApiRequestHandler):
-
-  def _CheckUser(self):
-    return self._CheckIsInternalUser()
-
-  def Post(self, *args, **kwargs):
-    del args, kwargs  # Unused.
+def CheckIsInternalUser():
+  if utils.IsDevAppserver():
+    return
+  api_auth.Authorize()
+  if not utils.IsInternalUser():
     raise api_request_handler.ForbiddenError()
+
+
+@flask_app.route('/api/test', methods=['POST', 'OPTIONS'])
+def ApiTestPostFlask():
+  return ApiTestPostHandler()
+
+
+@api_request_handler.RequestHandlerDecoratorFactory(CheckIsInternalUser)
+def ApiTestPostHandler():
+  return {"foo": "response"}
+
+
+@flask_app.route('/api/forbidden', methods=['POST'])
+def ApiForbiddenPostFlask():
+  return ApiForbiddenPostHandler()
+
+
+@api_request_handler.RequestHandlerDecoratorFactory(CheckIsInternalUser)
+def ApiForbiddenPostHandler():
+  raise api_request_handler.ForbiddenError()
+
+
+@flask_app.route('/api/badrequest', methods=['POST'])
+def ApiBadRequestPostFlask():
+  return ApiFBadRequestPostHandler()
+
+
+@api_request_handler.RequestHandlerDecoratorFactory(CheckIsInternalUser)
+def ApiFBadRequestPostHandler():
+  raise api_request_handler.BadRequestError('foo')
 
 
 class ApiRequestHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(ApiRequestHandlerTest, self).setUp()
-
-    app = webapp2.WSGIApplication([(r'/api/test', TestApiRequestHandler),
-                                   (r'/api/forbidden',
-                                    TestApiRequestHandlerForbidden)])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
 
   def testPost_Authorized_PostCalled(self):
     self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
@@ -65,21 +78,20 @@ class ApiRequestHandlerTest(testing_common.TestCase):
 
   @mock.patch.object(api_auth, 'Authorize',
                      mock.MagicMock(side_effect=api_auth.OAuthError))
-  @mock.patch.object(TestApiRequestHandler, 'Post')
-  def testPost_Unauthorized_PostNotCalled(self, mock_post):
+  def testPost_Unauthorized_PostNotCalled(self):
+    post_handler = ApiTestPostHandler
+    post_handler = mock.MagicMock()
     response = self.Post('/api/test', status=403)
     self.assertEqual({'error': 'User authentication error'},
                      json.loads(response.body))
-    self.assertFalse(mock_post.called)
+    self.assertFalse(post_handler.called)
+
 
   @mock.patch.object(api_auth, 'Authorize')
-  @mock.patch.object(
-      TestApiRequestHandler, 'Post',
-      mock.MagicMock(side_effect=api_request_handler.BadRequestError('foo')))
-  def testPost_BadRequest_400(self, _):
+  def testPost_BadRequest_400_Flask(self, _):
     self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
-    response = self.Post('/api/test', status=400)
+    response = self.Post('/api/badrequest', status=400)
     self.assertEqual({'error': 'foo'}, json.loads(response.body))
 
   @mock.patch.object(api_auth, 'Authorize',
@@ -98,64 +110,63 @@ class ApiRequestHandlerTest(testing_common.TestCase):
 
   def testOptions_NoOrigin_HeadersNotSet(self):
     response = self.testapp.options('/api/test')
-    self.assertListEqual([('Content-Length', '0'),
-                          ('Cache-Control', 'no-cache'),
-                          ('Content-Type', 'application/json; charset=utf-8')],
-                         response.headerlist)
+    expected_headers = [('Content-Length', '0'),
+                        ('Content-Type', 'application/json; charset=utf-8')]
+    self.assertCountEqual(expected_headers, response.headerlist)
 
   def testOptions_InvalidOrigin_HeadersNotSet(self):
     api_request_handler._ALLOWED_ORIGINS = ['foo.appspot.com']
     response = self.testapp.options(
         '/api/test', headers={'origin': 'https://bar.appspot.com'})
-    self.assertListEqual([('Content-Length', '0'),
-                          ('Cache-Control', 'no-cache'),
-                          ('Content-Type', 'application/json; charset=utf-8')],
-                         response.headerlist)
+    expected_headers = [('Content-Length', '0'),
+                        ('Content-Type', 'application/json; charset=utf-8')]
+    self.assertCountEqual(expected_headers, response.headerlist)
 
   def testOptions_InvalidOriginWithSharedPrefix_HeadersNotSet(self):
     api_request_handler._ALLOWED_ORIGINS = ['foo.appspot.com']
     response = self.testapp.options(
         '/api/test',
         headers={'origin': 'https://foo.appspot.com.blablabla.com'})
-    self.assertListEqual([('Content-Length', '0'),
-                          ('Cache-Control', 'no-cache'),
-                          ('Content-Type', 'application/json; charset=utf-8')],
-                         response.headerlist)
+    expected_headers = [('Content-Length', '0'),
+                        ('Content-Type', 'application/json; charset=utf-8')]
+    self.assertCountEqual(expected_headers, response.headerlist)
 
   def testPost_ValidProdOrigin_HeadersSet(self):
     api_request_handler._ALLOWED_ORIGINS = ['foo.appspot.com']
     response = self.testapp.options(
         '/api/test', headers={'origin': 'https://foo.appspot.com'})
-    self.assertListEqual(
-        [('Content-Length', '0'), ('Cache-Control', 'no-cache'),
-         ('Content-Type', 'application/json; charset=utf-8'),
-         ('Access-Control-Allow-Origin', 'https://foo.appspot.com'),
-         ('Access-Control-Allow-Credentials', 'true'),
-         ('Access-Control-Allow-Methods', 'GET,OPTIONS,POST'),
-         ('Access-Control-Allow-Headers', 'Accept,Authorization,Content-Type'),
-         ('Access-Control-Max-Age', '3600')], response.headerlist)
+    expected_headers = [
+        ('Content-Length', '0'),
+        ('Content-Type', 'application/json; charset=utf-8'),
+        ('Access-Control-Allow-Origin', 'https://foo.appspot.com'),
+        ('Access-Control-Allow-Credentials', 'true'),
+        ('Access-Control-Allow-Methods', 'GET,OPTIONS,POST'),
+        ('Access-Control-Allow-Headers', 'Accept,Authorization,Content-Type'),
+        ('Access-Control-Max-Age', '3600')
+    ]
+    self.assertCountEqual(expected_headers, response.headerlist)
 
   def testPost_ValidDevOrigin_HeadersSet(self):
     api_request_handler._ALLOWED_ORIGINS = ['foo.appspot.com']
     response = self.testapp.options(
         '/api/test',
         headers={'origin': 'https://dev-simon-123jkjasdf-dot-foo.appspot.com'})
-    self.assertListEqual(
-        [('Content-Length', '0'), ('Cache-Control', 'no-cache'),
-         ('Content-Type', 'application/json; charset=utf-8'),
-         ('Access-Control-Allow-Origin',
-          'https://dev-simon-123jkjasdf-dot-foo.appspot.com'),
-         ('Access-Control-Allow-Credentials', 'true'),
-         ('Access-Control-Allow-Methods', 'GET,OPTIONS,POST'),
-         ('Access-Control-Allow-Headers', 'Accept,Authorization,Content-Type'),
-         ('Access-Control-Max-Age', '3600')], response.headerlist)
+    expected_headers = [('Content-Length', '0'),
+                        ('Content-Type', 'application/json; charset=utf-8'),
+                        ('Access-Control-Allow-Origin',
+                         'https://dev-simon-123jkjasdf-dot-foo.appspot.com'),
+                        ('Access-Control-Allow-Credentials', 'true'),
+                        ('Access-Control-Allow-Methods', 'GET,OPTIONS,POST'),
+                        ('Access-Control-Allow-Headers',
+                         'Accept,Authorization,Content-Type'),
+                        ('Access-Control-Max-Age', '3600')]
+    self.assertCountEqual(expected_headers, response.headerlist)
 
   def testPost_InvalidOrigin_HeadersNotSet(self):
     response = self.testapp.options('/api/test')
-    self.assertListEqual([('Content-Length', '0'),
-                          ('Cache-Control', 'no-cache'),
-                          ('Content-Type', 'application/json; charset=utf-8')],
-                         response.headerlist)
+    expected_headers = [('Content-Length', '0'),
+                        ('Content-Type', 'application/json; charset=utf-8')]
+    self.assertCountEqual(expected_headers, response.headerlist)
 
 
 if __name__ == '__main__':

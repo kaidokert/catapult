@@ -17,18 +17,18 @@ import mock
 from devil.utils import cmd_helper
 from telemetry.core import cros_interface
 from telemetry import decorators
-from telemetry.internal.forwarders import cros_forwarder
+from telemetry.internal.forwarders import linux_based_forwarder
 from telemetry.testing import options_for_unittests
 
 
 class CrOSInterfaceTest(unittest.TestCase):
 
   def _GetCRI(self):
-    remote = options_for_unittests.GetCopy().cros_remote
-    remote_ssh_port = options_for_unittests.GetCopy().cros_remote_ssh_port
+    remote = options_for_unittests.GetCopy().remote
+    remote_ssh_port = options_for_unittests.GetCopy().remote_ssh_port
     return cros_interface.CrOSInterface(
         remote, remote_ssh_port,
-        options_for_unittests.GetCopy().cros_ssh_identity)
+        options_for_unittests.GetCopy().ssh_identity)
 
   @decorators.Enabled('chromeos')
   def testPushContents(self):
@@ -64,7 +64,7 @@ class CrOSInterfaceTest(unittest.TestCase):
         # the dump.
         ts = abs(time_offset) + 1
         remote_path = '/tmp/dumps/'
-        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.MINIDUMP_DIR = remote_path
         cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
         # Set the mtime to one second after the epoch
         cri.RunCmdOnDevice(
@@ -92,7 +92,7 @@ class CrOSInterfaceTest(unittest.TestCase):
         # the dump.
         ts = abs(time_offset) + 1
         remote_path = '/tmp/dumps/'
-        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.MINIDUMP_DIR = remote_path
         cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
         # Set the mtime to one second after the epoch
         cri.RunCmdOnDevice(
@@ -119,7 +119,7 @@ class CrOSInterfaceTest(unittest.TestCase):
     try:
       with self._GetCRI() as cri:
         remote_path = '/tmp/dumps/'
-        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.MINIDUMP_DIR = remote_path
         cri.RunCmdOnDevice(['mkdir', '-p', remote_path + 'test_dir'])
         # Set the mtime to one second after the epoch
         cri.RunCmdOnDevice(['touch', remote_path + 'test_dump'])
@@ -139,7 +139,7 @@ class CrOSInterfaceTest(unittest.TestCase):
     try:
       with self._GetCRI() as cri:
         remote_path = '/tmp/dumps/'
-        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.MINIDUMP_DIR = remote_path
         cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
         cri.RunCmdOnDevice(
             ['touch', remote_path + 'test_dump'])
@@ -165,7 +165,7 @@ class CrOSInterfaceTest(unittest.TestCase):
     try:
       with self._GetCRI() as cri:
         remote_path = '/tmp/dumps/'
-        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.MINIDUMP_DIR = remote_path
         cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
         cri.RunCmdOnDevice(
             ['touch', remote_path + 'test_dump'])
@@ -193,7 +193,7 @@ class CrOSInterfaceTest(unittest.TestCase):
     try:
       with self._GetCRI() as cri:
         remote_path = '/tmp/dumps/'
-        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.MINIDUMP_DIR = remote_path
         cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
         cri.RunCmdOnDevice(
             ['touch', remote_path + 'test_dump'])
@@ -252,7 +252,7 @@ class CrOSInterfaceTest(unittest.TestCase):
       self.assertFalse(cri.IsHTTPServerRunningOnPort(remote_port))
 
       # Forward local server's port to remote device's remote_port.
-      forwarder = cros_forwarder.CrOsForwarderFactory(cri).Create(
+      forwarder = linux_based_forwarder.LinuxBasedForwarderFactory(cri).Create(
           local_port=port, remote_port=remote_port)
 
       # At this point, remote device should be able to connect to local server.
@@ -319,9 +319,9 @@ class CrOSInterfaceTest(unittest.TestCase):
     and locally on the device to check for consistency.
     """
     options = options_for_unittests.GetCopy()
-    with cros_interface.CrOSInterface(options.cros_remote,
-                                      options.cros_remote_ssh_port,
-                                      options.cros_ssh_identity) as cri:
+    with cros_interface.CrOSInterface(options.remote,
+                                      options.remote_ssh_port,
+                                      options.ssh_identity) as cri:
 
       # Check arguments with no special characters
       stdout, _ = cri.RunCmdOnDevice(['echo', '--arg1=value1', '--arg2=value2',
@@ -339,9 +339,9 @@ class CrOSInterfaceTest(unittest.TestCase):
   @decorators.Enabled('chromeos')
   def testStartCmdOnDevice(self):
     options = options_for_unittests.GetCopy()
-    with cros_interface.CrOSInterface(options.cros_remote,
-                                      options.cros_remote_ssh_port,
-                                      options.cros_ssh_identity) as cri:
+    with cros_interface.CrOSInterface(options.remote,
+                                      options.remote_ssh_port,
+                                      options.ssh_identity) as cri:
       p = cri.StartCmdOnDevice(['true'])
       p.wait()
       self.assertEqual(p.returncode, 0)
@@ -355,7 +355,7 @@ class CrOSInterfaceTest(unittest.TestCase):
   def testTryLoginSuccess(self, mock_run_cmd):
     mock_run_cmd.return_value = ('root\n', '')
     cri = cros_interface.CrOSInterface(
-        "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+        "testhostname", 22, options_for_unittests.GetCopy().ssh_identity)
     cri.TryLogin()
     mock_run_cmd.assert_called_once_with(
         ['echo', '$USER'], quiet=True, connect_timeout=60)
@@ -364,7 +364,7 @@ class CrOSInterfaceTest(unittest.TestCase):
   @mock.patch.object(cros_interface.CrOSInterface, 'RunCmdOnDevice')
   def testTryLoginStderr(self, mock_run_cmd):
     cri = cros_interface.CrOSInterface(
-        "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+        "testhostname", 22, options_for_unittests.GetCopy().ssh_identity)
 
     mock_run_cmd.return_value = ('', 'Host key verification failed')
     self.assertRaises(cros_interface.LoginException, cri.TryLogin)
@@ -399,7 +399,7 @@ class CrOSInterfaceTest(unittest.TestCase):
   def testTryLoginStdout(self, mock_run_cmd):
     mock_run_cmd.return_value = ('notrooot', '')
     cri = cros_interface.CrOSInterface(
-        "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+        "testhostname", 22, options_for_unittests.GetCopy().ssh_identity)
     self.assertRaisesRegex(cros_interface.LoginException,
                             r'Logged into .*, expected \$USER=root, but got .*',
                             cri.TryLogin)
@@ -437,7 +437,7 @@ class CrOSInterfaceTest(unittest.TestCase):
     mock_run_cmd.side_effect = mockRunCmdOnDevice
 
     cri = cros_interface.CrOSInterface(
-        "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
+        "testhostname", 22, options_for_unittests.GetCopy().ssh_identity)
     # Returns False if the user's cryptohome is not mounted.
     self.assertFalse(cri.IsCryptohomeMounted('unmount@gmail.com', False))
     # Returns True if the user's cryptohome is mounted.

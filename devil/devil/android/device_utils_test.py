@@ -84,12 +84,16 @@ class _MockApkHelper(object):
     self.splits = splits if splits else []
     self.abis = [abis.ARM]
     self.version_code = None
+    self.library_version = None
 
   def GetPackageName(self):
     return self.package_name
 
   def GetPermissions(self):
     return self.perms
+
+  def GetLibraryVersion(self):
+    return self.library_version
 
   def GetVersionCode(self):
     return self.version_code
@@ -450,52 +454,51 @@ class DeviceUtilsIsApplicationInstalledTest(DeviceUtilsTest):
       self.assertTrue(self.device.IsApplicationInstalled('some.installed.app'))
 
   def testIsApplicationInstalled_notInstalled(self):
-    with self.assertCalls(
-        (self.call.device.RunShellCommand(
-            ['pm', 'list', 'packages', 'not.installed.app'], check_return=True),
-         ''),
-        (self.call.device.RunShellCommand(
-            ['dumpsys', 'package'], check_return=True, large_output=True), [])):
+    with self.assertCalls((self.call.device.RunShellCommand(
+        ['pm', 'list', 'packages', 'not.installed.app'],
+        check_return=True), ''), (self.call.device.RunShellCommand(
+            ['dumpsys', 'package', 'not.installed.app'],
+            check_return=True,
+            large_output=True), [])):
       self.assertFalse(self.device.IsApplicationInstalled('not.installed.app'))
 
   def testIsApplicationInstalled_substringMatch(self):
     with self.assertCalls(
         (self.call.device.RunShellCommand(
             ['pm', 'list', 'packages', 'substring.of.package'],
-            check_return=True),
-         [
-             'package:first.substring.of.package',
-             'package:second.substring.of.package',
-         ]),
-        (self.call.device.RunShellCommand(
-            ['dumpsys', 'package'], check_return=True, large_output=True), [])):
+            check_return=True), [
+                'package:first.substring.of.package',
+                'package:second.substring.of.package',
+            ]), (self.call.device.RunShellCommand(
+                ['dumpsys', 'package', 'substring.of.package'],
+                check_return=True,
+                large_output=True), [])):
       self.assertFalse(
           self.device.IsApplicationInstalled('substring.of.package'))
 
   def testIsApplicationInstalled_dumpsysFallback(self):
-    with self.assertCalls(
-        (self.call.device.RunShellCommand(
-            ['pm', 'list', 'packages', 'some.installed.app'],
-            check_return=True), []),
-        (self.call.device.RunShellCommand(
-            ['dumpsys', 'package'], check_return=True, large_output=True),
-         ['Package [some.installed.app] (a12345):'])):
+    with self.assertCalls((self.call.device.RunShellCommand(
+        ['pm', 'list', 'packages', 'some.installed.app'],
+        check_return=True), []), (self.call.device.RunShellCommand(
+            ['dumpsys', 'package', 'some.installed.app'],
+            check_return=True,
+            large_output=True), ['Package [some.installed.app] (a12345):'])):
       self.assertTrue(self.device.IsApplicationInstalled('some.installed.app'))
 
   def testIsApplicationInstalled_dumpsysFallbackVersioned(self):
-    with self.assertCalls(
-        (self.call.device.RunShellCommand(
-            ['dumpsys', 'package'], check_return=True, large_output=True),
-         ['Package [some.installed.app_1234] (a12345):'])):
+    with self.assertCalls((self.call.device.RunShellCommand(
+        ['dumpsys', 'package', 'some.installed.app_1234'],
+        check_return=True,
+        large_output=True), ['Package [some.installed.app_1234] (a1245):'])):
       self.assertTrue(
           self.device.IsApplicationInstalled('some.installed.app', 1234))
 
-  def testIsApplicationInstalled_dumpsysFallbackVersionNotNeeded(self):
-    with self.assertCalls(
-        (self.call.device.RunShellCommand(
-            ['dumpsys', 'package'], check_return=True, large_output=True),
-         ['Package [some.installed.app] (a12345):'])):
-      self.assertTrue(
+  def testIsApplicationInstalled_dumpsysFallbackVersionNotInstalled(self):
+    with self.assertCalls((self.call.device.RunShellCommand(
+        ['dumpsys', 'package', 'some.installed.app_1234'],
+        check_return=True,
+        large_output=True), ['Package [some.installed.app_2000] (a1245):'])):
+      self.assertFalse(
           self.device.IsApplicationInstalled('some.installed.app', 1234))
 
 
@@ -716,6 +719,8 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_succeedsWithDefaults(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -723,14 +728,73 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
+
+  @mock.patch('devil.android.sdk.adb_wrapper.RestartServer', return_value=None)
+  def testWaitUntilFullyBooted_succeedsAfterCommandTimeout(
+      self, restart_server_mock):
+    with self.assertCalls(
+        self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        # is_device_connection_ready
+        (self.call.device.GetProp('ro.product.model'), ''),
+        # sd_card_ready
+        (self.call.device.GetExternalStoragePath(), '/fake/storage/path'),
+        (self.call.adb.Shell('test -d /fake/storage/path'), ''),
+        # pm_ready
+        (self.call.device._GetApplicationPathsInternal(
+            'android', skip_cache=True), self.TimeoutError()),
+        self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        # is_device_connection_ready
+        (self.call.device.GetProp('ro.product.model'), ''),
+        # sd_card_ready
+        (self.call.device.GetExternalStoragePath(), '/fake/storage/path'),
+        (self.call.adb.Shell('test -d /fake/storage/path'), ''),
+        # pm_ready
+        (self.call.device._GetApplicationPathsInternal(
+            'android', skip_cache=True), ['package:/some/fake/path'])):
+      self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
+      self.assertEqual(restart_server_mock.call_count, 1)
+
+  @mock.patch('devil.android.sdk.adb_wrapper.RestartServer', return_value=None)
+  def testWaitUntilFullyBooted_failsAfterCommandTimeout(self,
+                                                        restart_server_mock):
+    with self.assertCalls(
+        self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        # is_device_connection_ready
+        (self.call.device.GetProp('ro.product.model'), ''),
+        # sd_card_ready
+        (self.call.device.GetExternalStoragePath(), '/fake/storage/path'),
+        (self.call.adb.Shell('test -d /fake/storage/path'), ''),
+        # pm_ready
+        (self.call.device._GetApplicationPathsInternal(
+            'android', skip_cache=True), self.TimeoutError()),
+        self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        # is_device_connection_ready
+        (self.call.device.GetProp('ro.product.model'), ''),
+        # sd_card_ready
+        (self.call.device.GetExternalStoragePath(), '/fake/storage/path'),
+        (self.call.adb.Shell('test -d /fake/storage/path'), ''),
+        # pm_ready
+        (self.call.device._GetApplicationPathsInternal(
+            'android', skip_cache=True), self.TimeoutError())):
+      with self.assertRaises(device_errors.CommandTimeoutError):
+        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False, retries=1)
+      self.assertEqual(restart_server_mock.call_count, 1)
 
   def testWaitUntilFullyBooted_succeedsWithWifi(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -739,8 +803,6 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # wifi_enabled
         (self.call.adb.Shell('dumpsys wifi'),
          'stuff\nWi-Fi is enabled\nmore stuff\n')):
@@ -749,6 +811,8 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_succeedsWithDecryptFDE(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -757,16 +821,16 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         'trigger_restart_framework')):
+        (self.call.device.GetProp('vold.decrypt',
+                                  cache=False), 'trigger_restart_framework')):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=True)
 
   def testWaitUntilFullyBooted_succeedsWithDecryptNotFDE(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -775,8 +839,6 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # decryption_completed
         (self.call.device.GetProp('vold.decrypt', cache=False), '')):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=True)
@@ -784,6 +846,8 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
   def testWaitUntilFullyBooted_deviceIsRock960(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), 'rk3399'),
         (self.call.device.GetProp('sys.usb.config'), 'mtp,adb'),
@@ -794,14 +858,14 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_deviceNotInitiallyAvailable(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -817,14 +881,16 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_deviceBrieflyOffline(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed',
+                                  cache=False), self.AdbCommandError()),
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -832,27 +898,33 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'), ''),
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False),
-         self.AdbCommandError()),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1')):
+            'android', skip_cache=True), ['package:/some/fake/path'])):
       self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
 
   def testWaitUntilFullyBooted_sdCardReadyFails_noPath(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
+        # is_device_connection_ready
+        (self.call.device.GetProp('ro.product.model'), ''),
+        # sd_card_ready
+        (self.call.device.GetExternalStoragePath(), self.CommandError()),
+        self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
         (self.call.device.GetExternalStoragePath(), self.CommandError())):
       with self.assertRaises(device_errors.CommandFailedError):
-        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
+        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False, retries=1)
 
   def testWaitUntilFullyBooted_sdCardReadyFails_notExists(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -866,11 +938,13 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.adb.Shell('test -d /fake/storage/path'),
          self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
-        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
+        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False, retries=0)
 
   def testWaitUntilFullyBooted_devicePmFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -886,32 +960,28 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
-        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
+        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False, retries=0)
 
   def testWaitUntilFullyBooted_bootFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
-        # is_device_connection_ready
-        (self.call.device.GetProp('ro.product.model'), ''),
-        # sd_card_ready
-        (self.call.device.GetExternalStoragePath(), '/fake/storage/path'),
-        (self.call.adb.Shell('test -d /fake/storage/path'), ''),
-        # pm_ready
-        (self.call.device._GetApplicationPathsInternal(
-            'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
+        # is_boot_completed
         (self.call.device.GetProp('sys.boot_completed', cache=False), '0'),
-        # boot_completed
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '0'),
+        # is_boot_completed
         (self.call.device.GetProp('sys.boot_completed', cache=False), '0'),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False),
-         self.TimeoutError())):
+        (self.call.device.GetProp('dev.bootcomplete', cache=False), '0'),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed',
+                                  cache=False), self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
-        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False)
+        self.device.WaitUntilFullyBooted(wifi=False, decrypt=False, retries=0)
 
   def testWaitUntilFullyBooted_wifiFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -920,8 +990,6 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # wifi_enabled
         (self.call.adb.Shell('dumpsys wifi'), 'stuff\nmore stuff\n'),
         # wifi_enabled
@@ -929,11 +997,13 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # wifi_enabled
         (self.call.adb.Shell('dumpsys wifi'), self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
-        self.device.WaitUntilFullyBooted(wifi=True, decrypt=False)
+        self.device.WaitUntilFullyBooted(wifi=True, decrypt=False, retries=0)
 
   def testWaitUntilFullyBooted_decryptFails(self):
     with self.assertCalls(
         self.call.adb.WaitForDevice(),
+        # is_boot_completed
+        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # is_device_connection_ready
         (self.call.device.GetProp('ro.product.model'), ''),
         # sd_card_ready
@@ -942,19 +1012,17 @@ class DeviceUtilsWaitUntilFullyBootedTest(DeviceUtilsTest):
         # pm_ready
         (self.call.device._GetApplicationPathsInternal(
             'android', skip_cache=True), ['package:/some/fake/path']),
-        # boot_completed
-        (self.call.device.GetProp('sys.boot_completed', cache=False), '1'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         'trigger_restart_min_framework'),
+        (self.call.device.GetProp(
+            'vold.decrypt', cache=False), 'trigger_restart_min_framework'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         'trigger_restart_min_framework'),
+        (self.call.device.GetProp(
+            'vold.decrypt', cache=False), 'trigger_restart_min_framework'),
         # decryption_completed
-        (self.call.device.GetProp('vold.decrypt', cache=False),
-         self.TimeoutError())):
+        (self.call.device.GetProp('vold.decrypt',
+                                  cache=False), self.TimeoutError())):
       with self.assertRaises(device_errors.CommandTimeoutError):
-        self.device.WaitUntilFullyBooted(wifi=False, decrypt=True)
+        self.device.WaitUntilFullyBooted(wifi=False, decrypt=True, retries=0)
 
 
 @mock.patch('time.sleep', mock.Mock())
@@ -2445,6 +2513,42 @@ class DeviceUtilsGoHomeTest(DeviceUtilsTest):
       self.device.GoHome()
 
 
+class DeviceUtilsUnlockTest(DeviceUtilsTest):
+  def testUnlock_AlreadyUnlocked(self):
+    with self.assertCalls(
+        (self.call.device.SendKeyEvent(keyevent.KEYCODE_WAKEUP), None),
+        (self.call.device.RunShellCommand(['dumpsys', 'nfc'
+                                           ]), ["mScreenState=ON_UNLOCKED"])):
+      self.device.Unlock()
+
+  def testUnlock_emulatorAlwaysUnlocked(self):
+    with self.assertCalls(
+        (self.call.device.SendKeyEvent(keyevent.KEYCODE_WAKEUP), None),
+        (self.call.device.RunShellCommand(['dumpsys', 'nfc'
+                                           ]), ["Can't find service: nfc"])):
+      self.device.Unlock()
+
+  def testUnlock_lockedWithoutPasscode(self):
+    with self.assertCalls(
+        (self.call.device.SendKeyEvent(keyevent.KEYCODE_WAKEUP), None),
+        (self.call.device.RunShellCommand(['dumpsys', 'nfc'
+                                           ]), ["mScreenState=ON_LOCKED"]),
+        (self.call.device.SendKeyEvent(keyevent.KEYCODE_MENU), None),
+        (self.call.device.RunShellCommand(['dumpsys', 'nfc']), [])):
+      self.device.Unlock()
+
+  def testUnlock_lockedRequiresPasscode(self):
+    with self.assertCalls(
+        (self.call.device.SendKeyEvent(keyevent.KEYCODE_WAKEUP), None),
+        (self.call.device.RunShellCommand(['dumpsys', 'nfc'
+                                           ]), ["mScreenState=ON_LOCKED"]),
+        (self.call.device.SendKeyEvent(keyevent.KEYCODE_MENU), None),
+        (self.call.device.RunShellCommand(['dumpsys', 'nfc'
+                                           ]), ["mScreenState=ON_LOCKED"])):
+      with self.assertRaises(device_errors.CommandFailedError):
+        self.device.Unlock()
+
+
 class DeviceUtilsForceStopTest(DeviceUtilsTest):
   def testForceStop(self):
     with self.assertCalls(
@@ -2502,6 +2606,54 @@ class DeviceUtilsClearApplicationStateTest(DeviceUtilsTest):
             ['pm', 'clear', 'this.package.exists'], check_return=True),
          ['Success'])):
       self.device.ClearApplicationState('this.package.exists')
+
+  def testClearApplicationState_waitForAsynchronousIntent(self):
+    with self.assertCalls(
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '18'),
+        (self.call.device.RunShellCommand(
+            ['logcat', '--format=year', '-t', '1'], check_return=True),
+         ['--------- beginning of main', '12-08 04:41:18.500 some log']),
+        (self.call.device.RunShellCommand(
+            ['pm', 'clear', 'this.package.exists'],
+            check_return=True), ['Success']),
+        # First call only includes a log that isn't new enough, so we expect
+        # it to be retried.
+        (self.call.device.RunShellCommand([
+            'logcat', '-d', '-s', '--format=year',
+            '--regex=End Intent.*android.intent.action.PACKAGE_DATA_CLEARED.*'
+            'this.package.exists', 'MediaProvider:I'
+        ],
+                                          check_return=True),
+         [
+             '--------- beginning of main', '12-08 04:41:17.543  3479  4356 I '
+             'MediaProvider: End Intent { '
+             'act=android.intent.action.PACKAGE_DATA_CLEARED '
+             'dat=package:org.chromium.chrome flg=0x1000010 '
+             'cmp=com.google.android.providers.media.module/'
+             'com.android.providers.media.MediaService (has extras) }'
+         ]),
+        (self.call.device.RunShellCommand([
+            'logcat', '-d', '-s', '--format=year',
+            '--regex=End Intent.*android.intent.action.PACKAGE_DATA_CLEARED.*'
+            'this.package.exists', 'MediaProvider:I'
+        ],
+                                          check_return=True),
+         [
+             '--------- beginning of main', '12-08 04:41:17.543  3479  4356 I '
+             'MediaProvider: End Intent { '
+             'act=android.intent.action.PACKAGE_DATA_CLEARED '
+             'dat=package:org.chromium.chrome flg=0x1000010 '
+             'cmp=com.google.android.providers.media.module/'
+             'com.android.providers.media.MediaService (has extras) }',
+             '12-08 04:41:19.543  3479  4356 I '
+             'MediaProvider: End Intent { '
+             'act=android.intent.action.PACKAGE_DATA_CLEARED '
+             'dat=package:org.chromium.chrome flg=0x1000010 '
+             'cmp=com.google.android.providers.media.module/'
+             'com.android.providers.media.MediaService (has extras) }'
+         ])):
+      self.device.ClearApplicationState('this.package.exists',
+                                        wait_for_asynchronous_intent=True)
 
 
 class DeviceUtilsSendKeyEventTest(DeviceUtilsTest):
@@ -3486,6 +3638,7 @@ class DeviceUtilsGetWebViewUpdateServiceDumpTest(DeviceUtilsTest):
         update = self.device.GetWebViewUpdateServiceDump()
         self.assertTrue(update['FallbackLogicEnabled'])
         self.assertEqual('com.android.chrome', update['CurrentWebViewPackage'])
+        self.assertEqual('61.0.3163.98', update['CurrentWebViewVersion'])
         self.assertEqual(12345, update['MinimumWebViewVersionCode'])
         # Order isn't really important, and we shouldn't have duplicates, so we
         # convert to sets.

@@ -188,7 +188,11 @@ class FakeHost(object):
 
     def print_(self, msg='', end='\n', stream=None):
         stream = stream or self.stdout
-        stream.write(msg + end)
+        message = msg + end
+        encoding = stream.encoding or 'utf8'
+        stream.write(
+            message.encode(encoding,
+                           errors='backslashreplace').decode(encoding))
         stream.flush()
 
     def read_binary_file(self, *comps):
@@ -236,6 +240,11 @@ class FakeHost(object):
 
     def write_text_file(self, path, contents):
         self._write(path, contents)
+
+    def append_text_file(self, path, contents):
+        full_path = self.abspath(path)
+        self.maybe_make_directory(self.dirname(full_path))
+        self.files[full_path] = self.files.get(full_path, '') + contents
 
     def _write(self, path, contents):
         full_path = self.abspath(path)

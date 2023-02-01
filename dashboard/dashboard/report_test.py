@@ -6,10 +6,10 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from flask import Flask
 import json
+import six
 import unittest
-
-import webapp2
 import webtest
 
 from google.appengine.ext import ndb
@@ -19,18 +19,29 @@ from dashboard import update_test_suites
 from dashboard.common import testing_common
 from dashboard.models import page_state
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/report', methods=['GET'])
+def ReportHandlerGet():
+  return report.ReportHandlerGet()
+
+
+@flask_app.route('/report', methods=['POST'])
+def ReportHandlerPost():
+  return report.ReportHandlerPost()
+
+
+@flask_app.route('/update_test_suites', methods=['GET', 'POST'])
+def UpdateTestSuitesPost():
+  return update_test_suites.UpdateTestSuitesPost()
+
 
 class ReportTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(ReportTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/report', report.ReportHandler),
-        ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
 
   def _AddTestSuites(self):
     """Adds sample data and sets the list of test suites."""
@@ -107,7 +118,8 @@ class ReportTest(testing_common.TestCase):
   def testGet(self):
     response = self.testapp.get('/report')
     self.assertEqual('text/html', response.content_type)
-    self.assertIn('Chrome Performance Dashboard', response.body)
+
+    self.assertIn(b'Chrome Performance Dashboard', response.body)
 
   def testGet_OldUri(self):
     expected_state = {
@@ -136,7 +148,8 @@ class ReportTest(testing_common.TestCase):
     state_id = location.split('sid=')[1]
     state = ndb.Key(page_state.PageState, state_id).get()
     self.assertEqual(
-        json.dumps(expected_state, separators=(',', ':')), state.value)
+        six.ensure_binary(json.dumps(expected_state, separators=(',', ':'))),
+        state.value)
 
   def testGet_OldUriMissingTestParam(self):
     response = self.testapp.get('/report'
@@ -171,7 +184,8 @@ class ReportTest(testing_common.TestCase):
     state_id = location.split('sid=')[1]
     state = ndb.Key(page_state.PageState, state_id).get()
     self.assertEqual(
-        json.dumps(expected_state, separators=(',', ':')), state.value)
+        six.ensure_binary(json.dumps(expected_state, separators=(',', ':'))),
+        state.value)
 
   def testGet_OldUriWithRevisionParams(self):
     response = self.testapp.get(
@@ -207,7 +221,8 @@ class ReportTest(testing_common.TestCase):
     state_id = location.split('sid=')[1]
     state = ndb.Key(page_state.PageState, state_id).get()
     self.assertEqual(
-        json.dumps(expected_state, separators=(',', ':')), state.value)
+        six.ensure_binary(json.dumps(expected_state, separators=(',', ':'))),
+        state.value)
 
 
 if __name__ == '__main__':

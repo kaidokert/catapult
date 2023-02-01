@@ -131,6 +131,17 @@ class ArgumentParser(argparse.ArgumentParser):
                               help=('Explicitly disable ResultSink integration '
                                     'instead of automatically determining '
                                     'based off LUCI_CONTEXT.'))
+            self.add_argument('--rdb-content-output-file',
+                              type=str,
+                              metavar='FILENAME',
+                              action='store',
+                              help=('Write ResultSink POST content to the '
+                                    'given file in jsonl instead of actually '
+                                    'POSTing, where each test result is '
+                                    'represented as a json string in a new line.'
+                                    'This is only intended as a workaround for '
+                                    'Skylab where native ResultSink '
+                                    'integration is not currently possible.'))
             self.add_argument('tests', nargs='*', default=[],
                               help=argparse.SUPPRESS)
 

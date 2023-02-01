@@ -3,6 +3,14 @@
 # found in the LICENSE file.
 """An example of using perf dashboard API with your own user account.
 
+#############  DEPRECATION WARNING  #############
+#  Oauth2client is now deprecated.
+#  As of Oct 11th, 2022, we are migrating oauth2client to google-auth.
+#  Update on examples will be available later.
+#  Please contact our team for urgent needs:
+#    browser-perf-engprod@google.com
+#################################################
+
 Getting set up:
 1. Install httplib2and oauth2client python modules:
 `pip install httplib2`
@@ -34,6 +42,15 @@ OAUTH_CLIENT_SECRET = 'vc1fZfV1cZC6mgDSHV-KSPOz'
 SCOPES = ['https://www.googleapis.com/auth/userinfo.email']
 
 
+#############  DEPRECATION WARNING  #############
+# Request using OOB flow will be blocked from Oct 3, 2022.
+# More info:
+# https://developers.googleblog.com/2022/02/making-oauth-flows-safer.html#disallowed-oob
+# Please do *not* refer to this example. We will update it with a
+# valid solution.
+# For urgent request, please contact our team directly:
+#   browser-perf-engprod@google.com
+#############  DEPRECATION WARNING  #############
 def MakeApiRequest():
   flow = client.OAuth2WebServerFlow(
       OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, SCOPES, approval_prompt='force')

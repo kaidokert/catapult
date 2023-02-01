@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import functools
 import json
 import logging
 import six
@@ -65,6 +66,7 @@ def _StartBisectForBug(bug_id, project_id):
 
 def _StartPinpointBisect(bug_id, project_id, test_anomaly, test):
   # Convert params to Pinpoint compatible
+  anomaly_keys = utils.ConvertBytesBeforeJsonDumps([test_anomaly.key.urlsafe()])
   params = {
       'test_path': test.test_path,
       'start_commit': test_anomaly.start_revision - 1,
@@ -73,7 +75,7 @@ def _StartPinpointBisect(bug_id, project_id, test_anomaly, test):
       'project_id': project_id,
       'bisect_mode': 'performance',
       'story_filter': test.unescaped_story_name,
-      'alerts': json.dumps([test_anomaly.key.urlsafe()])
+      'alerts': json.dumps(anomaly_keys)
   }
 
   try:
@@ -124,7 +126,7 @@ def _ChooseTest(anomalies):
   """
   if not anomalies:
     return None
-  anomalies.sort(cmp=_CompareAnomalyBisectability)
+  anomalies.sort(key=functools.cmp_to_key(_CompareAnomalyBisectability))
   found_excluded_domain = False
   for anomaly_entity in anomalies:
     if can_bisect.IsValidTestForBisect(

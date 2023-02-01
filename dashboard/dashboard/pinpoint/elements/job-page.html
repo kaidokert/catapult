@@ -110,7 +110,9 @@ found in the LICENSE file.
         <template is="dom-if" if="[[running(job)]]">
           <span id="running" class="badge">Running</span>
           <cancel-job-dialog job="[[job]]"
-            auth-headers="[[authHeaders]]"></cancel-job-dialog>
+                             hidden$=[[!user]]
+                             user="[[user]]"
+                             client="{{client}}"></cancel-job-dialog>
         </template>
         <template is="dom-if" if="[[cancelled(job)]]">
           <span id="cancelled" class="badge">Cancelled</span>
@@ -121,7 +123,9 @@ found in the LICENSE file.
         <template is="dom-if" if="[[queued(job)]]">
           <span id="queued" class="badge">Queued</span>
           <cancel-job-dialog job="[[job]]"
-            auth-headers="[[authHeaders]]"></cancel-job-dialog>
+                             hidden$=[[!user]]
+                             user="[[user]]"
+                             client="{{client}}"></cancel-job-dialog>
         </template>
         [[job.name]]
       </h1>
@@ -141,7 +145,7 @@ found in the LICENSE file.
       </p>
       <div id="layout">
         <div id="details-column">
-          <job-details job="[[job]]"></job-details>
+          <job-details job="[[job]]" user="[[user]]"></job-details>
         </div>
         <div id="results">
           <template is="dom-if" if="[[failed(job)]]">
@@ -169,14 +173,14 @@ found in the LICENSE file.
         </div>
         <div id="change-a">
           <div></div>
-          <change-details job="[[job]]" change-state="[[previousChangeState(job.state, changeIndex)]]"></change-details>
+          <change-details job="[[job]]" change-state="[[previousChangeState(job.state, changeIndex)]]" extra-args="[[getExtraArgs(job, 0)]]"></change-details>
         </div>
         <div id="change-b">
           <div></div>
-          <change-details job="[[job]]" change-state="[[changeState(job.state, changeIndex)]]"></change-details>
+          <change-details job="[[job]]" change-state="[[changeState(job.state, changeIndex)]]" extra-args="[[getExtraArgs(job, 1)]]"></change-details>
         </div>
       </div>
-      <job-menu-fab job="[[job]]" auth-headers="[[authHeaders]]"></job-menu-fab>
+      <job-menu-fab hidden$=[[!user]] job="[[job]]" user="[[user]]" client="{{client}}"></job-menu-fab>
     </loading-wrapper>
   </template>
 
@@ -194,6 +198,17 @@ found in the LICENSE file.
         changeIndex: {
           type: Number
         }
+      },
+
+      getExtraArgs(job, pos) {
+        if (!this.isTryJob(job)) {
+          return null;
+        }
+        let a = job.arguments;
+        if (pos === 0) {
+          return a.base_extra_args;
+        }
+        return a.experiment_extra_args;
       },
 
       _jobChanged() {

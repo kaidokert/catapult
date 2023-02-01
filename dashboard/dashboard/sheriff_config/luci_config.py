@@ -12,10 +12,11 @@ from google.cloud import datastore
 import base64
 import collections
 import httplib2
-import sheriff_pb2
 import validator
 import matcher as matcher_module
 import utils
+
+from dashboard.protobuf import sheriff_pb2
 
 # The path which we will look for in projects.
 SHERIFF_CONFIG_PATH = 'chromeperf-sheriffs.cfg'
@@ -28,20 +29,15 @@ class Error(Exception):
 class FetchError(Error):
 
   def __init__(self, error):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(FetchError,
-          self).__init__('Failed fetching project configs: {}'.format(error))
+    super().__init__('Failed fetching project configs: {}'.format(error))
     self.error = error
 
 
 class InvalidConfigError(Error):
 
   def __init__(self, config, fields):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(InvalidConfigError, self).__init__(
-        'Config (%r) missing required fields: %r' % (config, fields))
+    super().__init__('Config (%r) missing required fields: %r' %
+                     (config, fields))
     self.fields = fields
     self.config = config
 
@@ -49,10 +45,7 @@ class InvalidConfigError(Error):
 class InvalidContentError(Error):
 
   def __init__(self, error, config):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(InvalidContentError, self).__init__(
-        'Config (%r) content decoding error: %s' % (config, error))
+    super().__init__('Config (%r) content decoding error: %s' % (config, error))
     self.config = config
     self.error = error
 
@@ -62,9 +55,7 @@ def FindAllSheriffConfigs(client):
   try:
     configs = client.get_project_configs(path=SHERIFF_CONFIG_PATH).execute()
   except (errors.HttpError, httplib2.HttpLib2Error) as e:
-    # TODO(https://crbug.com/1262292): use `faise from` when Python2 trybots retire.
-    # pylint: disable=raise-missing-from
-    raise FetchError(e)
+    raise FetchError(e) from e
   return configs
 
 
@@ -116,9 +107,7 @@ def StoreConfigs(client, configs):
       sheriff_config = validator.Validate(
           base64.standard_b64decode(config['content']))
     except validator.Error as error:
-      # TODO(https://crbug.com/1262292): use `faise from` when Python2 trybots retire.
-      # pylint: disable=raise-missing-from
-      raise InvalidContentError(error, config)
+      raise InvalidContentError(error, config) from error
 
     entity = datastore.Entity(
         key=key, exclude_from_indexes=['sheriff_config', 'url'])
@@ -155,9 +144,7 @@ def StoreConfigs(client, configs):
     client.put_multi(list(entities.values()) + [subscription_index])
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class Matcher(object):
+class Matcher:
 
   def __init__(self, subscription):
     self._match_subscription = matcher_module.CompileRules(

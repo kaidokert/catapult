@@ -79,6 +79,8 @@ class MacPlatformBackend(posix_platform_backend.PosixPlatformBackend):
       return os_version_module.BIGSUR
     if os_version.startswith('21.'):
       return os_version_module.MONTEREY
+    if os_version.startswith('22.'):
+      return os_version_module.VENTURA
 
     raise NotImplementedError('Unknown mac version %s.' % os_version)
 
@@ -110,7 +112,7 @@ class MacPlatformBackend(posix_platform_backend.PosixPlatformBackend):
     # TODO(crbug.com/984504): use built-in timeout for subprocess in python 3
     timeout_in_sec = 10
     try:
-      args = ['screencapture', file_path]
+      args = ['screencapture', '-x', file_path]
       sp = ps_util.RunSubProcWithTimeout(
           args, timeout_in_sec, 'screencapture')
       return sp.returncode

@@ -70,6 +70,8 @@ class RunTestsCommand(command_line.OptparseCommand):
                       action='append', default=[])
     parser.add_option('--disable-logging-config', action='store_true',
                       default=False, help='Configure logging (default on)')
+    parser.add_option('--use-persistent-shell', action='store_true',
+                      help='Uses a persistent shell adb connection when set.')
     parser.add_option('-v', '--verbose', action='count', dest='verbosity',
                       help='Increase verbosity level (repeat as needed)')
 
@@ -147,6 +149,8 @@ class RunTestsCommand(command_line.OptparseCommand):
       runner.host.stdout = self.stream
     if hasattr(args, 'disable_resultsink'):
       runner.args.disable_resultsink = args.disable_resultsink
+    if hasattr(args, 'rdb_content_output_file'):
+      runner.args.rdb_content_output_file = args.rdb_content_output_file
     if hasattr(args, 'use_global_pool'):
       runner.args.use_global_pool = args.use_global_pool
 

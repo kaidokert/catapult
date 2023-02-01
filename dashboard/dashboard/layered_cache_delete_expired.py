@@ -7,15 +7,14 @@ from __future__ import division
 from __future__ import absolute_import
 
 from dashboard.common import layered_cache
-from dashboard.common import request_handler
+
+from flask import make_response
 
 
-class LayeredCacheDeleteExpiredHandler(request_handler.RequestHandler):
-  """URL endpoint for a cron job to delete expired entities from datastore."""
+def LayeredCacheDeleteExpiredGet():
+  """This get handler is called from cron.
 
-  def get(self):
-    """This get handler is called from cron.
-
-    It deletes only expired CachedPickledString entities from the datastore.
-    """
-    layered_cache.DeleteAllExpiredEntities()
+  It deletes only expired CachedPickledString entities from the datastore.
+  """
+  layered_cache.DeleteAllExpiredEntities()
+  return make_response('')

@@ -18,8 +18,8 @@ import luci_config
 import match_policy
 import os
 import service_client
-import sheriff_config_pb2
-import sheriff_pb2
+
+from dashboard.protobuf import sheriff_config_pb2
 import validator
 import time
 
@@ -32,9 +32,7 @@ class MissingEnvironmentVars(Error):
 
   def __init__(self, env_vars):
     self.env_vars = env_vars
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(MissingEnvironmentVars, self).__init__()
+    super().__init__()
 
   def __str__(self):
     return 'Missing environment variables: %r' % (self.env_vars)

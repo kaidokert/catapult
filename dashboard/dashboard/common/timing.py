@@ -8,16 +8,14 @@ from __future__ import absolute_import
 
 try:
   import gae_ts_mon
-except ModuleNotFoundError:
+except ImportError:
   # When running unit tests, we need to import from infra_libs.
   from infra_libs import ts_mon as gae_ts_mon
 import logging
 import time
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class WallTimeLogger(object):
+class WallTimeLogger:
 
   def __init__(self, label, description=''):
     """Initialize a context manager labeled `label` that measures the wall time
@@ -52,7 +50,7 @@ class WallTimeLogger(object):
 class CpuTimeLogger(WallTimeLogger):
 
   def _Now(self):
-    return time.clock()
+    return time.process_time()
 
   def _Suffix(self):
     return 'cpu'

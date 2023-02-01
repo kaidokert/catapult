@@ -33,6 +33,18 @@ found in the LICENSE file.
         --paper-fab-background: white;
       }
 
+      .radio[disabled] {
+        pointer-events: none;
+      }
+
+      h2.title {
+        display: inline;
+      }
+
+      paper-radio-group {
+        display: block;
+      }
+
       paper-progress {
         display: block;
         width: 100%;
@@ -80,6 +92,14 @@ found in the LICENSE file.
         margin-right: 0.5em;
       }
 
+      #initial_attempt_count {
+        float: right;
+      }
+
+      #initial_attempt_count_label {
+        float: right;
+      }
+
       #statisticDropdown {
         width: 25%;
       }
@@ -99,35 +119,35 @@ found in the LICENSE file.
     <paper-tooltip for="try-fab" position="left">Try job</paper-tooltip>
     <paper-dialog id="try_dialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
       <template is="dom-if" if="[[isBisectJob(comparisonMode)]]">
-        <h2>Run a bisect job</h2>
-      </template>
-      <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
-        <h2>Run a try job</h2>
-      </template>
-      <div>
-        <template is="dom-if" if="[[isBisectJob(comparisonMode)]]">
+        <div style="display: flex; flex-direction: row; align-items: center">
+          <h2 class="title" style="width: 40%; flex: 1 1 auto;">Run a bisect job</h2>
           <p>
             Narrow down a regression to a cl or set of cl's. A bisect job bisects the commit range, and looks for changes in the specified metric.
           </p>
-        </template>
-        <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
-          <p>
+        </div>
+      </template>
+      <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
+        <div style="margin-top: 20px;">
+          <h2 class="title" style="margin-right: 20px;">Run a try job</h2>
+          <p style="display: inline;">
             Run an A/B experiment.
           </p>
-        </template>
+        </div>
+      </template>
+      <div>
         <template is="dom-if" if="[[error]]">
           <p class="error">Base and Experiment Git hashes must both be populated! If they are, this error may help: [[error]]
         </template>
-        <iron-ajax method="post" headers="[[authHeaders]]" auto url="/api/config" loading="{{configLoading}}" last-response="{{config}}"></iron-ajax>
-        <iron-ajax method="post" headers="[[authHeaders]]" auto url="{{generateChromeperfUrl('/api/test_suites')}}" loading="{{suitesLoading}}" last-response="{{testSuites}}"></iron-ajax>
+        <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="/api/config" loading="{{configLoading}}" last-response="{{config}}"></iron-ajax>
+        <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="{{generateChromeperfUrl('/api/test_suites')}}" loading="{{suitesLoading}}" last-response="{{testSuites}}"></iron-ajax>
         <template is="dom-if" if="{{validBenchmark(benchmark)}}">
-          <iron-ajax method="post" headers="[[authHeaders]]" auto url="{{generateChromeperfUrl('/api/describe')}}" params="{{describeParams(benchmark)}}" loading="{{benchmarkConfigLoading}}" last-response="{{benchmarkConfig}}"></iron-ajax>
+          <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="{{generateChromeperfUrl('/api/describe')}}" params="{{describeParams(benchmark)}}" loading="{{benchmarkConfigLoading}}" last-response="{{benchmarkConfig}}"></iron-ajax>
         </template>
         <template is="dom-if" if="[[hasJob(job)]]">
-          <iron-ajax method="post" headers="[[authHeaders]]" auto url="/api/commits" params="{{commitsParams(job)}}" loading="{{commitRangeLoading}}" last-response="{{commitsList}}"></iron-ajax>
+          <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="/api/commits" params="{{commitsParams(job)}}" loading="{{commitRangeLoading}}" last-response="{{commitsList}}"></iron-ajax>
         </template>
 
-        <iron-form id="try_form" headers="[[authHeaders]]" on-iron-form-error="handleError" on-iron-form-response="handleResponse">
+        <iron-form id="try_form" headers="[[client.authHeaders]]"  on-iron-form-error="handleError" on-iron-form-response="handleResponse">
           <form action="/api/new" method="POST">
 
             <input type="hidden" name="comparison_mode" value="[[comparisonMode]]">
@@ -148,12 +168,18 @@ found in the LICENSE file.
               <span>Benchmark Configuration</span>
             </div>
 
-            <template is="dom-if" if="[[!hasJob(job)]]">
-              <paper-radio-group id="comparison_mode" selected="{{comparisonMode}}">
-                <paper-radio-button name="try">Try Job</paper-radio-button>
-                <paper-radio-button name="performance">Bisect</paper-radio-button>
-              </paper-radio-group>
-            </template>
+            <paper-radio-group id="comparison_mode" selected="{{comparisonMode}}">
+              <paper-radio-button class="radio" name="try" disabled="[[hasJob(job)]]">Try Job</paper-radio-button>
+              <paper-radio-button class="radio" name="performance" disabled="[[hasJob(job)]]">Bisect</paper-radio-button>
+              <input hidden="[[isBisectJob(comparisonMode)]]"
+                     id="initial_attempt_count"
+                     name="initial_attempt_count"
+                     value="{{initial_attempt_count}}"
+                     label="Attempt Count"/>
+              <label hidden="[[isBisectJob(comparisonMode)]]"
+                     id="initial_attempt_count_label"
+                     for="initial_attempt_count">Attempt Count: </label>
+            </paper-radio-group>
 
             <div class="horizontal">
               <div class="column rightPad">
@@ -207,12 +233,6 @@ found in the LICENSE file.
               </div>
             </div>
 
-            <div class="horizontal" hidden="[[isBisectJob(comparisonMode)]]">
-              <paper-input name="initial_attempt_count"
-                           value="{{initial_attempt_count}}"
-                           label="Attempt Count"></paper-input>
-            </div>
-
             <div class="horizontal" hidden="[[!isBisectJob(comparisonMode)]]">
               <div class="column rightPad">
                 <div class="horizontal">
@@ -239,8 +259,10 @@ found in the LICENSE file.
               </div>
             </div>
 
-            <paper-input name="extra_test_args" value="{{extra_test_args}}" label="Extra Test Arguments (optional)"></paper-input>
-
+            <paper-input hidden="[[!isBisectJob(comparisonMode)]]"
+                         name="extra_test_args"
+                         value="{{extra_test_args}}"
+                         label="Extra Test Arguments (optional)"></paper-input>
             <div class="divider">
               <span>Job Configuration</span>
             </div>
@@ -252,19 +274,35 @@ found in the LICENSE file.
                                 value="{{base_git_hash}}"
                                 label="Base Git Hash"
                                 items="[[commitsListItems(commitsList)]]"
-                                headers="[[authHeaders]]"
+                                headers="[[client.authHeaders]]"
                                 required disabled="[[isBisectJob(comparisonMode)]]"></commit-details>
                 <commit-details class="column rightPad"
                                 project="{{project}}"
                                 value="{{end_git_hash}}"
                                 label="Exp Git Hash"
                                 items="[[commitsListItems(commitsList)]]"
-                                headers="[[authHeaders]]"
+                                headers="[[client.authHeaders]]"
                                 required disabled="[[isBisectJob(comparisonMode)]]"></commit-details>
               </div>
               <div class="horizontal">
                 <paper-input class="column" name="base_patch" value="{{base_patch}}" label="Base Patch (optional, Gerrit URL)" disabled="[[isBisectJob(comparisonMode)]]"></paper-input>
                 <paper-input class="column" name="experiment_patch" value="{{experiment_patch}}" label="Exp Patch (optional, Gerrit URL)" disabled="[[isBisectJob(comparisonMode)]]"></paper-input>
+              </div>
+              <div class="horizontal">
+                <paper-input always-float-label
+                             class="column"
+                             disabled="[[isBisectJob(comparisonMode)]]"
+                             label="Example: --enable-features=ignore-gpu-blocklist,enable-quic"
+                             name="base_extra_args"
+                             placeholder="Extra arguments on base commit (optional)"
+                             value="{{base_extra_args}}"></paper-input>
+                <paper-input always-float-label
+                             class="column"
+                             disabled="[[isBisectJob(comparisonMode)]]"
+                             label="Example: --enable-features=ignore-gpu-blocklist,enable-quic"
+                             name="experiment_extra_args"
+                             placeholder="Extra arguments on experiment commit (optional)"
+                             value="{{experiment_extra_args}}" ></paper-input>
               </div>
             </template>
 
@@ -275,14 +313,14 @@ found in the LICENSE file.
                                   value="{{start_git_hash}}"
                                   label="Start Git Hash"
                                   items="[[commitsListItems(commitsList)]]"
-                                  headers="[[authHeaders]]"
+                                  headers="[[client.authHeaders]]"
                                   required disabled="[[!isBisectJob(comparisonMode)]]"></commit-details>
                   <commit-details class="column"
                                   project="{{project}}"
                                   value="{{end_git_hash}}"
                                   label="End Git Hash"
                                   items="[[commitsListItems(commitsList)]]"
-                                  headers="[[authHeaders]]"
+                                  headers="[[client.authHeaders]]"
                                   required disabled="[[!isBisectJob(comparisonMode)]]"></commit-details>
               </div>
             </template>
@@ -380,6 +418,14 @@ found in the LICENSE file.
           type: Boolean,
           value: false
         },
+        client: {
+          type: Object,
+          notify: true
+        },
+        user: {
+          type: String,
+          value: ''
+        }
       },
 
       observers: [
@@ -391,7 +437,10 @@ found in the LICENSE file.
       ],
 
       openDialog() {
-        this.$.try_dialog.open();
+        this.client.open_dialog = () => {
+          this.$.try_dialog.open();
+        }
+        this.client.requestAccessToken({hint: this.user});
       },
 
       submit() {
@@ -477,6 +526,8 @@ found in the LICENSE file.
         this.comparisonMode = job.arguments.comparison_mode;
         this.comparison_magnitude = job.arguments.comparison_magnitude;
         this.extra_test_args = job.arguments.extra_test_args;
+        this.base_extra_args = job.arguments.base_extra_args;
+        this.experiment_extra_args = job.arguments.experiment_extra_args;
         this.initial_attempt_count = job.arguments.initial_attempt_count;
         this.$.botDropdown.query = job.arguments.configuration;
         this.$.benchmarkDropdown.query = job.arguments.benchmark;
@@ -637,22 +688,18 @@ found in the LICENSE file.
           return 'performance_test_suite_android_clank_chrome';
         } else if (configuration === 'android-go-perf-pgo') {
           return 'performance_test_suite_android_clank_chrome';
+        } else if (configuration === 'android-go-wembley-perf') {
+          return 'performance_test_suite_android_clank_trichrome_bundle';
         } else if (configuration === 'Android Nexus5 Perf') {
           return 'performance_test_suite_android_chrome';
         } else if (configuration === 'android-pixel2-perf') {
           return 'performance_test_suite_android_clank_monochrome_64_32_bundle';
         } else if (configuration === 'android-pixel2-perf-pgo') {
           return 'performance_test_suite_android_clank_monochrome_64_32_bundle';
-        } else if (configuration === 'android-pixel2_weblayer-perf') {
-          return 'performance_weblayer_test_suite';
         } else if (configuration === 'android-pixel4-perf') {
           return 'performance_test_suite_android_clank_trichrome_bundle';
         } else if (configuration === 'android-pixel4-perf-pgo') {
           return 'performance_test_suite_android_clank_trichrome_bundle';
-        } else if (configuration === 'android-pixel4_weblayer-perf') {
-          return 'performance_weblayer_test_suite';
-        } else if (configuration === 'android-pixel4_weblayer-perf-pgo') {
-          return 'performance_weblayer_test_suite';
         } else if (configuration === 'android-pixel4a_power-perf') {
           return 'performance_test_suite_android_clank_chrome';
         } else if (configuration === 'android-pixel4a_power-perf-pgo') {
@@ -665,6 +712,8 @@ found in the LICENSE file.
           return 'performance_test_suite_android_clank_trichrome_chrome_google_64_32_bundle';
         } else if (configuration === 'android-new-pixel-pro-perf-pgo') {
           return 'performance_test_suite_android_clank_trichrome_chrome_google_64_32_bundle';
+        } else if (configuration === 'android-samsung-foldable-perf') {
+          return 'performance_test_suite_android_clank_trichrome_bundle';
         } else if (configuration.toLowerCase().includes('android')) {
           throw Error(
               'Given Android configuration ' + configuration + ' does not ' +

@@ -93,9 +93,7 @@ class InvalidPinpointRequest(Exception):
   pass
 
 
-# TODO(https://crbug.com/1262292): Update after Python2 trybots retire.
-# pylint: disable=useless-object-inheritance
-class AlertGroupWorkflow(object):
+class AlertGroupWorkflow:
   """Workflow used to manipulate the AlertGroup.
 
   Workflow will assume the group passed from caller is same as the group in
@@ -168,12 +166,7 @@ class AlertGroupWorkflow(object):
     if issue.get('status') != issue_tracker_service.STATUS_DUPLICATE:
       return None
 
-    merged_into = None
-    latest_id = 0
-    for comment in issue.get('comments', []):
-      if comment['updates'].get('mergedInto') and comment['id'] >= latest_id:
-        merged_into = int(comment['updates'].get('mergedInto'))
-        latest_id = comment['id']
+    merged_into = issue.get('mergedInto', {}).get('issueId', None)
     if not merged_into:
       return None
     logging.info('Found canonical issue for the groups\' issue: %d',
@@ -181,9 +174,8 @@ class AlertGroupWorkflow(object):
 
     query = alert_group.AlertGroup.query(
         alert_group.AlertGroup.active == True,
-        # It is impossible to merge bugs from different projects in monorail.
-        # So the canonical group bug is guarandeed to have the same project.
-        alert_group.AlertGroup.bug.project == self._group.bug.project,
+        alert_group.AlertGroup.bug.project == issue.get('mergedInto', {}).get(
+            'projectId', self._group.bug.project),
         alert_group.AlertGroup.bug.bug_id == merged_into)
     query_result = query.fetch(limit=1)
     if not query_result:
@@ -266,7 +258,7 @@ class AlertGroupWorkflow(object):
     # anomalies list.
     if (not update.anomalies and self._group.anomalies
         and self._group.group_type != alert_group.AlertGroup.Type.reserved):
-      logging.error('No anomailes detected. Skipping this run.')
+      logging.error('No anomalies detected. Skipping this run.')
       return self._group.key
 
     # Process input before we start processing the group.
@@ -802,7 +794,6 @@ class AlertGroupWorkflow(object):
                                             alert.benchmark_name)
 
     alert_magnitude = alert.median_after_anomaly - alert.median_before_anomaly
-
     return pinpoint_service.MakeBisectionRequest(
         test=alert.test.get(),
         commit_range=pinpoint_service.CommitRange(
@@ -818,7 +809,7 @@ class AlertGroupWorkflow(object):
         priority=10,
         tags={
             'test_path': utils.TestPath(alert.test),
-            'alert': alert.key.urlsafe(),
+            'alert': six.ensure_str(alert.key.urlsafe()),
             'auto_bisection': 'true',
         },
     )
@@ -840,5 +831,5 @@ def _IssueTracker():
   # pylint: disable=protected-access
   if not hasattr(_IssueTracker, '_client'):
     _IssueTracker._client = issue_tracker_service.IssueTrackerService(
-        utils.ServiceAccountHttp())
+        utils.ServiceAccountHttp(use_adc=False))
   return _IssueTracker._client

@@ -6,13 +6,12 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import unittest
-
-import mock
-import webapp2
-import webtest
 from datetime import datetime
 from datetime import timedelta
+from flask import Flask
+import mock
+import unittest
+import webtest
 
 from dashboard import mark_recovered_alerts
 from dashboard.common import testing_common
@@ -21,21 +20,21 @@ from dashboard.models import anomaly
 from dashboard.models import bug_data
 from dashboard.services import issue_tracker_service
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/mark_recovered_alerts', methods=['POST'])
+def MarkRecoveredAlertsPost():
+  return mark_recovered_alerts.MarkRecoveredAlertsPost()
+
 
 @mock.patch('apiclient.discovery.build', mock.MagicMock())
 @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
-@mock.patch.object(utils, 'TickMonitoringCustomMetric', mock.MagicMock())
 class MarkRecoveredAlertsTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(MarkRecoveredAlertsTest, self).setUp()
-    app = webapp2.WSGIApplication([
-        ('/mark_recovered_alerts',
-         mark_recovered_alerts.MarkRecoveredAlertsHandler)
-    ])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
 
   def _AddTestData(self, series, improvement_direction=anomaly.UP):
     """Adds one sample TestMetadata and associated data.
@@ -66,7 +65,7 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
                          project='chromium',
                          timestamp=datetime.now() - timedelta(days=1)):
     """Adds a sample Anomaly and returns the key."""
-    if bug_id > 0:
+    if bug_id and bug_id > 0:
       bug = bug_data.Key(project=project, bug_id=bug_id).get()
       if not bug:
         bug_data.Bug.New(project=project, bug_id=bug_id).put()

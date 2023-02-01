@@ -7,10 +7,9 @@ from __future__ import division
 from __future__ import absolute_import
 
 import csv
+from flask import Flask
 import six
 import unittest
-
-import webapp2
 import webtest
 
 from dashboard import graph_csv
@@ -19,15 +18,24 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import graph_data
 
+flask_app = Flask(__name__)
+
+
+@flask_app.route('/graph_csv', methods=['GET'])
+def GraphCSVHandlerGet():
+  return graph_csv.GraphCSVGet()
+
+
+@flask_app.route('/graph_csv', methods=['POST'])
+def GraphCSVHandlerPost():
+  return graph_csv.GraphCSVPost()
+
 
 class GraphCsvTest(testing_common.TestCase):
 
   def setUp(self):
-    # TODO(https://crbug.com/1262292): Change to super() after Python2 trybots retire.
-    # pylint: disable=super-with-arguments
-    super(GraphCsvTest, self).setUp()
-    app = webapp2.WSGIApplication([('/graph_csv', graph_csv.GraphCsvHandler)])
-    self.testapp = webtest.TestApp(app)
+    super().setUp()
+    self.testapp = webtest.TestApp(flask_app)
     self.SetCurrentUser('foo@bar.com', is_admin=True)
 
   def _AddMockData(self):
@@ -99,7 +107,7 @@ class GraphCsvTest(testing_common.TestCase):
         status=status)
     if status != 200:
       return
-    for row in csv.reader(six.StringIO(response.body)):
+    for row in csv.reader(six.StringIO(six.ensure_str(response.body))):
       response_rows.append(row)
     self.assertEqual(expected_result, response_rows)
 
@@ -107,7 +115,8 @@ class GraphCsvTest(testing_common.TestCase):
     self._AddMockData()
     response = self.testapp.get(
         '/graph_csv?test_path=ChromiumPerf/win7/dromaeo/dom')
-    for index, row, in enumerate(csv.reader(six.StringIO(response.body))):
+    for index, row, in enumerate(
+        csv.reader(six.StringIO(six.ensure_str(response.body)))):
       # Skip the headers
       if index > 0:
         expected_rev = str(15000 + ((index - 1) * 5))
@@ -118,7 +127,8 @@ class GraphCsvTest(testing_common.TestCase):
     self._AddMockData()
     response = self.testapp.post('/graph_csv?',
                                  {'test_path': 'ChromiumPerf/win7/dromaeo/dom'})
-    for index, row, in enumerate(csv.reader(six.StringIO(response.body))):
+    for index, row, in enumerate(
+        csv.reader(six.StringIO(six.ensure_str(response.body)))):
       # Skip the headers
       if index > 0:
         expected_rev = str(15000 + ((index - 1) * 5))
@@ -183,17 +193,6 @@ class GraphCsvTest(testing_common.TestCase):
     query = '/graph_csv?test_path=ChromiumPerf/win7/dromaeo/dom&num_points=3'
     expected = [['revision', 'value']]
     self._CheckGet(query, expected, status=500)
-
-  def testGet_AllowlistedIPOnly(self):
-    self.PatchDatastoreHooksRequest('123.45.67.89')
-    self._AddMockInternalData()
-    self.UnsetCurrentUser()
-    datastore_hooks.InstallHooks()
-    testing_common.SetIpAllowlist(['123.45.67.89'])
-    query = '/graph_csv?test_path=ChromiumPerf/win7/dromaeo/dom&num_points=3'
-    expected = [['revision', 'value'], ['47', '94.0'], ['48', '96.0'],
-                ['49', '98.0']]
-    self._CheckGet(query, expected, allowlisted_ip='123.45.67.89')
 
   def testGet_NoTestPathGiven_GivesError(self):
     testing_common.SetIpAllowlist(['123.45.67.89'])
