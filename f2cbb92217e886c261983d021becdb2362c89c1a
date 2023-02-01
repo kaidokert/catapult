@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29249985_cc465a38",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-01T23:23:52Z",
+      "side": 1,
+      "message": "Another possibility might be using HTTP status code 204 (https://httpwg.org/specs/rfc9110.html#status.204) to indicate no matching subscriptions. That is still a successful status, and I hope it won\u0027t show up as errors in the log.",
+      "parentUuid": "b59e8d34_edfa398c",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 49
+      },
+      "revId": "f2cbb92217e886c261983d021becdb2362c89c1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cba2afb_7d10d083",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 3
