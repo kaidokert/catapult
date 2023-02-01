@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e461e02_46ba49b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-01T05:35:43Z",
+      "side": 1,
+      "message": "LGTM with nit",
+      "revId": "6715bf44257071367a9a5c1889f4b077bb6f7d65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c27d12_395aaa6a",
+        "filename": "dashboard/dashboard/email_template_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-01T05:35:43Z",
+      "side": 1,
+      "message": "I think this assert isn\u0027t very effective, as it basically duplicate the logic from production code. Two suggestions. One is to simply hard code the full expected URL, which is \u0027https://chromeperf.appspot.com/group_report?keys\u003dagByFAsSB0Fub21hbHkiB3Rlc3RfaWQM\u0027. Alternative is to do something like this (which asserts that the correct key can be retrieved from the URL):\n\n    link1_prefix \u003d \u0027https://chromeperf.appspot.com/group_report?keys\u003d\u0027\n    self.assertTrue(link1.startswith(link1_prefix))\n    self.assertEqual(ndb.Key(urlsafe\u003dlink1[len(link1_prefix):]), a1.key)",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 41
+      },
+      "revId": "6715bf44257071367a9a5c1889f4b077bb6f7d65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
