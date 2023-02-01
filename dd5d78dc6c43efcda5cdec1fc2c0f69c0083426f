@@ -16,6 +16,75 @@
       "message": "Hi\n\nThis CL adds a function to device_utils.py devil module to get the webview provider from global settings. Please take a look.\n\nRegards\nRakib",
       "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e6ccf50_88fc17fa",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3438,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-02-01T21:12:17Z",
+      "side": 1,
+      "message": "suggestion: what about refactoring this as `GetSettings(namespace)`? This would let the caller specify one of {system, secure, global} (you can throw ValueError if it\u0027s not one of those 3 strings).",
+      "range": {
+        "startLine": 3438,
+        "startChar": 6,
+        "endLine": 3438,
+        "endChar": 24
+      },
+      "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3ef784_6779e39d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3604,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-02-01T21:12:17Z",
+      "side": 1,
+      "message": "Can you add a python docstring to document the return type? Maybe this can also link to https://chromium.googlesource.com/chromium/src/+/HEAD/android_webview/docs/webview-providers.md for more context about WebView providers.",
+      "range": {
+        "startLine": 3604,
+        "startChar": 6,
+        "endLine": 3604,
+        "endChar": 24
+      },
+      "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ef9e5d_51719c99",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3605,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-02-01T21:12:17Z",
+      "side": 1,
+      "message": "I think this setting was introduced in Android N. Devil still supports lower OS versions so you\u0027ll need to throw an error if sdk_int \u003c N.",
+      "range": {
+        "startLine": 3605,
+        "startChar": 4,
+        "endLine": 3605,
+        "endChar": 60
+      },
+      "revId": "dd5d78dc6c43efcda5cdec1fc2c0f69c0083426f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
