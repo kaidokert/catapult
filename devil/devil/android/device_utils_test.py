@@ -647,6 +647,16 @@ class DeviceUtils_GetApplicationTargetSdkTest(DeviceUtilsTest):
           'R', self.device.GetApplicationTargetSdk('com.android.chrome'))
 
 
+class DeviceUtils_GetWebViewProvider(DeviceUtilsTest):
+  def test_GetWebViewProvider(self):
+    with self.assertCall(
+        self.call.device.RunShellCommand(['settings', 'list', 'global'],
+                                         check_return=True,
+                                         large_output=True),
+        ['a=b', 'webview_provider=com.android.webview']):
+      self.assertEqual('com.android.webview', self.device.GetWebViewProvider())
+
+
 class DeviceUtils_GetUidForPackageTest(DeviceUtilsTest):
   def test_GetUidForPackage_Exists(self):
     with self.assertCall(

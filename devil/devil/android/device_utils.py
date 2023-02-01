@@ -3435,6 +3435,13 @@ class DeviceUtils(object):
       processes.append(ProcessInfo(**row))
     return processes
 
+  def _GetGlobalSettings(self):
+    """Return a dictionary containing global settings"""
+    output_lines = self.RunShellCommand(['settings', 'list', 'global'],
+                                        check_return=True,
+                                        large_output=True)
+    return dict(map(lambda line: line.split('=', 1), output_lines))
+
   def _GetDumpsysOutput(self, extra_args, pattern=None):
     """Runs |dumpsys| command on the device and returns its output.
 
@@ -3592,6 +3599,10 @@ class DeviceUtils(object):
     self.RunShellCommand(['setenforce', '1' if int(enabled) else '0'],
                          as_root=True,
                          check_return=True)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def GetWebViewProvider(self, timeout=None, retries=None):
+    return self._GetGlobalSettings().get('webview_provider')
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetWebViewUpdateServiceDump(self, timeout=None, retries=None):
