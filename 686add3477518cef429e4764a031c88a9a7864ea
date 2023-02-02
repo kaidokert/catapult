@@ -16,6 +16,23 @@
       "message": "Locally on a non-rooted device, both the minidump tests and tests that would fail if data wasn\u0027t properly cleared due to tabs being left open pass with this applied.",
       "revId": "686add3477518cef429e4764a031c88a9a7864ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f418160c_2cf67025",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-02T17:52:51Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "686add3477518cef429e4764a031c88a9a7864ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
