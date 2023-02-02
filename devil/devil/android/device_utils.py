@@ -773,6 +773,7 @@ class DeviceUtils(object):
   def IsApplicationInstalled(self,
                              package,
                              library_version=None,
+                             user_id=None,
                              timeout=None,
                              retries=None):
     """Determines whether a particular package is installed on the device.
@@ -781,6 +782,7 @@ class DeviceUtils(object):
       package: Name of the package.
       library_version: Required for shared-library apks. The version of the
           package to check for as an int.
+      user_id: (optional) only list packages belonging to the given user.
 
     Returns:
       True if the application is installed, False otherwise.
@@ -791,8 +793,11 @@ class DeviceUtils(object):
     if library_version is None:
       # `pm list packages` allows matching substrings, but we want exact matches
       # only.
-      matching_packages = self.RunShellCommand(
-          ['pm', 'list', 'packages', package], check_return=True)
+      cmd = ['pm', 'list', 'packages']
+      if user_id is not None:
+        cmd.extend(['--user', str(user_id)])
+      cmd.append(package)
+      matching_packages = self.RunShellCommand(cmd, check_return=True)
       desired_line = 'package:' + package
       found_package = desired_line in matching_packages
       if found_package:
@@ -840,18 +845,26 @@ class DeviceUtils(object):
     return False
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def GetApplicationPaths(self, package, timeout=None, retries=None):
+  def GetApplicationPaths(self,
+                          package,
+                          user_id=None,
+                          timeout=None,
+                          retries=None):
     """Get the paths of the installed apks on the device for the given package.
 
     Args:
       package: Name of the package.
+      user_id: (optional) Only check the given user.
 
     Returns:
       List of paths to the apks on the device for the given package.
     """
-    return self._GetApplicationPathsInternal(package)
+    return self._GetApplicationPathsInternal(package, user_id=user_id)
 
-  def _GetApplicationPathsInternal(self, package, skip_cache=False):
+  def _GetApplicationPathsInternal(self,
+                                   package,
+                                   user_id=None,
+                                   skip_cache=False):
     cached_result = self._cache['package_apk_paths'].get(package)
     if cached_result is not None and not skip_cache:
       if package in self._cache['package_apk_paths_to_verify']:
@@ -869,8 +882,11 @@ class DeviceUtils(object):
     # TODO(jbudorick): Check if this is fixed as new Android versions are
     # released to put an upper bound on this.
     should_check_return = (self.build_version_sdk < version_codes.LOLLIPOP)
-    output = self.RunShellCommand(['pm', 'path', package],
-                                  check_return=should_check_return)
+    cmd = ['pm', 'path']
+    if user_id is not None:
+      cmd.extend(['--user', str(user_id)])
+    cmd.append(package)
+    output = self.RunShellCommand(cmd, check_return=should_check_return)
     apks = []
     bad_output = False
     for line in output:
@@ -1909,7 +1925,7 @@ class DeviceUtils(object):
     cmd = ['am', 'startservice']
     if self.build_version_sdk >= version_codes.OREO:
       cmd[1] = 'start-service'
-    if user_id:
+    if user_id is not None:
       cmd.extend(['--user', str(user_id)])
     cmd.extend(intent_obj.am_args)
     for line in self.RunShellCommand(cmd, check_return=True):
@@ -1922,6 +1938,7 @@ class DeviceUtils(object):
                            finish=True,
                            raw=False,
                            extras=None,
+                           user_id=None,
                            timeout=None,
                            retries=None):
     if extras is None:
@@ -1934,6 +1951,8 @@ class DeviceUtils(object):
       cmd.append('-r')
     for k, v in extras.items():
       cmd.extend(['-e', str(k), str(v)])
+    if user_id is not None:
+      cmd.extend(['--user', str(user_id)])
     cmd.append(component)
 
     # Store the package name in a shell variable to help the command stay under
@@ -2056,6 +2075,7 @@ class DeviceUtils(object):
   def ClearApplicationState(self,
                             package,
                             permissions=None,
+                            user_id=None,
                             timeout=None,
                             retries=None,
                             wait_for_asynchronous_intent=False):
@@ -2064,6 +2084,7 @@ class DeviceUtils(object):
     Args:
       package: A string containing the name of the package to stop.
       permissions: List of permissions to set after clearing data.
+      user_id: (optional) Only check for the given user.
       timeout: timeout in seconds
       retries: number of retries
       wait_for_asynchronous_intent: Wait for the asynchronous MediaProvider
@@ -2096,8 +2117,12 @@ class DeviceUtils(object):
         # should work fine for our purposes.
         last_timestamp = '%s %s' % (split_timestamp[0], split_timestamp[1])
 
-      self.RunShellCommand(['pm', 'clear', package], check_return=True)
-      self.GrantPermissions(package, permissions)
+      cmd = ['pm', 'clear']
+      if user_id is not None:
+        cmd.extend(['--user', str(user_id)])
+      cmd.append(package)
+      self.RunShellCommand(cmd, check_return=True)
+      self.GrantPermissions(package, permissions, user_id=user_id)
 
       if wait_for_asynchronous_intent:
 
@@ -4123,7 +4148,12 @@ class DeviceUtils(object):
     self.adb.WaitForDevice()
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def GrantPermissions(self, package, permissions, timeout=None, retries=None):
+  def GrantPermissions(self,
+                       package,
+                       permissions,
+                       user_id=None,
+                       timeout=None,
+                       retries=None):
     if not permissions:
       return
 
@@ -4145,10 +4175,14 @@ class DeviceUtils(object):
         and 'android.permission.READ_EXTERNAL_STORAGE' not in permissions):
       permissions.add('android.permission.READ_EXTERNAL_STORAGE')
 
+    user_id_opt = ''
+    if user_id is not None:
+      user_id_opt = '--user %s' % user_id
+
     script_raw = [
         'p={package}',
         'for q in {permissions}',
-        'do pm grant "$p" "$q"',
+        'do pm grant {user_id_opt} "$p" "$q"',
         'echo "{sep}$q{sep}$?{sep}"',
         'done',
     ] + script_manage_ext_storage
@@ -4157,6 +4191,7 @@ class DeviceUtils(object):
         package=cmd_helper.SingleQuote(package),
         permissions=' '.join(
             cmd_helper.SingleQuote(p) for p in sorted(permissions)),
+        user_id_opt=user_id_opt,
         sep=_SHELL_OUTPUT_SEPARATOR)
 
     logger.info('Setting permissions for %s.', package)

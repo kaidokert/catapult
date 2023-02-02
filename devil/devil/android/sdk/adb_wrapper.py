@@ -1289,6 +1289,7 @@ class AdbWrapper(object):
               reinstall=False,
               sd_card=False,
               streaming=None,
+              user_id=None,
               timeout=DEFAULT_LONG_TIMEOUT,
               retries=DEFAULT_RETRIES,
               instant_app=False,
@@ -1305,6 +1306,7 @@ class AdbWrapper(object):
         If True, performs streaming install.
         If False, app is pushed to device and be installed from there.
         Note this option is not supported prior to adb version 1.0.40
+      user_id: (optional) Install under the given user.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
       instant_app (optional): Install the APK as an instant app
@@ -1338,6 +1340,8 @@ class AdbWrapper(object):
         cmd.append('--streaming')
       else:
         cmd.append('--no-streaming')
+    if user_id is not None:
+      cmd.extend(['--user', str(user_id)])
     cmd.append(apk_path)
     output = self._RunDeviceAdbCmd(cmd, timeout, retries)
     if 'Success' not in output:
@@ -1352,6 +1356,7 @@ class AdbWrapper(object):
                       allow_downgrade=False,
                       partial=False,
                       streaming=None,
+                      user_id=None,
                       timeout=DEFAULT_LONG_TIMEOUT,
                       retries=DEFAULT_RETRIES,
                       instant_app=False,
@@ -1369,6 +1374,7 @@ class AdbWrapper(object):
         If True, performs streaming install.
         If False, app is pushed to device and be installed from there.
         Note this option is not supported prior to adb version 1.0.40
+      user_id: (optional) Install under the given user.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
       instant_app (optional): Install the APK as an instant app
@@ -1412,6 +1418,8 @@ class AdbWrapper(object):
         cmd.append('--no-streaming')
     if partial:
       cmd.extend(('-p', partial))
+    if user_id is not None:
+      cmd.extend(['--user', str(user_id)])
     cmd.extend(apk_paths)
     output = self._RunDeviceAdbCmd(cmd, timeout, retries)
     if 'Success' not in output:
@@ -1421,6 +1429,7 @@ class AdbWrapper(object):
   def Uninstall(self,
                 package,
                 keep_data=False,
+                user_id=None,
                 timeout=DEFAULT_TIMEOUT,
                 retries=DEFAULT_RETRIES):
     """Remove the app |package| from the device.
@@ -1428,12 +1437,15 @@ class AdbWrapper(object):
     Args:
       package: The package to uninstall.
       keep_data: (optional) If set keep the data and cache directories.
+      user_id: (optional) Remove the app from the given user.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
     """
     cmd = ['uninstall']
     if keep_data:
       cmd.append('-k')
+    if user_id is not None:
+      cmd.extend(['--user', str(user_id)])
     cmd.append(package)
     output = self._RunDeviceAdbCmd(cmd, timeout, retries)
     if 'Failure' in output or 'Exception' in output:
