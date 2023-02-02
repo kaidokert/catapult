@@ -673,7 +673,7 @@ class DeviceUtils_GetUidForPackageTest(DeviceUtilsTest):
         self.call.device._GetDumpsysOutput(
             ['package', 'com.android.chrome'], 'userId='),
         ['']):
-      self.assertEqual(None, self.device.GetUidForPackage('com.android.chrome'))
+      self.assertFalse(self.device.GetUidForPackage('com.android.chrome'))
 
   def test_GetUidForPackage_fails(self):
     with self.assertCall(
@@ -682,6 +682,31 @@ class DeviceUtils_GetUidForPackageTest(DeviceUtilsTest):
         []):
       with self.assertRaises(device_errors.CommandFailedError):
         self.device.GetUidForPackage('com.android.chrome')
+
+
+class DeviceUtils_GetVersionNameForPackageTest(DeviceUtilsTest):
+  def test_GetVersionNameForPackage_Exists(self):
+    with self.assertCall(
+        self.call.device._GetDumpsysOutput(['package', 'com.android.chrome'],
+                                           'versionName='),
+        ['  versionName=110.0.5481.61']):
+      self.assertEqual(
+          '110.0.5481.61',
+          self.device.GetVersionNameForPackage('com.android.chrome'))
+
+  def test_GetVersionNameForPackage_notInstalled(self):
+    with self.assertCall(
+        self.call.device._GetDumpsysOutput(['package', 'com.android.chrome'],
+                                           'versionName='), ['']):
+      self.assertFalse(
+          self.device.GetVersionNameForPackage('com.android.chrome'))
+
+  def test_GetVersionNameForPackage_fails(self):
+    with self.assertCall(
+        self.call.device._GetDumpsysOutput(['package', 'com.android.chrome'],
+                                           'versionName='), []):
+      with self.assertRaises(device_errors.CommandFailedError):
+        self.device.GetVersionNameForPackage('com.android.chrome')
 
 
 class DeviceUtils_GetPackageArchitectureTest(DeviceUtilsTest):
