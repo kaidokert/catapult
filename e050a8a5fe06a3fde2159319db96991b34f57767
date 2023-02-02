@@ -16,6 +16,75 @@
       "message": "Hi Nate\n\nThis CL adds a method to get the version name of a package to the device_utils.py package. Please take a look.\n\nRegards\nRakib Hasan",
       "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53b7abd5_ddb22400",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3498,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-02-02T23:15:35Z",
+      "side": 1,
+      "message": "I think this may be a duplicate of the `GetApplicationVersion()` method defined on line 900 (https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/devil/devil/android/device_utils.py;l\u003d901;drc\u003dd07df39b4a2dbb6adfb357f5959e9a8ac5b3dfdb). Maybe we should keep this refactoring but just move the implementation into the already defined method.",
+      "range": {
+        "startLine": 3498,
+        "startChar": 6,
+        "endLine": 3498,
+        "endChar": 30
+      },
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f04a006_10ee1e7f",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-02-02T23:15:35Z",
+      "side": 1,
+      "message": "This should return `None` if the package is not installed.",
+      "range": {
+        "startLine": 676,
+        "startChar": 11,
+        "endLine": 676,
+        "endChar": 22
+      },
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80c8be25_9448f03d",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-02-02T23:15:35Z",
+      "side": 1,
+      "message": "This should return `None` if the package is not installed.",
+      "range": {
+        "startLine": 701,
+        "startChar": 11,
+        "endLine": 701,
+        "endChar": 22
+      },
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
