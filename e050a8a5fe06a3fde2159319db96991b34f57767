@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1455cf66_bbfb8c13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-02T22:35:59Z",
+      "side": 1,
+      "message": "Hi Nate\n\nThis CL adds a method to get the version name of a package to the device_utils.py package. Please take a look.\n\nRegards\nRakib Hasan",
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
