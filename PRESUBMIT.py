@@ -50,7 +50,7 @@ _EXCLUDED_PATHS = (
 
 
 _GITHUB_BUG_ID_RE = re.compile(r'#[1-9]\d*')
-_MONORAIL_BUG_ID_RE = re.compile(r'[1-9]\d*')
+_NUMERAL_BUG_ID_RE = re.compile(r'[1-9]\d*')
 _MONORAIL_PROJECT_NAMES = frozenset(
     {'chromium', 'v8', 'angleproject', 'skia', 'dawn'})
 
@@ -83,8 +83,13 @@ def CheckChangeLogBug(input_api, output_api):
                               'repository should be provided in the '
                               '"catapult:#NNNN" format.' % bug)
       catapult_bug_provided = True
+    elif project_name == 'b':
+      if not _NUMERAL_BUG_ID_RE.match(bug_id):
+        error_messages.append('Invalid bug "%s". Bugs in the Buganizer '
+                              'should be provided in the '
+                              '"b:NNNNNN" format.' % bug)
     elif project_name in _MONORAIL_PROJECT_NAMES:
-      if not _MONORAIL_BUG_ID_RE.match(bug_id):
+      if not _NUMERAL_BUG_ID_RE.match(bug_id):
         error_messages.append('Invalid bug "%s". Bugs in the Monorail %s '
                               'project should be provided in the '
                               '"%s:NNNNNN" format.' % (bug, project_name,
