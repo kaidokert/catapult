@@ -105,6 +105,12 @@ found in the LICENSE file.
           if (['bug_id', 'name', 'user'].includes(key)) {
             continue;
           }
+          if (['base_git_hash', 'exp_git_hash'].includes(key)) {
+            tuples.push({
+              key+'/commit_position',
+              value: job.arguments[key],
+            });
+          }
           if (job.arguments[key].startsWith('http')) {
               tuples.push({
                 key,
