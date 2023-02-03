@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7bb8535_ae179883",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3498,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-03T17:00:11Z",
+      "side": 1,
+      "message": "Thanks for pointing that out. I refactored the source code for GetApplicationVersion. Please take another look.",
+      "parentUuid": "53b7abd5_ddb22400",
+      "range": {
+        "startLine": 3498,
+        "startChar": 6,
+        "endLine": 3498,
+        "endChar": 30
+      },
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f04a006_10ee1e7f",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16de8616_2bd26bc7",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-03T17:00:11Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "3f04a006_10ee1e7f",
+      "range": {
+        "startLine": 676,
+        "startChar": 11,
+        "endLine": 676,
+        "endChar": 22
+      },
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80c8be25_9448f03d",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-02-02T23:15:35Z",
       "side": 1,
       "message": "This should return `None` if the package is not installed.",
+      "range": {
+        "startLine": 701,
+        "startChar": 11,
+        "endLine": 701,
+        "endChar": 22
+      },
+      "revId": "e050a8a5fe06a3fde2159319db96991b34f57767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4ec88c9_9318c034",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-02-03T17:00:11Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "80c8be25_9448f03d",
       "range": {
         "startLine": 701,
         "startChar": 11,
