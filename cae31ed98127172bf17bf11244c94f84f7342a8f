@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3defaaef_96e8106e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-03T00:04:14Z",
+      "side": 1,
+      "message": "Should be able to see the changes on https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/\n\nMy only concern is that if the batch ID gets reset this way if subsequent jobs would have no batch ID (but my understanding is that there\u0027s always a batch ID even if it\u0027s not visible on the UI)",
+      "revId": "cae31ed98127172bf17bf11244c94f84f7342a8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
