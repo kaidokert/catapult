@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a5a8b52_6f4de65e",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-03T23:05:41Z",
+      "side": 0,
+      "message": "will removing this somehow add a bunch of other benchmark/metrics? I presume everything outside of _METRIC_MAP will not get added.",
+      "revId": "74a4c08cf02a452493882eee0b8bd7327e0f14af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
