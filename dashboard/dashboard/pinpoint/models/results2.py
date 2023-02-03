@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import collections
 import logging
+import math
 import os
 import uuid
 import six
@@ -390,9 +391,6 @@ def _SaveJobToChromeHealthBigQuery(job):
   for h in _FetchHistograms(job):
     if "sampleValues" not in h.histogram:
       continue
-    if len(h.histogram["sampleValues"]) != 1:
-      # We don't support analysis of metrics with more than one sample.
-      continue
     rk = RowKey(h.metadata.change, h.metadata.attempt_number)
     if rk not in rows:
       rows[rk] = _PopulateMetadata(job, h)
@@ -420,7 +418,10 @@ def _GetEmptyMeasures():
 def _PopulateMetric(data, name, value):
   if name in _METRIC_MAP:
     loc = _METRIC_MAP[name]
-    data["measures"][loc[0]][loc[1]] = float(value)
+    if loc[0] == 'speedometer2':
+      data["measures"][loc[0]][loc[1]] = math.mean(float(value))
+    else:
+      data["measures"][loc[0]][loc[1]] = float(value)
 
   return data
 
