@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7fed9e_cd30575d",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-03T23:48:38Z",
+      "side": 1,
+      "message": "Done. Good catch, thanks.",
+      "parentUuid": "9429645e_75902fc4",
+      "revId": "2f763e2fa212245be79244dfb5ba89c1453d211e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a87c200_c7f90866",
@@ -41,6 +59,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4378c0d7_45db5444",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-03T23:48:38Z",
+      "side": 1,
+      "message": "Omg. Okay done.",
+      "parentUuid": "1a87c200_c7f90866",
+      "range": {
+        "startLine": 422,
+        "startChar": 41,
+        "endLine": 422,
+        "endChar": 50
+      },
+      "revId": "2f763e2fa212245be79244dfb5ba89c1453d211e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "910f5359_d151161d",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-02-03T23:14:00Z",
       "side": 1,
       "message": "Should we use data[\"measures\"][loc[0]][loc[1]] \u003d math.mean(float(value)) regardless of the metric? I think it may be also possible for other metric to have multiple values.",
+      "revId": "2f763e2fa212245be79244dfb5ba89c1453d211e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ad0df7_ba923c7d",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-03T23:48:38Z",
+      "side": 1,
+      "message": "We only want to average speedometer2. I think we want to maintain the tradition of blocking everything else with multiple values. I did make some edits to make it more elegant.",
+      "parentUuid": "910f5359_d151161d",
       "revId": "2f763e2fa212245be79244dfb5ba89c1453d211e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }

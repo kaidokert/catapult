@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7708329_eb4f6918",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-03T23:48:38Z",
+      "side": 1,
+      "message": "Moved John to reviewer for code owner\u0027s approval",
+      "revId": "6cd3631c6367766fa5968f755eeaef4453585291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
