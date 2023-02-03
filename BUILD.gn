@@ -32,6 +32,7 @@ group("telemetry_chrome_test_support") {
     "hooks/",
     "infra/",
     "netlog_viewer/",
+    "perf_bug_manager/",
     "systrace/",
     "trace_processor/",
     "web_page_replay_go/",
