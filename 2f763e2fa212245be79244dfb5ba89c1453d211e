@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a87c200_c7f90866",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-03T23:32:10Z",
+      "side": 1,
+      "message": "This function doesn\u0027t seem to exist (https://docs.python.org/3/library/math.html). There is a statistics.mean though (https://docs.python.org/3/library/statistics.html#statistics.mean). Since you\u0027re converting the values to float, statistics.fmean is supposedly faster.",
+      "range": {
+        "startLine": 422,
+        "startChar": 41,
+        "endLine": 422,
+        "endChar": 50
+      },
+      "revId": "2f763e2fa212245be79244dfb5ba89c1453d211e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "910f5359_d151161d",
         "filename": "dashboard/dashboard/pinpoint/models/results2.py",
         "patchSetId": 2
