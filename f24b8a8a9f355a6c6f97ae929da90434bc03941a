@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "f24b8a8a9f355a6c6f97ae929da90434bc03941a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b26794d_605e19de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-04T00:07:00Z",
+      "side": 1,
+      "message": "LGTM with nit",
+      "revId": "f24b8a8a9f355a6c6f97ae929da90434bc03941a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04083d5d_5242ccc9",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-04T00:07:00Z",
+      "side": 1,
+      "message": "A little confusing what \"_\" is. Might as well use None (which should should have been the default value for the function).",
+      "range": {
+        "startLine": 265,
+        "startChar": 64,
+        "endLine": 265,
+        "endChar": 68
+      },
+      "revId": "f24b8a8a9f355a6c6f97ae929da90434bc03941a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
