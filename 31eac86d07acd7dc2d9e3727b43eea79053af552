@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07c3a22_d0d1576e",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-02-04T00:11:32Z",
+      "side": 1,
+      "message": "If the len !\u003d 1 and is not speedometer2, will the data be saved to the big query table via _InsertBQRows?",
+      "revId": "31eac86d07acd7dc2d9e3727b43eea79053af552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
