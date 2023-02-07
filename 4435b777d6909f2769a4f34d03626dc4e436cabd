@@ -16,6 +16,46 @@
       "message": "Hi John. I did some refactoring to stop using the overridden_anomaly_config. I still have to add/modify tests, but would like to see if you approve of the new logic first. Thanks.",
       "revId": "4435b777d6909f2769a4f34d03626dc4e436cabd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0d9a495_2d4869b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-07T23:54:29Z",
+      "side": 1,
+      "message": "Overall looks good, except for one concern I have below.",
+      "revId": "4435b777d6909f2769a4f34d03626dc4e436cabd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd496616_aa32a300",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-07T23:54:29Z",
+      "side": 1,
+      "message": "The \"latest_alert\" we have here is actually a \"future\", which will be resolved to the real value by _FetchRowsByStat. In the original code, a new future is created for each call to _FetchRowsByStat, but now each future will be used twice. I\u0027m not sure if it is safe to do that. Could you please run some test to make sure it works correctly?\n\nAlternatively we can just remove the code that fetches ref_rows. We haven\u0027t been using that feature for years.",
+      "range": {
+        "startLine": 122,
+        "startChar": 52,
+        "endLine": 122,
+        "endChar": 64
+      },
+      "revId": "4435b777d6909f2769a4f34d03626dc4e436cabd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
