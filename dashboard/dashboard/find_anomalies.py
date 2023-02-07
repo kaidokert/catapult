@@ -21,7 +21,6 @@ from dashboard import find_change_points
 from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import anomaly
-from dashboard.models import anomaly_config
 from dashboard.models import graph_data
 from dashboard.models import histogram
 from dashboard.models import subscription
@@ -67,19 +66,14 @@ def _ProcessTest(test_key):
 
   test = yield test_key.get_async()
 
-  config = yield anomaly_config.GetAnomalyConfigDictAsync(test)
-  max_num_rows = config.get('max_window_size', DEFAULT_NUM_POINTS)
-  rows_by_stat = yield GetRowsToAnalyzeAsync(test, max_num_rows)
+  alerted_stats = yield _FindMonitoredStatsForTest(test)
 
-  ref_rows_by_stat = {}
-  ref_test = yield _CorrespondingRefTest(test_key)
-  if ref_test:
-    ref_rows_by_stat = yield GetRowsToAnalyzeAsync(ref_test, max_num_rows)
+  latest_alert_by_stat = dict(
+      (s, _FindLatestAlert(test, s)) for s in alerted_stats)
 
-  for s, rows in rows_by_stat.items():
-    if rows:
-      logging.info('Processing test: %s', test_key.id())
-      yield _ProcessTestStat(test, s, rows, ref_rows_by_stat.get(s))
+  for s in alerted_stats:
+    logging.info('Processing test: %s', test_key.id())
+    yield _ProcessTestStat(test, s, latest_alert_by_stat[s])
 
 
 def _EmailSheriff(sheriff, test_key, anomaly_key):
@@ -90,12 +84,7 @@ def _EmailSheriff(sheriff, test_key, anomaly_key):
 
 
 @ndb.tasklet
-def _ProcessTestStat(test, stat, rows, ref_rows):
-  # If there were no rows fetched, then there's nothing to analyze.
-  if not rows:
-    logging.error('No rows fetched for %s', test.test_path)
-    raise ndb.Return(None)
-
+def _ProcessTestStat(test, stat, latest_alert):
 
   # TODO(crbug/1158326): Use the data from the git-hosted anomaly configuration
   # instead of the provided config.
@@ -129,6 +118,15 @@ def _ProcessTestStat(test, stat, rows, ref_rows):
         subscription.AnomalyConfig()
     ]
     for config in [c.to_dict() for c in anomaly_configs]:
+      max_num_rows = config.get('max_window_size', DEFAULT_NUM_POINTS)
+      rows = yield _FetchRowsByStat(test_key, stat, latest_alert, max_num_rows)
+
+      ref_rows = {}
+      ref_test = yield _CorrespondingRefTest(test_key)
+      if ref_test:
+        ref_rows = yield _FetchRowsByStat(ref_test.key, stat, latest_alert,
+                                          max_num_rows)
+
       change_points = FindChangePointsForTest(rows, config)
       if ref_rows:
         ref_change_points = FindChangePointsForTest(ref_rows, config)
