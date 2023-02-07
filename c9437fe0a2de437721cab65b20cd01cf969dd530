@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e3f220_549e9f9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-07T19:36:15Z",
+      "side": 1,
+      "message": "The CL I\u0027m updating to: https://chromium-review.googlesource.com/c/catapult/+/4221265",
+      "revId": "c9437fe0a2de437721cab65b20cd01cf969dd530",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
