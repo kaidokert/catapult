@@ -16,6 +16,23 @@
       "message": "The CL I\u0027m updating to: https://chromium-review.googlesource.com/c/catapult/+/4221265",
       "revId": "c9437fe0a2de437721cab65b20cd01cf969dd530",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32374644_2f65ecf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-07T19:48:54Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "c9437fe0a2de437721cab65b20cd01cf969dd530",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
