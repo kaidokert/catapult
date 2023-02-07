@@ -144,7 +144,7 @@ def ProvisionDevices(devices,
   if output_device_denylist:
     with open(output_device_denylist, 'w') as f:
       json.dump(denylisted_devices, f)
-  if all(d in denylisted_devices for d in devices):
+  if all(str(d) in denylisted_devices for d in devices):
     raise device_errors.NoDevicesError
   return 0
 
