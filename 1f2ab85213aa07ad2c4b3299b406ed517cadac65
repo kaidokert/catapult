@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85495788_344030e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-08T01:21:50Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "1f2ab85213aa07ad2c4b3299b406ed517cadac65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33f3b97f_072bb83d",
+        "filename": "perf_bug_manager/app.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-08T01:21:50Z",
+      "side": 1,
+      "message": "Nit: missing a space",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "1f2ab85213aa07ad2c4b3299b406ed517cadac65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d9b5d5b_35032af0",
+        "filename": "perf_bug_manager/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-08T01:21:50Z",
+      "side": 1,
+      "message": "Hopefully we don\u0027t need to support Python 2 😊, so no more need for these.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "1f2ab85213aa07ad2c4b3299b406ed517cadac65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
