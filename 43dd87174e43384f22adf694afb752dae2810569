@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92aa877a_073de909",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-09T21:20:52Z",
+      "side": 1,
+      "message": "Thanks for reviewing!\nCL blocked on a failing tryjob, which is fixed in another CL.",
+      "revId": "43dd87174e43384f22adf694afb752dae2810569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
