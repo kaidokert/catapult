@@ -31,7 +31,7 @@ def main():
   if result.returncode != 0:
     sys.stderr.write(result.stdout)
   else:
-    open(args.csv_path, 'w').write(result.stdout)
+    open(args.csv_path, 'w').write(str(result.stdout))
   return result.returncode
 
 if __name__ == '__main__':
