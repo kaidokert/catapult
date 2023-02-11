@@ -2411,33 +2411,33 @@ class DeviceUtilsBroadcastIntentTest(DeviceUtilsTest):
 
 
 class DeviceUtilGetCurrentUserTest(DeviceUtilsTest):
-  def testGetCurrentUser_Nougat(self):
+  def testGetCurrentUser_Oreo(self):
     user_id = 10
     with self.assertCalls(
-        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '26'),
         (self.call.adb.Shell('am get-current-user'), str(user_id))):
       self.assertEqual(user_id, self.device.GetCurrentUser())
 
-  def testGetCurrentUser_PreNougat_SingleUser(self):
+  def testGetCurrentUser_PreOreo_SingleUser(self):
     user_id = 0
     with self.assertCalls(
-        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '23'),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '25'),
         (self.call.device._GetDumpsysOutput(
             ['activity'], 'mUserLru:'), ['  mUserLru: [%s]' % user_id])):
       self.assertEqual(user_id, self.device.GetCurrentUser())
 
-  def testGetCurrentUser_PreNougat_MultipleUsers(self):
+  def testGetCurrentUser_PreOreo_MultipleUsers(self):
     user_id = 10
     with self.assertCalls(
-        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '23'),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '25'),
         (self.call.device._GetDumpsysOutput(
             ['activity'], 'mUserLru:'), ['  mUserLru: [0, %s]' % user_id])):
       self.assertEqual(user_id, self.device.GetCurrentUser())
 
-  def testGetCurrentUser_PreNougat_Fails(self):
+  def testGetCurrentUser_PreOreo_Fails(self):
     user_id = 0
     with self.assertCalls(
-        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '23'),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '25'),
         (self.call.device._GetDumpsysOutput(['activity'], 'mUserLru:'), [])):
       with self.assertRaises(device_errors.CommandFailedError):
         self.assertEqual(user_id, self.device.GetCurrentUser())
