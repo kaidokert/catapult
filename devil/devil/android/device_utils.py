@@ -1969,9 +1969,9 @@ class DeviceUtils(object):
       CommandTimeoutError on timeout.
       DeviceUnreachableError on missing device.
     """
-    # Android older than Nougat does not support get-current-user.
+    # Android older than Oreo does not support get-current-user.
     # Use dumpsys instead.
-    if self.build_version_sdk < version_codes.NOUGAT:
+    if self.build_version_sdk < version_codes.OREO:
       return self._GetCurrentUserDumpsys()
     cmd = ['am', 'get-current-user']
     user_id = self.RunShellCommand(cmd, single_line=True, check_return=True)
