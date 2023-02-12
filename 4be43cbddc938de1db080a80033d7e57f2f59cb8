@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e821e8c_01c16e5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-02-12T04:42:44Z",
+      "side": 1,
+      "message": "get-current-user is supported by nougat.\n\nIt failed because the line 1977 in device_utils.py is expecting the shell command to return one line (because of `single_line\u003dTrue`). But in the given example, it returns two lines, i.e.\n\n```\n[\n  \u0027WARNING: linker: /system/lib64/libclang_rt.asan-aarch64-android.so: unused DT entry: type 0x70000001 arg 0x0\u0027,\n  \u00270\u0027\n]\n```\n\nThe right approach is to make it more tolerant to the error/warming message.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
