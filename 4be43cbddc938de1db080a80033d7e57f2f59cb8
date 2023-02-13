@@ -22,6 +22,30 @@
       },
       "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d398c2f_ca0f026f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1515867
+      },
+      "writtenOn": "2023-02-13T21:44:44Z",
+      "side": 1,
+      "message": "Thanks Haiyang to take a look the error! Do you know the root cause why this command is only causing the warning in Nougat? \n\nIf we really need this for Nougat(probably not necessary to get user id because all previous runs before were not broken without this), we have to add extra if condition here.",
+      "parentUuid": "1e821e8c_01c16e5e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
