@@ -46,6 +46,30 @@
       },
       "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d2a1d6_faacfc86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-02-13T22:18:00Z",
+      "side": 1,
+      "message": "I don\u0027t know why it prints warming on N. Android varies a lot on different versions.\n\nFor line 1977, `RunShellCommand` returns a list of str when `single_line` is false. We could just checks the last line and return the integer value of it.",
+      "parentUuid": "8d398c2f_ca0f026f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
