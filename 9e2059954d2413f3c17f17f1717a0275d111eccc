@@ -33,6 +33,24 @@
       "message": "LGTM. Thanks!",
       "revId": "9e2059954d2413f3c17f17f1717a0275d111eccc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "419ac972_aa46e2ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-13T17:25:02Z",
+      "side": 1,
+      "message": "Somehow the LGTM didn\u0027t register as CR+1. Could you please click the CR+1 button? Thanks.",
+      "parentUuid": "0f685229_c83f3e10",
+      "revId": "9e2059954d2413f3c17f17f1717a0275d111eccc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
