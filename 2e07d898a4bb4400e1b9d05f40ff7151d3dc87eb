@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d7cd8e3_5cd8c035",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1980,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-02-14T17:40:21Z",
+      "side": 1,
+      "message": "We don\u0027t need to add a if condition just for Nougat. Other versions could have a similar issue.",
+      "range": {
+        "startLine": 1978,
+        "startChar": 4,
+        "endLine": 1980,
+        "endChar": 23
+      },
+      "revId": "2e07d898a4bb4400e1b9d05f40ff7151d3dc87eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
