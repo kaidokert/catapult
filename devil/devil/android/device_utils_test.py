@@ -2415,6 +2415,14 @@ class DeviceUtilGetCurrentUserTest(DeviceUtilsTest):
     user_id = 10
     with self.assertCalls(
         (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.adb.Shell('am get-current-user'),
+         'warning msg\n' + str(user_id))):
+      self.assertEqual(user_id, self.device.GetCurrentUser())
+
+  def testGetCurrentUser_AfterNougat(self):
+    user_id = 10
+    with self.assertCalls(
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '26'),
         (self.call.adb.Shell('am get-current-user'), str(user_id))):
       self.assertEqual(user_id, self.device.GetCurrentUser())
 

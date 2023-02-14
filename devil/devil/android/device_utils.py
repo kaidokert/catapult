@@ -1971,9 +1971,14 @@ class DeviceUtils(object):
     """
     # Android older than Nougat does not support get-current-user.
     # Use dumpsys instead.
-    if self.build_version_sdk < version_codes.NOUGAT:
+    build_version_sdk = self.build_version_sdk
+    if build_version_sdk < version_codes.NOUGAT:
       return self._GetCurrentUserDumpsys()
     cmd = ['am', 'get-current-user']
+    if build_version_sdk in [version_codes.NOUGAT, version_codes.NOUGAT_MR1]:
+      # TODO(crbug/1413321): For Nougat, it returns a warning before the
+      # actual user id.
+      return int(self.RunShellCommand(cmd, check_return=True)[-1])
     user_id = self.RunShellCommand(cmd, single_line=True, check_return=True)
     return int(user_id)
 
