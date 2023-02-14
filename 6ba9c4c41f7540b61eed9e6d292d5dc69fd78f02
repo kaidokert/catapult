@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942ca6be_ddbf7c25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-14T00:39:39Z",
+      "side": 1,
+      "message": "LGTM with nit",
+      "revId": "6ba9c4c41f7540b61eed9e6d292d5dc69fd78f02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e46a5a31_aecce505",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-14T00:39:39Z",
+      "side": 1,
+      "message": "This is OK, but is getting repetitive. Suggest replacing these four conditions with one: configuration.startsWith(\u0027android-pixel6\u0027)",
+      "range": {
+        "startLine": 707,
+        "startChar": 0,
+        "endLine": 714,
+        "endChar": 73
+      },
+      "revId": "6ba9c4c41f7540b61eed9e6d292d5dc69fd78f02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
