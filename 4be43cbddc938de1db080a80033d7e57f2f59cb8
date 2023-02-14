@@ -70,6 +70,30 @@
       },
       "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0820774_ff902387",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1515867
+      },
+      "writtenOn": "2023-02-14T08:07:36Z",
+      "side": 1,
+      "message": "Yeah, this workaround should work. Thanks Haiyang!\n\nAdd if condition for doing so only on Nougat as it did not happen on any other version and it won\u0027t block any new warning in later version if something goes wrong.",
+      "parentUuid": "42d2a1d6_faacfc86",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "4be43cbddc938de1db080a80033d7e57f2f59cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
