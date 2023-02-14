@@ -468,6 +468,17 @@ found in the LICENSE file.
         return job !== null;
       },
 
+      // recommendedAttempts(benchmark) {
+      //   if (benchmark == null){
+      //     return 10;
+      //   } else if (benchmark == 'Speedometer2' || benchmark == 'JetStream2') {
+      //     return 30;
+      //   } else if (benchmark.startsWith('rendering.desktop') || benchmark.startsWith('rendering.mobile')) {
+      //     return 60;
+      //   }
+      //   return 10;
+      // },
+
       commitsListItems(commitsList) {
         if (!commitsList) {
           return [];
@@ -551,6 +562,15 @@ found in the LICENSE file.
 
       benchmarkChanged(benchmark) {
         this.benchmarkConfig = null;
+        // recommended iterations for press benchmarks
+        if (benchmark.toLowerCase() == 'speedometer2' || benchmark.toLowerCase() == 'jetstream2') {
+          this.initial_attempt_count = 30;
+        // MotionMark
+        } else if (benchmark.toLowerCase().startsWith('rendering')) {
+          this.initial_attempt_count = 60;
+        } else {
+          this.initial_attempt_count = 10;
+        }
       },
 
       commitsParams(job) {
