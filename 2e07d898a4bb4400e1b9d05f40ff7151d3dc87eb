@@ -22,6 +22,30 @@
       },
       "revId": "2e07d898a4bb4400e1b9d05f40ff7151d3dc87eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8679d4cf_c2e3abc7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1980,
+      "author": {
+        "id": 1515867
+      },
+      "writtenOn": "2023-02-14T18:42:51Z",
+      "side": 1,
+      "message": "Done.\n\nOh it failed on other API level as well? With single_line\u003dTrue, if it has warning, it should have failed already?\n\nIt may hide the warning message for new API level or new issue in the future, so I added one comment for reminder.",
+      "parentUuid": "2d7cd8e3_5cd8c035",
+      "range": {
+        "startLine": 1978,
+        "startChar": 4,
+        "endLine": 1980,
+        "endChar": 23
+      },
+      "revId": "2e07d898a4bb4400e1b9d05f40ff7151d3dc87eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
