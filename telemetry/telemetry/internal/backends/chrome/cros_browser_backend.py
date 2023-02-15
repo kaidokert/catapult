@@ -22,6 +22,9 @@ from telemetry.internal.results import artifact_logger
 from telemetry.internal.util import format_for_logging
 
 
+DEVTOOLS_ACTIVE_PORT_FILE = 'DevToolsActivePort'
+UI_DEVTOOLS_ACTIVE_PORT_FILE = 'UIDevToolsActivePort'
+
 class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def __init__(self, cros_platform_backend, browser_options,
                browser_directory, profile_directory, is_guest, env,
@@ -65,7 +68,7 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return None
 
   def _GetDevToolsActivePortPath(self):
-    return '/home/chronos/DevToolsActivePort'
+    return os.path.join(self.profile_directory, DEVTOOLS_ACTIVE_PORT_FILE)
 
   def _FindDevToolsPortAndTarget(self):
     devtools_file_path = self._GetDevToolsActivePortPath()
@@ -79,7 +82,8 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return devtools_port, browser_target
 
   def _FindUIDevtoolsPort(self):
-    devtools_file_path = '/home/chronos/UIDevToolsActivePort'
+    devtools_file_path = os.path.join(self.profile_directory,
+                                      UI_DEVTOOLS_ACTIVE_PORT_FILE)
     # GetFileContents may rise IOError or OSError, the caller will retry.
     lines = self._cri.GetFileContents(devtools_file_path).splitlines()
     if not lines:
