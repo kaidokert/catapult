@@ -258,6 +258,11 @@ _NO_STREAMING_DEVICE_LIST = [
     'flounder',  # Nexus 9
     'volantis',  # Another product name for Nexus 9
 ]
+# Emulators at some API levels are flakily timeout when using default streamed
+# install. API levels listed here will perform no_streaming app installation.
+_NO_STREAMING_EMULATOR_API_LEVELS = [
+    version_codes.NOUGAT,
+]
 
 _IMEI_RE = re.compile(r'  Device ID = (.+)$')
 # The following regex is used to match result parcels like:
@@ -1517,6 +1522,9 @@ class DeviceUtils(object):
       partial = package_name if len(apks_to_install) < len(apk_paths) else None
       streaming = None
       if self.product_name in _NO_STREAMING_DEVICE_LIST:
+        streaming = False
+      if (self.is_emulator
+          and self.build_version_sdk in _NO_STREAMING_EMULATOR_API_LEVELS):
         streaming = False
       logger.info('Installing package %s using APKs %s',
                   package_name, apks_to_install)
