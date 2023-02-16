@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c8142a_8f2fbba7",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-16T01:25:24Z",
+      "side": 1,
+      "message": "git cl --format, will make the space in between 2 lines here.",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c642ee29_59d65648",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-16T01:25:24Z",
+      "side": 1,
+      "message": "nit: label_dict \u003d {\n       \u0027job_id\u0027: job_id,\n       ...\n     }",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "502930b4_290ba15d",
+        "filename": "dashboard/requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-16T01:25:24Z",
+      "side": 1,
+      "message": "Edit .vpython3",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
