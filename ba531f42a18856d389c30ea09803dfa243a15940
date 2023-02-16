@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eda0f12d_7a9846a5",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-16T04:19:58Z",
+      "side": 1,
+      "message": "Thanks, done!",
+      "parentUuid": "a9c8142a_8f2fbba7",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c642ee29_59d65648",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-16T01:25:24Z",
       "side": 1,
       "message": "nit: label_dict \u003d {\n       \u0027job_id\u0027: job_id,\n       ...\n     }",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13bfccef_cc33a59a",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-16T04:19:58Z",
+      "side": 1,
+      "message": "Thanks, updated",
+      "parentUuid": "c642ee29_59d65648",
       "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -52,6 +88,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91b0a06f_d40bc547",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-16T04:19:58Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "18e79f64_cc38fb32",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b85af427_69f1d249",
@@ -69,6 +123,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd4d5bf7_da508fe0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-16T04:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b85af427_69f1d249",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "502930b4_290ba15d",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-02-16T01:25:24Z",
       "side": 1,
       "message": "Edit .vpython3",
+      "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "807b4cb4_7da3e5ef",
+        "filename": "dashboard/requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-16T04:19:58Z",
+      "side": 1,
+      "message": "done!",
+      "parentUuid": "502930b4_290ba15d",
       "revId": "ba531f42a18856d389c30ea09803dfa243a15940",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
