@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eb676a7_4a926d15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-02-16T17:28:20Z",
+      "side": 1,
+      "message": "PTAL - trying to update binary_dependencies for wpr \u0026 httparchive cannot pass presubmits",
+      "revId": "e7e038920b7333daee68354de0f5d96a3b67a219",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
