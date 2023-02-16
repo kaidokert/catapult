@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "315fd560_1abb6cb1",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-02-16T21:23:34Z",
+      "side": 1,
+      "message": "are you sure \u0027project\u0027 is always going to be a valid name for a repository?",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
