@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c634156_2d1ee3d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-02-16T21:28:58Z",
+      "side": 1,
+      "message": "there are some python test failures according to https://ci.chromium.org/ui/p/catapult/builders/try/Dashboard%20Linux%20Tryserver/3396/overview :\n \nTests that regressed (failed unexpectedly)\n  pinpoint.handlers.new_test.NewTest.testBrowserOverride\n  pinpoint.handlers.new_test.NewTest.testComparisonMagnitude\n  pinpoint.handlers.new_test.NewTest.testComparisonModeFunctional\n  pinpoint.handlers.new_test.NewTest.testComparisonModePerformance\n  pinpoint.handlers.new_test.NewTest.testComparisonModePerformance_ApplyPatch\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_ApplyBaseAndExperimentPatch\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_ApplyBaseAndExperimentPatchLegacy\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_ApplyPatch\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_BaseAndExpFlags\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_BaseNoPatchAndExperimentCommitPatch\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_MissingRequiredArgs\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_SupportDebugTrace\n  pinpoint.handlers.new_test.NewTest.testComparisonModeTry_SupportDebugTraceWithPatch\n  pinpoint.handlers.new_test.NewTest.testDifferentAttemptCount\n  pinpoint.handlers.new_test.NewTest.testEmptyBug\n  pinpoint.handlers.new_test.NewTest.testExtraArgsSupported\n  pinpoint.handlers.new_test.NewTest.testFallbackTarget\n  pinpoint.handlers.new_test.NewTest.testNewHasBatchId\n  pinpoint.handlers.new_test.NewTest.testNewHasBenchmarkArgs\n  pinpoint.handlers.new_test.NewTest.testNewPostsCreationMessage\n  pinpoint.handlers.new_test.NewTest.testNewUsingExecutionEngine\n  pinpoint.handlers.new_test.NewTest.testNoConfiguration\n  pinpoint.handlers.new_test.NewTest.testPin\n  pinpoint.handlers.new_test.NewTest.testPost\n  pinpoint.handlers.new_test.NewTest.testPriorityIsAString\n  pinpoint.handlers.new_test.NewTest.testQuests\n  pinpoint.handlers.new_test.NewTest.testQuestsString\n  pinpoint.handlers.new_test.NewTest.testUserFromAuth\n  pinpoint.handlers.new_test.NewTest.testUserFromParams\n  pinpoint.handlers.new_test.NewTest.testValidTags\n  pinpoint.handlers.new_test.NewTest.testVrQuest\n  pinpoint.handlers.new_test.NewTest.testWithPatch\n  pinpoint.models.quest.find_isolate_test.BuildTest.testBuildLifecycle\n  pinpoint.models.quest.find_isolate_test.BuildTest.testBuildNoBucket\n  pinpoint.models.quest.find_isolate_test.BuildTest.testBuildSucceedsAndIsolateIsCached",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "315fd560_1abb6cb1",
