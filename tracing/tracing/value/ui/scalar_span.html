@@ -534,28 +534,31 @@ Polymer({
     // the Neutral face is always a neutral color.
     Polymer.dom(this.$.content).classList.add(changeClass);
 
-    switch (this.significance) {
-      case tr.b.math.Statistics.Significance.DONT_CARE:
-        break;
+    // Ingore significance when the size of the change is less than 1%
+    // https://bugs.chromium.org/p/chromium/issues/detail?id=1416622
+    if (this.value >= 0.01 || this.value <= -0.01) {
+      switch (this.significance) {
+        case tr.b.math.Statistics.Significance.DONT_CARE:
+          break;
 
-      case tr.b.math.Statistics.Significance.INSIGNIFICANT:
-        if (changeClass !== 'same') title = 'insignificant ' + title;
-        this.$.insignificant.style.display = 'inline';
-        changeClass = 'same';
-        break;
+        case tr.b.math.Statistics.Significance.INSIGNIFICANT:
+          if (changeClass !== 'same') title = 'insignificant ' + title;
+          this.$.insignificant.style.display = 'inline';
+          changeClass = 'same';
+          break;
 
-      case tr.b.math.Statistics.Significance.SIGNIFICANT:
-        if (changeClass === 'same') {
-          throw new Error('How can no change be significant?');
-        }
-        this.$['significantly_' + changeClass].style.display = 'inline';
-        title = 'significant ' + title;
-        break;
+        case tr.b.math.Statistics.Significance.SIGNIFICANT:
+          if (changeClass === 'same') {
+            throw new Error('How can no change be significant?');
+          }
+          this.$['significantly_' + changeClass].style.display = 'inline';
+          title = 'significant ' + title;
+          break;
 
-      default:
-        throw new Error('Unknown significance ' + this.significance);
+        default:
+          throw new Error('Unknown significance ' + this.significance);
+      }
     }
-
     this.$.significance.title = title;
     this.$.content.title = title;
   },
