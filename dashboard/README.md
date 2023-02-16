@@ -9,6 +9,12 @@ and monitoring performance test results.
 -   [Project glossary](/dashboard/docs/glossary.md)
 -   [Pages and endpoints](/dashboard/docs/pages-and-endpoints.md)
 
+## Running a local development server
+
+You can't.  You have to push your change to a staging appengine instance.
+This situation due to issues caused by the python2 to python3 migration.
+
+
 ## Code Structure
 
 All dashboard code lives in the `dashboard/` subdirectory, with the endpoints
