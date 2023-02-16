@@ -1515,7 +1515,7 @@ class DeviceUtils(object):
       self._cache['package_apk_paths'].pop(package_name, 0)
       self._cache['package_apk_checksums'].pop(package_name, 0)
       partial = package_name if len(apks_to_install) < len(apk_paths) else None
-      streaming = None
+      streaming = False
       if self.product_name in _NO_STREAMING_DEVICE_LIST:
         streaming = False
       logger.info('Installing package %s using APKs %s',
