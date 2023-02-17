@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97fbf10a_b610c282",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-17T04:23:19Z",
+      "side": 1,
+      "message": "The restarting logic is subjective. How many changes does a user have to make to the job configuration before it\u0027s considered a \"different\" job? \n\nFor example, if a user modifies the story or git hashes, the default attempt count will stay the same as the restarting job. In most cases, I think this logic is fine, but if you can think of a case that would be unintuitive for a user, please let me know.",
+      "revId": "d77ed3629ad236d4606d04f8bd6692bee33d257d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
