@@ -19,6 +19,10 @@ from dashboard.pinpoint import test
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_status_metric',
+            mock.MagicMock())
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_run_time_metric',
+            mock.MagicMock())
 class RefreshJobsTest(test.TestCase):
 
   def setUp(self):
@@ -105,6 +109,10 @@ class RefreshJobsTest(test.TestCase):
     self.assertEqual(mock_schedule.call_count, 0)
     self.assertEqual(mock_fail.call_count, 1)
 
+  @mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_status_metric',
+              mock.MagicMock())
+  @mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_run_time_metric',
+              mock.MagicMock())
   def testGet_OverRetryLimit(self):
     j1 = job_module.Job.New((), ())
     j1.task = '123'

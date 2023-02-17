@@ -148,6 +148,10 @@ class JobTestOddBots(test.TestCase):
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_status_metric',
+            mock.MagicMock())
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_run_time_metric',
+            mock.MagicMock())
 class RetryTest(test.TestCase):
 
   def testStarted_RecoverableError_BacksOff(self):
@@ -199,6 +203,10 @@ class RetryTest(test.TestCase):
 @mock.patch('dashboard.common.utils.ServiceAccountHttp', mock.MagicMock())
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_status_metric',
+            mock.MagicMock())
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_run_time_metric',
+            mock.MagicMock())
 class BugCommentTest(test.TestCase):
 
   def setUp(self):
