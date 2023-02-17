@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa7ac72d_c78ed0d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-17T18:50:39Z",
+      "side": 1,
+      "message": "Thanks for the info. I believe there\u0027s 1h cache in pinpoint as of now, we are considering making it 1d for less builds. In this case, the chance of difference in chromium builds would be low. Forcing an non-chromium build to pick chromium HEAD is another issue here. I feel the best order is this CL, making HEAD cache longer, then forcing non-chromium build to build, better to check if chromium \u003d\u003d HEAD, but if not, force a build.",
+      "parentUuid": "5f36ff3b_c42d1f6d",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "315fd560_1abb6cb1",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
