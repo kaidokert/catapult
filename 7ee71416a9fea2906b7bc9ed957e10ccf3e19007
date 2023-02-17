@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43b0ea1_2ca6e172",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2023-02-17T06:14:50Z",
+      "side": 0,
+      "message": "So it does sound like that http.header.Value return a reference, not a copy of the slice.\n\nPer the http.Header.Values document https://pkg.go.dev/net/http#Header.Values:\nValues returns all values associated with the given key. It is case insensitive; textproto.CanonicalMIMEHeaderKey is used to canonicalize the provided key. To use non-canonical keys, access the map directly. The returned slice is not a copy.\n\nso your unit test seems to confirm the expected behavior. that is nice",
+      "range": {
+        "startLine": 303,
+        "startChar": 1,
+        "endLine": 303,
+        "endChar": 10
+      },
+      "revId": "7ee71416a9fea2906b7bc9ed957e10ccf3e19007",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
