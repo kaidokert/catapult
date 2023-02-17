@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75e0689c_cb3973e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-17T07:12:25Z",
+      "side": 1,
+      "message": "Yes, https://funing-dot-pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/14083d6f000000. Need to change traffic back to my instance for re-running.\n\nI changed the build recipes, for other repos (i.e. not v8, like chromium/src in the example above), it checks out out to the HEADs. At the isolate uploading step, it sets key to be v8@hash with builder info. \n\nCustomer scenario is allowing v8 try/bisect jobs without DEPS change on chromium.",
+      "parentUuid": "d3f50055_73954e25",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "315fd560_1abb6cb1",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
