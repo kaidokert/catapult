@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a80c8939_f5d33838",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-17T18:56:55Z",
+      "side": 1,
+      "message": "To the best of my knowledge, the build cache is 58 days (https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/isolate.py;l\u003d22).",
+      "parentUuid": "fa7ac72d_c78ed0d1",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "315fd560_1abb6cb1",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
