@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3f50055_73954e25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-17T06:20:47Z",
+      "side": 1,
+      "message": "Have you tried this on staging? I\u0027m trying to understand how this would work. If I select \"v8\" as the project, the builder would check out v8 source code. It needs to build Chrome in order to run benchmarks. But I\u0027m not sure how it can build Chrome with only v8 checked out.\n\nWhat is the customer scenario this intends to be used for?",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "315fd560_1abb6cb1",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
