@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a950baad_184c61de",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/attempt-count-help.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-02-17T23:07:28Z",
+      "side": 1,
+      "message": "nit: 2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "db84e4250960bfa1ea3d7510a136c1df9cd8203d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4968f53_6bbe6acf",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/attempt-count-help.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-02-17T23:07:28Z",
+      "side": 1,
+      "message": "should this mention what those default count settings are, since below it enumerates the devices and benchmarks that have these special defaults anyways?",
+      "range": {
+        "startLine": 22,
+        "startChar": 26,
+        "endLine": 22,
+        "endChar": 72
+      },
+      "revId": "db84e4250960bfa1ea3d7510a136c1df9cd8203d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28936886_1a8f7bde",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-02-17T23:07:28Z",
+      "side": 1,
+      "message": "Maybe add a link to https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1416374 so future readers know at a glance why this is here (rather than them having to use git blame etc for context).",
+      "revId": "db84e4250960bfa1ea3d7510a136c1df9cd8203d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
