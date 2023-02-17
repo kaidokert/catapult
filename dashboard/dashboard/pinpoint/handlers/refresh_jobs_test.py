@@ -19,6 +19,10 @@ from dashboard.pinpoint import test
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_status_metric',
+            mock.MagicMock())
+@mock.patch('dashboard.common.cloud_metric.publish_pinpoint_job_run_time_metric',
+            mock.MagicMock())
 class RefreshJobsTest(test.TestCase):
 
   def setUp(self):
