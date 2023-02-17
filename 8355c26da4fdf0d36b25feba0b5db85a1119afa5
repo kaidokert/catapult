@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f36ff3b_c42d1f6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-17T18:32:31Z",
+      "side": 1,
+      "message": "Thanks for the example. I now see how the build works. The problem with this approach is Chromium is sync\u0027ed to HEAD, which is a moving target. If the builders happen to be busy, the start times for control build and treatment build can be many minutes apart, and the HEAD could have moved in between. Any perf changes could be caused by movement of HEAD instead of the v8 differences.\n\nIn addition, Pinpoint caches builds. If one arm is cached but the other arm requires a fresh build, they could be using chromium HEADs that are days apart.\n\nTo make this feature reliable, Pinpoint needs to pick a fixed chromium revision (e.g., HEAD when the job is created) and pass its git hash to the builder.",
+      "parentUuid": "75e0689c_cb3973e7",
+      "revId": "8355c26da4fdf0d36b25feba0b5db85a1119afa5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "315fd560_1abb6cb1",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
