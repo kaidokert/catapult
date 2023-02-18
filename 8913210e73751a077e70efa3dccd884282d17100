@@ -70,6 +70,30 @@
       },
       "revId": "8913210e73751a077e70efa3dccd884282d17100",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf58543_06d248ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-18T01:49:54Z",
+      "side": 1,
+      "message": "I don\u0027t quite get it. base/exp hash/cp is recomputed when there\u0027s a change in corresponding textfield, and the autosuggested value is retrieved by /pinpoint/commit (note that it needs at least 6 alphadigits, commit position of v8 now is ~80000). Chromium and v8 are if you put HEAD or 6 alphadigits in.",
+      "parentUuid": "be529637_2748785f",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 79
+      },
+      "revId": "8913210e73751a077e70efa3dccd884282d17100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
