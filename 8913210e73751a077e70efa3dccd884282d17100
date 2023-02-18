@@ -22,6 +22,30 @@
       },
       "revId": "8913210e73751a077e70efa3dccd884282d17100",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc2e7cd9_1240f6af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-18T01:20:24Z",
+      "side": 1,
+      "message": "The project (repo) should come before the git hash/commit positions. Change here is on backend, shall I create another CL for frontend, including description changes?",
+      "parentUuid": "487c4f7b_fb8bf529",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 79
+      },
+      "revId": "8913210e73751a077e70efa3dccd884282d17100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
