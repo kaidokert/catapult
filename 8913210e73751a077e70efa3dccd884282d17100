@@ -46,6 +46,30 @@
       },
       "revId": "8913210e73751a077e70efa3dccd884282d17100",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be529637_2748785f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-18T01:31:52Z",
+      "side": 1,
+      "message": "Now an event is triggered when the base/exp values are changed. Instead of updating the position, I think we should simply let the same even triggered when the repo value is changed.",
+      "parentUuid": "cc2e7cd9_1240f6af",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 79
+      },
+      "revId": "8913210e73751a077e70efa3dccd884282d17100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
