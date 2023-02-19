@@ -118,6 +118,30 @@
       },
       "revId": "8913210e73751a077e70efa3dccd884282d17100",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25294b0e_c99a131e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-19T04:38:53Z",
+      "side": 1,
+      "message": "Noted, I will resolve this and the UI (repo first then git hash/commit positions) in another frontend CL.",
+      "parentUuid": "d9192412_a71ee85d",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 79
+      },
+      "revId": "8913210e73751a077e70efa3dccd884282d17100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
