@@ -94,6 +94,30 @@
       },
       "revId": "8913210e73751a077e70efa3dccd884282d17100",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9192412_a71ee85d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-19T01:38:46Z",
+      "side": 1,
+      "message": "In this scenario:\n 1. click the new (+) button\n 2. update the \u0027monorail project\u0027 to \u0027v8\u0027\n 3. update the base hash to some valid hash in v8, such as \u00275ac85cdf\u0027.\n\nThen the commit info will be loaded.\n\nThe same commit info should be loaded as well when steps of #2 and #3 are reverted.",
+      "parentUuid": "9cf58543_06d248ba",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 79
+      },
+      "revId": "8913210e73751a077e70efa3dccd884282d17100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
