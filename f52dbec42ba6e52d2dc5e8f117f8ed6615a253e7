@@ -16,6 +16,69 @@
       "message": "This corresponds to proposed actions #2 and #3 from the [design doc](https://docs.google.com/document/d/1jyE9L9fg_IiSCevYBSYPZ4vb5uFQd64_kJDF67s3bws).",
       "revId": "f52dbec42ba6e52d2dc5e8f117f8ed6615a253e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1339a3ab_dfaf445f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-02-20T09:44:13Z",
+      "side": 1,
+      "message": "lgtm % comments",
+      "revId": "f52dbec42ba6e52d2dc5e8f117f8ed6615a253e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a7507d4_dd788e31",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-02-20T09:44:13Z",
+      "side": 1,
+      "message": "Missing \u0027V8.GC_BACKGROUND_FULL_ARRAY_BUFFER_SWEEP\u0027",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 28
+      },
+      "revId": "f52dbec42ba6e52d2dc5e8f117f8ed6615a253e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab5f8d09_eef325e6",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-02-20T09:44:13Z",
+      "side": 1,
+      "message": "Scavenger is young",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 49
+      },
+      "revId": "f52dbec42ba6e52d2dc5e8f117f8ed6615a253e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
