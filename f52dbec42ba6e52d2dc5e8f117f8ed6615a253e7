@@ -79,6 +79,29 @@
       },
       "revId": "f52dbec42ba6e52d2dc5e8f117f8ed6615a253e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ea0485c_dcc4c73d",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2023-02-20T09:46:54Z",
+      "side": 1,
+      "message": "I think we should start moving towards Mark-Sweep terminology for the young generation GC. There\u0027s really no \"compact\" phase.",
+      "range": {
+        "startLine": 355,
+        "startChar": 22,
+        "endLine": 355,
+        "endChar": 35
+      },
+      "revId": "f52dbec42ba6e52d2dc5e8f117f8ed6615a253e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
