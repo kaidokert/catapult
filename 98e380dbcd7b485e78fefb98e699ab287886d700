@@ -47,6 +47,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2263bac_af5b800a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-02-21T18:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4944f4a4_898700ac",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 7
+      },
+      "revId": "98e380dbcd7b485e78fefb98e699ab287886d700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84958f2_f32e94bd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-02-21T18:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cad08afa_c5189c46",
+      "range": {
+        "startLine": 255,
+        "startChar": 20,
+        "endLine": 255,
+        "endChar": 28
+      },
+      "revId": "98e380dbcd7b485e78fefb98e699ab287886d700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19fb128d_468bb2bb",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-21T17:59:35Z",
       "side": 1,
       "message": "It\u0027s just N that behaves poorly? Not eg \"N and below\" ?",
+      "range": {
+        "startLine": 1525,
+        "startChar": 37,
+        "endLine": 1525,
+        "endChar": 73
+      },
+      "revId": "98e380dbcd7b485e78fefb98e699ab287886d700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9272ff3e_c1560c13",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-02-21T18:51:13Z",
+      "side": 1,
+      "message": "Tried on M and it errors out when using the streaming option:\n```\nadb: Attempting to use streaming install on unsupported device\n```\nSo looks like streaming is first available in Nougat.",
+      "parentUuid": "19fb128d_468bb2bb",
       "range": {
         "startLine": 1525,
         "startChar": 37,
