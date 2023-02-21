@@ -22,6 +22,30 @@
       },
       "revId": "9790af17e6482c0ab6700409bbe5dcd5b31f3900",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b46473b5_c1aec322",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-02-21T18:14:39Z",
+      "side": 1,
+      "message": "No, as `Close` and `Open` do some things under the hood besides start/stop the server, such as making sure that the forwarder is started/stopped using the correct ports. The potential stability issue this fixes is more related to the forwarder than the server, anyways (the server would continue to function, but the forwarder connection would be broken so the DUT wouldn\u0027t be able to contact it), so we definitely want to be restarting that.",
+      "parentUuid": "2b82c98f_bad1ad04",
+      "range": {
+        "startLine": 178,
+        "startChar": 6,
+        "endLine": 179,
+        "endChar": 52
+      },
+      "revId": "9790af17e6482c0ab6700409bbe5dcd5b31f3900",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
