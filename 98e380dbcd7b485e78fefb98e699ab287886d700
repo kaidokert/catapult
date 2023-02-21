@@ -140,6 +140,30 @@
       },
       "revId": "98e380dbcd7b485e78fefb98e699ab287886d700",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "626e5d0b_056c2ff4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-02-21T19:22:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9272ff3e_c1560c13",
+      "range": {
+        "startLine": 1525,
+        "startChar": 37,
+        "endLine": 1525,
+        "endChar": 73
+      },
+      "revId": "98e380dbcd7b485e78fefb98e699ab287886d700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
