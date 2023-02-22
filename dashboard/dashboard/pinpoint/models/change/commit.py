@@ -19,6 +19,7 @@ except ImportError:
   # This is a work around to fix the discrepency on file tree in tests.
   from depot_tools import gclient_eval
 
+from inspect import signature
 from google.appengine.ext import deferred
 
 from dashboard import pinpoint_request
@@ -250,6 +251,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     # Translate repository if it's a URL.
     if repository.startswith('https://'):
       repository = repository_module.RepositoryName(repository)
+    cache_miss = True
+    key = repository + '@' + git_hash
 
     try:
       # If they send in something like HEAD, resolve to a hash.
@@ -258,7 +261,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
       try:
         # If it's already in the hash, then we've resolved this recently, and we
         # don't go resolving the data from the gitiles service.
-        result = commit_cache.Get(git_hash)
+        result = commit_cache.Get(key)
+        cache_miss = False
       except KeyError:
         try:
           # Try with commit position
@@ -276,8 +280,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     # IF this is something like HEAD, cache this for a short time so that we
     # avoid hammering gitiles.
     if not gitiles_service.IsHash(data['git_hash']):
-      commit.CacheCommitInfo(result, memcache_timeout=30 * 60)
-
+      if cache_miss:
+        commit.CacheCommitInfo(result, key=key, memcache_timeout=60 * 60 * 24)
     return commit
 
   @classmethod
@@ -312,7 +316,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
                                                self.git_hash)
       return self.CacheCommitInfo(commit_info)
 
-  def CacheCommitInfo(self, commit_info, memcache_timeout=None):
+  def CacheCommitInfo(self, commit_info, key=None, memcache_timeout=None):
+    cache_key = key or self.id_string
     url = self.repository_url + '/+/' + commit_info['commit']
     author = commit_info['author']['email']
 
@@ -321,8 +326,11 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     subject = commit_info['message'].split('\n', 1)[0]
     message = commit_info['message']
 
+    memcache_timeout = memcache_timeout or signature(
+        commit_cache.Put).parameters['memcache_timeout'].default
+
     commit_cache.Put(
-        self.id_string,
+        cache_key,
         url,
         author,
         created,
