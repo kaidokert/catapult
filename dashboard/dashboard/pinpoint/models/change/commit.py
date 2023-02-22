@@ -19,6 +19,7 @@ except ImportError:
   # This is a work around to fix the discrepency on file tree in tests.
   from depot_tools import gclient_eval
 
+from inspect import signature
 from google.appengine.ext import deferred
 
 from dashboard import pinpoint_request
@@ -276,8 +277,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     # IF this is something like HEAD, cache this for a short time so that we
     # avoid hammering gitiles.
     if not gitiles_service.IsHash(data['git_hash']):
-      commit.CacheCommitInfo(result, memcache_timeout=30 * 60)
-
+      key = commit.repository + '@' + data['git_hash']
+      commit.CacheCommitInfo(result, key=key, memcache_timeout=60 * 60 * 24)
     return commit
 
   @classmethod
@@ -312,7 +313,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
                                                self.git_hash)
       return self.CacheCommitInfo(commit_info)
 
-  def CacheCommitInfo(self, commit_info, memcache_timeout=None):
+  def CacheCommitInfo(self, commit_info, key=None, memcache_timeout=None):
+    cache_key = key or self.id_string
     url = self.repository_url + '/+/' + commit_info['commit']
     author = commit_info['author']['email']
 
@@ -321,8 +323,11 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     subject = commit_info['message'].split('\n', 1)[0]
     message = commit_info['message']
 
+    memcache_timeout = memcache_timeout or signature(
+        commit_cache.Put).parameters['memcache_timeout'].default
+
     commit_cache.Put(
-        self.id_string,
+        cache_key,
         url,
         author,
         created,
