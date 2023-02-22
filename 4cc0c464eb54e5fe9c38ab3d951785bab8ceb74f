@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c45102b4_0c0c5024",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-22T22:29:32Z",
+      "side": 1,
+      "message": "After \u0027@HEAD\u0027 is saved in cache, if any end user use \u0027HEAD\u0027 within 24 hours, cache_hit will be true and the timeout will be refreshed. It is likely that the \u0027@HEAD\u0027 will stay long.",
+      "range": {
+        "startLine": 282,
+        "startChar": 56,
+        "endLine": 282,
+        "endChar": 65
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba73f510_dfe3fe2c",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 6
@@ -112,6 +135,29 @@
       "range": {
         "startLine": 328,
         "startChar": 43,
+        "endLine": 329,
+        "endChar": 64
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b31f53d8_061c3591",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-22T22:29:32Z",
+      "side": 1,
+      "message": "why do we need to manually add the default here, while it will be used in commit_cache.Put() is called with memcache_timeout\u003dNone?",
+      "range": {
+        "startLine": 329,
+        "startChar": 57,
         "endLine": 329,
         "endChar": 64
       },
