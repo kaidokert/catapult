@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe43fe5d_5bed1637",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T22:53:17Z",
+      "side": 1,
+      "message": "I was wrong here. Fixed",
+      "parentUuid": "81225dba_f6bcff22",
+      "range": {
+        "startLine": 282,
+        "startChar": 56,
+        "endLine": 282,
+        "endChar": 65
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba73f510_dfe3fe2c",
