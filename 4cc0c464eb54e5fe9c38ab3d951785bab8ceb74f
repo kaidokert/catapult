@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "425513df_d9aad58c",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T19:30:38Z",
+      "side": 1,
+      "message": "Actually it was not working before (See John\u0027s comment #1). There\u0027s no perfect value but let users use the same revision the same day looks ok.",
+      "parentUuid": "ba73f510_dfe3fe2c",
+      "range": {
+        "startLine": 283,
+        "startChar": 63,
+        "endLine": 283,
+        "endChar": 75
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2eab2bbb_cb20e7e8",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-22T19:25:57Z",
       "side": 1,
       "message": "what\u0027s this default value?",
+      "range": {
+        "startLine": 328,
+        "startChar": 43,
+        "endLine": 329,
+        "endChar": 64
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3885e663_467dd6d0",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T19:30:38Z",
+      "side": 1,
+      "message": "https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/change/commit_cache.py;drc\u003d39a3806d4972290e58f3f3f948ce9295c008239c;l\u003d11",
+      "parentUuid": "2eab2bbb_cb20e7e8",
       "range": {
         "startLine": 328,
         "startChar": 43,
