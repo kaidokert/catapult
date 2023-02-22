@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91793e34_1e12995f",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T19:05:32Z",
+      "side": 1,
+      "message": "Good catch! For this piece of code, it never worked before. Fixed.",
+      "parentUuid": "5746eb37_5dea144e",
+      "range": {
+        "startLine": 261,
+        "startChar": 17,
+        "endLine": 261,
+        "endChar": 43
+      },
+      "revId": "e2b31539721b969dbadca29792c39f604f8ad0fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47252308_bddf8ad0",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-22T18:11:50Z",
       "side": 1,
       "message": "The cached result has something like \"HEAD\" as result[\u0027commit\u0027]. When the cached result is used, who will be translating HEAD into actual hash, and how do we ensure that is done consistently?",
+      "range": {
+        "startLine": 280,
+        "startChar": 6,
+        "endLine": 280,
+        "endChar": 41
+      },
+      "revId": "e2b31539721b969dbadca29792c39f604f8ad0fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec0b7e10_e882c7a1",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T19:05:32Z",
+      "side": 1,
+      "message": "I messed up here, fixed.",
+      "parentUuid": "47252308_bddf8ad0",
       "range": {
         "startLine": 280,
         "startChar": 6,
