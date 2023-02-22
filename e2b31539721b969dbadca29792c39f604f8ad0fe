@@ -16,6 +16,52 @@
       "message": "PTAL",
       "revId": "e2b31539721b969dbadca29792c39f604f8ad0fe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5746eb37_5dea144e",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-22T18:11:50Z",
+      "side": 1,
+      "message": "How does this work? commit_cache uses repository@hash as the key, but here we\u0027re looking up using just the hash. What am I missing?",
+      "range": {
+        "startLine": 261,
+        "startChar": 17,
+        "endLine": 261,
+        "endChar": 43
+      },
+      "revId": "e2b31539721b969dbadca29792c39f604f8ad0fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47252308_bddf8ad0",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-22T18:11:50Z",
+      "side": 1,
+      "message": "The cached result has something like \"HEAD\" as result[\u0027commit\u0027]. When the cached result is used, who will be translating HEAD into actual hash, and how do we ensure that is done consistently?",
+      "range": {
+        "startLine": 280,
+        "startChar": 6,
+        "endLine": 280,
+        "endChar": 41
+      },
+      "revId": "e2b31539721b969dbadca29792c39f604f8ad0fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
