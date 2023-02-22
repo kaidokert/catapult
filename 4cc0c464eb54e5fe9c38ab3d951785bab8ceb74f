@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81225dba_f6bcff22",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T22:34:25Z",
+      "side": 1,
+      "message": "There\u0027s a not outside the parenthesis, if true it will not execute.",
+      "parentUuid": "c45102b4_0c0c5024",
+      "range": {
+        "startLine": 282,
+        "startChar": 56,
+        "endLine": 282,
+        "endChar": 65
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba73f510_dfe3fe2c",
@@ -155,6 +179,30 @@
       "writtenOn": "2023-02-22T22:29:32Z",
       "side": 1,
       "message": "why do we need to manually add the default here, while it will be used in commit_cache.Put() is called with memcache_timeout\u003dNone?",
+      "range": {
+        "startLine": 329,
+        "startChar": 57,
+        "endLine": 329,
+        "endChar": 64
+      },
+      "revId": "4cc0c464eb54e5fe9c38ab3d951785bab8ceb74f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05e7f6de_b0b1937e",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-22T22:34:25Z",
+      "side": 1,
+      "message": "commit_cache.Put() has a default memcache_timeout, I believe that 30 days timeout should be used elsewhere rather than got overwritten by the caller here.",
+      "parentUuid": "b31f53d8_061c3591",
       "range": {
         "startLine": 329,
         "startChar": 57,
