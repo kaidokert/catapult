@@ -33,6 +33,8 @@ DIMENSIONS = [
 
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):

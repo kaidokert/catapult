@@ -17,6 +17,8 @@ from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import bisection_test_util
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluatorTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):

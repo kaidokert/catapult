@@ -19,6 +19,8 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint import test
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class MigrateAuthTest(test.TestCase):
 
   def setUp(self):
@@ -53,6 +55,8 @@ class MigrateAuthTest(test.TestCase):
     self.Get('/api/migrate', status=403)
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class MigrateTest(MigrateAuthTest):
 
   def setUp(self):

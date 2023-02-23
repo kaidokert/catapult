@@ -32,6 +32,8 @@ def UpdateTask(job, task_id, new_state, _):
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class PopulateTests(test.TestCase):
 
   def setUp(self):
@@ -240,6 +242,8 @@ def TransitionEvaluator(job, task, event, accumulator):
   return None
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluateTest(test.TestCase):
 
   def setUp(self):

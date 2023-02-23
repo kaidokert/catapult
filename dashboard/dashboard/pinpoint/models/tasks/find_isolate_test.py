@@ -45,6 +45,8 @@ class FindIsolateEvaluatorBase(test.TestCase):
 
 @mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
 @mock.patch('dashboard.services.buildbucket_service.Put')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
   def testInitiate_FoundIsolate(self, *_):
@@ -217,6 +219,8 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
 
 @mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
 
   def setUp(self):

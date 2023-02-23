@@ -27,6 +27,8 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 @mock.patch('dashboard.services.isolate.Retrieve')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):

@@ -402,6 +402,7 @@ class Job(ndb.Model):
     # API.
     job.state.PropagateJob(job)
     job.put()
+    job._PrintJobMetrics("created")
     return job
 
   def PostCreationUpdate(self):
