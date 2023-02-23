@@ -34,6 +34,24 @@
       "parentUuid": "7a2281e1_b791956c",
       "revId": "c824231b87da83398946863dcb7c0b69b6d016d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "728f5c95_5e9cbd7f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-23T20:07:02Z",
+      "side": 0,
+      "message": "Acknowledged. I disabled the failing test on Mac so I think we\u0027re good to go.",
+      "parentUuid": "14d0f558_14bb1126",
+      "revId": "c824231b87da83398946863dcb7c0b69b6d016d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
