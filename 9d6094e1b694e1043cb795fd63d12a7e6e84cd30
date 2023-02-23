@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cc2cae_dbbd659b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-23T17:01:47Z",
+      "side": 1,
+      "message": "The live traffic is determined by whether the WPR mode is turned off or not, so I assume it is safe to always return args during live traffic.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/platform/network_controller_backend.py;drc\u003db2cd6477b94b91a0b94b3430a50ba3bce650c5b6;l\u003d81",
+      "revId": "9d6094e1b694e1043cb795fd63d12a7e6e84cd30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
