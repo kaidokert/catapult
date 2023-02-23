@@ -43,8 +43,6 @@ class RefreshJobsTest(test.TestCase):
     job.put()
     self.assertTrue(job.running)
     self.Get('/cron/refresh-jobs')
-    with self.PatchEnviron('/_ah/queue/deferred'):
-      self.ExecuteDeferredTasks('default')
     job = job_module.JobFromId(job.job_id)
 
   def testGetWithQueuedJobs(self):
@@ -61,8 +59,7 @@ class RefreshJobsTest(test.TestCase):
     self.Get('/cron/refresh-jobs')
     running_job = job_module.JobFromId(running_job.job_id)
     queued_job = job_module.JobFromId(queued_job.job_id)
-    with self.PatchEnviron('/_ah/queue/deferred'):
-      self.ExecuteDeferredTasks('default')
+
     self.assertFalse(queued_job.running)
     self.assertTrue(running_job.running)
 
@@ -76,8 +73,7 @@ class RefreshJobsTest(test.TestCase):
     cancelled_job.put()
     self.assertFalse(cancelled_job.running)
     self.Get('/cron/refresh-jobs')
-    with self.PatchEnviron('/_ah/queue/deferred'):
-      self.ExecuteDeferredTasks('default')
+
     cancelled_job = job_module.JobFromId(cancelled_job.job_id)
     self.assertTrue(cancelled_job.cancelled)
     self.assertFalse(cancelled_job.running)
@@ -102,9 +98,6 @@ class RefreshJobsTest(test.TestCase):
                         {'retries': refresh_jobs._JOB_MAX_RETRIES})
 
     self.Get('/cron/refresh-jobs')
-
-    with self.PatchEnviron('/_ah/queue/deferred'):
-      self.ExecuteDeferredTasks('default')
 
     self.assertEqual(mock_schedule.call_count, 0)
     self.assertEqual(mock_fail.call_count, 1)
@@ -136,8 +129,6 @@ class RefreshJobsTest(test.TestCase):
 
     self.Get('/cron/refresh-jobs')
 
-    with self.PatchEnviron('/_ah/queue/deferred'):
-      self.ExecuteDeferredTasks('default')
     self.assertFalse(j1._Schedule.called)
     j2 = job_module.JobFromId(j2.job_id)
     self.assertEqual(j2.status, 'Failed')
