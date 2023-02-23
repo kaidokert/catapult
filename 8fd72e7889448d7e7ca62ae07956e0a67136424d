@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "add83452_3bb45590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-23T23:26:28Z",
+      "side": 1,
+      "message": "Wenbin: Are you familiar with yapf?",
+      "revId": "8fd72e7889448d7e7ca62ae07956e0a67136424d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
