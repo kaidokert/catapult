@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "2f5e7f6d4b5532fbd6d982a518426822ce8f61d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1fffa5_495e7015",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-23T22:52:11Z",
+      "side": 1,
+      "message": "you need to add mock to unit test, for example:\n\n@mock.patch(\u0027dashboard.common.cloud_metric.PublishPinpointJobStatusMetric\u0027,\n            mock.MagicMock())",
+      "revId": "2f5e7f6d4b5532fbd6d982a518426822ce8f61d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
