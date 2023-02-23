@@ -16,6 +16,24 @@
       "message": "Looks like the point of the proxy servers during live runs is to provide SPKI support. Maybe this CL is not needed since it would remove some functionality.",
       "revId": "c824231b87da83398946863dcb7c0b69b6d016d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d0f558_14bb1126",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-02-23T17:41:34Z",
+      "side": 0,
+      "message": "It\u0027s unlikely we\u0027ll need SPKI support while using live site. SPKI allows WPR to impersonate other web sites, because we don\u0027t have private keys of recorded web sites and normally Chrome would reject any contents served by WPR. But live sites should have the right encryption key in the first place, so we should be OK.\n\nBut if it\u0027s too much trouble (there are some additional test failures), probably not worth spending too much time on this CL.",
+      "parentUuid": "7a2281e1_b791956c",
+      "revId": "c824231b87da83398946863dcb7c0b69b6d016d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
