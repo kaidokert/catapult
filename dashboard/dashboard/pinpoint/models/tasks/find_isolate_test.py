@@ -45,8 +45,12 @@ class FindIsolateEvaluatorBase(test.TestCase):
 
 @mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
 @mock.patch('dashboard.services.buildbucket_service.Put')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testInitiate_FoundIsolate(self, *_):
     # Seed the isolate for this change.
     change = change_module.Change(
@@ -75,6 +79,8 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
                 target_task='find_isolate_chromium@7c7e90be',
                 payload={}), find_isolate.Evaluator(self.job)))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testInitiate_ScheduleBuild(self, put, _):
     # We then need to make sure that the buildbucket put was called.
     put.return_value = {'build': {'id': '345982437987234'}}
@@ -104,6 +110,8 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
                 payload={}), find_isolate.Evaluator(self.job)))
     self.assertEqual(1, put.call_count)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_BuildSuccessful(self, put, get_build_status):
     # First we're going to initiate so we have a build scheduled.
     put.return_value = {
@@ -217,6 +225,8 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
 
 @mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
 
   def setUp(self):
@@ -250,6 +260,8 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
                   payload={}), find_isolate.Evaluator(self.job)))
       self.assertEqual(1, put.call_count)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_BuildFailed_HardFailure(self, get_build_status):
     get_build_status.return_value = {
         'build': {
@@ -309,6 +321,8 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
                 type='unimportant', target_task=None, payload={}),
             find_isolate.Serializer()))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_BuildFailed_Cancelled(self, get_build_status):
     get_build_status.return_value = {
         'build': {
@@ -349,6 +363,8 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
             find_isolate.Evaluator(self.job)))
     self.assertEqual(1, get_build_status.call_count)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_MissingIsolates_Server(self, get_build_status):
     json = """
     {
@@ -393,6 +409,8 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
             find_isolate.Evaluator(self.job)))
     self.assertEqual(1, get_build_status.call_count)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_MissingIsolates_Revision(self, get_build_status):
     json = """
     {
@@ -437,6 +455,8 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
             find_isolate.Evaluator(self.job)))
     self.assertEqual(1, get_build_status.call_count)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_MissingIsolates_Hashes(self, get_build_status):
     json = """
     {
@@ -480,6 +500,8 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
             find_isolate.Evaluator(self.job)))
     self.assertEqual(1, get_build_status.call_count)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testUpdate_MissingIsolates_InvalidJson(self, get_build_status):
     json = '{ invalid }'
     get_build_status.return_value = {

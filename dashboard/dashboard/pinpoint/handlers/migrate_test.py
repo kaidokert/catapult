@@ -19,6 +19,8 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint import test
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class MigrateAuthTest(test.TestCase):
 
   def setUp(self):
@@ -41,11 +43,15 @@ class MigrateAuthTest(test.TestCase):
     self.SetCurrentClientIdOAuth(client_id)
     self.SetCurrentUser(email)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testGet_ExternalUser_Fails(self):
     self._SetupCredentials(testing_common.EXTERNAL_USER, None, False, False)
 
     self.Get('/api/migrate', status=403)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testGet_InternalUser_NotAdmin_Fails(self):
     self._SetupCredentials(testing_common.INTERNAL_USER,
                            api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0], True, False)
@@ -53,6 +59,8 @@ class MigrateAuthTest(test.TestCase):
     self.Get('/api/migrate', status=403)
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class MigrateTest(MigrateAuthTest):
 
   def setUp(self):
@@ -62,10 +70,14 @@ class MigrateTest(MigrateAuthTest):
     self._SetupCredentials(testing_common.INTERNAL_USER,
                            api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0], True, True)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testGet_NoMigration(self):
     response = self.Get('/api/migrate', status=200)
     self.assertEqual(response.normal_body, b'{}')
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testGet_MigrationInProgress(self):
     expected = {
         'count': 0,
@@ -80,6 +92,8 @@ class MigrateTest(MigrateAuthTest):
     response = self.Get('/api/migrate', status=200)
     self.assertEqual(response.normal_body, json.dumps(expected).encode('utf-8'))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testPost_EndToEnd(self):
     expected = {
         'count': 0,

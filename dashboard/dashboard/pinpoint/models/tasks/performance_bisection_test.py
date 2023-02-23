@@ -17,6 +17,8 @@ from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.tasks import bisection_test_util
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluatorTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):
@@ -29,6 +31,8 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
   def testPopulateWorks(self):
     self.PopulateSimpleBisectionGraph(self.job)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_NoReproduction(self):
     self.PopulateSimpleBisectionGraph(self.job)
     task_module.Evaluate(
@@ -44,6 +48,8 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
     logging.info('Results: %s', evaluate_result['performance_bisection'])
     self.assertEqual(evaluate_result['performance_bisection']['culprits'], [])
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_SpeculateBisection(self):
     self.PopulateSimpleBisectionGraph(self.job)
     task_module.Evaluate(
@@ -89,6 +95,8 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
         }).AsDict()
     ]])
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_NeedToRefineAttempts(self):
     self.PopulateSimpleBisectionGraph(self.job)
     task_module.Evaluate(
@@ -143,6 +151,8 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
     self.assertEqual(evaluate_result['performance_bisection']['culprits'],
                      [mock.ANY, mock.ANY, mock.ANY])
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailure_DependenciesFailed(self):
     self.PopulateSimpleBisectionGraph(self.job)
     task_module.Evaluate(
@@ -158,6 +168,8 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
                      'failed')
     self.assertNotEqual([], evaluate_result['performance_bisection']['errors'])
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailure_DependenciesNoResults(self):
     self.PopulateSimpleBisectionGraph(self.job)
     task_module.Evaluate(

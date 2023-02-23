@@ -75,6 +75,8 @@ def _FakeTasklet(*args):
   del args
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class UpdateDashboardStatsTest(test.TestCase):
 
   def setUp(self):

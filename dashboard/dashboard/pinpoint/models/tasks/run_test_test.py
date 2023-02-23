@@ -33,6 +33,8 @@ DIMENSIONS = [
 
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
@@ -522,6 +524,8 @@ AttributeError: 'Namespace' object has no attribute 'benchmark_names'"""
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class ValidatorTest(test.TestCase):
 
   def setUp(self):

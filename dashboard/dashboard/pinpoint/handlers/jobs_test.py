@@ -20,6 +20,8 @@ _SERVICE_ACCOUNT_EMAIL = 'some-service-account@example.com'
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class JobsTest(test.TestCase):
 
   @mock.patch.object(utils,

@@ -90,6 +90,8 @@ def FakeCommitAsDict(commit_self):
                    mock.MagicMock(return_value='http://foo'))
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class JobTest(test.TestCase):
 
   @mock.patch.object(
@@ -139,6 +141,8 @@ class JobTestNoBots(test.TestCase):
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=['a', 'b', 'c', 'd', 'e']))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class JobTestOddBots(test.TestCase):
 
   def testOddBots(self):
@@ -1031,6 +1035,8 @@ class BugCommentTest(test.TestCase):
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class GetImprovementDirectionTest(testing_common.TestCase):
 
   def testGetImprovementDirection(self):

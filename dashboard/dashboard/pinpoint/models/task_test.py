@@ -32,6 +32,8 @@ def UpdateTask(job, task_id, new_state, _):
 
 @mock.patch('dashboard.services.swarming.GetAliveBotsByDimensions',
             mock.MagicMock(return_value=["a"]))
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class PopulateTests(test.TestCase):
 
   def setUp(self):
@@ -240,6 +242,8 @@ def TransitionEvaluator(job, task, event, accumulator):
   return None
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluateTest(test.TestCase):
 
   def setUp(self):
@@ -264,6 +268,8 @@ class EvaluateTest(test.TestCase):
                 task_module.Dependency(from_='task_2', to='task_1'),
             ]))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateStateTransitionProgressions(self):
     self.assertDictEqual(
         {
@@ -312,6 +318,8 @@ class EvaluateTest(test.TestCase):
                 'new_state': 'completed'
             }, functools.partial(TransitionEvaluator, self.job)))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateInvalidTransition(self):
     with self.assertRaises(task_module.InvalidTransition):
       self.assertDictEqual(
@@ -331,6 +339,8 @@ class EvaluateTest(test.TestCase):
           'new_state': 'ongoing'
       }, functools.partial(TransitionEvaluator, self.job))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateInvalidAmendment_ExistingTask(self):
     with self.assertRaises(task_module.InvalidAmendment):
 
@@ -354,6 +364,8 @@ class EvaluateTest(test.TestCase):
       task_module.Evaluate(self.job, {'target': 'task_0'},
                            AddExistingTaskEvaluator)
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateInvalidAmendment_BrokenDependency(self):
     with self.assertRaises(task_module.InvalidAmendment):
 

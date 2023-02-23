@@ -27,6 +27,8 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 @mock.patch('dashboard.services.isolate.Retrieve')
+@mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+            mock.MagicMock())
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
@@ -91,6 +93,8 @@ class EvaluatorTest(test.TestCase):
                 mode=mode,
             )))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_WithData(self, isolate_retrieve):
     # Seed the response to the call to the isolate service.
     histogram = histogram_module.Histogram('some_chart', 'count')
@@ -151,6 +155,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_HistogramStat(self, isolate_retrieve):
     histogram = histogram_module.Histogram('some_chart', 'count')
     histogram.AddSample(0)
@@ -206,6 +212,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_HistogramStoryNeedsEscape(self, isolate_retrieve):
     histogram = histogram_module.Histogram('some_chart', 'count')
     histogram.AddSample(0)
@@ -260,6 +268,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_MultipleHistograms(self, isolate_retrieve):
 
     def CreateHistogram(name):
@@ -321,6 +331,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_HistogramsTraceUrls(self, isolate_retrieve):
     hist = histogram_module.Histogram('some_chart', 'count')
     hist.AddSample(0)
@@ -386,6 +398,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_HistogramSkipRefTraceUrls(self, isolate_retrieve):
     hist = histogram_module.Histogram('some_chart', 'count')
     hist.AddSample(0)
@@ -445,6 +459,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_HistogramSummary(self, isolate_retrieve):
     samples = []
     hists = []
@@ -515,6 +531,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailure_HistogramNoSamples(self, isolate_retrieve):
     histogram = histogram_module.Histogram('some_chart', 'count')
     histograms = histogram_set.HistogramSet([histogram])
@@ -569,6 +587,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailure_EmptyHistogramSet(self, isolate_retrieve):
     isolate_retrieve.side_effect = itertools.chain(
         *itertools.repeat([('{"files": {"some_benchmark/perf_results.json": '
@@ -617,6 +637,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailure_HistogramNoValues(self, isolate_retrieve):
     isolate_retrieve.side_effect = itertools.chain(*itertools.repeat(
         [('{"files": {"some_benchmark/perf_results.json": '
@@ -668,6 +690,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateSuccess_GraphJson(self, isolate_retrieve):
     isolate_retrieve.side_effect = itertools.chain(*itertools.repeat(
         [('{"files": {"some_benchmark/perf_results.json": '
@@ -717,6 +741,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailure_GraphJsonMissingFile(self, isolate_retrieve):
     isolate_retrieve.return_value = '{"files": {}}'
     self.PopulateTaskGraph(
@@ -762,6 +788,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFail_GraphJsonMissingChart(self, isolate_retrieve):
     isolate_retrieve.side_effect = itertools.chain(
         *itertools.repeat([('{"files": {"some_benchmark/perf_results.json": '
@@ -810,6 +838,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFail_GraphJsonMissingTrace(self, isolate_retrieve):
     isolate_retrieve.side_effect = itertools.chain(*itertools.repeat(
         [('{"files": {"some_benchmark/perf_results.json": '
@@ -862,6 +892,8 @@ class EvaluatorTest(test.TestCase):
             event_module.Event(type='select', target_task=None, payload={}),
             evaluators.Selector(task_type='read_value')))
 
+  @mock.patch('dashboard.common.cloud_metric.PublishPinpointJobStatusMetric',
+              mock.MagicMock())
   def testEvaluateFailedDependency(self, *_):
     self.PopulateTaskGraph(
         benchmark='some_benchmark',
