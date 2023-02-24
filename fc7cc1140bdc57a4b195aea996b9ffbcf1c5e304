@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "970430b8_aa4d9cf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-24T19:44:48Z",
+      "side": 1,
+      "message": "Currently we have something like \u0027budget\u0027 to calculate whether we should schedule a new job based on how many jobs are running:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/scheduler.py;l\u003d31\nUpdating the speculation level may not help to have more jobs running concurrently unless we update the \u0027cost\u0027 of the jobs. (I didn\u0027t dig deep into how the budget works and please correct me if i\u0027m wrong.)\n\nIdeally we should have a way to choose different speculation levels for different bots, depending on how many bots we have.",
+      "revId": "fc7cc1140bdc57a4b195aea996b9ffbcf1c5e304",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
