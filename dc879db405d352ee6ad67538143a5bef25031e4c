@@ -52,6 +52,24 @@
       "parentUuid": "ba0e623e_1df1ed54",
       "revId": "dc879db405d352ee6ad67538143a5bef25031e4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d87c0bb1_48742636",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-24T22:44:25Z",
+      "side": 0,
+      "message": "Okay that makes sense. Still, I think line 273 will always overwrite line 269. Should there be separate conditions for these cases or just remove line 269?",
+      "parentUuid": "26784f70_749227db",
+      "revId": "dc879db405d352ee6ad67538143a5bef25031e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
