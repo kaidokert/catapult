@@ -33,6 +33,24 @@
       "message": "qq: what\u0027s the logic for reducing the cache to 10 hours?",
       "revId": "b6085965871858505909e5dc26004d4b42113fa6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3d445a6_7222da29",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-24T22:26:41Z",
+      "side": 1,
+      "message": "Building time is around 1h, should be much greater than 1h for reuse. I am having the bug here but 24h-caching makes the bug I made yesterday still ails me today. I am trying with a value 2 hrs \u003c x \u003c 16 hrs.",
+      "parentUuid": "8b44d722_cb50dc18",
+      "revId": "b6085965871858505909e5dc26004d4b42113fa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
