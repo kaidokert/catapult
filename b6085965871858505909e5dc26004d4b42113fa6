@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9affed0_295b4542",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-24T22:23:24Z",
+      "side": 1,
+      "message": "quick question but looks good otherwise",
+      "revId": "b6085965871858505909e5dc26004d4b42113fa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b44d722_cb50dc18",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-24T22:23:24Z",
+      "side": 1,
+      "message": "qq: what\u0027s the logic for reducing the cache to 10 hours?",
+      "revId": "b6085965871858505909e5dc26004d4b42113fa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
