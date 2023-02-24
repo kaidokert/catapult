@@ -51,6 +51,24 @@
       "parentUuid": "8b44d722_cb50dc18",
       "revId": "b6085965871858505909e5dc26004d4b42113fa6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9183b1_133f5050",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-02-24T22:28:59Z",
+      "side": 1,
+      "message": "Do you plan to reset the cache to 24 hours after you\u0027ve confirmed this works?",
+      "parentUuid": "b3d445a6_7222da29",
+      "revId": "b6085965871858505909e5dc26004d4b42113fa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
