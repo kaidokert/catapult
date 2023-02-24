@@ -16,6 +16,23 @@
       "message": "Wenbin: Are you familiar with yapf?",
       "revId": "8fd72e7889448d7e7ca62ae07956e0a67136424d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d796c2c0_590dbb08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-24T18:45:59Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "8fd72e7889448d7e7ca62ae07956e0a67136424d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
