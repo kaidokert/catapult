@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bbb9793_9877bf6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-24T19:01:52Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "e70cdb518884345b3229f559ac5bcdee723d97f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f3e7d8_9565809f",
@@ -38,6 +55,30 @@
       "side": 1,
       "message": "I believe a simple get call defaults to None if the key does not exist (scenario covered in the unit test). Directly indexing with trace[\u0027units\u0027] would throw KeyError. Ref https://docs.python.org/3/library/stdtypes.html#dict.get",
       "parentUuid": "16f3e7d8_9565809f",
+      "range": {
+        "startLine": 416,
+        "startChar": 10,
+        "endLine": 416,
+        "endChar": 28
+      },
+      "revId": "e70cdb518884345b3229f559ac5bcdee723d97f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df61ad8b_095faf6d",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-24T19:01:52Z",
+      "side": 1,
+      "message": "You\u0027re right, didn\u0027t notice that before.",
+      "parentUuid": "b9646807_9d1839ff",
       "range": {
         "startLine": 416,
         "startChar": 10,
