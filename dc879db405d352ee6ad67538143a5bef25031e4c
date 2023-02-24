@@ -70,6 +70,24 @@
       "parentUuid": "26784f70_749227db",
       "revId": "dc879db405d352ee6ad67538143a5bef25031e4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f43e2ce_be99449d",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-24T22:48:41Z",
+      "side": 0,
+      "message": "Yes it will. Line 269 is a trying to transform commit position to hash, then use git_hash to do the next step. On line 248, that hash could be values like \u0027HEAD\u0027, \u0027HEAD~1\u0027, 1234567, \u0027abcd\u0027*10, in any format.",
+      "parentUuid": "d87c0bb1_48742636",
+      "revId": "dc879db405d352ee6ad67538143a5bef25031e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
