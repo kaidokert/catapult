@@ -34,6 +34,24 @@
       "parentUuid": "ba0e623e_1df1ed54",
       "revId": "dc879db405d352ee6ad67538143a5bef25031e4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26784f70_749227db",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-02-24T22:29:16Z",
+      "side": 0,
+      "message": "The bug is introduced because the result in try block is actually very different from the one in except block. The result from try block doesn\u0027t have a commit value, if it\u0027s from commit field it must run into except.",
+      "parentUuid": "ba0e623e_1df1ed54",
+      "revId": "dc879db405d352ee6ad67538143a5bef25031e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
