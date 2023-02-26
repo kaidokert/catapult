@@ -48,6 +48,8 @@ _CONFIGURATION_ARGUMENTS = {
 }
 
 
+@mock.patch('dashboard.common.cloud_metric.PublishTSCloudMetric',
+            mock.MagicMock())
 class _NewTest(test.TestCase):
 
   def setUp(self):
