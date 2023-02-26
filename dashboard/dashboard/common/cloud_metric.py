@@ -4,7 +4,9 @@
 
 from __future__ import absolute_import
 
+import logging
 import time
+from google.appengine.api import app_identity
 from google.cloud import monitoring_v3
 
 METRIC_TYPE_PREFIX = "custom.googleapis.com/"
@@ -16,6 +18,9 @@ DEFAULT_TASK_ID = "task_id"
 JOB_ID = "job_id"
 JOB_TYPE = "job_type"
 JOB_STATUS = "job_status"
+API_METRIC_TYPE = "api/metrics"
+API_NAME = "api_name"
+REQUEST_STATUS = "request_status"
 
 
 def PublishPinpointJobStatusMetric(stage,
@@ -85,3 +90,50 @@ def PublishTSCloudMetric(service_name,
   })
   series.points = [point]
   client.create_time_series(name=project_name, time_series=[series])
+
+
+class APIMetricLogger:
+
+  def __init__(self, service_name, api_name):
+    self._service_name = service_name
+    self._api_name = api_name
+    self._start = None
+    self.seconds = 0
+
+  def _Now(self):
+    return time.time()
+
+  def __enter__(self):
+    self._start = self._Now()
+    label_dict = {API_NAME: self._api_name, REQUEST_STATUS: "started"}
+    PublishTSCloudMetric(self._service_name, API_METRIC_TYPE, label_dict,
+                         app_identity.get_application_id())
+
+  def __exit__(self, type, value, traceback):
+    if type is None:
+      # run succeed
+      self.seconds = self._Now() - self._start
+      logging.info('%s:%s=%f', self._service_name, self._api_name, self.seconds)
+      label_dict = {REQUEST_STATUS: "completed"}
+      PublishTSCloudMetric(self._service_name, API_METRIC_TYPE, label_dict,
+                           app_identity.get_application_id(), self.seconds)
+    else:
+      # has exception
+      label_dict = {API_NAME: self._api_name, REQUEST_STATUS: "failed"}
+      PublishTSCloudMetric(self._service_name, API_METRIC_TYPE, label_dict,
+                           app_identity.get_application_id())
+      # throw out the exception
+      return False
+
+
+def APIMetric(label):
+
+  def Decorator(wrapped):
+
+    def Wrapper(*a, **kw):
+      with APIMetricLogger(label):
+        return wrapped(*a, **kw)
+
+    return Wrapper
+
+  return Decorator
