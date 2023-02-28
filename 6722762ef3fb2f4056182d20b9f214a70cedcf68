@@ -141,6 +141,30 @@
       },
       "revId": "6722762ef3fb2f4056182d20b9f214a70cedcf68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b45a6e46_b98982b6",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-02-28T23:41:48Z",
+      "side": 1,
+      "message": "nit: It is possible that the same url can both GET and POST calls. E.g.:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/handlers/isolate.py;l\u003d78\n\nIf we want to differentiate this, we may need to add another dimension like \u0027HTTP_METHOD\u0027 in the wrapper.",
+      "parentUuid": "390668fd_c7ca2f5a",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 47
+      },
+      "revId": "6722762ef3fb2f4056182d20b9f214a70cedcf68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
