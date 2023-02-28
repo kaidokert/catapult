@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9485b92a_5768b3e9",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-28T18:46:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "531acde5_5e82a8db",
+      "range": {
+        "startLine": 122,
+        "startChar": 62,
+        "endLine": 122,
+        "endChar": 74
+      },
+      "revId": "6722762ef3fb2f4056182d20b9f214a70cedcf68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92c4928c_c48b5e82",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "that make sense, I have deleted those prefix.",
       "parentUuid": "92c4928c_c48b5e82",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 47
+      },
+      "revId": "6722762ef3fb2f4056182d20b9f214a70cedcf68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390668fd_c7ca2f5a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-02-28T18:46:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "85c34534_c2f9a993",
       "range": {
         "startLine": 30,
         "startChar": 37,
