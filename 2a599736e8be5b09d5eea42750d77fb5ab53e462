@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52619f33_c0373603",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-02-28T19:57:20Z",
+      "side": 1,
+      "message": "Hi John. If you recall I was working on a non-hacky solution: https://chromium-review.googlesource.com/c/catapult/+/4225747. However, it\u0027s taken a lot of effort to refactor it properly plus adding tests. Think it\u0027s better to submit this quick fix for now.",
+      "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
