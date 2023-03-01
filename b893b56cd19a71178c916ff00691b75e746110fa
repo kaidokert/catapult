@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709cc236_5df28082",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-01T06:49:14Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "b893b56cd19a71178c916ff00691b75e746110fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "685d37cb_39d14925",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-01T06:49:14Z",
+      "side": 1,
+      "message": "nit: update the arg name to avoid confusion.",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "b893b56cd19a71178c916ff00691b75e746110fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39254de_7d54ff4b",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-01T06:49:14Z",
+      "side": 1,
+      "message": "nit: we should add _ before the function name if it is internal.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "b893b56cd19a71178c916ff00691b75e746110fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
