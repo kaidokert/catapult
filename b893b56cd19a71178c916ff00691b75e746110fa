@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b271790_956a3b62",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-01T17:42:40Z",
+      "side": 1,
+      "message": "Done. thanks",
+      "parentUuid": "685d37cb_39d14925",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "b893b56cd19a71178c916ff00691b75e746110fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e39254de_7d54ff4b",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-01T06:49:14Z",
       "side": 1,
       "message": "nit: we should add _ before the function name if it is internal.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "b893b56cd19a71178c916ff00691b75e746110fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70fc2fd1_bad2a231",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-01T17:42:40Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e39254de_7d54ff4b",
       "range": {
         "startLine": 43,
         "startChar": 4,
