@@ -39,6 +39,30 @@
       },
       "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "718198ec_875f3a4d",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-01T04:30:43Z",
+      "side": 1,
+      "message": "I think a window size of 150 is excessive. Looking at the sheriff configs, there is only one case of window size 150. All other windows sizes are 50 or less. We might consider 50 as the largest window size to support.",
+      "parentUuid": "be1f01f3_550046cf",
+      "range": {
+        "startLine": 32,
+        "startChar": 21,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
