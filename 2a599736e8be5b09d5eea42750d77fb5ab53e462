@@ -87,6 +87,30 @@
       },
       "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33a48f15_db632b7b",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-01T16:09:42Z",
+      "side": 1,
+      "message": "Look back from the anomaly_configs to find the subscription containing it. It shows contact_email: \"chrome-perf-sheriffs@google.com\".",
+      "parentUuid": "067e1b3a_53e94d5f",
+      "range": {
+        "startLine": 32,
+        "startChar": 21,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
