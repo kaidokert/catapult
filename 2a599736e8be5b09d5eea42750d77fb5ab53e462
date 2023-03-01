@@ -63,6 +63,30 @@
       },
       "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "067e1b3a_53e94d5f",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-01T11:07:00Z",
+      "side": 1,
+      "message": "Yes, the reason I increased to 150 was to support that single anomaly config that set it to 150 [1]. If we are not going to support 150, we should change [1] to 50. I\u0027m not sure who we should notify about this change though. \n\n[1] http://cs/chromium_infra_internal/infra/config/subprojects/chromeperf/chromium-perf.cfg;l\u003d90;rcl\u003de3072d81ebbbefd057c497c73b841a26f25532ea",
+      "parentUuid": "718198ec_875f3a4d",
+      "range": {
+        "startLine": 32,
+        "startChar": 21,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "2a599736e8be5b09d5eea42750d77fb5ab53e462",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
