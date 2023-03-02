@@ -125,7 +125,11 @@ class APIMetricLogger:
     # make the tuple unique.
     # https://cloud.google.com/monitoring/quotas
     label_dict = {API_NAME: self._api_name, REQUEST_STATUS: "started",
+<<<<<<< PATCH SET (57aa9b Convert the UUID type to string.)
+                  UUID: str(uuid.uuid4())}
+=======
                   UUID: uuid.uuid4()}
+>>>>>>> BASE      (a67c3b Fix the throttling issue from Cloud Monitoring API)
     _PublishTSCloudMetric(app_identity.get_application_id(), self._service_name,
                           API_METRIC_TYPE, label_dict)
 
@@ -135,7 +139,11 @@ class APIMetricLogger:
       self.seconds = self._Now() - self._start
       logging.info('%s:%s=%f', self._service_name, self._api_name, self.seconds)
       label_dict = {API_NAME: self._api_name, REQUEST_STATUS: "completed",
+<<<<<<< PATCH SET (57aa9b Convert the UUID type to string.)
+                    UUID: str(uuid.uuid4())}
+=======
                     UUID: uuid.uuid4()}
+>>>>>>> BASE      (a67c3b Fix the throttling issue from Cloud Monitoring API)
       _PublishTSCloudMetric(app_identity.get_application_id(),
                             self._service_name, API_METRIC_TYPE, label_dict,
                             self.seconds)
@@ -143,7 +151,11 @@ class APIMetricLogger:
 
     # with statement BLOCK throws exception
     label_dict = {API_NAME: self._api_name, REQUEST_STATUS: "failed",
+<<<<<<< PATCH SET (57aa9b Convert the UUID type to string.)
+                  UUID: str(uuid.uuid4())}
+=======
                   UUID: uuid.uuid4()}
+>>>>>>> BASE      (a67c3b Fix the throttling issue from Cloud Monitoring API)
     _PublishTSCloudMetric(app_identity.get_application_id(),
                           self._service_name, API_METRIC_TYPE, label_dict)
     # throw out the original exception
