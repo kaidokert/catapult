@@ -150,6 +150,7 @@ class SourceEntry {
         break;
       case EventSourceType.ASYNC_HOST_RESOLVER_REQUEST:
       case EventSourceType.DNS_TRANSACTION:
+      case EventSourceType.DNS_OVER_HTTPS:
         this.description_ = e.params.hostname;
         break;
       case EventSourceType.DOWNLOAD:
