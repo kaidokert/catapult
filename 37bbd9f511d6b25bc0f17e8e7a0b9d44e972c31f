@@ -16,6 +16,46 @@
       "message": "mmenke@: PTAL",
       "revId": "37bbd9f511d6b25bc0f17e8e7a0b9d44e972c31f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b6ddecb_78224400",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2023-03-02T02:19:42Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "37bbd9f511d6b25bc0f17e8e7a0b9d44e972c31f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2539bc37_4998de0d",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2023-03-02T02:19:42Z",
+      "side": 1,
+      "message": "optional:  Maybe merge with this the previous line, and same for line 470?",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 30
+      },
+      "revId": "37bbd9f511d6b25bc0f17e8e7a0b9d44e972c31f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
