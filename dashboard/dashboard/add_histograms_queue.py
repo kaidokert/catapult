@@ -20,6 +20,7 @@ from dashboard import add_point_queue
 from dashboard import find_anomalies
 from dashboard import graph_revisions
 from dashboard import sheriff_config_client
+from dashboard.common import cloud_metric
 from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
 from dashboard.common import utils
@@ -38,40 +39,40 @@ from flask import request, make_response
 # Note: annotation names should shorter than add_point._MAX_COLUMN_NAME_LENGTH.
 DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES = {
     reserved_infos.CHROMIUM_COMMIT_POSITIONS.name:
-        'r_commit_pos',
+      'r_commit_pos',
     reserved_infos.V8_COMMIT_POSITIONS.name:
-        'r_v8_commit_pos',
+      'r_v8_commit_pos',
     reserved_infos.CHROMIUM_REVISIONS.name:
-        'r_chromium',
+      'r_chromium',
     reserved_infos.V8_REVISIONS.name:
-        'r_v8_rev',
+      'r_v8_rev',
     # TODO(#3545): Add r_catapult_git to Dashboard revision_info map.
     reserved_infos.CATAPULT_REVISIONS.name:
-        'r_catapult_git',
+      'r_catapult_git',
     reserved_infos.ANGLE_REVISIONS.name:
-        'r_angle_git',
+      'r_angle_git',
     reserved_infos.WEBRTC_REVISIONS.name:
-        'r_webrtc_git',
+      'r_webrtc_git',
     reserved_infos.WEBRTC_INTERNAL_SIRIUS_REVISIONS.name:
-        'r_webrtc_sirius_cl',
+      'r_webrtc_sirius_cl',
     reserved_infos.WEBRTC_INTERNAL_VEGA_REVISIONS.name:
-        'r_webrtc_vega_cl',
+      'r_webrtc_vega_cl',
     reserved_infos.WEBRTC_INTERNAL_CANOPUS_REVISIONS.name:
-        'r_webrtc_canopus_cl',
+      'r_webrtc_canopus_cl',
     reserved_infos.WEBRTC_INTERNAL_ARCTURUS_REVISIONS.name:
-        'r_webrtc_arcturus_cl',
+      'r_webrtc_arcturus_cl',
     reserved_infos.WEBRTC_INTERNAL_RIGEL_REVISIONS.name:
-        'r_webrtc_rigel_cl',
+      'r_webrtc_rigel_cl',
     reserved_infos.FUCHSIA_GARNET_REVISIONS.name:
-        'r_fuchsia_garnet_git',
+      'r_fuchsia_garnet_git',
     reserved_infos.FUCHSIA_PERIDOT_REVISIONS.name:
-        'r_fuchsia_peridot_git',
+      'r_fuchsia_peridot_git',
     reserved_infos.FUCHSIA_TOPAZ_REVISIONS.name:
-        'r_fuchsia_topaz_git',
+      'r_fuchsia_topaz_git',
     reserved_infos.FUCHSIA_ZIRCON_REVISIONS.name:
-        'r_fuchsia_zircon_git',
+      'r_fuchsia_zircon_git',
     reserved_infos.REVISION_TIMESTAMPS.name:
-        'r_revision_timestamp',
+      'r_revision_timestamp',
 }
 
 
@@ -84,6 +85,7 @@ def _CheckRequest(condition, msg):
     raise BadRequestError(msg)
 
 
+@cloud_metric.APIMetric("upload-processing", "/add_histograms_queue")
 def AddHistogramsQueuePost():
   """Adds a single histogram or sparse shared diagnostic to the datastore.
 
@@ -185,7 +187,9 @@ def _ProcessRowAndHistogram(params):
   benchmark_description = params['benchmark_description']
   data_dict = params['data']
 
-  logging.info('Processing: %s', test_path)
+  # Disable this log since it's killing the quota of Cloud Logging API -
+  # write requests per minute
+  # logging.info('Processing: %s', test_path)
 
   hist = histogram_module.Histogram.FromDict(data_dict)
 
@@ -258,7 +262,9 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
     raise ndb.Return()
 
   yield ndb.put_multi_async(rows) + [r.UpdateParentAsync() for r in rows]
-  logging.debug('Processed %s row entities.', len(rows))
+  # Disable this log since it's killing the quota of Cloud Logging API -
+  # write requests per minute
+  # logging.debug('Processed %s row entities.', len(rows))
 
   def IsMonitored(client, test):
     reason = []
@@ -367,7 +373,7 @@ def GetUnitArgs(unit):
 
 
 def CreateRowEntities(histogram_dict, test_metadata_key,
-                      stat_names_to_test_keys, revision):
+    stat_names_to_test_keys, revision):
   h = histogram_module.Histogram.FromDict(histogram_dict)
   # TODO(#3564): Move this check into _PopulateNumericalFields once we
   # know that it's okay to put rows that don't have a value/error.
