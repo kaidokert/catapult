@@ -1,0 +1,10 @@
+main:
+    params: [input]
+    steps:
+    - startPinpointJob:
+        call: http.post
+        args:
+          url: https://start-pinpoint-job-test-kkdem5ntpa-uw.a.run.app
+          body:
+            anomaly: ${input.anomaly}
+        result: startPinpointJobResult
