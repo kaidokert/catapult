@@ -136,6 +136,7 @@ class AlertGroupWorkflow:
       gitiles=None,
       revision_info=None,
       service_account=None,
+      verification=None,
   ):
     self._group = group
     self._config = config or self.Config(
@@ -150,6 +151,7 @@ class AlertGroupWorkflow:
     self._gitiles = gitiles or gitiles_service
     self._revision_info = revision_info or revision_info_client
     self._service_account = service_account or utils.ServiceAccountEmail
+    self._verification = verification
 
   def _FindCanonicalGroup(self, issue):
     """Finds the canonical issue group if any.
@@ -313,6 +315,9 @@ class AlertGroupWorkflow:
         return self._CommitGroup()
 
     group = self._group
+    regressions, _ = self._GetRegressions(update.anomalies)
+    regression = self._SelectAutoBisectRegression(regressions)
+
     if group.updated + self._config.active_window <= update.now:
       self._Archive()
     elif group.created + self._config.triage_delay <= update.now and (
@@ -320,9 +325,18 @@ class AlertGroupWorkflow:
       logging.info('created: %s, triage_delay: %s", now: %s, status: %s',
                    group.created, self._config.triage_delay, update.now,
                    group.status)
-      self._TryTriage(update.now, update.anomalies)
+      if not verification:
+        if self._IsRegressionOnPressBenchmark(regression):
+
+        else:
+          self._TryTriage(update.now, update.anomalies)
+      else:
+        error = verification.error
+        decision = verification.decision
+        if error or decision:
+          self._TryTriage(update.now, update.anomalies, verification=verification)
     elif group.status in {group.Status.triaged}:
-      self._TryBisect(update)
+      self._TryBisect(update, regression)
     return self._CommitGroup()
 
   def _CommitGroup(self):
@@ -605,15 +619,12 @@ class AlertGroupWorkflow:
         project=self._group.project_id)
     return True
 
-  def _TryBisect(self, update):
+  def _TryBisect(self, regression, update):
     if (update.issue
         and 'Chromeperf-Auto-BisectOptOut' in update.issue.get('labels')):
       return
 
     try:
-      regressions, _ = self._GetRegressions(update.anomalies)
-      regression = self._SelectAutoBisectRegression(regressions)
-
       # Do nothing if none of the regressions should be auto-bisected.
       if regression is None:
         return
@@ -727,6 +738,11 @@ class AlertGroupWorkflow:
     if not regressions:
       return None
 
+    press_regressions = [self._IsRegressionOnPressBenchmark(r) for r in regressions]
+
+    if press_regressions:
+      regressions = press_regressions
+
     max_regression = None
     max_count = 0
 
@@ -767,6 +783,28 @@ class AlertGroupWorkflow:
         max_count = count
         max_regression = MaxRegression(max_regression, group_max)
     return max_regression
+
+  def _IsRegressionOnPressBenchmark(self, regression):
+    """Determines whether input regression is a regression on a press benchmark.
+
+    Currently, we only consider Jetstream2, Speedometer2 and Motionmark to be
+    press benchmarks.
+
+    Args:
+      regression: an ndb Anomaly object.
+    Returns:
+      True if regression is on a press benchmark, False if not.
+    """
+
+    test_path = utils.TestPath(regression.test)
+
+    if regression.benchmark_name in ['jetstream2', 'speedometer2']:
+      return True
+
+    if regression.benchmark_name == 'rendering.desktop'and test_path.split('/')[3] == 'motionmark':
+      return True
+
+    return False
 
   def _NewPinpointRequest(self, alert):
     start_git_hash = pinpoint_request.ResolveToGitHash(
