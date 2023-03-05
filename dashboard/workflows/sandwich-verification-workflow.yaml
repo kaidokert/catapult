@@ -1,0 +1,19 @@
+main:
+    params: [input]
+    steps:
+    - startPinpointJob:
+        call: http.post
+        args:
+          url: https://start-pinpoint-job-kkdem5ntpa-uw.a.run.app
+          body:
+            anomaly: ${input.anomaly}
+        result: startPinpointJobResult
+    - pollPinpointJob:
+        call: http.post
+        args:
+          url: https://poll-pinpoint-job-kkdem5ntpa-uw.a.run.app
+          body:
+            job_id: ${startPinpointJobResult.body.job_id}
+        result: pollPinpointJobResult
+    - completeExecution:
+        return: ${pollPinpointJobResult.body.status}
