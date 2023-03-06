@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f30dc5d_180e5be9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-06T20:24:32Z",
+      "side": 1,
+      "message": "We need to have the pending time and run time in the \u0027metric_value\u0027 in order to have grouping works. Setting it to WIP.",
+      "revId": "19bcc36b0151f1d80bf2166a8bace3f5fa14e325",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
