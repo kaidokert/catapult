@@ -16,6 +16,29 @@
       "message": "PTAL.",
       "revId": "c91b6e3a7ae068bb59f3a822aba402873374be3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7187e7b2_4979e700",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-06T16:28:08Z",
+      "side": 1,
+      "message": "could you please add the job_id to the label_dict? thus we will be able to aggregate the job level information through metric.",
+      "range": {
+        "startLine": 427,
+        "startChar": 1,
+        "endLine": 433,
+        "endChar": 41
+      },
+      "revId": "c91b6e3a7ae068bb59f3a822aba402873374be3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
