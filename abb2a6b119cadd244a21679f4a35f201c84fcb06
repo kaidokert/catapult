@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7363c9_887ae05a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-03-06T22:02:10Z",
+      "side": 1,
+      "message": "In the future, might be helpful to include the change you\u0027re trying to propagate. I\u0027ll LGTM for now.",
+      "revId": "abb2a6b119cadd244a21679f4a35f201c84fcb06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
