@@ -16,6 +16,46 @@
       "message": "For debugging the issue in swarming metric. PTAL.",
       "revId": "82401e97ff7a1ef58b84005b64e506d8756bea61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "180284a9_bb4dfac8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-07T20:54:21Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "82401e97ff7a1ef58b84005b64e506d8756bea61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe56939_726fd03d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-07T20:54:21Z",
+      "side": 1,
+      "message": "This line only modifies variable v, and doesn\u0027t change bot_os, etc.",
+      "range": {
+        "startLine": 436,
+        "startChar": 9,
+        "endLine": 436,
+        "endChar": 23
+      },
+      "revId": "82401e97ff7a1ef58b84005b64e506d8756bea61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
