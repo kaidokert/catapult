@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2833c68c_2c5b1d6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-07T19:42:54Z",
+      "side": 1,
+      "message": "For debugging the issue in swarming metric. PTAL.",
+      "revId": "82401e97ff7a1ef58b84005b64e506d8756bea61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
