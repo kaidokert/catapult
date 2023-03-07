@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c596971a_91d93c4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-03-07T19:00:34Z",
+      "side": 1,
+      "message": "Please look at this one as well, and please confirm that these three CLs should be all that\u0027s needed to support --proxy-server on Fuchsia.",
+      "revId": "419774af43836da9b56cf2c49d939c5053afbc7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
