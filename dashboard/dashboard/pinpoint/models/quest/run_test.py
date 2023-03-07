@@ -429,6 +429,12 @@ class _RunTestExecution(execution_module.Execution):
         if key == 'pinpoint_job_id':
           pinpoint_job_id = value
 
+      # debug infor for crbug/1422306
+      for v in (bot_os, pinpoint_job_type, pinpoint_job_id):
+        if v is None:
+          logging.debug('None value found. Original result: %s', result)
+          v = 'Unknown'
+
       cloud_metric.PublishPinpointSwarmingPendingMetric(
           task_id=result.get('task_id'),
           pinpoint_job_type=pinpoint_job_type,
