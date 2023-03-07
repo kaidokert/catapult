@@ -58,6 +58,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import json
 import logging
 import six
 
@@ -409,6 +410,23 @@ class Row(ndb.Expando):
       yield parent_test.put_async(**ctx_options)
 
 
+class MigrationJob(ndb.Model):
+  job_id = ndb.StringProperty()
+  entry_type = ndb.StringProperty()
+  entry_data = ndb.StringProperty()
+  status = ndb.StringProperty()
+  start_time = ndb.DateTimeProperty(auto_now_add=True)
+  end_time = ndb.DateTimeProperty(auto_now=True)
+
+  def GetEntryData(self, cls):
+    json_dict = json.loads(self.entry_data)
+    return cls(json_dict)
+
+  def SetEntryData(self, entry_data):
+    self.entry_data = json.dumps(entry_data,
+                                 default=lambda entry_data: entry_data.__dict__)
+
+
 def GetRowsForTestInRange(test_key, start_rev, end_rev):
   """Gets all the Row entities for a test between a given start and end."""
   test_key = utils.OldStyleTestKey(test_key)
@@ -428,12 +446,13 @@ def GetRowsForTestAroundRev(test_key, rev, num_points):
 
 
 def GetRowsForTestBeforeAfterRev(test_key, rev, num_rows_before,
-                                 num_rows_after):
+    num_rows_after):
   """Gets up to |num_points| Row entities for a test centered on a revision."""
   test_key = utils.OldStyleTestKey(test_key)
 
   query_up_to_rev = Row.query(Row.parent_test == test_key, Row.revision <= rev)
-  query_up_to_rev = query_up_to_rev.order(-Row.revision)  # pylint: disable=invalid-unary-operand-type
+  query_up_to_rev = query_up_to_rev.order(
+    -Row.revision)  # pylint: disable=invalid-unary-operand-type
   rows_up_to_rev = list(
       reversed(query_up_to_rev.fetch(limit=num_rows_before, batch_size=100)))
 
@@ -448,6 +467,7 @@ def GetLatestRowsForTest(test_key, num_points, keys_only=False):
   """Gets the latest num_points Row entities for a test."""
   test_key = utils.OldStyleTestKey(test_key)
   query = Row.query(Row.parent_test == test_key)
-  query = query.order(-Row.revision)  # pylint: disable=invalid-unary-operand-type
+  query = query.order(
+    -Row.revision)  # pylint: disable=invalid-unary-operand-type
 
   return query.fetch(limit=num_points, batch_size=100, keys_only=keys_only)
