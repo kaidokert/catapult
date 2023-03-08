@@ -71,6 +71,42 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ef348c_3a502870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-03-08T22:41:23Z",
+      "side": 1,
+      "message": "Existing UTs cover all the code in this file so we get coverage for free 😊",
+      "parentUuid": "d61e1eb1_60c8feb1",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9f97348_4e2aff5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-03-08T22:41:23Z",
+      "side": 1,
+      "message": "yep!",
+      "parentUuid": "c76b4880_7216d708",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e22579_9425fe4e",
