@@ -22,8 +22,8 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
 
 
 class CpuTemperatureTest(mock_calls.TestCase):
-  @mock.patch('devil.android.perf.perf_control.PerfControl', mock.Mock())
-  def setUp(self):
+  @mock.patch('devil.android.perf.perf_control.PerfControl')
+  def setUp(self, _):
     # Mock the device
     self.mock_device = mock.Mock(spec=device_utils.DeviceUtils)
     self.mock_device.build_product = 'blueline'
