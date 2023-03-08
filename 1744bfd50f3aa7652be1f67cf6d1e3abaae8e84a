@@ -36,6 +36,41 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61e1eb1_60c8feb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-08T22:27:27Z",
+      "side": 1,
+      "message": "It\u0027d be good practice to add unit tests for these, but in the interest of time, this can be done in a future CL.",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c76b4880_7216d708",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-08T22:27:27Z",
+      "side": 1,
+      "message": "Thanks! I think that tracks for me. If I understand correctly, currently all tests have the Root as parent, but in the future, it can be changed such that it mimics the actual test path hierarchy and Tests can act as a parent as well. That means that currently a TestJobData\u0027s child_count is always 0, no?",
+      "parentUuid": "bf188a84_c3911b25",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e22579_9425fe4e",
