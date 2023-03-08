@@ -33,6 +33,24 @@
       "message": "Can we pre-load the cached HEAD and add some text telling the benefit of using it?\n\nIn this change, the end user may be confused about what \"cached REF\" is and why they should use it. Is there any case that we want to use \u0027-\u0027 on anything else then HEAD?",
       "revId": "3b84c66fabb38557c0b7b6ebd18c34bf4e1961ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "902a5c3a_1141c443",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-03-08T18:06:49Z",
+      "side": 1,
+      "message": "I don\u0027t find any more place to lay any text.. There are other refs like lkgr in chromium/src.",
+      "parentUuid": "9a820908_0e1f79ed",
+      "revId": "3b84c66fabb38557c0b7b6ebd18c34bf4e1961ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
