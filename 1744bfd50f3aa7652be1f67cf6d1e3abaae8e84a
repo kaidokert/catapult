@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf188a84_c3911b25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-03-08T22:05:01Z",
+      "side": 1,
+      "message": "The hierarchy is pretty much the same test name path hierarchy that we currently have. To simplify things, right now I have kept only one root entry which acts as the parent for all individual child entries. If we see transaction failures for updating the parent entries, we can make the tree deeper.\n\nThink of it this way. The old_test_path regex expands (recursively) to say 100 actual tests. The tool schedules 100 tasks in the taskqueue that asynchronously migrate these tests in a distributed manner. When every individual test is migrated, we increment the completed_child_count in the parent (currently root) in a ndb transaction. When the child_count is equal to completed_child_count in the root, we know that the job is complete and then we can send the notification",
+      "parentUuid": "e55bece0_c7712dfe",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e22579_9425fe4e",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "860de315_17c77caf",
+        "filename": "dashboard/dashboard/migrate_test_job_tracking.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-03-08T22:05:01Z",
+      "side": 1,
+      "message": "The number of child tests for this current entry in the test path hierarchy",
+      "parentUuid": "74e22579_9425fe4e",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab523fb6_f638f45d",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-03-08T21:51:15Z",
       "side": 1,
       "message": "What\u0027s a child test? What does it mean for a test to be a child of another?",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ac41c66_b0d5eba0",
+        "filename": "dashboard/dashboard/migrate_test_names_tasks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-03-08T22:05:01Z",
+      "side": 1,
+      "message": "Eg ChromiumPerfFyi.all/all/pinpoint.success\n\npinpoint.success is a child of ChromiumPerfFyi.all/all. Subsequently pinpoint.success can expand to other child tests like  \nChromiumPerfFyi.all/all/pinpoint.success/fail/angle_perftests.",
+      "parentUuid": "ab523fb6_f638f45d",
       "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
