@@ -151,13 +151,20 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     os_browser_backend.Start(startup_args)
 
     if self._app_type == 'lacros-chrome':
+      # First add LLVM_PROFILE_FILE env var to chrome execution so that
+      # profiles are written out to the correct location
+      env_var = self._DEFAULT_CHROME_ENV
+      pw = os.environ.get('TMPDIR').join('profraw').join('default-%2m.profraw')
+      env_var['LLVM_PROFILE_FILE'] = pw
+      print('lacros-chrome env vars to chrome: %r' % env_var)
+
       lacros_chrome_browser_backend = (
           lacros_browser_backend.LacrosBrowserBackend(
               self._platform_backend,
               self._browser_options,
               self.browser_directory,
               self.profile_directory,
-              self._DEFAULT_CHROME_ENV,
+              env_var,
               os_browser_backend,
               build_dir=self._build_dir))
       return browser.Browser(
