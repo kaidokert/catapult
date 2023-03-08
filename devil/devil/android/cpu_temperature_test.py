@@ -22,8 +22,14 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
 
 
 class CpuTemperatureTest(mock_calls.TestCase):
-  @mock.patch('devil.android.perf.perf_control.PerfControl', mock.Mock())
   def setUp(self):
+    self._setUp()
+
+  @mock.patch('devil.android.perf.perf_control.PerfControl')
+  # A separate mock argument is needed since without it, `mock` is
+  # seemingly unable to properly mock the `OverrideScalingGovernor`
+  # context manager.
+  def _setUp(self, _):
     # Mock the device
     self.mock_device = mock.Mock(spec=device_utils.DeviceUtils)
     self.mock_device.build_product = 'blueline'
