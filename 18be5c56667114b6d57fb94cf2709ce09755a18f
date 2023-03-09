@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8cdcd8_301c0327",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T19:24:25Z",
+      "side": 1,
+      "message": "I know you will add unit test in the following CLs, just a reminder, don\u0027t forget unit tests",
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c10829_1ec373ae",
+        "filename": "dashboard/functions/cloudbuild.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T19:24:25Z",
+      "side": 1,
+      "message": "the same question for region",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "316cf516_b8d5c994",
+        "filename": "dashboard/functions/cloudbuild.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T19:24:25Z",
+      "side": 1,
+      "message": "Let\u0027s change this configuration, otherwise anybody has the Cloud Function URL will be able to execute our Cloud Function.",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3381137e_d1467a19",
+        "filename": "dashboard/functions/cloudbuild.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T19:24:25Z",
+      "side": 1,
+      "message": "cloud you please add comments to indicate what\u0027s \"waitFor: [\u0027-\u0027]\"?",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 16
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b140f88_0f7e4d88",
+        "filename": "dashboard/functions/main.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T19:24:25Z",
+      "side": 1,
+      "message": "It would be great if we could setup dedicated folder for each function.\nHere is the benefit:\n1. Easier for maintenance. Reader could only focus on the function he cares about.\n2. Smaller granularity for the deployment, we may don\u0027t want to always deploy all of the functions for every code change.",
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9acafb0c_1be5e128",
+        "filename": "dashboard/functions/requirements.txt",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T19:24:25Z",
+      "side": 1,
+      "message": "Nit: I guess we may don\u0027t need every library listed here? Let\u0027s clean it up as much as possible.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
