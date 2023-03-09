@@ -22,6 +22,30 @@
       },
       "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd7f66c5_5ea14dd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2023-03-09T11:02:50Z",
+      "side": 1,
+      "message": "Yes, but I\u0027m following the general guidelines at https://google.github.io/eng-practices/review/developer/small-cls.html. In this case, specifically, if the upcoming CL is reverted, I did not want this CL to be reverted as well.",
+      "parentUuid": "6f38ffb3_50f5f48c",
+      "range": {
+        "startLine": 9,
+        "startChar": 31,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
