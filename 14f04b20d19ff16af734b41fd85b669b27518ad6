@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df62d1eb_5154ddd2",
+        "filename": "dashboard/workflows/cloudbuild.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T18:01:06Z",
+      "side": 1,
+      "message": "Most of our software running from us-central-1, why the cloud build run from us-west-1? is there any special reason?",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 11,
+        "endChar": 23
+      },
+      "revId": "14f04b20d19ff16af734b41fd85b669b27518ad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a2b7447_f5be05ab",
+        "filename": "dashboard/workflows/sandwich-verification-workflow.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T18:01:06Z",
+      "side": 1,
+      "message": "Could you please add a retry configuration to handle automated failure retry?\nhttps://cloud.google.com/workflows/docs/reference/syntax/retrying#try-retry",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "14f04b20d19ff16af734b41fd85b669b27518ad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05169621_9d495778",
+        "filename": "dashboard/workflows/sandwich-verification-workflow.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-09T18:01:06Z",
+      "side": 1,
+      "message": "Nit: is it possible to make this function url as configurable through a config file?",
+      "range": {
+        "startLine": 19,
+        "startChar": 23,
+        "endLine": 19,
+        "endChar": 73
+      },
+      "revId": "14f04b20d19ff16af734b41fd85b669b27518ad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
