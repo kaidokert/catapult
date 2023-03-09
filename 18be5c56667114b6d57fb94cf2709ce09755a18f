@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07849a74_29e9f758",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T22:21:54Z",
+      "side": 1,
+      "message": "Just a nit that you can fix in future CLs.",
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04c10829_1ec373ae",
@@ -82,6 +99,29 @@
         "startChar": 2,
         "endLine": 34,
         "endChar": 16
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0270d6e_be083688",
+        "filename": "dashboard/functions/common/request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T22:21:54Z",
+      "side": 1,
+      "message": "nit: For new code which python3 only, let\u0027s get rid of the six library. Equivalents can be found in: https://six.readthedocs.io/",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 8
       },
       "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
