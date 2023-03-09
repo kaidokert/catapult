@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db2d3f93_81aa753c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T21:09:46Z",
+      "side": 1,
+      "message": "nit: I feel like the scope this CL is more than consolidating emails. \nIf only for consolidating emails, maybe we can have an easier approach, such as pre-counting the total tasks and send email only when all are done. \nBy adding the tracking module, we can do more than that, such as picking up a interrupted job and continue. Maybe update the description to include these motivations as well?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e55bece0_c7712dfe",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -107,6 +130,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be7762a5_6089a4a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T21:09:46Z",
+      "side": 1,
+      "message": "lgtm with nit and a question. Thanks!",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e22579_9425fe4e",
@@ -173,6 +213,29 @@
       "side": 1,
       "message": "Eg ChromiumPerfFyi.all/all/pinpoint.success\n\npinpoint.success is a child of ChromiumPerfFyi.all/all. Subsequently pinpoint.success can expand to other child tests like  \nChromiumPerfFyi.all/all/pinpoint.success/fail/angle_perftests.",
       "parentUuid": "ab523fb6_f638f45d",
+      "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e1e1c01_8bd3a8ca",
+        "filename": "dashboard/dashboard/migrate_test_names_tasks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T21:09:46Z",
+      "side": 1,
+      "message": "Is this always root created when the migration starts?",
+      "range": {
+        "startLine": 344,
+        "startChar": 49,
+        "endLine": 344,
+        "endChar": 58
+      },
       "revId": "1744bfd50f3aa7652be1f67cf6d1e3abaae8e84a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
