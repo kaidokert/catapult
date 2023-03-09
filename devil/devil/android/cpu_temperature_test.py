@@ -22,7 +22,9 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
 
 
 class CpuTemperatureTest(mock_calls.TestCase):
-  @mock.patch('devil.android.perf.perf_control.PerfControl', mock.Mock())
+  def setUp(self):
+    self._setUp()
+
   def setUp(self):
     # Mock the device
     self.mock_device = mock.Mock(spec=device_utils.DeviceUtils)
@@ -30,8 +32,9 @@ class CpuTemperatureTest(mock_calls.TestCase):
     self.mock_device.adb = mock.Mock(spec=adb_wrapper.AdbWrapper)
     self.mock_device.FileExists.return_value = True
 
-    self.cpu_temp = cpu_temperature.CpuTemperature(self.mock_device)
-    self.cpu_temp.InitThermalDeviceInformation()
+    with mock.patch('devil.android.perf.perf_control.PerfControl'):
+      self.cpu_temp = cpu_temperature.CpuTemperature(self.mock_device)
+      self.cpu_temp.InitThermalDeviceInformation()
 
 
 class CpuTemperatureInitTest(unittest.TestCase):
