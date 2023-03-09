@@ -46,6 +46,46 @@
       },
       "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be04cbdb_3d51bbd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T21:52:26Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c851951_83ac6dbb",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-09T21:52:26Z",
+      "side": 1,
+      "message": "nit: looks like it should be cpu_list.",
+      "range": {
+        "startLine": 390,
+        "startChar": 43,
+        "endLine": 390,
+        "endChar": 46
+      },
+      "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
