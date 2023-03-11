@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e85ccbad_1c518821",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-11T20:04:50Z",
+      "side": 1,
+      "message": "LGTM. It will be good if we can test in prod to avoid similar issue in the previous fix.",
+      "revId": "d9549f3d2818d070bfcd092554dd960d59993fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
