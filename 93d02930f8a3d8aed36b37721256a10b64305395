@@ -86,6 +86,30 @@
       },
       "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5521f169_889aa675",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1534032
+      },
+      "writtenOn": "2023-03-13T10:19:42Z",
+      "side": 1,
+      "message": "Hmm, I think this is correct. The second argument is a space separated list of CPUs, and I intentionally would like to apply the governor one CPU at a time, so that we restore the original governors, and not set all CPUs to a single governor.",
+      "parentUuid": "3c851951_83ac6dbb",
+      "range": {
+        "startLine": 390,
+        "startChar": 43,
+        "endLine": 390,
+        "endChar": 46
+      },
+      "revId": "93d02930f8a3d8aed36b37721256a10b64305395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
