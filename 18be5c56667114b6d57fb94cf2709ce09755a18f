@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a3d7e53_1ba8d514",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ed8cdcd8_301c0327",
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04c10829_1ec373ae",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-03-09T19:24:25Z",
       "side": 1,
       "message": "the same question for region",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ef5bf1_4f9841ac",
+        "filename": "dashboard/functions/cloudbuild.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "Changed to us-central1.",
+      "parentUuid": "04c10829_1ec373ae",
       "range": {
         "startLine": 12,
         "startChar": 13,
@@ -81,6 +123,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "169a5299_3bfdcf1d",
+        "filename": "dashboard/functions/cloudbuild.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "316cf516_b8d5c994",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3381137e_d1467a19",
@@ -94,6 +160,30 @@
       "writtenOn": "2023-03-09T19:24:25Z",
       "side": 1,
       "message": "cloud you please add comments to indicate what\u0027s \"waitFor: [\u0027-\u0027]\"?",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 16
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5463152_ddb7636f",
+        "filename": "dashboard/functions/cloudbuild.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3381137e_d1467a19",
       "range": {
         "startLine": 34,
         "startChar": 2,
@@ -127,6 +217,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5206e00_e39ce027",
+        "filename": "dashboard/functions/common/request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a0270d6e_be083688",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 8
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b140f88_0f7e4d88",
@@ -146,6 +260,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "277a8ef5_3ef70f54",
+        "filename": "dashboard/functions/main.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "An issue with that is that they wouldn\u0027t be able to share dependencies set up in a common folder. If you think that\u0027s okay, I\u0027ll go ahead and create separate folders.",
+      "parentUuid": "5b140f88_0f7e4d88",
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9acafb0c_1be5e128",
         "filename": "dashboard/functions/requirements.txt",
         "patchSetId": 12
@@ -157,6 +289,30 @@
       "writtenOn": "2023-03-09T19:24:25Z",
       "side": 1,
       "message": "Nit: I guess we may don\u0027t need every library listed here? Let\u0027s clean it up as much as possible.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "18be5c56667114b6d57fb94cf2709ce09755a18f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a9ee6e4_752b887e",
+        "filename": "dashboard/functions/requirements.txt",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-14T23:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9acafb0c_1be5e128",
       "range": {
         "startLine": 36,
         "startChar": 0,
