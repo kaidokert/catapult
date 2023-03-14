@@ -185,7 +185,7 @@ class FastbootUtils(object):
     else:
       self.fastboot.Reboot()
       if wait_for_reboot:
-        self._device.WaitUntilFullyBooted(timeout=_FASTBOOT_REBOOT_TIMEOUT)
+        self._device.WaitUntilFullyBooted(timeout=_FASTBOOT_REBOOT_TIMEOUT*4)
 
   def _VerifyBoard(self, directory):
     """Validate as best as possible that the android build matches the device.
@@ -285,4 +285,4 @@ class FastbootUtils(object):
       logger.info('Erasing "userdata" partition.')
       self.fastboot.Erase('userdata')
       self._FlashPartitions(_WIPE_PARTITIONS, directory)
-    self.Reboot(wait_for_reboot=not wipe)
+    self.Reboot(wait_for_reboot=True)
