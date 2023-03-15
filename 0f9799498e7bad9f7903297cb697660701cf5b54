@@ -16,6 +16,23 @@
       "message": "Added a comment to the code. Still would like a re-review.",
       "revId": "0f9799498e7bad9f7903297cb697660701cf5b54",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e50d3e5_3a2f0a7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2023-03-15T01:15:42Z",
+      "side": 1,
+      "message": "LGTM. Thanks Brian!",
+      "revId": "0f9799498e7bad9f7903297cb697660701cf5b54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
