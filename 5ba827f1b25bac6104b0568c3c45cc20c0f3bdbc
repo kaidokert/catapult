@@ -22,6 +22,30 @@
       },
       "revId": "5ba827f1b25bac6104b0568c3c45cc20c0f3bdbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26879b7c_723440fd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-03-15T00:24:19Z",
+      "side": 1,
+      "message": "Added a comment after talking to Rohan.",
+      "parentUuid": "0a2968bd_879770bb",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 80,
+        "endChar": 46
+      },
+      "revId": "5ba827f1b25bac6104b0568c3c45cc20c0f3bdbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
