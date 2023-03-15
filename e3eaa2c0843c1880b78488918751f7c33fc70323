@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "922a8bce_7c5aee33",
+        "filename": "dashboard/dashboard/add_point_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-03-15T00:01:20Z",
+      "side": 1,
+      "message": "Before this CL, the find_anomalies may be runs multiple times for the same parent test.",
+      "revId": "e3eaa2c0843c1880b78488918751f7c33fc70323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
