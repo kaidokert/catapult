@@ -69,3 +69,85 @@ class IssuesTest(unittest.TestCase):
       issue_id='12345',
       project='foo',
     )
+
+  @mock.patch('application.issue_tracker_client.IssueTrackerClient')
+  def testIssuesPostHandler(self, mock_client):
+    instance = mock_client.return_value
+    instance.NewIssue.side_effect = []
+
+    data = {
+      'title': 'summary',
+      'description': 'blahblah',
+      'owner': 'foo',
+      'status': 'assigned'
+    }
+    response = self.client.post(
+      '/issues/', json=data)
+    data = response.get_data(as_text=True)
+    instance.NewIssue.assert_called_once_with(
+      title='summary',
+      description='blahblah',
+      project='chromium',
+      labels=None,
+      components=None,
+      owner='foo',
+      cc=None,
+      status='assigned'
+    )
+
+  @mock.patch('application.issue_tracker_client.IssueTrackerClient')
+  def testIssuesPostHandlerBadContentType(self, mock_client):
+    instance = mock_client.return_value
+    instance.NewIssue.side_effect = []
+
+    data = {
+      'title': 'summary',
+      'description': 'blahblah',
+      'owner': 'foo',
+      'status': 'assigned'
+    }
+    response = self.client.post(
+      '/issues/', data=data)
+    self.assertEqual(response.status_code, 400)
+    instance.NewIssue.assert_not_called()
+
+  @mock.patch('application.issue_tracker_client.IssueTrackerClient')
+  def testIssuesPostHandlerBadData(self, mock_client):
+    instance = mock_client.return_value
+    instance.NewIssue.side_effect = []
+
+    data = 'I am Jason.'
+    response = self.client.post(
+      '/issues/', json=data)
+    self.assertEqual(response.status_code, 400)
+    instance.NewIssue.assert_not_called()
+
+  @mock.patch('application.issue_tracker_client.IssueTrackerClient')
+  def testCommentsPostHandler(self, mock_client):
+    instance = mock_client.return_value
+    instance.NewComment.side_effect = []
+
+    data = {
+      'issue_id': '789',
+      'project': 'v8',
+      'comment': 'sounds good.',
+      'owner': 'bar',
+      'status': 'fixed',
+      'send_email': 'False'
+    }
+    response = self.client.post(
+      '/issues/789/project/v8/comments', json=data)
+    data = response.get_data(as_text=True)
+    instance.NewComment.assert_called_once_with(
+      issue_id=789,
+      project='v8',
+      comment='sounds good.',
+      title=None,
+      status='fixed',
+      merge_issue=None,
+      owner='bar',
+      cc=None,
+      components=None,
+      labels=None,
+      send_email=False
+    )

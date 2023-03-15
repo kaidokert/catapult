@@ -91,6 +91,140 @@ class IssueTrackerClient:
     } for r in response.get('items')]
 
 
+  def NewIssue(self,
+             title,
+             description,
+             project='chromium',
+             labels=None,
+             components=None,
+             owner=None,
+             cc=None,
+             status=None):
+    project = 'chromium' if project is None or not project.strip() else project
+    body = {
+        'title': title,
+        'summary': title,
+        'description': description,
+        'labels': labels or [],
+        'components': components or [],
+        'status': status or ('Assigned' if owner else 'Unconfirmed'),
+        'projectId': project,
+    }
+    if owner:
+      body['owner'] = {'name': owner}
+    if cc:
+      ccc = [email for email in cc.split(',') if email.strip()]
+      # We deduplicate the CC'ed emails to avoid having to forward
+      # those to the issue tracker.
+      accounts = set(email.strip() for email in ccc)
+      body['cc'] = [{'name': account} for account in accounts if account]
+
+    request = self._service.issues().insert(
+        projectId=project, sendEmail=True, body=body)
+    logging.info('Making create issue request with body %s', body)
+    logging.info('Issue tracker project = %s', project)
+    try:
+      response = self._ExecuteRequest(request)
+      if response and 'id' in response:
+        return {'issue_id': response['id'], 'project_id': project}
+      logging.error('Failed to create new bug; response %s', response)
+    except errors.HttpError as e:
+      reason = _GetErrorReason(e)
+      return {'error': reason}
+    except http_client.HTTPException as e:
+      return {'error': str(e)}
+    return {'error': 'Unknown failure creating issue.'}
+
+  def NewComment(self,
+                  issue_id,
+                  comment,
+                  project='chromium',
+                  title=None,
+                  status=None,
+                  merge_issue=None,
+                  owner=None,
+                  cc=None,
+                  components=None,
+                  labels=None,
+                  send_email=True):
+    if not issue_id or issue_id < 0:
+      return {'error': 'Missing issue id.'}
+
+    body = {'content': comment}
+    updates = {}
+    # Mark issue as duplicate when relevant bug ID is found in the datastore.
+    # Avoid marking an issue as duplicate of itself.
+    if merge_issue and int(merge_issue) != issue_id:
+      status = STATUS_DUPLICATE
+      updates['mergedInto'] = '%s:%s' % (project, merge_issue)
+      logging.info('Bug %s marked as duplicate of %s', issue_id, merge_issue)
+    if title:
+      updates['summary'] = title
+    if status:
+      updates['status'] = status
+    if cc:
+      updates['cc'] = cc
+    if labels:
+      updates['labels'] = labels
+    if owner:
+      updates['owner'] = owner
+    if components:
+      updates['components'] = components
+    body['updates'] = updates
+
+    # Normalize the project in case it is empty or None.
+    project = 'chromium' if project is None or not project.strip() else project
+
+    return self._MakeCommentRequest(
+        issue_id, body, project=project, send_email=send_email)
+
+  def _MakeCommentRequest(self,
+                          issue_id,
+                          body,
+                          project='chromium',
+                          retry=True,
+                          send_email=True):
+    request = self._service.issues().comments().insert(
+        projectId=project, issueId=issue_id, sendEmail=send_email, body=body)
+    try:
+      response = self._ExecuteRequest(request)
+      logging.debug('Monorail response = %s', response)
+      if response is not None:
+        return {
+          'Comment id': response['id'],
+          'Content': response['content']
+        }
+    except errors.HttpError as e:
+      logging.error('Monorail error: %s', str(e))
+      reason = _GetErrorReason(e)
+      if reason is None:
+        reason = ''
+      # Retry without owner if we cannot set owner to this issue.
+      if retry and 'The user does not exist' in reason:
+        # Remove both the owner and the cc list.
+        # TODO (crbug.com/806392): We should probably figure out which user it
+        # is rather than removing all of them.
+        if 'owner' in body['updates']:
+          del body['updates']['owner']
+        if 'cc' in body['updates']:
+          del body['updates']['cc']
+        return self._MakeCommentRequest(issue_id, body, retry=False)
+      if retry and 'Issue owner must be a project member' in reason:
+        # Remove the owner but retain the cc list.
+        if 'owner' in body['updates']:
+          del body['updates']['owner']
+        return self._MakeCommentRequest(issue_id, body, retry=False)
+      # This error reason is received when issue is deleted.
+      if 'User is not allowed to view this issue' in reason:
+        logging.warning('Unable to update bug %s with body %s', issue_id, body)
+        return {'error': reason}
+
+    err_msg = 'Error updating issue %s:%s with body %s' % (
+      project, issue_id, body)
+    logging.error(err_msg
+    )
+    return {'error': err_msg}
+
   def _ExecuteRequest(self, request):
     """Makes a request to the issue tracker.
 
@@ -103,3 +237,10 @@ class IssueTrackerClient:
     response = request.execute(
         num_retries=MAX_REQUEST_RETRIES, http=utils.ServiceAccountHttp())
     return response
+
+def _GetErrorReason(request_error):
+  if request_error.resp.get('content-type', '').startswith('application/json'):
+    error_json = json.loads(request_error.content).get('error')
+    if error_json:
+      return error_json.get('message')
+  return None
