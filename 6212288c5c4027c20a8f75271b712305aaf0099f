@@ -16,6 +16,161 @@
       "message": "PTAL.",
       "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0f766b_831dc033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8495d330_299572c2",
+        "filename": "perf_issue_service/application/api/issues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "No need to decode. json.loads accepts both str and bytes.",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 41
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f85c95f9_bf851251",
+        "filename": "perf_issue_service/application/api/issues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "data.get returns None by default, so no need to specify it.",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 36
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6229554d_e5105393",
+        "filename": "perf_issue_service/application/api/issues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "A crazy idea: response \u003d client.NewIssue(**data) should work.",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7cd84f9_f3274957",
+        "filename": "perf_issue_service/application/issue_tracker_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "Can be done in one step:\n\naccounts \u003d {email.strip() for email in cc.split(\u0027,\u0027) if email.strip()}",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9900aa92_dceeb269",
+        "filename": "perf_issue_service/application/issue_tracker_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "Replace with \u0027Issue\u0027",
+      "range": {
+        "startLine": 160,
+        "startChar": 20,
+        "endLine": 160,
+        "endChar": 23
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbef1aeb_923a7788",
+        "filename": "perf_issue_service/application/issue_tracker_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-15T22:02:48Z",
+      "side": 1,
+      "message": "Should do this before project is used while handling merge_issue.",
+      "range": {
+        "startLine": 175,
+        "startChar": 1,
+        "endLine": 176,
+        "endChar": 79
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
