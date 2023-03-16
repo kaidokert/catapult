@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b45d1e2_7b3d4bca",
+        "filename": "perf_issue_service/application/api/issues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-16T20:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8495d330_299572c2",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 41
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f85c95f9_bf851251",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-03-15T22:02:48Z",
       "side": 1,
       "message": "data.get returns None by default, so no need to specify it.",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 36
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05047edd_56a66349",
+        "filename": "perf_issue_service/application/api/issues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-16T20:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f85c95f9_bf851251",
       "range": {
         "startLine": 58,
         "startChar": 32,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "644352e2_c02c4fe9",
+        "filename": "perf_issue_service/application/api/issues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-16T20:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6229554d_e5105393",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7cd84f9_f3274957",
@@ -117,6 +189,30 @@
       "writtenOn": "2023-03-15T22:02:48Z",
       "side": 1,
       "message": "Can be done in one step:\n\naccounts \u003d {email.strip() for email in cc.split(\u0027,\u0027) if email.strip()}",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f465bc34_921178ce",
+        "filename": "perf_issue_service/application/issue_tracker_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-16T20:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7cd84f9_f3274957",
       "range": {
         "startLine": 116,
         "startChar": 6,
@@ -150,6 +246,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d10db2e_1e7d50b2",
+        "filename": "perf_issue_service/application/issue_tracker_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-16T20:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9900aa92_dceeb269",
+      "range": {
+        "startLine": 160,
+        "startChar": 20,
+        "endLine": 160,
+        "endChar": 23
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbef1aeb_923a7788",
@@ -163,6 +283,30 @@
       "writtenOn": "2023-03-15T22:02:48Z",
       "side": 1,
       "message": "Should do this before project is used while handling merge_issue.",
+      "range": {
+        "startLine": 175,
+        "startChar": 1,
+        "endLine": 176,
+        "endChar": 79
+      },
+      "revId": "6212288c5c4027c20a8f75271b712305aaf0099f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa29ca5_2f250be4",
+        "filename": "perf_issue_service/application/issue_tracker_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-16T20:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbef1aeb_923a7788",
       "range": {
         "startLine": 175,
         "startChar": 1,
