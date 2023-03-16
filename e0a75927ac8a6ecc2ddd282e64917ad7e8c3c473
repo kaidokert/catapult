@@ -33,6 +33,24 @@
       "message": "Is this CL linking to the right bug?\n\nThe bug says \"pre-verify benchmark/story parameters in Pinpoint before it kicks off building\" but nothing about cron tasks.",
       "revId": "e0a75927ac8a6ecc2ddd282e64917ad7e8c3c473",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e55d9cf_0d560a40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-03-16T23:15:12Z",
+      "side": 1,
+      "message": "Yes, if stage keeps refreshing benchmark/stories (which is a cron job picking info from datastore), we will not be able to put verified benchmark like speedometer2 in stage then.",
+      "parentUuid": "2ffa0703_62d5a221",
+      "revId": "e0a75927ac8a6ecc2ddd282e64917ad7e8c3c473",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
