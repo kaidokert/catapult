@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "e0a75927ac8a6ecc2ddd282e64917ad7e8c3c473",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ffa0703_62d5a221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-03-16T23:08:10Z",
+      "side": 1,
+      "message": "Is this CL linking to the right bug?\n\nThe bug says \"pre-verify benchmark/story parameters in Pinpoint before it kicks off building\" but nothing about cron tasks.",
+      "revId": "e0a75927ac8a6ecc2ddd282e64917ad7e8c3c473",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
