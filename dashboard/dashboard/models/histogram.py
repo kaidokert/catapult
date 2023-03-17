@@ -18,6 +18,7 @@ from google.appengine.ext import ndb
 from dashboard.common import utils
 from dashboard.models import graph_data
 from dashboard.models import internal_only_model
+from dateutil.relativedelta import relativedelta
 from tracing.value.diagnostics import diagnostic as diagnostic_module
 
 
@@ -100,6 +101,10 @@ class Histogram(JsonModel):
 
   # The time the histogram was added to the dashboard.
   timestamp = ndb.DateTimeProperty(auto_now_add=True, indexed=True)
+
+  @ndb.ComputedProperty
+  def Expiry(self):
+    return self.timestamp + relativedelta(years=3)
 
 def RemoveInvalidSparseDiagnostics(diagnostics):
   # Returns a list of SparseDiagnostics with invalid entries removed

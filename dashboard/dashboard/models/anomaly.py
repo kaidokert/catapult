@@ -18,6 +18,8 @@ from dashboard.common import datastore_hooks
 from dashboard.models import internal_only_model
 from dashboard.models import subscription
 
+from dateutil.relativedelta import relativedelta
+
 # A string to describe the magnitude of a change from zero to non-zero.
 FREAKIN_HUGE = 'zero-to-nonzero'
 
@@ -42,6 +44,10 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # The time the alert fired.
   timestamp = ndb.DateTimeProperty(indexed=True, auto_now_add=True)
+
+  @ndb.ComputedProperty
+  def Expiry(self):
+    return self.timestamp + relativedelta(years=3)
 
   # TODO(dberris): Remove these after migrating all issues to use the issues
   # repeated field, to allow an anomaly to be represented in multiple issues on
