@@ -34,7 +34,7 @@ class IssuesTest(unittest.TestCase):
     instance.GetIssuesList.side_effect = []
 
     response = self.client.get(
-      '/issues/?limit=123&age=456&labels=abc,xyz')
+      '/issues/?limit=123&age=456&label=abc,xyz')
     data = response.get_data(as_text=True)
     instance.GetIssuesList.assert_called_once_with(
       q='opened>today-456',
