@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ca0ee4_eff36a19",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-20T18:10:08Z",
+      "side": 1,
+      "message": "This doesn\u0027t always work correctly, because this.validStory doesn\u0027t distinguish between invalid story vs not specifying a story. It\u0027s OK to keep this.story empty and specify a valid this.storyTags. However, it should be an error to specify a bad story with a valid storyTag, but your code won\u0027t catch this case.\n\nSimilar issue for this.validStoryTag.",
+      "range": {
+        "startLine": 453,
+        "startChar": 29,
+        "endLine": 454,
+        "endChar": 48
+      },
+      "revId": "11ea365baea74cb2738cac34b706cc2d7bfb024a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
