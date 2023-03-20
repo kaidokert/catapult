@@ -33,6 +33,24 @@
       "message": "Would also be a good idea to remove \"Running a local instance\" section of dashboard/docs/getting-set-up.md.",
       "revId": "a61e7cb5b48622e0bc06335ba38659d14801a550",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfffed40_85df8bc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-03-20T16:34:24Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "ec850141_178b563e",
+      "revId": "a61e7cb5b48622e0bc06335ba38659d14801a550",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
