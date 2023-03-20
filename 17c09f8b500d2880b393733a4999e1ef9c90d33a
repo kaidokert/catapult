@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d4a8535_62c2cc58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-20T22:39:38Z",
+      "side": 1,
+      "message": "Added a ad hoc readiness check to deploy in prod. PTAL.",
+      "revId": "17c09f8b500d2880b393733a4999e1ef9c90d33a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
