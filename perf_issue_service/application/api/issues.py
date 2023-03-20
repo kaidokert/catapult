@@ -17,7 +17,7 @@ def IssuesGetHandler():
   limit = request.args.get('limit', '2000')
   age = request.args.get('age', '3')
   status = request.args.get('status', 'open')
-  labels = request.args.get('labels', '')
+  labels = request.args.get('label', '')
 
   client = issue_tracker_client.IssueTrackerClient()
   response = client.GetIssuesList(
