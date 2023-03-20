@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b170d6d8_4bd77675",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-03-20T23:15:55Z",
+      "side": 1,
+      "message": "This cl should link to a bug or the design doc so that future devs (thats... us :) can see why this change was made.",
+      "revId": "0b048b67209b50ae1affea2cb1b480115c66070a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b6ccfa_943b37e8",
+        "filename": "dashboard/dashboard/migrate_test_names_tasks.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-03-20T23:15:55Z",
+      "side": 1,
+      "message": "why not lower-case e `expiry` like other property names here?  I see you\u0027ve added the new property to a few classes with the `Expiry` name already, but it looks like existing instances of `@ndb.ComputedProperty` elsewhere in chromeperf usually use lower case (well, `lower_camel_case` more precisely) for property names.",
+      "range": {
+        "startLine": 82,
+        "startChar": 67,
+        "endLine": 82,
+        "endChar": 73
+      },
+      "revId": "0b048b67209b50ae1affea2cb1b480115c66070a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
