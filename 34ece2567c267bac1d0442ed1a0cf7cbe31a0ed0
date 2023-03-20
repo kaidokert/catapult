@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d25e0c_d6f660ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-03-20T20:58:29Z",
+      "side": 1,
+      "message": "FWIW, did some experiments:\n\nA vs. A + patch (few regressions):\nhttps://pinpoint-dot-chromeperf.appspot.com/job/15b348b8fa0000\n\nA vs. A + stop flashing (a lot of regressions):\nhttps://pinpoint-dot-chromeperf.appspot.com/job/144ffea47a0000\n\nA vs. A + stop flashing + patch (many regressions disappear):\nhttps://pinpoint-dot-chromeperf.appspot.com/job/17a54e327a0000",
+      "revId": "34ece2567c267bac1d0442ed1a0cf7cbe31a0ed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
