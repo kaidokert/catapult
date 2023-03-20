@@ -19,6 +19,7 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import bug_data
 from dashboard.services import issue_tracker_service
+from dashboard.services import perf_issue_service_client
 
 flask_app = Flask(__name__)
 
@@ -286,8 +287,8 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
 
   @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
   @mock.patch.object(
-      issue_tracker_service.IssueTrackerService,
-      'List',
+      perf_issue_service_client,
+      'GetIssues',
       return_value={'items': [{
           'id': 1234
       }]})
@@ -339,8 +340,8 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
 
   @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
   @mock.patch.object(
-      issue_tracker_service.IssueTrackerService,
-      'List',
+      perf_issue_service_client,
+      'GetIssues',
       return_value={'items': [{
           'id': 1234
       }]})
@@ -396,8 +397,8 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
 
   @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
   @mock.patch.object(
-      issue_tracker_service.IssueTrackerService,
-      'List',
+      perf_issue_service_client,
+      'GetIssues',
       return_value={'items': [{
           'id': 1234
       }]})
