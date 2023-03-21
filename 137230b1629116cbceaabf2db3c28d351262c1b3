@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80934729_b9caae70",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-03-21T18:22:03Z",
+      "side": 1,
+      "message": "It could be any value like \u0027-lkgr\u0027, since \u0027-HEAD\u0027 is the default value, user will at least learn to use that.",
+      "parentUuid": "a6946051_de94060f",
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea080f57_85c83034",
