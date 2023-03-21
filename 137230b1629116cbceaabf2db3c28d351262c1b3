@@ -79,6 +79,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f28512d8_4f2f5884",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-03-21T18:39:28Z",
+      "side": 1,
+      "message": "use startswith()? For 1 char against a not empty value, I don\u0027t feel it\u0027s necessary..",
+      "parentUuid": "ea080f57_85c83034",
+      "range": {
+        "startLine": 257,
+        "startChar": 7,
+        "endLine": 257,
+        "endChar": 25
+      },
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a937b56f_4e727057",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 4
