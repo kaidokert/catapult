@@ -36,6 +36,7 @@ from dashboard import sheriff_config_client
 from dashboard import revision_info_client
 from dashboard.common import file_bug
 from dashboard.common import utils
+from dashboard.common import workflow_client
 from dashboard.models import alert_group
 from dashboard.models import anomaly
 from dashboard.models import subscription
@@ -136,6 +137,7 @@ class AlertGroupWorkflow:
       gitiles=None,
       revision_info=None,
       service_account=None,
+      verification=None,
   ):
     self._group = group
     self._config = config or self.Config(
@@ -150,6 +152,7 @@ class AlertGroupWorkflow:
     self._gitiles = gitiles or gitiles_service
     self._revision_info = revision_info or revision_info_client
     self._service_account = service_account or utils.ServiceAccountEmail
+    self._verification = verification
 
   def _FindCanonicalGroup(self, issue):
     """Finds the canonical issue group if any.
@@ -313,6 +316,9 @@ class AlertGroupWorkflow:
         return self._CommitGroup()
 
     group = self._group
+    regressions, _ = self._GetRegressions(update.anomalies)
+    regression = self._SelectAutoBisectRegression(regressions)
+
     if group.updated + self._config.active_window <= update.now:
       self._Archive()
     elif group.created + self._config.triage_delay <= update.now and (
@@ -320,9 +326,24 @@ class AlertGroupWorkflow:
       logging.info('created: %s, triage_delay: %s", now: %s, status: %s',
                    group.created, self._config.triage_delay, update.now,
                    group.status)
-      self._TryTriage(update.now, update.anomalies)
+      if not verification:
+        # TODO: Remove False condition once Sandwich Workflow works.
+        if False and self._IsRegressionOnPressBenchmark(regression):
+          workflow_client = workflow_client.SandwichVerificationWorkflow()
+          workflow_client.ExecuteAlertGroupMode(anomaly=regression,
+                                                group_key=self._group_key,
+                                                update=update)
+        else:
+          self._TryTriage(update.now, update.anomalies)
+      else:
+        error = verification.error
+        decision = verification.decision
+        if error:
+          logging.warning('verification failed for group %s with error: %s', self._group_key, error)
+        elif decision:
+          self._TryTriage(update.now, update.anomalies, verification=verification)
     elif group.status in {group.Status.triaged}:
-      self._TryBisect(update)
+      self._TryBisect(update, regression)
     return self._CommitGroup()
 
   def _CommitGroup(self):
@@ -572,8 +593,9 @@ class AlertGroupWorkflow:
   def _Archive(self):
     self._group.active = False
 
-  def _TryTriage(self, now, anomalies):
-    bug, anomalies = self._FileIssue(anomalies)
+  def _TryTriage(self, now, anomalies, verification=None):
+
+    bug, anomalies = self._FileIssue(anomalies, verification=None)
     if not bug:
       return
 
@@ -605,15 +627,12 @@ class AlertGroupWorkflow:
         project=self._group.project_id)
     return True
 
-  def _TryBisect(self, update):
+  def _TryBisect(self, update, regression):
     if (update.issue
         and 'Chromeperf-Auto-BisectOptOut' in update.issue.get('labels')):
       return
 
     try:
-      regressions, _ = self._GetRegressions(update.anomalies)
-      regression = self._SelectAutoBisectRegression(regressions)
-
       # Do nothing if none of the regressions should be auto-bisected.
       if regression is None:
         return
@@ -653,7 +672,7 @@ class AlertGroupWorkflow:
     regression.pinpoint_bisects.append(job_id)
     regression.put()
 
-  def _FileIssue(self, anomalies):
+  def _FileIssue(self, anomalies, verification=None):
     regressions, subscriptions = self._GetRegressions(anomalies)
     # Only file a issue if there is at least one regression
     # We can't use subsciptions' auto_triage_enable here because it's
@@ -727,6 +746,11 @@ class AlertGroupWorkflow:
     if not regressions:
       return None
 
+    press_regressions = [self._IsRegressionOnPressBenchmark(r) for r in regressions]
+
+    if press_regressions:
+      regressions = press_regressions
+
     max_regression = None
     max_count = 0
 
@@ -767,6 +791,25 @@ class AlertGroupWorkflow:
         max_count = count
         max_regression = MaxRegression(max_regression, group_max)
     return max_regression
+
+  def _IsRegressionOnPressBenchmark(self, regression):
+    """Determines whether input regression is a regression on a press benchmark.
+
+    Currently, we only consider Jetstream2 and Speedometer2 to be
+    press benchmarks.
+
+    Args:
+      regression: an ndb Anomaly object.
+    Returns:
+      True if regression is on a press benchmark, False if not.
+    """
+
+    test_path = utils.TestPath(regression.test)
+
+    if regression.benchmark_name in ['jetstream2', 'speedometer2']:
+      return True
+
+    return False
 
   def _NewPinpointRequest(self, alert):
     start_git_hash = pinpoint_request.ResolveToGitHash(
