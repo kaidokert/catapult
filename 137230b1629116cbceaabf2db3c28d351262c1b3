@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3a4b5f1_a3de40ab",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-03-21T17:54:10Z",
+      "side": 1,
+      "message": "@wenbinzhang@google.com Though it\u0027s not obvious here, we might need to PSA/newsletter to let everyone know this change",
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
