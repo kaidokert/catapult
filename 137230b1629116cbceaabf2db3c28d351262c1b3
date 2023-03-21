@@ -16,6 +16,70 @@
       "message": "@wenbinzhang@google.com Though it\u0027s not obvious here, we might need to PSA/newsletter to let everyone know this change",
       "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6946051_de94060f",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-21T18:17:55Z",
+      "side": 1,
+      "message": "I see. Is there any use case the REF is not HEAD? I think use -HEAD instead of -REF in the text can better tells the idea.",
+      "parentUuid": "e3a4b5f1_a3de40ab",
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea080f57_85c83034",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-21T18:17:55Z",
+      "side": 1,
+      "message": "We can use a bool variable to tell whether it starts with \u0027-\u0027.",
+      "range": {
+        "startLine": 257,
+        "startChar": 7,
+        "endLine": 257,
+        "endChar": 25
+      },
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a937b56f_4e727057",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-21T18:17:55Z",
+      "side": 1,
+      "message": "I may not understand this change correctly. Looks like we only cache when the hash value starts with \u0027-\u0027. That does not sound what we want. E.g., a user wants to wait for the build and use the current HEAD. Then another user later uses HEAD or -HEAD, what will happen?",
+      "range": {
+        "startLine": 267,
+        "startChar": 9,
+        "endLine": 267,
+        "endChar": 28
+      },
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
