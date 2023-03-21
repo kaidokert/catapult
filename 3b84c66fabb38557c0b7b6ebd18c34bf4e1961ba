@@ -69,6 +69,24 @@
       "parentUuid": "902a5c3a_1141c443",
       "revId": "3b84c66fabb38557c0b7b6ebd18c34bf4e1961ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40b4ddfc_c192cca7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-21T17:46:59Z",
+      "side": 1,
+      "message": "circle back on this: any idea how to let the end user knows about this use? I think usages like lkgr or HEAD are known. I\u0027m not sure about \u0027-HEAD\u0027 though.",
+      "parentUuid": "13187e5f_1d0c6ba5",
+      "revId": "3b84c66fabb38557c0b7b6ebd18c34bf4e1961ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
