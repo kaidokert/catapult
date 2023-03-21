@@ -146,6 +146,30 @@
       },
       "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90bc2c49_9a274894",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-03-21T22:09:16Z",
+      "side": 1,
+      "message": "Ah it\u0027s wrong above, it only read cache if the value starts with \u0027-\u0027, otherwise it just tries cache the value.",
+      "parentUuid": "5b5de778_2e91dd49",
+      "range": {
+        "startLine": 267,
+        "startChar": 9,
+        "endLine": 267,
+        "endChar": 28
+      },
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
