@@ -50,6 +50,23 @@
       "message": "Looks reasonable to me. sebmarchand@ FYI. I see you left the Chrome team but in case you wrote this as something you needed for Fuchsia team and/or have opinions.",
       "revId": "7d35a67672bfd689112f265aa593a0109aa3bb17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32fcfd9c_24ff7181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2023-03-21T18:44:43Z",
+      "side": 1,
+      "message": "Also +John for visibility",
+      "revId": "7d35a67672bfd689112f265aa593a0109aa3bb17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
