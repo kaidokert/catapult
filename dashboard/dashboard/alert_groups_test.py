@@ -71,6 +71,13 @@ class GroupReportTestBase(testing_common.TestCase):
                      lambda: self.fake_issue_tracker)
     self.PatchObject(crrev_service, 'GetNumbering',
                      lambda *args, **kargs: {'git_sha': 'abcd'})
+
+    perf_issue_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetIssue',
+        self.fake_issue_tracker.GetIssue)
+    perf_issue_patcher.start()
+    self.addCleanup(perf_issue_patcher.stop)
+
     new_job = mock.MagicMock(return_value={'jobId': '123456'})
     self.PatchObject(pinpoint_service, 'NewJob', new_job)
     self.PatchObject(alert_group_workflow, 'revision_info_client',
