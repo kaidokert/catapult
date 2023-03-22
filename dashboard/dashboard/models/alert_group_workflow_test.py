@@ -56,6 +56,18 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         })
     self._service_account = lambda: _SERVICE_ACCOUNT_EMAIL
 
+    perf_issue_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetIssue',
+        self.fake_issue_tracker.GetIssue)
+    perf_issue_patcher.start()
+    self.addCleanup(perf_issue_patcher.stop)
+
+    perf_comments_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetIssueComments',
+        self.fake_issue_tracker.GetIssueComments)
+    perf_comments_patcher.start()
+    self.addCleanup(perf_comments_patcher.stop)
+
   @staticmethod
   def _AddAnomaly(is_summary=False, **kwargs):
     default = {
