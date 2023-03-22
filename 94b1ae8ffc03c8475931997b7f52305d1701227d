@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91407d8_fc2a9695",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-03-22T18:52:25Z",
+      "side": 1,
+      "message": "Context for change: To run MotionMark on Chrome Health, we need to run each individual story separately, so we have to run 9 MotionMark jobs to get all the data. Now we can get all MotionMark stories by running the composite [1]. We still need to save the data to BQ.\n\nThese changes need to be backwards compatible since the release branch will run with older code.\n\nAlso I\u0027m hoping we do not run into this issue [2] with the extra dimensions\n\nSee this Pinpoint job for the individual story names [1]\n\n[1] https://pinpoint-dot-chromeperf.appspot.com/job/132132dffa0000\n[2] https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1422792",
+      "revId": "94b1ae8ffc03c8475931997b7f52305d1701227d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
