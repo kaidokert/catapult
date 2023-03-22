@@ -23,6 +23,7 @@ from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import subscription
 from dashboard.services import crrev_service
+from dashboard.services import perf_issue_service_client
 from dashboard.services import pinpoint_service
 
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
@@ -71,6 +72,13 @@ class GroupReportTestBase(testing_common.TestCase):
                      lambda: self.fake_issue_tracker)
     self.PatchObject(crrev_service, 'GetNumbering',
                      lambda *args, **kargs: {'git_sha': 'abcd'})
+    # self.PatchObject(perf_issue_service_client, 'GetIssue', self.fake_issue_tracker.GetIssue)
+    
+    perf_issue_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetIssue', self.fake_issue_tracker.GetIssue)
+    perf_issue_patcher.start()
+    self.addCleanup(perf_issue_patcher.stop)
+
     new_job = mock.MagicMock(return_value={'jobId': '123456'})
     self.PatchObject(pinpoint_service, 'NewJob', new_job)
     self.PatchObject(alert_group_workflow, 'revision_info_client',
