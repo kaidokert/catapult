@@ -39,6 +39,30 @@
       },
       "revId": "e2d60a43cb09776d88a14b5b5aa6848d0210a0bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b25704bc_a87046f7",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-23T06:57:20Z",
+      "side": 1,
+      "message": "The line\u0027s length will be 83 without the line break. Let\u0027s keep it as it is. 😊",
+      "parentUuid": "7a49987b_34c49b76",
+      "range": {
+        "startLine": 357,
+        "startChar": 4,
+        "endLine": 358,
+        "endChar": 25
+      },
+      "revId": "e2d60a43cb09776d88a14b5b5aa6848d0210a0bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
