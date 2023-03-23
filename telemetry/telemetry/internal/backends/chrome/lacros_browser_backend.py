@@ -113,6 +113,11 @@ class LacrosBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._cri.RunCmdOnDevice(['cp', '/usr/local/lacros-chrome/chrome',
                               '/usr/local/lacros-chrome/lacros-chrome'])
 
+    # Add LLVM profile output arg regardless of whether it's used.
+    startup_args.extend(
+      '--llvm-profile-file=/tmp'
+    )
+
     # Some args need escaping, etc.
     self._ReformatArg(startup_args, 'enable-features')
     self._ReformatArg(startup_args, 'disable-features')
@@ -120,6 +125,7 @@ class LacrosBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._ReformatArg(startup_args, 'force-fieldtrial-params')
     self._ReformatArg(startup_args, 'proxy-bypass-list')
     self._ReformatArg(startup_args, 'user-agent')
+    self._ReformatArg(startup_args, 'llvm-profile-file')
 
     def _Launch():
       # This will block until the launched browser is closed.
