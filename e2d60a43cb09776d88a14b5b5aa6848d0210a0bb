@@ -16,6 +16,29 @@
       "message": "PTAL.",
       "revId": "e2d60a43cb09776d88a14b5b5aa6848d0210a0bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a49987b_34c49b76",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-03-23T00:21:31Z",
+      "side": 1,
+      "message": "Nit: no more need for line break",
+      "range": {
+        "startLine": 357,
+        "startChar": 4,
+        "endLine": 358,
+        "endChar": 25
+      },
+      "revId": "e2d60a43cb09776d88a14b5b5aa6848d0210a0bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
