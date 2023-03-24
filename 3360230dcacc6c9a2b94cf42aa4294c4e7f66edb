@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c098fbda_116c6203",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-03-24T23:36:03Z",
+      "side": 1,
+      "message": "Need reversion for Pinpoint run time data collection.",
+      "revId": "3360230dcacc6c9a2b94cf42aa4294c4e7f66edb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
