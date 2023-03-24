@@ -246,24 +246,34 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     """
     repository = data['repository']
     git_hash = str(data['git_hash']).strip()
+    if not git_hash:
+      raise KeyError("No git hash given")
 
     # Translate repository if it's a URL.
     if repository.startswith('https://'):
       repository = repository_module.RepositoryName(repository)
     cache_miss = True
-    key = repository + '@' + git_hash
+    # HEAD -> EAD, won't fetch from cache, -HEAD -> HEAD will fetch
+    if git_hash[0] == '-':
+      # query only
+      key = repository + '@' + git_hash[1:]
+    else:
+      # store only
+      key = repository + '@' + git_hash
 
     try:
-      # If they send in something like HEAD, resolve to a hash.
       repository_url = repository_module.RepositoryUrl(repository)
 
-      try:
+      if git_hash[0] == '-':
         # If it's already in the hash, then we've resolved this recently, and we
         # don't go resolving the data from the gitiles service.
         result = commit_cache.Get(key)
-        git_hash = result.get('url').split('/')[-1]
-        cache_miss = False
-      except KeyError:
+        if result:
+          git_hash = result.get('url').split('/')[-1]
+          cache_miss = False
+        else:
+          git_hash = git_hash[1:]
+      if cache_miss:
         try:
           # Try with commit position
           git_hash = pinpoint_request.ResolveToGitHash(git_hash)
@@ -277,8 +287,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     commit = cls(repository, git_hash)
     commit.SetRepository_url(repository_url)
 
-    # IF this is something like HEAD, cache this for a short time so that we
-    # avoid hammering gitiles.
+    # IF this is a ref like HEAD, cache this for a short time so that we
+    # fetch the build which is likely already built.
     if not gitiles_service.IsHash(data['git_hash']):
       if cache_miss:
         commit.CacheCommitInfo(result, key=key, memcache_timeout=60 * 60 * 10)
