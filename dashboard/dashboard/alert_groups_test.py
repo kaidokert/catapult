@@ -67,8 +67,8 @@ class GroupReportTestBase(testing_common.TestCase):
     sheriff = subscription.Subscription(name='sheriff',
                                         auto_triage_enable=True)
     mock_get_sheriff_client().Match.return_value = ([sheriff], None)
-    self.PatchObject(alert_group_workflow, '_IssueTracker',
-                     lambda: self.fake_issue_tracker)
+    # self.PatchObject(alert_group_workflow, '_IssueTracker',
+    #                  lambda: self.fake_issue_tracker)
     self.PatchObject(crrev_service, 'GetNumbering',
                      lambda *args, **kargs: {'git_sha': 'abcd'})
 
@@ -89,6 +89,18 @@ class GroupReportTestBase(testing_common.TestCase):
         self.fake_issue_tracker.GetIssueComments)
     perf_comments_patcher.start()
     self.addCleanup(perf_comments_patcher.stop)
+
+    perf_issue_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssue',
+        self.fake_issue_tracker.NewBug)
+    perf_issue_post_patcher.start()
+    self.addCleanup(perf_issue_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self.fake_issue_tracker.AddBugComment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
 
   def _AddAnomaly(self, **kargs):
     default = {
@@ -446,8 +458,9 @@ class GroupReportTest(GroupReportTestBase):
         'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
         'Chromeperf-Auto-Triaged'
     ])
-    logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
-    self.assertRegex(self.fake_issue_tracker.new_bug_args[1],
+    # logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
+    logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_kwargs['comment'])
+    self.assertRegex(self.fake_issue_tracker.new_bug_kwargs['comment'],
                      r'Top 1 affected measurements in bot:')
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)

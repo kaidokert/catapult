@@ -90,8 +90,9 @@ class NewAuthTest(_NewTest):
     self.assertEqual(result, {'error': 'User authentication error'})
 
 
-@mock.patch.object(job_module.issue_tracker_service, 'IssueTrackerService',
-                   mock.MagicMock())
+# @mock.patch.object(job_module.issue_tracker_service, 'IssueTrackerService',
+                  #  mock.MagicMock())
+@mock.patch('dashboard.services.perf_issue_service_client.PostIssueComment', mock.MagicMock())
 @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
 @mock.patch.object(api_auth, 'Authorize', mock.MagicMock())
 @mock.patch.object(utils, 'IsTryjobUser', mock.MagicMock())
@@ -503,10 +504,11 @@ class NewTest(_NewTest):
     job = job_module.JobFromId(json.loads(response.body)['jobId'])
     self.assertEqual(job.batch_id, 'some-identifier')
 
-  def testNewPostsCreationMessage(self):
-    tracker = mock.MagicMock()
-    tracker.AddBugComment.return_value = None
-    job_module.issue_tracker_service.IssueTrackerService.return_value = tracker
+  @mock.patch('dasboard.services.perf_issue_service_client.PostIssueComment')
+  def testNewPostsCreationMessage(self, client_mock):
+    # tracker = mock.MagicMock()
+    # tracker.AddBugComment.return_value = None
+    # job_module.issue_tracker_service.IssueTrackerService.return_value = tracker
     request = dict(_BASE_REQUEST)
     request.update({
         'chart': 'some_chart',
@@ -517,11 +519,13 @@ class NewTest(_NewTest):
     self.assertIsNotNone(
         job_module.JobFromId(json.loads(response.body)['jobId']))
     self.ExecuteDeferredTasks('default')
-    self.assertEqual(
-        1, job_module.issue_tracker_service.IssueTrackerService.call_count)
-    tracker.AddBugComment.assert_called_once_with(
+    # self.assertEqual(
+    #     1, job_module.issue_tracker_service.IssueTrackerService.call_count)
+    # tracker.AddBugComment.assert_called_once_with(
+    #     12345, mock.ANY, project='chromium', send_email=True)
+    client_mock.assert_called_once_with(
         12345, mock.ANY, project='chromium', send_email=True)
-    args, _ = tracker.AddBugComment.call_args
+    args, _ = client_mock.call_args
     _, message = args
     self.assertIn('Pinpoint job created and queued.', message)
 
