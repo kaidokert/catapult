@@ -410,6 +410,7 @@ class FakeIssueTrackerService:
     return self.issue_comments.get(('chromium', self.bug_id))
 
   def NewBug(self, *args, **kwargs):
+    print('NNEWBUG: ', args, kwargs)
     self.new_bug_args = args
     self.new_bug_kwargs = kwargs
     self.calls.append({
@@ -427,13 +428,14 @@ class FakeIssueTrackerService:
                      ('projectId', kwargs.get('project', 'chromium'))]))
     })
     result = {
-        'bug_id': self._bug_id_counter,
+        'issue_id': self._bug_id_counter,
         'project_id': kwargs.get('project', 'chromium')
     }
     self._bug_id_counter += 1
     return result
 
   def AddBugComment(self, *args, **kwargs):
+    print('NNEWCOMMENT: ', args, kwargs)
     self.add_comment_args = args
     self.add_comment_kwargs = kwargs
 

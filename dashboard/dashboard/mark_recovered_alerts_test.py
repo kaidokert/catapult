@@ -286,7 +286,8 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
                                mark_recovered_alerts._TASK_QUEUE_NAME)
     self.assertFalse(anomaly_key.get().recovered)
 
-  @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  # @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  @mock.patch.object(perf_issue_service_client, 'PostIssueComment')
   @mock.patch.object(
       perf_issue_service_client, 'GetIssues', return_value=[{
           'id': 1234
@@ -334,10 +335,11 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
     add_bug_comment_mock.assert_called_once_with(
         mock.ANY,
         mock.ANY,
-        project=mock.ANY,
+        comment=mock.ANY,
         labels='Performance-Regression-Recovered')
 
-  @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  # @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  @mock.patch.object(perf_issue_service_client, 'PostIssueComment')
   @mock.patch.object(
       perf_issue_service_client, 'GetIssues', return_value=[{
           'id': 1234
@@ -392,12 +394,13 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
     # all alerts recovered for the bug
     self.assertEqual(add_bug_comment_mock.call_count, 2)
 
-  @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  # @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  # @mock.patch.object(perf_issue_service_client, 'PostIssueComment')
   @mock.patch.object(
       perf_issue_service_client, 'GetIssues', return_value=[{
           'id': 1234
       }])
-  def testPost_BugHasNoAlerts_NoCommentPosted(self, _, add_bug_comment_mock):
+  def testPost_BugHasNoAlerts_NoCommentPosted(self, _):
     self.testapp.post('/mark_recovered_alerts')
     self.ExecuteTaskQueueTasks('/mark_recovered_alerts',
                                mark_recovered_alerts._TASK_QUEUE_NAME)
