@@ -45,9 +45,22 @@ class FileBugTest(testing_common.TestCase):
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     self.SetCurrentUser('foo@chromium.org')
     self._issue_tracker_service = testing_common.FakeIssueTrackerService()
-    self.PatchObject(file_bug.file_bug.issue_tracker_service,
-                     'IssueTrackerService',
-                     lambda *_: self._issue_tracker_service)
+    # self.PatchObject(file_bug.file_bug.issue_tracker_service,
+    #                  'IssueTrackerService',
+    #                  lambda *_: self._issue_tracker_service)
+    
+    perf_issue_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssue',
+        self._issue_tracker_service.NewBug)
+    perf_issue_post_patcher.start()
+    self.addCleanup(perf_issue_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self._issue_tracker_service.AddBugComment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
     self.testapp = webtest.TestApp(flask_app)
 
   def tearDown(self):
