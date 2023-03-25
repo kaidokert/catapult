@@ -69,6 +69,18 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     perf_comments_patcher.start()
     self.addCleanup(perf_comments_patcher.stop)
 
+    perf_issue_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssue',
+        self._issue_tracker.NewBug)
+    perf_issue_post_patcher.start()
+    self.addCleanup(perf_issue_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self._issue_tracker.AddBugComment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
   @staticmethod
   def _AddAnomaly(is_summary=False, **kwargs):
     default = {
