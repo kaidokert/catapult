@@ -37,7 +37,8 @@ from dashboard.pinpoint.models import timing_record
 from dashboard.pinpoint.models.evaluators import job_serializer
 from dashboard.pinpoint.models.tasks import evaluator as task_evaluator
 from dashboard.services import gerrit_service
-from dashboard.services import issue_tracker_service
+# from dashboard.services import issue_tracker_service
+from dashboard.services import perf_issue_service_client
 from dashboard.services import swarming
 
 
@@ -417,8 +418,9 @@ class Job(ndb.Model):
     deferred.defer(
         _PostBugCommentDeferred,
         self.bug_id,
-        bug_update.comment_text,
-        project=self.project,
+        self.project,
+        comment=bug_update.comment_text,
+        # project=self.project,
         send_email=True,
         _retry_options=RETRY_OPTIONS)
 
@@ -535,9 +537,10 @@ class Job(ndb.Model):
     deferred.defer(
         _PostBugCommentDeferred,
         self.bug_id,
-        comment,
+        self.project,
+        comment=comment,
         labels=job_bug_update.ComputeLabelUpdates(['Pinpoint-Job-Started']),
-        project=self.project,
+        # project=self.project,
         send_email=True,
         _retry_options=RETRY_OPTIONS)
 
@@ -584,8 +587,9 @@ class Job(ndb.Model):
       deferred.defer(
           _PostBugCommentDeferred,
           self.bug_id,
-          '\n'.join((title, self.url)),
-          project=self.project,
+          self.project,
+          comment='\n'.join((title, self.url)),
+          # project=self.project,
           labels=['Pinpoint-Tryjob-Completed'],
           _retry_options=RETRY_OPTIONS)
       return
@@ -628,8 +632,9 @@ class Job(ndb.Model):
         deferred.defer(
             _PostBugCommentDeferred,
             self.bug_id,
-            comment,
-            project=self.project,
+            self.project,
+            comment=comment,
+            # project=self.project,
             labels=job_bug_update.ComputeLabelUpdates(['Pinpoint-Job-Failed']),
             _retry_options=RETRY_OPTIONS)
         return
@@ -643,8 +648,9 @@ class Job(ndb.Model):
       deferred.defer(
           _PostBugCommentDeferred,
           self.bug_id,
-          '\n'.join((title, self.url)),
-          project=self.project,
+          self.project,
+          comment='\n'.join((title, self.url)),
+          # project=self.project,
           labels=job_bug_update.ComputeLabelUpdates(
               ['Pinpoint-Job-Completed', 'Pinpoint-No-Repro']),
           status='WontFix',
@@ -733,8 +739,9 @@ class Job(ndb.Model):
       deferred.defer(
           _PostBugCommentDeferred,
           self.bug_id,
-          comment,
-          project=self.project,
+          self.project,
+          comment=comment,
+          # project=self.project,
           labels=job_bug_update.ComputeLabelUpdates(['Pinpoint-Job-Failed']),
           send_email=True,
           _retry_options=RETRY_OPTIONS,
@@ -969,8 +976,9 @@ class Job(ndb.Model):
     deferred.defer(
         _PostBugCommentDeferred,
         self.bug_id,
-        comment,
-        project=self.project,
+        self.project,
+        comment=comment,
+        # project=self.project,
         send_email=True,
         labels=job_bug_update.ComputeLabelUpdates(['Pinpoint-Job-Cancelled']),
         _retry_options=RETRY_OPTIONS)
@@ -991,8 +999,10 @@ def _PostBugCommentDeferred(bug_id, *args, **kwargs):
   if not bug_id:
     return
 
-  issue_tracker = issue_tracker_service.IssueTrackerService()
-  issue_tracker.AddBugComment(bug_id, *args, **kwargs)
+  # issue_tracker = issue_tracker_service.IssueTrackerService()
+  # issue_tracker.AddBugComment(bug_id, *args, **kwargs)
+  logging.debug('DDEBUG: post bug deferred: %s %s %s', bug_id, args, kwargs)
+  perf_issue_service_client.PostIssueComment(bug_id, *args, **kwargs)
 
 
 def _UpdateGerritDeferred(*args, **kwargs):
