@@ -69,6 +69,18 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     perf_comments_patcher.start()
     self.addCleanup(perf_comments_patcher.stop)
 
+    perf_issue_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssue',
+        self._issue_tracker.NewBug)
+    perf_issue_post_patcher.start()
+    self.addCleanup(perf_issue_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self._issue_tracker.AddBugComment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
   @staticmethod
   def _AddAnomaly(is_summary=False, **kwargs):
     default = {
@@ -1776,9 +1788,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
-                                   state='closed')['bug_id'])
+                                   state='closed')['issue_id'])
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
 
     grouped_anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     all_anomalies = grouped_anomalies + [self._AddAnomaly()]
@@ -1861,9 +1873,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
-                                   state='closed')['bug_id'])
+                                   state='closed')['issue_id'])
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
 
     grouped_anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     all_anomalies = grouped_anomalies + [self._AddAnomaly()]
@@ -1936,7 +1948,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     }
 
     self._issue_tracker._bug_id_counter = 42
-    issue = self._issue_tracker.GetIssue(self._issue_tracker.NewBug()['bug_id'])
+    issue = self._issue_tracker.GetIssue(self._issue_tracker.NewBug()['issue_id'])
 
     grouped_anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     all_anomalies = grouped_anomalies + [self._AddAnomaly()]
@@ -2008,9 +2020,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
-                                   state='closed')['bug_id'])
+                                   state='closed')['issue_id'])
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
 
     grouped_anomalies = [
         self._AddAnomaly(test='master/bot/regular_suite/measurement'),
@@ -2103,9 +2115,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
-                                   state='closed')['bug_id'])
+                                   state='closed')['issue_id'])
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
 
     grouped_anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     group = self._AddAlertGroup(
@@ -2167,7 +2179,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
 
     grouped_anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     all_anomalies = grouped_anomalies + [self._AddAnomaly()]
@@ -2217,7 +2229,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     self._issue_tracker._bug_id_counter = 42
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
     canonical_group = self._AddAlertGroup(
         base_anomaly,
         issue=canonical_issue,
@@ -2230,7 +2242,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
-                                   state='closed')['bug_id'])
+                                   state='closed')['issue_id'])
     duplicate_group = self._AddAlertGroup(
         base_anomaly,
         issue=duplicate_issue,
@@ -2266,7 +2278,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker._bug_id_counter = 42
 
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
     canonical_group = self._AddAlertGroup(
         base_anomaly,
         issue=canonical_issue,
@@ -2277,7 +2289,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         self._issue_tracker.NewBug(
             status='Duplicate',
             state='closed',
-            mergedInto={'issueId': canonical_issue['id']})['bug_id'])
+            mergedInto={'issueId': canonical_issue['id']})['issue_id'])
     duplicate_group = self._AddAlertGroup(
         base_anomaly,
         issue=duplicate_issue,
@@ -2310,7 +2322,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
-                                   state='closed')['bug_id'])
+                                   state='closed')['issue_id'])
     duplicate_group = self._AddAlertGroup(
         base_anomaly,
         issue=duplicate_issue,
@@ -2318,7 +2330,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     )
 
     looped_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
     looped_group = self._AddAlertGroup(
         base_anomaly,
         issue=looped_issue,
@@ -2327,7 +2339,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     )
 
     canonical_issue = self._issue_tracker.GetIssue(
-        self._issue_tracker.NewBug()['bug_id'])
+        self._issue_tracker.NewBug()['issue_id'])
     self._AddAlertGroup(
         base_anomaly,
         issue=canonical_issue,

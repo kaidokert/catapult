@@ -45,9 +45,22 @@ class FileBugTest(testing_common.TestCase):
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     self.SetCurrentUser('foo@chromium.org')
     self._issue_tracker_service = testing_common.FakeIssueTrackerService()
-    self.PatchObject(file_bug.file_bug.issue_tracker_service,
-                     'IssueTrackerService',
-                     lambda *_: self._issue_tracker_service)
+    # self.PatchObject(file_bug.file_bug.issue_tracker_service,
+    #                  'IssueTrackerService',
+    #                  lambda *_: self._issue_tracker_service)
+
+    perf_issue_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssue',
+        self._issue_tracker_service.NewBug)
+    perf_issue_post_patcher.start()
+    self.addCleanup(perf_issue_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self._issue_tracker_service.AddBugComment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
     self.testapp = webtest.TestApp(flask_app)
 
   def tearDown(self):
@@ -281,7 +294,7 @@ class FileBugTest(testing_common.TestCase):
         self.assertIsNone(anomaly_entity.bug_id)
 
     # Two HTTP requests are made when filing a bug; only test 2nd request.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertIn('https://chromeperf.appspot.com/group_report?bug_id=277761',
                   comment)
     self.assertIn('https://chromeperf.appspot.com/group_report?sid=', comment)
@@ -325,7 +338,7 @@ class FileBugTest(testing_common.TestCase):
         self.assertIsNone(anomaly_entity.bug_id)
 
     # Two HTTP requests are made when filing a bug; only test 2nd request.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertIn('https://chromeperf.appspot.com/group_report?bug_id=277761',
                   comment)
     self.assertIn('https://chromeperf.appspot.com/group_report?sid=', comment)
@@ -368,7 +381,7 @@ class FileBugTest(testing_common.TestCase):
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertIn(
         'Assigning to foo@bar.com because this is the only CL in range',
         comment)
@@ -409,7 +422,7 @@ class FileBugTest(testing_common.TestCase):
     self.assertIn(b'277761', response.body)
 
     # Two HTTP requests are made when filing a bug; only test 2nd request.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertIn('Assigning to sheriff@bar.com', comment)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
@@ -435,7 +448,7 @@ class FileBugTest(testing_common.TestCase):
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertNotIn(
         'Assigning to foo@bar.com because this is the only CL in range',
         comment)
@@ -463,7 +476,7 @@ class FileBugTest(testing_common.TestCase):
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertNotIn(
         'Assigning to foo@bar.com because this is the only CL in range',
         comment)
@@ -502,7 +515,7 @@ class FileBugTest(testing_common.TestCase):
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertNotIn(
         'Assigning to foo@bar.com because this is the only CL in range',
         comment)
@@ -543,7 +556,7 @@ class FileBugTest(testing_common.TestCase):
 
     # Three HTTP requests are made when filing a bug with owner; test third
     # request for owner hame.
-    comment = self._issue_tracker_service.add_comment_args[1]
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
     self.assertIn(
         'Assigning to foo@bar.com because this is the only CL in range',
         comment)
