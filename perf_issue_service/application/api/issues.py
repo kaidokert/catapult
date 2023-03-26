@@ -47,6 +47,8 @@ def CommentsHandler(issue_id, project_name):
 @issues.route('/', methods=['POST'])
 def IssuesPostHandler():
   try:
+
+    logging.debug('DDEBUG: api data: %s', request.data)
     data = json.loads(request.data)
   except json.JSONDecodeError as e:
     return make_response(str(e), http.HTTPStatus.BAD_REQUEST.value)
