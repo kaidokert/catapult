@@ -37,6 +37,27 @@ def FileBugHandlerGet():
   Outputs:
     HTML, using the template 'bug_result.html'.
   """
+  # from flask import make_response
+  # from dashboard.services import perf_issue_service_client
+  # new_bug_response_new = perf_issue_service_client.PostIssue(
+  #   owner='wenbinzhang@google.com',
+  #   cc=[],
+  #   title='test on new perf service',
+  #   description='test description',
+  #   project='chromium',
+  #   labels=['dummy-test','Type-Bug-Regression','Pri-2'],
+  #   components='',)
+  # import logging
+  # logging.debug('DDEBUG: resp type: %s', type(new_bug_response_new))
+  # logging.debug('DDEBUG: resp: %s', (new_bug_response_new))
+  # bug_id = new_bug_response_new['issue_id']
+  # comment = 'this is test'
+  # perf_issue_service_client.PostIssueComment(
+  #   issue_id=bug_id,
+  #   project_name='chromium',
+  #   comment=comment
+  # )
+  # return make_response('okooo')
   if not utils.IsValidSheriffUser():
     return request_handler.RequestHandlerRenderHtml(
         'bug_result.html', {
