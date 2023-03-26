@@ -209,17 +209,24 @@ class BugCommentTest(test.TestCase):
     super().setUp()
     self.add_bug_comment = mock.MagicMock()
     self.get_issue = mock.MagicMock()
-    patcher = mock.patch('dashboard.services.issue_tracker_service.'
-                         'IssueTrackerService')
-    issue_tracker_service = patcher.start()
-    issue_tracker_service.return_value = mock.MagicMock(
-        AddBugComment=self.add_bug_comment)
-    self.addCleanup(patcher.stop)
+    # patcher = mock.patch('dashboard.services.issue_tracker_service.'
+    #                      'IssueTrackerService')
+    # issue_tracker_service = patcher.start()
+    # issue_tracker_service.return_value = mock.MagicMock(
+    #     AddBugComment=self.add_bug_comment)
+    # self.addCleanup(patcher.stop)
 
     perf_issue_patcher = mock.patch(
         'dashboard.services.perf_issue_service_client.GetIssue', self.get_issue)
     perf_issue_patcher.start()
     self.addCleanup(perf_issue_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self.add_bug_comment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+    
     self.PatchDatastoreHooksRequest()
 
   def testNoBug(self):
