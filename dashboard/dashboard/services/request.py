@@ -121,7 +121,8 @@ def _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs):
     http = utils.ServiceAccountHttp(timeout=60, scope=scope)
   else:
     http = httplib2.Http(timeout=60)
-  logging.info('url: %s; use_auth: %s; kwargs: %s', url, use_auth, kwargs)
+  logging.info('url: %s; use_auth: %s; kwargs: %s', url, use_auth,
+               kwargs)
 
   response, content = http.request(url, **kwargs)
 
