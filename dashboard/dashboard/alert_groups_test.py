@@ -626,6 +626,7 @@ class RecoveredAlertsTests(GroupReportTestBase):
         'test_suite',
         alert_group.AlertGroup.Type.test_suite,
     )[0]
+    print('------- ', group)
     group.created = datetime.datetime.utcnow() - datetime.timedelta(hours=2)
     group.put()
 
