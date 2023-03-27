@@ -690,6 +690,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     group = self._AddAlertGroup(
         anomalies[0],
         status=alert_group.AlertGroup.Status.untriaged,
+        issue=self._issue_tracker.issue,
     )
     self._sheriff_config.patterns = {
         '*': [
@@ -748,6 +749,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             anomalies=ndb.get_multi(anomalies),
             issue=None,
         ))
+    self.assertTrue(False)
     self.assertIsNone(self._issue_tracker.new_bug_args)
 
   def testTriage_GroupUntriaged_NonChromiumProject(self):
