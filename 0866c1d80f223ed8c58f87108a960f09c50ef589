@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47550cc7_f0f73ac0",
+        "filename": "dashboard/dashboard/common/file_bug.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-27T17:04:49Z",
+      "side": 1,
+      "message": "Oh those should have been removed. Thanks for catching it!",
+      "parentUuid": "b7b4063a_3727fab2",
+      "revId": "0866c1d80f223ed8c58f87108a960f09c50ef589",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c79d2c62_0ed6dc18",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-27T16:39:37Z",
       "side": 1,
       "message": "ditto?",
+      "revId": "0866c1d80f223ed8c58f87108a960f09c50ef589",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc6db60e_6e344825",
+        "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-27T17:04:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c79d2c62_0ed6dc18",
       "revId": "0866c1d80f223ed8c58f87108a960f09c50ef589",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
