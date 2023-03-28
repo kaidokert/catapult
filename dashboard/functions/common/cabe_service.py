@@ -2,27 +2,25 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
+import grpc
+import cabe_grpc
+
+CABE_SERVER_ADDRESS = 'cabe.skia.org'
+CABE_USE_PLAINTEXT = True
+
 
 def GetAnalysis(job_id):
   "Return a TryJob CABE Analysis as a list."
-  print(job_id)
-  return [{
-      'experiment_spec': {
-          'common': {},
-          'control': {},
-          'treatment': {},
-          'analysis': {
-              'benchmark': {
-                  'name': "speedometer2",
-                  'workload': "AngularJS-TodoMVC"
-              }
-          }
-      },
-      'statistic': {
-          'lower': -7.191551318789924,
-          'upper': 10.395767084476738,
-          'p_value': 0.431640625,
-          'control_median': 103.50000000093132,
-          'treatment_median': 107.89999999850988,
-      }
-  }]
+  if CABE_USE_PLAINTEXT:
+    channel = grpc.insecure_channel(CABE_SERVER_ADDRESS)
+  else:
+    channel = grpc.secure_channel(CABE_SERVER_ADDRESS,
+                                  grpc.ssl_channel_credentials())
+
+  try:
+    stub = cabe_grpc.AnalysisStub(channel)
+    request = cabe_grpc.GetanalysisRequest(pinpoint_job_id=job_id)
+    return stub.GetAnalysis(request).result
+  finally:
+    channel.close()
