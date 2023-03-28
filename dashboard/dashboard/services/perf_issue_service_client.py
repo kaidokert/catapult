@@ -24,6 +24,8 @@ _ISSUES_PERFIX = 'issues/'
 def GetIssues(**kwargs):
   url = _SERVICE_URL + _ISSUES_PERFIX
   try:
+    cloud_metric.PublishPerfIssueServiceRequests('GetIssues', 'GET', url,
+                                                 kwargs)
     resp = request.RequestJson(url, method='GET', **kwargs)
     return resp
   except request.RequestError as e:
@@ -38,6 +40,10 @@ def GetIssue(issue_id, project_name='chromium'):
   url = _SERVICE_URL + _ISSUES_PERFIX
   url += '%s/project/%s' % (issue_id, project_name)
   try:
+    cloud_metric.PublishPerfIssueServiceRequests('GetIssue', 'GET', url, {
+        'issue_id': issue_id,
+        'project_name': project_name
+    })
     resp = request.RequestJson(url, method='GET')
     return resp
   except request.RequestError as e:
@@ -56,6 +62,11 @@ def GetIssueComments(issue_id, project_name='chromium'):
   url = _SERVICE_URL + _ISSUES_PERFIX
   url += '%s/project/%s/comments' % (issue_id, project_name)
   try:
+    cloud_metric.PublishPerfIssueServiceRequests(
+        'GetIssueComments', 'GET', url, {
+            'issue_id': issue_id,
+            'project_name': project_name
+        })
     resp = request.RequestJson(url, method='GET')
     return resp
   except request.RequestError as e:
@@ -73,6 +84,8 @@ def GetIssueComments(issue_id, project_name='chromium'):
 def PostIssue(**kwargs):
   url = _SERVICE_URL + _ISSUES_PERFIX
   try:
+    cloud_metric.PublishPerfIssueServiceRequests('PostIssue', 'POST', url,
+                                                 kwargs)
     resp = request.RequestJson(url, method='POST', body=kwargs)
     return resp
   except request.RequestError as e:
@@ -87,6 +100,8 @@ def PostIssueComment(issue_id, project_name='chromium', **kwargs):
   url = _SERVICE_URL + _ISSUES_PERFIX
   url += '%s/project/%s/comments' % (issue_id, project_name)
   try:
+    cloud_metric.PublishPerfIssueServiceRequests('PostIssueComment', 'POST',
+                                                 url, kwargs)
     resp = request.RequestJson(url, method='POST', body=kwargs)
     return resp
   except request.RequestError as e:
