@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98c9e587_8b067dcb",
+        "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-29T20:47:37Z",
+      "side": 1,
+      "message": "ah i see. fixed.",
+      "parentUuid": "a3275143_176a77f4",
+      "revId": "551727f98aff53cab1af76c7e12b1acb9da9c4d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bce7f1e9_5e131597",
@@ -71,6 +89,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc791136_2bcb6531",
+        "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-29T20:47:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bce7f1e9_5e131597",
+      "revId": "551727f98aff53cab1af76c7e12b1acb9da9c4d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ea23064_eab5bae8",
@@ -84,6 +120,24 @@
       "writtenOn": "2023-03-29T18:45:29Z",
       "side": 1,
       "message": "ditto",
+      "revId": "551727f98aff53cab1af76c7e12b1acb9da9c4d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "802dc5b0_4ee6ff70",
+        "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-03-29T20:47:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ea23064_eab5bae8",
       "revId": "551727f98aff53cab1af76c7e12b1acb9da9c4d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
