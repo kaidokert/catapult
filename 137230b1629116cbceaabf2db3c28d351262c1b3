@@ -103,6 +103,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08eb9acd_387423e1",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-04-03T23:22:33Z",
+      "side": 1,
+      "message": "For readability, we can use like: \n  is_cached_hash \u003d git_hash[0] \u003d\u003d \u0027-\u0027\nThen the is_cached_hash can be reused in the try block later.\n\nOr, \nwe can combined the key evaluation login in the try block as well. So that we don\u0027t need two \u0027if\u0027 on git_hash[0].",
+      "parentUuid": "f28512d8_4f2f5884",
+      "range": {
+        "startLine": 257,
+        "startChar": 7,
+        "endLine": 257,
+        "endChar": 25
+      },
+      "revId": "137230b1629116cbceaabf2db3c28d351262c1b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a937b56f_4e727057",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 4
