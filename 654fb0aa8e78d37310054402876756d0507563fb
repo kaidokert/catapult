@@ -39,6 +39,30 @@
       },
       "revId": "654fb0aa8e78d37310054402876756d0507563fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0289b676_c1176934",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-04-03T19:53:46Z",
+      "side": 1,
+      "message": "This log here is to help identify that we are launching from lacros_browser_backend instead of cros_browser_backend. Added startup_args as part of _LaunchLacrosChromeHelper call above, but I just realized this wouldn\u0027t be necessary so I\u0027ll remove this one.",
+      "parentUuid": "9b773838_b2cb11e2",
+      "range": {
+        "startLine": 174,
+        "startChar": 42,
+        "endLine": 174,
+        "endChar": 43
+      },
+      "revId": "654fb0aa8e78d37310054402876756d0507563fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
