@@ -8,6 +8,7 @@ import json
 import logging
 
 from application import issue_tracker_client
+from application import utils
 
 issues = Blueprint('issues', __name__)
 
