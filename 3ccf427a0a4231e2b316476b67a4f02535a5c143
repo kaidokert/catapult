@@ -16,6 +16,52 @@
       "message": "PTAL. Thanks!",
       "revId": "3ccf427a0a4231e2b316476b67a4f02535a5c143",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "205533b7_9e269f83",
+        "filename": "perf_issue_service/application/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-04-05T23:26:38Z",
+      "side": 1,
+      "message": "Nit: no import here",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "3ccf427a0a4231e2b316476b67a4f02535a5c143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "090cb08d_66fb83db",
+        "filename": "perf_issue_service/application/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-04-05T23:26:38Z",
+      "side": 1,
+      "message": "This has an extra level of wrapping that appears to be unnecessary. The code can be simplified to the following, and remove the trailing () on all usages of the decorator.\n\n  def BearerTokenAuthorizer(wrapped_handler):\n\n    def Wrapper(*args, **kwargs):\n      if not AuthorizeBearerToken(flask_request):\n        return make_response(\u0027Failed to validate the incoming request.\u0027)\n      return wrapped_handler(*args, **kwargs)\n\n    Wrapper.__name__ \u003d wrapped_handler.__name__\n    return Wrapper\n\nUnless you plan to add some extra parameters to the outer wrappers in the future.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 18
+      },
+      "revId": "3ccf427a0a4231e2b316476b67a4f02535a5c143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
