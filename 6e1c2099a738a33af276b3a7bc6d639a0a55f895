@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83ac97fd_7d966464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-04-06T18:30:39Z",
+      "side": 1,
+      "message": "Missed the return status in the last CL. PTAL.",
+      "revId": "6e1c2099a738a33af276b3a7bc6d639a0a55f895",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
