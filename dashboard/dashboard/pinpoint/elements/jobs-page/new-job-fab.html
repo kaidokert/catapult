@@ -626,7 +626,9 @@ found in the LICENSE file.
 
         const vals = [];
         for (const cur of arr) {
-          vals.push({name: cur});
+          if (!cur.startsWith('mac-m1-pro-perf')){
+            vals.push({name: cur});
+          }
         }
         return vals;
       },
