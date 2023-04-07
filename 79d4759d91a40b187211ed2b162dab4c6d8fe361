@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc46c62_423a39da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-04-07T22:33:36Z",
+      "side": 1,
+      "message": "Another CL [1] has already been reverted, but it then left this CL so press benchmarks are still running with higher iteration counts. Need to revert this also so we can track Pinpoint build times. \n\n[1] https://chromium-review.googlesource.com/c/catapult/+/4369313",
+      "revId": "79d4759d91a40b187211ed2b162dab4c6d8fe361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
