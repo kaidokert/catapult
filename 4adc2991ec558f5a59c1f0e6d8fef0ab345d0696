@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0263d5cf_04aa222c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-04-07T18:55:00Z",
+      "side": 1,
+      "message": "Updated the auth logic on perf_issue_service.",
+      "revId": "4adc2991ec558f5a59c1f0e6d8fef0ab345d0696",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
