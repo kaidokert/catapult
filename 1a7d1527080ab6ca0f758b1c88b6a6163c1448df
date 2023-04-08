@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8cb06d2_41e15c24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-04-08T01:25:27Z",
+      "side": 1,
+      "message": "Tested a similar change on staging to block all devices that start with \"mac\"\n\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/\n\nCurrently can run mac m1 pro on demand: https://pinpoint-dot-chromeperf.appspot.com/job/1455f701460000",
+      "revId": "1a7d1527080ab6ca0f758b1c88b6a6163c1448df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
