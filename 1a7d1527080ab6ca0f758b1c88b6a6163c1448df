@@ -16,6 +16,24 @@
       "message": "Tested a similar change on staging to block all devices that start with \"mac\"\n\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/\n\nCurrently can run mac m1 pro on demand: https://pinpoint-dot-chromeperf.appspot.com/job/1455f701460000",
       "revId": "1a7d1527080ab6ca0f758b1c88b6a6163c1448df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c7b4968_bdd55c21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-04-08T03:49:20Z",
+      "side": 1,
+      "message": "This workaround can remove the option. User can still manually input the \u0027mac-m1-pro-perf\u0027 as the bot value and create a new job, but I don\u0027t think most users know they can do that.\nThere are a couple of concerns:\n1. user may be confused why they cannot choose the m1 pros after they notice auto bisections on those bots. \n2. I guess from the existing auto bisections, user can still use the \u0027rerun\u0027 option to run it. \n\nCan we try to block the option from the submit() or presubmit() script in new-job-fab.html? (I\u0027m not sure how presubmit() is invoked)",
+      "parentUuid": "c8cb06d2_41e15c24",
+      "revId": "1a7d1527080ab6ca0f758b1c88b6a6163c1448df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
