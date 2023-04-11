@@ -34,6 +34,24 @@
       "parentUuid": "c8cb06d2_41e15c24",
       "revId": "1a7d1527080ab6ca0f758b1c88b6a6163c1448df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b3682d_2331212d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-04-11T16:21:40Z",
+      "side": 1,
+      "message": "Okay. I modified the CL to allow mac-m1-pro-perf to be listed and instead block the job at the presubmit stage. The presubmit() executes when you click \"start\"\n\nI tested the changes on staging [1]. My test cases were bot \u003d mac-m1-pro-perf, blank, and mac-m1_mini_2020-perf\n\n[1] https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/",
+      "parentUuid": "9c7b4968_bdd55c21",
+      "revId": "1a7d1527080ab6ca0f758b1c88b6a6163c1448df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
