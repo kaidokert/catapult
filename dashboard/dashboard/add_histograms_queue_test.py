@@ -19,6 +19,7 @@ from google.appengine.ext import ndb
 from dashboard import add_histograms_queue
 from dashboard import find_anomalies
 from dashboard.common import testing_common
+from dashboard.common import skia_perf_upload
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
@@ -614,6 +615,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     self.assertNotIn('a_tracing_uri', row_dict)
 
 
+@mock.patch.object(skia_perf_upload, 'UploadRow', mock.MagicMock())
 @mock.patch.object(SheriffConfigClient, '__init__',
                    mock.MagicMock(return_value=None))
 @mock.patch.object(SheriffConfigClient, 'Match',
