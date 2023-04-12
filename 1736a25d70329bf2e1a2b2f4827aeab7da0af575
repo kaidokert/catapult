@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10bc969b_31a75b10",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-12T23:54:47Z",
+      "side": 1,
+      "message": "value is accounted for in line 125 already. I\u0027m not sure if d_avg is actually used. I saw it here: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/add_histograms_test.py;l\u003d780;drc\u003d2d3cceaeae08d1f3c11fef2eeee80856390494cc. We can leave it there just in case.",
+      "parentUuid": "5828706a_c8ce9be6",
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c25a014_c3fbdca0",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-04-12T23:47:44Z",
       "side": 1,
       "message": "Are we using \u0027Chromium Revision\u0027 according to the design doc?",
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07ae807c_abbb91a8",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-12T23:54:47Z",
+      "side": 1,
+      "message": "I named it \u0027Chromium Git Hash\u0027 as it\u0027s consistent with the naming for \u0027r_chromium\u0027 shown here: https://chromeperf.appspot.com/edit_site_config?key\u003drevision_info. I can change it \u0027Chromium Revision\u0027 if you disagree.",
+      "parentUuid": "8c25a014_c3fbdca0",
       "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
