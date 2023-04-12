@@ -22,6 +22,7 @@ from dashboard import graph_revisions
 from dashboard import sheriff_config_client
 from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
+from dashboard.common import skia_perf_upload
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
@@ -260,6 +261,13 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
     raise ndb.Return()
 
   yield ndb.put_multi_async(rows) + [r.UpdateParentAsync() for r in rows]
+
+  for row in rows:
+    try:
+      if hasattr(row, 'r_commit_pos'):
+        skia_perf_upload.UploadRow(row)
+    except Exception as e: # pylint: disable=broad-except
+      logging.warning('Row upload to Skia Perf failed. Error: %s', e)
 
   # Disable this log since it's killing the quota of Cloud Logging API -
   # write requests per minute
