@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5828706a_c8ce9be6",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-04-12T23:47:44Z",
+      "side": 1,
+      "message": "Just curious, does this field exist? From my side it\u0027s named value.",
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c25a014_c3fbdca0",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2023-04-12T23:47:44Z",
+      "side": 1,
+      "message": "Are we using \u0027Chromium Revision\u0027 according to the design doc?",
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
