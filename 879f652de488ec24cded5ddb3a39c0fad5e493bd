@@ -16,6 +16,24 @@
       "message": "Nice! I wonder if you were able to deploy the function and test that it works?",
       "revId": "879f652de488ec24cded5ddb3a39c0fad5e493bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9ce745b_46ac7e62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-04-12T01:02:10Z",
+      "side": 1,
+      "message": "I haven\u0027t tried to deploy it. How would you recommend doing that?\n \nI have tried running it locally with the `functions-framework` emulator, and `curl`ing it from another shell, like so:\n\nTerminal 1:\n```\n✔ borges ~/code/chromium_src/src/third_party/catapult/dashboard/functions\n[cabe*] \u003e functions-framework --target GetCabeAnalysis --debug\n * Serving Flask app \u0027GetCabeAnalysis\u0027\n * Debug mode: on\nWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead. * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:8080 * Running on http://100.67.13.185:8080\nPress CTRL+C to quit\n * Restarting with watchdog (inotify)\n * Debugger is active! * Debugger PIN: 129-828-084\nOriginal request: \u003cRequest \u0027http://localhost:8080/\u0027 [POST]\u003e\nOriginal request.content_type: application/json\nOriginal request data: {\"job_id\":\"123\", \"anomaly\":{\"chart\":\"AngularJS-TodoMVC\"}}\nOriginal params: {\u0027job_id\u0027: \u0027123\u0027, \u0027anomaly\u0027: {\u0027chart\u0027: \u0027AngularJS-TodoMVC\u0027}}\nGetting CABE Analysis from Job: 123\nCABE Analysis response: []\nget_cabe_analysis statistic: None\n127.0.0.1 - - [11/Apr/2023 17:54:52] \"POST / HTTP/1.1\" 200 -\n```\n\nTerminal 2:\n```\n\u003e curl localhost:8080 -X POST  -H \"Content-Type: application/json\"  -d \u0027{\"job_id\":\"123\", \"anomaly\":{\"chart\":\"AngularJS-TodoMVC\"}}\u0027\n{\n  \"statistic\": null\n}\n✔ borges \n```\n\nI confirmed that it successfully made the grpc call by checking the cabe.skia.org logs in GCP console. The deployment running currently at cabe.skia.org only logs a \"not implemented\" error message on the server and returns an empty `GetAnalysisResponse` proto with no error code.",
+      "parentUuid": "0c6146bb_0e7d824c",
+      "revId": "879f652de488ec24cded5ddb3a39c0fad5e493bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
