@@ -18,6 +18,7 @@ from dashboard import graph_revisions
 from dashboard import units_to_direction
 from dashboard import sheriff_config_client
 from dashboard.common import datastore_hooks
+from dashboard.common import skia_perf_upload
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
@@ -61,6 +62,8 @@ def AddPointQueuePost():
       return make_response('')
 
   ndb.Future.wait_all(all_put_futures)
+
+  skia_perf_upload.UploadRows(added_rows)
 
   client = sheriff_config_client.GetSheriffConfigClient()
   tests_keys = set()

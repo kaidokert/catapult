@@ -56,6 +56,19 @@ def PublishPerfIssueServiceRequestFailures(request, method, url, data):
       label_dict=label_dict)
 
 
+def PublishSkiaUploadResult(test_path, error_message, status):
+  label_dict = {
+      'test_path': test_path,
+      'error_message': error_message,
+      'status': status,
+  }
+  _PublishTSCloudMetric(
+      project_id=app_identity.get_application_id(),
+      service_name='chromeperf',
+      metric_type='chromeperf/skia/upload_status',
+      label_dict=label_dict)
+
+
 def PublishPinpointSwarmingPendingMetric(task_id, pinpoint_job_type,
                                          pinpoint_job_id, bot_id, bot_os,
                                          pending_time):
