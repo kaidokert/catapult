@@ -22,6 +22,7 @@ from dashboard import graph_revisions
 from dashboard import sheriff_config_client
 from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
+from dashboard.common import skia_perf_upload
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
@@ -260,6 +261,8 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
     raise ndb.Return()
 
   yield ndb.put_multi_async(rows) + [r.UpdateParentAsync() for r in rows]
+
+  skia_perf_upload.UploadRows(rows)
 
   # Disable this log since it's killing the quota of Cloud Logging API -
   # write requests per minute
