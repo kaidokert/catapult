@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c6146bb_0e7d824c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-12T00:51:29Z",
+      "side": 1,
+      "message": "Nice! I wonder if you were able to deploy the function and test that it works?",
+      "revId": "879f652de488ec24cded5ddb3a39c0fad5e493bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
