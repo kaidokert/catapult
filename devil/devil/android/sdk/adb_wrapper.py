@@ -397,6 +397,15 @@ class AdbWrapper(object):
           except Empty:
             break
 
+        # Wait for process finish
+        timeout_if_no_finish = datetime.now() + timedelta(seconds=5)
+        while self._process.poll() is None:
+          if datetime.now() > timeout_if_no_finish:
+            logging.warning('Adb wedged. Kill')
+            self._process.kill()
+            break
+          time.sleep(0.1)
+
         self._terminating = True
         if include_status:
           output_lines.append(exit_code)
