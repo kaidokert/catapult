@@ -33,6 +33,23 @@
       "message": "bjoyce: iirc, you\u0027ve been working on PersistentShell recently. Can you review this? (I\u0027m happy to give the OWNERS stamp once it looks good to you.)",
       "revId": "51ee03b09728d1d5cc1b68c76ec3e5578f7b8c87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe6f4d4_fb81421b",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2023-04-13T16:47:44Z",
+      "side": 1,
+      "message": "I think in python3, this could be a _process.wait(timeout)? I believe catapult has to be py2, py3 compatible, but if that could be documented here with a comment, that\u0027d be great.",
+      "revId": "51ee03b09728d1d5cc1b68c76ec3e5578f7b8c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
