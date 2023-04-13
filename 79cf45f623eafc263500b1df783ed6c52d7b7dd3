@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d2d520_48aed075",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-04-13T21:14:33Z",
+      "side": 1,
+      "message": "PTAL - alternately I can add arguments to fetch_telemetry_binary_dependencies\nto take a filter?",
+      "revId": "79cf45f623eafc263500b1df783ed6c52d7b7dd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
