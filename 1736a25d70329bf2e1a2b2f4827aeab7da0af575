@@ -3,6 +3,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8e8f870_ab38f620",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-14T17:35:59Z",
+      "side": 1,
+      "message": "Could you please add metrics to track how often doesn\u0027t the row have \"r_commit_pos\"?",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 38
+      },
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "777cead8_1c01063c",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-14T17:35:59Z",
+      "side": 1,
+      "message": "change the log level to error, that will help for issue debug.",
+      "range": {
+        "startLine": 37,
+        "startChar": 14,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825b6067_89921335",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-14T17:35:59Z",
+      "side": 1,
+      "message": "how long it will take to write file to GCS?\nIf it\u0027s slow, we may want to change the UploadRow to an async operation.",
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4f1f460_a20af4d0",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-14T17:35:59Z",
+      "side": 1,
+      "message": "is it possible that row doesn\u0027t have the error attribute? what would happen if row doesn\u0027t have the error attribute?",
+      "range": {
+        "startLine": 127,
+        "startChar": 15,
+        "endLine": 127,
+        "endChar": 24
+      },
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "910619d8_5e93e2a2",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-14T17:35:59Z",
+      "side": 1,
+      "message": "Curious, is this equal to the std error?",
+      "range": {
+        "startLine": 138,
+        "startChar": 28,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5828706a_c8ce9be6",
         "filename": "dashboard/dashboard/common/skia_perf_upload.py",
         "patchSetId": 6
@@ -50,6 +159,29 @@
       "side": 1,
       "message": "Thanks for the reference",
       "parentUuid": "10bc969b_31a75b10",
+      "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde277dd_26b10d5d",
+        "filename": "dashboard/dashboard/common/skia_perf_upload.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-14T17:35:59Z",
+      "side": 1,
+      "message": "How about this:\nalways check hasattr() of test_part2, 3, 4, 5, 6, 7, 8.\nIf anyone was missing, then stop checking the following attributes and return the measurement_key?\n\nWe don\u0027t want to have empty subtest_x in the gcs file, otherwise, Skia Perf will treat it as a new trace.",
+      "range": {
+        "startLine": 160,
+        "startChar": 10,
+        "endLine": 160,
+        "endChar": 25
+      },
       "revId": "1736a25d70329bf2e1a2b2f4827aeab7da0af575",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
