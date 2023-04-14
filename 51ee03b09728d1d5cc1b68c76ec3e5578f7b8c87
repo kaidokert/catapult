@@ -103,6 +103,24 @@
       "parentUuid": "c9c3b90f_6d972282",
       "revId": "51ee03b09728d1d5cc1b68c76ec3e5578f7b8c87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f3e7aa_99c6547a",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2023-04-14T05:06:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83c25c7f_e98d67bc",
+      "revId": "51ee03b09728d1d5cc1b68c76ec3e5578f7b8c87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
