@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9407dad_41500d63",
+        "filename": "dashboard/dashboard/skia_perf_upload.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-17T21:47:07Z",
+      "side": 1,
+      "message": "Added Raise statement here so that queue will retry if task fails to upload a row for some reason.",
+      "revId": "0a4b62660c7d3d4e1cdef9adf8b46b982bc545fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
