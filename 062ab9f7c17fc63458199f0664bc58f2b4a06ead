@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f62bd56_57a40b0e",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-17T16:54:58Z",
+      "side": 1,
+      "message": "you may have to add an UUID here to avoid throttling by Cloud Monitoring API.",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f81ccc03_89b3801d",
         "filename": "dashboard/dashboard/dispatcher.py",
         "patchSetId": 7
