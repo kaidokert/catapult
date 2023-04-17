@@ -16,6 +16,40 @@
       "message": "Hi. I changed skia_perf_upload to be a handler and created a queue for it, so we could have asynchronous writes. Please take a look.",
       "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa1825a_990d8758",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-17T16:53:59Z",
+      "side": 1,
+      "message": "Currently, Cloud Monitoring allows one write every 5 seconds for any\nunique tuple (metric_name, metric_label_value_1, metric_label_value_2, …).\nTo avoid being throttled by Cloud Monitoring, you may add a UUID label_value to\nmake the tuple unique.\nhttps://cloud.google.com/monitoring/quotas\n\nFor example:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/cloud_metric.py;l\u003d229-236",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81ccc03_89b3801d",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-04-17T16:53:59Z",
+      "side": 1,
+      "message": "Like the idea to setup task queue + API to handle the skia perf upload!\n\nIs this a private API?",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
