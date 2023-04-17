@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c99c8071_d8630caa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-17T21:22:46Z",
+      "side": 1,
+      "message": "Done. I also added a @cloud_metric.APIMetric decorator to SkiaPerfUploadPost.",
+      "parentUuid": "8aa1825a_990d8758",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f62bd56_57a40b0e",
@@ -52,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e4a1441_ab64e54e",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-17T21:22:46Z",
+      "side": 1,
+      "message": "Done. Like this, right?",
+      "parentUuid": "8f62bd56_57a40b0e",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f81ccc03_89b3801d",
@@ -65,6 +101,24 @@
       "writtenOn": "2023-04-17T16:53:59Z",
       "side": 1,
       "message": "Like the idea to setup task queue + API to handle the skia perf upload!\n\nIs this a private API?",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bcd4856_6e4cf646",
+        "filename": "dashboard/dashboard/dispatcher.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-17T21:22:46Z",
+      "side": 1,
+      "message": "Thanks for bringing this up. It wasn\u0027t private. I added a check to the handler so that only admins can use it.",
+      "parentUuid": "f81ccc03_89b3801d",
       "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
