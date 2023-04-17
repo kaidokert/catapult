@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a1078d8_552c292a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-04-17T15:06:01Z",
+      "side": 1,
+      "message": "Hi. I changed skia_perf_upload to be a handler and created a queue for it, so we could have asynchronous writes. Please take a look.",
+      "revId": "062ab9f7c17fc63458199f0664bc58f2b4a06ead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
