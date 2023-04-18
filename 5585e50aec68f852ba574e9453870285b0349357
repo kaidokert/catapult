@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5abd8b_5328e7b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-04-18T22:14:47Z",
+      "side": 1,
+      "message": "This should be updated, regardless of the separate issue in crbug/1434367",
+      "revId": "5585e50aec68f852ba574e9453870285b0349357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
