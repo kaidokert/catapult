@@ -285,4 +285,4 @@ class FastbootUtils(object):
       logger.info('Erasing "userdata" partition.')
       self.fastboot.Erase('userdata')
       self._FlashPartitions(_WIPE_PARTITIONS, directory)
-    self.Reboot(wait_for_reboot=not wipe)
+    self.Reboot()
