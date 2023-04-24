@@ -269,7 +269,7 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
       row_urlsafe = row.key.urlsafe()
       taskqueue.add(
           url='/skia_perf_upload',
-          params={'rows': [row_urlsafe]},
+          payload=json.dumps({'rows': [row_urlsafe.decode()]}),
           queue_name=skia_perf_upload._TASK_QUEUE_NAME,
       )
 
