@@ -39,6 +39,7 @@ def SkiaPerfUploadPost():
     row_ids = json.loads(request.get_data())['rows']
   except ValueError:
     row_ids = request.form.get('rows')
+  logging.info('Received rows: %s', row_ids)
   rows = [ndb.Key(urlsafe=row_id).get() for row_id in row_ids]
   for row in rows:
     test_path = utils.TestPath(row.parent_test)
