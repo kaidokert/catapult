@@ -141,12 +141,17 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._managed_repo,
     ]
     logging.debug('Starting session: %s', ' '.join(session_cmd))
-    self._command_runner.run_ffx_command(
+    cpe = self._command_runner.run_ffx_command(
         session_cmd,
         stdout=output,
         stderr=subprocess.STDOUT)
 
+    if cpe.returncode != 0:
+      logging.errpor('[%s] failed with <stdout, stderr>: <%s>', ' '.join(session_cmd),
+                     cpe.stdout)
+
     session_show_cmd = [
+      '--config', 'log.level=debug',
       'session',
       'show',
     ]
@@ -180,6 +185,8 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--min-height-for-gpu-raster-tile=128',
         '--webgl-msaa-sample-count=0',
         '--max-decoded-image-size-mb=10',
+        '--enable-logging=stderr',
+        '--v=1'
     ])
     if startup_args:
       browser_cmd.extend(startup_args)
