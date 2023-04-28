@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40a3d11_146abf9e",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-04-28T22:49:41Z",
+      "side": 1,
+      "message": "I\u0027m not a big fan of this solution but I could not think of another way.\n\nTo me, the use cases are:\n```\nUser journey 1:\n- pinpoint loads default 10 iterations\n- user edits attempt count\n- user edits benchmark (should not overwrite)\n\nUser journey 2:\n- pinpoint loads default 10 iterations\n- user edits benchmark (should overwrite)\n- user revises attempt count (should overwrite)\n\nUser journey 3:\n- on a job page, user restarts job (should load previous attempt count)\n- then either UJ1 or UJ2\n```\n\nThe issue with this is if a user sets it to mac-m1 + speedometer2 (attempt count \u003d 30) and then changes their mind and decides to run system_health.memory_desktop, then the iteration count will remain at 30 even though the default for that benchmark is 10.\n\nWould appreciate any ideas you have.",
+      "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
