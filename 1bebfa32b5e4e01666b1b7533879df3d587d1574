@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9c1113a_b61f47fa",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-05-01T23:11:43Z",
+      "side": 1,
+      "message": "`const _DEFAULT_ATTEMPT_COUNT \u003d 10;`\n\n- js constants should be uppercase\n- trailing semicolon",
+      "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f40a3d11_146abf9e",
         "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
         "patchSetId": 1
@@ -31,6 +48,24 @@
       "writtenOn": "2023-04-28T22:49:41Z",
       "side": 1,
       "message": "I\u0027m not a big fan of this solution but I could not think of another way.\n\nTo me, the use cases are:\n```\nUser journey 1:\n- pinpoint loads default 10 iterations\n- user edits attempt count\n- user edits benchmark (should not overwrite)\n\nUser journey 2:\n- pinpoint loads default 10 iterations\n- user edits benchmark (should overwrite)\n- user revises attempt count (should overwrite)\n\nUser journey 3:\n- on a job page, user restarts job (should load previous attempt count)\n- then either UJ1 or UJ2\n```\n\nThe issue with this is if a user sets it to mac-m1 + speedometer2 (attempt count \u003d 30) and then changes their mind and decides to run system_health.memory_desktop, then the iteration count will remain at 30 even though the default for that benchmark is 10.\n\nWould appreciate any ideas you have.",
+      "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6909d0ad_042a553d",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-05-01T23:11:43Z",
+      "side": 1,
+      "message": "I *think* there\u0027s a way to do this without running into the problem you describe of default values getting stuck as the user switches between options that affect the calculated default value.\n\nRather than setting `.initial_attempt_count`\u0027s value to the new default each time the user switches options, render the default value using the `\u003cpaper-input\u003e` element\u0027s `placeholder` attribute. Altering `placeholder` won\u0027t affect the actual data-bound `initial_attempt_count` value on this new-job-fab class, and its value only shows up in the UI the `paper-input`\u0027s `.value` attribute isn\u0027t set to anything.\n\ncode might look something like this: \n\n```\n\u003cpaper-input ...\n  id\u003d\"initial_attempt_count\"\n  placeholder\u003d\"[[defaultAttemptCount(configuration, benchmark)]]\"\n  ...\n  \u003e\n```\n(where `defaultAttemptCount` is a new function you\u0027d have to add)\n\nDocs: https://www.webcomponents.org/element/Polymerelements/paper-input/v2.0.0/elements/paper-input#property-placeholder (might need to futz with the version selector in that URL since I don\u0027t recall which deprecated polymer version this code uses, but `placeholder` should be supported in whatever version we use).\n\nThe purpose of `placeholder` is to display some text in an input box iff it doesn\u0027t have a value set already.  Usually it\u0027s used for showing example prompts or help text, but you can use it to display default values that will be applied unless the user takes action to override them.\n\nI think this can work but you\u0027ll probably want to leave the `initial_attempt_count` value unassigned up on line 392 (remove the `value: _default_attempt_count` line altogether).\n\nThen add a new function similar to `isBisectJob` for calculating the default iterations on-demand:\n\n```\n      defaultAttemptCount(configuration, benchmark) {\n        if (configuration.startsWith(\u0027mac-m1_mini_2020\u0027)) {\n          return 30;\n        }\n        \n        if (benchmark.toLowerCase() \u003d\u003d \u0027speedometer2\u0027 || \n            benchmark.toLowerCase() \u003d\u003d \u0027jetstream2\u0027) {\n          return 30;\n        }\n         \n        if (benchmark.toLowerCase().startsWith(\u0027rendering.desktop\u0027)) {\n          return 60;\n        }\n        \n        return _DEFAULT_ITERATION_COUNT;\n      },\n```\n\nThen (assuming the user hasn\u0027t *manually* edited the value in the attempt count box, because then all bets are off and that value sticks), whenever the user changes benchmark or configuration, the UI will automatically update the placeholder number shown in the attempt count input to display the new default (unless the user manually edits it), whatever that calculated default happens to be.  \n\nSo now when the user selects mac-m1 + speedometer2, the attempt count\u0027s `\u003cpaper-input placeholder\u003d[[defaultAttemptCount(configuration, benchmark)]] ...\u003e` will now display \"30\" in the UI. If the user then changes their mind and decides to run system_health.memory_desktop instead, then the `placeholder` value will update automatically to 10.  Unless the user overrides that value and enters something manually into that text box, they can flip between whatever configs and benchmarks they like without getting the iteration count stuck on any particular calculated default value.\n\nThere probably would also need to be something that checks if initial_attempt_count is still unset before form submission, and sets the submitted attempt count to whatever `defaultAttemptCount(...)` returns before POSTing the request to the server.",
+      "parentUuid": "f40a3d11_146abf9e",
       "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
