@@ -30,6 +30,7 @@ THIRD_PARTY_LIBRARIES = [
 DASHBOARD_FILES = [
     'api.yaml',
     'app.yaml',
+    'app-skia-bridge.yaml',
     'cron.yaml',
     'dashboard',
     'dispatch.yaml',
