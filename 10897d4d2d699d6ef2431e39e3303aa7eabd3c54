@@ -34,6 +34,24 @@
       "parentUuid": "902ab024_44e3ce8f",
       "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69261ecb_98b449c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2023-05-03T17:47:53Z",
+      "side": 1,
+      "message": "Okay, I think though if we try to run the catapult CQ on emulators without this change, they\u0027ll fail the crashhandler tests. But that could be a problem for future us.",
+      "parentUuid": "902ab024_44e3ce8f",
+      "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
