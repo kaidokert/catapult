@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "129cb8c6_b0584df4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2023-05-03T15:40:27Z",
+      "side": 1,
+      "message": "Hey dproy@\n\nI\u0027m looking to remove some supplemental metrics that became noisy. Could you PTAL? Thanks!",
+      "revId": "7461b6aa6b3ddb3a7b90ce9ac809d0002ab1930e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
