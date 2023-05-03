@@ -16,6 +16,24 @@
       "message": "I feel this will cause an issue with emulators that crash?\n\n\"When running on an emulator, if a device crashes, abd reports as \"device offline\" having it return\nas an AdbCommandFailedError instead of a DeviceUnreachableError.\"\n\nhttps://chromium-review.googlesource.com/c/catapult/+/3621819\n\nMay not be a problem on bots as I think we start up and tear down the emulators with each test?",
       "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa135c51_4bd2d22d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-05-03T17:46:09Z",
+      "side": 1,
+      "message": "From the existing [examples](https://chromium-swarm.appspot.com/task?id\u003d61f1ac95e4f6eb10), it looks like the RetryOnSystemCrash logic does not work well with offline emulators and causes the test running looping in the exceptions. And it is even worse when the emulator become online but not responsive: https://chromium-swarm.appspot.com/task?id\u003d61f32046d5cc2010\n \n \n \n\u003e May not be a problem on bots as I think we start up and tear down the emulators with each test?\n\nThat\u0027s correct. Also, tests on bots usually has the flag \"--recover-devices\" which will try to [recover](https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/devil/devil/android/tools/device_recovery.py;drc\u003df8d79d2265b7a1adbe65bed3150cb668e4cabc75;l\u003d107) the device in the last test-level retry which is better than RetryOnSystemCrash.",
+      "parentUuid": "902ab024_44e3ce8f",
+      "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
