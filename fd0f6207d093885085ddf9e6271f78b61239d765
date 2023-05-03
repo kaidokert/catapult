@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85db4e0_1ffabb83",
+        "filename": "dashboard/dashboard/skia_bridge/application/perf_api/query_anomalies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-03T17:52:27Z",
+      "side": 1,
+      "message": "Could it return more anomaly information here?\nThis is the Anomaly object I created in Skia Perf go code:\n\ntype Anomaly struct {\n\tId                  string\n\tTestPath            string\n\tBugId               string\n\tStartRevision       int\n\tEndRevision         int\n\tIsImprovement       bool\n\tRecovered           bool\n\tState               string\n\tStatistics          string\n\tUnit                string\n\tDegreeOfFreedom     float64\n\tMedianBeforeAnomaly float64\n\tMedianAfterAnomaly  float64\n\tPValue              float64\n\tSegmentSizeAfter    int\n\tSegmentSizeBefore   int\n\tStdDevBeforeAnomaly float64\n\tTStatistics         float64\n}\n\nCan we cover all of those fields?",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 18
+      },
+      "revId": "fd0f6207d093885085ddf9e6271f78b61239d765",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
