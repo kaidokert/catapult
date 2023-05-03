@@ -70,6 +70,24 @@
       "parentUuid": "69261ecb_98b449c0",
       "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca114f4d_9acb57f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-05-03T20:48:44Z",
+      "side": 1,
+      "message": "Hey Nate, the original CL has two issues:\n* It is not necessary. https://chromium-swarm.appspot.com/task?id\u003d61f1ac95e4f6eb10 is an example where the offline emulator eventually threw DeviceUnreachableError which is already covered by RetryOnSystemCrash code.\n* It incorrectly triggers retries on errors other than \"device offline\", as explained in the commit message.",
+      "parentUuid": "ed3444a6_0f172e34",
+      "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
