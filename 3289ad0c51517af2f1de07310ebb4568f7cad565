@@ -62,6 +62,69 @@
       },
       "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8683d8dc_f5128d1b",
+        "filename": "dashboard/dashboard/skia_bridge/application/perf_api/query_anomalies.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-03T03:21:37Z",
+      "side": 1,
+      "message": "So, it only support to query single test_key?\nCan we make it to support query multiple test_keys?",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e572e1_9b3f54dc",
+        "filename": "dashboard/skia-bridge.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-03T03:21:37Z",
+      "side": 1,
+      "message": "Anywhere define the instance type will be used for the skia bridge service?",
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e59e63_de37014d",
+        "filename": "dashboard/skia-bridge.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-03T03:21:37Z",
+      "side": 1,
+      "message": "Curious, why the timeout is 4 seconds?",
+      "range": {
+        "startLine": 20,
+        "startChar": 15,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
