@@ -230,6 +230,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86b59302_5ef99a3e",
+        "filename": "dashboard/skia-bridge.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T18:30:15Z",
+      "side": 1,
+      "message": "Check CL https://chromium-review.googlesource.com/c/catapult/+/4503970",
+      "parentUuid": "3386d6ad_98ed47f8",
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49e59e63_de37014d",

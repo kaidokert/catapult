@@ -22,6 +22,30 @@
       },
       "revId": "fd0f6207d093885085ddf9e6271f78b61239d765",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5669ff9_c27e2c42",
+        "filename": "dashboard/dashboard/skia_bridge/application/perf_api/query_anomalies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T18:30:15Z",
+      "side": 1,
+      "message": "Adding it in CL https://chromium-review.googlesource.com/c/catapult/+/4503970",
+      "parentUuid": "e85db4e0_1ffabb83",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 18
+      },
+      "revId": "fd0f6207d093885085ddf9e6271f78b61239d765",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
