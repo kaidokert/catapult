@@ -122,6 +122,24 @@
       "parentUuid": "bcfbc8b2_31ec4a79",
       "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ff0a15_225517a8",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-05-03T21:00:18Z",
+      "side": 1,
+      "message": "yeesh. ok that might be below the minimum threshold of return on invested effort to fix.\n\nWe could try to handle that situation with more bandaids, like maybe keep a new hidden form field with the *actual* value the form will submit, and this initial_attempt_count field just becomes a purely browser-side bit of UI state from which we derive the actual value at submit time. So that way these calculated default values are visible to the user, but never enter a data binding feedback loop during form validation...",
+      "parentUuid": "910ffbf2_a590a133",
+      "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

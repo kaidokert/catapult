@@ -16,6 +16,24 @@
       "message": "Added these to make the attempt count box look more normal. Here\u0027s what it looks like: https://screenshot.googleplex.com/BjYfLNEUV4BTeDJ",
       "revId": "d95455799617c9650b05eacc4f862d6206c75f89",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea85b8c_1931f812",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-05-03T21:00:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c37a1e7_eb290953",
+      "revId": "d95455799617c9650b05eacc4f862d6206c75f89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
