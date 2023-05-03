@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fad2dd8f_9298946f",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green-py3.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T16:11:05Z",
+      "side": 1,
+      "message": "I think that makes sense. We would want a rebuild for any changes in dependencies (currently using the anomaly module). Once we have it deployed, I\u0027ll add the steps to set traffic to specific versions.",
+      "parentUuid": "5536912e_3782dd89",
+      "range": {
+        "startLine": 49,
+        "startChar": 9,
+        "endLine": 49,
+        "endChar": 15
+      },
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "187caa18_d2b57f3e",
@@ -87,6 +111,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3589bb09_0b70afca",
+        "filename": "dashboard/dashboard/skia_bridge/application/perf_api/query_anomalies.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T16:11:05Z",
+      "side": 1,
+      "message": "My bad. I was using this to test it out and forgot to change 😄",
+      "parentUuid": "8683d8dc_f5128d1b",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7fc05d_118050d8",
+        "filename": "dashboard/dashboard/skia_bridge/application/perf_api/query_anomalies.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T16:11:05Z",
+      "side": 1,
+      "message": "Remnant of local testing that I forgot to remove 😊",
+      "parentUuid": "187caa18_d2b57f3e",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1e572e1_9b3f54dc",
@@ -106,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41ac7455_922abb15",
+        "filename": "dashboard/skia-bridge.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T16:11:05Z",
+      "side": 1,
+      "message": "There is an instance_class field available (default is F1). I say we start with default and change based on performance.\nFull reference: https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab\u003dpython",
+      "parentUuid": "f1e572e1_9b3f54dc",
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49e59e63_de37014d",
         "filename": "dashboard/skia-bridge.yaml",
         "patchSetId": 6
@@ -117,6 +207,30 @@
       "writtenOn": "2023-05-03T03:21:37Z",
       "side": 1,
       "message": "Curious, why the timeout is 4 seconds?",
+      "range": {
+        "startLine": 20,
+        "startChar": 15,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "3289ad0c51517af2f1de07310ebb4568f7cad565",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee3d8e2_7a18c2ff",
+        "filename": "dashboard/skia-bridge.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-03T16:11:05Z",
+      "side": 1,
+      "message": "Picked a random value. Will change it to 1 since the call returns pretty fast",
+      "parentUuid": "49e59e63_de37014d",
       "range": {
         "startLine": 20,
         "startChar": 15,
