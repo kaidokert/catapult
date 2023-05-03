@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77b5aca2_e58c8302",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-05-03T19:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9c1113a_b61f47fa",
+      "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f40a3d11_146abf9e",
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I *think* there\u0027s a way to do this without running into the problem you describe of default values getting stuck as the user switches between options that affect the calculated default value.\n\nRather than setting `.initial_attempt_count`\u0027s value to the new default each time the user switches options, render the default value using the `\u003cpaper-input\u003e` element\u0027s `placeholder` attribute. Altering `placeholder` won\u0027t affect the actual data-bound `initial_attempt_count` value on this new-job-fab class, and its value only shows up in the UI the `paper-input`\u0027s `.value` attribute isn\u0027t set to anything.\n\ncode might look something like this: \n\n```\n\u003cpaper-input ...\n  id\u003d\"initial_attempt_count\"\n  placeholder\u003d\"[[defaultAttemptCount(configuration, benchmark)]]\"\n  ...\n  \u003e\n```\n(where `defaultAttemptCount` is a new function you\u0027d have to add)\n\nDocs: https://www.webcomponents.org/element/Polymerelements/paper-input/v2.0.0/elements/paper-input#property-placeholder (might need to futz with the version selector in that URL since I don\u0027t recall which deprecated polymer version this code uses, but `placeholder` should be supported in whatever version we use).\n\nThe purpose of `placeholder` is to display some text in an input box iff it doesn\u0027t have a value set already.  Usually it\u0027s used for showing example prompts or help text, but you can use it to display default values that will be applied unless the user takes action to override them.\n\nI think this can work but you\u0027ll probably want to leave the `initial_attempt_count` value unassigned up on line 392 (remove the `value: _default_attempt_count` line altogether).\n\nThen add a new function similar to `isBisectJob` for calculating the default iterations on-demand:\n\n```\n      defaultAttemptCount(configuration, benchmark) {\n        if (configuration.startsWith(\u0027mac-m1_mini_2020\u0027)) {\n          return 30;\n        }\n        \n        if (benchmark.toLowerCase() \u003d\u003d \u0027speedometer2\u0027 || \n            benchmark.toLowerCase() \u003d\u003d \u0027jetstream2\u0027) {\n          return 30;\n        }\n         \n        if (benchmark.toLowerCase().startsWith(\u0027rendering.desktop\u0027)) {\n          return 60;\n        }\n        \n        return _DEFAULT_ITERATION_COUNT;\n      },\n```\n\nThen (assuming the user hasn\u0027t *manually* edited the value in the attempt count box, because then all bets are off and that value sticks), whenever the user changes benchmark or configuration, the UI will automatically update the placeholder number shown in the attempt count input to display the new default (unless the user manually edits it), whatever that calculated default happens to be.  \n\nSo now when the user selects mac-m1 + speedometer2, the attempt count\u0027s `\u003cpaper-input placeholder\u003d[[defaultAttemptCount(configuration, benchmark)]] ...\u003e` will now display \"30\" in the UI. If the user then changes their mind and decides to run system_health.memory_desktop instead, then the `placeholder` value will update automatically to 10.  Unless the user overrides that value and enters something manually into that text box, they can flip between whatever configs and benchmarks they like without getting the iteration count stuck on any particular calculated default value.\n\nThere probably would also need to be something that checks if initial_attempt_count is still unset before form submission, and sets the submitted attempt count to whatever `defaultAttemptCount(...)` returns before POSTing the request to the server.",
       "parentUuid": "f40a3d11_146abf9e",
+      "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcfbc8b2_31ec4a79",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-05-03T19:34:19Z",
+      "side": 1,
+      "message": "Thanks for this advice, I think it\u0027s a much better approach.\n\nThe one thing I could not figure out was how to get the job to submit when the `attempt count` field is empty. In this case, ideally pinpoint would set the attempt count to the placeholder value. There\u0027s a step in the presubmit [1] where I could check if initial_attempt_count is null or not, but based on my debugging of the submission process, the event that calls the api/new takes place first then the presubmit blocks the event if there are invalid params so I think it\u0027s not possible to inject the attempt count then.\n\nInstead I went with making the param a required field so that it\u0027ll highlight the form as red if a user did not write something down. I can expect a user to complain about that at some point so I don\u0027t know if it\u0027s better to fix now or later when we rehaul the Pinpoint UI in Q3/Q4. You can test the changes here [2]. It should work for new jobs and restarting jobs. \n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html;drc\u003d247560fd679989ef6f304e809c16669a30eecb0b;l\u003d451\n[2] https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/",
+      "parentUuid": "6909d0ad_042a553d",
       "revId": "1bebfa32b5e4e01666b1b7533879df3d587d1574",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
