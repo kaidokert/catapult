@@ -52,6 +52,24 @@
       "parentUuid": "902ab024_44e3ce8f",
       "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3444a6_0f172e34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-05-03T19:02:51Z",
+      "side": 1,
+      "message": "You\u0027re reverting a 1 year old CL but I don\u0027t fully understand what problem you\u0027re trying to solve with this revert. Can you elaborate a little more?\n\nThe original CL was trying to solve the problem of \"When running on an emulator, if a device crashes, abd reports as \u0027device offline\u0027 having it return as an AdbCommandFailedError instead of a DeviceUnreachableError.\" Won\u0027t reverting this just reintroduce that same problem? Have you solved that original problem a different way? Or are you saying that the original CL did not actually solve the problem it set out to solve?",
+      "parentUuid": "69261ecb_98b449c0",
+      "revId": "10897d4d2d699d6ef2431e39e3303aa7eabd3c54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
