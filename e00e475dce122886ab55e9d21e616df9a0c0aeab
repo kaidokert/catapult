@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1316f683_0ba9643e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2023-05-03T15:20:09Z",
+      "side": 1,
+      "message": "nit: I think if you dropping the space before the bug number will link the crbug issue properly.",
+      "revId": "e00e475dce122886ab55e9d21e616df9a0c0aeab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6695d26a_005ed9b2",
