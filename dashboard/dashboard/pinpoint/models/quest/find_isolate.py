@@ -208,6 +208,8 @@ class _FindIsolateExecution(execution.Execution):
           isolate_server, isolate_hash = isolate.Get(self._builder_name,
                                                      self._change,
                                                      self._fallback_target)
+          logging.info('fallback, %s, is found and will be used to replace %s.',
+                       self._target, self._fallback_target)
         except KeyError as e:
           logging.debug('fallback NOT found in isolate cache %s', str(e))
           return False
