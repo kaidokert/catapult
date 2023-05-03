@@ -11,7 +11,7 @@ entrypoint: gunicorn -b:$PORT dashboard.skia_perf.main:APP
 
 handlers:
 - url: /.*
-  script: dashboard.skia_perf.main.APP
+  script: dashboard.skia_bridge.main.APP
   secure: always
 
 readiness_check:
