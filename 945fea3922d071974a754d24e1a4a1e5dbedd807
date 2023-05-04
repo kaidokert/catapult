@@ -63,6 +63,30 @@
       },
       "revId": "945fea3922d071974a754d24e1a4a1e5dbedd807",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542630b0_988bba4b",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-05-04T17:51:50Z",
+      "side": 1,
+      "message": "Thanks for the background info. I\u0027m OK either way.",
+      "parentUuid": "009828c0_d6222b39",
+      "range": {
+        "startLine": 239,
+        "startChar": 32,
+        "endLine": 239,
+        "endChar": 44
+      },
+      "revId": "945fea3922d071974a754d24e1a4a1e5dbedd807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
