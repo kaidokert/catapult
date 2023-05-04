@@ -39,6 +39,30 @@
       },
       "revId": "945fea3922d071974a754d24e1a4a1e5dbedd807",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009828c0_d6222b39",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-04T17:49:25Z",
+      "side": 1,
+      "message": "Good question. I was thinking about the same thing. Using int() here because the default value 1 is an integer. Alex may have a better idea why \u0027double_value\u0027 is used as he set up the metrics.",
+      "parentUuid": "1dca978b_9a92afc8",
+      "range": {
+        "startLine": 239,
+        "startChar": 32,
+        "endLine": 239,
+        "endChar": 44
+      },
+      "revId": "945fea3922d071974a754d24e1a4a1e5dbedd807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
