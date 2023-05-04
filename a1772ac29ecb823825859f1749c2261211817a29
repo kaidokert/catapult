@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bebfd109_b7ae20b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-05-04T17:27:50Z",
+      "side": 1,
+      "message": "PTAL\n\nThe GPU trace tests are a good example of what can be improved with this since the browser is restarted/installation checked after every case. Compare https://chromium-swarm.appspot.com/task?id\u003d61d7e7aeb8bc8b10 without this CL to https://chromium-swarm.appspot.com/task?id\u003d61fd1cb442dba410 with this CL. 15m48s vs 9m25s.",
+      "revId": "a1772ac29ecb823825859f1749c2261211817a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
