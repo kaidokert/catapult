@@ -21,6 +21,12 @@ else:
 _ISSUES_PERFIX = 'issues/'
 _ALERT_GROUP_PREFIX = 'alert_groups/'
 
+# Some respoitories have a different project name used in Monorail.
+# TODO(crbug/1442024): Remove and add separate UI input for Monoral project.
+REPO_TO_MONORAIL_NAME = {
+    'angle': 'angleproject',
+}
+
 
 def GetIssues(**kwargs):
   url = _SERVICE_URL + _ISSUES_PERFIX
@@ -41,6 +47,10 @@ def GetIssue(issue_id, project_name='chromium'):
   # Normalize the project_name in case it is empty or None.
   project_name = 'chromium' if project_name is None or not project_name.strip(
   ) else project_name
+
+  project_name = REPO_TO_MONORAIL_NAME[
+      project_name] if project_name in REPO_TO_MONORAIL_NAME.keys(
+      ) else project_name
 
   url = _SERVICE_URL + _ISSUES_PERFIX
   url += '%s/project/%s' % (issue_id, project_name)
@@ -67,6 +77,10 @@ def GetIssueComments(issue_id, project_name='chromium'):
   # Normalize the project_name in case it is empty or None.
   project_name = 'chromium' if project_name is None or not project_name.strip(
   ) else project_name
+
+  project_name = REPO_TO_MONORAIL_NAME[
+      project_name] if project_name in REPO_TO_MONORAIL_NAME.keys(
+      ) else project_name
 
   url = _SERVICE_URL + _ISSUES_PERFIX
   url += '%s/project/%s/comments' % (issue_id, project_name)
@@ -109,6 +123,10 @@ def PostIssueComment(issue_id, project_name='chromium', **kwargs):
   # Normalize the project_name in case it is empty or None.
   project_name = 'chromium' if project_name is None or not project_name.strip(
   ) else project_name
+
+  project_name = REPO_TO_MONORAIL_NAME[
+      project_name] if project_name in REPO_TO_MONORAIL_NAME.keys(
+      ) else project_name
 
   url = _SERVICE_URL + _ISSUES_PERFIX
   url += '%s/project/%s/comments' % (issue_id, project_name)
