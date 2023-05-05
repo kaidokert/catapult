@@ -93,6 +93,10 @@ found in the LICENSE file.
         if (!job || !job.arguments || !job.arguments.project) {
           return 'chromium';
         }
+        if (job.arguments.project === 'angle') {
+          return 'angleproject'
+        }
+
         return job.arguments.project;
       },
 
