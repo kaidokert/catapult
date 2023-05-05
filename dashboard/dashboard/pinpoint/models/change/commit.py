@@ -227,6 +227,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
       raise ValueError('Unknown commit URL format: ' + url)
 
     repository, git_hash = url_parts
+    if repository == 'angleproject':
+      repository = 'angle'
 
     return cls.FromDict({
         'repository': repository[:-1],
@@ -245,6 +247,9 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
                 or the git hash is not valid.
     """
     repository = data['repository']
+    if repository == 'angleproject':
+      repository = 'angle'
+
     git_hash = str(data['git_hash']).strip()
     if not git_hash:
       raise KeyError("No git hash given")
