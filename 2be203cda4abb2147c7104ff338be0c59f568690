@@ -39,6 +39,30 @@
       },
       "revId": "2be203cda4abb2147c7104ff338be0c59f568690",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb641b8c_573a0cd2",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-05-06T07:35:34Z",
+      "side": 1,
+      "message": "I just removed it. It\u0027s calling FromDict anyway, which does the mapping.",
+      "parentUuid": "2a83d00b_15c32d56",
+      "range": {
+        "startLine": 234,
+        "startChar": 22,
+        "endLine": 234,
+        "endChar": 32
+      },
+      "revId": "2be203cda4abb2147c7104ff338be0c59f568690",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
