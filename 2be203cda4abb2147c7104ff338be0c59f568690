@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a1da6ad_4f2515de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-06T06:19:16Z",
+      "side": 1,
+      "message": "I feel like we can do a trick here:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html;l\u003d588\n\nYour change should work as well.",
+      "revId": "2be203cda4abb2147c7104ff338be0c59f568690",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a83d00b_15c32d56",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-06T06:19:16Z",
+      "side": 1,
+      "message": "Your change should be after the [:-1] is applied, where the \u0027/\u0027 is removed from the url.\nAlso, I\u0027m not quite sure what the repository looks like here. I feel like it has multiple parts as in:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/quest/find_isolate.py;l\u003d330",
+      "range": {
+        "startLine": 234,
+        "startChar": 22,
+        "endLine": 234,
+        "endChar": 32
+      },
+      "revId": "2be203cda4abb2147c7104ff338be0c59f568690",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
