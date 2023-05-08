@@ -126,6 +126,46 @@ def PostIssueComment(issue_id, project_name='chromium', **kwargs):
     return []
 
 
+def GetDuplicateGroupKeys(group_key):
+  url = _SERVICE_URL + _ALERT_GROUP_PREFIX
+  url += '%s/duplicates' % group_key
+  try:
+    cloud_metric.PublishPerfIssueServiceRequests('GetDuplicateGroupKeys', 'GET',
+                                                 url, {'group_key': group_key})
+    resp = request.RequestJson(url, method='GET')
+    return resp
+  except request.RequestError as e:
+    cloud_metric.PublishPerfIssueServiceRequestFailures(
+        'GetDuplicateGroupKeys', 'GET', url, {'group_key': group_key})
+    logging.warning(
+        '[PerfIssueService] Error requesting duplicates by group key: %s. %s',
+        group_key, str(e))
+    return []
+
+
+def GetCanonicalGroupByIssue(issue_id, project_name):
+  url = _SERVICE_URL + _ALERT_GROUP_PREFIX
+  url += 'canonical/issue_id/%s/project_name/%s' % (issue_id, project_name)
+  try:
+    cloud_metric.PublishPerfIssueServiceRequests(
+        'GetCanonicalGroupByIssue', 'GET', url, {
+            'issue_id': issue_id,
+            'project_name': project_name
+        })
+    resp = request.RequestJson(url, method='GET')
+    return resp
+  except request.RequestError as e:
+    cloud_metric.PublishPerfIssueServiceRequestFailures(
+        'GetCanonicalGroupByIssue', 'GET', url, {
+            'issue_id': issue_id,
+            'project_name': project_name
+        })
+    logging.warning(
+        '[PerfIssueService] Error requesting canonical group by issue. ID: %s. Project: %s. %s',
+        issue_id, project_name, str(e))
+    return []
+
+
 def GetAnomaliesByAlertGroupID(group_id):
   url = _SERVICE_URL + _ALERT_GROUP_PREFIX
   url += '%s/anomalies' % group_id
