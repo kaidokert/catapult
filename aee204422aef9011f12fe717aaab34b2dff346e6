@@ -16,6 +16,46 @@
       "message": "PTAL. Thanks!",
       "revId": "aee204422aef9011f12fe717aaab34b2dff346e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f2f827_ddaf04c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-05-09T20:13:35Z",
+      "side": 1,
+      "message": "LGTM with nit",
+      "revId": "aee204422aef9011f12fe717aaab34b2dff346e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a72577_320ae043",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-05-09T20:13:35Z",
+      "side": 1,
+      "message": "Nit: trailing spaces.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 6
+      },
+      "revId": "aee204422aef9011f12fe717aaab34b2dff346e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
