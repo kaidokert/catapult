@@ -9,7 +9,10 @@ import os
 import platform
 import posixpath
 import random
+import shutil
+import tempfile
 
+from py_utils import file_util
 from telemetry.core import cros_interface
 from telemetry.core import linux_based_interface
 from telemetry.core import platform as platform_module
@@ -63,6 +66,8 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     # this set in browser_options.
     self._build_dir = os.environ.get('CHROMIUM_OUTPUT_DIR')
 
+    self._lacros_profile_directory = None
+
   def __repr__(self):
     return 'PossibleCrOSBrowser(browser_type=%s)' % self.browser_type
 
@@ -85,6 +90,16 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
   def SetUpEnvironment(self, browser_options):
     super().SetUpEnvironment(browser_options)
+
+    if self._app_type == 'lacros-chrome':
+      self._lacros_profile_directory = tempfile.mkdtemp()
+
+      # Copy data into the profile if it hasn't already been added via
+      # |source_profile|.
+      for source, dest in self._browser_options.profile_files_to_copy:
+        full_dest_path = os.path.join(self._lacros_profile_directory, dest)
+        if not os.path.exists(full_dest_path):
+          file_util.CopyFileWithIntermediateDirectories(source, full_dest_path)
 
     # Copy extensions to temp directories on the device.
     # Note that we also perform this copy locally to ensure that
@@ -118,6 +133,11 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
                           '--user=%s' % self._browser_options.username])
 
   def _TearDownEnvironment(self):
+    if self._lacros_profile_directory and os.path.exists(self.lacros_profile_directory):
+      # Remove the profile directory, which was hosted on a temp dir.
+      shutil.rmtree(self._lacros_profile_directory, ignore_errors=True)
+      self._lacros_profile_directory = None
+
     cri = self._platform_backend.cri
     for extension in self._browser_options.extensions_to_load:
       cri.RmRF(posixpath.dirname(extension.local_path))
@@ -157,10 +177,12 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
               self._platform_backend,
               self._browser_options,
               self.browser_directory,
-              self.profile_directory,
+              self._lacros_profile_directory,
               self._DEFAULT_CHROME_ENV,
               os_browser_backend,
               build_dir=self._build_dir))
+      if self._lacros_profile_directory is not None:
+        startup_args.append('--user-data-dir=%s' % self._lacros_profile_directory)
       return browser.Browser(
           lacros_chrome_browser_backend, self._platform_backend, startup_args)
     return browser.Browser(os_browser_backend, self._platform_backend,
