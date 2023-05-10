@@ -22,6 +22,30 @@
       },
       "revId": "bd14225a68cbb078385f1c7042fd660c3efff8ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec25def1_4f188820",
+        "filename": "skia_bridge/requirements.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-10T16:43:25Z",
+      "side": 1,
+      "message": "I think by default it picks up the latest ... but I can specify a version here 😊",
+      "parentUuid": "56c42f98_1c35867b",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 22
+      },
+      "revId": "bd14225a68cbb078385f1c7042fd660c3efff8ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
