@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f3faec_2076f6e1",
+        "filename": "skia_bridge/common/cloud_metric.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-11T03:40:57Z",
+      "side": 1,
+      "message": "BTW. you need to add it to the requirements file as a dependency.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "76ec012b9641392ed4656e33b38a5ef2bb37c4d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
