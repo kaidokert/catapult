@@ -22,6 +22,30 @@
       },
       "revId": "191a15ba2db539c30cb890123592e4b06dbbdd62",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e1b9d5_ee6f703c",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-11T21:20:28Z",
+      "side": 1,
+      "message": "If you look at the triggered build .. it\u0027s already checking out the catapult repo. I see \"Initialized empty Git repository in /workspace/.git/\" in the log which makes me suspect the current directory (workspace) is the catapult root, so changing it to skia_bridge should hopefully fix that",
+      "parentUuid": "765051ab_b0e08811",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "191a15ba2db539c30cb890123592e4b06dbbdd62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
