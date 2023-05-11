@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "765051ab_b0e08811",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-11T21:14:59Z",
+      "side": 1,
+      "message": "I\u0027m not sure the details for the steps. I guess we may need this step to checkout the codes first:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/cloudbuild-dashboard-push-on-green-py3.yaml;l\u003d9",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "191a15ba2db539c30cb890123592e4b06dbbdd62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
