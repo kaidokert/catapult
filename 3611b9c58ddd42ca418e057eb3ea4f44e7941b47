@@ -22,6 +22,30 @@
       },
       "revId": "3611b9c58ddd42ca418e057eb3ea4f44e7941b47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c1d995c_cc41459f",
+        "filename": "dashboard/queue.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-05-11T21:22:14Z",
+      "side": 0,
+      "message": "Removed its use in this CL: https://chromium-review.googlesource.com/c/catapult/+/4481406. Might re-enable later.",
+      "parentUuid": "c10b26a6_944f26bb",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "3611b9c58ddd42ca418e057eb3ea4f44e7941b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
