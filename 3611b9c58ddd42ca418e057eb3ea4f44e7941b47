@@ -46,6 +46,30 @@
       },
       "revId": "3611b9c58ddd42ca418e057eb3ea4f44e7941b47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4dd7c24_1e033ed8",
+        "filename": "dashboard/queue.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-11T21:24:59Z",
+      "side": 0,
+      "message": "I see. The changes lgtm. Would you update the title to be more general? I had the impression at the beginning that removing the skia-perf-upload-queue is related to the retry update.",
+      "parentUuid": "3c1d995c_cc41459f",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "3611b9c58ddd42ca418e057eb3ea4f44e7941b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
