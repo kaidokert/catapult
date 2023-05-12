@@ -74,6 +74,10 @@ def QueryAnomaliesPostHandler():
     if not is_authorized:
       return 'Unauthorized', 401
     data = json.loads(request.data)
+    is_valid, error = ValidateRequest(data)
+    if not is_valid:
+      return error, 400
+
     client = datastore_client.DataStoreClient()
     anomalies = client.QueryAnomalies(
         data['tests'], data['min_revision'], data['max_revision'])
@@ -125,3 +129,18 @@ def GetAnomalyData(anomaly_obj):
       std_dev_before_anomaly=anomaly_obj.get('std_dev_before_anomaly'),
       t_statistic=anomaly_obj.get('t_statistic'),
   )
+
+def ValidateRequest(request_data):
+  required_keys = ['tests', 'min_revision', 'max_revision']
+  missing_keys = []
+  for key in required_keys:
+    if not request_data.get(key):
+      missing_keys.append(key)
+
+  error = None
+  result = True
+  if len(missing_keys) > 0:
+    result = False
+    error = 'Required parameters %s missing from the request.' % missing_keys
+
+  return result, error

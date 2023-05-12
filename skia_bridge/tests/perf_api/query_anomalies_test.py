@@ -5,6 +5,7 @@
 from __future__ import absolute_import
 
 import json
+import os
 import sys
 from pathlib import Path
 import unittest
@@ -23,7 +24,20 @@ class QueryAnomaliesTest(unittest.TestCase):
 
   def setUp(self):
     self.client = app.Create().test_client()
+    os.environ['DISABLE_METRICS'] = 'True'
 
+  def testInvalidRequest(self):
+    test_name = 'master/bot/test1/metric'
+    with mock.patch('application.perf_api.auth_helper.AuthorizeBearerToken') \
+        as auth_mock:
+      auth_mock.return_value = True
+      response = self.client.post(
+          '/anomalies/find',
+          data='{"SearchTests":["%s"],'  # Wrong request param
+               '"max_revision":"1234", "min_revision":"1233"}'
+               % test_name)
+      self.assertEqual(400, response.status_code)
+      self.assertTrue("['tests']" in response.get_data(as_text=True))
 
   @mock.patch('application.perf_api.datastore_client'
               '.DataStoreClient.QueryAnomalies')
