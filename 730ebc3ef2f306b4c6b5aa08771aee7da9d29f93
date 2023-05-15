@@ -22,6 +22,30 @@
       },
       "revId": "730ebc3ef2f306b4c6b5aa08771aee7da9d29f93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c6661b9_21ffbd15",
+        "filename": "skia_bridge/common/cloud_metric.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-15T16:58:14Z",
+      "side": 1,
+      "message": "The process that is running it will set it if needed. PTAL at the unit test file setup function.",
+      "parentUuid": "e78d67fe_4cf12be5",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 54
+      },
+      "revId": "730ebc3ef2f306b4c6b5aa08771aee7da9d29f93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
