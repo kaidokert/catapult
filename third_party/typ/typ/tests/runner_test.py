@@ -431,7 +431,7 @@ class TestWinMultiprocessing(TestCase):
     def test_spawn(self):
         ret, out, err = self.call([])
         self.assertEqual(ret, 0)
-        self.assertEqual('0 tests passed, 0 skipped, 0 failures.\n', out)
+        self.assertEqual('0 tests passed, 0 skipped, 0 failures.\r\n', out)
         self.assertEqual(err, '')
 
 
