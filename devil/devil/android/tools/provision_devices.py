@@ -111,6 +111,8 @@ def ProvisionDevices(devices,
           reboot=not emulators)
   ]
 
+  steps.append(ProvisionStep(DisablePlayStore))
+
   if disable_network:
     steps.append(ProvisionStep(DisableNetwork))
 
@@ -361,6 +363,12 @@ def DisableNetwork(device):
 def DisableSystemChrome(device):
   # The system chrome version on the device interferes with some tests.
   device.RunShellCommand(['pm', 'disable', 'com.android.chrome'],
+                         as_root=True,
+                         check_return=True)
+
+
+def DisablePlayStore(device):.
+  device.RunShellCommand(['pm', 'disable-user', 'com.android.vending'],
                          as_root=True,
                          check_return=True)
 
