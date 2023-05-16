@@ -70,6 +70,24 @@
       "parentUuid": "0b7707ed_d1b81930",
       "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b05e5728_7495d611",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-05-16T21:38:49Z",
+      "side": 1,
+      "message": "`list_devices` and devil/devil/utils/find_usb_devices.py are presumably different codebases. So one could handle the switch while the other does not.\n\nWhat I\u0027m asking is: will _this_ script handle the switch?",
+      "parentUuid": "38752b4c_bab9f84b",
+      "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
