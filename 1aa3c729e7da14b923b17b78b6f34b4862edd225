@@ -52,6 +52,24 @@
       "parentUuid": "88f09f2a_411e85c4",
       "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38752b4c_bab9f84b",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-05-16T21:30:58Z",
+      "side": 1,
+      "message": "Oh, `list_devices` is a script to show all the android devices connected to the host. It works fine on both bionic and jammy after switching the info source from `usb-devices` to `/sys/kernel/debug/usb/devices`.",
+      "parentUuid": "0b7707ed_d1b81930",
+      "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
