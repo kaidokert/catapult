@@ -34,6 +34,24 @@
       "parentUuid": "46981610_6d7146dd",
       "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7707ed_d1b81930",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-05-16T21:17:19Z",
+      "side": 1,
+      "message": "IDK what `list_devices` is. Is this script going to be able to handle the new source of info on both bionic and jammy?",
+      "parentUuid": "88f09f2a_411e85c4",
+      "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
