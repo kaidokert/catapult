@@ -16,6 +16,24 @@
       "message": "Will this also work below jammy?",
       "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f09f2a_411e85c4",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-05-16T18:30:04Z",
+      "side": 1,
+      "message": "`list_devices` is also updated to read this file as a proof of concept, according to the description in https://crbug.com/1424867. And this works fine on hosts with bionic. Would this be sufficient?",
+      "parentUuid": "46981610_6d7146dd",
+      "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
