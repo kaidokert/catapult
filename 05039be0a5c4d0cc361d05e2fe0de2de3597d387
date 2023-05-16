@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05b3499_dd05d77f",
+        "filename": "devil/devil/android/tools/provision_devices.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-05-16T04:36:24Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this script is normally run on perf bots. Searching for provision_devices in catapult (https://source.chromium.org/search?q\u003dprovision_devices\u0026sq\u003d\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2F) returned only a few matches. Among these, only telemetry/telemetry/internal/platform/android_platform_backend.py is used on perf bots, but it only calls provision_devices.CheckExternalStorage.\n\nHave you submitted any Pinpoint jobs to verify that this change? If you can verify that this CL works as expected, great. Otherwise, I\u0027d suggest modifying __init__ of AndroidPlatformBackend in https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/platform/android_platform_backend.py to send the command.",
+      "revId": "05039be0a5c4d0cc361d05e2fe0de2de3597d387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
