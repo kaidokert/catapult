@@ -130,6 +130,10 @@ class AndroidPlatformBackend(
         'AndroidPlatformBackend can only be initialized from remote device')
     super().__init__(device)
     self._device = device_utils.DeviceUtils(device.device_id)
+    # Disable Play Store on Android devices.
+    self._device.RunShellCommand(['pm', 'disable-user', 'com.android.vending'],
+                                 as_root=True,
+                                 check_return=True)
     self._can_elevate_privilege = False
     self._require_root = require_root
     if self._require_root:
