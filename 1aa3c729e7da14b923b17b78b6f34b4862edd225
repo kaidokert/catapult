@@ -88,6 +88,24 @@
       "parentUuid": "38752b4c_bab9f84b",
       "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7315e0ec_61422283",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-05-17T22:03:00Z",
+      "side": 1,
+      "message": "\u003e What I\u0027m asking is: will this script handle the switch?\n\nI tested the change on bionic (build248-m4) and jammy (build244-m4) in dev env. Both are working fine, i.e. phones are recognized correctly.",
+      "parentUuid": "b05e5728_7495d611",
+      "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
