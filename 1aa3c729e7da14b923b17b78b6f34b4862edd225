@@ -124,6 +124,24 @@
       "parentUuid": "7315e0ec_61422283",
       "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1349863b_7f7b497a",
+        "filename": "devil/devil/utils/find_usb_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-05-17T22:51:02Z",
+      "side": 1,
+      "message": "Thanks Ben!",
+      "parentUuid": "25a20639_f08a61f5",
+      "revId": "1aa3c729e7da14b923b17b78b6f34b4862edd225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
