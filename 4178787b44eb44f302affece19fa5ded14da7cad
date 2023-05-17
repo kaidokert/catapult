@@ -16,6 +16,24 @@
       "message": "There is a possible way to sort by multiple attributes:\nhttps://stackoverflow.com/questions/4233476/sort-a-list-by-multiple-attributes\nWe can try that out here.",
       "revId": "4178787b44eb44f302affece19fa5ded14da7cad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b6c9e94_ad1b6281",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-05-17T19:56:42Z",
+      "side": 1,
+      "message": "I feel like I should have known that considering I know tuples are sortable. Will try it out.",
+      "parentUuid": "447aa0cf_e05e22fe",
+      "revId": "4178787b44eb44f302affece19fa5ded14da7cad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
