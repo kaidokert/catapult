@@ -96,13 +96,40 @@ def _DebugShardDistributions(shards, test_times):
       print('shard %d: %d tests (unknown duration)' % (i, num_tests))
 
 
+class ShardTimeKey():
+  def __init__(self, test_time, test_name):
+    """Helper class to sort tests for evenly distributing times across shards.
+
+    We sort based on test time and use the test name as a tie breaker in cases
+    where test times are identical, most commonly due to using the default
+    median time.
+    """
+    self.test_time = test_time
+    self.test_name = test_name
+
+  def __lt__(self, other):
+    # This should only ever be used in the context of sorting an array using
+    # nothing but this data type.
+    assert isinstance(other, self.__class__)
+    if self.test_time < other.test_time:
+      return True
+    if other.test_time < self.test_time:
+      return False
+    # Equal, so compare names.
+    # This should only ever be used in contexts where there are no duplicate
+    # entries. Thus, equal names indicates that something is wrong.
+    assert self.test_name != other.test_name
+    return self.test_name < other.test_name
+
+
 def _SplitShardsByTime(test_cases, total_shards, test_times,
                        debug_shard_distributions):
   median = _MedianTestTime(test_times)
   shards = []
   for i in range(total_shards):
     shards.append({'total_time': 0.0, 'tests': []})
-  test_cases.sort(key=lambda t: _TestTime(t, test_times, median),
+  test_cases.sort(key=lambda t: ShardTimeKey(
+                      _TestTime(t, test_times, median), t.shortName()),
                   reverse=True)
 
   # The greedy algorithm has been empirically tested on the WebGL 2.0
