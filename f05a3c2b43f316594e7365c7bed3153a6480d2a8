@@ -16,6 +16,24 @@
       "message": "Android is always fun.\n\nExample tasks where the tests were set to always fail, triggering the post-failure screenshot logic:\n\nWithout this CL: Screenshot attempts always time out, resulting in no screenshots in CAS outputs https://chromium-swarm.appspot.com/task?id\u003d62493685476da510\n\nWith this CL: Screenshot attempts work on the first try, resulting in valid screenshots in CAS outputs https://chromium-swarm.appspot.com/task?id\u003d624932c35054a410",
       "revId": "f05a3c2b43f316594e7365c7bed3153a6480d2a8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faab3954_fa85e3e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-05-18T22:57:44Z",
+      "side": 1,
+      "message": "😵‍💫",
+      "parentUuid": "1e53da48_e977f369",
+      "revId": "f05a3c2b43f316594e7365c7bed3153a6480d2a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
