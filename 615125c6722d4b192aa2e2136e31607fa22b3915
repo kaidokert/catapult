@@ -16,6 +16,23 @@
       "message": "PTAL. Thanks!",
       "revId": "615125c6722d4b192aa2e2136e31607fa22b3915",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0c0a81_ed3ec569",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-18T21:48:05Z",
+      "side": 1,
+      "message": "LGTM! But no permission to vote 😞",
+      "revId": "615125c6722d4b192aa2e2136e31607fa22b3915",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
