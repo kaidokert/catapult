@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60bf8ad4_13f077fe",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1177474
+      },
+      "writtenOn": "2023-05-19T13:41:16Z",
+      "side": 1,
+      "message": "This new command doesn\u0027t seem to work correctly on AOSP devices which don\u0027t have this package.",
+      "range": {
+        "startLine": 134,
+        "startChar": 17,
+        "endLine": 134,
+        "endChar": 32
+      },
+      "revId": "f1f7a299cb157ccc0f9b3751224b30d37d19547f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
