@@ -85,7 +85,7 @@ class SheriffConfigClient:
     }
 
   def Match(self, path, check=False):
-    url = 'https://sheriff-config-dot-chromeperf.appspot.com/subscriptions/match'
+    url = 'https://sheriff-config-dot-chromeperf.appspot.com/subscriptions/maaaaaaatch'
 
     response = requests.post(url, headers=self.auth_header, json={'path': path})
 

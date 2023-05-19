@@ -93,7 +93,7 @@ def _FetchUntriagedAnomalies():
   # complex to system and considered almost impossible happened.
   min_timestamp_to_check = (
       datetime.now() - timedelta(days=_MAX_DATES_TO_IGNORE_ALERT))
-  logging.info('Fetching untriaged anomalies fired after %s',
+  logging.info('Fetching untriaged anomaliesssssssss fired after %s',
                min_timestamp_to_check)
   future = anomaly.Anomaly.QueryAsync(
       keys_only=True,
