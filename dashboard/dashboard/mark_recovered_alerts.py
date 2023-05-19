@@ -73,7 +73,7 @@ def MarkRecoveredAlertsPost():
 
   # Kick off task queue jobs for open bugs.
   bugs = _FetchOpenBugs()
-  logging.info('Kicking off tasks for %d bugs', len(bugs))
+  logging.info('Kicking off tasks for %d bugssssss', len(bugs))
   for bug in bugs:
     taskqueue.add(
         url='/mark_recovered_alerts',
