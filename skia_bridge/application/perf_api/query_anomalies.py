@@ -53,6 +53,7 @@ class AnomalyData:
   median_before_anomaly:float
   median_after_anomaly:float
   p_value:float
+  project_id:str
   segment_size_after:int
   segment_size_before:int
   std_dev_before_anomaly:float
@@ -151,6 +152,7 @@ def GetAnomalyData(anomaly_obj):
       median_before_anomaly=anomaly_obj.get('median_before_anomaly'),
       median_after_anomaly=anomaly_obj.get('median_after_anomaly'),
       p_value=anomaly_obj.get('p_value'),
+      project_id=anomaly_obj.get('project_id'),
       segment_size_after=anomaly_obj.get('segment_size_after'),
       segment_size_before=anomaly_obj.get('segment_size_before'),
       std_dev_before_anomaly=anomaly_obj.get('std_dev_before_anomaly'),
