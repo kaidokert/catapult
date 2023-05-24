@@ -16,6 +16,24 @@
       "message": "The third_party folders inside gsutil are showing up as \"git link\" .. maybe you need to do the submodule update first and then copy them over?",
       "revId": "c63a9f4bd1e5f0e28ece89d9dd9539381fb3a241",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b77b93b5_28b50f5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-05-24T22:59:59Z",
+      "side": 1,
+      "message": "I had to remove the git link and reset the git cache.\n\n`git rm -r --cached gsutil -f` worked.\n\nhttps://stackoverflow.com/questions/47403358/fatal-in-unpopulated-submodule",
+      "parentUuid": "aa7da29c_0938bce6",
+      "revId": "c63a9f4bd1e5f0e28ece89d9dd9539381fb3a241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
