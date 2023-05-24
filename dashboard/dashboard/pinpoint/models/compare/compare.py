@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
+import logging
 
 from dashboard.pinpoint.models.compare import kolmogorov_smirnov
 from dashboard.pinpoint.models.compare import mann_whitney_u
@@ -74,6 +75,8 @@ def Compare(values_a, values_b, attempt_count, mode, magnitude):
   p_value = min(
       kolmogorov_smirnov.KolmogorovSmirnov(values_a, values_b),
       mann_whitney_u.MannWhitneyU(values_a, values_b))
+
+  logging.debug('BisectDebug: Comparing: values_a: %s, values_b: %s, low_threshold: %s, high_threshold: %s, p_value: %s, magnitude: %s, attempt_count: %s', values_a, values_b, low_threshold, high_threshold, p_value, magnitude, attempt_count)
 
   if p_value <= low_threshold:
     # The p-value is less than the significance level. Reject the null
