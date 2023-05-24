@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef65e888_08e3a4be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-05-24T20:42:01Z",
+      "side": 1,
+      "message": "AFAIK Catapult is fully Python 3-compatible at this point, but it isn\u0027t Python 3-only yet. So, there might be issues with Python 2 stuff in Chromium trying to use this.\n\nNot a blocker, just something to look out for after this lands.",
+      "revId": "db63d92975a5cff5fe80dfcb686afb28a3eb17bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
