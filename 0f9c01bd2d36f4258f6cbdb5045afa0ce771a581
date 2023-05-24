@@ -16,6 +16,24 @@
       "message": "might want to break this up into multiple lines to get it through cq checks",
       "revId": "0f9c01bd2d36f4258f6cbdb5045afa0ce771a581",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd649ab_f10bd179",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-24T18:25:56Z",
+      "side": 1,
+      "message": "Updated, thanks a lot!",
+      "parentUuid": "69a73cb4_72ecc00f",
+      "revId": "0f9c01bd2d36f4258f6cbdb5045afa0ce771a581",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
