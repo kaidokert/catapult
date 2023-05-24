@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa7da29c_0938bce6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-24T20:41:57Z",
+      "side": 1,
+      "message": "The third_party folders inside gsutil are showing up as \"git link\" .. maybe you need to do the submodule update first and then copy them over?",
+      "revId": "c63a9f4bd1e5f0e28ece89d9dd9539381fb3a241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
