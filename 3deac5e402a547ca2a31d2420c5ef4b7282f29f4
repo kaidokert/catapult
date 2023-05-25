@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bee1c960_469a85aa",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-25T21:28:20Z",
+      "side": 1,
+      "message": "why do we need another binary metric when we have a difference count metric already?",
+      "range": {
+        "startLine": 187,
+        "startChar": 38,
+        "endLine": 187,
+        "endChar": 52
+      },
+      "revId": "3deac5e402a547ca2a31d2420c5ef4b7282f29f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
