@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "367b3703_e7c0d2cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-25T17:56:56Z",
+      "side": 1,
+      "message": "nit: please add \u0027Bug: chromium:1444514\u0027 in the description. Thanks!",
+      "revId": "0d8d9b09d3ce85fdc5669c0d7e26db4c65f5f500",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fa625e_70ebcee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-25T17:56:56Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "0d8d9b09d3ce85fdc5669c0d7e26db4c65f5f500",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
