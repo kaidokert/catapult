@@ -22,7 +22,6 @@ from __future__ import absolute_import
 
 # pylint: disable=too-many-lines
 
-
 def HighThreshold(mode, magnitude, sample_size):
   """Returns the high threshold for hypothesis testing.
 
