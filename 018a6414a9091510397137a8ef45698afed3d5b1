@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34392266_4bc45185",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-05-25T20:37:04Z",
+      "side": 1,
+      "message": "try again\n\n- `build.gn` should be preserved\n- presubmit edits persisted\n- tested this locally using run_benchmark and found `credentials.json` is generated in tools/perf/page_sets/data",
+      "revId": "018a6414a9091510397137a8ef45698afed3d5b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
