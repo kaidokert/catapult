@@ -87,6 +87,30 @@
       },
       "revId": "3deac5e402a547ca2a31d2420c5ef4b7282f29f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fda6c5d9_4d69be68",
+        "filename": "dashboard/dashboard/common/cloud_metric.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-25T21:42:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3659204b_9f315554",
+      "range": {
+        "startLine": 187,
+        "startChar": 38,
+        "endLine": 187,
+        "endChar": 52
+      },
+      "revId": "3deac5e402a547ca2a31d2420c5ef4b7282f29f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
