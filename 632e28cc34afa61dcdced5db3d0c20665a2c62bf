@@ -51,6 +51,24 @@
       "message": "Is this `else:` block necessary? As someone unfamiliar with this code, I would assume that `comparison_result.result` is going to be `SAME` by default, since it\u0027s passed into the constructor on line 107.  Does the constructor not set it that way?",
       "revId": "632e28cc34afa61dcdced5db3d0c20665a2c62bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d92ed46_2dcb8995",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-25T20:09:16Z",
+      "side": 1,
+      "message": "fixed.",
+      "parentUuid": "4507ed70_8563b34b",
+      "revId": "632e28cc34afa61dcdced5db3d0c20665a2c62bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
