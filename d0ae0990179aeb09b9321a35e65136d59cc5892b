@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82964529_0eb75e7b",
+        "filename": "PRESUBMIT.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-05-25T01:08:21Z",
+      "side": 1,
+      "message": "this won\u0027t exempt all of third_party catapult will it?",
+      "revId": "d0ae0990179aeb09b9321a35e65136d59cc5892b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
