@@ -16,6 +16,24 @@
       "message": "so this just logs the results of the new comparison method?",
       "revId": "632e28cc34afa61dcdced5db3d0c20665a2c62bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8462663e_a60e1ec9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-05-25T19:26:09Z",
+      "side": 1,
+      "message": "Yes, just shadow run the comparison with new low/high threshold, and print log to check the difference.",
+      "parentUuid": "89368d11_1dc073f4",
+      "revId": "632e28cc34afa61dcdced5db3d0c20665a2c62bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
