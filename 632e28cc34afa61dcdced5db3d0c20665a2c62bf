@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89368d11_1dc073f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-05-25T19:25:01Z",
+      "side": 1,
+      "message": "so this just logs the results of the new comparison method?",
+      "revId": "632e28cc34afa61dcdced5db3d0c20665a2c62bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
