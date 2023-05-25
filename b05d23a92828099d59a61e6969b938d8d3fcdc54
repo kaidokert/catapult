@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a32faf0_ce735374",
+        "filename": "third_party/gsutil/README.chromium",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-05-25T20:42:30Z",
+      "side": 0,
+      "message": "This file is required per Chromium conventions. See https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/adding_to_third_party.md#Add-a-README_chromium\n\nPlease update this file with the info of the version you\u0027re checking in, and also update the Local Modifications section to make it complete (e.g., adding BUILD.gn).",
+      "revId": "b05d23a92828099d59a61e6969b938d8d3fcdc54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
