@@ -16,6 +16,24 @@
       "message": "Who will populate the value of the \u0027origin\u0027 tag?\nSkia Perf code ?",
       "revId": "0bcd9b6fa732bce730a7d4e7c25335dd324330e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c70d7bb_e92d008f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-05-25T21:21:10Z",
+      "side": 1,
+      "message": "yep ... it\u0027s a part of the calling arguments for the new job api",
+      "parentUuid": "f844ef4c_3581050a",
+      "revId": "0bcd9b6fa732bce730a7d4e7c25335dd324330e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
