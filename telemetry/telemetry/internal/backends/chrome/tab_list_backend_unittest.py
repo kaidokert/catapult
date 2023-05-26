@@ -52,7 +52,6 @@ class TabListBackendTest(tab_test_case.TabTestCase):
   # https://github.com/catapult-project/catapult/issues/3099 (Android)
   @decorators.Enabled('has tabs')
   @decorators.Disabled('android')
-  @decorators.Disabled('all') # Temporary disabled for Chromium changes
   def testTabIdStableAfterTabCrash(self):
     # Ensure that there are two tabs.
     while len(self.tabs) < 2:
@@ -64,10 +63,9 @@ class TabListBackendTest(tab_test_case.TabTestCase):
     self.assertRaises(exceptions.DevtoolsTargetCrashException,
                       lambda: tabs[0].Navigate('chrome://crash'))
 
-    # Fetching the second tab by id should still work. Fetching the first tab
-    # should raise an exception.
+    # Fetching both tabs by id should work.
+    self.assertEqual(tabs[0], self.tabs.GetTabById(tabs[0].id))
     self.assertEqual(tabs[1], self.tabs.GetTabById(tabs[1].id))
-    self.assertRaises(KeyError, lambda: self.tabs.GetTabById(tabs[0].id))
 
   @decorators.Enabled('has tabs')
   def testNewTabWithUrl(self):
