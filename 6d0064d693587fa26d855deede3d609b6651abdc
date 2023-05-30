@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c98e23_536aa1c6",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001604
+      },
+      "writtenOn": "2023-05-30T20:49:34Z",
+      "side": 1,
+      "message": "How tedious would it be to add a test for these in log_view_painter_test.html? (Also so I can more easily preview the output here! :D)",
+      "revId": "6d0064d693587fa26d855deede3d609b6651abdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
