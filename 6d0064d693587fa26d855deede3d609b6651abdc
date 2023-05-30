@@ -34,6 +34,24 @@
       "parentUuid": "d6c98e23_536aa1c6",
       "revId": "6d0064d693587fa26d855deede3d609b6651abdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f23145_730498d7",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-05-30T23:32:10Z",
+      "side": 1,
+      "message": "actual screenshot: https://screenshot.googleplex.com/5vRftfRisgBTY4i\n\n(it\u0027d probably be good to split the CERT_VERIFY_PROC_PATH_BUILT \u0027errors\u0027 into a multi-line string, I\u0027ll do that separately)",
+      "parentUuid": "667f3abe_b3860539",
+      "revId": "6d0064d693587fa26d855deede3d609b6651abdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
