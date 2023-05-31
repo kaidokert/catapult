@@ -25,6 +25,13 @@ def TestKey(test_path, datastore_client):
 class DataStoreClient:
   _client = datastore.Client()
 
+  def GetEntity(self, entity_kind: str, entity_key):
+    print('Getting entity type %s with id %s'%(entity_kind, entity_key))
+    key = self._client.key(entity_kind, entity_key)
+    entity = self._client.get(key)
+    print(entity)
+    return entity
+
   def QueryAnomalies(self, tests, min_revision, max_revision):
     ds_query = self._client.query(kind='Anomaly')
     test_keys = [TestKey(test_path, self._client) for test_path in tests]
