@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46bc3aa3_7d406260",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-05-31T00:14:07Z",
+      "side": 1,
+      "message": "First thing every time using netlog viewer is to drag the events pane wider .. so lets just change the default.\nHere\u0027s what this new default looks like for me: https://screenshot.googleplex.com/92B4eY3WG9cmB6Y",
+      "revId": "cbf1a7d1c854fa6ecfedd6251e1d0620b93af9d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
