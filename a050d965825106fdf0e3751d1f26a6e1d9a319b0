@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e50f15c_0120017e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-05-31T17:06:08Z",
+      "side": 1,
+      "message": "Hi Chong, is this CL fixing the failures in: https://chromium-review.googlesource.com/c/chromium/src/+/4575680?",
+      "revId": "a050d965825106fdf0e3751d1f26a6e1d9a319b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
