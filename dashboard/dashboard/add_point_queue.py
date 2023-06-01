@@ -21,6 +21,7 @@ from dashboard.common import datastore_hooks
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
+from dashboard.services import skia_bridge_service
 
 from flask import request, make_response
 
@@ -61,6 +62,8 @@ def AddPointQueuePost():
       return make_response('')
 
   ndb.Future.wait_all(all_put_futures)
+
+  skia_bridge_service.SendRowsForSkiaUpload(added_rows, parent_test)
 
   client = sheriff_config_client.GetSheriffConfigClient()
   tests_keys = set()

@@ -376,12 +376,15 @@ def _CreateHistogramTasks(suite_path,
     # need for processing each histogram per task.
     task_dict = _MakeTaskDict(hist, test_path, revision, benchmark_description,
                               diagnostics, completion_token)
+
+    logging.info('Histogram_Queue request body: %s', json.dumps([task_dict]))
     tasks.append(_MakeTask([task_dict]))
 
     if completion_token is not None:
       measurement_add_futures.append(
           completion_token.AddMeasurement(
-              test_path, utils.IsMonitored(sheriff_client, test_path)))
+              test_path, False))
+              #utils.IsMonitored(sheriff_client, test_path)))
   ndb.Future.wait_all(measurement_add_futures)
 
   return tasks
