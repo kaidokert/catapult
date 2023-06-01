@@ -16,6 +16,24 @@
       "message": "The presubmit error looks to be about the patch description, maybe try `BUG\u003dchromium:1445887`.",
       "revId": "33b70df3c519c7d0dc6d5cfbe28e4648d8db997f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27fca2bd_f0b64182",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-06-01T21:07:01Z",
+      "side": 1,
+      "message": "It should be `Bug: chromium:1445887`.",
+      "parentUuid": "7dba3c4e_eca176c2",
+      "revId": "33b70df3c519c7d0dc6d5cfbe28e4648d8db997f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
