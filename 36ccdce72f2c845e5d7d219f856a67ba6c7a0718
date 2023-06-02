@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f7fc4b_a80779b7",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-02T21:22:47Z",
+      "side": 1,
+      "message": "nit: the a_bot_id is a list here. Should be formatted as: \"lin-33-g582, lin-44-g582, lin-52-g582, lin-55-g582, lin-61-g582\"",
+      "revId": "36ccdce72f2c845e5d7d219f856a67ba6c7a0718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
