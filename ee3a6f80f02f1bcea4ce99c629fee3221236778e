@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a758e4_dfc3b4cf",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-02T21:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec5a7bef_44fd596a",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13b41116_e9651943",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "My thought here is that just because tests share master/bot/suite, doesn\u0027t mean they have the same internal_only value. Not sure if this is true. A made up example of 2 tests:\n\nChromiumPerf/linux-perf/benchmark1/story1, internal_only\u003dTrue\nChromiumPerf/linux-perf/benchmark1/story2, internal_only\u003dFalse\n\nThese 2 tests share master/bot/suite so they\u0027ll be grouped together. But it\u0027s not necesarily the case that they\u0027re both public. It can cause some non-public data to be uploaded to public instaance.",
       "parentUuid": "a0ea4b00_a5d31f19",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f14e6a8_cc044dc1",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-02T21:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fad7df13_36f1e46e",
       "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
