@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65cad7cc_5878b101",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-02T00:34:31Z",
+      "side": 1,
+      "message": "If data is public it should be uploaded to BOTH public and internal instance. If data is public, only upload to public instance.",
+      "revId": "9f1e39c4b81e5314c8c065972ff9578b30449a78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

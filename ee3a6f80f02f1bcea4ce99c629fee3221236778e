@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec5a7bef_44fd596a",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-02T00:34:31Z",
+      "side": 1,
+      "message": "You\u0027re grouping rows together that may not necesarilly have the same Bot Id. Since 1 json file only has 1 Bot ID (in links dict), all these rows will show as having the same bot ID. They need to be separate files so that you can set appropriate Bot Id for each group.",
+      "parentUuid": "5f824de3_196e3823",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13b41116_e9651943",
         "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
         "patchSetId": 4
@@ -73,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fad7df13_36f1e46e",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-02T00:34:31Z",
+      "side": 1,
+      "message": "My thought here is that just because tests share master/bot/suite, doesn\u0027t mean they have the same internal_only value. Not sure if this is true. A made up example of 2 tests:\n\nChromiumPerf/linux-perf/benchmark1/story1, internal_only\u003dTrue\nChromiumPerf/linux-perf/benchmark1/story2, internal_only\u003dFalse\n\nThese 2 tests share master/bot/suite so they\u0027ll be grouped together. But it\u0027s not necesarily the case that they\u0027re both public. It can cause some non-public data to be uploaded to public instaance.",
+      "parentUuid": "a0ea4b00_a5d31f19",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "085a1f11_789a6c01",
         "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
         "patchSetId": 4
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "Does the file name matter for ingestion?",
       "parentUuid": "085a1f11_789a6c01",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f95e446f_c0dcd74f",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-02T00:34:31Z",
+      "side": 1,
+      "message": "Not really. I guess this is fine.",
+      "parentUuid": "f49ed0e0_a73f9dd6",
       "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
