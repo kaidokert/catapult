@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f824de3_196e3823",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-02T00:07:35Z",
+      "side": 1,
+      "message": "Does that need to be in a separate file though? Each row group here translates to 1 json file and this key is just a way to group it (it isn\u0027t really used when writing the file)\nI have updated the links section to show the bot list but not sure it matters as far as grouping rows into a file is concerned",
+      "parentUuid": "4effc99e_e0724956",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13b41116_e9651943",
         "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-01T23:18:52Z",
       "side": 1,
       "message": "Maybe also add test_data[\u0027internal_only\u0027] as a key? Just to be safe.",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0ea4b00_a5d31f19",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-02T00:07:35Z",
+      "side": 1,
+      "message": "internal_only is an attribute of the test itself and not the row. So I would assume the master/bot/suite combination takes care of that automatically?",
+      "parentUuid": "13b41116_e9651943",
       "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f49ed0e0_a73f9dd6",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-02T00:07:35Z",
+      "side": 1,
+      "message": "Does the file name matter for ingestion?",
+      "parentUuid": "085a1f11_789a6c01",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e778957_15502a71",
         "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
         "patchSetId": 4
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-01T23:18:52Z",
       "side": 1,
       "message": "Make sure it\u0027s displayed as: \"lin-33-g582, lin-44-g582, lin-52-g582, lin-55-g582, lin-61-g582\". With space in between the bots.",
+      "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d0c6417_eb7a2e19",
+        "filename": "skia_bridge/application/perf_api/skia_perf_upload.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-02T00:07:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e778957_15502a71",
       "revId": "ee3a6f80f02f1bcea4ce99c629fee3221236778e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
