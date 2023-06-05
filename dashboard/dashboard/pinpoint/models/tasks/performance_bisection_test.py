@@ -103,12 +103,12 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
                             'git_hash': commit
                         }]
                     }): values for commit, values in (
-                        ('commit_0', list(range(10))),
-                        ('commit_1', list(range(1, 11))),
-                        ('commit_2', list(range(2, 12))),
-                        ('commit_3', list(range(3, 13))),
-                        ('commit_4', list(range(3, 13))),
-                        ('commit_5', list(range(3, 13))),
+                        ('commit_0', list(range(20))),
+                        ('commit_1', list(range(20))),
+                        ('commit_2', list(range(1, 21))),
+                        ('commit_3', list(range(3, 23))),
+                        ('commit_4', list(range(3, 23))),
+                        ('commit_5', list(range(3, 23))),
                     )
                 })))
 
@@ -126,7 +126,7 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
             {'commits': [{
                 'repository': 'chromium',
                 'git_hash': 'commit_2',
-            }]})], 10)
+            }]})], 20)
     self.assertLess(
         attempt_counts[change_module.Change.FromDict(
             {'commits': [{
