@@ -124,5 +124,6 @@ def Compare(values_a, values_b, attempt_count, mode, magnitude):
     # come from different distributions, and we don't care to investigate more.
     comparison_result = ComparisonResults(SAME, p_value, low_threshold,
                                           high_threshold)
-  logging.debug('BisectDebug: actual_comparison_result: %s', comparison_result)
-  return comparison_result
+  logging.debug('BisectDebug: old_comparison_result: %s', comparison_result)
+
+  return new_comparison_result
