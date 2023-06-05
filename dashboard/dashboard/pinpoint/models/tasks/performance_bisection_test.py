@@ -89,7 +89,7 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
         }).AsDict()
     ]])
 
-  def testEvaluateSuccess_NeedToRefineAttempts(self):
+  def testEvaluateSuccess_NoNeedToRefineAttempts(self):
     self.PopulateSimpleBisectionGraph(self.job)
     task_module.Evaluate(
         self.job,
@@ -121,18 +121,12 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
     for payload in evaluate_result.values():
       change = change_module.Change.FromDict(payload.get('change'))
       attempt_counts[change] = attempt_counts.get(change, 0) + 1
-    self.assertGreater(
+    self.assertEqual(
         attempt_counts[change_module.Change.FromDict(
             {'commits': [{
                 'repository': 'chromium',
                 'git_hash': 'commit_2',
             }]})], 10)
-    self.assertLess(
-        attempt_counts[change_module.Change.FromDict(
-            {'commits': [{
-                'repository': 'chromium',
-                'git_hash': 'commit_2',
-            }]})], 100)
 
     # We know that we will refine the graph until we see the progression from
     # commit_0 -> commit_1 -> commit_2 -> commit_3 and stabilize.

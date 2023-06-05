@@ -50,7 +50,7 @@ class PerformanceTest(unittest.TestCase):
     self.assertLessEqual(comparison.p_value, comparison.low_threshold)
 
   def testUnknown(self):
-    comparison = compare.Compare(list(range(10)), list(range(3, 13)), 10, 'performance', 1)
+    comparison = compare.Compare(list(range(10)), list(range(2, 12)), 10, 'performance', 1)
     self.assertEqual(comparison.result, compare.UNKNOWN)
     self.assertLessEqual(comparison.p_value, comparison.high_threshold)
 
