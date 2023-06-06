@@ -28,6 +28,12 @@ def _ProcessAlertGroup(group_key):
 def _ProcessUngroupedAlerts():
   ''' Process alerts which need a new group
   '''
+  # Parity
+  try:
+    parity_results = perf_issue_service_client.PostUngroupedAlerts()
+  except Exception as e:  # pylint: disable=broad-except
+    logging.warning('Parity failed in calling PostUngroupedAlerts. %s', str(e))
+
   groups = alert_group.AlertGroup.GetAll()
 
   # TODO(fancl): This is an inefficient algorithm, as it's linear to the number
@@ -50,6 +56,20 @@ def _ProcessUngroupedAlerts():
   ungrouped = ungrouped_list[0]
   ungrouped_anomalies = ndb.get_multi(ungrouped.anomalies)
 
+  # Parity
+  try:
+    ungrouped_anomaly_keys = [a.key.integer_id() for a in ungrouped_anomalies]
+    new_ungrouped_anomaly_keys = list(parity_results.keys())
+    if sorted(ungrouped_anomaly_keys) != sorted(new_ungrouped_anomaly_keys):
+      logging.warning(
+          'Imparity found for PostUngroupedAlerts - anomaly count. %s, %s',
+          ungrouped_anomaly_keys, new_ungrouped_anomaly_keys)
+      cloud_metric.PublishPerfIssueServiceGroupingImpariry(
+          'PostUngroupedAlerts')
+  except Exception as e:  # pylint: disable=broad-except
+    logging.warning('Parity failed in PostUngroupedAlerts - anomaly count. %s',
+                    str(e))
+
   # Scan all ungrouped anomalies and create missing groups. This doesn't
   # mean their groups are not created so we still need to check if group
   # has been created. There are two cases:
@@ -57,6 +77,46 @@ def _ProcessUngroupedAlerts():
   # groups are not created.
   # 2. Groups may be created during the iteration.
   # Newly created groups won't be updated until next iteration.
+  for anomaly_entity in ungrouped_anomalies:
+    new_count = 0
+    groups = []
+    all_groups = alert_group.AlertGroup.GenerateAllGroupsForAnomaly(
+        anomaly_entity)
+    for g in all_groups:
+      found_group = FindGroup(g)
+      if found_group:
+        groups.append(found_group)
+      else:
+        new_group = g.put()
+        groups.append(new_group)
+        new_count += 1
+    anomaly_entity.groups = groups
+
+    # parity
+    try:
+      single_parity = parity_results.get(anomaly_entity.key.integer_id(), None)
+      if single_parity:
+        existings = single_parity['existing_groups']
+        news = single_parity['new_groups']
+        if new_count != len(news):
+          logging.warning(
+              'Imparity found for PostUngroupedAlerts - new groups. %s, %s',
+              new_count, len(news))
+          cloud_metric.PublishPerfIssueServiceGroupingImpariry(
+              'PostUngroupedAlerts - new groups')
+        group_keys = [group.key.string_id() for group in groups]
+        for g in existings:
+          if g not in group_keys:
+            logging.warning(
+                'Imparity found for PostUngroupedAlerts - old groups. %s, %s',
+                existings, group_keys)
+            cloud_metric.PublishPerfIssueServiceGroupingImpariry(
+                'PostUngroupedAlerts - old groups')
+    except Exception as e:  # pylint: disable=broad-except
+      logging.warning(
+          'Parity failed in PostUngroupedAlerts - group match on %s. %s',
+          anomaly_entity.key, str(e))
+
   for anomaly_entity in ungrouped_anomalies:
     anomaly_entity.groups = [
         FindGroup(g) or g.put() for g in

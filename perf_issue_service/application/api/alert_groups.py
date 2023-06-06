@@ -48,7 +48,7 @@ def GetAnomaliesHandler(group_id):
 @utils.BearerTokenAuthorizer
 def GetGroupsForAnomalyHandler(test_key, start_rev, end_rev):
   try:
-    group_keys = alert_group.AlertGroup.GetGroupsForAnomaly(
+    group_keys, _ = alert_group.AlertGroup.GetGroupsForAnomaly(
       test_key, start_rev, end_rev)
   except alert_group.SheriffConfigRequestException as e:
     return make_response(str(e), 500)
@@ -63,9 +63,9 @@ def GetAllActiveGroups():
   return make_response(all_group_keys)
 
 
-@alert_groups.route('/ungrouped', methods=['GET'])
+@alert_groups.route('/ungrouped', methods=['POST'])
 @utils.BearerTokenAuthorizer
 def PostUngroupedGroupsHandler():
-  alert_group.AlertGroup.ProcessUngroupedAlerts()
+  parity_results = alert_group.AlertGroup.ProcessUngroupedAlerts()
 
-  return make_response('')
+  return make_response(parity_results)
