@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "47a118fab45b584f7c511e7d0d860b37ae00b151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e4d4e5_ea3a853a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-06-06T00:05:29Z",
+      "side": 1,
+      "message": "I would prefer to set target before calling _GenerateQuests. It is unexpected for a function to change its input arguments.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 37
+      },
+      "revId": "47a118fab45b584f7c511e7d0d860b37ae00b151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
