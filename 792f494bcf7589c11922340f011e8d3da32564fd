@@ -16,6 +16,24 @@
       "message": "Do we really want to add another site config to perf dashboard? I thought we\u0027re trying to move existing site config to files checked into source repo.",
       "revId": "792f494bcf7589c11922340f011e8d3da32564fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6b956c6_7a9f78af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-06T01:16:33Z",
+      "side": 1,
+      "message": "This will be a temporary one only used during migration. \nA hard coded list is considered as well. Picked this as it is easier to turn on/off, and it will be convenient during the migration window which is only hours long.",
+      "parentUuid": "04e74a68_99c977d9",
+      "revId": "792f494bcf7589c11922340f011e8d3da32564fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
