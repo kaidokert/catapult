@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9996cc45_e795734f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-06-06T14:55:50Z",
+      "side": 1,
+      "message": "I think we can also remove blink_gc_metric.sql [1] from Perfetto.\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/perfetto/src/trace_processor/metrics/sql/experimental/blink_gc_metric.sql",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc874434_f7fe6572",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-06-06T14:55:50Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think we actually need this one, but I also don\u0027t feel strongly against it.",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf15dfd4_50e8ac91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-06-06T14:55:50Z",
+      "side": 1,
+      "message": "lgtm % comments",
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
