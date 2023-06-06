@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7d9d68_35faa804",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1147189
+      },
+      "writtenOn": "2023-06-06T15:08:16Z",
+      "side": 1,
+      "message": "Ack. It\u0027s in the perfetto repository, so it\u0027ll be another CL. Thanks!",
+      "parentUuid": "9996cc45_e795734f",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc874434_f7fe6572",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-06T14:55:50Z",
       "side": 1,
       "message": "nit: I don\u0027t think we actually need this one, but I also don\u0027t feel strongly against it.",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64b772ee_1e1a7537",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1147189
+      },
+      "writtenOn": "2023-06-06T15:08:16Z",
+      "side": 1,
+      "message": "I think we don\u0027t need the others either anymore, since we moved to the new naming scheme. Let\u0027s leave this for symmetry, until we clean up the rest too.",
+      "parentUuid": "cc874434_f7fe6572",
       "range": {
         "startLine": 11,
         "startChar": 19,
