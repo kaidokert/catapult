@@ -34,6 +34,24 @@
       "parentUuid": "04e74a68_99c977d9",
       "revId": "792f494bcf7589c11922340f011e8d3da32564fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d4117d2_e9318271",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-06-06T04:01:50Z",
+      "side": 1,
+      "message": "Thanks for the context. LGTM then.",
+      "parentUuid": "a6b956c6_7a9f78af",
+      "revId": "792f494bcf7589c11922340f011e8d3da32564fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
