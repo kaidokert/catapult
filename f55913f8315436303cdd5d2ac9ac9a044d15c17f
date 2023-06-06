@@ -16,6 +16,75 @@
       "message": "I\u0027m not sure how to help review this. Is there a bug link or a doc with more context so I can understand what it\u0027s doing and why?",
       "revId": "f55913f8315436303cdd5d2ac9ac9a044d15c17f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3897872_a5de2487",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-06-06T04:12:49Z",
+      "side": 1,
+      "message": "The new low threshold is 0.1, which implies 10% false positive rate. I\u0027m worried that\u0027s too high.",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 19
+      },
+      "revId": "f55913f8315436303cdd5d2ac9ac9a044d15c17f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ccd959_ef443478",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-06-06T04:12:49Z",
+      "side": 1,
+      "message": "Since the threshold applies to all types of bisects, \"FUNCTIONAL\" is misleading here.",
+      "range": {
+        "startLine": 86,
+        "startChar": 61,
+        "endLine": 86,
+        "endChar": 71
+      },
+      "revId": "f55913f8315436303cdd5d2ac9ac9a044d15c17f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec6a5360_2bf3fa5a",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-06-06T04:12:49Z",
+      "side": 1,
+      "message": "I\u0027m concerned that this will significantly increase number of repeats (attempts) at each commit position. The new high threshold will be 0.6 or higher. When there are no perf differences, there is still at least 60% chance for p-value to be below new_high_threshold, likely resulting in UNKNOWN comparison result. This will trigger more repeats. However, without any real perf differences, repeats will not necessarily have large impact on p-value, so Pinpoint may keep getting UNKNOWN result and keep increasing repeats. (The old code mitigates this by reducing high_threshold as number of repeats increases.)\n\nHave this CL been validated on staging? I would feel more comfortable if we can try this CL out with multiple scenarios on staging.",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 20
+      },
+      "revId": "f55913f8315436303cdd5d2ac9ac9a044d15c17f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
