@@ -95,6 +95,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3602a8_6647f0ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2023-06-06T15:19:55Z",
+      "side": 1,
+      "message": "nit: Lets add that these metrics are now part of v8:gc:...",
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cf15dfd4_50e8ac91",
@@ -108,6 +125,23 @@
       "writtenOn": "2023-06-06T14:55:50Z",
       "side": 1,
       "message": "lgtm % comments",
+      "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5fe041_67846d9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2023-06-06T15:19:55Z",
+      "side": 1,
+      "message": "lgtm",
       "revId": "89f112cd3661e84701a2ed11fc8cf8597dfc4c5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
