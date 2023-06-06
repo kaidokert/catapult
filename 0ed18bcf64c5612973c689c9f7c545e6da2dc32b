@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26b92b2_595e945f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-06T17:48:16Z",
+      "side": 1,
+      "message": "lgtm. \nAdd @khokhlov who owns the tracing.",
+      "revId": "0ed18bcf64c5612973c689c9f7c545e6da2dc32b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
