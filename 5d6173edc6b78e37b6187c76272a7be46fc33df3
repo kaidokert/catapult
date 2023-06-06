@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a38f0122_43fffcaf",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green-py3.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-06-06T20:07:39Z",
+      "side": 1,
+      "message": "could you wait 20 minutes? I\u0027m making a new build for issue debug.",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "5d6173edc6b78e37b6187c76272a7be46fc33df3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
