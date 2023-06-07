@@ -189,7 +189,8 @@ def GetAnomaliesByAlertGroupID(group_id):
 
 
 def GetAlertGroupsForAnomaly(anomaly):
-  test_key = utils.TestPath(anomaly.test)
+  # test_key = utils.TestPath(anomaly.test)
+  test_key = anomaly.test
   start_rev = anomaly.start_revision
   end_rev = anomaly.end_revision
 
@@ -227,5 +228,22 @@ def GetAllActiveAlertGroups():
     cloud_metric.PublishPerfIssueServiceRequestFailures(
         'GetAllActiveAlertGroups', 'GET', url, {})
     logging.warning('[PerfIssueService] Error requesting all groups: %s',
+                    str(e))
+    return []
+
+
+def PostUngroupedAlerts():
+  url = _SERVICE_URL + _ALERT_GROUP_PREFIX
+  url += 'ungrouped'
+
+  try:
+    cloud_metric.PublishPerfIssueServiceRequests('PostUngroupedAlerts', 'POST',
+                                                 url, {})
+    resp = request.RequestJson(url, method='POST')
+    return resp
+  except request.RequestError as e:
+    cloud_metric.PublishPerfIssueServiceRequestFailures('PostUngroupedAlerts',
+                                                        'POST', url, {})
+    logging.warning('[PerfIssueService] Error updating ungrouped alerts: %s',
                     str(e))
     return []

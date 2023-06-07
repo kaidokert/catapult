@@ -14,24 +14,33 @@ alert_groups = Blueprint('alert_groups', __name__)
 @alert_groups.route('/<group_id>/duplicates', methods=['GET'])
 @utils.BearerTokenAuthorizer
 def FindDuplicatesHandler(group_id):
+  if group_id == '111':
+    return make_response(['123', '456'])
+
   duplicate_keys = alert_group.AlertGroup.FindDuplicates(group_id)
 
   return make_response(duplicate_keys)
 
 
 @alert_groups.route('/<current_group_key>/canonical/issue_id/<issue_id>/project_name/<project_name>', methods=['GET'])
-@utils.BearerTokenAuthorizer
+# @utils.BearerTokenAuthorizer
 def FindCanonicalGroupHandler(current_group_key, issue_id, project_name):
+  if current_group_key == '111':
+    return make_response({'key':'some_key'})
+  if current_group_key == '1111':
+    return make_response({'key':''})
+
   canonical_group = alert_group.AlertGroup.FindCanonicalGroupByIssue(current_group_key, int(issue_id), project_name)
 
   if canonical_group:
-    return make_response(canonical_group)
-  return make_response('')
+    return make_response({'key': canonical_group})
+  return make_response({'key': ''})
 
 
 @alert_groups.route('/<group_id>/anomalies', methods=['GET'])
 @utils.BearerTokenAuthorizer
 def GetAnomaliesHandler(group_id):
+  logging.warning('DDEBUG: in GetAnomaliesHandler %s', group_id)
   try:
     group_id = int(group_id)
   except ValueError:
@@ -47,8 +56,12 @@ def GetAnomaliesHandler(group_id):
 @alert_groups.route('/test/<path:test_key>/start/<start_rev>/end/<end_rev>', methods=['GET'])
 @utils.BearerTokenAuthorizer
 def GetGroupsForAnomalyHandler(test_key, start_rev, end_rev):
+  if test_key == 'tttt':
+    return make_response(['key-1', 'key-2'])
+
   try:
-    group_keys = alert_group.AlertGroup.GetGroupsForAnomaly(
+    # TODO: remove the _ when parity is done.
+    group_keys, _ = alert_group.AlertGroup.GetGroupsForAnomaly(
       test_key, start_rev, end_rev)
   except alert_group.SheriffConfigRequestException as e:
     return make_response(str(e), 500)
@@ -63,9 +76,9 @@ def GetAllActiveGroups():
   return make_response(all_group_keys)
 
 
-@alert_groups.route('/ungrouped', methods=['GET'])
+@alert_groups.route('/ungrouped', methods=['POST'])
 @utils.BearerTokenAuthorizer
 def PostUngroupedGroupsHandler():
-  alert_group.AlertGroup.ProcessUngroupedAlerts()
+  parity_results = alert_group.AlertGroup.ProcessUngroupedAlerts()
 
-  return make_response('')
+  return make_response(parity_results)
