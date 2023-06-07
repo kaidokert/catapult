@@ -101,6 +101,10 @@ def AddPointQueuePost():
 def AlertGroupsGet():
   return alert_groups.AlertGroupsGet()
 
+@flask_app.route('/tttt')
+def AlertGroupsGet2():
+  return alert_groups.tttt()
+
 
 @flask_app.route('/alerts', methods=['GET'])
 def AlertsHandlerGet():

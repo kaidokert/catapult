@@ -28,6 +28,12 @@ def _ProcessAlertGroup(group_key):
 def _ProcessUngroupedAlerts():
   ''' Process alerts which need a new group
   '''
+  # Parity
+  try:
+    parity_results = perf_issue_service_client.PostUngroupedAlerts()
+  except Exception as e:  # pylint: disable=broad-except
+    logging.warning('Parity failed in calling PostUngroupedAlerts. %s', str(e))
+
   groups = alert_group.AlertGroup.GetAll()
 
   # TODO(fancl): This is an inefficient algorithm, as it's linear to the number
@@ -50,6 +56,22 @@ def _ProcessUngroupedAlerts():
   ungrouped = ungrouped_list[0]
   ungrouped_anomalies = ndb.get_multi(ungrouped.anomalies)
 
+  # Parity
+  try:
+    ungrouped_anomaly_keys = [
+        str(a.key.integer_id()) for a in ungrouped_anomalies
+    ]
+    new_ungrouped_anomaly_keys = [str(k) for k in list(parity_results.keys())]
+    if sorted(ungrouped_anomaly_keys) != sorted(new_ungrouped_anomaly_keys):
+      logging.warning(
+          'Imparity found for PostUngroupedAlerts - anomaly count. %s, %s',
+          ungrouped_anomaly_keys, new_ungrouped_anomaly_keys)
+      cloud_metric.PublishPerfIssueServiceGroupingImpariry(
+          'PostUngroupedAlerts')
+  except Exception as e:  # pylint: disable=broad-except
+    logging.warning('Parity failed in PostUngroupedAlerts - anomaly count. %s',
+                    str(e))
+
   # Scan all ungrouped anomalies and create missing groups. This doesn't
   # mean their groups are not created so we still need to check if group
   # has been created. There are two cases:
@@ -58,12 +80,88 @@ def _ProcessUngroupedAlerts():
   # 2. Groups may be created during the iteration.
   # Newly created groups won't be updated until next iteration.
   for anomaly_entity in ungrouped_anomalies:
-    anomaly_entity.groups = [
-        FindGroup(g) or g.put() for g in
-        alert_group.AlertGroup.GenerateAllGroupsForAnomaly(anomaly_entity)
-    ]
+    new_count = 0
+    alert_groups = []
+    all_groups = alert_group.AlertGroup.GenerateAllGroupsForAnomaly(
+        anomaly_entity)
+    for g in all_groups:
+      found_group = FindGroup(g)
+      if found_group:
+        alert_groups.append(found_group)
+      else:
+        new_group = g.put()
+        alert_groups.append(new_group)
+        new_count += 1
+    anomaly_entity.groups = alert_groups
+
+    # parity
+    try:
+      single_parity = parity_results.get(anomaly_entity.key.integer_id(), None)
+      if single_parity:
+        existings = single_parity['existing_groups']
+        news = single_parity['new_groups']
+        if new_count != len(news):
+          logging.warning(
+              'Imparity found for PostUngroupedAlerts - new groups. %s, %s',
+              new_count, len(news))
+          cloud_metric.PublishPerfIssueServiceGroupingImpariry(
+              'PostUngroupedAlerts - new groups')
+        group_keys = [group.key.string_id() for group in groups]
+        for g in existings:
+          if g not in group_keys:
+            logging.warning(
+                'Imparity found for PostUngroupedAlerts - old groups. %s, %s',
+                existings, group_keys)
+            cloud_metric.PublishPerfIssueServiceGroupingImpariry(
+                'PostUngroupedAlerts - old groups')
+    except Exception as e:  # pylint: disable=broad-except
+      logging.warning(
+          'Parity failed in PostUngroupedAlerts - group match on %s. %s',
+          anomaly_entity.key, str(e))
+
+  # for anomaly_entity in ungrouped_anomalies:
+  #   anomaly_entity.groups = [
+  #       FindGroup(g) or g.put() for g in
+  #       alert_group.AlertGroup.GenerateAllGroupsForAnomaly(anomaly_entity)
+  #   ]
   logging.info('Persisting anomalies')
   ndb.put_multi(ungrouped_anomalies)
+
+
+class fake(object):
+  test = 'tttt'
+  start_revision = 123
+  end_revision = 234
+
+def tttt():
+  # GetCanonicalGroupByIssue
+  k = perf_issue_service_client.GetCanonicalGroupByIssue('111', '222', 'chromium')
+  logging.warning('DDEBUG: 1 - %s', k['key'])
+  kk = perf_issue_service_client.GetCanonicalGroupByIssue('1111', '222', 'chromium')
+  logging.warning('DDEBUG: 2 - %s', (kk['key']))
+
+  # GetDuplicateGroupKeys
+  d = perf_issue_service_client.GetDuplicateGroupKeys('111')
+  logging.warning('DDEBUG: 3 - %s', d)
+
+  # GetAnomaliesByAlertGroupID
+  g = 5660172965904384
+  gg = perf_issue_service_client.GetAnomaliesByAlertGroupID(g)
+  logging.warning('DDEBUG: 4 - %s', gg)
+
+  # GetAlertGroupsForAnomaly
+  f = fake()
+  ff = perf_issue_service_client.GetAlertGroupsForAnomaly(f)
+  logging.warning('DDEBUG: 5 - %s', ff)
+
+  # GetAllActiveAlertGroups
+  ss = perf_issue_service_client.GetAllActiveAlertGroups()
+  logging.warning('DDEBUG: 6 - %s', len(ss))
+
+  # PostUngroupedAlerts
+  uu = perf_issue_service_client.PostUngroupedAlerts()
+  logging.warning('DDEBUG: 7 - %s', uu)
+
 
 
 def ProcessAlertGroups():
@@ -73,9 +171,11 @@ def ProcessAlertGroups():
 
   # Parity on get all
   try:
-    group_keys = perf_issue_service_client.GetAllActiveAlertGroups()
+    group_keys = [
+        str(k) for k in perf_issue_service_client.GetAllActiveAlertGroups()
+    ]
     logging.info('Parity found %s alert groups.', len(group_keys))
-    original_group_keys = [g.key.string_id() for g in groups]
+    original_group_keys = [str(g.key.id()) for g in groups]
     if sorted(group_keys) != sorted(original_group_keys):
       logging.warning('Imparity found for GetAllActiveAlertGroups. %s, %s',
                       group_keys, original_group_keys)

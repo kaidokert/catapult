@@ -43,6 +43,7 @@ def RequestJson(*args, **kwargs):
   content = six.ensure_binary(Request(*args, **kwargs))
   if content.startswith(_VULNERABILITY_PREFIX):
     content = content[len(_VULNERABILITY_PREFIX):]
+  logging.warning('DDEBUG: %s', content)
   return json.loads(content)
 
 
