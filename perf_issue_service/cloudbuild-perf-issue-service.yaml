@@ -9,3 +9,10 @@ steps:
     app, deploy, '--no-promote', '--version', 'cloud-build-${SHORT_SHA}',
     app.yaml,
   ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Set traffic for the service'
+  dir: 'perf_issue_service'
+  args: [
+    'app', 'services', 'set-traffic', 'perf-issue-service',
+    '--splits=cloud-build-7f835d2=1'
+  ]
