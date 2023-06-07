@@ -261,16 +261,11 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         logging.warning('Failed to start symbolizer process; browser output '
                         'will not be symbolized.')
 
-      if self.browser_options.show_stdout:
-        # Tee the symbolized output to stdout and the temp file.
-        self._browser_log_writer = subprocess.Popen(
-            ['tee', self._tmp_output_file.name], stdin=symbolized_output_stream)
-      else:
-        # Cat the symbolized output to the temp file.
-        self._browser_log_writer = subprocess.Popen('cat',
-                                     stdin=symbolized_output_stream,
-                                     stdout=self._tmp_output_file,
-                                     stderr=subprocess.PIPE)
+      # Cat the symbolized output to the temp file.
+      self._browser_log_writer = subprocess.Popen('cat',
+                                   stdin=symbolized_output_stream,
+                                   stdout=self._tmp_output_file,
+                                   stderr=subprocess.PIPE)
 
       self._dump_finder = minidump_finder.MinidumpFinder(
           self.browser.platform.GetOSName(),
