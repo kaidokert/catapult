@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d7f322_88a23d30",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-07T16:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfcbe73e_1a2ac08a",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 7
+      },
+      "revId": "57dacd33c8b5df72366a2482c6538bbfb8211cce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc0649b0_9b424fcd",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-06-07T16:36:03Z",
       "side": 1,
       "message": "Alternatively: list(map(str, perf_issue_service_client.GetAllActiveAlertGroups()))",
+      "range": {
+        "startLine": 138,
+        "startChar": 17,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "57dacd33c8b5df72366a2482c6538bbfb8211cce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fca83721_90060f35",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-07T16:40:42Z",
+      "side": 1,
+      "message": "Got it. Thanks!",
+      "parentUuid": "fc0649b0_9b424fcd",
       "range": {
         "startLine": 138,
         "startChar": 17,
