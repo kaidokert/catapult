@@ -178,6 +178,39 @@ def _CreateTestArgParsers():
   parser = typ.ArgumentParser(discovery=True, reporting=True, running=True)
   parser.add_argument('test', type=str, help='Name of the test suite to run')
 
+  # We remove typ's "tests" positional argument because we don't use it/pass it
+  # on to typ AND it can result in unexpected behavior, particularly if the
+  # underlying test suite does its own argument parsing. As a concrete example,
+  # consider the args:
+  #   test_suite "--extra-browser-args=--foo --bar"
+  # In this case, --extra-browser-args is only known to the underlying suite,
+  # not to run_browser_test.py or typ. A user would expect this to run the
+  # test_suite suite and pass the --extra-browser-args on to the suite. However,
+  # if both "tests" and "test" are added to the parser, then we end up with
+  # tests=['test_suite'] and test='--extra-browser-args ...' since
+  # --extra-browser-args looks like a positional argument to the parser. This
+  # can be worked around by having a known argument immediately after the suite,
+  # e.g.
+  #   test_suite --jobs 1 "--extra-browser-args=--foo --bar"
+  # but simply removing "tests" here works around the issue entirely.
+  # argparse doesn't have a simple way to remove an argument after it has been
+  # added, so use the logic from https://stackoverflow.com/a/49753634.
+  # pylint: disable=protected-access
+  for action in parser._actions:
+    option_strings = action.option_strings
+    if (option_strings and option_strings[0] == 'tests'
+        or action.dest == 'tests'):
+      parser._remove_action(action)
+      break
+  for action in parser._action_groups:
+    for group_action in action._group_actions:
+      option_strings = group_action.option_strings
+      if (option_strings and option_strings[0] == 'tests'
+          or group_action.dest == 'tests'):
+        action._group_actions.remove(group_action)
+        break
+  # pylint: enable=protected-access
+
   parser.add_argument(
       '--filter-tests-after-sharding', default=False, action='store_true',
       help=('Apply the test filter after tests are split for sharding. Useful '
