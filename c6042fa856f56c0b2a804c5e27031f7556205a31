@@ -33,6 +33,41 @@
       "message": "Add a check to only send rows that have r_commit_pos. Otherwise, the skia perf upload will crash.",
       "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d8c7cd9_e9067c3f",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-08T22:16:02Z",
+      "side": 1,
+      "message": "Also log to cloud metric how many rows don\u0027t have r_commit_pos.",
+      "parentUuid": "1db41ed9_a4f5badf",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "934dcbfa_9160ac85",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-08T22:16:02Z",
+      "side": 1,
+      "message": "Maybe better to log to cloud metric or both.",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
