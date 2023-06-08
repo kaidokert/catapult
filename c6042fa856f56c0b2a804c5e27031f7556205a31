@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "600ed64f_8fcac802",
+        "filename": "dashboard/dashboard/add_point_queue.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-08T23:31:43Z",
+      "side": 1,
+      "message": "My bad. Added the grouping",
+      "parentUuid": "973fa03a_73522b0b",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1db41ed9_a4f5badf",
@@ -53,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2065369c_a39eef03",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-08T23:31:43Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "8d8c7cd9_e9067c3f",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "934dcbfa_9160ac85",
@@ -66,6 +102,24 @@
       "writtenOn": "2023-06-08T22:16:02Z",
       "side": 1,
       "message": "Maybe better to log to cloud metric or both.",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "356caf63_f588962a",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-08T23:31:43Z",
+      "side": 1,
+      "message": "I don\u0027t see the value in logging this information to cloud metrics. The skia-bridge api is already doing the cloud metrics logging for api level telemetry. This is more verbose logging to look into details of the operations which is more suited to the logs",
+      "parentUuid": "934dcbfa_9160ac85",
       "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
