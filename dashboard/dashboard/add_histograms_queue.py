@@ -27,6 +27,7 @@ from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import histogram
 from dashboard.models import upload_completion_token
+from dashboard.services import skia_bridge_service
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
@@ -263,10 +264,7 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
   yield ndb.put_multi_async(rows) + [r.UpdateParentAsync() for r in rows]
 
   logging.info('Added %s rows to Datastore', str(len(rows)))
-
-  # Disable this log since it's killing the quota of Cloud Logging API -
-  # write requests per minute
-  # logging.debug('Processed %s row entities.', len(rows))
+  skia_bridge_service.SendRowsForSkiaUpload(rows, parent_test)
 
   def IsMonitored(client, test):
     reason = []
