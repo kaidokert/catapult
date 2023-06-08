@@ -34,6 +34,24 @@
       "parentUuid": "70bf4f71_411d8401",
       "revId": "90c0d70ce3fa72ef8f94a9dc202b430b939386a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b03d421_7323c5b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-06-08T21:28:50Z",
+      "side": 1,
+      "message": "Closing this thread. We got confirmation offline that https://developer.android.com/reference/android/os/Build.VERSION_CODES#UPSIDE_DOWN_CAKE is authoritative and confirms that U is finalized as 34.\n\nFeel free to land 😊",
+      "parentUuid": "54441c97_0b557118",
+      "revId": "90c0d70ce3fa72ef8f94a9dc202b430b939386a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
