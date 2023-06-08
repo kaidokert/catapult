@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973fa03a_73522b0b",
+        "filename": "dashboard/dashboard/add_point_queue.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-08T22:13:56Z",
+      "side": 1,
+      "message": "There\u0027s no parent_test. Here, it\u0027s a list called parent_tests. Modify so that each row is paired with its corresponding parent_test. Alternatively, Row already has a parent_test property. You could use that instead of passing parent_test here.",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db41ed9_a4f5badf",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-08T22:13:56Z",
+      "side": 1,
+      "message": "Add a check to only send rows that have r_commit_pos. Otherwise, the skia perf upload will crash.",
+      "revId": "c6042fa856f56c0b2a804c5e27031f7556205a31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
