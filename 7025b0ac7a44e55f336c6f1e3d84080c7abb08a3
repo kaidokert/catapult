@@ -16,6 +16,23 @@
       "message": "Please take a look.",
       "revId": "7025b0ac7a44e55f336c6f1e3d84080c7abb08a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a487ce73_aec00563",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2023-06-08T00:28:58Z",
+      "side": 1,
+      "message": "Thank you Brian.\nSince we do not have fuchsia bots defined in catapult, I cannot test it upfront, but at least `tee --output-error\u003dwar output \u003c input` does not break on my machine. We will see if it helps.",
+      "revId": "7025b0ac7a44e55f336c6f1e3d84080c7abb08a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
