@@ -7,6 +7,8 @@
  * configuration headers received for Reporting-enabled origins, and any queued
  * reports that are waiting to be uploaded.
  */
+'use strict';
+
 var ReportingView = (function() {
   'use strict';
 
@@ -111,7 +113,7 @@ var ReportingView = (function() {
       addTextNode(statusNode, ')');
 
       addNodeWithText(tr, 'td', report.type);
-      addNodeWithText(tr, 'td', report.network_isolation_key);
+      addNodeWithText(tr, 'td', report.network_anonymization_key);
 
       var contentNode = addNode(tr, 'td');
       if (report.type == 'network-error')
@@ -229,7 +231,7 @@ var ReportingView = (function() {
             addTextNode(originNode, client.origin);
             var nikNode = addNode(tr, 'td');
             nikNode.setAttribute('rowspan', clientHeight);
-            addTextNode(nikNode, client.network_isolation_key);
+            addTextNode(nikNode, client.network_anonymization_key);
           }
 
           if (k == 0) {
