@@ -45,4 +45,5 @@ def GetBuganizerProjects():
         'Failure in request for `%s`; HTTP status code %s: %s' %
         (url, status, repr(content[0:200])), response, content)
 
+  logging.warning('DDEBUG: chromeperf client content: %s', content)
   return json.loads(content)
