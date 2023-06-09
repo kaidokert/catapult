@@ -22,14 +22,15 @@ def IssuesGetHandler(project_name=None):
   status = request.args.get('status', 'open')
   labels = request.args.get('labels', '')
 
-  client = issue_tracker_client.IssueTrackerClient()
+  client = issue_tracker_client.IssueTrackerClient(project_name)
   response = client.GetIssuesList(
-      project=project_name,
-      q='opened>today-%s' % age,
-      can=status,
-      label=labels,
-      maxResults=limit,
-      sort='-id')
+    project=project_name,
+    limit=limit,
+    age=age,
+    status=status,
+    labels=labels
+  )
+
   return make_response(response)
 
 @issues.route('/<issue_id>/project/', methods=['GET'])
