@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e584548_e3514b67",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-09T18:56:01Z",
+      "side": 1,
+      "message": "Good point. I did not realize this was running in a loop. Modified the logic to first cache the data until all the rows in the request have been processed and then send it all in one go at the end",
+      "parentUuid": "a68333a5_b49932d1",
+      "revId": "99e7033fd68c9aceee5df9554da6de13d2a37da9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "023c6bca_ced2697d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-09T00:04:10Z",
       "side": 1,
       "message": "I think you should be sending all the rows on the same call. If you send them, based on the parent_test, you run into the same problem as add_histograms, where you will have 1 row per file and where grouping in skia-bridge is redundant.",
+      "revId": "99e7033fd68c9aceee5df9554da6de13d2a37da9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a79485c_6d3dba23",
+        "filename": "dashboard/dashboard/add_point_queue.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-09T18:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "023c6bca_ced2697d",
       "revId": "99e7033fd68c9aceee5df9554da6de13d2a37da9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
