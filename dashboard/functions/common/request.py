@@ -11,7 +11,10 @@ import http.client as http_client
 import json
 import socket
 
-from google.appengine.api import urlfetch_errors
+# google.appengine.api is not in any way available to python3, so
+# do not import it in new code that shouldn't be using python2.7
+# anyways.
+
 from urllib.parse import urlencode
 
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
@@ -90,8 +93,7 @@ def Request(url, method='GET', body=None, **parameters):
     content = _RequestAndProcessHttpErrors(url, **kwargs)
   except NotFoundError:
     raise
-  except (http_client.HTTPException, socket.error,
-          urlfetch_errors.InternalTransientError):
+  except (http_client.HTTPException, socket.error):
     # Retry once.
     content = _RequestAndProcessHttpErrors(url, **kwargs)
 
