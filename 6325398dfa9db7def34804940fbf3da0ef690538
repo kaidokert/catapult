@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b6575f_d886e77a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-10T12:56:21Z",
+      "side": 1,
+      "message": "Since this is a non-trivial change, we should add a comment explaining what this does... Maybe something like:\n```\nAs part of the network state partitioning project, the Chrome code\nwas updated to use the key `network_anonymization_key` instead of\n`network_isolation_key` for several NetLog dictionaries, but\ncorresponding changes in the NetLog viewer code was missed. This\nupdates this for multiple cases, where the corresponding Chrome\ncode can be found at:\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:net/reporting/reporting_cache_impl.cc;l\u003d1603;drc\u003db8946d11846c93f6a640570f4edcd23b78b1d454\nhttps://source.chromium.org/chromium/chromium/src/+/main:net/reporting/reporting_cache_impl.cc;l\u003d105;drc\u003db8946d11846c93f6a640570f4edcd23b78b1d454\nhttps://source.chromium.org/chromium/chromium/src/+/refs/heads/main:net/dns/host_cache.cc;l\u003d936;drc\u003da564d91c7da9f973a82851f81d3107eb2879d707\n```\n\nAlso, let\u0027s use a more descriptive name... Maybe something like `Replace network_isolation_key key usage in NetLog viewer`",
+      "revId": "6325398dfa9db7def34804940fbf3da0ef690538",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "526c8ee9_b1ef688a",
@@ -14,6 +31,23 @@
       "writtenOn": "2023-06-09T13:17:14Z",
       "side": 1,
       "message": "PTAL! Andrew.",
+      "revId": "6325398dfa9db7def34804940fbf3da0ef690538",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "074bf5b1_9937e936",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-10T12:56:21Z",
+      "side": 1,
+      "message": "Thanks for working on this! I left a comment about improving the commit message",
       "revId": "6325398dfa9db7def34804940fbf3da0ef690538",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
