@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "208bba45_90285dd0",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2200dc2_1ecba431",
+      "range": {
+        "startLine": 34,
+        "startChar": 17,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deff92c1_bef7fb37",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-06-12T22:32:43Z",
       "side": 1,
       "message": "I\u0027m not sure how to interpret the presence of both `\"benchmark\": \"speedometer2\"` and `\"story\": \"Speedometer2\"` in this request. Is this just verbatim what the app actually passed to it at some point during development?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02fbc7eb_ee1e2c79",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "These are exactly what you\u0027d pass to Pinpoint for it to create a job on Speedometer2. This is just test input that I created myself. It\u0027s just an example.",
+      "parentUuid": "deff92c1_bef7fb37",
       "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -75,6 +117,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db30b2f1_3ffa0c3a",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "Both. When you execute the Cloud Workflow it has a Logging window, showing you only logs related to the workflow: https://screenshot.googleplex.com/83Ma62MneBFVPsa.png",
+      "parentUuid": "3db9c1e9_4156e3c5",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fab40d0_2d2495e7",
@@ -88,6 +148,24 @@
       "writtenOn": "2023-06-12T22:11:51Z",
       "side": 1,
       "message": "can you include a screenshot?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33bdf89_99d10c9c",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "https://screenshot.googleplex.com/9iw4smk3xLt2otd.png",
+      "parentUuid": "3fab40d0_2d2495e7",
       "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -109,6 +187,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "404fc1b7_3c5e85ef",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "Yes. You only have to provide test inputs.",
+      "parentUuid": "d0ce4b53_e0c4fa37",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33fb69e8_1d1cc363",
@@ -126,6 +222,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6b67683_64420050",
+        "filename": "dashboard/sandwich_verification/cabe_grpc/service_pb2_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "Done. Added these files to the PRESUBMIT exception list.",
+      "parentUuid": "33fb69e8_1d1cc363",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87e738c5_e2deffdb",
@@ -139,6 +253,24 @@
       "writtenOn": "2023-06-12T22:32:43Z",
       "side": 1,
       "message": "is this the SA that will be used by cloud functions handlers in this dir when they execute in prod, or is this just to identify who is executing the `gcloud functions deploy` steps to push them to prod?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "022ce250_07dbc98d",
+        "filename": "dashboard/sandwich_verification/cloudbuild.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-12T23:02:30Z",
+      "side": 1,
+      "message": "It\u0027s the SA account that will be used by Cloud functions when they execute in prod.",
+      "parentUuid": "87e738c5_e2deffdb",
       "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
