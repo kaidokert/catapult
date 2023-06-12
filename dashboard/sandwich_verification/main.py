@@ -206,8 +206,11 @@ def HandlerCallback(request):
     req = {
         'verification': verification,
         'group': args.get('group_key'),
-        'update': args.get('update'),
     }
     resp = dashboard_service.VerifiedAlertGroup(req)
+  elif mode == 'testing':
+    resp = {
+      'verification': verification,
+    }
 
   return jsonify({'response': resp})
