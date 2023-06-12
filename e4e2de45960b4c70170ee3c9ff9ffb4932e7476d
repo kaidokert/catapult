@@ -51,6 +51,63 @@
       "parentUuid": "1ab1af19_5a56213b",
       "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b4f3b87_a9c7e711",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-06-12T17:46:07Z",
+      "side": 1,
+      "message": "I think you also need to add a line to AUTHORS",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3712cc91_2f28c33e",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-06-12T17:46:07Z",
+      "side": 1,
+      "message": "Judging by the comment above, the `\u0027\u0027 +` shouldn\u0027t be needed for network_anonymization_key ?",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 33
+      },
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad0c2c00_35f6e326",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-06-12T17:46:07Z",
+      "side": 1,
+      "message": "But, for backwards compatibility (reading netlog files saved with older chrome versions) it would be nice if it could check both names.",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
