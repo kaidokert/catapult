@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5bfddb_8a575e6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-12T22:11:51Z",
+      "side": 1,
+      "message": "some questions about the readme\n\nAlso the presubmit is failing. Not sure what you did to get around it the first time...",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db9c1e9_4156e3c5",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-12T22:11:51Z",
+      "side": 1,
+      "message": "where does the result get logged? like in the loggers or does the cloud functions have their own logging system?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fab40d0_2d2495e7",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-12T22:11:51Z",
+      "side": 1,
+      "message": "can you include a screenshot?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ce4b53_e0c4fa37",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-12T22:11:51Z",
+      "side": 1,
+      "message": "is the `kkdem5ntpa-uw.a.run.app` part something the testing command window will generate?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33fb69e8_1d1cc363",
+        "filename": "dashboard/sandwich_verification/cabe_grpc/service_pb2_grpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-12T22:11:51Z",
+      "side": 1,
+      "message": "Is it possible to fix the presubmit error in this file and the other gRPC files?\n\nhttps://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Presubmit/13016/overview",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
