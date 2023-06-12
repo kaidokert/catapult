@@ -20,6 +20,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2200dc2_1ecba431",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-12T22:32:43Z",
+      "side": 1,
+      "message": "rm `a ` ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 17,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deff92c1_bef7fb37",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-12T22:32:43Z",
+      "side": 1,
+      "message": "I\u0027m not sure how to interpret the presence of both `\"benchmark\": \"speedometer2\"` and `\"story\": \"Speedometer2\"` in this request. Is this just verbatim what the app actually passed to it at some point during development?",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3db9c1e9_4156e3c5",
         "filename": "dashboard/sandwich_verification/README.md",
         "patchSetId": 5
@@ -82,6 +122,23 @@
       "writtenOn": "2023-06-12T22:11:51Z",
       "side": 1,
       "message": "Is it possible to fix the presubmit error in this file and the other gRPC files?\n\nhttps://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Presubmit/13016/overview",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87e738c5_e2deffdb",
+        "filename": "dashboard/sandwich_verification/cloudbuild.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-12T22:32:43Z",
+      "side": 1,
+      "message": "is this the SA that will be used by cloud functions handlers in this dir when they execute in prod, or is this just to identify who is executing the `gcloud functions deploy` steps to push them to prod?",
       "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
