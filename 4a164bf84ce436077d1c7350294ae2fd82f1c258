@@ -208,6 +208,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0e6ca36_a0c108f7",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-12T23:07:51Z",
+      "side": 1,
+      "message": "Sorry, I meant provide a screenshot link in the readme itself. The GAE UI can be unintuitive. Seeing everything helps search for the right menu.",
+      "parentUuid": "e33bdf89_99d10c9c",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0ce4b53_e0c4fa37",
         "filename": "dashboard/sandwich_verification/README.md",
         "patchSetId": 5
