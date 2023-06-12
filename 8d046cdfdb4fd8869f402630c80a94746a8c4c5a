@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada9bb8c_f400b2b7",
+        "filename": "dashboard/functions/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-12T18:10:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0cadf2_a89d32a5",
+      "revId": "8d046cdfdb4fd8869f402630c80a94746a8c4c5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e430f12b_205c5d2e",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-06-12T17:44:44Z",
       "side": 1,
       "message": "are there examples of multiple benchmarks within a Pinpoint job? surprised you have to iterate through multiple benchmarks in the analysis / experiment_spec",
+      "revId": "8d046cdfdb4fd8869f402630c80a94746a8c4c5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c049fda_d219e8cd",
+        "filename": "dashboard/functions/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-12T18:10:54Z",
+      "side": 1,
+      "message": "It\u0027s theoretically possible for a job to produce more than one benchmark\u0027s results (despite what was originally requested; there\u0027s nothing that guarantees that the pinpoint tasks only write data out to a single benchmark dir in the output to RBE-CAS), hence the abundance of caution. \n\nWe do only expect a single benchmark to have executed here though, so I\u0027ll add a check and log warnings if we got more than one benchmark in the results.",
+      "parentUuid": "e430f12b_205c5d2e",
       "revId": "8d046cdfdb4fd8869f402630c80a94746a8c4c5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
