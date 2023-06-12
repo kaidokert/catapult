@@ -172,6 +172,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6baed710_cabe5852",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-12T23:06:14Z",
+      "side": 1,
+      "message": "I think this README.md is fine without a screenshot, but a walkthrough would be good for us to go over during one of our sync meetings.\n\n(A screenshot would get out of date pretty quickly with the rate of UI changes that GCP console pushes out, plus this README.md is public and we don\u0027t want to potentially leak things via screenshots.)",
+      "parentUuid": "3fab40d0_2d2495e7",
+      "revId": "4a164bf84ce436077d1c7350294ae2fd82f1c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0ce4b53_e0c4fa37",
         "filename": "dashboard/sandwich_verification/README.md",
         "patchSetId": 5
