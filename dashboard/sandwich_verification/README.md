@@ -13,7 +13,8 @@ cd dashboard/sandwich_verification
 To deploy local code to production, call:
 
 ```
-gcloud builds submit --region=us-central1 --config cloudbuild.yaml .
+gcloud builds submit --region=us-central1 --config=cloudbuild.yaml
+--project=chromeperf .
 ```
 
 This will execute cloudbuild.yaml and will deploy the Cloud Workflow and all
