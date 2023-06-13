@@ -211,7 +211,8 @@ class AlertGroupWorkflow:
       logging.warning('Parity logic failed in GetCanonicalGroupByIssue. %s',
                       str(e))
 
-    logging.info('Found canonical group: %s', canonical_group.key.string_id())
+    logging.info('Found canonical group: %s', canonical_group_key)
+    canonical_group = ndb.Key('AlertGroup', canonical_group_key).get()
     return canonical_group
 
   def _FindDuplicateGroupKeys(self):
@@ -242,7 +243,6 @@ class AlertGroupWorkflow:
       Monorail API issue json and canonical AlertGroup if any.
     """
     duplicate_groups = self._FindDuplicateGroups()
-    anomalies = self._FindRelatedAnomalies([self._group] + duplicate_groups)
 
     # Parity check for duplicated groups
     try:
@@ -255,6 +255,9 @@ class AlertGroupWorkflow:
             '_FindDuplicateGroups')
     except Exception as e:  # pylint: disable=broad-except
       logging.warning('Parity logic failed in _FindDuplicateGroups. %s', str(e))
+
+    duplicate_groups = [ndb.Key('AlertGroup', k).get() for k in duplicate_group_keys]
+    anomalies = self._FindRelatedAnomalies([self._group] + duplicate_groups)
 
     now = datetime.datetime.utcnow()
     issue = None
