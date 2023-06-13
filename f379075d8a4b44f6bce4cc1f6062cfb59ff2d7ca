@@ -69,6 +69,24 @@
       "parentUuid": "bd52cf90_39f36164",
       "revId": "f379075d8a4b44f6bce4cc1f6062cfb59ff2d7ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b133ff1_5f326312",
+        "filename": "dashboard/sandwich_verification/common/allowlist.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-13T21:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0fdd8db_1774773d",
+      "revId": "f379075d8a4b44f6bce4cc1f6062cfb59ff2d7ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
