@@ -36,6 +36,7 @@ from dashboard import sheriff_config_client
 from dashboard import revision_info_client
 from dashboard.common import cloud_metric
 from dashboard.common import file_bug
+from dashboard.common import sandwich_allowlist
 from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import anomaly
@@ -364,6 +365,7 @@ class AlertGroupWorkflow:
                    group.status)
       self._TryTriage(update.now, update.anomalies)
     elif group.status in {group.Status.triaged}:
+      # check if bot and benchmark part of allowlist
       self._TryBisect(update)
     return self._CommitGroup()
 
@@ -672,7 +674,16 @@ class AlertGroupWorkflow:
 
     try:
       regressions, _ = self._GetRegressions(update.anomalies)
-      regression = self._SelectAutoBisectRegression(regressions)
+      # check if any regressions qualify for verification
+      verifiable_regressions = self._CheckSandwichAllowlist(regressions)
+      regression = self._SelectAutoBisectRegression(verifiable_regressions)
+      if regression:
+        # call sandwich verification workflow
+        isVerified = self._VerifyRegression(regression)
+        if not isVerified:
+          return
+      else:
+        regression = self._SelectAutoBisectRegression(regressions)
 
       # Do nothing if none of the regressions should be auto-bisected.
       if regression is None:
@@ -772,6 +783,32 @@ class AlertGroupWorkflow:
                                    (results,))
 
     return results.get('jobId')
+
+  def _CheckSandwichAllowlist(self, regressions):
+    """Filter list of regressions against the sandwich verification allowlist
+
+    Args:
+      regressions: A list of regressions in the anomaly group.
+
+    Returns:
+      allowed_regressions: A list of sandwich verifiable regressions.
+    """
+    allowed_regressions = regressions.copy()
+    return allowed_regressions
+
+  def _VerifyRegression(self, regression):
+    """Verify the selected regression using the sandwich verification workflow.
+
+    Args:
+      regression: A regression in a CABE compatible benchmark + workload + device
+
+    Returns:
+      isVerified: Regression is verified if True.
+    """
+    isVerified = True
+    if regression:
+      pass
+    return isVerified
 
   def _SelectAutoBisectRegression(self, regressions):
     # Select valid regressions for bisection:
