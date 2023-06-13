@@ -168,6 +168,24 @@
       },
       "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6590ee6d_69cd7242",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-13T14:04:15Z",
+      "side": 1,
+      "message": "Matt, for my understanding, is the goal with NetLog viewer to be able to support any NetLog files as best as possible? Or is there a stated version before which we no longer attempt to support?",
+      "parentUuid": "a29cf7c3_5a540129",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

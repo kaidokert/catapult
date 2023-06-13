@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "884ad79d_fb02b0e0",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-13T14:04:15Z",
+      "side": 1,
+      "message": "I\u0027m not sure if it\u0027s possible for `network_anonymization_key` to exist in `e` with a value that evaluates to false, but just in case (and to match code above), consider changing this to something like:\n```\nvar networkKey;\nif (\u0027network_anonymization_key\u0027 in e) {\n  networkKey \u003d e.network_anonymization_key;\n} else {\n  // Versions prior to M84 used lists instead of strings for logged NIKs.\n  networkKey \u003d \u0027\u0027 + e.network_isolation_key;\n}\n  \n```",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "879be4f0_07367553",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-13T14:04:15Z",
+      "side": 1,
+      "message": "Let\u0027s add a comment saying that around M108 the network_isolation_key changed to be named network_anonymization_key, so we do this check for backwards compatibility",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa7d5089_1e6e219d",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-13T14:04:15Z",
+      "side": 1,
+      "message": "For backwards compatibility, we should handle both keys here as well",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e5362be_324018e4",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-13T14:04:15Z",
+      "side": 1,
+      "message": "For backwards compatibility, we should handle both keys here as well",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
