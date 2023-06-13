@@ -33,6 +33,24 @@
       "message": "this package will be visible to the chromeperf gae app, correct? Just double checking, since we want filter out regressions *before* we invoke sandwich verification workflows",
       "revId": "f379075d8a4b44f6bce4cc1f6062cfb59ff2d7ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd52cf90_39f36164",
+        "filename": "dashboard/sandwich_verification/common/allowlist.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-13T20:35:05Z",
+      "side": 1,
+      "message": "I think so... why would it not be? Does chromeperf functions only see certain directories?",
+      "parentUuid": "788ba89d_406e4f58",
+      "revId": "f379075d8a4b44f6bce4cc1f6062cfb59ff2d7ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
