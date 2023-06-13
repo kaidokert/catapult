@@ -145,7 +145,11 @@ var DnsView = (function() {
 
         var nikCell = addNode(tr, 'td');
         // Versions prior to M84 used lists instead of strings for logged NIKs.
-        addTextNode(nikCell, '' + e.network_isolation_key);
+        var networkKey = e.network_anonymization_key;
+        if (!networkKey) {
+          networkKey = e.network_isolation_key;
+        }
+        addTextNode(nikCell, networkKey);
 
         // HostCache keeps track of how many network changes have happened since
         // it was created, and entries store what that number was at the time
