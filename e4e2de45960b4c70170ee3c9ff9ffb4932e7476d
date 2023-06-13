@@ -70,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7f78d2e_e87dd66c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-13T04:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b4f3b87_a9c7e711",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3712cc91_2f28c33e",
@@ -106,6 +124,48 @@
       "writtenOn": "2023-06-12T17:46:07Z",
       "side": 1,
       "message": "But, for backwards compatibility (reading netlog files saved with older chrome versions) it would be nice if it could check both names.",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29cf7c3_5a540129",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-13T04:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad0c2c00_35f6e326",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f877a39_830ad4ad",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-13T04:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3712cc91_2f28c33e",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 33
+      },
       "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
