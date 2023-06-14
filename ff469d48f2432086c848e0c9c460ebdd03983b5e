@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f08a7035_801c0266",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-14T03:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "884ad79d_fb02b0e0",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "879be4f0_07367553",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-13T14:04:15Z",
       "side": 1,
       "message": "Let\u0027s add a comment saying that around M108 the network_isolation_key changed to be named network_anonymization_key, so we do this check for backwards compatibility",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "438081d9_b51fe2d8",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-14T03:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "879be4f0_07367553",
       "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -52,6 +88,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18f9d872_11a1382e",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-14T03:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa7d5089_1e6e219d",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e5362be_324018e4",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-13T14:04:15Z",
       "side": 1,
       "message": "For backwards compatibility, we should handle both keys here as well",
+      "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae25a888_3ba5e359",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1253796
+      },
+      "writtenOn": "2023-06-14T03:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e5362be_324018e4",
       "revId": "ff469d48f2432086c848e0c9c460ebdd03983b5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
