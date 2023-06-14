@@ -36,6 +36,7 @@ from dashboard import sheriff_config_client
 from dashboard import revision_info_client
 from dashboard.common import cloud_metric
 from dashboard.common import file_bug
+from dashboard.common import sandwich_allowlist
 from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import anomaly
@@ -57,6 +58,8 @@ _TEMPLATE_ISSUE_CONTENT = _TEMPLATE_ENV.get_template(
 _TEMPLATE_ISSUE_COMMENT = _TEMPLATE_ENV.get_template(
     'alert_groups_bug_comment.j2')
 _TEMPLATE_REOPEN_COMMENT = _TEMPLATE_ENV.get_template('reopen_issue_comment.j2')
+_TEMPLATE_AUTO_REGRESSION_VERIFICATION_COMMENT = _TEMPLATE_ENV.get_template(
+    'auto_regression_verification.j2')
 _TEMPLATE_AUTO_BISECT_COMMENT = _TEMPLATE_ENV.get_template(
     'auto_bisect_comment.j2')
 _TEMPLATE_GROUP_WAS_MERGED = _TEMPLATE_ENV.get_template(
@@ -363,7 +366,13 @@ class AlertGroupWorkflow:
                    group.created, self._config.triage_delay, update.now,
                    group.status)
       self._TryTriage(update.now, update.anomalies)
-    elif group.status in {group.Status.triaged}:
+    elif group.status in {group.Status.triaged} and \
+      group.status not in {group.Status.verified_regression}:
+      if not self._TryVerifyRegression(update):
+        # run regular bisection when no regressions
+        # qualify for sandwich verification
+        self._TryBisect(update)
+    elif group.status in {group.Status.verified_regression}:
       self._TryBisect(update)
     return self._CommitGroup()
 
@@ -663,6 +672,61 @@ class AlertGroupWorkflow:
         commit_info,
         labels=['Chromeperf-Auto-Assigned'],
         project=self._group.project_id)
+    return True
+
+  def _CheckSandwichAllowlist(self, regressions):
+    """Filter list of regressions against the sandwich verification allowlist
+
+    Args:
+      regressions: A list of regressions in the anomaly group.
+
+    Returns:
+      allowed_regressions: A list of sandwich verifiable regressions.
+    """
+    allowed_regressions = regressions.copy()
+    return allowed_regressions
+
+  def _TryVerifyRegression(self, update):
+    """Verify the selected regression using the sandwich verification workflow.
+
+    Args:
+      update: An alert group containing anomalies and potential regressions
+
+    Returns:
+      True or False.
+    """
+    # Do not run sandwiching if anomaly subscription opts out of culprit finding
+    if (update.issue
+        and 'Chromeperf-Auto-BisectOptOut' in update.issue.get('labels')):
+      return False
+
+    # check if any regressions qualify for verification
+    regressions, _ = self._GetRegressions(update.anomalies)
+    verifiable_regressions = self._CheckSandwichAllowlist(regressions)
+    regression = self._SelectAutoBisectRegression(verifiable_regressions)
+
+    if not regression:
+      return False
+    
+    job_id = self._StartPinpointTryJob(regression)
+
+    # Update the issue associated with this group, before we continue.
+    self._group.sandwich_ids.append(job_id)
+    self._group.updated = update.now
+    self._group.status = self._group.Status.sandwiched
+    self._CommitGroup()
+    perf_issue_service_client.PostIssueComment(
+        self._group.bug.bug_id,
+        self._group.project_id,
+        comment=_TEMPLATE_AUTO_REGRESSION_VERIFICATION_COMMENT.render(
+            {'test': utils.TestPath(regression.test)}),
+        labels=['Chromeperf-Verifying-Regression'],
+        send_email=False,
+    )
+
+    regression.pinpoint_verification.append(job_id)
+    regression.put()
+
     return True
 
   def _TryBisect(self, update):
