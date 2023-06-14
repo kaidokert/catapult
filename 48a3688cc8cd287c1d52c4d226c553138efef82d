@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6444c7d5_78ca9302",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-14T21:10:40Z",
+      "side": 1,
+      "message": "This CL is to complete the KR: P1: Average precision of 0.5% has been achieved on press benchmark composite metrics on Mac M1 mini",
+      "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
