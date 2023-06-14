@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a93f77_823e5cb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-06-14T20:01:10Z",
+      "side": 1,
+      "message": "Will it take extra memory to create the rows that\u0027s going to be send to skia bridge?\nIf yes then it\u0027s pretty dangerous since the upload processing service is already running out of memory.",
+      "revId": "f074809c5d0e4fd77978ccf96453a3dc84e7ab20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c678df3_24a60713",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-06-14T20:01:10Z",
+      "side": 1,
+      "message": "Will it take extra memory?",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "f074809c5d0e4fd77978ccf96453a3dc84e7ab20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26f784e_e07c5c7a",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-06-14T20:01:10Z",
+      "side": 1,
+      "message": "should it be filtered_rows here?",
+      "range": {
+        "startLine": 67,
+        "startChar": 75,
+        "endLine": 67,
+        "endChar": 79
+      },
+      "revId": "f074809c5d0e4fd77978ccf96453a3dc84e7ab20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e596f91_44c14164",
+        "filename": "dashboard/dashboard/services/skia_bridge_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2023-06-14T20:01:10Z",
+      "side": 1,
+      "message": "It may take extra memory?",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 33
+      },
+      "revId": "f074809c5d0e4fd77978ccf96453a3dc84e7ab20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
