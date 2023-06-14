@@ -16,6 +16,91 @@
       "message": "Will flesh out functions and features over the coming week.",
       "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df78ce53_6e64d8d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T18:56:24Z",
+      "side": 1,
+      "message": "thanks for diving into this!",
+      "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0810642_22734ecb",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T18:56:24Z",
+      "side": 1,
+      "message": "uncomment or remove",
+      "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c5cea1_95925dc9",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T18:56:24Z",
+      "side": 1,
+      "message": "can you add a test for this method in alert_group_workflow_test.py?\n\nIt looks like there are some paths it can verify, like \n- \"don\u0027t sandwich an AlertGroup if it has an issue attached to it with the \u0027Chromeperf-Auto-BisectOptOut\u0027 label\"\n- \"don\u0027t sandwich an AlertGroup if none of the anomalies are sandwichable regressions\"\n- \"for now, raise NotImplementedError for sandiwchable AlertGroup cases where we\u0027ll eventually start a pinpoint job once that call is implemented\"",
+      "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183a3fd6_ef9bbed1",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T18:56:24Z",
+      "side": 1,
+      "message": "Similar note to above commented-out code block: remove or uncomment this too\n\nIf these are ideas to try out, or TODOs for yourself or others to follow up with, you can add describe them in status update comments on the bug: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1454620",
+      "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ba5442_9b49dee2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T18:56:24Z",
+      "side": 1,
+      "message": "would it be safer to have this method just be `raise NotImplementedError(\u0027http://crbug/1454620\u0027)` or something like that for now?",
+      "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
