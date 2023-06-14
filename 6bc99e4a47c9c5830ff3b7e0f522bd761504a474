@@ -105,6 +105,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c0c3b9_9b28d455",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T23:46:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eca268a2_6dd93b41",
+      "revId": "6bc99e4a47c9c5830ff3b7e0f522bd761504a474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "183a3fd6_ef9bbed1",
