@@ -16,6 +16,29 @@
       "message": "This CL is to complete the KR: P1: Average precision of 0.5% has been achieved on press benchmark composite metrics on Mac M1 mini",
       "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "163939e5_26b42093",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-14T22:32:34Z",
+      "side": 1,
+      "message": "Did you run into a problem that this extra conditional fixed? Do you know how `this.initial_attempt_count` could end up being set to `\"\"` in the first place? \n\nJS is notoriously unintuitive about this stuff, so I just want to double check that this change does what you intend.",
+      "range": {
+        "startLine": 474,
+        "startChar": 12,
+        "endLine": 474,
+        "endChar": 84
+      },
+      "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
