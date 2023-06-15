@@ -70,6 +70,24 @@
       "parentUuid": "460000ff_ca3e1402",
       "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d8726d0_22726080",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-15T20:16:56Z",
+      "side": 1,
+      "message": "SG. I also tried my unit test without an is_improvement field and it did not throw any exceptions.\n\nAll the unit tests break when I try to remove the benchmark / bot fields.\n\nI don\u0027t think error checks are necessary.",
+      "parentUuid": "d3bb4c05_1d36f84f",
+      "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
