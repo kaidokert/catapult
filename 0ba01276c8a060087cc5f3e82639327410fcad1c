@@ -16,6 +16,24 @@
       "message": "not completely confident that every regression will have `benchmark_name` `bot_name` and `is_improvement`. Should I implement some error checks here?",
       "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "460000ff_ca3e1402",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-15T19:43:53Z",
+      "side": 1,
+      "message": "I\u0027m not confident about that either :) So, how might a `regression` object make it this far into the AlertGroupWorkflow update process without having a `benchmark_name` or `bot_name` set on it? \n\nIn the end, if you cover that possibility with unit tests then at least you\u0027re doing no *worse* than what the rest of this codebase does.\n\n[I can\u0027t tell from reading this code (because Python...) what type `regression` actually is, or who can potentially create or modify it before it gets to this method. Sprinkling defensive checks like you describe throughout this logic is probably not a terrible idea given this codebase\u0027s history, but yeesh. When/where do you stop adding them? Eventually you reach a point where you\u0027ve implemented a really buggy and brittle type checker that\u0027s over-constrained to your app\u0027s implementation details. And we\u0027d have gotten a far less cumbersome way to guarantee these properties, for free, if we just rewrote this in some other language... maybe next year...\u003c/soap-box\u003e]",
+      "parentUuid": "b8a3f7ce_46604b5b",
+      "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
