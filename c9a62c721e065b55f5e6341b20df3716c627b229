@@ -67,6 +67,24 @@
       "message": "nit: I suppose if we care about the pre-M84 backwards compat the uses in this file should also have the `\u0027\u0027 + e.network_isolation_key` (I know they didn\u0027t before, but since we\u0027re changing this might as well be consistent between the files.)",
       "revId": "c9a62c721e065b55f5e6341b20df3716c627b229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80bde8b1_9a89fa14",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1528153
+      },
+      "writtenOn": "2023-06-15T19:45:18Z",
+      "side": 1,
+      "message": "it looks like these have always been strings:\nhttps://chromium-review.googlesource.com/c/chromium/src/+/2137924/3/net/reporting/reporting_cache_impl.cc#89\nhttps://chromium-review.googlesource.com/c/chromium/src/+/1988987/21/net/reporting/reporting_cache_impl.cc#1288",
+      "parentUuid": "675c80e0_f48eb086",
+      "revId": "c9a62c721e065b55f5e6341b20df3716c627b229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
