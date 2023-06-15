@@ -51,6 +51,23 @@
       "parentUuid": "97bacc45_e5247605",
       "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83032edb_f43617e5",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-15T00:28:27Z",
+      "side": 1,
+      "message": "Workflow API question, just to clarify: Is the value of `name` here used by the API here sort of like a unix process ID, to refer to a specific instance of a workflow process execution?\n\nSo in the unix comparison, `WORKFLOW_NAME` is the command name, and `Execution.name` is like the resulting process ID you get from starting up an instance of `WORKFLOW_NAME`?",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
