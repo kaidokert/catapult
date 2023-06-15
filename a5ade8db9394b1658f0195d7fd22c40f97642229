@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d93ee2cc_bba2303e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-06-15T16:31:09Z",
+      "side": 1,
+      "message": "s/Chang/Change",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "a5ade8db9394b1658f0195d7fd22c40f97642229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce5e87b_0939c948",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-06-15T16:31:09Z",
+      "side": 1,
+      "message": "drive by comments",
+      "revId": "a5ade8db9394b1658f0195d7fd22c40f97642229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "441cd6ec_f84d2207",
+        "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-06-15T16:31:09Z",
+      "side": 1,
+      "message": "is there a way to default to 28? maybe retain backwards compatibility in case there is something calling this that we aren\u0027t aware of.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 4
+      },
+      "revId": "a5ade8db9394b1658f0195d7fd22c40f97642229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
