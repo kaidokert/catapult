@@ -34,6 +34,24 @@
       "parentUuid": "b8a3f7ce_46604b5b",
       "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b5793f_d91b78c7",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-15T19:48:48Z",
+      "side": 1,
+      "message": "I would be surprised if a regression came without a benchmark or a bot... let me try what happens to other unit tests if I remove some of these features. For example, I anticipate _GetRegressions would crash and we would never make it to this point.\n\nI think it\u0027s is_improvement that I\u0027m least confident on.",
+      "parentUuid": "460000ff_ca3e1402",
+      "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
