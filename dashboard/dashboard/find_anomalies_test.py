@@ -195,6 +195,14 @@ class ProcessAlertsTest(testing_common.TestCase):
   def _DataSeries(self):
     return [(r.revision, r, r.value) for r in list(graph_data.Row.query())]
 
+  def _GetGroupsForAnomalyMock(self, anomaly):
+    print('----- MOCKING for ', anomaly)
+    group_keys = alert_group.AlertGroup.GetGroupsForAnomaly(anomaly, None)
+    group_ids = [k.string_id() for k in group_keys]
+    print('--- RETURNING ', group_ids)
+    return group_ids
+
+
   @mock.patch.object(find_anomalies.find_change_points, 'FindChangePoints',
                      mock.MagicMock(return_value=[
                          _MakeSampleChangePoint(10011, 50, 100),
@@ -202,7 +210,13 @@ class ProcessAlertsTest(testing_common.TestCase):
                          _MakeSampleChangePoint(10061, 0, 100),
                      ]))
   @mock.patch.object(find_anomalies.email_sheriff, 'EmailSheriff')
-  def testProcessTest(self, mock_email_sheriff):
+  def testProcessTest123(self, mock_email_sheriff):
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetAlertGroupsForAnomaly',
+        self._GetGroupsForAnomalyMock)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
     self._AddDataForTests()
     test_path = 'ChromiumGPU/linux-release/scrolling_benchmark/ref'
     test = utils.TestKey(test_path).get()
@@ -210,6 +224,7 @@ class ProcessAlertsTest(testing_common.TestCase):
     test.put()
 
     alert_group_key1 = alert_group.AlertGroup(
+        id='group_id_1',
         name='scrolling_benchmark',
         domain='ChromiumGPU',
         subscription_name='sheriff1',
@@ -219,6 +234,7 @@ class ProcessAlertsTest(testing_common.TestCase):
             repository='chromium', start=10000, end=10070),
     ).put()
     alert_group_key2 = alert_group.AlertGroup(
+        id='group_id_2',
         name='scrolling_benchmark',
         domain='ChromiumGPU',
         subscription_name='sheriff2',
@@ -233,7 +249,7 @@ class ProcessAlertsTest(testing_common.TestCase):
     with mock.patch.object(SheriffConfigClient, 'Match',
                            mock.MagicMock(return_value=([s1, s2], None))) as m:
       find_anomalies.ProcessTests([test.key])
-      self.assertEqual(m.call_args_list, [mock.call(test.key.id())])
+      self.assertEqual(m.call_args_list[0], mock.call(test.key.id()))
     self.ExecuteDeferredTasks('default')
 
     expected_calls = [

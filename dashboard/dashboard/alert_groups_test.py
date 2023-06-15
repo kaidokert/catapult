@@ -13,6 +13,8 @@ import logging
 import unittest
 import webtest
 
+from google.appengine.ext import ndb
+
 from dashboard import alert_groups
 from dashboard import sheriff_config_client
 from dashboard.common import testing_common
@@ -62,6 +64,47 @@ class GroupReportTestBase(testing_common.TestCase):
     result = self.testapp.get('/alert_groups_update')
     self.ExecuteDeferredTasks('update-alert-group-queue')
     return result
+  
+  def _FindDuplicateGroupsMock(self, key_string):
+    key = ndb.Key('AlertGroup', key_string)
+    query = alert_group.AlertGroup.query(
+        alert_group.AlertGroup.active == True,
+        alert_group.AlertGroup.canonical_group == key)
+    duplicated_groups = query.fetch()
+    duplicated_keys = [g.key.string_id() for g in duplicated_groups]
+    print('DUP: ', duplicated_keys)
+    return duplicated_keys
+  
+  def _FindCanonicalGroupMock(self, key_string, merged_into, merged_issue_project):
+    print('--- FIND...: ', key_string, merged_into, merged_issue_project)
+    key = ndb.Key('AlertGroup', key_string)
+    query = alert_group.AlertGroup.query(
+        alert_group.AlertGroup.active == True,
+        alert_group.AlertGroup.bug.project == merged_issue_project,
+        alert_group.AlertGroup.bug.bug_id == merged_into)
+    query_result = query.fetch(limit=1)
+    if not query_result:
+      return None
+
+    canonical_group = query_result[0]
+    print('---- Q RESULT: ', canonical_group)
+    visited = set()
+    while canonical_group.canonical_group:
+      visited.add(canonical_group.key)
+      next_group_key = canonical_group.canonical_group
+      # Visited check is just precaution.
+      # If it is true - the system previously failed to prevent loop creation.
+      if next_group_key == key or next_group_key in visited:
+        return None
+      canonical_group = next_group_key.get()
+    print('--- CAN RETURN: ', canonical_group.key.string_id())
+    return {'key': canonical_group.key.string_id()}
+  
+  def _GetAllActiveAlertGroupsMock(self):
+    all_groups = alert_group.AlertGroup.GetAll()
+    all_keys = [g.key.id() for g in all_groups]
+    print('++++++++++ all keys ', all_keys)
+    return all_keys
 
   def _SetUpMocks(self, mock_get_sheriff_client):
     sheriff = subscription.Subscription(name='sheriff',
@@ -96,6 +139,24 @@ class GroupReportTestBase(testing_common.TestCase):
 
     perf_comment_post_patcher = mock.patch(
         'dashboard.services.perf_issue_service_client.PostIssueComment',
+        self.fake_issue_tracker.AddBugComment)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetDuplicateGroupKeys',
+        self._FindDuplicateGroupsMock)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetCanonicalGroupByIssue',
+        self._FindCanonicalGroupMock)
+    perf_comment_post_patcher.start()
+    self.addCleanup(perf_comment_post_patcher.stop)
+
+    perf_comment_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.GetAllActiveAlertGroups',
         self.fake_issue_tracker.AddBugComment)
     perf_comment_post_patcher.start()
     self.addCleanup(perf_comment_post_patcher.stop)
@@ -552,12 +613,21 @@ class GroupReportTest(GroupReportTestBase):
     self.assertEqual(a.get().bug_id, 12345)
 
   def testAddAlertsAfterTriage(self, mock_get_sheriff_client):
+    all = alert_group.AlertGroup.Get('Ungrouped', 2)
+    print('ALLLLLL ', all)
     self._SetUpMocks(mock_get_sheriff_client)
+    all = alert_group.AlertGroup.Get('Ungrouped', 2)
+    print('ALLLLLL ', all)
     self._CallHandler()
+    all = alert_group.AlertGroup.Get('Ungrouped', 2)
+    print('ALLLLLL ', all)
     # Add anomalies
     a = self._AddAnomaly()
+    all = alert_group.AlertGroup.Get('Ungrouped', 2)
+    print('ALLLLLL ', all)
     # Create Group
     self._CallHandler()
+    # assert(False)
     # Update Group to associate alerts
     self._CallHandler()
     # Set Create timestamp to 2 hours ago
