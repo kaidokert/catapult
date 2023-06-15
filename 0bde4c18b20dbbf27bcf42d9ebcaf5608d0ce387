@@ -91,6 +91,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1d090ca6_1c1a4b26",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-15T00:38:31Z",
+      "side": 1,
+      "message": "Yes, correct. As we discussed, the job handler should save the execution names in Datastore as groups. Then the culprit handler periodically checks groups and check that their executions are complete using the GetExecution function. GetExecution should then give you all you need to know what to do next (error, state, result).",
+      "parentUuid": "fa9b6085_e43df369",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "83032edb_f43617e5",
         "filename": "dashboard/dashboard/common/workflow_client.py",
         "patchSetId": 3
@@ -102,6 +120,24 @@
       "writtenOn": "2023-06-15T00:28:27Z",
       "side": 1,
       "message": "Workflow API question, just to clarify: Is the value of `name` here used by the API here sort of like a unix process ID, to refer to a specific instance of a workflow process execution?\n\nSo in the unix comparison, `WORKFLOW_NAME` is the command name, and `Execution.name` is like the resulting process ID you get from starting up an instance of `WORKFLOW_NAME`?",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "572b8044_f4bbad1c",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-15T00:38:31Z",
+      "side": 1,
+      "message": "Yes. The analogy sounds accurate. As an example, the prod workflow will have name \"projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod\". Then an execution will have a name like: \"projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/5a9e0c60-c1fc-4cde-a777-a0f82f3e8951\".",
+      "parentUuid": "83032edb_f43617e5",
       "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
