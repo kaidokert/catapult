@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9b6085_e43df369",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-15T00:33:12Z",
+      "side": 1,
+      "message": "Does that mean culprit handler could find the corresponding execution info based on response.name? We stored the response.name in datastore group for each workflow somewhere between https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job.py;l\u003d666 and then the culprit handler check workflow status via the GetExecution and then update the bug for all the workflows?",
+      "parentUuid": "f9fe9bd0_7e99c73f",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "83032edb_f43617e5",
