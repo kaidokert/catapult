@@ -38,6 +38,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33011f36_0ff84446",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-15T17:17:44Z",
+      "side": 1,
+      "message": "Currently the perf issue has a link to a report group, which has the graphs for all the regressions. e.g.: \nfrom crbug/1455028, we have\nhttps://chromeperf.appspot.com/group_report?group_id\u003d68ae764f-9ed9-4f08-8294-61fdfa9b191d\n\nAre we planning to add a single link to a group of graphs in skia, or a group of links each of which will open a single graph?",
+      "range": {
+        "startLine": 743,
+        "startChar": 34,
+        "endLine": 743,
+        "endChar": 44
+      },
+      "revId": "eb50f7bb03201cb5c57ff637ee398716a31ae475",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b4ede0e_bc65b2c2",
         "filename": "dashboard/dashboard/models/skia_helper.py",
         "patchSetId": 2
