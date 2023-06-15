@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "837b7064_a6fba049",
+        "filename": "dashboard/bin/run_py_tests",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-15T17:14:53Z",
+      "side": 1,
+      "message": "😊",
+      "parentUuid": "765530e4_a888a774",
+      "revId": "eb50f7bb03201cb5c57ff637ee398716a31ae475",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b4ede0e_bc65b2c2",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-06-15T17:00:04Z",
       "side": 1,
       "message": "We may consider to add a cache layer for commit info in the future.",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "eb50f7bb03201cb5c57ff637ee398716a31ae475",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb467ac1_7ddf0c31",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-15T17:14:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4b4ede0e_bc65b2c2",
       "range": {
         "startLine": 21,
         "startChar": 6,
