@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "493e959e_cfa9427d",
+        "filename": "dashboard/cron-stage.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-15T20:50:54Z",
+      "side": 1,
+      "message": "Yes, I think they are for the chromeperf-stage project",
+      "parentUuid": "79170224_ba6a5e4e",
+      "revId": "2d12129e95766f104e99150807c7e3986023f20f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52f423ef_7651c888",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-15T20:44:21Z",
       "side": 1,
       "message": "shouldn\u0027t there be a for loop to process each active Group or are you only processing 1 group per call? there should also be a step where you check whether the group is complete and _UpdateVerificationResults can be called.",
+      "revId": "2d12129e95766f104e99150807c7e3986023f20f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c66c0b0_8ac8b9a0",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-15T20:50:54Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestion!! Previously i think _GetWorkflowGroup would be a for loop to process each active group, the output of the _GetWorkflowGroup would be all workflow groups that with child workflow completed. Then these groups would be processed to update the verification results correspondingly. \n\nBut i think your suggestion also works and it is more straight-forward! thx",
+      "parentUuid": "52f423ef_7651c888",
       "revId": "2d12129e95766f104e99150807c7e3986023f20f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -52,6 +88,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba48d9cd_9ebe0360",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-15T20:50:54Z",
+      "side": 1,
+      "message": "thx for the suggestion, will add the steps here.",
+      "parentUuid": "57118851_12036eb9",
+      "revId": "2d12129e95766f104e99150807c7e3986023f20f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5aabdaa3_f49bd148",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-15T20:44:21Z",
       "side": 1,
       "message": "Create Workflow group here. Then add executions one by one in the for loop below.",
+      "revId": "2d12129e95766f104e99150807c7e3986023f20f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3f21108_01e8333c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-15T20:50:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5aabdaa3_f49bd148",
       "revId": "2d12129e95766f104e99150807c7e3986023f20f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
