@@ -52,6 +52,24 @@
       "parentUuid": "460000ff_ca3e1402",
       "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3bb4c05_1d36f84f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-15T19:55:02Z",
+      "side": 1,
+      "message": "I assume here a regression will just be an Anomaly entity. In that case, it should have those properties. You can check here the required properties of an anomaly: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/anomaly.py;l\u003d37;drc\u003d291c4c2835c7505d091d800be1b137aa7ec099f5.",
+      "parentUuid": "460000ff_ca3e1402",
+      "revId": "0ba01276c8a060087cc5f3e82639327410fcad1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
