@@ -85,6 +85,24 @@
       "parentUuid": "675c80e0_f48eb086",
       "revId": "c9a62c721e065b55f5e6341b20df3716c627b229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed2998f6_743d32d1",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-06-15T19:49:45Z",
+      "side": 1,
+      "message": "Oh, thanks! Nevermind then 😊",
+      "parentUuid": "80bde8b1_9a89fa14",
+      "revId": "c9a62c721e065b55f5e6341b20df3716c627b229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
