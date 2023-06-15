@@ -33,6 +33,24 @@
       "message": "I thought this would pass the input parameters to the Pinpoint try job that needs to run. Will this execution convert the anomaly to those input parameters?",
       "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9fe9bd0_7e99c73f",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-15T00:20:53Z",
+      "side": 1,
+      "message": "The responsibility to pass the appropriate parameters is on the Chromeperf side. I added a comment below specifying what the anomaly object should include that are necessary for sandwich verification.\n\nBtw, we don\u0027t need improvement direction and threshold parameters for regression detection anymore, correct?",
+      "parentUuid": "97bacc45_e5247605",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
