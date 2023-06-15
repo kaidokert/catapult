@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a81ca3b5_eb860d3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-15T00:11:44Z",
+      "side": 1,
+      "message": "LGTM with a question.",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bacc45_e5247605",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-15T00:11:44Z",
+      "side": 1,
+      "message": "I thought this would pass the input parameters to the Pinpoint try job that needs to run. Will this execution convert the anomaly to those input parameters?",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
