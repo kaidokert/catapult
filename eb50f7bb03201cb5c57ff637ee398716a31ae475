@@ -83,6 +83,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1d78e04_47755fd1",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-15T17:25:52Z",
+      "side": 1,
+      "message": "SG. LGTM then. Thanks!",
+      "parentUuid": "c685c5d5_ce8d7085",
+      "range": {
+        "startLine": 743,
+        "startChar": 34,
+        "endLine": 743,
+        "endChar": 44
+      },
+      "revId": "eb50f7bb03201cb5c57ff637ee398716a31ae475",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b4ede0e_bc65b2c2",
