@@ -47,12 +47,17 @@ def _ProcessUngroupedAlerts():
     return None
 
   logging.info('Processing un-grouped alerts.')
+  # print('BEFORE ', alert_group.AlertGroup.Get('Ungrouped', 2))
   reserved = alert_group.AlertGroup.Type.reserved
   ungrouped_list = alert_group.AlertGroup.Get('Ungrouped', reserved)
   if not ungrouped_list:
     alert_group.AlertGroup(name='Ungrouped', group_type=reserved,
                            active=True).put()
+    # print('CREATE ', alert_group.AlertGroup.Get('Ungrouped', 2))
+    
     return
+  # print('MIDDLE ', alert_group.AlertGroup.Get('Ungrouped', 2))
+
   ungrouped = ungrouped_list[0]
   ungrouped_anomalies = ndb.get_multi(ungrouped.anomalies)
 
@@ -89,6 +94,7 @@ def _ProcessUngroupedAlerts():
       if found_group:
         alert_groups.append(found_group)
       else:
+        # new_group = g
         new_group = g.put()
         alert_groups.append(new_group)
         new_count += 1
@@ -118,9 +124,9 @@ def _ProcessUngroupedAlerts():
       logging.warning(
           'Parity failed in PostUngroupedAlerts - group match on %s. %s',
           anomaly_entity.key, str(e))
-
   logging.info('Persisting anomalies')
   ndb.put_multi(ungrouped_anomalies)
+
 
 
 def ProcessAlertGroups():
@@ -150,7 +156,6 @@ def ProcessAlertGroups():
         _queue='update-alert-group-queue',
         _retry_options=taskqueue.TaskRetryOptions(task_retry_limit=0),
     )
-
   deferred.defer(
       _ProcessUngroupedAlerts,
       _queue='update-alert-group-queue',
@@ -158,7 +163,7 @@ def ProcessAlertGroups():
   )
 
 
-@cloud_metric.APIMetric("chromeperf", "/alert_groups_update")
+# @cloud_metric.APIMetric("chromeperf", "/alert_groups_update")
 def AlertGroupsGet():
   """Create and Update AlertGroups.
 
