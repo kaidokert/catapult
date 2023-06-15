@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2f7f067_7f39bf9a",
+        "filename": "dashboard/cron.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-15T20:55:20Z",
+      "side": 1,
+      "message": "Maybe 1 every minute is too much? every 10 minutes should be enough.",
+      "revId": "2d12129e95766f104e99150807c7e3986023f20f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52f423ef_7651c888",
         "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
         "patchSetId": 2
@@ -137,6 +154,23 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "5aabdaa3_f49bd148",
+      "revId": "2d12129e95766f104e99150807c7e3986023f20f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a105872_f45af506",
+        "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-15T20:55:20Z",
+      "side": 1,
+      "message": "I think there should also be a bug_id property. Otherwise, how would the sandwich handler know what bug to update?",
       "revId": "2d12129e95766f104e99150807c7e3986023f20f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
