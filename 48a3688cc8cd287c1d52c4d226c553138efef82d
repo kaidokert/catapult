@@ -39,6 +39,30 @@
       },
       "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c987418d_6cba91b4",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-15T00:01:45Z",
+      "side": 1,
+      "message": "Yeah, it was an issue I ran into while testing this change on staging. Without this change, if you click on the attempt count field, Pinpoint UI will set the `initial_attempt_count \u003d \"\"` so when you click \"submit\", it will start a job without the initial_attempt_count filled in [1]. I\u0027ve repro\u0027d this in production as well [2]. \n\n[1] https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/143adddf000000\n[2] https://pinpoint-dot-chromeperf.appspot.com/job/11be2eb2660000",
+      "parentUuid": "163939e5_26b42093",
+      "range": {
+        "startLine": 474,
+        "startChar": 12,
+        "endLine": 474,
+        "endChar": 84
+      },
+      "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
