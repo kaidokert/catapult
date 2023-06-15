@@ -186,6 +186,24 @@
       "parentUuid": "a29cf7c3_5a540129",
       "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e37b668_9dd038d8",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2023-06-15T19:31:33Z",
+      "side": 1,
+      "message": "I\u0027m not aware of any stated cutoff like that. Not sure if the intention is to support all netlogs forever or if there is some unstated cutoff, would want to discuss with mmenke when he gets back.",
+      "parentUuid": "6590ee6d_69cd7242",
+      "revId": "e4e2de45960b4c70170ee3c9ff9ffb4932e7476d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
