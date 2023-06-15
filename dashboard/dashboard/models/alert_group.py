@@ -132,6 +132,7 @@ class AlertGroup(ndb.Model):
         anomaly_entity,
         subscriptions=subscriptions,
     )
+    print('????? all NEW GROUPS ', all_possible_groups)
     # existing_groups are groups which have been created and overlaped with at
     # least one of the possible group.
     existing_groups = [
@@ -147,6 +148,7 @@ class AlertGroup(ndb.Model):
         any(g1.IsOverlapping(g2) for g2 in existing_groups)
         for g1 in all_possible_groups):
       existing_groups += cls.Get('Ungrouped', cls.Type.reserved)
+    print('>>>> returning groups ', existing_groups)
     return [g.key for g in existing_groups]
 
   @classmethod

@@ -207,12 +207,14 @@ class AlertGroupWorkflow:
                         original_canonical_key, canonical_group_key)
         cloud_metric.PublishPerfIssueServiceGroupingImpariry(
             'GetCanonicalGroupByIssue')
+      logging.info('Found canonical group: %s', canonical_group_key)
+      canonical_group = ndb.Key('AlertGroup', canonical_group_key).get()
+
+      return canonical_group
     except Exception as e:  # pylint: disable=broad-except
       logging.warning('Parity logic failed in GetCanonicalGroupByIssue. %s',
                       str(e))
 
-    logging.info('Found canonical group: %s', canonical_group.key.string_id())
-    return canonical_group
 
   def _FindDuplicateGroupKeys(self):
     try:
@@ -242,7 +244,6 @@ class AlertGroupWorkflow:
       Monorail API issue json and canonical AlertGroup if any.
     """
     duplicate_groups = self._FindDuplicateGroups()
-    anomalies = self._FindRelatedAnomalies([self._group] + duplicate_groups)
 
     # Parity check for duplicated groups
     try:
@@ -256,6 +257,10 @@ class AlertGroupWorkflow:
     except Exception as e:  # pylint: disable=broad-except
       logging.warning('Parity logic failed in _FindDuplicateGroups. %s', str(e))
 
+    duplicate_groups = [ndb.Key('AlertGroup', k).get() for k in duplicate_group_keys]
+    anomalies = self._FindRelatedAnomalies([self._group] + duplicate_groups)
+
+    print('----------------')
     now = datetime.datetime.utcnow()
     issue = None
     canonical_group = None
@@ -266,6 +271,7 @@ class AlertGroupWorkflow:
       project_name = self._group.bug.project or 'chromium'
       issue = perf_issue_service_client.GetIssue(
           self._group.bug.bug_id, project_name=project_name)
+      print('FOUND ISSUE:', issue)
       if issue:
         issue['comments'] = perf_issue_service_client.GetIssueComments(
             self._group.bug.bug_id, project_name=project_name)
