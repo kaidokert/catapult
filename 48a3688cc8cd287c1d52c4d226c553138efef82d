@@ -63,6 +63,30 @@
       },
       "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8897f66_3333aacd",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-15T00:06:41Z",
+      "side": 1,
+      "message": "my kingdom for a static type checker, anywhere, in all of this code...",
+      "parentUuid": "c987418d_6cba91b4",
+      "range": {
+        "startLine": 474,
+        "startChar": 12,
+        "endLine": 474,
+        "endChar": 84
+      },
+      "revId": "48a3688cc8cd287c1d52c4d226c553138efef82d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
