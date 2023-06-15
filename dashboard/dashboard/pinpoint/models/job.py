@@ -22,6 +22,8 @@ from google.appengine.runtime import apiproxy_errors
 
 from dashboard.common import cloud_metric
 from dashboard.common import datastore_hooks
+from dashboard.common import sandwich_allowlist
+from dashboard.common import workflow_client
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.pinpoint.models import change as change_module
@@ -664,12 +666,34 @@ class Job(ndb.Model):
     bug_update_builder = job_bug_update.DifferencesFoundBugUpdateBuilder(
         self.state.metric)
     bug_update_builder.SetExaminedCount(changes_examined)
+    improvement_dir = self._GetImprovementDirection()
+   
+    # If the job is CABE-compatible: call verification workflow for each difference.
+    print('self.benchmark_arguments.benchmark {}', self.benchmark_arguments.benchmark)
+    print('self.configuration', self.configuration)
+    if self.benchmark_arguments.benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS
+       and self.configuration in sandwich_allowlist.ALLOWABLE_DEVICES:
+      # TODO: Create a SandwichWorkflowGroup data entity
+      for change_a, change_b in differences:
+          values_a = result_values[change_a]
+          values_b = result_values[change_b]
+          diff = values_b - values_a
+          # Check whether diff aligns with improvement direction or not.
+          if improvement_dir == anomaly.UP and diff > 0 or improvement_dir == anomaly.DOWN and diff < 0:
+            continue
+          # Call sandwich verification workflow.
+          workflow_client = workflow_client.SandwichVerificationWorkflow()
+          execution_name = workflow_client.CreateExecution('anomaly') # TODO: define the anomaly
+          # TODO: update the datastore group SandwichWorkflowGroup/SandwichWorkflow
+      # Update the bug with the following info: number of regressions found, maybe the details
+      # start with sandwich verification process, no need to merge the bug in this step.
+      return
+
     for change_a, change_b in differences:
       values_a = result_values[change_a]
       values_b = result_values[change_b]
       bug_update_builder.AddDifference(change_b, values_a, values_b)
 
-    improvement_dir = self._GetImprovementDirection()
     deferred.defer(
         job_bug_update.UpdatePostAndMergeDeferred,
         bug_update_builder,
