@@ -55,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bbd956ed_dd23c728",
+        "filename": "dashboard/dashboard/common/workflow_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-15T00:29:17Z",
+      "side": 1,
+      "message": "`Btw, we don\u0027t need improvement direction and threshold parameters for regression detection anymore, correct?`\n\nFor an MVP we will not. We do want those eventually.",
+      "parentUuid": "f9fe9bd0_7e99c73f",
+      "revId": "0bde4c18b20dbbf27bcf42d9ebcaf5608d0ce387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "83032edb_f43617e5",
         "filename": "dashboard/dashboard/common/workflow_client.py",
         "patchSetId": 3
