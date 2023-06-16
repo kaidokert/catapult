@@ -23,42 +23,46 @@ tr.b.unittest.testSuite(function() {
 
   test('instantiate_noVSyncs', function() {
     const model = new tr.Model();
-    const series = new tr.model.PowerSeries(model.device);
+    const series1 = new tr.model.PowerSeries(model.device);
+    const series2 = new tr.model.PowerSeries(model.device, 'CPU Power');
 
     model.device.vSyncTimestamps = [];
-    series.addPowerSample(1, 1);
-    series.addPowerSample(2, 2);
-    series.addPowerSample(3, 3);
-    series.addPowerSample(4, 2);
+    series1.addPowerSample(1, 1);
+    series1.addPowerSample(2, 2);
+    series2.addPowerSample(3, 3);
+    series2.addPowerSample(4, 2);
 
     const view = document.createElement('tr-ui-a-multi-power-sample-sub-view');
-    const eventSet = new tr.model.EventSet(series.samples);
-    view.selection = eventSet;
+    view.selection = new tr.model.EventSet([...series1.samples, ...series2.samples]);
 
     this.addHTMLOutput(view);
 
-    assert.deepEqual(view.$.chart.samples, eventSet);
-    assert.sameDeepMembers(view.$.chart.vSyncTimestamps, []);
+    assert.deepEqual(view.$$('#Power-chart').samples.toArray(), series1.samples);
+    assert.deepEqual(view.$$('#CPUPower-chart').samples.toArray(), series2.samples);
+    assert.sameDeepMembers(view.$$('#Power-chart').vSyncTimestamps, []);
+    assert.sameDeepMembers(view.$$('#CPUPower-chart').vSyncTimestamps, []);
   });
 
   test('instantiate', function() {
     const model = new tr.Model();
-    const series = new tr.model.PowerSeries(model.device);
+    const series1 = new tr.model.PowerSeries(model.device);
+    const series2 = new tr.model.PowerSeries(model.device, 'CPU Power');
 
     model.device.vSyncTimestamps = [0];
-    series.addPowerSample(1, 1);
-    series.addPowerSample(2, 2);
-    series.addPowerSample(3, 3);
-    series.addPowerSample(4, 2);
+    series1.addPowerSample(1, 1);
+    series1.addPowerSample(2, 2);
+    series2.addPowerSample(3, 3);
+    series2.addPowerSample(4, 2);
 
     const view = document.createElement('tr-ui-a-multi-power-sample-sub-view');
-    const eventSet = new tr.model.EventSet(series.samples);
-    view.selection = eventSet;
+    view.selection = new tr.model.EventSet([...series1.samples, ...series2.samples]);
 
     this.addHTMLOutput(view);
 
-    assert.deepEqual(view.$.chart.samples, eventSet);
-    assert.sameDeepMembers(view.$.chart.vSyncTimestamps, [0]);
+    assert.deepEqual(view.$$('#Power-chart').samples.toArray(), series1.samples);
+    assert.deepEqual(view.$$('#CPUPower-chart').samples.toArray(), series2.samples);
+    assert.sameDeepMembers(view.$$('#Power-chart').vSyncTimestamps, [0]);
+    assert.sameDeepMembers(view.$$('#CPUPower-chart').vSyncTimestamps, [0]);
   });
 });
 </script>

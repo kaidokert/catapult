@@ -32,6 +32,7 @@ tr.exportTo('tr.model', function() {
 
     this.powerSeries_ = undefined;
     this.cpuUsageSeries_ = undefined;
+    this.systemPowerSeries_ = {};
     this.vSyncTimestamps_ = [];
   }
 
@@ -78,6 +79,14 @@ tr.exportTo('tr.model', function() {
       this.cpuUsageSeries_ = cpuUsageSeries;
     },
 
+    get systemPowerSeries() {
+      return this.systemPowerSeries_;
+    },
+
+    set systemPowerSeries(systemPowerSeries) {
+      this.systemPowerSeries_ = systemPowerSeries;
+    },
+
     get vSyncTimestamps() {
       return this.vSyncTimestamps_;
     },
@@ -113,6 +122,9 @@ tr.exportTo('tr.model', function() {
       }
       if (this.cpuUsageSeries_) {
         yield this.cpuUsageSeries_;
+      }
+      for (const type of Object.keys(this.systemPowerSeries_)) {
+        yield this.systemPowerSeries_[type];
       }
     }
   };

@@ -23,10 +23,11 @@ tr.exportTo('tr.model', function() {
    * @constructor
    * @extends {EventContainer}
    */
-  function PowerSeries(device) {
+  function PowerSeries(device, type = 'Power') {
     tr.model.EventContainer.call(this);
 
     this.device_ = device;
+    this.type_ = type;
     this.samples_ = [];
   }
 
@@ -39,6 +40,10 @@ tr.exportTo('tr.model', function() {
 
     get samples() {
       return this.samples_;
+    },
+
+    get type() {
+      return this.type_;
     },
 
     get stableId() {

@@ -58,12 +58,24 @@ tr.b.unittest.testSuite(function() {
     device.powerSeries.addPowerSample(1, 3);
     device.powerSeries.addPowerSample(1.5, 4);
 
-    const drawingContainer = createDrawingContainer(device.powerSeries);
-    const track = new DeviceTrack(drawingContainer.viewport);
-    track.device = device;
-    Polymer.dom(drawingContainer).appendChild(track);
+    device.systemPowerSeries = { 'CPU Power' : new PowerSeries(device, 'CPU Power') };
+    device.systemPowerSeries['CPU Power'].addPowerSample(2, 1);
+    device.systemPowerSeries['CPU Power'].addPowerSample(2.5, 2);
+    device.systemPowerSeries['CPU Power'].addPowerSample(3, 5);
+    device.systemPowerSeries['CPU Power'].addPowerSample(3.5, 6);
 
-    this.addHTMLOutput(drawingContainer);
+    const drawingContainer1 = createDrawingContainer(device.powerSeries);
+    const track1 = new DeviceTrack(drawingContainer1.viewport);
+    track1.device = device;
+    Polymer.dom(drawingContainer1).appendChild(track1);
+
+    const drawingContainer2 = createDrawingContainer(device.systemPowerSeries['CPU Power']);
+    const track2 = new DeviceTrack(drawingContainer2.viewport);
+    track2.device = device;
+    Polymer.dom(drawingContainer2).appendChild(track2);
+
+    this.addHTMLOutput(drawingContainer1);
+    this.addHTMLOutput(drawingContainer2);
   });
 
   test('instantiate_noPowerSeries', function() {

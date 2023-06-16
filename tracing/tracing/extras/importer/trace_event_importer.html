@@ -166,6 +166,8 @@ tr.exportTo('tr.e.importer', function() {
     this.v8ProcessRootStackFrame_ = {};
     this.v8SamplingData_ = [];
 
+    this.systemPowerSample_ = [];
+
     // Profile Tree Map.
     // Type of Profile Tree -> Map(ID -> Profile Tree)
     this.profileTrees_ = new Map();
@@ -709,6 +711,11 @@ tr.exportTo('tr.e.importer', function() {
         return;
       }
 
+      if (event.name === 'SystemPowerSample') {
+        this.systemPowerSample_.push(event);
+        return;
+      }
+
       // Thread-level instant events are treated as zero-duration slices.
       if (event.s === 't' || event.s === undefined) {
         this.processDurationEvent(event);
@@ -1090,6 +1097,21 @@ tr.exportTo('tr.e.importer', function() {
       }
     },
 
+    processSystemPowerSamples() {
+      this.systemPowerSample_.sort((a, b) => (a.ts - b.ts));
+      for (let i = 0; i < this.systemPowerSample_.length; ++i) {
+        const event = this.systemPowerSample_[i];
+        for (const [type, milliWatts] of Object.entries(event.args)) {
+          if (!this.model_.device.systemPowerSeries.hasOwnProperty(type)) {
+            this.model_.device.systemPowerSeries[type] =
+                new tr.model.PowerSeries(this.model_.device, type);
+          }
+          this.model_.device.systemPowerSeries[type].addPowerSample(
+              this.toModelTimeFromUs_(event.ts), milliWatts / 1000);
+        }
+      }
+    },
+
     importClockSyncMarkers() {
       if (this.events_ instanceof tr.b.TraceStream) {
         const parser = oboe().node(
@@ -1154,6 +1176,8 @@ tr.exportTo('tr.e.importer', function() {
       this.createAsyncSlices_();
 
       this.processV8Events();
+
+      this.processSystemPowerSamples();
 
       // Remove all the root stack frame children as they should
       // already be added.

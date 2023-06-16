@@ -15,14 +15,14 @@ found in the LICENSE file.
     <style>
     :host {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
     }
     #tables {
       display: flex;
       flex-direction: column;
       width: 50%;
     }
-    #chart {
+    #charts {
       width: 50%;
     }
     </style>
@@ -30,8 +30,8 @@ found in the LICENSE file.
       <tr-ui-a-power-sample-summary-table id="summaryTable">
       </tr-ui-a-power-sample-summary-table>
     </div>
-    <tr-ui-a-frame-power-usage-chart id="chart">
-    </tr-ui-a-frame-power-usage-chart>
+    <div id="charts">
+    </div>
   </template>
 </dom-module>
 
@@ -58,12 +58,31 @@ Polymer({
   },
 
   updateContents_() {
-    const samples = this.selection;
-    const vSyncTimestamps = (!samples ? [] :
-      tr.b.getFirstElement(samples).series.device.vSyncTimestamps);
+    if (this.selection === undefined) {
+      this.$.summaryTable.samples = undefined;
+      return;
+    }
 
-    this.$.summaryTable.samples = samples;
-    this.$.chart.setData(this.selection, vSyncTimestamps);
+    const classifiedSamples = {};
+    for (const sample of this.selection) {
+      const type = sample.series.type;
+      if (classifiedSamples.hasOwnProperty(type)) {
+        classifiedSamples[type].push(sample);
+      } else {
+        classifiedSamples[type] = new tr.model.EventSet(sample);
+      }
+    }
+    this.$.summaryTable.samples = classifiedSamples;
+
+    // Create a frame power usage chart for each type of samples.
+    for (const [type, samples] of Object.entries(classifiedSamples)) {
+      const vSyncTimestamps = (!samples ? [] :
+          tr.b.getFirstElement(samples).series.device.vSyncTimestamps);
+      const chart = document.createElement('tr-ui-a-frame-power-usage-chart');
+      chart.setAttribute('id', type.replaceAll(' ', '') + '-chart');
+      chart.setData(samples, vSyncTimestamps, type);
+      Polymer.dom(this.$.charts).appendChild(chart);
+    }
   }
 });
 

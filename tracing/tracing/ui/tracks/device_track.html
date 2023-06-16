@@ -34,6 +34,7 @@ tr.exportTo('tr.ui.tracks', function() {
       Polymer.dom(this).classList.add('device-track');
       this.device_ = undefined;
       this.powerSeriesTrack_ = undefined;
+      this.systemPowerTracks_ = undefined;
     },
 
     get device() {
@@ -49,9 +50,14 @@ tr.exportTo('tr.ui.tracks', function() {
       return this.powerSeriesTrack_;
     },
 
+    get systemPowerTracks() {
+      return this.systemPowerTracks_;
+    },
+
     get hasVisibleContent() {
       return (this.powerSeriesTrack_ &&
-          this.powerSeriesTrack_.hasVisibleContent);
+          this.powerSeriesTrack_.hasVisibleContent) ||
+          (this.systemPowerTracks_ && this.systemPowerTracks_.length !== 0);
     },
 
     addContainersToTrackMap(containerToTrackMap) {
@@ -77,9 +83,25 @@ tr.exportTo('tr.ui.tracks', function() {
       }
     },
 
+    appendSystemPowerTracks_() {
+      this.systemPowerTracks_ = [];
+      for (const type of Object.keys(this.device.systemPowerSeries)) {
+        const systemPowerTrack = new tr.ui.tracks.PowerSeriesTrack(this.viewport);
+        systemPowerTrack.heading = type;
+        systemPowerTrack.powerSeries = this.device.systemPowerSeries[type];
+        this.systemPowerTracks_.push(systemPowerTrack);
+        if (systemPowerTrack.hasVisibleContent) {
+          Polymer.dom(this).appendChild(systemPowerTrack);
+          Polymer.dom(this).appendChild(
+              new tr.ui.tracks.SpacingTrack(this.viewport));
+        }
+      }
+    },
+
     updateContents_() {
       this.clearTracks_();
       this.appendPowerSeriesTrack_();
+      this.appendSystemPowerTracks_();
     }
   };
 

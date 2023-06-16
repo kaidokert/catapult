@@ -30,6 +30,13 @@ Polymer({
   ready() {
     this.$.table.tableColumns = [
       {
+        title: 'Sample',
+        width: '120px',
+        value(row) {
+          return row.type;
+        }
+      },
+      {
         title: 'Min power',
         width: '100px',
         value(row) {
@@ -64,7 +71,7 @@ Polymer({
         value(row) { return row.sampleCount; }
       }
     ];
-    this.samples = new tr.model.EventSet();
+    this.samples = {};
   },
 
   get samples() {
@@ -74,35 +81,37 @@ Polymer({
   set samples(samples) {
     if (samples === this.samples) return;
 
-    this.samples_ =
-        (samples === undefined) ? new tr.model.EventSet() : samples;
+    this.samples_ = (samples === undefined) ? {} : samples;
     this.updateContents_();
   },
 
   updateContents_() {
-    if (this.samples.length === 0) {
-      this.$.table.tableRows = [];
-    } else {
-      this.$.table.tableRows = [{
-        min: this.getMin(),
-        max: this.getMax(),
-        timeWeightedAverageInW: this.getTimeWeightedAverageInW(),
-        energyConsumedInJ: this.getEnergyConsumedInJ(),
-        sampleCount: this.samples.length
-      }];
+    this.$.table.tableRows = [];
+    for (const type of Object.keys(this.samples)) {
+      if (this.samples[type].length === 0) {
+        continue;
+      }
+      this.$.table.tableRows.push({
+        type: type,
+        min: this.getMin(type),
+        max: this.getMax(type),
+        timeWeightedAverageInW: this.getTimeWeightedAverageInW(type),
+        energyConsumedInJ: this.getEnergyConsumedInJ(type),
+        sampleCount: this.samples[type].length
+      });
     }
 
     this.$.table.rebuild();
   },
 
-  getMin() {
-    return Math.min.apply(null, this.samples.map(function(sample) {
+  getMin(type) {
+    return Math.min.apply(null, this.samples[type].map(function(sample) {
       return sample.powerInW;
     }));
   },
 
-  getMax() {
-    return Math.max.apply(null, this.samples.map(function(sample) {
+  getMax(type) {
+    return Math.max.apply(null, this.samples[type].map(function(sample) {
       return sample.powerInW;
     }));
   },
@@ -111,24 +120,23 @@ Polymer({
    * Returns a time-weighted average of the power consumption (Watts)
    * in between the first sample (inclusive) and last sample (exclusive).
    */
-  getTimeWeightedAverageInW() {
-    const energyConsumedInJ = this.getEnergyConsumedInJ();
+  getTimeWeightedAverageInW(type) {
+    const energyConsumedInJ = this.getEnergyConsumedInJ(type);
 
     if (energyConsumedInJ === 'N/A') return 'N/A';
 
-    const durationInS = tr.b.convertUnit(this.samples.bounds.duration,
+    const durationInS = tr.b.convertUnit(this.samples[type].bounds.duration,
         tr.b.UnitPrefixScale.METRIC.MILLI,
         tr.b.UnitPrefixScale.METRIC.NONE);
 
     return energyConsumedInJ / durationInS;
   },
 
+  getEnergyConsumedInJ(type) {
+    if (this.samples[type].length < 2) return 'N/A';
 
-  getEnergyConsumedInJ() {
-    if (this.samples.length < 2) return 'N/A';
-
-    const bounds = this.samples.bounds;
-    const series = tr.b.getFirstElement(this.samples).series;
+    const bounds = this.samples[type].bounds;
+    const series = tr.b.getFirstElement(this.samples[type]).series;
     return series.getEnergyConsumedInJ(bounds.min, bounds.max);
   }
 });

@@ -30,6 +30,13 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(series.device, device);
   });
 
+  test('type', function() {
+    const device = new tr.model.Device(new Model());
+    const series = new PowerSeries(device, 'CPU Power');
+
+    assert.strictEqual(series.type, 'CPU Power');
+  });
+
   test('addPowerSample', function() {
     const series = new PowerSeries(new Model().device);
 

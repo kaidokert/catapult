@@ -6763,6 +6763,34 @@ tr.b.unittest.testSuite(function() {
     assert.isUndefined(id.pid);
   });
 
+  test('importSystemPowerSamples', function() {
+    function checkModel(m) {
+      const series = m.device.systemPowerSeries;
+
+      assert.lengthOf(Object.keys(series), 3);
+      assert.sameMembers(Object.keys(series), ['CPU Power', 'iGPU Power', 'Package Power']);
+
+      assert.lengthOf(series['CPU Power'].samples, 2);
+      assert.deepEqual(series['CPU Power'].samples.map(sample => sample.powerInW), [1, 4]);
+      assert.lengthOf(series['iGPU Power'].samples, 1);
+      assert.strictEqual(series['iGPU Power'].samples[0].powerInW, 2);
+      assert.lengthOf(series['Package Power'].samples, 3);
+      assert.deepEqual(series['Package Power'].samples.map(sample => sample.powerInW), [3, 5, 6]);
+    }
+
+    const eventData = {
+      traceEvents: [
+        {'args' : {'CPU Power' : 1000}, 'cat' : 'test', 'name' : 'SystemPowerSample', 'ph' : 'I', 'pid' : 0, 's' : 'g', 'tid' : 0, 'ts' : 1},  // @suppress longLineCheck
+        {'args' : {'iGPU Power' : 2000}, 'cat' : 'test', 'name' : 'SystemPowerSample', 'ph' : 'I', 'pid' : 0, 's' : 'g', 'tid' : 0, 'ts' : 2},  // @suppress longLineCheck
+        {'args' : {'Package Power' : 3000}, 'cat' : 'test', 'name' : 'SystemPowerSample', 'ph' : 'I', 'pid' : 0, 's' : 'g', 'tid' : 0, 'ts' : 3},  // @suppress longLineCheck
+        {'args' : {'CPU Power' : 4000}, 'cat' : 'test', 'name' : 'SystemPowerSample', 'ph' : 'I', 'pid' : 0, 's' : 'g', 'tid' : 0, 'ts' : 4},  // @suppress longLineCheck
+        {'args' : {'Package Power' : 5000}, 'cat' : 'test', 'name' : 'SystemPowerSample', 'ph' : 'I', 'pid' : 0, 's' : 'g', 'tid' : 0, 'ts' : 5},  // @suppress longLineCheck
+        {'args' : {'Package Power' : 6000}, 'cat' : 'test', 'name' : 'SystemPowerSample', 'ph' : 'I', 'pid' : 0, 's' : 'g', 'tid' : 0, 'ts' : 6}  // @suppress longLineCheck
+      ]
+    };
+    checkParsedAndStreamInput(eventData, checkModel);
+  });
+
   // TODO(nduca): one slice, two threads
   // TODO(nduca): one slice, two pids
 });

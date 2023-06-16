@@ -28,7 +28,7 @@ curve over the course of a frame or set of frames.
 
 const EventSet = tr.model.EventSet;
 
-const CHART_TITLE = 'Power (W) by ms since vertical sync';
+const CHART_TITLE_SUFFIX = ' (W) by ms since vertical sync';
 
 Polymer({
   is: 'tr-ui-a-frame-power-usage-chart',
@@ -37,6 +37,7 @@ Polymer({
     this.chart_ = undefined;
     this.samples_ = new EventSet();
     this.vSyncTimestamps_ = [];
+    this.type_ = undefined;
   },
 
   attached() {
@@ -55,12 +56,17 @@ Polymer({
     return this.vSyncTimestamps_;
   },
 
+  get type() {
+    return this.type_;
+  },
+
   /**
    * Sets the data that powers the chart. Vsync timestamps must be in
    * chronological order.
    */
-  setData(samples, vSyncTimestamps) {
+  setData(samples, vSyncTimestamps, type) {
     this.samples_ = (samples === undefined) ? new EventSet() : samples;
+    this.type_ = type;
     this.vSyncTimestamps_ =
         (vSyncTimestamps === undefined) ? [] : vSyncTimestamps;
     if (this.isAttached) this.updateContents_();
@@ -75,7 +81,7 @@ Polymer({
 
     this.chart_ = new tr.ui.b.LineChart();
     Polymer.dom(this.$.content).appendChild(this.chart_);
-    this.chart_.chartTitle = CHART_TITLE;
+    this.chart_.chartTitle = this.type + CHART_TITLE_SUFFIX;
     this.chart_.data = data;
   },
 

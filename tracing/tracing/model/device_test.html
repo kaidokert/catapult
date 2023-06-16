@@ -20,14 +20,16 @@ tr.b.unittest.testSuite(function() {
   test('updateBounds', function() {
     const device = new Device(new Model());
     device.powerSeries = new PowerSeries(device);
+    device.systemPowerSeries['Power'] = new PowerSeries(device);
 
     // Verify that the bounds match the lowest and highest timestamps.
     device.powerSeries.addPowerSample(100, 5);
     device.powerSeries.addPowerSample(200, 5);
+    device.systemPowerSeries['Power'].addPowerSample(300, 5);
     device.updateBounds();
 
     assert.strictEqual(device.bounds.min, 100);
-    assert.strictEqual(device.bounds.max, 200);
+    assert.strictEqual(device.bounds.max, 300);
 
     // Add a new sample and verify that the bounds change.
     device.powerSeries.addPowerSample(700, 5);
@@ -40,13 +42,19 @@ tr.b.unittest.testSuite(function() {
   test('shiftTimestampsForward', function() {
     const device = new Device(new Model());
     device.powerSeries = new PowerSeries(device);
+    device.systemPowerSeries['Package Power'] = new PowerSeries(device, 'Package Power');
+    device.systemPowerSeries['CPU Power'] = new PowerSeries(device, 'CPU Power');
 
     device.powerSeries.addPowerSample(100, 2);
     device.powerSeries.addPowerSample(200, 2);
+    device.systemPowerSeries['Package Power'].addPowerSample(300, 2);
+    device.systemPowerSeries['CPU Power'].addPowerSample(400, 2);
     device.shiftTimestampsForward(2);
 
     assert.strictEqual(device.powerSeries.samples[0].start, 102);
     assert.strictEqual(device.powerSeries.samples[1].start, 202);
+    assert.strictEqual(device.systemPowerSeries['Package Power'].samples[0].start, 302);
+    assert.strictEqual(device.systemPowerSeries['CPU Power'].samples[0].start, 402);
   });
 
   test('childEventContainers_noPowerSeries', function() {
@@ -66,6 +74,19 @@ tr.b.unittest.testSuite(function() {
       childEventContainers.push(container);
     }
     assert.deepEqual(childEventContainers, [device.powerSeries]);
+  });
+
+  test('childEventContainers_systemPowerSeries', function() {
+    const device = new Device(new Model());
+    device.systemPowerSeries['Package Power'] = new PowerSeries(device, 'Package Power');
+    device.systemPowerSeries['CPU Power'] = new PowerSeries(device, 'CPU Power');
+    const childEventContainers = [];
+    for (const container of device.childEventContainers()) {
+      childEventContainers.push(container);
+    }
+    assert.strictEqual(childEventContainers.length, 2);
+    assert.deepEqual(childEventContainers[0], device.systemPowerSeries['Package Power']);
+    assert.deepEqual(childEventContainers[1], device.systemPowerSeries['CPU Power']);
   });
 });
 </script>
