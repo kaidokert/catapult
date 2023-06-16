@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99616518_6559a5bd",
+        "filename": "dashboard/bin/run_py_tests",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-16T19:48:05Z",
+      "side": 1,
+      "message": "looks like cloud build failure resulting this CL\u0027s revert was because https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dev_dockerfiles/docker-compose.yml;l\u003d10 is running `command: [vpython3, /workspace/dashboard/bin/run_py_tests, -t, -v]` so it\u0027s passing `[\u0027-t\u0027, \u0027-v\u0027]` as `suffixes` here.  \n\nThough the specific cloud build error is `typ: error: argument --suffixes: expected one argument` and from what I can tell at least, `suffixes` was assigned multiple argument values by default prior to this change:  https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/catapult_build/run_with_typ.py;l\u003d23",
+      "revId": "c8efd30d90fc69acee8c11bb120dfc2fa3001690",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
