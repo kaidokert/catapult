@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c661638_a0f669cd",
+        "filename": "dashboard/sandwich_verification/sandwich-verification-workflow.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-16T18:35:33Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 57,
+        "startChar": 18,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "8ba0f2d2376175a760ac7f1ec228cfc3e4e71aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
