@@ -22,6 +22,30 @@
       },
       "revId": "80f0dbfd68fae1de5b7b300e01eeeb5e3479bbcb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bc0bb1_4758ecc5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-16T21:35:45Z",
+      "side": 1,
+      "message": "The fix has landed and cloudbuild is past the UT stage. You can abandon this change now.",
+      "parentUuid": "559c072f_fb569861",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 99
+      },
+      "revId": "80f0dbfd68fae1de5b7b300e01eeeb5e3479bbcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
