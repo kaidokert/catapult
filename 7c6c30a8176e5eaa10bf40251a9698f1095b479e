@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "471c85e5_21b1d3b8",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-16T00:02:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e0077f0_6c096f3d",
+      "range": {
+        "startLine": 618,
+        "startChar": 4,
+        "endLine": 618,
+        "endChar": 19
+      },
+      "revId": "7c6c30a8176e5eaa10bf40251a9698f1095b479e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4578749a_44bfbcb0",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-06-15T23:54:58Z",
       "side": 1,
       "message": "Why the name change?",
+      "range": {
+        "startLine": 211,
+        "startChar": 21,
+        "endLine": 211,
+        "endChar": 24
+      },
+      "revId": "7c6c30a8176e5eaa10bf40251a9698f1095b479e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2972fe9c_7fe3deab",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-16T00:02:29Z",
+      "side": 1,
+      "message": "ah that\u0027s for easier filtering. reverted. Thanks!",
+      "parentUuid": "4578749a_44bfbcb0",
       "range": {
         "startLine": 211,
         "startChar": 21,
