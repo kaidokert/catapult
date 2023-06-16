@@ -74,11 +74,6 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   # issue trackers.
   issues = ndb.StructuredProperty(Issue, indexed=True, repeated=True)
 
-  # This field aims to replace the 'bug_id' field serving as a state indicator.
-  state = ndb.StringProperty(
-      default='untriaged',
-      choices=['untriaged', 'triaged', 'ignored', 'invalid'])
-
   # The subscribers who recieve alerts
   subscriptions = ndb.LocalStructuredProperty(
       subscription.Subscription, repeated=True)
