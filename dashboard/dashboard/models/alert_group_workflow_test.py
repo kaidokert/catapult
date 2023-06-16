@@ -81,12 +81,6 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     perf_comment_post_patcher.start()
     self.addCleanup(perf_comment_post_patcher.stop)
 
-    namespaced_stored_object.Set('repositories', {
-        'chromium': {
-            'repository_url': 'git://chromium'
-        },
-    })
-
   @staticmethod
   def _AddAnomaly(is_summary=False, **kwargs):
     default = {
@@ -719,8 +713,6 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             active_window=datetime.timedelta(days=7),
             triage_delay=datetime.timedelta(hours=0),
         ),
-        crrev=self._crrev,
-        gitiles=self._gitiles
     )
     self._UpdateTwice(
         workflow=w,
@@ -796,9 +788,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         config=alert_group_workflow.AlertGroupWorkflow.Config(
             active_window=datetime.timedelta(days=7),
             triage_delay=datetime.timedelta(hours=0),
-        ),
-        crrev=self._crrev,
-        gitiles=self._gitiles)
+        ))
     self._UpdateTwice(
         workflow=w,
         update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
@@ -830,8 +820,6 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             active_window=datetime.timedelta(days=7),
             triage_delay=datetime.timedelta(hours=0),
         ),
-        crrev=self._crrev,
-        gitiles=self._gitiles
     )
     self._UpdateTwice(
         workflow=w,
@@ -864,8 +852,6 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             active_window=datetime.timedelta(days=7),
             triage_delay=datetime.timedelta(hours=0),
         ),
-        crrev=self._crrev,
-        gitiles=self._gitiles
     )
     self._UpdateTwice(
         workflow=w,
