@@ -46,6 +46,30 @@
       },
       "revId": "80f0dbfd68fae1de5b7b300e01eeeb5e3479bbcb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4883e38f_f1ea8ab2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-06-17T01:01:16Z",
+      "side": 1,
+      "message": "Cool. Thanks!",
+      "parentUuid": "97bc0bb1_4758ecc5",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 99
+      },
+      "revId": "80f0dbfd68fae1de5b7b300e01eeeb5e3479bbcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
