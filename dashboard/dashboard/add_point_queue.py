@@ -21,7 +21,8 @@ from dashboard.common import datastore_hooks
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
-from dashboard.services import skia_bridge_service
+# Disabling skia row upload until issue is solved
+# from dashboard.services import skia_bridge_service
 
 from flask import request, make_response
 
@@ -42,12 +43,14 @@ def AddPointQueuePost():
   all_put_futures = []
   added_rows = []
   parent_tests = []
-  skia_client = skia_bridge_service.SkiaServiceClient()
+  # Disabling skia row upload until issue is solved
+  # skia_client = skia_bridge_service.SkiaServiceClient()
 
   for row_dict in data:
     try:
       new_row, parent_test, put_futures = _AddRow(row_dict)
-      skia_client.AddRowsForUpload([new_row], parent_test)
+      # Disabling skia row upload until issue is solved
+      # skia_client.AddRowsForUpload([new_row], parent_test)
 
       added_rows.append(new_row)
       parent_tests.append(parent_test)
@@ -66,7 +69,8 @@ def AddPointQueuePost():
       return make_response('')
 
   ndb.Future.wait_all(all_put_futures)
-  skia_client.SendRowsToSkiaBridge()
+  # Disabling skia row upload until issue is solved
+  # skia_client.SendRowsToSkiaBridge()
 
   client = sheriff_config_client.GetSheriffConfigClient()
   tests_keys = set()
