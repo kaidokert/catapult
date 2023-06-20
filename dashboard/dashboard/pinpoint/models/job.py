@@ -20,8 +20,11 @@ from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
+from dashboard import pinpoint_request
 from dashboard.common import cloud_metric
 from dashboard.common import datastore_hooks
+from dashboard.common import sandwich_allowlist
+from dashboard.common import workflow_client
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.pinpoint.models import change as change_module
@@ -31,6 +34,7 @@ from dashboard.pinpoint.models import event as event_module
 from dashboard.pinpoint.models import job_bug_update
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
+from dashboard.pinpoint.models import sandwich_workflow_group
 from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models import timing_record
@@ -585,6 +589,24 @@ class Job(ndb.Model):
         return t.improvement_direction
     return anomaly.UNKNOWN
 
+  def _CreateAnomalyForWorkflow(self, change_a, change_b):
+    # TODO: verify whether the anomaly could be in the map format or not.
+    anomaly = {}
+    anomaly['benchmark'] = self.benchmark_arguments.benchmark
+    anomaly['bot_name'] = self.configuration
+    anomaly['story'] = self.benchmark_arguments.story
+    anomaly['measurement'] = self.benchmark_arguments.chart
+    # TODO: verify the suite argument is correct: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint_request.py;l=138
+    anomaly['target'] = pinpoint_request.GetIsolateTarget(self.configuration, self.benchmark_arguments.benchmark)
+    # TODO: verify and throw exception - https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/change/__init__.py;l=15
+    anomaly['start_git_hash'] = change_a.get('commits')[0].get('git_hash')
+    # TODO: verify and throw exception
+    anomaly['end_git_hash'] = change_b.get('commits')[0].get('git_hash')
+    anomaly['project'] = self.project
+    # TODO: question - do we need the threshold or not?
+    anomaly['threshold'] = 'comparison_magnitude used to calculate the difference.'
+    return anomaly
+
   def _FormatAndPostBugCommentOnComplete(self):
     logging.debug('Processing outputs.')
     if self._IsTryJob():
@@ -664,12 +686,65 @@ class Job(ndb.Model):
     bug_update_builder = job_bug_update.DifferencesFoundBugUpdateBuilder(
         self.state.metric)
     bug_update_builder.SetExaminedCount(changes_examined)
+    improvement_dir = self._GetImprovementDirection()
+   
+    # If the job is CABE-compatible: call verification workflow for each difference.
+    print('self.benchmark_arguments.benchmark {}', self.benchmark_arguments.benchmark)
+    print('self.configuration', self.configuration)
+    regression_cnt = 0
+    if self.benchmark_arguments.benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS
+       and self.configuration in sandwich_allowlist.ALLOWABLE_DEVICES:
+      # Create a SandwichWorkflowGroup data entity.
+      workflow_group = sandwich_workflow_group.SandwichWorkflowGroup(
+        bug_id=self.bug_id,
+        project=self.project,
+        active=True,
+      )
+      k = workflow_group.put()
+      workflows = []
+      for change_a, change_b in differences:
+          values_a = result_values[change_a]
+          values_b = result_values[change_b]
+          diff = values_b - values_a
+          # Check whether diff aligns with improvement direction or not.
+          if (improvement_dir == anomaly.UP and diff > 0) or (improvement_dir == anomaly.DOWN and diff < 0):
+            continue
+          # Call sandwich verification workflow.
+          regression_cnt += 1
+          anomaly_for_workflow = self._CreateAnomalyForWorkflow(change_a, change_b)
+          client = workflow_client.SandwichVerificationWorkflow()
+          execution_name = client.CreateExecution(anomaly_for_workflow)
+          workflows.append(sandwich_workflow_group.Workflow(execution_name=execution_name))
+      workflow_group.workflows = workflows
+      workflow_group.put()
+      if regression_cnt == 0:
+        title = "<b>%s Couldn't reproduce a difference in the regression direction.</b>" % _ROUND_PUSHPIN
+        deferred.defer(
+          _PostBugCommentDeferred,
+          self.bug_id,
+          self.project,
+          comment='\n'.join((title, self.url)),
+          labels=['Pinpoint-Job-Completed','Pinpoint-No-Regression'],
+          status='WontFix',
+          _retry_options=RETRY_OPTIONS)
+      else:
+        title1 = "<b>%s %s regressions found.</b>" % (_ROUND_PUSHPIN, regression_cnt)
+        title2 = "<b>Started sandwich verification process.</b>"
+        deferred.defer(
+          _PostBugCommentDeferred,
+          self.bug_id,
+          self.project,
+          comment='\n'.join((title1, self.url, title2)),
+          labels=['Pinpoint-Job-Completed', 'Culprit-Sandwich-Verification-Started'],
+          send_email=True,
+          _retry_options=RETRY_OPTIONS)
+      return
+
     for change_a, change_b in differences:
       values_a = result_values[change_a]
       values_b = result_values[change_b]
       bug_update_builder.AddDifference(change_b, values_a, values_b)
 
-    improvement_dir = self._GetImprovementDirection()
     deferred.defer(
         job_bug_update.UpdatePostAndMergeDeferred,
         bug_update_builder,
