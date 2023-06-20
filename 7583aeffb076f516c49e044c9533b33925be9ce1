@@ -22,6 +22,30 @@
       },
       "revId": "7583aeffb076f516c49e044c9533b33925be9ce1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f4ca64_1261aefd",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-20T23:50:12Z",
+      "side": 1,
+      "message": "Not really. That one deletes versions instead of stopping them. Plus the stopping step is only required for GAE flex services (currently only skia-bridge and perf-issue) so I feel it\u0027s better to keep them simple and separate",
+      "parentUuid": "b6dc9b49_1b62ecce",
+      "range": {
+        "startLine": 28,
+        "startChar": 43,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "7583aeffb076f516c49e044c9533b33925be9ce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
