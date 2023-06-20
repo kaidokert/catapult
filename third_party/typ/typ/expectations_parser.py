@@ -275,6 +275,11 @@ class TaggedTestListParser(object):
                 if right_bracket == -1:
                     # multi-line tag set
                     tag_set = set([t for t in line[len(token):].split()])
+                    if len(tag_set) != len(list([t for t in line[len(token):].split()])):
+                        raise ParseError(
+                            lineno,
+                            'duplicate machine found'
+                        )
                     lineno += 1
                     while lineno <= num_lines and right_bracket == -1:
                         line = lines[lineno - 1].strip()
