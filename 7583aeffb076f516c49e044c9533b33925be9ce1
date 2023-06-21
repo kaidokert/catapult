@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f4ba4d6_d8207dd2",
+        "filename": "dashboard/dev_dockerfiles/stop_old_versions.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2023-06-21T00:00:15Z",
+      "side": 1,
+      "message": "it should be `env bash`. and this file should be executable if not already.",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "7583aeffb076f516c49e044c9533b33925be9ce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6dc9b49_1b62ecce",
         "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
         "patchSetId": 1
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "Not really. That one deletes versions instead of stopping them. Plus the stopping step is only required for GAE flex services (currently only skia-bridge and perf-issue) so I feel it\u0027s better to keep them simple and separate",
       "parentUuid": "b6dc9b49_1b62ecce",
+      "range": {
+        "startLine": 28,
+        "startChar": 43,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "7583aeffb076f516c49e044c9533b33925be9ce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e671f5_761ebfd2",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2023-06-21T00:00:15Z",
+      "side": 1,
+      "message": "I see this as a bandaid to patch up temporarily, as it doesn\u0027t sound right to kill the service and delete it during the build. there should be some cron job to monitor and kill/reclaim those resources from time to time. but I\u0027d leave it to you for the best decision to make for this urgency and long-term, just $0.02.",
+      "parentUuid": "b6f4ca64_1261aefd",
       "range": {
         "startLine": 28,
         "startChar": 43,
