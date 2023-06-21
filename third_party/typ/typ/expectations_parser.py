@@ -12,7 +12,7 @@ import itertools
 import re
 import logging
 
-from collections import OrderedDict
+from collections import Counter, OrderedDict
 from collections import defaultdict
 
 from typ import python_2_3_compat
@@ -274,7 +274,16 @@ class TaggedTestListParser(object):
                 right_bracket = line.find(']')
                 if right_bracket == -1:
                     # multi-line tag set
-                    tag_set = set([t for t in line[len(token):].split()])
+                    tag_list = [t for t in line[len(token):].split()]
+                    tag_set = set(tag_list)
+                    if len(tag_set) < len(tag_list):
+                        c = Counter(tag_list)
+                        for tag_name, count in c.items():
+                            if count > 1:
+                                raise ParseError(
+                                    lineno,
+                                    f'duplicate tag found: {tag_name}'
+                                )
                     lineno += 1
                     while lineno <= num_lines and right_bracket == -1:
                         line = lines[lineno - 1].strip()
