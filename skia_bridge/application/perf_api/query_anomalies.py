@@ -85,10 +85,11 @@ class AnomalyResponse:
 @cloud_metric.APIMetric("skia-bridge", "/anomalies/find")
 def QueryAnomaliesPostHandler():
   try:
+    print('Received query request with data %s' % request.data)
     logging.info('Received query request with data %s', request.data)
-    is_authorized = auth_helper.AuthorizeBearerToken(request, ALLOWED_CLIENTS)
-    if not is_authorized:
-      return 'Unauthorized', 401
+    # is_authorized = auth_helper.AuthorizeBearerToken(request, ALLOWED_CLIENTS)
+    # if not is_authorized:
+    #   return 'Unauthorized', 401
     try:
       data = json.loads(request.data)
     except json.decoder.JSONDecodeError:
@@ -100,6 +101,7 @@ def QueryAnomaliesPostHandler():
 
     client = datastore_client.DataStoreClient()
     batched_tests = list(CreateTestBatches(data['tests']))
+    print('Created %i batches for DataStore query', len(batched_tests))
     logging.info('Created %i batches for DataStore query', len(batched_tests))
     anomalies = []
     for batch in batched_tests:
@@ -108,6 +110,7 @@ def QueryAnomaliesPostHandler():
       if batch_anomalies and len(batch_anomalies) > 0:
         anomalies.extend(batch_anomalies)
 
+    print('%i anomalies returned from DataStore', len(anomalies))
     logging.info('%i anomalies returned from DataStore', len(anomalies))
     response = AnomalyResponse()
     for found_anomaly in anomalies:
@@ -136,13 +139,18 @@ def TestPath(key: datastore.key.Key):
 
 
 def GetAnomalyData(anomaly_obj):
+  bug_id = anomaly_obj.get('bug_id')
+
+  if bug_id is None:
+    bug_id = '-1'
+
   return AnomalyData(
       test_path=TestPath(anomaly_obj.get('test')),
       start_revision=anomaly_obj.get('start_revision'),
       end_revision=anomaly_obj.get('end_revision'),
       timestamp=anomaly_obj.get('timestamp'),
       id=anomaly_obj.id,
-      bug_id=anomaly_obj.get('bug_id', -1),
+      bug_id=int(bug_id),
       is_improvement=anomaly_obj.get('is_improvement'),
       recovered=anomaly_obj.get('recovered'),
       state=anomaly_obj.get('state'),
