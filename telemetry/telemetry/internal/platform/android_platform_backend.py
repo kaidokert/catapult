@@ -78,6 +78,10 @@ _NON_ROOT_OVERRIDES = {
         'profile_dir': '/sdcard/Android/data',
         'clear_application_state': False,
     },
+    'SM-F926U1': {
+        'profile_dir': '/sdcard/Android/data',
+        'clear_application_state': False,
+    },
 }
 _DEVICE_COPY_SCRIPT_FILE = os.path.abspath(os.path.join(
     os.path.dirname(__file__), 'efficient_android_directory_copy.sh'))
