@@ -33,6 +33,24 @@
       "message": "Does this ordering make quick rollbacks more difficult?  The order of the steps appears to be \"push the new build out, switch traffic over to it, then delete all versions older than it from the version cache\" (correct me if I got that wrong) - but if it\u0027s the case then it sounds like it would delete the immediately preceding deployed version, which is exactly what we\u0027d want handy for a quick rollback.",
       "revId": "889c12126bfa18758ff9d19deba14d995a666a3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a1dba5_e6bcced6",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-21T02:57:54Z",
+      "side": 1,
+      "message": "So this step will only \"Stop\" the previous version that isn\u0027t taking any traffic. This basically means the instances held on by the version are released. The version is still available in GAE if we want to direct traffic to it in case of a rollback. You can look at perf-issue service in staging as an example at the link below. It changes the status of the version to Stopped, otherwise by default GAE flex versions are in \"Serving\" status and hold on to the instances even when they are not taking traffic.\nhttps://pantheon.corp.google.com/appengine/versions?serviceId\u003dperf-issue-service\u0026versionId\u003dashwintest\u0026e\u003d-13802955\u0026mods\u003dcomponent_inspector\u0026project\u003dchromeperf-stage",
+      "parentUuid": "514a350d_a89078e8",
+      "revId": "889c12126bfa18758ff9d19deba14d995a666a3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
