@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a506a9_19a4b963",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-21T00:37:46Z",
+      "side": 1,
+      "message": "lg, with a question about how this affects rollbacks",
+      "revId": "889c12126bfa18758ff9d19deba14d995a666a3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "514a350d_a89078e8",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-21T00:37:46Z",
+      "side": 1,
+      "message": "Does this ordering make quick rollbacks more difficult?  The order of the steps appears to be \"push the new build out, switch traffic over to it, then delete all versions older than it from the version cache\" (correct me if I got that wrong) - but if it\u0027s the case then it sounds like it would delete the immediately preceding deployed version, which is exactly what we\u0027d want handy for a quick rollback.",
+      "revId": "889c12126bfa18758ff9d19deba14d995a666a3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
