@@ -129,27 +129,30 @@ class DifferencesFoundBugUpdateBuilder:
   def SetExaminedCount(self, examined_count):
     self._examined_count = examined_count
 
-  def AddDifference(self, change, values_a, values_b):
+  def AddDifference(self, change, values_a, values_b, kind=None, commit_dict=None):
     """Add a difference (a commit where the metric changed significantly).
 
     Args:
       change: a Change.
       values_a: (list) result values for the prior commit.
       values_b: (list) result values for this commit.
+      kind: commit kind.
+      commit_dict: commit dictionary.
     """
-    if change.patch:
-      kind = 'patch'
-      commit_dict = {
-          'server': change.patch.server,
-          'change': change.patch.change,
-          'revision': change.patch.revision,
-      }
-    else:
-      kind = 'commit'
-      commit_dict = {
-          'repository': change.last_commit.repository,
-          'git_hash': change.last_commit.git_hash,
-      }
+    if not kind and not commit_dict:
+      if change.patch:
+        kind = 'patch'
+        commit_dict = {
+            'server': change.patch.server,
+            'change': change.patch.change,
+            'revision': change.patch.revision,
+        }
+      else:
+        kind = 'commit'
+        commit_dict = {
+            'repository': change.last_commit.repository,
+            'git_hash': change.last_commit.git_hash,
+        }
 
     # Store just the commit repository + hash to ensure we don't attempt to
     # serialize too much data into datastore.  See https://crbug.com/1140309.

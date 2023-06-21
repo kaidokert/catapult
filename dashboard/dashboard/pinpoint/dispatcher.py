@@ -78,6 +78,10 @@ def RefreshJobsHandler():
 def IsolateCleanupHandler():
   return handlers.isolate.IsolateCleanupHandler()
 
+@APP.route('/cron/update-sandwich-results')
+def SandwichResultsUpdateHandler():
+  return handlers.sandwich.SandwichResultsUpdateHandler()
+
 
 @APP.route('/api/results2/<job_id>')
 def Results2Handler(job_id):
