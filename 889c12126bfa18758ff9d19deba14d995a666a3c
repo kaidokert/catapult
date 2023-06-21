@@ -51,6 +51,24 @@
       "parentUuid": "514a350d_a89078e8",
       "revId": "889c12126bfa18758ff9d19deba14d995a666a3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d793fee9_330bf23a",
+        "filename": "skia_bridge/cloudbuild-skia-bridge.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-21T16:32:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a1dba5_e6bcced6",
+      "revId": "889c12126bfa18758ff9d19deba14d995a666a3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
