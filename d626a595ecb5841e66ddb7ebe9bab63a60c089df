@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7eab16b_5ad76955",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T21:22:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8bbdae88_750f06ae",
+      "range": {
+        "startLine": 276,
+        "startChar": 16,
+        "endLine": 276,
+        "endChar": 29
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02725a44_a9e70d8b",
@@ -95,6 +119,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "703dbfc7_7b6258af",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T21:22:25Z",
+      "side": 1,
+      "message": "Makes sense, added changes to the other 2",
+      "parentUuid": "d537e9fb_4f528275",
+      "range": {
+        "startLine": 277,
+        "startChar": 16,
+        "endLine": 296,
+        "endChar": 85
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4080db9_94a5b911",
@@ -108,6 +156,30 @@
       "writtenOn": "2023-06-22T18:51:37Z",
       "side": 1,
       "message": "How about we identify every duplicate tag, instead of just the first?\n\n```suggestion\nduplicate_tags \u003d {tag for tag, count in tag_counts.items() if count \u003e 1}\nif duplicate_tags:\n    message \u003d f\u0027duplicate tag(s): {\", \".join(sorted(duplicate_tags))}\u0027\n    raise ParseError(lineno, message)\n```",
+      "range": {
+        "startLine": 298,
+        "startChar": 16,
+        "endLine": 305,
+        "endChar": 29
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b55d0ae2_ba7143c0",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T21:22:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d4080db9_94a5b911",
       "range": {
         "startLine": 298,
         "startChar": 16,
