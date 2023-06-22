@@ -70,6 +70,30 @@
       },
       "revId": "b4de7622cf32184009a428c9a9677eada28be736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfa906c_1e0c5b04",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-22T18:01:13Z",
+      "side": 0,
+      "message": "Maybe I\u0027m missing something, but I don\u0027t think this executes or sets anything. The `command` variable only appears in `_GetConfigInstructions()`, which is used to notify users when they hit `CloudStoragePermissionError` and `CredentialsError`",
+      "parentUuid": "5c0a7504_e33ac824",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "b4de7622cf32184009a428c9a9677eada28be736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
