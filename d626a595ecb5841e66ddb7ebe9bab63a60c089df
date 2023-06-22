@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d537e9fb_4f528275",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-22T20:06:37Z",
+      "side": 1,
+      "message": "I think we don\u0027t need to strip a prefix if `line` is always kept uncommented, like `\u0027Mac Linux Win ]\u0027`? It works because we initially remove the `# tags: ` (or `# results: `) prefix to accomplish that special case; we remove `#` hereafter for multiline tags.\n\n(Also, we can\u0027t assume `lineno\u003d1`; this code path can be used for multiple tag sets.)\n\nI wouldn\u0027t say this is blocking, just slightly less state to keep track of. But I think we should make the other two improvements.",
+      "parentUuid": "3c3631cc_ba42ea89",
+      "range": {
+        "startLine": 277,
+        "startChar": 16,
+        "endLine": 296,
+        "endChar": 85
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4080db9_94a5b911",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 6
