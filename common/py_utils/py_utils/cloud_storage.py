@@ -67,13 +67,12 @@ class CloudStorageError(Exception):
 
   @staticmethod
   def _GetConfigInstructions():
-    command = _GSUTIL_PATH
     if py_utils.IsRunningOnCrosDevice():
       command = 'HOME=%s %s' % (_CROS_GSUTIL_HOME_WAR, _GSUTIL_PATH)
     return ('To configure your credentials:\n'
-            '  1. Run "%s config" and follow its instructions.\n'
-            '  2. If you have a @google.com account, use that account.\n'
-            '  3. For the project-id, just enter 0.' % command)
+            'Run "gcloud auth login" and follow its instructions.\n'
+            'If running on Chrome OS, this may require setting\n'
+            'the home directory to %s' % command)
 
 
 class CloudStoragePermissionError(CloudStorageError):
