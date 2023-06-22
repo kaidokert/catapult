@@ -94,6 +94,30 @@
       },
       "revId": "b4de7622cf32184009a428c9a9677eada28be736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "474ffa6f_9b11cb36",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-06-22T18:25:45Z",
+      "side": 0,
+      "message": "It doesn\u0027t run anything itself, but assumedly `gsutil config` did not work on ChromeOS before without setting `HOME` first, hence why the notification the user got included setting that. I\u0027m wondering if something similar is still the case, e.g. if the user runs `gcloud auth login`, it will fail, but if they run `HOME\u003d... gcloud auth login`, it will work.\n\nIf we don\u0027t know one way or the other, probably best to include it as a footnote, e.g. `Run \"gcloud auth login\" and follow its instructions. If running on a ChromeOS device, this main require setting the HOME environment variable to \u003cpath\u003e.`",
+      "parentUuid": "0dfa906c_1e0c5b04",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "b4de7622cf32184009a428c9a9677eada28be736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
