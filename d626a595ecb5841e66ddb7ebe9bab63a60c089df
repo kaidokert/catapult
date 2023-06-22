@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c3631cc_ba42ea89",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T19:48:39Z",
+      "side": 1,
+      "message": "the last line though \n`tag_counts.update(line[:right_bracket].split())`\nwould have to be either be `1` or `len(token)` based on whether it\u0027s the first line or not.\nMaybe we can check the value of `lineno`? Will `lineno` always be 1 at start?\n\nif so can do like this\n`\nsize \u003d 1\nif line \u003d\u003d 1:\n  size \u003d len(token)\ntag_counts.update(line[:right_bracket].split())\n`\nWill look into the options",
+      "parentUuid": "02725a44_a9e70d8b",
+      "range": {
+        "startLine": 277,
+        "startChar": 16,
+        "endLine": 296,
+        "endChar": 85
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4080db9_94a5b911",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 6
