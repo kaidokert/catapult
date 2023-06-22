@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bbdae88_750f06ae",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-22T18:51:37Z",
+      "side": 1,
+      "message": "It occurred to me that we can just count occurrences as we go instead of maintaining this `tag_list` that we will count later anyway. This would look like:\n\n```\ntag_counts \u003d Counter()\n...\ntag_counts.update(line.split())\n...\ntag_set \u003d set(tag_counts)\n```",
+      "range": {
+        "startLine": 276,
+        "startChar": 16,
+        "endLine": 276,
+        "endChar": 29
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02725a44_a9e70d8b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-22T18:51:37Z",
+      "side": 1,
+      "message": "Nice refactor, but I think we can avoid `prefix_size` too by keeping `line` in an uncommented and stripped state:\n\n```\nline \u003d line[len(token):].strip()\nwhile lineno \u003c\u003d num_lines and right_bracket \u003d\u003d -1:\n    tag_counts.update(line.split())\n    lineno +\u003d 1\n    line \u003d lines[lineno - 1].strip()\n    if line[0] !\u003d \u0027#\u0027:\n        raise ParseError(...)\n    line \u003d line[1:].strip()\n    right_bracket \u003d line.find(\u0027]\u0027)\nif line[right_bracket+1:]:\n    raise ParseError(...)\ntag_counts.update(line[:right_bracket].split())\n```\n\nDoes that work?",
+      "range": {
+        "startLine": 277,
+        "startChar": 16,
+        "endLine": 296,
+        "endChar": 85
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4080db9_94a5b911",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-22T18:51:37Z",
+      "side": 1,
+      "message": "How about we identify every duplicate tag, instead of just the first?\n\n```suggestion\nduplicate_tags \u003d {tag for tag, count in tag_counts.items() if count \u003e 1}\nif duplicate_tags:\n    message \u003d f\u0027duplicate tag(s): {\", \".join(sorted(duplicate_tags))}\u0027\n    raise ParseError(lineno, message)\n```",
+      "range": {
+        "startLine": 298,
+        "startChar": 16,
+        "endLine": 305,
+        "endChar": 29
+      },
+      "revId": "d626a595ecb5841e66ddb7ebe9bab63a60c089df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
