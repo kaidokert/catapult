@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ab856f_e816c47e",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T16:28:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4590ed18_eb120706",
+      "range": {
+        "startLine": 278,
+        "startChar": 43,
+        "endLine": 278,
+        "endChar": 87
+      },
+      "revId": "f6a56453ef5c8da07b0e2344922fcaf7b22f3061",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b57d7fc_208bba23",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-20T23:04:59Z",
       "side": 1,
       "message": "This error message is too specific because tags are not necessarily system-related. For example, `web_tests/TestExpectations` has `# tags: [ Release Debug ]`.\n\nAlso, as a user, I would want to know which tags exactly are duplicated. You can use [`collections.Counter`](https://docs.python.org/3/library/collections.html#collections.Counter) for this.",
+      "range": {
+        "startLine": 281,
+        "startChar": 28,
+        "endLine": 281,
+        "endChar": 53
+      },
+      "revId": "f6a56453ef5c8da07b0e2344922fcaf7b22f3061",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "569a9e8f_35a21f9d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T16:28:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8b57d7fc_208bba23",
       "range": {
         "startLine": 281,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52bbb06a_9a487921",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T16:28:19Z",
+      "side": 1,
+      "message": "Refactored a bit to not have 2 while loops",
+      "parentUuid": "d1157a52_6e656cb1",
+      "range": {
+        "startLine": 308,
+        "startChar": 20,
+        "endLine": 309,
+        "endChar": 76
+      },
+      "revId": "f6a56453ef5c8da07b0e2344922fcaf7b22f3061",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51795aa9_794ce1d9",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-06-20T23:04:59Z",
       "side": 1,
       "message": "Most editors have a setting to remove trailing whitespace on save. Worth enabling?",
+      "range": {
+        "startLine": 1003,
+        "startChar": 0,
+        "endLine": 1003,
+        "endChar": 8
+      },
+      "revId": "f6a56453ef5c8da07b0e2344922fcaf7b22f3061",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1105d9e1_a0078c3a",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1003,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-22T16:28:19Z",
+      "side": 1,
+      "message": "oh odd, I usually run `git cl format` but it doesn\u0027t seem to always work, let me try updating the setting in the editor.",
+      "parentUuid": "51795aa9_794ce1d9",
       "range": {
         "startLine": 1003,
         "startChar": 0,
