@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa72607f_d3bb1a67",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-06-22T17:06:55Z",
+      "side": 0,
+      "message": "Are you sure this is no longer necessary for ChromeOS devices?",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "b4de7622cf32184009a428c9a9677eada28be736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
