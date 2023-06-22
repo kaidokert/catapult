@@ -22,6 +22,30 @@
       },
       "revId": "b4de7622cf32184009a428c9a9677eada28be736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175ba903_fc602d40",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-22T17:50:20Z",
+      "side": 0,
+      "message": "Do you mean if ChromeOS devices still need to use the old gsutil config auth method?",
+      "parentUuid": "fa72607f_d3bb1a67",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "b4de7622cf32184009a428c9a9677eada28be736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
