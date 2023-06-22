@@ -46,6 +46,30 @@
       },
       "revId": "b4de7622cf32184009a428c9a9677eada28be736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c0a7504_e33ac824",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-06-22T17:52:02Z",
+      "side": 0,
+      "message": "I meant explicitly setting `HOME` before running the command.",
+      "parentUuid": "175ba903_fc602d40",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "b4de7622cf32184009a428c9a9677eada28be736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
