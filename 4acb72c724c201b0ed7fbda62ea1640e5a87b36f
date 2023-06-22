@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e6a6fc9_26f98fcc",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-06-22T19:36:00Z",
+      "side": 1,
+      "message": "This won\u0027t work as-is. `command` is not defined if not on a ChromeOS device. Also, keeping the exact same command as before doesn\u0027t seem correct since you want to be using `gcloud auth login`, but the old one refers to `gsutil`.\n\nProbably best to do something like:\n\n```\nretval \u003d (\u0027To configure your credentials:\\n\u0027\n          \u0027Run \"gcloud auth login\" and follow its instructions.\u0027)\nif py_utils.IsRunningOnCrosDevice():\n  retval +\u003d (\u0027\\nSince you are on a ChromeOS device, this may require setting \u0027\n             \u0027HOME to %s\u0027 % _CROS_GSUTIL_HOME_WAR)\nreturn retval\n```",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "4acb72c724c201b0ed7fbda62ea1640e5a87b36f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
