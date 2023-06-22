@@ -330,7 +330,10 @@ class AlertGroupWorkflow:
           if a.median_before_anomaly != 0. else float('Inf'))
 
     # anomaly.groups are updated in upload-processing. Here we update
-    # the group.anomalies
+    # the group.anomalies.
+    # Note: so... we have a bidirectional Anomaly<->AlertGroup relationship represented by
+    # two fields on separate entities, and we update these two records in separate transcations?
+    # Coolcoolcool.
     added = self._UpdateAnomalies(update.anomalies)
 
     if update.issue:
@@ -367,9 +370,9 @@ class AlertGroupWorkflow:
                    group.created, self._config.triage_delay, update.now,
                    group.status)
       self._TryTriage(update.now, update.anomalies)
-    # TODO(crbug/1454620): Add logic to start sandwich verification when
-    # the regression has not yet been verified and to start bisection if
-    # the bug is verified or there are no regressions in sandwich allowlist
+    elif self._TryVerifyRegression(update): #len(self._CheckSandwichAllowlist(group.anomalies)) > 0: #and not group.verified:
+      logging.info('attempting sandwich verification')
+      #self._TryVerifyRegression(update)
     # TODO(crbug/1454620): replace with group.Status.verified_regressions
     # and update
     # third_party/catapult/dashboard/dashboard/models/alert_group.py;l=48
@@ -686,13 +689,15 @@ class AlertGroupWorkflow:
       allowed_regressions: A list of sandwich verifiable regressions.
     """
     allowed_regressions = []
-
     for regression in regressions:
       benchmark = regression.benchmark_name
       bot = regression.bot_name
+      logging.info("benchmark: %s", benchmark)
+      logging.info("bot: %s", bot)
+      
       if bot in sandwich_allowlist.ALLOWABLE_DEVICES and \
         benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS and \
-        regression.is_improvement:
+        not regression.is_improvement: # We only want to verify *regressions*, not improvements, right?
         allowed_regressions.append(regression)
 
     return allowed_regressions
@@ -709,17 +714,22 @@ class AlertGroupWorkflow:
     # Do not run sandwiching if anomaly subscription opts out of culprit finding
     if (update.issue
         and 'Chromeperf-Auto-BisectOptOut' in update.issue.get('labels')):
+      logging.info("not sandwiching this update because the issue is opted-out of auto-bisection")
       return False
 
     # check if any regressions qualify for verification
     regressions, _ = self._GetRegressions(update.anomalies)
+    logging.info("regressions: %s", regressions)
     verifiable_regressions = self._CheckSandwichAllowlist(regressions)
+    logging.info("verifiable_regressions: %s", verifiable_regressions)
     regression = self._SelectAutoBisectRegression(verifiable_regressions)
 
     if not regression:
       return False
 
-    self._StartPinpointTryJob(regression)
+    sandwich_job_id = self._StartPinpointTryJob(regression)
+    logging.info('sandwich verification pinpoint job id: %s', sandwich_job_id)
+    self._group.status = self._group.Status.sandwiched
 
     # TODO(crbug/1454620): Update the issue associated with this group,
     # using the same logic in _TryBisect. Use
@@ -838,7 +848,17 @@ class AlertGroupWorkflow:
     Returns:
       job_id: A string representing the Pinpoint job ID
     """
-    raise NotImplementedError("crbug/1454620")
+    try:
+      results = self._pinpoint.NewJob(self._NewPinpointRequest(regression))
+    except pinpoint_request.InvalidParamsError as e:
+      six.raise_from(
+          InvalidPinpointRequest('Invalid pinpoint request: %s' % (e,)), e)
+
+    if 'jobId' not in results:
+      raise InvalidPinpointRequest('Start pinpoint bisection failed: %s' %
+                                   (results,))
+
+    return results.get('jobId')
 
   def _StartPinpointBisectJob(self, regression):
     try:
