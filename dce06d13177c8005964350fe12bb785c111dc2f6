@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c868964_6b0b6af7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-22T16:32:59Z",
+      "side": 1,
+      "message": "switching to a different code owner since wenbin is OOO for another week",
+      "revId": "dce06d13177c8005964350fe12bb785c111dc2f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
