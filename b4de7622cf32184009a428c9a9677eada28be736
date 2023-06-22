@@ -118,6 +118,30 @@
       },
       "revId": "b4de7622cf32184009a428c9a9677eada28be736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cddb36aa_898a2f5d",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-22T18:48:05Z",
+      "side": 0,
+      "message": "SG, I added the extra message.",
+      "parentUuid": "474ffa6f_9b11cb36",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "b4de7622cf32184009a428c9a9677eada28be736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
