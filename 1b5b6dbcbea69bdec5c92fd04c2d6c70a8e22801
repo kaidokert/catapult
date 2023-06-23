@@ -16,6 +16,29 @@
       "message": "@ashwinpv can you take another look now that we\u0027re including the boto_config solution?",
       "revId": "1b5b6dbcbea69bdec5c92fd04c2d6c70a8e22801",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9924e2a1_e79db2da",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-06-23T23:15:57Z",
+      "side": 1,
+      "message": "This is technically incorrect. You will still need to do gcloud auth login when your credentials expire. The BOTO config step will be required either way.\n\nI would reword this as something like this.\n\"To make this change persistent, add the export BOTO_CONFIG command to your ~/.bashrc file.\"",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "1b5b6dbcbea69bdec5c92fd04c2d6c70a8e22801",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
