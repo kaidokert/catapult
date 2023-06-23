@@ -22,6 +22,30 @@
       },
       "revId": "4acb72c724c201b0ed7fbda62ea1640e5a87b36f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9726ce99_fb2dc712",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-23T20:51:25Z",
+      "side": 1,
+      "message": "Yeah you\u0027re right. That\u0027s sloppy on my end.\n\nWe ended up changing the message bit now that we identified the root cause of the issue. PTAL",
+      "parentUuid": "7e6a6fc9_26f98fcc",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "4acb72c724c201b0ed7fbda62ea1640e5a87b36f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
