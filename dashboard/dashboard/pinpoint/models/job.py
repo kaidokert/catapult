@@ -20,8 +20,11 @@ from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
+from dashboard import pinpoint_request
 from dashboard.common import cloud_metric
 from dashboard.common import datastore_hooks
+from dashboard.common import sandwich_allowlist
+from dashboard.common import workflow_client
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.pinpoint.models import change as change_module
@@ -31,6 +34,7 @@ from dashboard.pinpoint.models import event as event_module
 from dashboard.pinpoint.models import job_bug_update
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
+from dashboard.pinpoint.models import sandwich_workflow_group
 from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models import timing_record
@@ -585,6 +589,22 @@ class Job(ndb.Model):
         return t.improvement_direction
     return anomaly.UNKNOWN
 
+  def _CreateWorkflowExecutionRequest(self, change_a, change_b):
+    # TODO: verify whether the anomaly could be in the map format or not.
+    request = {}
+    request['benchmark'] = self.benchmark_arguments.benchmark
+    request['bot_name'] = self.configuration
+    request['story'] = self.benchmark_arguments.story
+    request['measurement'] = self.benchmark_arguments.chart
+    # TODO: verify the suite argument is correct: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint_request.py;l=138
+    request['target'] = pinpoint_request.GetIsolateTarget(self.configuration, self.benchmark_arguments.benchmark)
+    # TODO: verify and throw exception - https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/change/__init__.py;l=15
+    request['start_git_hash'] = change_a.get('commits')[0].get('git_hash')
+    # TODO: verify and throw exception
+    request['end_git_hash'] = change_b.get('commits')[0].get('git_hash')
+    request['project'] = self.project
+    return request
+
   def _FormatAndPostBugCommentOnComplete(self):
     logging.debug('Processing outputs.')
     if self._IsTryJob():
@@ -664,12 +684,90 @@ class Job(ndb.Model):
     bug_update_builder = job_bug_update.DifferencesFoundBugUpdateBuilder(
         self.state.metric)
     bug_update_builder.SetExaminedCount(changes_examined)
+    improvement_dir = self._GetImprovementDirection()
+
+    # If the job is CABE-compatible: call verification workflow for each difference.
+    print('self.benchmark_arguments.benchmark {}', self.benchmark_arguments.benchmark)
+    print('self.configuration', self.configuration)
+    regression_cnt = 0
+    if self.benchmark_arguments.benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS
+       and self.configuration in sandwich_allowlist.ALLOWABLE_DEVICES:
+      # Create a SandwichWorkflowGroup data entity.
+      workflow_group = sandwich_workflow_group.SandwichWorkflowGroup(
+        bug_id=self.bug_id,
+        project=self.project,
+        active=True,
+        metric=self.state.metric,
+        tags=self.tags,
+        url=self.url,
+      )
+      k = workflow_group.put()
+      workflows = []
+      for change_a, change_b in differences:
+          values_a = result_values[change_a]
+          values_b = result_values[change_b]
+          diff = values_b - values_a
+          # Check whether diff aligns with improvement direction or not.
+          if (improvement_dir == anomaly.UP and diff > 0) or (improvement_dir == anomaly.DOWN and diff < 0):
+            continue
+
+          if change_b.patch:
+            kind = 'patch'
+            commit_dict = {
+                'server': change_b.patch.server,
+                'change': change_b.patch.change,
+                'revision': change_b.patch.revision,
+            }
+          else:
+            kind = 'commit'
+            commit_dict = {
+                'repository': change_b.last_commit.repository,
+                'git_hash': change_b.last_commit.git_hash,
+            }
+          regression_cnt += 1
+          # Call sandwich verification workflow.
+          anomaly_for_workflow = self._CreateWorkflowExecutionRequest(change_a, change_b)
+          client = workflow_client.SandwichVerificationWorkflow()
+          execution_name = client.CreateExecution(anomaly_for_workflow)
+          # TODO: add improvement direction to the workflow.
+          workflow = sandwich_workflow_group.Workflow(
+            execution_name=execution_name,
+            kind=kind,
+            commit_dict=commit_dict,
+            values_a=values_a,
+            values_b=values_b
+            )
+          workflows.append(workflow)
+      workflow_group.workflows = workflows
+      workflow_group.put()
+      if regression_cnt == 0:
+        title = "<b>%s Couldn't reproduce a difference in the regression direction.</b>" % _ROUND_PUSHPIN
+        deferred.defer(
+          _PostBugCommentDeferred,
+          self.bug_id,
+          self.project,
+          comment='\n'.join((title, self.url)),
+          labels=['Pinpoint-Job-Completed','Pinpoint-No-Regression'],
+          status='WontFix',
+          _retry_options=RETRY_OPTIONS)
+      else:
+        title1 = "<b>%s %s regressions found.</b>" % (_ROUND_PUSHPIN, regression_cnt)
+        title2 = "<b>Started sandwich verification process.</b>"
+        deferred.defer(
+          _PostBugCommentDeferred,
+          self.bug_id,
+          self.project,
+          comment='\n'.join((title1, self.url, title2)),
+          labels=['Pinpoint-Job-Completed', 'Culprit-Sandwich-Verification-Started'],
+          send_email=True,
+          _retry_options=RETRY_OPTIONS)
+      return
+
     for change_a, change_b in differences:
       values_a = result_values[change_a]
       values_b = result_values[change_b]
       bug_update_builder.AddDifference(change_b, values_a, values_b)
 
-    improvement_dir = self._GetImprovementDirection()
     deferred.defer(
         job_bug_update.UpdatePostAndMergeDeferred,
         bug_update_builder,
