@@ -39,6 +39,30 @@
       },
       "revId": "1b5b6dbcbea69bdec5c92fd04c2d6c70a8e22801",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31186cab_4b6ca822",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-26T16:28:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9924e2a1_e79db2da",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "1b5b6dbcbea69bdec5c92fd04c2d6c70a8e22801",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
