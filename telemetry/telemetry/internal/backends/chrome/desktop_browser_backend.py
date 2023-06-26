@@ -193,6 +193,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._tmp_output_file = tempfile.NamedTemporaryFile('w')
       self._proc = subprocess.Popen(
           cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      if self.browser.platform.GetOSName() == 'mac':
+        cmd = ['open', '-W', '-a'].extend(cmd)
+        self._proc = subprocess.Popen(
+          cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
     else:
       # There is weird behavior on Windows where stream redirection does not
       # work as expected if we let the subprocess use the defaults. This results
@@ -208,6 +214,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         except io.UnsupportedOperation:
           self._proc = subprocess.Popen(
               cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
+      elif self.browser.platform.GetOSName() == 'mac':
+        # Start chrome on mac using `open`, so that it starts with default
+        # priority.
+        cmd = ['open', '-W', '-a'].extend(cmd)
+        self._proc = subprocess.Popen(
+          cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
       else:
         self._proc = subprocess.Popen(cmd, env=env)
 
