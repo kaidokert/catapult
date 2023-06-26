@@ -687,6 +687,10 @@ class AlertGroupWorkflow:
     """
     allowed_regressions = []
 
+    if (self._group.subscription_name not in
+        sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS):
+      return allowed_regressions
+
     for regression in regressions:
       benchmark = regression.benchmark_name
       bot = regression.bot_name
