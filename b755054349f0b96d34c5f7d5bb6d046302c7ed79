@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e7660f_381c5daa",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-26T22:49:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1ee1c84e_de25f283",
+      "range": {
+        "startLine": 281,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 78
+      },
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecf476fb_ab445dca",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a806dc78_f95ceb1f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-26T22:49:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ecf476fb_ab445dca",
+      "range": {
+        "startLine": 297,
+        "startChar": 16,
+        "endLine": 297,
+        "endChar": 87
+      },
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71cb70c1_1b29852f",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-06-26T14:44:12Z",
       "side": 1,
       "message": "nit: Single quotes for local consistency?",
+      "range": {
+        "startLine": 302,
+        "startChar": 60,
+        "endLine": 302,
+        "endChar": 61
+      },
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a7c70e_75d05c35",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1549552
+      },
+      "writtenOn": "2023-06-26T22:49:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "71cb70c1_1b29852f",
       "range": {
         "startLine": 302,
         "startChar": 60,
