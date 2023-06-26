@@ -16,6 +16,23 @@
       "message": "Eduardo can you review first and then I will tag an owner after you LGTM. Can also wait for Sean to LGTM.",
       "revId": "c3b5d71fd91cb774d08a36c3afba78099763c8f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1db2e36_dd8caead",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-06-26T21:18:54Z",
+      "side": 1,
+      "message": "An anomaly will have multiple subscriptions (e.g. sandwich subscription and v8 subscription, one-to-many relationship). If we are processing speedometer2 anomalies but the Alert Group is on the V8 subscription, it will pass this check since Sandwich is part of subscriptions.\n\nInstead, we should check the alert group\u0027s subscription property [1]. This guarantees we don\u0027t mess with non-test alert groups.\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group.py;l\u003d44;drc\u003d6c0cc79e4385649176b1a58c62109e0e3f0d329b",
+      "revId": "c3b5d71fd91cb774d08a36c3afba78099763c8f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
