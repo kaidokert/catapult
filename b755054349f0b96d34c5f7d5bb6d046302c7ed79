@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3335463e_7481648e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-26T14:44:12Z",
+      "side": 1,
+      "message": "LGTM. But not an OWNER.",
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee1c84e_de25f283",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-26T14:44:12Z",
+      "side": 1,
+      "message": "nit: Why not just:\n\n```suggestion\ntag_counts.update(line[prefix_size:].split())\n```",
+      "range": {
+        "startLine": 281,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 78
+      },
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecf476fb_ab445dca",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-26T14:44:12Z",
+      "side": 1,
+      "message": "nit: Same here:\n\n```suggestion\ntag_counts.update(line[prefix_size:right_bracket].split())\n```",
+      "range": {
+        "startLine": 297,
+        "startChar": 16,
+        "endLine": 297,
+        "endChar": 87
+      },
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71cb70c1_1b29852f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2023-06-26T14:44:12Z",
+      "side": 1,
+      "message": "nit: Single quotes for local consistency?",
+      "range": {
+        "startLine": 302,
+        "startChar": 60,
+        "endLine": 302,
+        "endChar": 61
+      },
+      "revId": "b755054349f0b96d34c5f7d5bb6d046302c7ed79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
