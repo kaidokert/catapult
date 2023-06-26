@@ -1022,9 +1022,11 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
       anomalies.append(
           self._AddAnomaly(test=test_case, is_improvement=improvement))
     group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
+    test_subscription = 'Sandwich Verification Test Speedometer2'
     self._sheriff_config.patterns = {
         '*': [
-            subscription.Subscription(name='sheriff', auto_triage_enable=True)
+            subscription.Subscription(
+                name=test_subscription, auto_triage_enable=True)
         ],
     }
     w = alert_group_workflow.AlertGroupWorkflow(
@@ -1048,6 +1050,33 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(r.benchmark_name, 'jetstream2')
     self.assertEqual(r.bot_name, 'mac-m1_mini_2020-perf')
     self.assertTrue(r.is_improvement)
+
+    # Test banned subscription
+    anomalies = []
+    anomalies.append(self._AddAnomaly(test=test_cases[-1], is_improvement=True))
+    group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
+    test_subscription = 'Banned subscription'
+    self._sheriff_config.patterns = {
+        '*': [
+            subscription.Subscription(
+                name=test_subscription, auto_triage_enable=True)
+        ],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+    )
+    self._UpdateTwice(
+        workflow=w,
+        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies),
+            issue={},
+        ))
+
+    self.assertEqual(len(group.get().anomalies), 1)
+    allowed_regressions = w._CheckSandwichAllowlist(ndb.get_multi(anomalies))
+    self.assertEqual(len(allowed_regressions), 0)
 
   def testSandwich_TryVerifyRegression_OptOut(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]

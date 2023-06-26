@@ -688,12 +688,14 @@ class AlertGroupWorkflow:
     allowed_regressions = []
 
     for regression in regressions:
-      benchmark = regression.benchmark_name
-      bot = regression.bot_name
-      if bot in sandwich_allowlist.ALLOWABLE_DEVICES and \
-        benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS and \
-        regression.is_improvement:
-        allowed_regressions.append(regression)
+      for s in regression.subscriptions:
+        if s.name in sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS:
+          benchmark = regression.benchmark_name
+          bot = regression.bot_name
+          if bot in sandwich_allowlist.ALLOWABLE_DEVICES and \
+            benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS and \
+            regression.is_improvement:
+            allowed_regressions.append(regression)
 
     return allowed_regressions
 
