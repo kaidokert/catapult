@@ -33,6 +33,24 @@
       "message": "how do you check if `execution.results` repro or not repro? is it a boolean?",
       "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac99f66_216f359e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-27T18:25:58Z",
+      "side": 1,
+      "message": "https://cloud.google.com/python/docs/reference/workflows/latest/google.cloud.workflows.executions_v1.types.Execution \n\nAccording to that doc (assuming it\u0027s the right version of the doc, and that it is indeed the same type that\u0027s returned by `worfklow_client.GetExecution`; there\u0027s not even a theoretical way to know either of those things for sure with python...) the field is called `result` rather than `results`. It\u0027s also rumored to be a json string (again, nothing actually enforces this because Python) according to the docs so you\u0027ll probably want to parse it and handle parser exceptions fist before doing anything else with its contents.\n\nAs far as how to get `repro` out of the json contents, I think that\u0027ll depend on how this gets invoked from steps in third_party/catapult/dashboard/sandwich_verification/sandwich-verification-workflow.yaml but Eduardo might have a more specific answer",
+      "parentUuid": "e58ab33f_88aa0101",
+      "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
