@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f4a9e5_43524455",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T17:31:23Z",
+      "side": 1,
+      "message": "PTAL. Will probably need to re-organize the function after Sean\u0027s changes land. Putting this here for now so we can think about what we want to log.",
+      "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58ab33f_88aa0101",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T17:31:23Z",
+      "side": 1,
+      "message": "how do you check if `execution.results` repro or not repro? is it a boolean?",
+      "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
