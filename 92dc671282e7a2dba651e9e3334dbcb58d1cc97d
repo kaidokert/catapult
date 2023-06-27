@@ -16,6 +16,23 @@
       "message": "I have some issues testing the codes, e.g. deploy the methods in this cl and the sandwich verification workflow to chromeperf-stage. Will post updates in this cl.",
       "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526dcad2_8bea5f7a",
+        "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-27T19:02:04Z",
+      "side": 1,
+      "message": "I haven\u0027t tested the data entity using the ndb from google.appengine.ext, but ndb from google.cloud indicates that repeated nested properties are not allowed in the StructuredProperty.",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
