@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6831f1dd_c873444f",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-27T20:14:32Z",
+      "side": 1,
+      "message": "give this a name that makes it more obvious that it\u0027s for the culprit verification step, not the regression verification step (e.g. `/cron/update-sandwich-culprit-results` or something like that)?",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5647e3ed_c5cb91b9",
+        "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-27T20:14:32Z",
+      "side": 1,
+      "message": "`class CloudWorkflow` - just to distinguish it further from AlertGroupWorkflow?",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "526dcad2_8bea5f7a",
         "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
         "patchSetId": 8
@@ -31,6 +65,24 @@
       "writtenOn": "2023-06-27T19:02:04Z",
       "side": 1,
       "message": "I haven\u0027t tested the data entity using the ndb from google.appengine.ext, but ndb from google.cloud indicates that repeated nested properties are not allowed in the StructuredProperty.",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e8439ae_7c71c364",
+        "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-27T20:14:32Z",
+      "side": 1,
+      "message": "probably shouldn\u0027t use it then. ndb is using the same underlying data storage services as google.cloud\u0027s version of datadstore now (aka \"Firebase in Datastore Mode\"), so I\u0027d assume that it shares the same schema definition constraints regardless of which client library we use to connect and make calls to it",
+      "parentUuid": "526dcad2_8bea5f7a",
       "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
