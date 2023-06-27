@@ -69,6 +69,24 @@
       "parentUuid": "3ac99f66_216f359e",
       "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83854dea_8e8ba335",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:45:53Z",
+      "side": 1,
+      "message": "Okay, so reviewing Yuan\u0027s CL, it looks like the way to do it is:\n\n```\nresult_dict \u003d json.loads(response.result)\nif result_dict[\u0027response\u0027] and result_dict[\u0027response\u0027][\u0027verification\u0027] and result_dict[\u0027response\u0027][\u0027verification\u0027][\u0027decision\u0027]:\n  decision \u003d result_dict[\u0027response\u0027][\u0027verification\u0027][\u0027decision\u0027]\n  if decision:\n    blah blah\n```",
+      "parentUuid": "ed5ddff9_3c629c4e",
+      "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
