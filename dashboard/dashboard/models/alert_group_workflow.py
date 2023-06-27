@@ -504,6 +504,68 @@ class AlertGroupWorkflow:
         send_email=False,
     )
 
+  def _UpdateRegressionVerification(self, execution, regression):
+    '''Update regression verification results in monorail.
+
+    This is a placeholder function and will likely need to be refactored
+    once the rest of the sandwich verification workflow lands.
+
+    Args:
+      execution - the response from workflow_client.GetExecution()
+      regression - the candidate regression that was sent for verification
+    '''
+
+    status = 'Unconfirmed'
+    if execution.state == 'ACTIVE':
+      return
+    elif execution.state == 'SUCCEEDED' and execution.results:
+      logging.info('Regression verification %s for project: %s and '
+                   'bug: %s succeeded with results %s.' %
+                   (execution.name, self._group.project_id, 
+                    self._group.bug.bug_id, execution.results))
+      comment = ('Regression verification %s for test: %s\n'
+                 'reproduced the regression. Proceed to bisection.' %
+                 (execution.name, regression.test))
+      label = 'Regression-Verification-Repro'
+      status = 'Available'
+    elif execution.state == 'SUCCEEDED' and not execution.results:
+      logging.info('Regression verification %s for project: %s and '
+                   'bug: %s succeeded with results %s.' %
+                   (execution.name, self._group.project_id,
+                    self._group.bug.bug_id, execution.results))
+      comment = ('Regression verification %s for test: %s\n'
+                 'did NOT reproduce the regression. Issue closed.' %
+                 (execution.name, regression.test))
+      label = ['Regression-Verification-No-Repro', 'Chromeperf-Auto-Closed']
+      status = 'WontFix'
+      # TODO(sunxiaodi): add components to the monorail post.
+    elif execution.state == 'FAILED':
+      logging.error('Regression verification %s for project: %s and '
+                   'bug: %s failed with error %s.' %
+                   (execution.name, self._group.project_id, 
+                    self._group.bug.bug_id, execution.error))
+      comment = ('Regression verification %s for test: %s\n' 
+                 'failed. Proceed to bisection.' %
+                 (execution.name, regression.test))
+      label = 'Regression-Verification-Failed'
+    elif execution.state == 'CANCELLED':
+      logging.info('Regression verification %s for project: %s and '
+                   'bug: %s cancelled with error %s.' %
+                   (execution.name, self._group.project_id, 
+                    self._group.bug.bug_id, execution.error))
+      comment = ('Regression verification %s for test: %s\n' 
+                 'cancelled with message %s. Proceed to bisection.' %
+                 (execution.name, regression.test, execution.error))
+      label = 'Regression-Verification-Cancelled'
+    perf_issue_service_client.PostIssueComment(
+        self._group.bug.bug_id,
+        self._group.project_id,
+        comment=comment,
+        labels=label,
+        status=status,
+        send_email=False,
+    )
+
   def _FileNormalUpdate(self,
                         all_regressions,
                         added,
