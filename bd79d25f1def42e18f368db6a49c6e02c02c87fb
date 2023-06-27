@@ -51,6 +51,24 @@
       "parentUuid": "e58ab33f_88aa0101",
       "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5ddff9_3c629c4e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:10:56Z",
+      "side": 1,
+      "message": "Yeah it\u0027s definitely result, not results [1]. \n\nSomething that\u0027s not clear to me is if the results here will have already run regressionDetection or not [2].\n\n@Eduardo can I assume I can get the results doing something like:\n\n```\nres \u003d json.loads(execution.result)\nelif execution.state \u003d\u003d \u0027SUCCEEDED\u0027 and res[\u0027decision\u0027]:\n  blah blah\n```\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/common/workflow_client.py;drc\u003d89fad9023d62d7031789a904b2aa6bd1d4d0a3e2;l\u003d58\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/sandwich_verification/main.py;drc\u003d5c17d0dab3bf7da9f3a45d9e279810fcf1939444;l\u003d148",
+      "parentUuid": "3ac99f66_216f359e",
+      "revId": "bd79d25f1def42e18f368db6a49c6e02c02c87fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
