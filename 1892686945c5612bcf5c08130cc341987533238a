@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35c6fe44_4685c2a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T19:47:34Z",
+      "side": 1,
+      "message": "LGTM, just verify this runs on Pinpoint before submitting.",
+      "revId": "1892686945c5612bcf5c08130cc341987533238a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
