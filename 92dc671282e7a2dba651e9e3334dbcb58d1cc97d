@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6c07b2a_44d919c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:49:13Z",
+      "side": 1,
+      "message": "Mostly looks good. My main complaint is the terms \"culprit\" and \"sandwich\" are getting used interchangeably. If something is only used for culprit verification, I think it makes more sense to refer to it as culprit verification so we know it\u0027s not involved in regression verification.",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6831f1dd_c873444f",
@@ -31,6 +48,75 @@
       "writtenOn": "2023-06-27T20:14:32Z",
       "side": 1,
       "message": "give this a name that makes it more obvious that it\u0027s for the culprit verification step, not the regression verification step (e.g. `/cron/update-sandwich-culprit-results` or something like that)?",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78eba963_c01bd24e",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:49:13Z",
+      "side": 1,
+      "message": "+1\n\nI think the \"Sandwich\" term might even be confusing down the road for people. Try to explicitly refer to culprit verification or regression verification and use sandwiching if it\u0027s used in both?",
+      "parentUuid": "6831f1dd_c873444f",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85316192_d7c1acb7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:49:13Z",
+      "side": 1,
+      "message": "ditto... if this is only used for culprit verification, then this should be renamed to reflect that.",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91c35ddf_e31678ec",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:49:13Z",
+      "side": 1,
+      "message": "I don\u0027t think we need the \u0027Sandwich-Verification-Completed\u0027 label since \u0027Sandwich-Verification-No-Repro\u0027 implies it.\n\nAlso \u0027Culprit-Verification-No-Repro\u0027 might be better? \n\nI see that there\u0027s a `Culprit-Verification-Completed` in job_bug_update so maybe I\u0027m not understanding the different labels...",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6cef21_1a867f1c",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-06-27T20:49:13Z",
+      "side": 1,
+      "message": "maybe throw an error? I don\u0027t think culprit verification should run without an existing bug with a bisection.",
       "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
