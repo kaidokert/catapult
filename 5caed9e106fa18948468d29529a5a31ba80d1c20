@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84fa614e_fa0ab627",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-06-27T01:57:09Z",
+      "side": 1,
+      "message": "It\u0027s necessary to add \u0027--args\u0027 between the Chrome executable filename and the rest of the arguments. See https://source.corp.google.com/piper///depot/google3/chrome/engprod/perf/cbb/runtime_orchestrator/webdriver_test.py;l\u003d69 for an example.\n\nI think the easiest thing to do is changing line 169. Keep the original form on other platforms, but on mac, set\n\ncmd \u003d [\u0027open\u0027, \u0027-W\u0027, \u0027-a\u0027, self._executable, \u0027--args\u0027]",
+      "range": {
+        "startLine": 199,
+        "startChar": 7,
+        "endLine": 199,
+        "endChar": 46
+      },
+      "revId": "5caed9e106fa18948468d29529a5a31ba80d1c20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
