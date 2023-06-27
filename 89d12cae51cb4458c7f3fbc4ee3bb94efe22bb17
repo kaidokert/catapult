@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de5507c9_360ac33b",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-06-27T16:20:55Z",
+      "side": 1,
+      "message": "Does anyone know what is causing build_urls to exist, but not be iterable? I\u0027m imagining cases like someone just set a hist.diagnostic field value to `\"http://build.url/...\"` when they should have set it to `[\"http://build.url/...\"]` or some such.  If that\u0027s the case we could fix the benchmark instead of quietly dropping the malformed data here.",
+      "revId": "89d12cae51cb4458c7f3fbc4ee3bb94efe22bb17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
