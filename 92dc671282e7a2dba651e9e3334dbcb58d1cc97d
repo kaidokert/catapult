@@ -70,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "679318b5_5a7556f3",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T19:57:52Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestion, changed to /cron/update-culprit-verification-results",
+      "parentUuid": "78eba963_c01bd24e",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85316192_d7c1acb7",
@@ -138,6 +156,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "083014b3_66020041",
+        "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T19:57:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5647e3ed_c5cb91b9",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "526dcad2_8bea5f7a",
@@ -169,6 +205,24 @@
       "side": 1,
       "message": "probably shouldn\u0027t use it then. ndb is using the same underlying data storage services as google.cloud\u0027s version of datadstore now (aka \"Firebase in Datastore Mode\"), so I\u0027d assume that it shares the same schema definition constraints regardless of which client library we use to connect and make calls to it",
       "parentUuid": "526dcad2_8bea5f7a",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db05724a_a61c9f62",
+        "filename": "dashboard/dashboard/pinpoint/models/sandwich_workflow_group.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T19:57:52Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestion. Changed the values of the cloud workflow info in the SandwichWorkflowGroup to the keys of CloudWorkflow instead of using the StructedProperty.",
+      "parentUuid": "0e8439ae_7c71c364",
       "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
