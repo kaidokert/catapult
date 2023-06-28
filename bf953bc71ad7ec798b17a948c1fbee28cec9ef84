@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6409e579_0dc8b8cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T22:18:06Z",
+      "side": 1,
+      "message": "Changes in patchset12 were related to formatting, by running \"git cl format --js\"",
+      "revId": "bf953bc71ad7ec798b17a948c1fbee28cec9ef84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
