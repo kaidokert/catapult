@@ -105,6 +105,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a49e6fd_f0742769",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T20:04:03Z",
+      "side": 1,
+      "message": "Done, changed the name to CulpritVerificationResultsUpdateHandler",
+      "parentUuid": "85316192_d7c1acb7",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91c35ddf_e31678ec",
@@ -122,6 +140,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc905121_f04709ac",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T20:04:03Z",
+      "side": 1,
+      "message": "Done, removed the Culprit-Verification-Completed label and updated it to use Culprit-Verification-No-Repro. I was thinking of using Culprit-Verification-Completed as an indication that the job/job was verified using the Culprit-Verification.",
+      "parentUuid": "91c35ddf_e31678ec",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f6cef21_1a867f1c",
@@ -135,6 +171,24 @@
       "writtenOn": "2023-06-27T20:49:13Z",
       "side": 1,
       "message": "maybe throw an error? I don\u0027t think culprit verification should run without an existing bug with a bisection.",
+      "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c27a36ba_12448fb8",
+        "filename": "dashboard/dashboard/pinpoint/handlers/sandwich.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-06-28T20:04:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f6cef21_1a867f1c",
       "revId": "92dc671282e7a2dba651e9e3334dbcb58d1cc97d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
