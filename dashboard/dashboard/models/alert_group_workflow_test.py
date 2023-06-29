@@ -21,6 +21,7 @@ from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import alert_group_workflow
 from dashboard.models import anomaly
+from dashboard.common import sandwich_allowlist
 from dashboard.models import subscription
 
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
@@ -1016,7 +1017,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         'master/mac-m1_mini_2020-perf/jetstream2/JetStream2/test_case',
         'master/mac-m1_mini_2020-perf/jetstream2/JetStream2/test_case'
     ]
-    test_improvements = [True, True, True, False, True]
+    test_improvements = [False, False, False, True, False]
     anomalies = []
     for test_case, improvement in zip(test_cases, test_improvements):
       anomalies.append(
@@ -1047,7 +1048,56 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     r = allowed_regressions[0]
     self.assertEqual(r.benchmark_name, 'jetstream2')
     self.assertEqual(r.bot_name, 'mac-m1_mini_2020-perf')
-    self.assertTrue(r.is_improvement)
+    self.assertFalse(r.is_improvement)
+
+  def testSandwich_TryVerifyRegression(self):
+    test_name = '/'.join(["master",
+        sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0],
+        'dummy', 'metric', 'parts'])
+    anomalies = [
+        self._AddAnomaly(test=test_name),
+        self._AddAnomaly(test=test_name)]
+
+    group = self._AddAlertGroup(
+        anomalies[0],
+        issue=self._issue_tracker.issue,
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+    self._issue_tracker.issue.update({
+        'state':
+            'open'
+    })
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        pinpoint=self._pinpoint,
+        crrev=self._crrev,
+    )
+    self.assertNotIn('Chromeperf-Auto-BisectOptOut',
+                  self._issue_tracker.issue.get('labels'))
+
+    # This fudges some work done by AlertGroupWorkflow.Update, but this test
+    # doesn't want to call the entire Update method just to exercise the much smaller
+    # unit we're trying to test here (_TryVerifyRegression).
+    anomalies = [a.get() for a in anomalies]
+    for a in anomalies:
+        a.auto_triage_enable = True
+        a.auto_bisect_enable = True
+        a.bug_id = 123
+        a.relative_delta = 3.1
+
+    update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=anomalies,
+            issue=self._issue_tracker.issue,
+        )
+
+    res = w._TryVerifyRegression(update)
+    self.assertTrue(res)
+
+    self.assertEqual(w._group.status, alert_group.AlertGroup.Status.sandwiched)
+    self.assertIsNotNone(self._pinpoint.new_job_request)
 
   def testSandwich_TryVerifyRegression_OptOut(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]
@@ -1077,7 +1127,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             anomalies=ndb.get_multi(anomalies),
             issue=self._issue_tracker.issue,
         )
-    w._TryVerifyRegression(update)
+    res = w._TryVerifyRegression(update)
+    self.assertFalse(res)
     self.assertIsNone(self._pinpoint.new_job_request)
 
   def testBisect_GroupTriaged_WithSummary(self):
