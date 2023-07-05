@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5829f9fe_1f4b836a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-05T20:37:31Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "ca88d19eb0dc10b47b7f38be3b7e2e18f19a37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cb9070ad_b03731a6",
@@ -14,6 +37,46 @@
       "writtenOn": "2023-07-05T20:29:22Z",
       "side": 1,
       "message": "PTAL. I\u0027ll be creating the CB triggers separately.",
+      "revId": "ca88d19eb0dc10b47b7f38be3b7e2e18f19a37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a4df414_cadc1779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-05T20:37:31Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "ca88d19eb0dc10b47b7f38be3b7e2e18f19a37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c74cfde_fd37cb2f",
+        "filename": "dashboard/cloudbuild_traffic/api.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-05T20:37:31Z",
+      "side": 1,
+      "message": "Sounds too much for just setting the traffic. Same for the other new yaml files.",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 14
+      },
       "revId": "ca88d19eb0dc10b47b7f38be3b7e2e18f19a37b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
