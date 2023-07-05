@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "804fd203_19804099",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-05T20:25:35Z",
+      "side": 1,
+      "message": "I am trying to add these vpython wheels for all of the packages in this requirements.txt file, so that our CQ can actually run our python unit tests that cover our code that depends on these packages.\n\nWhen I asked how to get our requirements.txt and vpython to agree on what packages our code depends on (https://chat.google.com/room/AAAAXGgrwSo/IbCBAtm-4No) I was advised to take a number of steps, one of which was to update package versions in this file first before I file bugs to add each of them to the list of chops-supported vpython3 wheels.\n\nDeploying to chromeperf-staging is apparently the only way to test changes to requirements.txt, so I did that with a CL that updated all of the packages that had newer versions available. The server app wouldn\u0027t even start up on staging (shocking, right?)  https://cloudlogging.app.goo.gl/E2HA9XDngwr2Kh8GA so I decided to only update this one crypto related package, since Vadim mentioned it specifically.",
+      "revId": "a8ce081a022ccaa09da501e4561d213597c65d4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
