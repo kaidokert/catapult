@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb9070ad_b03731a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-05T20:29:22Z",
+      "side": 1,
+      "message": "PTAL. I\u0027ll be creating the CB triggers separately.",
+      "revId": "ca88d19eb0dc10b47b7f38be3b7e2e18f19a37b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
