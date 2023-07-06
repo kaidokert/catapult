@@ -16,6 +16,24 @@
       "message": "just delete it rather than commenting it out",
       "revId": "73197d616e544e24fc42464e09a6900c80be0463",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd161de4_33b006d3",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-06T19:04:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3d49871_3be12040",
+      "revId": "73197d616e544e24fc42464e09a6900c80be0463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
