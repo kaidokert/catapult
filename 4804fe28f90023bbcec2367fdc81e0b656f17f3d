@@ -16,6 +16,74 @@
       "message": "PTAL",
       "revId": "4804fe28f90023bbcec2367fdc81e0b656f17f3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e6d0f80_a5a8a87d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-06T18:10:09Z",
+      "side": 1,
+      "message": "I think in this function you should also change the state of the group to either Closed (if regression repro) or Bisected (everything else). If changed to Bisected, start the bisection. Unless you planned on doing this another way.",
+      "revId": "4804fe28f90023bbcec2367fdc81e0b656f17f3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc9bcbb_b36b0244",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-06T18:10:09Z",
+      "side": 1,
+      "message": "You can get the decision directly from execution.result[\u0027decision\u0027]. Here\u0027s a sample response from GetExecution: https://paste.googleplex.com/4714035852345344. There\u0027s no verification or response keys in between anymore.",
+      "revId": "4804fe28f90023bbcec2367fdc81e0b656f17f3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9593225_7aa05ce8",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-06T18:10:09Z",
+      "side": 1,
+      "message": "I think it\u0027s worth adding information about the Pinpoint job used for verification and maybe p_value and CI\u0027s used. Example of how to get these: results_dict[\u0027job_id\u0027] and results_dict[\u0027statistic\u0027][\u0027p_value\u0027]",
+      "revId": "4804fe28f90023bbcec2367fdc81e0b656f17f3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7df3c52c_d4559467",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-06T18:10:09Z",
+      "side": 1,
+      "message": "Add info about Pinpoint job and p_value.",
+      "revId": "4804fe28f90023bbcec2367fdc81e0b656f17f3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
