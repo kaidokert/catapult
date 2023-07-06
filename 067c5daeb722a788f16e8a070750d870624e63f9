@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d0cb2b_5b26498f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-06T22:45:06Z",
+      "side": 1,
+      "message": "+1 \n\nIt\u0027s sad to me that this was less work than convincing python to interpret \u0027import\u0027 statements correctly, but thanks for persevering!",
+      "revId": "067c5daeb722a788f16e8a070750d870624e63f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fcfe0bd_5623f497",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-06T22:45:06Z",
+      "side": 1,
+      "message": "this change looks like it\u0027s doing more than just replacing the client library - does it fix an issue with how the existing code was processing the workflow response payload, or does the REST API return differently structured responses than the official python API client library?",
+      "revId": "067c5daeb722a788f16e8a070750d870624e63f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
