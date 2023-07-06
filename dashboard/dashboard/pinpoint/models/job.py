@@ -20,6 +20,7 @@ from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
+from dashboard.common import workflow_client
 from dashboard.common import cloud_metric
 from dashboard.common import datastore_hooks
 from dashboard.models import anomaly
