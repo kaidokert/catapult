@@ -39,6 +39,30 @@
       },
       "revId": "bf8b9ade25079057212d2eb82cfa2766b854f8a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bf2fb55_6e9ce3df",
+        "filename": "perf_issue_service/cloudbuild-perf-issue-service-traffic.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-06T17:01:20Z",
+      "side": 1,
+      "message": "Make sense. We can use filter to list the target version and pipe it to \u0027start\u0027. I can do it in the next CL. 😊",
+      "parentUuid": "c690ead3_c8648f68",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 76
+      },
+      "revId": "bf8b9ade25079057212d2eb82cfa2766b854f8a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
