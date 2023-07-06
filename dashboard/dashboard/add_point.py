@@ -144,7 +144,8 @@ def AddData(data_str):
     return request_handler.RequestHandlerReportError(
         'Invalid JSON string.', status=400)
 
-  logging.info('Received data: %s', data)
+  # Disabling the log below as it can exceed the size limit of 256K in GCP
+  # logging.info('Received data: %s', data)
 
   try:
     if isinstance(data, dict):
