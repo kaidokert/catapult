@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb892ed9_fe0bc2ee",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-07T22:12:31Z",
+      "side": 1,
+      "message": "can you create a function to check if something can be sandwiched or not? In the future we might have more criteria like stories",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66cee334_9edd5a3e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-07T22:12:31Z",
+      "side": 1,
+      "message": "can you also rewrite the rest of this block in a separate function? This function is very long.",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80cdc292_a613c807",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-07T22:12:31Z",
+      "side": 1,
+      "message": "what does this do when regression_cnt \u003d 0?",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
