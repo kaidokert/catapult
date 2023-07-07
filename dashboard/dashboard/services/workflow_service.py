@@ -22,7 +22,8 @@ def CreateExecution(anomaly,
                     location=LOCATION,
                     workflow_name=WORKFLOW_NAME):
   '''
-    An anomaly should contain the following properties:
+    An anomaly should be a JSON-serializable object (notably, this means it
+    cannot be an instance of models.Anomaly) containing the following properties:
         - benchmark: e.g. speedometer2
         - bot_name: e.g. linux-perf
         - story: e.g. Speedometer2
