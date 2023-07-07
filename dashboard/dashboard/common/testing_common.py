@@ -584,3 +584,17 @@ class FakeCASClient:
             'status': {},
         } for d in digests]
     }
+
+class FakeCloudWorkflows:
+  def __init__(self, new_execution_name='new execution name'):
+    self._new_execution_name = new_execution_name
+    self._CreateExecution_called = False
+
+  def CreateExecution(self, anomaly,
+                    verification_type='test',
+                    project='chromeperf',
+                    location='us-central1',
+                    workflow_name='sandwich-verification-workflow-prod'):
+
+    self._CreateExecution_called = True
+    return self._new_execution_name

@@ -21,6 +21,7 @@ from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import alert_group_workflow
 from dashboard.models import anomaly
+from dashboard.common import sandwich_allowlist
 from dashboard.models import subscription
 
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
@@ -34,6 +35,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._issue_tracker = testing_common.FakeIssueTrackerService()
     self._sheriff_config = testing_common.FakeSheriffConfigClient()
     self._pinpoint = testing_common.FakePinpoint()
+    self._cloud_workflows = testing_common.FakeCloudWorkflows()
     self._crrev = testing_common.FakeCrrev()
     self._gitiles = testing_common.FakeGitiles()
     self._revision_info = testing_common.FakeRevisionInfoClient(
@@ -1013,14 +1015,12 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         'master/bot/test_suite/measurement/test_case',
         'master/bot/speedometer2/Speedometer2/test_case',
         'master/win-10-perf/test_suite/measurement/test_case',
-        'master/mac-m1_mini_2020-perf/jetstream2/JetStream2/test_case',
         'master/mac-m1_mini_2020-perf/jetstream2/JetStream2/test_case'
     ]
-    test_improvements = [True, True, True, False, True]
     anomalies = []
-    for test_case, improvement in zip(test_cases, test_improvements):
+    for test_case in test_cases:
       anomalies.append(
-          self._AddAnomaly(test=test_case, is_improvement=improvement))
+          self._AddAnomaly(test=test_case))
     group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
     self._sheriff_config.patterns = {
         '*': [
@@ -1039,7 +1039,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             issue={},
         ))
 
-    self.assertEqual(len(group.get().anomalies), 5)
+    self.assertEqual(len(group.get().anomalies), 4)
 
     allowed_regressions = w._CheckSandwichAllowlist(ndb.get_multi(anomalies))
 
@@ -1047,7 +1047,60 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     r = allowed_regressions[0]
     self.assertEqual(r.benchmark_name, 'jetstream2')
     self.assertEqual(r.bot_name, 'mac-m1_mini_2020-perf')
-    self.assertTrue(r.is_improvement)
+
+  def testSandwich_TryVerifyRegression_sandwiched(self):
+    # Pre-coditions:
+    # - New anomaly appears
+    # - It's for a subscription is enabled for auto_triage and auto_bisect
+    # - The anomaly's AlertGroup status is 'triaged`
+    # - The anomaly's benchmark/workload/config is allowed for sandwich verification
+    # Post-conditions:
+    # - The anomaly's AlertGroup state is 'sandwiched'
+    # - A "Sandwich Verification" *cloud* workflow has been requested
+    # - *No* pinpoint bisection job has been started for the alert group
+    test_name = '/'.join(["master",
+        sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0],
+        'dummy', 'metric', 'parts'])
+    anomalies = [
+        self._AddAnomaly(test=test_name),
+        self._AddAnomaly(test=test_name)]
+
+    group = self._AddAlertGroup(
+        anomalies[0],
+        issue=self._issue_tracker.issue,
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+    self._issue_tracker.issue.update({
+        'state':
+            'open'
+    })
+    self._sheriff_config.patterns = {
+        '*': [
+            subscription.Subscription(name='sheriff', auto_triage_enable=True, auto_bisect_enable=True)
+        ],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        pinpoint=self._pinpoint,
+        crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
+    )
+    self.assertNotIn('Chromeperf-Auto-BisectOptOut',
+                  self._issue_tracker.issue.get('labels'))
+    self._UpdateTwice(
+        workflow=w,
+        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies),
+            issue=self._issue_tracker.issue,
+        ))
+    self.assertNotIn('Chromeperf-Auto-BisectOptOut',
+                  self._issue_tracker.issue.get('labels'))
+    self.assertEqual(w._group.status, alert_group.AlertGroup.Status.sandwiched)
+    self.assertIsNone(self._pinpoint.new_job_request)
+    self.assertTrue(self._cloud_workflows._CreateExecution_called)
 
   def testSandwich_TryVerifyRegression_OptOut(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]
@@ -1077,7 +1130,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             anomalies=ndb.get_multi(anomalies),
             issue=self._issue_tracker.issue,
         )
-    w._TryVerifyRegression(update)
+    res = w._TryVerifyRegression(update)
+    self.assertFalse(res)
     self.assertIsNone(self._pinpoint.new_job_request)
 
   def testBisect_GroupTriaged_WithSummary(self):
