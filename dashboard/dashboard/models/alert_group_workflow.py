@@ -1,6 +1,7 @@
 # Copyright 2020 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+# pylint: disable=too-many-lines
 """The workflow to manipulate an AlertGroup.
 
 We want to separate the workflow from data model. So workflow
@@ -46,6 +47,7 @@ from dashboard.services import crrev_service
 from dashboard.services import gitiles_service
 from dashboard.services import perf_issue_service_client
 from dashboard.services import pinpoint_service
+from dashboard.services import workflow_service
 
 # Templates used for rendering issue contents
 _TEMPLATE_LOADER = jinja2.FileSystemLoader(
@@ -136,6 +138,7 @@ class AlertGroupWorkflow:
       config=None,
       sheriff_config=None,
       pinpoint=None,
+      cloud_workflows=None,
       crrev=None,
       gitiles=None,
       revision_info=None,
@@ -149,6 +152,7 @@ class AlertGroupWorkflow:
     self._sheriff_config = (
         sheriff_config or sheriff_config_client.GetSheriffConfigClient())
     self._pinpoint = pinpoint or pinpoint_service
+    self._cloud_workflows = cloud_workflows or workflow_service
     self._crrev = crrev or crrev_service
     self._gitiles = gitiles or gitiles_service
     self._revision_info = revision_info or revision_info_client
@@ -367,12 +371,12 @@ class AlertGroupWorkflow:
                    group.created, self._config.triage_delay, update.now,
                    group.status)
       self._TryTriage(update.now, update.anomalies)
-    # TODO(crbug/1454620): Add logic to start sandwich verification when
-    # the regression has not yet been verified and to start bisection if
-    # the bug is verified or there are no regressions in sandwich allowlist
-    # TODO(crbug/1454620): replace with group.Status.verified_regressions
-    # and update
-    # third_party/catapult/dashboard/dashboard/models/alert_group.py;l=48
+    elif len(self._CheckSandwichAllowlist(
+        update.anomalies)) > 0:  # and not group.verified:
+      logging.info('attempting sandwich verification for AlertGroup: %s',
+                   self._group.key.string_id())
+      sandwiched = self._TryVerifyRegression(update)
+      logging.info('sandwiched: %s', sandwiched)
     elif group.status in {group.Status.triaged}:
       self._TryBisect(update)
     return self._CommitGroup()
@@ -675,7 +679,7 @@ class AlertGroupWorkflow:
         project=self._group.project_id)
     return True
 
-  def _CheckSandwichAllowlist(self, regressions): # pylint: disable=unused-argument
+  def _CheckSandwichAllowlist(self, regressions):
     """Filter list of regressions against the sandwich verification
     allowlist and improvement direction.
 
@@ -686,13 +690,14 @@ class AlertGroupWorkflow:
       allowed_regressions: A list of sandwich verifiable regressions.
     """
     allowed_regressions = []
-
     for regression in regressions:
+      if not isinstance(regression, anomaly.Anomaly):
+        raise TypeError
+
       benchmark = regression.benchmark_name
       bot = regression.bot_name
       if bot in sandwich_allowlist.ALLOWABLE_DEVICES and \
-        benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS and \
-        regression.is_improvement:
+        benchmark in sandwich_allowlist.ALLOWABLE_BENCHMARKS:
         allowed_regressions.append(regression)
 
     return allowed_regressions
@@ -704,7 +709,7 @@ class AlertGroupWorkflow:
       update: An alert group containing anomalies and potential regressions
 
     Returns:
-      True or False.
+      True or False, indicating whether or not it started a pinpoint job.
     """
     # Do not run sandwiching if anomaly subscription opts out of culprit finding
     if (update.issue
@@ -719,11 +724,49 @@ class AlertGroupWorkflow:
     if not regression:
       return False
 
-    self._StartPinpointTryJob(regression)
+    start_git_hash = pinpoint_request.ResolveToGitHash(
+      regression.start_revision - 1, regression.benchmark_name, crrev=self._crrev)
+    end_git_hash = pinpoint_request.ResolveToGitHash(
+      regression.end_revision, regression.benchmark_name, crrev=self._crrev)
 
-    # TODO(crbug/1454620): Update the issue associated with this group,
-    # using the same logic in _TryBisect. Use
-    # _TEMPLATE_AUTO_REGRESSION_VERIFICATION_COMMENT as the bug template
+    sandwich_execution_id = self._cloud_workflows.CreateExecution({
+        'benchmark':
+            regression.benchmark_name,
+        'bot_name':
+            regression.bot_name,
+        'story':
+            regression.test.get().unescaped_story_name,
+        'measurement':
+            regression.statistic, # This is probably wrong.
+        'target':
+            pinpoint_request.GetIsolateTarget(regression.bot_name,
+                                              regression.benchmark_name),
+        'start_git_hash':
+          start_git_hash,
+        'end_git_hash':
+          end_git_hash,
+        'project':
+            self._group.project_id,
+    })
+
+    self._group.status = self._group.Status.sandwiched
+    logging.info('sandwich_execution_id: %s', sandwich_execution_id)
+
+    self._group.updated = update.now
+
+    self._CommitGroup()
+    perf_issue_service_client.PostIssueComment(
+        self._group.bug.bug_id,
+        self._group.project_id,
+        comment=_TEMPLATE_AUTO_REGRESSION_VERIFICATION_COMMENT.render(
+            {'test': utils.TestPath(regression.test)}),
+        # Do not set labels yet on this issue, since we're only starting
+        # the sandwich verification to try and repro the regression before
+        # we alert any humans to the situation.
+        send_email=False,
+    )
+
+    regression.put()
 
     return True
 
@@ -840,7 +883,17 @@ class AlertGroupWorkflow:
     Returns:
       job_id: A string representing the Pinpoint job ID
     """
-    raise NotImplementedError("crbug/1454620")
+    try:
+      results = self._pinpoint.NewJob(self._NewPinpointRequest(regression))
+    except pinpoint_request.InvalidParamsError as e:
+      six.raise_from(
+          InvalidPinpointRequest('Invalid pinpoint request: %s' % (e,)), e)
+
+    if 'jobId' not in results:
+      raise InvalidPinpointRequest('Start pinpoint bisection failed: %s' %
+                                   (results,))
+
+    return results.get('jobId')
 
   def _StartPinpointBisectJob(self, regression):
     try:
