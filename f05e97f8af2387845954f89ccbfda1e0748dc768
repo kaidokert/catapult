@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ac0b4a_4d16bfd3",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6487dd3a_384a4b9d",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2cd4724_a5647233",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-07-10T19:53:24Z",
       "side": 1,
       "message": "Also check that group status is Triaged.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc573638_bb6b9360",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2cd4724_a5647233",
       "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -52,6 +88,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f7c1dae_830dd176",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2291fdb7_dafe9ecf",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd4c939e_583580ef",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-07-10T19:53:24Z",
       "side": 1,
       "message": "Now status can be either Triaged or Sandwiched.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b913275b_2918f53b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Just to double check: if AlertGroup.status is currently \u0027sandwiched\u0027, and this line evaluates to True, we do indeed always want to run a _TryBisect on this group?\n\nAccording to unit tests, that code change will update the AlertGroup.status from \u0027sandwiched\u0027 to \u0027bisected\u0027 even in cases where the sandwich verification workflow hasn\u0027t completed yet.",
+      "parentUuid": "cd4c939e_583580ef",
       "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -86,6 +158,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f20192d2_b9f79374",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Added this information to the pydoc for CreateExecution, so other humans can enforce it by hand if they are diligent enough to read the pydoc. \n\nIn a language with static type checking, this wouldn\u0027t require humans with deep folk knowledge about the codebase to point it out in code reviews... \u003c/soap-box\u003e",
+      "parentUuid": "d9f5a752_f7b0cf0c",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a8f258b_1ef06213",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-07-10T19:53:24Z",
       "side": 1,
       "message": "Example of how to get the chart/measurement using the regression\u0027s test path: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/services/pinpoint_service.py;l\u003d88;drc\u003ddded23020951398100c0914499d7fd2e0daa4894.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d61650_11b6ad3e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a8f258b_1ef06213",
       "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -120,6 +228,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e20db957_f1f7710e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be73ce84_28a65fe3",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5196f9c0_d51e7fa2",
@@ -133,6 +259,24 @@
       "writtenOn": "2023-07-10T19:53:24Z",
       "side": 1,
       "message": "Doesn\u0027t seem like we do any actual updating of the regression in this function, so this might not be needed.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b5ab19_fbd5c935",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-10T21:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5196f9c0_d51e7fa2",
       "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
