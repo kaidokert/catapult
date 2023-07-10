@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "084cc7d4_03067a24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-10T21:56:22Z",
+      "side": 1,
+      "message": "LGTM with potential updates in the future.",
+      "revId": "3a72f30c80b3edddc2d145516031362da87f7e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1c2f3d8_6ff6e76b",
@@ -38,6 +55,30 @@
       "side": 1,
       "message": "Correct. Worst case scenario we get 25 plots in there. However in practice it will hopefully be closer to 5 for majority of the cases. I am hesitant to multiply len(tests) and len(subtests_1) since the likelihood that test A has all subtests a,b,c is very low.",
       "parentUuid": "e1c2f3d8_6ff6e76b",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "3a72f30c80b3edddc2d145516031362da87f7e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ea17b8_d41d9c94",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-10T21:56:22Z",
+      "side": 1,
+      "message": "I see. 25 is not bad at all. The only concern is how to tell end user that we will only show the top X results. Sorting may be needed here. We can improve it in the future.",
+      "parentUuid": "13e6c2ee_d6fb93e7",
       "range": {
         "startLine": 53,
         "startChar": 6,
