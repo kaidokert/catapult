@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e70611_6a2fc107",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T21:32:05Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused by this logic. Is this something that Pinpoint currently does? If so, where? Is this how we determine whether a difference is significant or not?",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 16
+      },
+      "revId": "ad91003dda1d1b3490a498d89f5ce4283036a290",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
