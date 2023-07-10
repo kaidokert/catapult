@@ -22,6 +22,30 @@
       },
       "revId": "ad91003dda1d1b3490a498d89f5ce4283036a290",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "938f5de9_a3db0dab",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-10T21:42:58Z",
+      "side": 1,
+      "message": "Current Pinpoint doesn\u0027t care about whether the difference is an improvement or regression, it outputs top three as culprits (example bug: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1463453#c6, the two signs of the two culprits in comment 6 is different, so that I think one is in the regression direction while the other is in the improvement direction). I think if the one is in the improvement direction, then we may not need to take care of it further.\n\nThe calculation of diff is based on the code here: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job_bug_update.py;l\u003d335 There values align with the values displayed on the Pinpoint update comment, e.g. Parse-Background:duration: 34.72 → 210.1 (+175.3) (+504.9%)\n\nI am happy to remove this logic and go with what Pinpoint does right now (may remove the highlighted codes). What do you think about it? Many thanks!!",
+      "parentUuid": "a8e70611_6a2fc107",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 16
+      },
+      "revId": "ad91003dda1d1b3490a498d89f5ce4283036a290",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
