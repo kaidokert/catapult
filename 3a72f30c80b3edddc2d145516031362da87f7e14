@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c2f3d8_6ff6e76b",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-10T21:21:15Z",
+      "side": 1,
+      "message": "If we have a tests as (A,B,C) and subtests_1 as (a,b), is it possible that we have 6 combinations (plots) while the loop does not break?",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "3a72f30c80b3edddc2d145516031362da87f7e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93ae8f1d_879d2e0b",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-10T21:21:15Z",
+      "side": 1,
+      "message": "nit: Does Skia Perf shows the end date on X axis even if there is no data on that date? I\u0027m wondering how it will look like if the regression is the last data on the plot.",
+      "range": {
+        "startLine": 82,
+        "startChar": 6,
+        "endLine": 82,
+        "endChar": 14
+      },
+      "revId": "3a72f30c80b3edddc2d145516031362da87f7e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
