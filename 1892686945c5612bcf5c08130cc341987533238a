@@ -33,6 +33,24 @@
       "message": "Many tests are failing on Mac. The reason is our test runner runs multiple tests in parallel, but by default the \u0027open\u0027 command only rusn a single instance of Chrome. If Chrome is already running, the \u0027open\u0027 command does nothing, and that confuses tests running in parallel. To fix this, add \u0027-n\u0027 switch to the \u0027open\u0027 command line.\n\nThere is another problem. Telemetry closes Chrome by killing the Chrome process. But when \u0027open\u0027 is used, this only kills the \u0027open\u0027 command, and leaves Chrome still running. For this, it\u0027s necessary to modify https://source.chromium.org/chromium/chromium/src/+/d345de1b22f599da7240f43845bb693f216ad880:third_party/catapult/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py;l\u003d254 so that self._devtools_client.CloseBrowser is always called on Mac.",
       "revId": "1892686945c5612bcf5c08130cc341987533238a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac412a5e_b22989de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1423280
+      },
+      "writtenOn": "2023-07-10T16:33:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19a2e3ec_76122928",
+      "revId": "1892686945c5612bcf5c08130cc341987533238a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
