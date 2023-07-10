@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e50acd3e_e556b92b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T20:56:52Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "0e500412_7c068231",
+      "revId": "4804fe28f90023bbcec2367fdc81e0b656f17f3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dc9bcbb_b36b0244",
