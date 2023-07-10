@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13e6c2ee_d6fb93e7",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-10T21:46:30Z",
+      "side": 1,
+      "message": "Correct. Worst case scenario we get 25 plots in there. However in practice it will hopefully be closer to 5 for majority of the cases. I am hesitant to multiply len(tests) and len(subtests_1) since the likelihood that test A has all subtests a,b,c is very low.",
+      "parentUuid": "e1c2f3d8_6ff6e76b",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "3a72f30c80b3edddc2d145516031362da87f7e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93ae8f1d_879d2e0b",
         "filename": "dashboard/dashboard/models/skia_helper.py",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-10T21:21:15Z",
       "side": 1,
       "message": "nit: Does Skia Perf shows the end date on X axis even if there is no data on that date? I\u0027m wondering how it will look like if the regression is the last data on the plot.",
+      "range": {
+        "startLine": 82,
+        "startChar": 6,
+        "endLine": 82,
+        "endChar": 14
+      },
+      "revId": "3a72f30c80b3edddc2d145516031362da87f7e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31530a34_905a0636",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-10T21:46:30Z",
+      "side": 1,
+      "message": "Sent you an example on chat. Basically the anomaly icon shows up right at the end. Which is why I am adding a day\u0027s worth of commits at the end so that the graph renders better.",
+      "parentUuid": "93ae8f1d_879d2e0b",
       "range": {
         "startLine": 82,
         "startChar": 6,
