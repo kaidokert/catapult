@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6487dd3a_384a4b9d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "I think we only want to call these on anomalies returned by _GetRegressions, instead of update.anomalies. If you see line 720, we filter for regressions before calling _CheckSandwichAllowlist. So this line should do the same.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2cd4724_a5647233",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "Also check that group status is Triaged.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2291fdb7_dafe9ecf",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "If sandwiched returns False, what do we want to do here? Try again in another iteration or move straight to bisect?",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd4c939e_583580ef",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "Now status can be either Triaged or Sandwiched.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f5a752_f7b0cf0c",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "It\u0027s possible CreateExecution throws an error. Since it uses the request library, these are possible errors raised: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/services/request.py;l\u003d25-34;drc\u003ddded23020951398100c0914499d7fd2e0daa4894. These should be handled by returning False here.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8f258b_1ef06213",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "Example of how to get the chart/measurement using the regression\u0027s test path: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/services/pinpoint_service.py;l\u003d88;drc\u003ddded23020951398100c0914499d7fd2e0daa4894.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be73ce84_28a65fe3",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "We\u0027ll want to save this execution id as a new group property, so that we can later check its status.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5196f9c0_d51e7fa2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-10T19:53:24Z",
+      "side": 1,
+      "message": "Doesn\u0027t seem like we do any actual updating of the regression in this function, so this might not be needed.",
+      "revId": "f05e97f8af2387845954f89ccbfda1e0748dc768",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
