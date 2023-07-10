@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e6ca51_6bc98f25",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-10T19:02:49Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestion, added _CanSandwich to check if something can be sandwiched or not",
+      "parentUuid": "bb892ed9_fe0bc2ee",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66cee334_9edd5a3e",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35bdcbb0_eb297b78",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-10T19:02:49Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestion, added parts of the codes to _StartSandwichAndUpdateWorkflowGroup.",
+      "parentUuid": "66cee334_9edd5a3e",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80cdc292_a613c807",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-07-07T22:12:31Z",
       "side": 1,
       "message": "what does this do when regression_cnt \u003d 0?",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28c9d248_1e28c20a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-10T19:02:49Z",
+      "side": 1,
+      "message": "If regression_cnt \u003d 0, then the remaining codes won\u0027t need to be sandwiched, we can directly update the bug with \u0027Pinpoint-No-Regression\u0027",
+      "parentUuid": "80cdc292_a613c807",
       "revId": "bb70717c299891aabe5964f77f476c7522addfff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
