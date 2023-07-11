@@ -16,6 +16,24 @@
       "message": "This change will be committed only after the weekly service upgrade is done. This will allow other changes to first roll out smoothly and then we can start directing traffic gradually to the version containing this change.",
       "revId": "f5e52d894820af94a1fa8395f83f988bbba3af44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3196b92e_fdc6511a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-11T21:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15fae809_f44ad810",
+      "revId": "f5e52d894820af94a1fa8395f83f988bbba3af44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
