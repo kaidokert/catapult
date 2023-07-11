@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "185a5119_50d13b47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-11T17:23:28Z",
+      "side": 1,
+      "message": "This is the part 2 of the go-live of alert group workflows. It will not go into the rollout of this week as we have the part 1 already.",
+      "revId": "eefdbdcd309e931626030388bb736ebf78edf787",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
