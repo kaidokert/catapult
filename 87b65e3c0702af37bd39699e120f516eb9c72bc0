@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78779a74_d6a5bdd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-11T00:17:45Z",
+      "side": 1,
+      "message": "Submitting the part 1 of the alert group workflow go live.",
+      "revId": "87b65e3c0702af37bd39699e120f516eb9c72bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
