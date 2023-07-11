@@ -104,6 +104,24 @@
       "parentUuid": "80cdc292_a613c807",
       "revId": "bb70717c299891aabe5964f77f476c7522addfff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b8c6061_8e04aed9",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:21:38Z",
+      "side": 1,
+      "message": "Ah I see that now. Ty!",
+      "parentUuid": "28c9d248_1e28c20a",
+      "revId": "bb70717c299891aabe5964f77f476c7522addfff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d104b61_327d2420",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:21:38Z",
+      "side": 1,
+      "message": "LGTM with a nit. Also added to discussion about improvement direction.",
+      "revId": "ad91003dda1d1b3490a498d89f5ce4283036a290",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72aab9d8_8fcc4bbe",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:21:38Z",
+      "side": 1,
+      "message": "We have a `_CanSandwich` method here and a `_CheckSandwich` for regression verification. Can you add a todo to implement `_CanSandwich` in sandwich_allowlist so we do not have to maintain both separately?",
+      "revId": "ad91003dda1d1b3490a498d89f5ce4283036a290",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8e70611_6a2fc107",
@@ -38,6 +72,30 @@
       "side": 1,
       "message": "Current Pinpoint doesn\u0027t care about whether the difference is an improvement or regression, it outputs top three as culprits (example bug: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1463453#c6, the two signs of the two culprits in comment 6 is different, so that I think one is in the regression direction while the other is in the improvement direction). I think if the one is in the improvement direction, then we may not need to take care of it further.\n\nThe calculation of diff is based on the code here: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job_bug_update.py;l\u003d335 There values align with the values displayed on the Pinpoint update comment, e.g. Parse-Background:duration: 34.72 → 210.1 (+175.3) (+504.9%)\n\nI am happy to remove this logic and go with what Pinpoint does right now (may remove the highlighted codes). What do you think about it? Many thanks!!",
       "parentUuid": "a8e70611_6a2fc107",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 16
+      },
+      "revId": "ad91003dda1d1b3490a498d89f5ce4283036a290",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0100b119_cf9493d5",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:21:38Z",
+      "side": 1,
+      "message": "I think it\u0027s worth checking the improvement direction... users have reported bugs of bisection sending back improvements instead of regressions. We should consider culprits that are actually improvements as false positives.",
+      "parentUuid": "938f5de9_a3db0dab",
       "range": {
         "startLine": 661,
         "startChar": 0,
