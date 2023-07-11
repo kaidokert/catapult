@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9789e81_1b233d3e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:13:32Z",
+      "side": 1,
+      "message": "This comment addresses line 702-705. I wonder if it makes more sense for sandwich_allowlist to have its own `check` method so that we do not have to update two separate versions in regression and culprit verification. Maybe add a TODO for that?",
+      "revId": "b90c1bc5ce48dc60e0272e0af5cf17961962b8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24ccd2e_0aa79bcf",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:13:32Z",
+      "side": 1,
+      "message": "why subtract by 1 here?",
+      "revId": "b90c1bc5ce48dc60e0272e0af5cf17961962b8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83edae63_20c36b1b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:13:32Z",
+      "side": 1,
+      "message": "This looks identical to `_StartPinpointBisectJob`... how does this start a try job?\n\nOn the other hand, do we still need this function? The workflow creates the regression verification job.",
+      "revId": "b90c1bc5ce48dc60e0272e0af5cf17961962b8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b952f61e_c5d02715",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T01:13:32Z",
+      "side": 1,
+      "message": "start pinpoint regression verification failed?",
+      "revId": "b90c1bc5ce48dc60e0272e0af5cf17961962b8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
