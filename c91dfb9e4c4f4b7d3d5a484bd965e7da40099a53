@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e361c6_d0e32807",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-11T22:07:22Z",
+      "side": 1,
+      "message": "the Deployment section in the oncall rotation includes some manual copy/paste steps that I stumbled on this morning; I think we can automate at least the \"figure out which version to update each service to\" part with something like the command in this CL.\n\nNote: The catapult repo doesn\u0027t support Go development very well AFAICT. I don\u0027t know if CI will even verify that this code builds.  I thought about putting this in skia/buildbot, but it really doesn\u0027t belong there since it\u0027s so specific to problems that only catapult/dashboard has.",
+      "revId": "c91dfb9e4c4f4b7d3d5a484bd965e7da40099a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
