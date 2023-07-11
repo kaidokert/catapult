@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9022d76_f077ab71",
+        "filename": "dashboard/cloudbuild_traffic/default.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-11T17:41:46Z",
+      "side": 0,
+      "message": "Wrong file edited?",
+      "revId": "d8b9d4e6c4c4a0faac993e9f5d0da21ab814b1b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
