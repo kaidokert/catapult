@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4818cffa_5d0f0577",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-11T23:03:46Z",
+      "side": 1,
+      "message": "PTAL. Trying a quick fix on cloud build.",
+      "revId": "1a746031a99281db27f177894a4cdd35d771ef45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
