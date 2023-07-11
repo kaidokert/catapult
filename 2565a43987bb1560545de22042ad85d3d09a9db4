@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c6b48d1_106b0f3d",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-11T23:18:39Z",
+      "side": 1,
+      "message": "I believe the issue was happening inside this function call",
+      "range": {
+        "startLine": 133,
+        "startChar": 17,
+        "endLine": 133,
+        "endChar": 68
+      },
+      "revId": "2565a43987bb1560545de22042ad85d3d09a9db4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
