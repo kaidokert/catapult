@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b187e4_57e8c5c5",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-11T16:38:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f9d9e093_2c21e0d8",
+      "revId": "b90c1bc5ce48dc60e0272e0af5cf17961962b8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83edae63_20c36b1b",
