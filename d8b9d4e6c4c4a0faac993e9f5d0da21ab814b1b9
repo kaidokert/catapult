@@ -16,6 +16,24 @@
       "message": "Wrong file edited?",
       "revId": "d8b9d4e6c4c4a0faac993e9f5d0da21ab814b1b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9831ef94_c7b4d53a",
+        "filename": "dashboard/cloudbuild_traffic/default.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-11T17:49:07Z",
+      "side": 0,
+      "message": "Yep. Fixed.",
+      "parentUuid": "b9022d76_f077ab71",
+      "revId": "d8b9d4e6c4c4a0faac993e9f5d0da21ab814b1b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
