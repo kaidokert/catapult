@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9129d60_2e01b0fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-12T16:56:37Z",
+      "side": 1,
+      "message": "This cl includes a `-service-id` flag (line 32) that tells the command to just update a single service\u0027s yaml file.\n\nThe demonstration CL is shows what it does if you omit that flag (updates all yaml files).  \n\nAnd if you do not pass a `-checkout-base` flag to the command it just does a dry run (prints out what versions it would have updated in the yaml file(s)).",
+      "parentUuid": "4bc980dd_12e6bcde",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 61
+      },
+      "revId": "c91dfb9e4c4f4b7d3d5a484bd965e7da40099a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a5e361c6_d0e32807",
