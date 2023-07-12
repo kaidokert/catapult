@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfefbe0a_331b701d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-12T17:49:19Z",
+      "side": 1,
+      "message": "The original CL was ready in June and was not checked in as I was taking days off. The test passed in CQ but somehow failed in cloud build. Fixed it and want to have it go live. PTAL. Thanks!",
+      "revId": "9168026a6bf8b21d48763e35c38272c07b6565f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
