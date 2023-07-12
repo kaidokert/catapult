@@ -16,6 +16,23 @@
       "message": "Missed the \u0027$\u0027 sign",
       "revId": "73eb351689d104ae4de60c885d012c6c1874f6ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef6ee4d8_0c1bdfba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-12T18:03:41Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "73eb351689d104ae4de60c885d012c6c1874f6ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
