@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bc980dd_12e6bcde",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-12T16:43:51Z",
+      "side": 1,
+      "message": "Love this! Just one nit comment. Instead of creating 1 CL encompassing all services, do we want the tool to do 1 CL per service instead? We can specify the service name as an arg to the cmd",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 61
+      },
+      "revId": "c91dfb9e4c4f4b7d3d5a484bd965e7da40099a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a5e361c6_d0e32807",
