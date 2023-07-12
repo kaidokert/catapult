@@ -31,6 +31,7 @@ class TabTest(tab_test_case.TabTestCase):
   def testTabBrowserIsRightBrowser(self):
     self.assertEqual(self._tab.browser, self._browser)
 
+  @decorators.Disabled('linux') # https://crbug.com/1464224
   def testRendererCrash(self):
     self.assertRaises(exceptions.DevtoolsTargetCrashException,
                       lambda: self._tab.Navigate('chrome://crash',
