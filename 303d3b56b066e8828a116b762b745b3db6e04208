@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb7f5cd_11c9bd18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1513463
+      },
+      "writtenOn": "2023-07-13T18:47:59Z",
+      "side": 1,
+      "message": "Was `third_party/gsutil/third_party/mock/ChangeLog` deleted on purpose in this change? The file exists in gsutil in v5.24. The absence of this file is causing us, at Brave, errors on Android when trying to run build/android/test_runner.py:\nFile \"/home/ubuntu/workspace/cr116-android/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py\", line 73, in VerifyLocalFileExists\n raise IOError(errno.ENOENT, os.strerror(errno.ENOENT), path)\nFileNotFoundError: [Errno 2] No such file or directory: \u0027/home/ubuntu/workspace/cr116-android/src/third_party/catapult/third_party/gsutil/third_party/mock/docs/changelog.txt\u0027\n\nNote, that mock/docs/changelog.txt is a symlink that points to the deleted mock/ChangeLog file.",
+      "revId": "303d3b56b066e8828a116b762b745b3db6e04208",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
