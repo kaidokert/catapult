@@ -16,6 +16,29 @@
       "message": "ptal",
       "revId": "706dde853b54f2d26f64dcc4e08738a127202878",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fc2b912_f97ed749",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-13T16:51:11Z",
+      "side": 1,
+      "message": "The change of the first line LGTM. However, I don\u0027t believe the second line should be changed. When used as a string, OSVersion only includes the codename part, and the version part isn\u0027t visible.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 0
+      },
+      "revId": "706dde853b54f2d26f64dcc4e08738a127202878",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
