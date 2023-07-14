@@ -39,6 +39,30 @@
       },
       "revId": "706dde853b54f2d26f64dcc4e08738a127202878",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b82010_493ac2cc",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2023-07-14T09:16:34Z",
+      "side": 1,
+      "message": "`_GetOSVersion` returns a float and that didn\u0027t concat with `codename + \u0027 \u0027 + version` locally. So I guess I need to fix that up manually?",
+      "parentUuid": "9fc2b912_f97ed749",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 0
+      },
+      "revId": "706dde853b54f2d26f64dcc4e08738a127202878",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
