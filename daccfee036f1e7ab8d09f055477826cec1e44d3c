@@ -52,6 +52,24 @@
       "parentUuid": "c0dd1153_9733ef61",
       "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c04623df_b0847728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-14T22:20:31Z",
+      "side": 1,
+      "message": "Sorry, I should have been more specific with my question: Is it possible to get cloud build to execute this .yaml file before submitting this CL?  \n\nOr is it not possible to have cloud build run this .yaml without landing it first? (I suppose it would be fine to land this just in order to test it, given that we can\u0027t break the current sheriff-config cloud builder any worse than it already is).\n\nRegarding the command you ran in your first comment: Were you trying to repro the original cloud build error locally, or were you trying to test the fix that\u0027s in this CL? Because what you ran doesn\u0027t test the fix in this CL. You saw the same error as cloud build because you ran the same parameters that cloud build currently uses.  This CL tries to fix that error by changing the -I flag to remove an unnecessary \u0027dashboard/protobuf\u0027 suffix from the protoc import path.\n\nTo test the fix for the problem (the one that\u0027s in this CL\u0027s latest patchset) on your workstation, I think you\u0027d need to run this (copy and paste it). Note the very slight difference in the `-I` flag between this and what you ran):\n\n```\nthird_party/catapult$ protoc -I dashboard --python_out dashboard/dashboard/sheriff_config dashboard/dashboard/protobuf/sheriff.proto dashboard/dashboard/protobuf/sheriff_config.proto\n```\n\nSwitching from `-I dashboard/dashboard/protobuf` to `-I dashboard` is the difference between protoc interpreting this line in `sheriff_config.proto`:\n\n`import \"dashboard/protobuf/sheriff.proto\";`\n\nto mean opening this file path (which doesn\u0027t exist in a catapult checkout root): \n\n  `./dashboard/dashboard/protobuf/dashboard/dashboard/protobuf/sheriff.proto`\n  \ninstead of this file path (which does exist in a catapult checkout root):\n\n  `./dashboard/dashboard/protobuf/sheriff.proto`\n  \nThis CL tries to make cloud build do the latter.",
+      "parentUuid": "c0dd1153_9733ef61",
+      "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
