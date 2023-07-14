@@ -63,6 +63,30 @@
       },
       "revId": "706dde853b54f2d26f64dcc4e08738a127202878",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d43d83_3c911fc6",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-14T15:27:41Z",
+      "side": 1,
+      "message": "Upon further look, calling _GetOSVersion is problematic, as the version does not always parse as float. For example, on the perf waterfall, os_release.get(\u0027VERSION\u0027) actually returns \"18.04.6 LTS (Bionic Beaver)\". This causes _GetOSVersion to return 0.0, an entire loss of meaningful version info.\n\nMy suggestion is don\u0027t call _GetOSVersion. When version is None, simply return code. Only do string concatenation when version is present.",
+      "parentUuid": "c4b82010_493ac2cc",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 0
+      },
+      "revId": "706dde853b54f2d26f64dcc4e08738a127202878",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
