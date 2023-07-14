@@ -88,6 +88,24 @@
       "parentUuid": "c04623df_b0847728",
       "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6baf65c_16c4877c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-14T22:56:09Z",
+      "side": 1,
+      "message": "Thanks!\n\nOk I used the CLI from my workstation catapult checkout root like so:\n```\ngcloud builds submit --config dashboard/cloudbuild-sheriff-config-testing.yaml .\n```\n\nAnd that resulted in this cloud build attempt, which successfully executed step 0 and the `protoc` command that was failing before:\n\nhttps://pantheon.corp.google.com/cloud-build/builds/8848e79f-bd06-4ddb-851e-3160580eefd9?project\u003dchromeperf\u0026e\u003d-13802955\u0026mods\u003dcomponent_inspector\n\nNote that the overall build still fails, but now does so later on step 3. That appears to be due to reasons besides the protoc `-I` flag used in step 0 so I\u0027d address that in a separate CL.",
+      "parentUuid": "231b9b1b_d7211de0",
+      "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
