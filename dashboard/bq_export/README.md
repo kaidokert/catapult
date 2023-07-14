@@ -179,5 +179,5 @@ $ PYTHONPATH=$PYTHONPATH:"$(pwd)/bq_export" python bq_export/export_rows.py \
   --setup_file=bq_export/setup.py \
   --no_use_public_ips \
   --subnetwork=regions/us-central1/subnetworks/dashboard-batch \
-  --dataset=chromeperf_dashboard_rows
+  --dataset=chromeperf_dashboard_data
 ```
