@@ -34,6 +34,24 @@
       "parentUuid": "3ad4b3b6_11088d20",
       "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e69ab8_ed2176d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-14T21:57:10Z",
+      "side": 1,
+      "message": "For testing the trigger, I think we need similar changes on the traffic-.yaml files. So that changes on this yaml can trigger it. The current trigger will run a cloud build only when changes are in the sheriff_config folder.",
+      "parentUuid": "c0dd1153_9733ef61",
+      "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
