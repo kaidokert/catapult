@@ -70,6 +70,24 @@
       "parentUuid": "c0dd1153_9733ef61",
       "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231b9b1b_d7211de0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-14T22:29:55Z",
+      "side": 1,
+      "message": "I see.\nI believe we can submit a build from local as in:\nhttps://cloud.google.com/build/docs/running-builds/submit-build-via-cli-api\nBut I don\u0027t think we can do it in prod. I tried that out in staging but failed last week, for deploying the default sevice:\nhttps://pantheon.corp.google.com/cloud-build/builds;region\u003dglobal/959ffaa8-8699-406c-894f-422750acaa3c?project\u003dchromeperf-stage",
+      "parentUuid": "c04623df_b0847728",
+      "revId": "daccfee036f1e7ab8d09f055477826cec1e44d3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
