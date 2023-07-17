@@ -16,6 +16,23 @@
       "message": "Removing an \"unnecessary\" component that acts up in skia-bridge on higher load",
       "revId": "31f2f0d4ec7d5c737efbb561b02a130530917146",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d9809c4_037e8132",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-17T18:22:59Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "31f2f0d4ec7d5c737efbb561b02a130530917146",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
