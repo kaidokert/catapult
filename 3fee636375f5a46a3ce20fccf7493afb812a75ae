@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbce4c3_0dbd217f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-18T23:06:02Z",
+      "side": 1,
+      "message": "Question: will this trigger if someone manually runs a bisection and decides to tag a bug to it?",
+      "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
