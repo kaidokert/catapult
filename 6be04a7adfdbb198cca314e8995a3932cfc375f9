@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "891eaf9b_7c6a8e97",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1218025
+      },
+      "writtenOn": "2023-07-18T17:58:26Z",
+      "side": 1,
+      "message": "I tested this locally and open doesn\u0027t work with a relative path, but works if given an absolute path.",
+      "range": {
+        "startLine": 171,
+        "startChar": 6,
+        "endLine": 171,
+        "endChar": 66
+      },
+      "revId": "6be04a7adfdbb198cca314e8995a3932cfc375f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
