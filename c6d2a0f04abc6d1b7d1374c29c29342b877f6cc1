@@ -88,6 +88,24 @@
       "parentUuid": "e7e317d5_43c384f4",
       "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98df8061_a9016de5",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-18T20:39:45Z",
+      "side": 1,
+      "message": "Thanks Leina for the explanation. Yes, it is the issue that I came across. We\u0027ll get multiple subscriptions if matching subscriptions by test path. Below is the original codes I tried to use:\n\nif self.tags.get(\u0027auto_bisection\u0027) !\u003d \u0027true\u0027:\nreturn False\n\ntest_key \u003d self.tags.get(\u0027test_path\u0027)\nif not test_key:\nreturn False\n\nclient \u003d sheriff_config_client.GetSheriffConfigClient()\nsubscriptions \u003d client.Match(test_key, check\u003dTrue)",
+      "parentUuid": "da6f62bc_fc801c57",
+      "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
