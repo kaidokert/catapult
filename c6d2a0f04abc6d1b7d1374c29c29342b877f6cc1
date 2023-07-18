@@ -34,6 +34,24 @@
       "parentUuid": "7cf46c52_532bd4c9",
       "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "188b9440_201192eb",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-18T20:27:01Z",
+      "side": 1,
+      "message": "Oh wow that is brittle. It would be much safer to use a structured field than to rely on a completely free text field and just hope that no one edit issue titles (or puts things in subscription names that get garbled by monorail\u0027s text encoding on the way into or out of its mysql database...).\n\nIssue labels, perhaps?  Or store it somewhere in chromeperf\u0027s datastore instead of overloading the bug tracker\u0027s responsibilities.",
+      "parentUuid": "78e84d6d_bf1614ad",
+      "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
