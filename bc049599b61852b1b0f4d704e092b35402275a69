@@ -33,6 +33,24 @@
       "message": "Maybe rename the file to \"buganizer_utils.py\"? The utility methods are theoretically buganizer related rather than migration related",
       "revId": "bc049599b61852b1b0f4d704e092b35402275a69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d549ca_b7d1621b",
+        "filename": "perf_issue_service/application/buganizer_migration_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-18T20:26:43Z",
+      "side": 1,
+      "message": "Updated. Thanks!",
+      "parentUuid": "fd985004_33f01a8d",
+      "revId": "bc049599b61852b1b0f4d704e092b35402275a69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
