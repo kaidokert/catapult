@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "bc049599b61852b1b0f4d704e092b35402275a69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd985004_33f01a8d",
+        "filename": "perf_issue_service/application/buganizer_migration_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-18T00:57:03Z",
+      "side": 1,
+      "message": "Maybe rename the file to \"buganizer_utils.py\"? The utility methods are theoretically buganizer related rather than migration related",
+      "revId": "bc049599b61852b1b0f4d704e092b35402275a69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
