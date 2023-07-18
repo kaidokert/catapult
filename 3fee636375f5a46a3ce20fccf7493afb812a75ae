@@ -51,6 +51,24 @@
       "parentUuid": "2fbce4c3_0dbd217f",
       "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89848193_bb0131e6",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-18T23:22:21Z",
+      "side": 1,
+      "message": "So is the answer yes? My concern is I don\u0027t think we want culprit verification to trigger outside of auto-bisection. \n\nFor example, this Pinpoint job was manually kicked off by a user: https://pinpoint-dot-chromeperf.appspot.com/job/141434c0160000\n\nThis job tags `Issue chromium:1465955` in the upper left. Assuming crbug/1467955 has title `[Sandwich Verification Test Speedometer2]`, would this bisection trigger culprit verification?\n\nIf it\u0027s possible, you could `return True` only if the Pinpoint job title contains `Auto-bisection` or check the service account ends in domain `appspot.gserviceaccount.com`.",
+      "parentUuid": "4b3b1adc_e73e38e3",
+      "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
