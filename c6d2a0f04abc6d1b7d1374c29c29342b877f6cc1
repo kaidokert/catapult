@@ -16,6 +16,24 @@
       "message": "Oh I see. This is a bit awkward. \n\nCould you maybe split the issue by `[` and `]` and then you would have the subscription name? Then you can use the sandwich_allowlist.CheckSandwich?\n\nI don\u0027t know if you\u0027ll run into case sensitive issues.",
       "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e84d6d_bf1614ad",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-18T20:18:37Z",
+      "side": 1,
+      "message": "In case it\u0027s not clear, all of the subscription names are embedded inside of brackets:\n\nhttps://bugs.chromium.org/p/chromium/issues/list?q\u003dv8\u0026can\u003d2",
+      "parentUuid": "7cf46c52_532bd4c9",
+      "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
