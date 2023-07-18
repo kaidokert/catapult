@@ -33,6 +33,24 @@
       "message": "Question: will this trigger if someone manually runs a bisection and decides to tag a bug to it?",
       "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b3b1adc_e73e38e3",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-18T23:11:49Z",
+      "side": 1,
+      "message": "I think this will trigger if the bug title starts with the sandwich subscription \"[Sandwich Verification Test Speedometer2]\" and the benchmark/bot are in the sandwich_allowlist.",
+      "parentUuid": "2fbce4c3_0dbd217f",
+      "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
