@@ -106,6 +106,24 @@
       "parentUuid": "da6f62bc_fc801c57",
       "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3555d167_6c466649",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-18T21:11:49Z",
+      "side": 1,
+      "message": "I checked the bug title and it seems like we can\u0027t revise the title manually after the creation of the bug. I am not too worried about the text thing because I think the logic of subscription check will be removed after we verified that sandwich verification.",
+      "parentUuid": "98df8061_a9016de5",
+      "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
