@@ -631,9 +631,12 @@ class Job(ndb.Model):
     }
 
   def _CanSandwich(self):
-    # TODO (crbug.com/1456513): change to sandwich test subscription
-    # once it is enabled back and remove _CanSandwich
-    sandwich_subscription = 'banned subscription'
+    issue = perf_issue_service_client.GetIssue(self.bug_id, self.project)
+    title = issue.get('title')
+    sandwich_subscription = ''
+    if title:
+      parts = title.split(']:')
+      sandwich_subscription = parts[0].replace('[', '')
     if sandwich_allowlist.CheckAllowlist(sandwich_subscription,
                                          self.benchmark_arguments.benchmark,
                                          self.configuration):
