@@ -34,6 +34,24 @@
       "parentUuid": "86596334_35c90023",
       "revId": "f74745e06b9a7ad9599a9b50e6a3fba33c86a21e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2629e0b3_bdadeea2",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-18T20:19:01Z",
+      "side": 1,
+      "message": "I tried to tell the sandwich_subscription from bug title: https://chromium-review.googlesource.com/c/catapult/+/4697813",
+      "parentUuid": "569e41d5_6f1b3329",
+      "revId": "f74745e06b9a7ad9599a9b50e6a3fba33c86a21e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
