@@ -631,11 +631,17 @@ class Job(ndb.Model):
     }
 
   def _CanSandwich(self):
-    # TODO (crbug.com/1456513): change to sandwich test subscription
-    # once it is enabled back.
     # TODO (crbug.com/1456513): implement _CanSandwich in sandwich_allowlist
     # to avoid duplicate code management.
+    # Check whether the bug is sandwich subscription related.
+    issue = perf_issue_service_client.GetIssue(self.bug_id, self.project)
+    title = issue.get('title')
     sandwich_subscription = False
+    if title:
+      for subscription in sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS:
+        if subscription in title:
+          sandwich_subscription = True
+          break
     if self.benchmark_arguments.benchmark in \
        sandwich_allowlist.ALLOWABLE_BENCHMARKS \
        and self.configuration in sandwich_allowlist.ALLOWABLE_DEVICES \
