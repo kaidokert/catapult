@@ -16,6 +16,23 @@
       "message": "finally got a green cloud build for sheriff-config service",
       "revId": "93164990138520efec801e14a0eb2db615622457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2468059_5041caa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-18T23:30:32Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "93164990138520efec801e14a0eb2db615622457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
