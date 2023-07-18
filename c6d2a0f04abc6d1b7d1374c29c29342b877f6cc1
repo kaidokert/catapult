@@ -70,6 +70,24 @@
       "parentUuid": "78e84d6d_bf1614ad",
       "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6f62bc_fc801c57",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-18T20:30:04Z",
+      "side": 1,
+      "message": "@Sean, I think Yuan tried to go with a more robust approach but ran into problems. This is what Yuan was trying to tell me in a different CL thread. I\u0027m going to copy it here so we can consolidate the convo:\n\n```\nIt seems like we can\u0027t get the sandwich_subscription for the job directly.\nAlthough we could use test_path to match the sheriff_config_client. \nBut I think it may direct to the incorrect subscription path for the sandwich one. \nThe test_path will match the private v8 subscription as well as the sandwich one. \nHowever, private subscription may be chosen instead of the public one.\n```",
+      "parentUuid": "e7e317d5_43c384f4",
+      "revId": "c6d2a0f04abc6d1b7d1374c29c29342b877f6cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
