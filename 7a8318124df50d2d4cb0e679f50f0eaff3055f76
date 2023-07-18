@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c474f291_d3aa2acc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-07-18T21:34:19Z",
+      "side": 0,
+      "message": "Can you log a warning if this is the case? Otherwise, a user might be confused why `--show-stdout` is not working.",
+      "range": {
+        "startLine": 264,
+        "startChar": 6,
+        "endLine": 264,
+        "endChar": 41
+      },
+      "revId": "7a8318124df50d2d4cb0e679f50f0eaff3055f76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
