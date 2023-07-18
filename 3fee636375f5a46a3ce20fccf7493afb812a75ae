@@ -87,6 +87,24 @@
       "parentUuid": "89848193_bb0131e6",
       "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d822aac_19778f00",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-18T23:44:03Z",
+      "side": 1,
+      "message": "Ty for fixing! Sorry for all the extra pings. LGTM.",
+      "parentUuid": "f3fb7d96_d9a5df77",
+      "revId": "3fee636375f5a46a3ce20fccf7493afb812a75ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
