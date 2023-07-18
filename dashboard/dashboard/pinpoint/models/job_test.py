@@ -152,14 +152,36 @@ class JobTest(test.TestCase):
     self.assertEqual(request['end_git_hash'], 'test_git_hash2')
     self.assertEqual(request['target'], 'webrtc_perf_tests')
 
-  def testCanSandwich(self):
-    j = job.Job.New((), (),
+  @mock.patch('dashboard.services.perf_issue_service_client.GetIssue')
+  def testCanSandwich(self, get_issue):
+    def _GetIssue(bug_id, project_name='chromium'):
+      if bug_id == 123456:
+        return {
+            'projectId': project_name,
+            'id': 123456,
+            'title': '[Sandwich Verification Test Speedometer2]: 2 regressions in speedometer2',
+        }
+      return {
+          'projectId': project_name,
+          'id': bug_id,
+          'title': 'fake_title'
+      }
+    get_issue.side_effect = _GetIssue
+
+    j1 = job.Job.New((), (),
                     arguments={
                         'configuration': 'bot1',
                         'benchmark': 'webrtc_perf_tests'
                     },
+                    bug_id=12345)
+    j2 = job.Job.New((), (),
+                    arguments={
+                        'configuration': 'linux-perf',
+                        'benchmark': 'speedometer2'
+                    },
                     bug_id=123456)
-    self.assertFalse(j._CanSandwich())
+    self.assertFalse(j1._CanSandwich())
+    self.assertTrue(j2._CanSandwich())
 
   @mock.patch('dashboard.services.workflow_service.CreateExecution',
               mock.MagicMock(return_value='test'))

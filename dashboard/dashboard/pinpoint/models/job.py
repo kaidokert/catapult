@@ -21,6 +21,7 @@ from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
 from dashboard import pinpoint_request
+from dashboard import sheriff_config_client
 from dashboard.common import cloud_metric
 from dashboard.common import datastore_hooks
 from dashboard.common import sandwich_allowlist
@@ -631,11 +632,16 @@ class Job(ndb.Model):
     }
 
   def _CanSandwich(self):
-    # TODO (crbug.com/1456513): change to sandwich test subscription
-    # once it is enabled back.
     # TODO (crbug.com/1456513): implement _CanSandwich in sandwich_allowlist
     # to avoid duplicate code management.
+    # Check whether the bug is sandwich subscription related.
+    issue = perf_issue_service_client.GetIssue(self.bug_id, self.project)
+    title = issue.get('title')
     sandwich_subscription = False
+    for subscription in sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS:
+      if subscription in title:
+        sandwich_subscription = True
+        break
     if self.benchmark_arguments.benchmark in \
        sandwich_allowlist.ALLOWABLE_BENCHMARKS \
        and self.configuration in sandwich_allowlist.ALLOWABLE_DEVICES \
