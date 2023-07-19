@@ -16,6 +16,41 @@
       "message": "Looks like it doesn\u0027t work if I try to jam multiple metrics into the same chart. \n\nhttps://ashwintest-dot-chromeperf-stage.uc.r.appspot.com/report?sid\u003d262d7e637706aa0562c15bfc0c155a45ade03a7e62168deefe57f024754bade5\n\nLeads to \n\nhttps://chrome-perf.corp.goog/e/?begin\u003d1684583392\u0026end\u003d1686254821\u0026numCommits\u003d500\u0026queries\u003dstat%3Dvalue%26benchmark%3Dsystem_health.common_desktop%26bot%3Dlinux-perf-fyi%26test%3DMemory.GPU.PeakMemoryUsage2.PageLoad_avg%26subtest_2%3Dbrowse_media_imgur\u0026selected\u003dcommit%3D1138419%26name%3D%252Cbenchmark%253Dsystem_health.common_desktop%252Cbot%253Dlinux-perf-fyi%252Cimprovement_direction%253Ddown%252Cmaster%253DChromiumPerfFyi%252Cstat%253Dvalue%252Csubtest_1%253Dbrowse_media%252Csubtest_2%253Dbrowse_media_imgur%252Ctest%253DMemory.GPU.PeakMemoryUsage2.PageLoad_avg%252Cunit%253Dunitless_smallerIsBetter%252C",
       "revId": "4fb193273dc999294e805d4504edde56d170c019",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40e1e839_ad5643fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T19:27:38Z",
+      "side": 1,
+      "message": "Maybe put the skia perf links into these individual metric boxes? \nhttps://screenshot.googleplex.com/6vnM32asH8B6ezf",
+      "parentUuid": "941e96c6_0b1341a1",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "865f6fd5_308d29d5",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T19:27:38Z",
+      "side": 1,
+      "message": "Why is `skia_url` set to an empty string for non-administrator users? \n\nI think I saw a blank chart when I tried to view the demo server without being logged in. However, now that I\u0027m logged in and the chart renders (good!), I can\u0027t find the log OUT link to go back and verify the blank chart behavior when I\u0027m logged out.  Perhaps this is related?",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
