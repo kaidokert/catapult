@@ -51,6 +51,24 @@
       "parentUuid": "fa26628a_de9adb65",
       "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b0c9e7d_b9bb020a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T23:39:34Z",
+      "side": 1,
+      "message": "If I unintentionally broke something in perf_issue_service by changing something defined in dashboard/dashboard/models/alert_group.py, that\u0027s a sure sign that the two pieces of code are coupled (regardless of explicit import statements), no? \n\nI don\u0027t see how making a separate copy of the existing model class removes that coupling in practice, but I do see how duplicate model classes make that coupling more difficult to detect and keep track of.\n\nThis approach has obvious downsides, but it may be a perfectly reasonable trade-off. Just so I understand what problem perf_issue_service is supposed to solve and why, is this the relevant design doc? https://docs.google.com/document/d/1hwasDnCXCaPKdXxgDLQOEDwSJR-7dMvKBKKIMGzl_us/edit#heading\u003dh.lldt5vlxjhnx\n\n[Note: If this CL is a high a priority fix to un-block some other work, feel free to remove me as a reviewer and I\u0027ll try follow up later.]",
+      "parentUuid": "05a79911_e73139b3",
+      "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
