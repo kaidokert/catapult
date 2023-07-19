@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa26628a_de9adb65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T22:32:07Z",
+      "side": 1,
+      "message": "If there is a known dependency between these pieces of code, that should be declared in the code.\n\nWhy doesn\u0027t this just use the existing model classes?",
+      "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
