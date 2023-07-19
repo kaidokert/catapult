@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f723e476_34f13c42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-19T21:39:22Z",
+      "side": 1,
+      "message": "How about this?\n1. We roll this in it\u0027s current form to just our team as the initial trial.\n2. While the team tries it out, we create a README for chromeperf v/s skia specifically stating how to get equivalent features on the skia side for stuff that folks really like to do on chromeperf. This will also include any missing features that are being worked on.\n3. Provide a link to this README right next to this link.\n4. Open it up for the rest of the users.\n\nThe overall message being, \"Hey we are enabling this cool new UX that you should try out, and here\u0027s some instructions on how to do the stuff you are used to doing\"",
+      "parentUuid": "77675061_2af0226a",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "865f6fd5_308d29d5",
         "filename": "dashboard/dashboard/graph_json.py",
         "patchSetId": 4
