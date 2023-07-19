@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77675061_2af0226a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T21:12:27Z",
+      "side": 1,
+      "message": "The point of adding this link is to promote and raise awareness of the skia perf UI, no? \n\nGiven the uncertainty (I haven\u0027t seen data on how often this multi-metric chart feature is actually used in practice, but that would be great to consult if anyone knows of its existence), let\u0027s consider the relative reward vs risk of rolling this CL out without supporting multi-metric charts. \n\nBest case, the user doesn\u0027t use multi-metric charts, follows this link and has such a good experience on the new UI that they don\u0027t return to chromeperf.appspot.com ever again. Worst case, the user does use multi-metric charts, clicks through and has such a bad experience seeing only the first of those metrics in the new skia perf UI that they file a bug about the chromeperf dashboard link being broken.",
+      "parentUuid": "ea331ad0_f946ab93",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "865f6fd5_308d29d5",
         "filename": "dashboard/dashboard/graph_json.py",
         "patchSetId": 4
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "Pretty sure both are unrelated. I\u0027ve always had that experience when logged out.\n\nCurrently setting it to empty for non-admin users so that we can test it out within our team first before displaying it for everyone",
       "parentUuid": "2d18a406_2c9ec1f9",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "849915d0_eeabaf9a",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T21:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dd78e824_513d7fc0",
       "revId": "4fb193273dc999294e805d4504edde56d170c019",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
