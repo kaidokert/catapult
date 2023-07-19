@@ -41,6 +41,7 @@ class AlertGroup(ndb.Model):
     triaged = 2
     bisected = 3
     closed = 4
+    sandwiched = 5
 
   status = ndb.IntegerProperty(indexed=False)
 
@@ -63,6 +64,8 @@ class AlertGroup(ndb.Model):
   # Key of canonical AlertGroup. If not None the group is considered to be
   # duplicate.
   canonical_group = ndb.KeyProperty(indexed=True)
+
+  sandwich_verification_workflow_id = ndb.StringProperty(indexed=True)
 
   @classmethod
   def FindDuplicates(cls, group_id):
