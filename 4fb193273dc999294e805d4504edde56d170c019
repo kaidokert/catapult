@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea331ad0_f946ab93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-19T20:53:03Z",
+      "side": 1,
+      "message": "Keeping it the metric boxes makes the links non-obvious unless you know exactly what you are looking for.\nSo right now it will take the latest url returned by the /graph_json call for the chart. I\u0027m not sure it\u0027s worth the effort to make it work for this specific feature (dragging the metrics manually into the graph) considering it\u0027s not a widely used feature. \nThoughts?",
+      "parentUuid": "40e1e839_ad5643fa",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "865f6fd5_308d29d5",
         "filename": "dashboard/dashboard/graph_json.py",
         "patchSetId": 4
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "regarding the logged-out behavior: I just tried to view Leina\u0027s link https://ashwintest-dot-chromeperf-stage.uc.r.appspot.com/report?sid\u003d262d7e637706aa0562c15bfc0c155a45ade03a7e62168deefe57f024754bade5 using an incognito browser tab and yeah it just hangs with a loading spinner instead of eventually showing the chart (if I\u0027m logged out).",
       "parentUuid": "865f6fd5_308d29d5",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd78e824_513d7fc0",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-19T20:53:03Z",
+      "side": 1,
+      "message": "Pretty sure both are unrelated. I\u0027ve always had that experience when logged out.\n\nCurrently setting it to empty for non-admin users so that we can test it out within our team first before displaying it for everyone",
+      "parentUuid": "2d18a406_2c9ec1f9",
       "revId": "4fb193273dc999294e805d4504edde56d170c019",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
