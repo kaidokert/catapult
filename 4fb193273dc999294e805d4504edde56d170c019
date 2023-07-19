@@ -51,6 +51,24 @@
       "message": "Why is `skia_url` set to an empty string for non-administrator users? \n\nI think I saw a blank chart when I tried to view the demo server without being logged in. However, now that I\u0027m logged in and the chart renders (good!), I can\u0027t find the log OUT link to go back and verify the blank chart behavior when I\u0027m logged out.  Perhaps this is related?",
       "revId": "4fb193273dc999294e805d4504edde56d170c019",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d18a406_2c9ec1f9",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-19T19:39:41Z",
+      "side": 1,
+      "message": "regarding the logged-out behavior: I just tried to view Leina\u0027s link https://ashwintest-dot-chromeperf-stage.uc.r.appspot.com/report?sid\u003d262d7e637706aa0562c15bfc0c155a45ade03a7e62168deefe57f024754bade5 using an incognito browser tab and yeah it just hangs with a loading spinner instead of eventually showing the chart (if I\u0027m logged out).",
+      "parentUuid": "865f6fd5_308d29d5",
+      "revId": "4fb193273dc999294e805d4504edde56d170c019",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
