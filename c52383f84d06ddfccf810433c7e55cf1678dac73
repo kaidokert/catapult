@@ -33,6 +33,24 @@
       "message": "If there is a known dependency between these pieces of code, that should be declared in the code.\n\nWhy doesn\u0027t this just use the existing model classes?",
       "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05a79911_e73139b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-19T22:58:26Z",
+      "side": 1,
+      "message": "After the alert group service go-live is done, the alert_group under dashboard/models will be removed. \n\nBut yes there is another model which will exist in both services.\n\nI did not use the existing model is because I don\u0027t want to create explicit dependencies between two services, especially those outside dashboard/. Ideally we should create a common contract (like proto) to share among all services which will access the same kind from datastore.\nOr we can update the current file structure to put the models/ in a common position. Then we will have more things to be decoupled.",
+      "parentUuid": "fa26628a_de9adb65",
+      "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
