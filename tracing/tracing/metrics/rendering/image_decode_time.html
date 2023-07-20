@@ -51,6 +51,16 @@ tr.exportTo('tr.metrics.rendering', function() {
                                              'DecodeImageInTask';
 
   /**
+    * Checks whether given slice is decode tracing event.
+    */
+  function sliceIsDecodeEvent(slice) {
+    return slice.title === RGB_DECODE_EVENT ||
+      slice.title === YUV_DECODE_EVENT ||
+      slice.title === BLINK_GPU_RASTER_DECODE_EVENT ||
+      slice.title === BLINK_SOFTWARE_RASTER_DECODE_EVENT;
+  }
+
+  /**
     * Returns an array of tr.model.Event objects corresponding to all of the
     * above image decoding trace events that occured while a story was
     * run).
@@ -59,13 +69,11 @@ tr.exportTo('tr.metrics.rendering', function() {
     if (!modelHelper || !modelHelper.rendererHelpers) return [];
     const events = [];
     for (const renderer of Object.values(modelHelper.rendererHelpers)) {
-      for (const thread of renderer.rasterWorkerThreads) {
+      for (const thread of [...renderer.rasterWorkerThreads,
+                            ...renderer.foregroundWorkerThreads]) {
         const slices = thread.sliceGroup;
         for (const slice of slices.getDescendantEventsInSortedRanges(ranges)) {
-          if (slice.title === RGB_DECODE_EVENT ||
-              slice.title === YUV_DECODE_EVENT ||
-              slice.title === BLINK_GPU_RASTER_DECODE_EVENT ||
-              slice.title === BLINK_SOFTWARE_RASTER_DECODE_EVENT) {
+          if (sliceIsDecodeEvent(slice)) {
             events.push(slice);
           }
         }
@@ -127,7 +135,8 @@ tr.exportTo('tr.metrics.rendering', function() {
   }
 
   return {
-    addImageDecodeTimeHistograms
+    addImageDecodeTimeHistograms,
+    sliceIsDecodeEvent
   };
 });
 </script>
