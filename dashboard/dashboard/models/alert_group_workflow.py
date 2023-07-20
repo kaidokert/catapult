@@ -876,6 +876,66 @@ class AlertGroupWorkflow:
       if regression is None:
         return
 
+      if self._group.status == self._group.Status.sandwiched:
+        if self._group.sandwich_verification_workflow_id is None:
+          logging.error(
+              'group status is sandwiched, but there is no workflow id for the verification workflow execution'
+          )
+          return
+
+        # Get the verdict from the workflow execution results.
+        try:
+          sandwich_exec = self._cloud_workflows.GetExecution(
+              self._group.sandwich_verification_workflow_id)
+        except request.NotFoundError:
+          logging.error(
+              'cloud workflow service could not find sandwich verification execution ID %s'
+              % self._group.sandwich_verification_workflow_id)
+          return
+        sandwich_state = sandwich_exec['state']
+
+        if sandwich_state == workflow_service.EXECUTION_STATE_ACTIVE:
+          logging.info('sandwich verification workflow %s is still running' %
+                       self._group.sandwich_verification_workflow_id)
+          return
+        elif sandwich_state in {
+            workflow_service.EXECUTION_STATE_FAILED,
+            workflow_service.EXECUTION_STATE_CANCELLED
+        }:
+          sandwich_error = sandwich_exec['error']
+          logging.error(
+              'sandwich verification workflow resulted in error: %s. Failing-safe back to default non-sandwich behavior.',
+              sandwich_error)
+          # Don't return here, but let control flow fall through this conditional block and pick back up at the non-sandwich _TryBisect logic.
+        elif sandwich_state == workflow_service.EXECUTION_STATE_SUCCEEDED:
+          sandwich_result = sandwich_exec['result']
+          sandwiched_anomaly = sandwich_result['anomaly']
+          sandwiched_statistic = sandwich_result['statistic']
+          sandwich_decision = sandwich_result['decision']
+          if sandwich_decision:
+            logging.info(
+                'sandwich verification succeeded in reproducing the anomaly, proceeding with auto-bisection'
+            )
+          else:
+            logging.info(
+                'sandwich verification failed to reproduce the anomaly, not proceeding with auto-bisection'
+            )
+            self._group.updated = update.now
+            self._group.status = self._group.Status.closed
+            self._CommitGroup()
+            perf_issue_service_client.PostIssueComment(
+                self._group.bug.bug_id,
+                self._group.project_id,
+                comment='Could not verify this regression with a pinpoint A/B test; closing.',
+                status='WontFix',
+                labels='Chromeperf-Auto-Closed',
+                send_email=False,
+            )
+            return
+        else:
+          logging.error('unrecognized workflow execution state: %s',
+                        sandwich_state)
+
       # We'll only bisect a range if the range at least one point.
       if regression.start_revision == regression.end_revision:
         # At this point we've decided that the range of the commits is a single
