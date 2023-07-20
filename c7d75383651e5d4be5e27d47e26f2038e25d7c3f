@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52adb420_c73cf5f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-07-20T20:03:31Z",
+      "side": 1,
+      "message": "Submitting with no-try due to the known Android trybot outage.",
+      "revId": "c7d75383651e5d4be5e27d47e26f2038e25d7c3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
