@@ -7,6 +7,7 @@ found in the LICENSE file.
 
 <link rel="import" href="/tracing/base/math/statistics.html">
 <link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/metrics/rendering/image_decode_time.html">
 <link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
 <link rel="import" href="/tracing/model/user_model/segment.html">
 
@@ -76,6 +77,10 @@ tr.exportTo('tr.metrics.rendering', function() {
 
   const ALL_CATEGORIES = [...CATEGORY_THREAD_MAP.keys(), 'other'];
 
+  const THREAD_SLICE_FILTER = new Map();
+  THREAD_SLICE_FILTER.set('ThreadPoolForegroundWorker',
+                          tr.metrics.rendering.sliceIsDecodeEvent);
+
   function addValueToMap_(map, key, value) {
     const oldValue = map.get(key) || 0;
     map.set(key, oldValue + value);
@@ -112,7 +117,8 @@ tr.exportTo('tr.metrics.rendering', function() {
         addValueToMap_(
             threadValues,
             thread.name || UNKNOWN_THREAD_NAME,
-            segmentCostFunc(thread, segment));
+            segmentCostFunc(thread, segment,
+                            THREAD_SLICE_FILTER.get(thread.name)));
       }
 
       for (const [threadName, coresPerSec] of threadValues) {
