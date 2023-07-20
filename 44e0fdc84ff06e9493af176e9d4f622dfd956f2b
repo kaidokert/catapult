@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6efd92_0b8b831a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T22:34:20Z",
+      "side": 1,
+      "message": "LGTM with nit",
+      "revId": "44e0fdc84ff06e9493af176e9d4f622dfd956f2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b296347_4d60a7b2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T22:34:20Z",
+      "side": 1,
+      "message": "nit: include update in list of args",
+      "revId": "44e0fdc84ff06e9493af176e9d4f622dfd956f2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
