@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebd1e040_7885d184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T17:08:48Z",
+      "side": 1,
+      "message": "LGTM, just a bunch of logging suggestions",
+      "revId": "30805b74be7ad435821e94e3c37ba52dabc00b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8afc4ff8_4468913d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T17:08:48Z",
+      "side": 1,
+      "message": "nit: add execution ID",
+      "revId": "30805b74be7ad435821e94e3c37ba52dabc00b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c51d4789_91d2d295",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T17:08:48Z",
+      "side": 1,
+      "message": "nit: `proceeding with autobisection` part of this log does not make sense. Did you mean execution ID? I think I would report the statistic, the anomaly, and the execution ID.",
+      "revId": "30805b74be7ad435821e94e3c37ba52dabc00b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b04dd33_17ab56b5",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T17:08:48Z",
+      "side": 1,
+      "message": "nit: include the Pinpoint job ID in the comment",
+      "revId": "30805b74be7ad435821e94e3c37ba52dabc00b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3231ae47_06f36f8f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 927,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-20T17:08:48Z",
+      "side": 1,
+      "message": "Also add logging statement for sandwich \u003d no repro?",
+      "revId": "30805b74be7ad435821e94e3c37ba52dabc00b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
