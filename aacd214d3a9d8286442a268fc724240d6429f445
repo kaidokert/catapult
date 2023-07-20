@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22d3a295_d18aef22",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-20T21:14:43Z",
+      "side": 1,
+      "message": "Can you add some tests with some problem titles like these?\n\n`[[b/12345 fix a bug] Sandwich Verification Test Speedometer2]`\n`[b/12345 fix a bug] [Sandwich Verification Test Speedometer2]`\n`[Sandwich Verification Test Speedometer2][b/12345 fix a bug]`\n`[Sandwich Verification Test Speedometer2 [b/12345 fix a bug]]`\n\nThe string splitting approach to parsing makes me nervous, keeping structured data in a plaintext field makes me nervous, and relying on a third party service to store/retrieve that structured data in an unstructured field makes me extra nervous :)\n\nAnd what happens if a person or some other tool updates the issue in monorail and changes the title?  What prevents that from happening?",
+      "revId": "aacd214d3a9d8286442a268fc724240d6429f445",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
