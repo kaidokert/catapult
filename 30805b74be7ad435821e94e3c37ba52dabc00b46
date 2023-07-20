@@ -70,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "daf5d297_3f99bce3",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 879,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-20T22:36:21Z",
+      "side": 1,
+      "message": "It can be modified to return True or False depending on whether it should proceed to Bisection.",
+      "parentUuid": "f7f94468_a687cc24",
+      "revId": "30805b74be7ad435821e94e3c37ba52dabc00b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8afc4ff8_4468913d",
