@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cb2beed_68dd9d55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2023-07-21T14:27:38Z",
+      "side": 1,
+      "message": "This conceptually SGTM. Do you happen to know some of the stories that were impacted by this?",
+      "revId": "d1e2adaecae852a5bb9e6153345d48943eace7c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
