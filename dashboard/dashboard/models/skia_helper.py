@@ -133,4 +133,6 @@ def _GetTimeInt(timestamp: str):
 
 
 def _FormatTime(time_obj: datetime.datetime):
-  return time_obj.strftime('%a %b %d %H:%M:%S %Y')
+  if time_obj:
+    return time_obj.strftime('%a %b %d %H:%M:%S %Y')
+  return ''
