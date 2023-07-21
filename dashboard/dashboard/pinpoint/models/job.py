@@ -43,6 +43,7 @@ from dashboard.services import gerrit_service
 from dashboard.services import perf_issue_service_client
 from dashboard.services import swarming
 from dashboard.services import workflow_service
+from dashboard.services import cabe_service
 
 
 # We want this to be fast to minimize overhead while waiting for tasks to
@@ -580,6 +581,20 @@ class Job(ndb.Model):
     self._FormatAndPostBugCommentOnComplete()
     self._UpdateGerritIfNeeded()
     scheduler.Complete(self)
+    self._MaybeCallCABE()
+
+  def _MaybeCallCABE(self):
+    """
+    This function is purely for testing CABE's ability to analyze trjob results
+    using real production scenarios.  If it fails for any reason,
+    the caller should be able to contine as though it never called this function.
+    """
+    if self._IsTryJob():
+      try:
+        res = cabe_service.GetAnalysis(self.job_id)
+        logging.debug('cabe_service.GetAnalysis response: %s', res)
+      except BaseException as e:
+        logging.warning('failed to make cabe_service.GetAnalysis call: %s', e)
 
   def _GetImprovementDirection(self):
     if self.tags is not None and "test_path" in self.tags:

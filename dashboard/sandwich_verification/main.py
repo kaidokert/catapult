@@ -11,7 +11,8 @@ import functions_framework
 from flask import jsonify
 from google.protobuf import json_format
 
-from common import pinpoint_service, cabe_service
+from common import pinpoint_service
+from dashboard.services import cabe_service
 
 
 @functions_framework.http
@@ -58,7 +59,7 @@ def StartPinpointJob(request):
 
   print('Starting job response: %s' % results)
 
-  return jsonify({'job_id': results.get('jobId')})
+  return (jsonify({'job_id': results.get('jobId')}), 200)
 
 
 @functions_framework.http
@@ -82,7 +83,7 @@ def PollPinpointJob(request):
 
   print('Getting job response: %s' % results)
 
-  return jsonify({'status': results.get('status')})
+  return (jsonify({'status': results.get('status')}), 200)
 
 
 @functions_framework.http
@@ -107,18 +108,21 @@ def GetCabeAnalysis(request):
   print('Original request data: %s' % req_data)
 
   request_json = request.get_json(silent=True)
+  if request_json is None:
+    return ('bad request json', 400)
 
   print('Original params: %s' % request_json)
 
   measurement = request_json.get('anomaly').get('measurement')
   job_id = request_json.get('job_id')
 
+  if measurement is None or job_id is None:
+    return ('malformed request: could not parse anomaly.measurement and/or job_id', 400)
+
   print("Getting CABE Analysis from Job: %s" % job_id)
   results = cabe_service.GetAnalysis(job_id)
-  print("CABE Analysis response: %s" % results)
 
   statistic = None
-
   for result in results:
     if len(result.experiment_spec.analysis.benchmark) > 1:
       logging.warning(
@@ -128,12 +132,16 @@ def GetCabeAnalysis(request):
       for workload in benchmark.workload:
         if measurement == workload:
           statistic = result.statistic
-  print("get_cabe_analysis statistic: %s" % statistic)
 
   # If you don't use json_format.MessageToDict here and try to
   # pass the `statistic` raw proto object, you'll get errors
   # saying is "is not JSON serializable"
-  return jsonify({
+  if statistic is None:
+    return (jsonify({
+      'error': ('CABE analysis did not include results for measurment "%s"' % measurement),
+    }), 400)
+  else:
+    return (jsonify({
       'statistic':
           json_format.MessageToDict(
               statistic,
@@ -141,7 +149,7 @@ def GetCabeAnalysis(request):
               # in the orginal proto definition (snake_case) instead of the
               # camelCaseNames you'd get otherwise.
               preserving_proto_field_name=True)
-  })
+  }), 200)
 
 
 @functions_framework.http
@@ -176,4 +184,4 @@ def RegressionDetection(request):
   if ci_lower*ci_upper > 0 and p_value < 0.05:
     decision = True
 
-  return jsonify({'decision': decision})
+  return (jsonify({'decision': decision}), 200)
