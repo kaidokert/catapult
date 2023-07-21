@@ -16,6 +16,24 @@
       "message": "Can you add some tests with some problem titles like these?\n\n`[[b/12345 fix a bug] Sandwich Verification Test Speedometer2]`\n`[b/12345 fix a bug] [Sandwich Verification Test Speedometer2]`\n`[Sandwich Verification Test Speedometer2][b/12345 fix a bug]`\n`[Sandwich Verification Test Speedometer2 [b/12345 fix a bug]]`\n\nThe string splitting approach to parsing makes me nervous, keeping structured data in a plaintext field makes me nervous, and relying on a third party service to store/retrieve that structured data in an unstructured field makes me extra nervous :)\n\nAnd what happens if a person or some other tool updates the issue in monorail and changes the title?  What prevents that from happening?",
       "revId": "aacd214d3a9d8286442a268fc724240d6429f445",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a3b20e0_43ce1671",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-07-21T18:58:57Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestions!! Additional tests added.\n\nI understand that the string splitting approach may cause some problems. But I checked the upstream code and couldn\u0027t find a better straightforward approach. Here\u0027s the code the alert group workflow creates the bisect job: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d1094. Based on the input info, the job could possibly get the subscription info from the bug id (approach of this cl), or test_path (which is also problematic, because multiple subscriptions will be matched for a test_path). Maybe we could add the subscription into to the tags in line: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d1107? But this will also be problematic because we could add similar tags to other non-related bisect job as well.\n\nI doubled checked the bugs and think person can\u0027t edit the title manually, although tools may have the ability to change the title based on this line of code: https://source.chromium.org/chromium/infra/infra/+/main:appengine/monorail/businesslogic/work_env.py;l\u003d1872\n\nCurrently we add the constraint that the users need to be \u0027appspot.gserviceaccount.com\u0027 which would add some protections.\n\nI think the subscription check (now act as something similar to the test environment) will be removed after we verified the sandwich logic so that although the text approach is problematic but may also be acceptable here?",
+      "parentUuid": "22d3a295_d18aef22",
+      "revId": "aacd214d3a9d8286442a268fc724240d6429f445",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
