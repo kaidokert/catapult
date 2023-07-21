@@ -5,6 +5,7 @@
 from __future__ import absolute_import
 from telemetry.android import shared_android_state
 from telemetry import story
+import json
 
 class AndroidStory(story.Story):
   def __init__(self, start_intent, is_app_ready_predicate=None,
