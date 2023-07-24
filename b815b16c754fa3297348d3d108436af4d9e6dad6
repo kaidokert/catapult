@@ -16,6 +16,57 @@
       "message": "adding another reviewer just in case",
       "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5225c01_4f299d1a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-24T17:57:58Z",
+      "side": 1,
+      "message": "Some speculation - my guess is that a lot of jobs will fail because they include stories that are 0s or 1s. I think it\u0027s too much work and too much data to call individual stories one by one. We might need to tell CABE to ignore 0s rather than throw an error. Let\u0027s see how this plays out first before we think of a solution.",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a65c3500_896f0efe",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-24T17:57:58Z",
+      "side": 1,
+      "message": "oh no ... NotLikeThis\n\nI guess this is best option available based on your convo with Hao.",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5fda8b_8dd95abf",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-24T17:57:58Z",
+      "side": 1,
+      "message": "qq: when would this be true?",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
