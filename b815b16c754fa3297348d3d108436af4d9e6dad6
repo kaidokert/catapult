@@ -89,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0266f1c7_af9bda9f",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-24T19:49:13Z",
+      "side": 1,
+      "message": "I think that might work actually ... need to move some directories around first though.  sandwich_verification is under catapult/dashboard, not catapult/dashboard/dashboard, so that import statement won\u0027t work with the current directory layoute.\n\nI\u0027ll try relocating sandwich_verification (and some other dirs it depends on) to be under catapult/dashboard/dashboard as well.  If that works, I\u0027m sure there will be other path-renaming fallout to address (cloud build configurations etc).",
+      "parentUuid": "a4e519e9_76230a3d",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d5fda8b_8dd95abf",
         "filename": "dashboard/dashboard/services/cabe_service.py",
         "patchSetId": 2
