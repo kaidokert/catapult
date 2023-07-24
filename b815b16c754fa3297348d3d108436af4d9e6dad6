@@ -107,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e166585e_679b5433",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-24T20:03:00Z",
+      "side": 1,
+      "message": "ok, I shuffled some directories around, and removed the sys.path.append hack. \n\ntests pass locally.  let\u0027s see what cq dry run thinks",
+      "parentUuid": "0266f1c7_af9bda9f",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d5fda8b_8dd95abf",
         "filename": "dashboard/dashboard/services/cabe_service.py",
         "patchSetId": 2
