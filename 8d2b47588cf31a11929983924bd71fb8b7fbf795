@@ -16,6 +16,46 @@
       "message": "adding second reviewer",
       "revId": "8d2b47588cf31a11929983924bd71fb8b7fbf795",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2ad757d_e20079d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-24T20:10:10Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "8d2b47588cf31a11929983924bd71fb8b7fbf795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cfe39d_d2a191d3",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-24T20:10:10Z",
+      "side": 1,
+      "message": "nit: add a comment about why and a pointer to the bug.",
+      "range": {
+        "startLine": 459,
+        "startChar": 8,
+        "endLine": 459,
+        "endChar": 10
+      },
+      "revId": "8d2b47588cf31a11929983924bd71fb8b7fbf795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
