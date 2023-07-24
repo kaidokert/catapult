@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4e519e9_76230a3d",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-24T18:24:43Z",
+      "side": 1,
+      "message": "Yeah I agree with you. Sadly, I don\u0027t have a better idea and I don\u0027t think I\u0027ll find anything more informative after spending 5 minutes of digging around.\n\nI\u0027m confused why you can\u0027t do: `from dashboard import sandwich_verification` the way job.py is able to do `from dashboard import pinpoint_request`",
+      "parentUuid": "74a42e2a_93503330",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d5fda8b_8dd95abf",
         "filename": "dashboard/dashboard/services/cabe_service.py",
         "patchSetId": 2
@@ -100,6 +118,24 @@
       "side": 1,
       "message": "It\u0027s useful for a local development situation where you want a local pinpoint instance to call a local CABE instance, both running on your workstation. Not really useful outside of that situation.\n\nContext: cabe_service uses gRPC, and gRPC uses TLS by default, which means everything is encrypted. Without a plaintext option for calling local cabe dev server, you\u0027d need to set up self-signed certificates and configure both cabe and pinpoint to use them (which can be a hassle). Another problem with debugging locally using encrypted TLS is that if you ever needed to peek at the bytes being sent/received during the calls to debug something, they\u0027d be total gibberish.",
       "parentUuid": "6d5fda8b_8dd95abf",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b71cef_bec16742",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-24T18:24:43Z",
+      "side": 1,
+      "message": "Ah yeah, that makes sense. Acknowledged.",
+      "parentUuid": "9196f66e_e6716184",
       "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
