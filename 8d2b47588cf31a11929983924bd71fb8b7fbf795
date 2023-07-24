@@ -56,6 +56,30 @@
       },
       "revId": "8d2b47588cf31a11929983924bd71fb8b7fbf795",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f47cb52_79b6b770",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-07-24T21:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6cfe39d_d2a191d3",
+      "range": {
+        "startLine": 459,
+        "startChar": 8,
+        "endLine": 459,
+        "endChar": 10
+      },
+      "revId": "8d2b47588cf31a11929983924bd71fb8b7fbf795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
