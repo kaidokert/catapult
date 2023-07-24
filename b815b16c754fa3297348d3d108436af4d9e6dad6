@@ -84,6 +84,24 @@
       "message": "qq: when would this be true?",
       "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9196f66e_e6716184",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-24T18:19:38Z",
+      "side": 1,
+      "message": "It\u0027s useful for a local development situation where you want a local pinpoint instance to call a local CABE instance, both running on your workstation. Not really useful outside of that situation.\n\nContext: cabe_service uses gRPC, and gRPC uses TLS by default, which means everything is encrypted. Without a plaintext option for calling local cabe dev server, you\u0027d need to set up self-signed certificates and configure both cabe and pinpoint to use them (which can be a hassle). Another problem with debugging locally using encrypted TLS is that if you ever needed to peek at the bytes being sent/received during the calls to debug something, they\u0027d be total gibberish.",
+      "parentUuid": "6d5fda8b_8dd95abf",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
