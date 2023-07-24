@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74a42e2a_93503330",
+        "filename": "dashboard/dashboard/services/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-24T18:09:09Z",
+      "side": 1,
+      "message": "I really really reallllly don\u0027t like doing this sys.path.append hack just to re-use another package from same repo.  \n\nThis approach is bad because it modifies the import path at runtime. IIUC many other python projects do this anyways however, even though it makes so many static analysis use cases difficult or impossible for code that uses it (codesearch indexing for cross-references, bundling a transitive closure of imported files for deployment, etc).\n\nOpen to alternative solutions if you have ideas.",
+      "revId": "b815b16c754fa3297348d3d108436af4d9e6dad6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d5fda8b_8dd95abf",
         "filename": "dashboard/dashboard/services/cabe_service.py",
         "patchSetId": 2
