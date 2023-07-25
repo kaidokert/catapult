@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6371e530_f6cd2d59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-25T21:36:17Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "c6eb01b57487114aa9bfb3d7f7b1751046b6f2f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1932683_de307ca2",
@@ -38,6 +55,30 @@
       "side": 1,
       "message": "The error log is happening in alert_group_workflow ... I just wanted to get additional info for that scenario here",
       "parentUuid": "e1932683_de307ca2",
+      "range": {
+        "startLine": 92,
+        "startChar": 14,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "c6eb01b57487114aa9bfb3d7f7b1751046b6f2f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcbbfa8_ad4cc93a",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-25T21:36:17Z",
+      "side": 1,
+      "message": "I see.",
+      "parentUuid": "c0a31c0e_387d4759",
       "range": {
         "startLine": 92,
         "startChar": 14,
