@@ -28,6 +28,8 @@ _EXCLUDED_PATHS = (
     r'.*LICENSE$',
     r'.*OWNERS$',
     r'.*README\.md$',
+    r'.*_pb2.py$',
+    r'.*_pb2_grpc.py$',
     r'^dashboard[\\/]dashboard[\\/]api[\\/]examples[\\/].*.js',
     r'^dashboard[\\/]dashboard[\\/]templates[\\/].*',
     r'^dashboard[\\/]dashboard[\\/]sheriff_config[\\/].*_pb2.py$',
