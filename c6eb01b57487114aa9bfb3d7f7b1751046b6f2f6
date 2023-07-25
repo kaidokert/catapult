@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1932683_de307ca2",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-25T21:32:28Z",
+      "side": 1,
+      "message": "Looks like it is error instead of warning.",
+      "range": {
+        "startLine": 92,
+        "startChar": 14,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "c6eb01b57487114aa9bfb3d7f7b1751046b6f2f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79a166b_e2984ac9",
+        "filename": "dashboard/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-25T21:32:28Z",
+      "side": 1,
+      "message": "is it an intended change?",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 31
+      },
+      "revId": "c6eb01b57487114aa9bfb3d7f7b1751046b6f2f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
