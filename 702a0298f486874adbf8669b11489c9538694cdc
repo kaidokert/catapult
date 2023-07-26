@@ -87,6 +87,30 @@
       },
       "revId": "702a0298f486874adbf8669b11489c9538694cdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b760920d_ed8e0c4d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-07-26T17:37:24Z",
+      "side": 1,
+      "message": "`check_test_expectations_patterns_for_conflicts` should already work across multiple files https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/third_party/typ/typ/expectations_parser.py;l\u003d714?q\u003dtaggedtestlistparser\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2Fthird_party%2Ftyp%2Ftyp%2F\n\nSo, for now, we can rely on that. If we find that in practice conflicts end up being a problem, we can re-evaluate.",
+      "parentUuid": "c77a634f_28ba7f96",
+      "range": {
+        "startLine": 576,
+        "startChar": 12,
+        "endLine": 579,
+        "endChar": 72
+      },
+      "revId": "702a0298f486874adbf8669b11489c9538694cdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
