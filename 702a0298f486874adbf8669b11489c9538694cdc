@@ -63,6 +63,30 @@
       },
       "revId": "702a0298f486874adbf8669b11489c9538694cdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c77a634f_28ba7f96",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2023-07-26T17:29:55Z",
+      "side": 1,
+      "message": "How are you planning to handle conflicts amongst expectations across multiple files?",
+      "parentUuid": "0404c676_1aff653d",
+      "range": {
+        "startLine": 576,
+        "startChar": 12,
+        "endLine": 579,
+        "endChar": 72
+      },
+      "revId": "702a0298f486874adbf8669b11489c9538694cdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
