@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42ce8bee_a51f717d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-26T15:57:05Z",
+      "side": 1,
+      "message": "Would you add some detail to connect the fix to the bug? Thanks~",
+      "revId": "816c61c9c9d80373df770c6cf2aa524a4eb58127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
