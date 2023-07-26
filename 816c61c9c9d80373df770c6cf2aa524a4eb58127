@@ -34,6 +34,24 @@
       "parentUuid": "42ce8bee_a51f717d",
       "revId": "816c61c9c9d80373df770c6cf2aa524a4eb58127",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef38da0_b193b292",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-26T16:11:13Z",
+      "side": 1,
+      "message": "Got it. Thanks for the info! LGTM for this CL.\n\nFor the bug, should we record the page again?",
+      "parentUuid": "58f07704_aa3f2b21",
+      "revId": "816c61c9c9d80373df770c6cf2aa524a4eb58127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
