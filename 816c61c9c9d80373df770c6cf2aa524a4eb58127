@@ -52,6 +52,24 @@
       "parentUuid": "58f07704_aa3f2b21",
       "revId": "816c61c9c9d80373df770c6cf2aa524a4eb58127",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada6d7bb_10972454",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2023-07-26T16:15:58Z",
+      "side": 1,
+      "message": "I think we should be fine with editing the archive itself, that\u0027s a bit easier.",
+      "parentUuid": "4ef38da0_b193b292",
+      "revId": "816c61c9c9d80373df770c6cf2aa524a4eb58127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
