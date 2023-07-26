@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e26804a_fef64cfa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-26T16:12:08Z",
+      "side": 1,
+      "message": "We don\u0027t know yet, per crbug/1467102#c8. 😄",
+      "parentUuid": "0f343137_03cf6e61",
+      "range": {
+        "startLine": 9,
+        "startChar": 120,
+        "endLine": 9,
+        "endChar": 134
+      },
+      "revId": "4a4c58eca54c37d25b37fce1633faeca86c43aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b84dc2c9_6a741afb",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-26T09:56:58Z",
       "side": 1,
       "message": "should this be `issubset` instead? (I assume expected \u003c\u003d actual ids)\n\nhttps://www.w3schools.com/python/ref_set_issubset.asp",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 53
+      },
+      "revId": "4a4c58eca54c37d25b37fce1633faeca86c43aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91b2c45e_5d06af37",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-26T16:12:08Z",
+      "side": 1,
+      "message": "Good catch! Thanks!",
+      "parentUuid": "cd76071b_f9d671ac",
       "range": {
         "startLine": 57,
         "startChar": 43,
