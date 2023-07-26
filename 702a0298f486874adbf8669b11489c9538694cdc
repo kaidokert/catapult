@@ -39,6 +39,30 @@
       },
       "revId": "702a0298f486874adbf8669b11489c9538694cdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0404c676_1aff653d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-07-26T17:27:18Z",
+      "side": 1,
+      "message": "Yes, that is already the case for GPU and WebGPU expectation files, which currently are the only known use cases for this. Requiring identical tag sets lets us avoid situations where it\u0027s ambiguous which tag set a tag belongs to.",
+      "parentUuid": "09bc048f_27de49d9",
+      "range": {
+        "startLine": 576,
+        "startChar": 12,
+        "endLine": 579,
+        "endChar": 72
+      },
+      "revId": "702a0298f486874adbf8669b11489c9538694cdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
