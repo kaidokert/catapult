@@ -50,7 +50,42 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   dir: 'deploy-dashboard'
   args: [
-    'app', 'deploy', 'queue.yaml',
+    'app', 'deploy', 'queue.yaml'
+# We check in the target versions to avoid unintended traffic changes.
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Set traffic for default service'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'default',
+    '--splits=cloud-build-568df55=1'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Set traffic for api service'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'api',
+    '--splits=cloud-build-7b96e7a=1'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Set traffic for upload service'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'upload',
+    '--splits=cloud-build-7b96e7a=1'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Set traffic for upload-processing service'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'upload-processing',
+    '--splits=cloud-build-efe5fd8=1',
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Set traffic for pinpoint service'
+  dir: 'deploy-dashboard'
+  args: [
+    'app', 'services', 'set-traffic', 'pinpoint',
+    '--splits=cloud-build-3cdf63a=1'
   ]
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: '/bin/bash'
