@@ -783,6 +783,7 @@ class Runner(object):
             for l in err.splitlines():
                 self.print_('  %s' % l)
         elif not self.args.quiet:
+            #sys.__stderr__.write('ASDF verbose count: %d out: %s err: %s' % (self.args.verbose, out, err))
             if self.args.verbose > 1 and (out or err):
                 suffix += ':\n'
             self.update(stats.format() + result.name + suffix,

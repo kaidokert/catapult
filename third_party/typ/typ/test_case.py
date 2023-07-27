@@ -14,6 +14,7 @@
 
 import fnmatch
 import shlex
+import sys
 import unittest
 
 from typ import python_2_3_compat

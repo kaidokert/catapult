@@ -55,8 +55,8 @@ class TestFakeHost(host_test.TestHost):
 
         # This tests that the super-method only tested the
         # divert=True case, and things were diverted properly.
-        self.assertEqual(h.stdout.getvalue(), '')
-        self.assertEqual(h.stderr.getvalue(), '')
+        self.assertEqual(h._stdout.getvalue(), '')
+        self.assertEqual(h._stderr.getvalue(), '')
 
         h.capture_output(divert=False)
         h.print_('on stdout')
@@ -64,8 +64,8 @@ class TestFakeHost(host_test.TestHost):
         out, err = h.restore_output()
         self.assertEqual(out, 'on stdout\n')
         self.assertEqual(err, 'on stderr\n')
-        self.assertEqual(h.stdout.getvalue(), 'on stdout\n')
-        self.assertEqual(h.stderr.getvalue(), 'on stderr\n')
+        self.assertEqual(h._stdout.getvalue(), 'on stdout\n')
+        self.assertEqual(h._stderr.getvalue(), 'on stderr\n')
 
     def test_for_mp(self):
         h = self.host()

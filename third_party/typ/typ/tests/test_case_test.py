@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
+
 from typ import test_case
 
 
@@ -45,9 +47,15 @@ with open("../results", "w") as fp:
         }
         exp_files = files.copy()
         exp_files['results'] = 'results written'
+        test_env = {'TEST_VAR': 'foo'}
+        if sys.platform == 'win32':
+            # If we don't carry over the SYSTEMROOT, the Python subprocess can
+            # fail to initialize due to trying to get a random number for its
+            # hash seed. See https://stackoverflow.com/a/64706392.
+            test_env['SYSTEMROOT'] = h.getenv('SYSTEMROOT')
         self.check(prog=[h.python_interpreter, '../test.py'],
                    stdin='hello on stdin',
-                   env={'TEST_VAR': 'foo'},
+                   env=test_env,
                    cwd='subdir',
                    files=files,
                    ret=0, out='in: hello on stdin\nout: foo\n',
