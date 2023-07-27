@@ -69,6 +69,41 @@
       "parentUuid": "05a79911_e73139b3",
       "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292c62cd_8d788bb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-27T18:23:46Z",
+      "side": 1,
+      "message": "Working on another approach:\nhttps://chromium-review.googlesource.com/c/catapult/+/4724123\nWill abandon this.",
+      "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "101697d6_89c14948",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-27T18:23:46Z",
+      "side": 1,
+      "message": "Yes that is the correct doc.",
+      "parentUuid": "1b0c9e7d_b9bb020a",
+      "revId": "c52383f84d06ddfccf810433c7e55cf1678dac73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
