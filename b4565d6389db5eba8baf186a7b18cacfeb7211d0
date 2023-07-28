@@ -16,6 +16,52 @@
       "message": "PTAL.",
       "revId": "b4565d6389db5eba8baf186a7b18cacfeb7211d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70689cdc_7590f165",
+        "filename": "perf_issue_service/application/clients/datastore_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-28T23:49:27Z",
+      "side": 1,
+      "message": "\"Entity\"?",
+      "range": {
+        "startLine": 113,
+        "startChar": 31,
+        "endLine": 113,
+        "endChar": 37
+      },
+      "revId": "b4565d6389db5eba8baf186a7b18cacfeb7211d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab4f6ca1_5410b84d",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-07-28T23:49:27Z",
+      "side": 1,
+      "message": "I suggest making the client a class property that\u0027s initialized in the constructor and then used in the functions.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "b4565d6389db5eba8baf186a7b18cacfeb7211d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
