@@ -22,6 +22,30 @@
       },
       "revId": "f43b28c9964fa5a0d82e7fe0d65d6056d007d6fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea5ff053_9c751429",
+        "filename": "perf_issue_service/application/clients/datastore_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-31T17:36:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f7a3b7c_d480a39a",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 38
+      },
+      "revId": "f43b28c9964fa5a0d82e7fe0d65d6056d007d6fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

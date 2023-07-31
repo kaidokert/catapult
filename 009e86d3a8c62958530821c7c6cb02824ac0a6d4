@@ -39,6 +39,30 @@
       },
       "revId": "009e86d3a8c62958530821c7c6cb02824ac0a6d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c772427f_67e3723b",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-31T17:36:11Z",
+      "side": 1,
+      "message": "Good catch! Actually it exposes a bug here: I\u0027m comparing an id with a key object, which will never be equal.\nUpdated the logic to put the key id in the visited group and compare the ids.",
+      "parentUuid": "d1cf52ca_4b2f2058",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 45
+      },
+      "revId": "009e86d3a8c62958530821c7c6cb02824ac0a6d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
