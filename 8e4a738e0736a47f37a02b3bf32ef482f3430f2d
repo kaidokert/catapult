@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c277ed_eadfada1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-31T18:05:58Z",
+      "side": 1,
+      "message": "I\u0027m not entirely convinced that using json dicts prevents this code from unintentionally modifying fields it doesn\u0027t intend to (maybe it does though). Where are the transaction boundaries to prevent another application (e.g. chromeperf) from modifying a field on an entity - after this code has read it from datastore and made its own changes, but before this code has written it back out to datastore?",
+      "revId": "8e4a738e0736a47f37a02b3bf32ef482f3430f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cdf9630_17331981",
