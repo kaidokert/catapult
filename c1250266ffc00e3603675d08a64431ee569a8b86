@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41f0bbe3_817d65b3",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-07-31T23:34:10Z",
+      "side": 1,
+      "message": "is it possible to test cases where GetExecution returns values with .state set to something besides EXECUTION_STATE_SUCCEEDED?",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b57502fb_9362d345",
         "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
         "patchSetId": 3
