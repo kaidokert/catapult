@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7a3b7c_d480a39a",
+        "filename": "perf_issue_service/application/clients/datastore_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-31T16:48:29Z",
+      "side": 1,
+      "message": "Unnecessary in Python 3",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 38
+      },
+      "revId": "f43b28c9964fa5a0d82e7fe0d65d6056d007d6fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

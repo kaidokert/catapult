@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee0dcda_a1ff0c63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-31T16:48:29Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "009e86d3a8c62958530821c7c6cb02824ac0a6d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1cf52ca_4b2f2058",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-31T16:48:29Z",
+      "side": 1,
+      "message": "Might consider adding current_group_key into visited, then this if statement just needs next_group_key in visited.",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 45
+      },
+      "revId": "009e86d3a8c62958530821c7c6cb02824ac0a6d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
