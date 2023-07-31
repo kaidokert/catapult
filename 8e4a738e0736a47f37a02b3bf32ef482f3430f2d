@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "629dacec_f4cb05e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-07-31T18:48:30Z",
+      "side": 1,
+      "message": "Using json dicts will not prevent unintentionally updates. E.g., a typo of a property name \u0027project\u0027 may create a new property like \u0027preject\u0027. \n\nThis approach is to allow us to \u0027slightly\u0027 update the anomaly entity without knowing the whole structure. Previously, we need to have a well defined anomaly.py to load all properties. Now, we can load the anomaly, update a single property, and save back.\n\nThis reminds me to use transaction to protect data races. Added in ProcessUngroupedAlerts().",
+      "parentUuid": "66c277ed_eadfada1",
+      "revId": "8e4a738e0736a47f37a02b3bf32ef482f3430f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cdf9630_17331981",
