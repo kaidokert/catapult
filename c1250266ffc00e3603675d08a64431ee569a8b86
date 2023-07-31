@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d10c7192_e9f828ba",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-31T22:35:12Z",
+      "side": 1,
+      "message": "We can add unit tests for the following:\n- More than 1 Workflow in a Group\n- A Group that hasn\u0027t completed (ensure its active property is still True and the execution_stauts is still ACTIVE)",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34b6dec_68d3244d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-31T22:35:12Z",
+      "side": 1,
+      "message": "We can also add a unit test to make sure that the Group\u0027s active property has been changed to False, since it has been completed.",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b57502fb_9362d345",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-31T22:35:12Z",
+      "side": 1,
+      "message": "Can we add unit test to check that the Sandwich Workflows are updated correctly? For example, this workflow\u0027s execution_status should\u0027ve changed to SUCCEEDED.",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1764e5_8941d796",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-07-31T22:35:12Z",
+      "side": 1,
+      "message": "What does GetExecution return if it\u0027s mocked by \"MagicMock()\"?",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
