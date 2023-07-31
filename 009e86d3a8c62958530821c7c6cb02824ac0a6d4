@@ -63,6 +63,30 @@
       },
       "revId": "009e86d3a8c62958530821c7c6cb02824ac0a6d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9fee9f_df4dff4b",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-07-31T17:41:05Z",
+      "side": 1,
+      "message": "Sounds good.",
+      "parentUuid": "c772427f_67e3723b",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 45
+      },
+      "revId": "009e86d3a8c62958530821c7c6cb02824ac0a6d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
