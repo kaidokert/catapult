@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fbbfbd9_7e4c299f",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-08-01T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d10c7192_e9f828ba",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d34b6dec_68d3244d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-07-31T22:35:12Z",
       "side": 1,
       "message": "We can also add a unit test to make sure that the Group\u0027s active property has been changed to False, since it has been completed.",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2757f53_fa10e7b5",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-08-01T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d34b6dec_68d3244d",
       "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -52,6 +88,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d1f1eda_bec2c9da",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-08-01T19:17:47Z",
+      "side": 1,
+      "message": "Yes, added test with workflow_service.EXECUTION_STATE_FAILED and workflow_service.EXECUTION_STATE_ACTIVE",
+      "parentUuid": "41f0bbe3_817d65b3",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b57502fb_9362d345",
@@ -69,6 +123,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c86d141_85b79da8",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-08-01T19:17:47Z",
+      "side": 1,
+      "message": "Done, see line 47-51 and line 79-83",
+      "parentUuid": "b57502fb_9362d345",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec1764e5_8941d796",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-07-31T22:35:12Z",
       "side": 1,
       "message": "What does GetExecution return if it\u0027s mocked by \"MagicMock()\"?",
+      "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c689871_be440738",
+        "filename": "dashboard/dashboard/pinpoint/handlers/culprit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-08-01T19:17:47Z",
+      "side": 1,
+      "message": "It will return something similar to \u003cMagicMock name\u003d\u0027mock()\u0027 id\u003d\u0027140554079071968\u0027\u003e",
+      "parentUuid": "ec1764e5_8941d796",
       "revId": "c1250266ffc00e3603675d08a64431ee569a8b86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
