@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6f4490f_2ea1025e",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-01T23:11:34Z",
+      "side": 1,
+      "message": "is that trailing comma idiomatic in python?",
+      "range": {
+        "startLine": 60,
+        "startChar": 46,
+        "endLine": 60,
+        "endChar": 56
+      },
+      "revId": "3fe2f202e1ef7aa01cf38983944be8c8080ae9c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
