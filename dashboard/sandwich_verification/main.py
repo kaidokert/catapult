@@ -56,6 +56,9 @@ def StartPinpointJob(request):
 
   results = pinpoint_service.NewJob(pinpoint_params)
 
+  if 'jobId' not in results:
+    return ('Start pinpoint job failed: %s' % (results,)), 400
+
   print('Starting job response: %s' % results)
 
   return jsonify({'job_id': results.get('jobId')})
@@ -79,6 +82,9 @@ def PollPinpointJob(request):
   print("Getting Job: %s" % job_id)
 
   results = pinpoint_service.GetJob(job_id)
+
+  if 'status' not in results:
+    return ('Failed to fetch Pinpoint job: %s' % (results,)), 400
 
   print('Getting job response: %s' % results)
 
