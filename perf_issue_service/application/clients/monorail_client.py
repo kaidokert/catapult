@@ -88,6 +88,7 @@ class MonorailClient:
     response = self._ExecuteRequest(request)
     if not response:
       return None
+
     return [{
         'id': r['id'],
         'author': r['author'].get('name'),
