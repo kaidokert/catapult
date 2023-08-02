@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0992b6b9_9d091f3a",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-02T17:52:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ef735f7_39654715",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dac52db6_1e957e11",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-02T17:34:32Z",
       "side": 1,
       "message": "how does the workflow know which chart to check? \n\nMore concretely, given this bisection [1], how does the workflow know to check `thread_total_rendering_cpu_time_per_frame`?\n\n[1] https://pinpoint-dot-chromeperf.appspot.com/job/14bb5cafe60000",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49843568_ac6712b8",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-02T17:52:11Z",
+      "side": 1,
+      "message": "See line 84",
+      "parentUuid": "dac52db6_1e957e11",
       "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -52,6 +88,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44715031_2e3b09bd",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-02T17:52:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc3a265c_2011137a",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fd1421b_ef6b27cb",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-08-02T17:32:20Z",
       "side": 1,
       "message": "I kicked off a workflow but when I run the `gcloud workflows` command I get: \n\n``` \ngcloud workflows executions describe projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/1ace97ad-c6b5-4bda-8c43-cbed00dd1725\nERROR: gcloud crashed (InvalidSchemaError): Wait commands must include an async section.\n\nIf you would like to report this issue, please run the following command:\n  gcloud feedback\n\nTo check gcloud for common problems, please run the following command:\n  gcloud info --run-diagnostics\n```",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54686368_12dd0810",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-02T17:52:11Z",
+      "side": 1,
+      "message": "This is what I get when I run that command:\n```\n\u003e gcloud workflows executions describe projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/1ace97ad-c6b5-4bda-8c43-cbed00dd1725\nWARNING: The default location(us-central1) was used since the location flag was not specified.\nargument: \u0027{\"anomaly\":{\"benchmark\":\"rendering.desktop\",\"bot_name\":\"mac-laptop_high_end-perf\",\"end_git_hash\":\"500f288f3ca5675c2cead5952c9d6d423296a0f2\",\"measurement\":\"thread_total_rendering_cpu_time_per_frame\",\"start_git_hash\":\"1e5243b0d22ea9655422107ed7c8713f436f60d2\",\"story\":\"webgl_to_texture\",\"target\":\"performance_test_suite\"}}\u0027\nname: projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/1ace97ad-c6b5-4bda-8c43-cbed00dd1725\nstartTime: \u00272023-08-02T17:28:51.668604758Z\u0027\nstate: ACTIVE\nstatus:\n  currentSteps:\n  - routine: main\n    step: wait\nworkflowRevisionId: 000002-600\n```\n\nmaybe run `gcloud components update`?",
+      "parentUuid": "9fd1421b_ef6b27cb",
       "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
