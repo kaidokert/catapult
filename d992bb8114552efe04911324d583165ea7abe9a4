@@ -247,6 +247,24 @@
       "parentUuid": "41f62fba_435b9144",
       "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0180c48f_ef3b4136",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-02T22:56:53Z",
+      "side": 1,
+      "message": "We have multiple benchmarks that run stories that return 0 or 1. Can we change the logic so that we skip those instead of returning an error?",
+      "parentUuid": "d263960d_74008d29",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
