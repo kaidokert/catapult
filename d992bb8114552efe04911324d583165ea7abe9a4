@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ef735f7_39654715",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-02T17:32:20Z",
+      "side": 1,
+      "message": "nit: verification typo",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc3a265c_2011137a",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-02T17:32:20Z",
+      "side": 1,
+      "message": "nit: CreateExecutionRequest typo",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fd1421b_ef6b27cb",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-02T17:32:20Z",
+      "side": 1,
+      "message": "I kicked off a workflow but when I run the `gcloud workflows` command I get: \n\n``` \ngcloud workflows executions describe projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/1ace97ad-c6b5-4bda-8c43-cbed00dd1725\nERROR: gcloud crashed (InvalidSchemaError): Wait commands must include an async section.\n\nIf you would like to report this issue, please run the following command:\n  gcloud feedback\n\nTo check gcloud for common problems, please run the following command:\n  gcloud info --run-diagnostics\n```",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
