@@ -211,6 +211,24 @@
       "parentUuid": "70ee6737_34d91340",
       "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f62fba_435b9144",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-02T22:36:52Z",
+      "side": 1,
+      "message": "\u003e actually, this might have been fixed by https://chromium-review.googlesource.com/c/catapult/+/4736276 - which I don\u0027t believe is pushed to prod yet.  I\u0027ll check on that too\n\nNope, it\u0027s a different problem.  I tried running just the `cabe analyze` command (to isolate it from the workflows-related stuff) on that pinpoint job, and it failed: \n\n```\nbazelisk run //cabe/go/cmd/cabe -- analyze -pinpoint-job 1644c2ca160000\n...\nE0802 15:31:47.906119 1874820 analyze.go:51] failed to analyze 1644c2ca160000: x[i] and y[i] must be greater than 0 to use log transform, but got x[i]: 0 and y[i]: 0\n...\nError: problem reported by cabe_stats.BerfWilcoxonSignedRankedTest: x[i] and y[i] must be greater than 0 to use log transform, but got x[i]: 0 and y[i]: 0\n```",
+      "parentUuid": "17f28e4b_7d98a11d",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
