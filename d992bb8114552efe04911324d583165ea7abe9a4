@@ -193,6 +193,24 @@
       "parentUuid": "86b95556_5a917745",
       "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17f28e4b_7d98a11d",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-02T18:53:32Z",
+      "side": 1,
+      "message": "actually, this might have been fixed by https://chromium-review.googlesource.com/c/catapult/+/4736276 - which I don\u0027t believe is pushed to prod yet.  I\u0027ll check on that too",
+      "parentUuid": "70ee6737_34d91340",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
