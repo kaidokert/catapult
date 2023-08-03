@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e68d7d_185768cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-03T18:52:36Z",
+      "side": 1,
+      "message": "Try again with the transaction fix. PTAL. Thanks!",
+      "revId": "51ee3c37a432c0cc7d5defa6c7a8fdd10f57714b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
