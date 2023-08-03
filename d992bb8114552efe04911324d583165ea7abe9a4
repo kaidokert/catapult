@@ -283,6 +283,24 @@
       "parentUuid": "d263960d_74008d29",
       "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a74f5d4_befef669",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-03T01:25:14Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/catapult/+/4744740 is the fix",
+      "parentUuid": "2aebc6c0_ab6ebb95",
+      "revId": "d992bb8114552efe04911324d583165ea7abe9a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
