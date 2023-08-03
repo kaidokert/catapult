@@ -16,6 +16,52 @@
       "message": "PTAL.",
       "revId": "2ee78e9b2d7153d5a10a5bc47181efd0876eba79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d0c0ed_92402413",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-03T21:07:53Z",
+      "side": 1,
+      "message": "\"used to\"",
+      "range": {
+        "startLine": 152,
+        "startChar": 39,
+        "endLine": 152,
+        "endChar": 43
+      },
+      "revId": "2ee78e9b2d7153d5a10a5bc47181efd0876eba79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb132e8_6deef6f0",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-03T21:07:53Z",
+      "side": 1,
+      "message": "The code would ignore Pri-3 and Pri-4",
+      "range": {
+        "startLine": 163,
+        "startChar": 2,
+        "endLine": 163,
+        "endChar": 14
+      },
+      "revId": "2ee78e9b2d7153d5a10a5bc47181efd0876eba79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
