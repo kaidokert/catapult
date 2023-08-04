@@ -42,6 +42,11 @@ main:
           - assignJobId:
               assign:
               - job_id: ${startPinpointJobResult.body.job_id}
+          - logStep:
+              call: sys.log
+              args:
+                text: Started pinpoint job ${startPinpointJobResult.body.job_id}
+                severity: SEVERITY
     - pollPinpointJob:
         steps:
           - getFunctionPollPinpointJob:
