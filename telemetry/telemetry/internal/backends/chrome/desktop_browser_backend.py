@@ -166,9 +166,13 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    cmd = [self._executable]
     if self.browser.platform.GetOSName() == 'mac':
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open', '-n', '-W', '-a', self._executable, '--args']
       cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
     cmd.extend(startup_args)
     cmd.append('about:blank')
     env = os.environ.copy()
@@ -235,8 +239,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     formatted_command = format_for_logging.ShellFormat(
         command, trim=self.browser_options.trim_logs)
     logging.info('Starting Chrome: %s\n', formatted_command)
-    if not self.browser_options.trim_logs:
-      logging.info('Chrome Env: %s', env)
+    # if not self.browser_options.trim_logs:
+    logging.info('Chrome Env: %s', env)
+      #  --env VAR
+      # Adds VAR to the environment of the launched application.
+      # VAR should be formatted NAME=VALUE or NAME.
+
 
   def BindDevToolsClient(self):
     # In addition to the work performed by the base class, quickly check if
