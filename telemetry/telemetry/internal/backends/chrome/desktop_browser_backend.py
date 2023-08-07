@@ -166,11 +166,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
-      cmd.append('--use-mock-keychain')  # crbug.com/865247
-    cmd.extend(startup_args)
-    cmd.append('about:blank')
     env = os.environ.copy()
     env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
     env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
@@ -187,29 +182,47 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                         name, env[name], encoding)
       env[name] = 'en_US.UTF-8'
 
+    if self.browser.platform.GetOSName() == 'mac':
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open']
+      for k,v in env.items():
+        cmd.append('--env %s=%s' % (k,v))
+        break
+      cmd.extend(['-n', '-W', '-a', self._executable, '--args'])
+      cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
+    cmd.extend(startup_args)
+    cmd.append('about:blank')
+
+
     self.LogStartCommand(cmd, env)
 
-    if not self.browser_options.show_stdout:
-      self._tmp_output_file = tempfile.NamedTemporaryFile('w')
-      self._proc = subprocess.Popen(
-          cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
-    else:
-      # There is weird behavior on Windows where stream redirection does not
-      # work as expected if we let the subprocess use the defaults. This results
-      # in browser logging not being visible on Windows on swarming. Explicitly
-      # setting the streams works around this. The except is in case we are
-      # being run through typ, whose _TeedStream replaces the default streams.
-      # This can't be used for subprocesses since it is all in-memory, and thus
-      # does not have a fileno.
-      if sys.platform == 'win32':
-        try:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
-        except io.UnsupportedOperation:
-          self._proc = subprocess.Popen(
-              cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
-      else:
-        self._proc = subprocess.Popen(cmd, env=env)
+    # if not self.browser_options.show_stdout:
+    #   self._tmp_output_file = tempfile.NamedTemporaryFile('w')
+    #   self._proc = subprocess.Popen(
+    #       cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
+    # else:
+    #   # There is weird behavior on Windows where stream redirection does not
+    #   # work as expected if we let the subprocess use the defaults. This results
+    #   # in browser logging not being visible on Windows on swarming. Explicitly
+    #   # setting the streams works around this. The except is in case we are
+    #   # being run through typ, whose _TeedStream replaces the default streams.
+    #   # This can't be used for subprocesses since it is all in-memory, and thus
+    #   # does not have a fileno.
+    #   if sys.platform == 'win32':
+    #     try:
+    #       self._proc = subprocess.Popen(
+    #           cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
+    #     except io.UnsupportedOperation:
+    #       self._proc = subprocess.Popen(
+    #           cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
+    #   else:
+    self._proc = subprocess.Popen(cmd, env=env)
+    out, err = self._proc.communicate()
+    logging.error(out)
+    logging.error(err)
 
     self.BindDevToolsClient()
     # browser is foregrounded by default on Windows and Linux, but not Mac.
@@ -232,11 +245,13 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     discouraged. This method could be changed to print arguments that are
     different since the last run if need be.
     """
+    logging.info(command)
     formatted_command = format_for_logging.ShellFormat(
         command, trim=self.browser_options.trim_logs)
     logging.info('Starting Chrome: %s\n', formatted_command)
-    if not self.browser_options.trim_logs:
-      logging.info('Chrome Env: %s', env)
+    # if not self.browser_options.trim_logs:
+    logging.info('Chrome Env: %s', env)
+
 
   def BindDevToolsClient(self):
     # In addition to the work performed by the base class, quickly check if
