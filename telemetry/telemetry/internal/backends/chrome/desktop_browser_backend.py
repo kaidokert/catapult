@@ -166,11 +166,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
-      cmd.append('--use-mock-keychain')  # crbug.com/865247
-    cmd.extend(startup_args)
-    cmd.append('about:blank')
     env = os.environ.copy()
     env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
     env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
@@ -186,6 +181,20 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         logging.warning('Overriding env[%s]=="%s" with default value "%s"',
                         name, env[name], encoding)
       env[name] = 'en_US.UTF-8'
+
+    if self.browser.platform.GetOSName() == 'mac':
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open', '-n', '-W']
+      # for k,v in env.items():
+      #   cmd.append('--env')
+      #   cmd.append('%s=%s' % (k,v))
+      cmd.extend(['-a', os.path.abspath(self._executable), '--args'])
+      cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
+    cmd.extend(startup_args)
+    cmd.append('about:blank')
 
     self.LogStartCommand(cmd, env)
 
