@@ -13,6 +13,7 @@ import random
 import re
 import shutil
 import signal
+import stat
 import subprocess
 import sys
 import tempfile
@@ -166,11 +167,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
-      cmd.append('--use-mock-keychain')  # crbug.com/865247
-    cmd.extend(startup_args)
-    cmd.append('about:blank')
     env = os.environ.copy()
     env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
     env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
@@ -187,10 +183,33 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                         name, env[name], encoding)
       env[name] = 'en_US.UTF-8'
 
+    if self.browser.platform.GetOSName() == 'mac':
+
+
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open', '-n', '-W']
+      # for k,v in env.items():
+      #   cmd.append('--env')
+      #   cmd.append('%s=%s' % (k,v))
+      # self._executable = self._executable[:-len('/Contents/MacOS/Chromium')]
+
+      os.chmod(self._executable,
+               os.stat(self._executable) | stat.S_IXGRP | stat.S_IXOTH)
+
+      cmd.extend(['-a', os.path.abspath(self._executable), '--args'])
+      cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
+    cmd.extend(startup_args)
+    cmd.append('about:blank')
+
     self.LogStartCommand(cmd, env)
+    self.browser_options.show_stdout = False
 
     if not self.browser_options.show_stdout:
       self._tmp_output_file = tempfile.NamedTemporaryFile('w')
+      logging.info(self._tmp_output_file)
       self._proc = subprocess.Popen(
           cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
     else:
@@ -210,6 +229,11 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
               cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
       else:
         self._proc = subprocess.Popen(cmd, env=env)
+        stdout, stderr = self._proc.communicate()
+        logging.info("stdout")
+        logging.info(stdout)
+        logging.info("stderr")
+        logging.info(stderr)
 
     self.BindDevToolsClient()
     # browser is foregrounded by default on Windows and Linux, but not Mac.
