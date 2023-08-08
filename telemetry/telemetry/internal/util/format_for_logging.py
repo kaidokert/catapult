@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
+import logging
 import pipes
 
 
@@ -45,4 +46,6 @@ def _Trim(command):
 def _ShellQuote(command_part):
   """Escape a part of a command to enable copy/pasting it into a shell.
   """
+  logging.info(command_part)
+  logging.info(type(command_part))
   return pipes.quote(command_part)

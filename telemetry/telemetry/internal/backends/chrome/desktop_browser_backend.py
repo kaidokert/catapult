@@ -166,11 +166,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
-      cmd.append('--use-mock-keychain')  # crbug.com/865247
-    cmd.extend(startup_args)
-    cmd.append('about:blank')
     env = os.environ.copy()
     env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
     env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
@@ -186,6 +181,21 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         logging.warning('Overriding env[%s]=="%s" with default value "%s"',
                         name, env[name], encoding)
       env[name] = 'en_US.UTF-8'
+
+    if self.browser.platform.GetOSName() == 'mac':
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open']
+      for k,v in env.items():
+        cmd.append('--env')
+        cmd.append('%s=%s' % (k,v))
+      cmd.extend(['-n', '-W', '-a', self._executable, '--args'])
+      cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
+    cmd.extend(startup_args)
+    cmd.append('about:blank')
+
 
     self.LogStartCommand(cmd, env)
 
@@ -210,6 +220,9 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
               cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
       else:
         self._proc = subprocess.Popen(cmd, env=env)
+        out, err = self._proc.communicate()
+        logging.error(out)
+        logging.error(err)
 
     self.BindDevToolsClient()
     # browser is foregrounded by default on Windows and Linux, but not Mac.
@@ -232,11 +245,13 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     discouraged. This method could be changed to print arguments that are
     different since the last run if need be.
     """
+    logging.info(command)
     formatted_command = format_for_logging.ShellFormat(
         command, trim=self.browser_options.trim_logs)
     logging.info('Starting Chrome: %s\n', formatted_command)
-    if not self.browser_options.trim_logs:
-      logging.info('Chrome Env: %s', env)
+    # if not self.browser_options.trim_logs:
+    logging.info('Chrome Env: %s', env)
+
 
   def BindDevToolsClient(self):
     # In addition to the work performed by the base class, quickly check if
