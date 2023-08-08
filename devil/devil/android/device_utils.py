@@ -721,6 +721,9 @@ class DeviceUtils(object):
       raise device_errors.CommandFailedError('$EXTERNAL_STORAGE is not set',
                                              str(self))
     return self._cache['external_storage']
+    #return '/mnt/user/10/emulated/10'
+    #return '/data/user/10/org.chromium.chrome.test.smoke'
+    #return '/data/user/10/org.chromium.chrome.tests'
 
   def GetAppWritablePath(self, timeout=None, retries=None):
     """Get a path that on the device's SD card that apps can write.
@@ -745,6 +748,8 @@ class DeviceUtils(object):
       # So use /sdcard/Download for the app-writable path on those versions.
       return posixpath.join(self.GetExternalStoragePath(), 'Download')
     return self.GetExternalStoragePath()
+    #return '/data/user/10/org.chromium.chrome.test.smoke'
+    #return '/data/user/10/org.chromium.chrome.tests'
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetIMEI(self, timeout=None, retries=None):
@@ -810,8 +815,8 @@ class DeviceUtils(object):
     if library_version is None:
       # `pm list packages` allows matching substrings, but we want exact matches
       # only.
-      matching_packages = self.RunShellCommand(
-          ['pm', 'list', 'packages', package], check_return=True)
+      cmd = ['pm', 'list', 'packages', '--user', str(self.current_user), package]
+      matching_packages = self.RunShellCommand(cmd, check_return=True)
       desired_line = 'package:' + package
       found_package = desired_line in matching_packages
       if found_package:
@@ -888,7 +893,7 @@ class DeviceUtils(object):
     # TODO(jbudorick): Check if this is fixed as new Android versions are
     # released to put an upper bound on this.
     should_check_return = (self.build_version_sdk < version_codes.LOLLIPOP)
-    output = self.RunShellCommand(['pm', 'path', package],
+    output = self.RunShellCommand(['pm', 'path', '--user', str(self.current_user), package],
                                   check_return=should_check_return)
     apks = []
     bad_output = False
@@ -985,14 +990,13 @@ class DeviceUtils(object):
     if not self.IsApplicationInstalled(package):
       raise device_errors.CommandFailedError('%s is not installed' % package,
                                              str(self))
-    output = self._RunPipedShellCommand(
-        'pm dump %s | grep dataDir=' % cmd_helper.SingleQuote(package))
-    for line in output:
-      _, _, dataDir = line.partition('dataDir=')
-      if dataDir:
-        return dataDir
-    raise device_errors.CommandFailedError(
-        'Could not find data directory for %s' % package, str(self))
+    # The shell command "pm dump" may not always show the info for secondary
+    # users. So handcraft the path.
+    data_dir = '/data/user/{}/{}'.format(self.current_user, package)
+    if not self.PathExists(data_dir, as_root=True):
+      raise device_errors.CommandFailedError(
+          'Could not find data directory for %s' % package, str(self))
+    return data_dir
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetSecurityContextForPackage(self,
@@ -1706,8 +1710,8 @@ class DeviceUtils(object):
         return handle_check_return(cmd)
       with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
         self._WriteFileWithPush(script.name, cmd)
-        logger.debug('Large shell command will be run from file: %s ...',
-                     cmd[:self._MAX_ADB_COMMAND_LENGTH])
+        logger.debug('Large shell command will be run from file: %s',
+                     cmd)
         return handle_check_return('sh %s' % script.name_quoted)
 
     def handle_large_output(cmd, large_output_mode):
@@ -1983,13 +1987,19 @@ class DeviceUtils(object):
       CommandTimeoutError on timeout.
       DeviceUnreachableError on missing device.
     """
-    # Android older than Nougat does not support get-current-user.
-    # Use dumpsys instead.
-    if self.build_version_sdk < version_codes.NOUGAT:
-      return self._GetCurrentUserDumpsys()
-    cmd = ['am', 'get-current-user']
-    # Only actual user id is extracted. Warning is skipped if it exists.
-    return int(self.RunShellCommand(cmd, check_return=True)[-1])
+    current_user = self._cache['current_user']
+    if current_user:
+      return current_user
+    with self._cache_lock:
+      # Android older than Nougat does not support get-current-user.
+      # Use dumpsys instead.
+      if self.build_version_sdk < version_codes.NOUGAT:
+        current_user =  self._GetCurrentUserDumpsys()
+      cmd = ['am', 'get-current-user']
+      # Only actual user id is extracted. Warning is skipped if it exists.
+      current_user =  int(self.RunShellCommand(cmd, check_return=True)[-1])
+      self._cache['current_user'] = current_user
+    return current_user
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def _GetCurrentUserDumpsys(self, timeout=None, retries=None):
@@ -2019,6 +2029,7 @@ class DeviceUtils(object):
     """
     cmd = ['am', 'switch-user', str(user_id)]
     self.RunShellCommand(cmd, check_return=True)
+    del self._cache['current_user']
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GoHome(self, timeout=None, retries=None):
@@ -2140,7 +2151,7 @@ class DeviceUtils(object):
     if ((self.build_version_sdk >= version_codes.JELLY_BEAN_MR2)
         or self._GetApplicationPathsInternal(package)):
 
-      self.RunShellCommand(['pm', 'clear', package], check_return=True)
+      self.RunShellCommand(['pm', 'clear', '--user', str(self.current_user), package], check_return=True)
       self.GrantPermissions(package, permissions)
 
       if wait_for_asynchronous_intent:
@@ -3190,6 +3201,11 @@ class DeviceUtils(object):
           'Invalid build version sdk: %r' % value)
 
   @property
+  def current_user(self):
+    """Returns the id of the current foreground user on the device."""
+    return self.GetCurrentUser()
+
+  @property
   def tracing_path(self):
     """Returns the tracing path of the device for atrace."""
     return self.GetTracingPath()
@@ -3975,6 +3991,8 @@ class DeviceUtils(object):
         'prev_token': None,
         # Path for tracing.
         'tracing_path': None,
+        # The id of the current foreground user.
+        'current_user': None,
     }
 
   @decorators.WithTimeoutAndRetriesFromInstance()
