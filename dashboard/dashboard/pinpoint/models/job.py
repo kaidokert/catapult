@@ -41,6 +41,7 @@ from dashboard.pinpoint.models.evaluators import job_serializer
 from dashboard.pinpoint.models.tasks import evaluator as task_evaluator
 from dashboard.services import gerrit_service
 from dashboard.services import perf_issue_service_client
+from dashboard.services import request
 from dashboard.services import swarming
 from dashboard.services import workflow_service
 
@@ -70,6 +71,12 @@ _FIRST_OR_LAST_FAILED_COMMENT = (
     u"""One or both of the initial changes failed to produce any results.
 Perhaps the job is misconfigured or the tests are broken? See the job
 page for details.""")
+
+CLOUD_FUNCTION_URL = ("""https://cloudfunctions.googleapis.com/v2/projects/
+                      chromeperf/locations/us-central1/functions/""")
+GET_CABE = "get-cabe-analysis-prod"
+DETECT_REGRESSION = "regression-detection-prod"
+CLOUD_SCOPE = 'https://www.googleapis.com/auth/cloud-platform'
 
 
 def JobFromId(job_id):
@@ -576,6 +583,30 @@ class Job(ndb.Model):
       results2.ScheduleResults2Generation(self)
     except taskqueue.Error as e:
       logging.debug('Failed ScheduleResults2Generation: %s', str(e))
+
+    # Call CABE on all try jobs
+    if self._IsTryJob():
+      logging.debug('Job [%s]: Call CABE', self.job_id)
+      for benchmark in self.benchmark_arguments.benchmark:
+        for measurement in self.benchmark_arguments.chart:
+          body = {
+            "anomaly":{
+              "benchmark":benchmark,
+              "measurement":measurement,
+            },
+            "job_id":"1721580f160000", # self.job_id
+            }
+          url = CLOUD_FUNCTION_URL + GET_CABE
+          response = request.RequestJson(
+            url,
+            method='POST',
+            body=body,
+          )
+          logging.debug('Job %s, benchmark %s, measurement %s, CABE response: %s', 
+                        self.job_id,
+                        benchmark,
+                        measurement,
+                        response.body.statistic)
 
     self._FormatAndPostBugCommentOnComplete()
     self._UpdateGerritIfNeeded()
