@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8588dc53_630773f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-08T01:10:29Z",
+      "side": 1,
+      "message": "PTAL. Let me know if there\u0027s any local testing I can do.",
+      "revId": "16b33d03880e8f0314cfe833bdbacc5786e07d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
