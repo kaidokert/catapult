@@ -16,6 +16,23 @@
       "message": "PTAL. Let me know if there\u0027s any local testing I can do.",
       "revId": "16b33d03880e8f0314cfe833bdbacc5786e07d02",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec28a98f_3a19ed5d",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-08T03:43:04Z",
+      "side": 1,
+      "message": "Nit: run `go fmt -w .` in this directory to autoformat this file.\n\nWe should probably move this code to the skia repo at some point since they\u0027ve automated this stuff.  Either that, or get the catapult repo and CQ to be more skia-like.  I suspect the former is less work though.",
+      "revId": "16b33d03880e8f0314cfe833bdbacc5786e07d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
