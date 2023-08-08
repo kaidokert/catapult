@@ -16,6 +16,52 @@
       "message": "PTAL.",
       "revId": "981bde83faa62b73865cbe9c4b04b00b9a7e1b64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a20b7e_f26c058b",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-08T16:21:50Z",
+      "side": 1,
+      "message": "Do we need to add this to add_list?",
+      "range": {
+        "startLine": 312,
+        "startChar": 23,
+        "endLine": 312,
+        "endChar": 34
+      },
+      "revId": "981bde83faa62b73865cbe9c4b04b00b9a7e1b64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bc3e659_8ce00b1d",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-08T16:21:50Z",
+      "side": 1,
+      "message": "Any reason we need separate add_list and add_issue_state? Can we use add_issue_state.keys as add_list?",
+      "range": {
+        "startLine": 354,
+        "startChar": 7,
+        "endLine": 354,
+        "endChar": 15
+      },
+      "revId": "981bde83faa62b73865cbe9c4b04b00b9a7e1b64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
