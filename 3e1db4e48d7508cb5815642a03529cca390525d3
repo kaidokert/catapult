@@ -16,6 +16,29 @@
       "message": "Other than the comments, a couple of updates:\n - remove the implementation on adding hotlists as we need to go another route.\n - if there is no comment and no add/remove list, do nothing.",
       "revId": "3e1db4e48d7508cb5815642a03529cca390525d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134ba73b_66facd51",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-08T22:33:19Z",
+      "side": 1,
+      "message": "This is a duplicated condition. Though, it will be reused in the next CL. 😊",
+      "range": {
+        "startLine": 318,
+        "startChar": 6,
+        "endLine": 318,
+        "endChar": 12
+      },
+      "revId": "3e1db4e48d7508cb5815642a03529cca390525d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
