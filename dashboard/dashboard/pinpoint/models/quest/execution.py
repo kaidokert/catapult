@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import traceback
 
 from dashboard.pinpoint.models import errors
+import logging
 import six
 
 from google.auth import exceptions
@@ -135,6 +136,7 @@ class Execution:
       if hasattr(e, 'task_output'):
         tb += '\n%s' % getattr(e, 'task_output')
       self._exception = {'message': str(e), 'traceback': tb}
+      logging.warning('Execution failed with exception: %s', str(e))
 
   def _Poll(self):
     raise NotImplementedError()
