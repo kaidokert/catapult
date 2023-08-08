@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05321996_47cc75c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-08T23:50:20Z",
+      "side": 1,
+      "message": "I\u0027m still testing it out on staging. Wanted to get Sean\u0027s feedback before he went OOO.\n\nWent with this approach because the cloud function that calls GetCabeAnalysis will call cabe_service.GetAnalysis, which requires a job_id, benchmark, and measurement. We cannot simply pass a job id without more changes.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/sandwich_verification/common/cabe_service.py;drc\u003d742ad79be37f7943df44ed2f40a808671a5cae13;l\u003d18",
+      "revId": "a879fca75994dd685ff601882f549422f60b3bb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
