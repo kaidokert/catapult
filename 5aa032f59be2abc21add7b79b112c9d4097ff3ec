@@ -22,6 +22,30 @@
       },
       "revId": "5aa032f59be2abc21add7b79b112c9d4097ff3ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e1f4c64_7fa596d4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/execution.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-09T16:17:10Z",
+      "side": 1,
+      "message": "Done. Added logs for those as well.",
+      "parentUuid": "36a9dedb_5d6b7f5c",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 45
+      },
+      "revId": "5aa032f59be2abc21add7b79b112c9d4097ff3ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
