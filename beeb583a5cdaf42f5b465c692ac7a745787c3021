@@ -124,6 +124,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8fa594b_7b826b21",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-09T20:14:10Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "db03e76b_26ecd412",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73132dcd_3c78208a",
