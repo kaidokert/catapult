@@ -16,6 +16,23 @@
       "message": "To be transparent, I did not use these scripts to do the deployment process this week. I created this after the fact (so I understood what the workstream was).",
       "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34729d44_04dd2210",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-09T18:52:01Z",
+      "side": 1,
+      "message": "Adding Sean, since he created the go script for this.",
+      "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
