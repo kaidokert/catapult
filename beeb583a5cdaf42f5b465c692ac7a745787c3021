@@ -33,6 +33,52 @@
       "message": "Adding Sean, since he created the go script for this.",
       "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9084d0c_0232f798",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-09T18:53:34Z",
+      "side": 1,
+      "message": "```suggestion\n    git checkout -b $service -t origin/main\n    git pull --ff\n```\nThis will ensure that the branch has the latest changes from origin before making new ones. Better for potential merge conflicts",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73132dcd_3c78208a",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-09T18:53:34Z",
+      "side": 1,
+      "message": "nit: Not required if the above suggestion is implemented",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
