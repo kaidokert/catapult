@@ -16,6 +16,23 @@
       "message": "LGTM from my side.\nMichael is OOO. Omer, can you take a look please?",
       "revId": "80ab81894c8cf55b81b815101641f70f303ea9d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "122e438d_02af4c8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-08-09T20:08:11Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "80ab81894c8cf55b81b815101641f70f303ea9d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
