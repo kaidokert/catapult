@@ -425,13 +425,22 @@ def _ComputeAutobisectUpdate(tags):
     return None
 
   client = sheriff_config_client.GetSheriffConfigClient()
-  subscriptions = client.Match(test_key, check=True)
+  matched_configs, _ = client.Match(test_key, check=True)
 
-  components = set(c for s in subscriptions for c in s.bug_components)
-  cc = set(e for s in subscriptions for e in s.bug_cc_emails)
-  labels = set(l for s in subscriptions for l in s.bug_labels)
+  logging.debug('[DelayAssignment] matched config: %s', matched_configs)
 
-  return list(components), list(cc), list(labels)
+  components, ccs, labels = [], [], []
+
+  for config in matched_configs:
+    subscription = config.get('subscription', {})
+    if 'bug_components' in subscription:
+      components.append(subscription['bug_components'])
+    if 'bug_cc_emails' in subscription:
+      ccs.append(subscription['bug_cc_emails'])
+    if 'bug_labels' in subscription:
+      labels.append(subscription['bug_labels'])
+
+  return components, ccs, labels
 
 
 def UpdatePostAndMergeDeferred(bug_update_builder,
