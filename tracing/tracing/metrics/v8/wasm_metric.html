@@ -130,6 +130,52 @@ tr.exportTo('tr.metrics.v8', function() {
     histograms.addHistogram(histogram);
   }
 
+  function computeLazyCompilationTimeMetric(histograms, wasmEvents) {
+    if (!wasmEvents.hasOwnProperty('wasm.CompileLazy')) return;
+
+    const wasmLazyCompilationTimeCPU = new tr.v.Histogram(
+        'v8:wasm:lazy_compilation:cpu_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+    wasmLazyCompilationTimeCPU.description =
+      'cpu time spent compiling a WebAssembly function lazily';
+    const wasmLazyCompilationTimeWall = new tr.v.Histogram(
+        'v8:wasm:lazy_compilation:wall_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+    wasmLazyCompilationTimeWall.description =
+      'wall time spent compiling a WebAssembly function lazily';
+
+    for (const e of wasmEvents['wasm.CompileLazy']) {
+      wasmLazyCompilationTimeCPU.addSample(e.cpuDuration);
+      wasmLazyCompilationTimeWall.addSample(e.duration);
+    }
+
+    histograms.addHistogram(wasmLazyCompilationTimeCPU);
+    histograms.addHistogram(wasmLazyCompilationTimeWall);
+  }
+
+  function computeBackgroundCompilationTimeMetric(histograms, wasmEvents) {
+    if (!wasmEvents.hasOwnProperty('wasm.ExecuteCompilationUnits')) return;
+
+    const wasmBackgroundCompilationTimeCPU = new tr.v.Histogram(
+        'v8:wasm:background_compilation:cpu_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+    wasmBackgroundCompilationTimeCPU.description =
+      'cpu time spent compiling WebAssembly code in the background';
+    const wasmBackgroundCompilationTimeWall = new tr.v.Histogram(
+        'v8:wasm:background_compilation:wall_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+    wasmBackgroundCompilationTimeWall.description =
+      'wall time spent compiling WebAssembly code in the background';
+
+    for (const e of wasmEvents['wasm.ExecuteCompilationUnits']) {
+      wasmBackgroundCompilationTimeCPU.addSample(e.cpuDuration);
+      wasmBackgroundCompilationTimeWall.addSample(e.duration);
+    }
+
+    histograms.addHistogram(wasmBackgroundCompilationTimeCPU);
+    histograms.addHistogram(wasmBackgroundCompilationTimeWall);
+  }
+
   function collectWasmEvents(model) {
     const wasmEvents = tr.metrics.v8.utils.filterAndOrderEvents(model,
         event => event.title.startsWith('wasm.'),
@@ -146,6 +192,8 @@ tr.exportTo('tr.metrics.v8', function() {
     computeDeserializeTimeMetric(histograms, wasmEvents);
     computeStreamingBaselineCompileTimeMetric(histograms, wasmEvents);
     computeCompilationTierupWallTimeMetric(histograms, wasmEvents);
+    computeLazyCompilationTimeMetric(histograms, wasmEvents);
+    computeBackgroundCompilationTimeMetric(histograms, wasmEvents);
   }
 
   tr.metrics.MetricRegistry.register(wasmMetric);
