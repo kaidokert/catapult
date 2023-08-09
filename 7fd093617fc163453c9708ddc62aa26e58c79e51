@@ -16,6 +16,23 @@
       "message": "Omer, can you take a look please?",
       "revId": "7fd093617fc163453c9708ddc62aa26e58c79e51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9ba7da2_6da4e22b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2023-08-09T20:07:10Z",
+      "side": 1,
+      "message": "lgtm.\nThe code looks good. I trust you that streaming_baseline_compilation and compilation_tierup are no longer needed.",
+      "revId": "7fd093617fc163453c9708ddc62aa26e58c79e51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
