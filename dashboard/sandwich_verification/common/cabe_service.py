@@ -15,7 +15,8 @@ from google.auth.transport import requests as google_auth_transport_requests
 _CABE_SERVER_ADDRESS = 'cabe.skia.org'
 _CABE_USE_PLAINTEXT = False
 
-def GetAnalysis(job_id, benchmark_name, measurment_name):
+
+def GetAnalysis(job_id, benchmark_name=None, measurement_name=None):
   "Return a TryJob CABE Analysis as a list."
   request = google_auth_transport_requests.Request()
 
@@ -28,7 +29,13 @@ def GetAnalysis(job_id, benchmark_name, measurment_name):
 
   try:
     stub = cabe_grpc.AnalysisStub(channel)
-    bspec = cabe_spec_pb.Benchmark(name=benchmark_name, workload=[measurment_name])
+    if not benchmark_name or not measurement_name:
+      request = cabe_pb.GetAnalysisRequest(pinpoint_job_id=job_id)
+      response = stub.GetAnalysis(request)
+      return response.results
+
+    bspec = cabe_spec_pb.Benchmark(
+        name=benchmark_name, workload=[measurement_name])
     aspec = cabe_spec_pb.AnalysisSpec(benchmark=[bspec])
 
     request = cabe_pb.GetAnalysisRequest(
