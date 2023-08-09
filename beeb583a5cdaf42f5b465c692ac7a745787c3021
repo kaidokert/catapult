@@ -100,6 +100,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db03e76b_26ecd412",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-09T19:33:20Z",
+      "side": 1,
+      "message": "I think we should still keep the \"git branch -D $service\" from the previous patchset. Otherwise git checkout would fail if the branch already exists (e.g., when you enter rotation for the second time.",
+      "parentUuid": "73634d62_c70716c6",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "beeb583a5cdaf42f5b465c692ac7a745787c3021",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73132dcd_3c78208a",
