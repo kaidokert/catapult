@@ -16,6 +16,23 @@
       "message": "This is the approach Sean suggested. I can\u0027t test the cloud function on staging because cabe_service.GetAnalysis still requires benchmark and workload args. After this, assuming everything works, the plan is to call the cloud function from Pinpoint\u0027s complete function.",
       "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709cbfab_93e802e3",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2023-08-09T23:14:56Z",
+      "side": 1,
+      "message": "Are the prints for testing purpose? Or we\u0027ll remove them once it\u0027s verified in production?",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
