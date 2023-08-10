@@ -165,10 +165,16 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           'defaults', 'write', '-app', dialog_path, 'NSQuitAlwaysKeepsWindows',
           '-bool', 'false'
       ])
-
-    cmd = [self._executable]
     if self.browser.platform.GetOSName() == 'mac':
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open', '-n', '-W', '-a', self._executable,
+          '--stdout', os.path.join(os.environ['TMPDIR'], 'stdout'),
+          '--stderr', os.path.join(os.environ['TMPDIR'], 'stderr'),
+          '--args']
       cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
     cmd.extend(startup_args)
     cmd.append('about:blank')
     env = os.environ.copy()

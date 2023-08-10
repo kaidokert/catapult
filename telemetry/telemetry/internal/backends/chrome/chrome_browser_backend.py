@@ -139,6 +139,11 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
           self._GetDevToolsClient,
           timeout=self.browser_options.browser_startup_timeout)
     except (py_utils.TimeoutException, exceptions.ProcessGoneException) as e:
+      logging.error('Unable to connect to DevTools')
+      with open(os.path.join(os.environ['TMPDIR'], 'stdout')) as f:
+        logging.error('stdout: %s', f.read())
+      with open(os.path.join(os.environ['TMPDIR'], 'stderr')) as f:
+        logging.error('stderr: %s', f.read())
       if not self.IsBrowserRunning():
         logging.exception(e)  # crbug.com/940075
         raise exceptions.BrowserGoneException(self.browser, e)
@@ -251,7 +256,12 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
       tracing_backend.FlushTracing()
 
     if self._devtools_client:
-      if "ENSURE_CLEAN_CHROME_SHUTDOWN" in os.environ:
+      # Telemetry closes Chrome by killing the Chrome process. This doesn't
+      # happen on mac because on mac, chrome is started using `open` command
+      # and telemetry only kills the 'open' command, leaving Chrome still
+      # running. Therefore force a clean shutdown on mac.
+      if ("ENSURE_CLEAN_CHROME_SHUTDOWN" in os.environ or \
+          self.browser.platform.GetOSName() == 'mac'):
         # Forces a clean shutdown by sending a command to close the browser via
         # the devtools client. Uses a long timeout as a clean shutdown can
         # sometime take a long time to complete.
