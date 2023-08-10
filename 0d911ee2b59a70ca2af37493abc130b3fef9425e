@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f67c3824_1b3ccab5",
+        "filename": "dashboard/sandwich_verification/common/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-10T22:54:49Z",
+      "side": 1,
+      "message": "Update comment to explain new behavior.",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "709cbfab_93e802e3",
         "filename": "dashboard/sandwich_verification/main.py",
         "patchSetId": 2
@@ -49,6 +66,41 @@
       "side": 1,
       "message": "Yes, I believe it is for testing. I copied the same printing that GetCabeAnalysis used. @Eduardo, do you know if these prints get outputted in the logs? or does it show up in the terminal when you execute them locally / staging?",
       "parentUuid": "709cbfab_93e802e3",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac395e7a_d66ebeb0",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-10T22:54:49Z",
+      "side": 1,
+      "message": "These get output to the logs.",
+      "parentUuid": "28494c08_42483a65",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2a7f978_476e29ae",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-10T22:54:49Z",
+      "side": 1,
+      "message": "What does the response look like? Can you provide a real example?",
       "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
