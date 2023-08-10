@@ -13,6 +13,7 @@ import random
 import re
 import shutil
 import signal
+import stat
 import subprocess
 import sys
 import tempfile
@@ -116,6 +117,8 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _FindDevToolsPortAndTarget(self):
     devtools_file_path = self._GetDevToolsActivePortPath()
+    logging.error("devtools path = %r" % devtools_file_path)
+    logging.error(os.path.isfile(devtools_file_path))
     if not os.path.isfile(devtools_file_path):
       raise EnvironmentError('DevTools file doest not exist yet')
     # Attempt to avoid reading the file until it's populated.
@@ -126,7 +129,8 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         lines = [line.rstrip() for line in f]
     if not lines:
       raise EnvironmentError('DevTools file empty')
-
+    for x in lines:
+      logging.info(x)
     devtools_port = int(lines[0])
     browser_target = lines[1] if len(lines) >= 2 else None
     return devtools_port, browser_target
@@ -166,11 +170,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
-      cmd.append('--use-mock-keychain')  # crbug.com/865247
-    cmd.extend(startup_args)
-    cmd.append('about:blank')
     env = os.environ.copy()
     env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
     env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
@@ -187,10 +186,36 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                         name, env[name], encoding)
       env[name] = 'en_US.UTF-8'
 
+    if self.browser.platform.GetOSName() == 'mac':
+
+
+      # Start chrome on mac using `open`, so that it starts with default
+      # priority
+      cmd = ['open', '-n', '-W']
+      # for k,v in env.items():
+      #   cmd.append('--env')
+      #   cmd.append('%s=%s' % (k,v))
+
+      executable_dir = os.path.abspath(self._executable[:-len('/Contents/MacOS/Chromium')])
+      logging.info(executable_dir)
+      chmod_cmd = 'chmod -R 777 %s' % executable_dir
+      os.system(chmod_cmd)
+      logging.info("st_mode = %r" % os.stat(self._executable).st_mode)
+      executable = self._executable # [:-len('/Contents/MacOS/Chromium')])
+      cmd.extend(['-a', os.path.abspath(executable), '--args'])
+      cmd.append('--use-mock-keychain')  # crbug.com/865247
+      # allow-software-compositing
+    else:
+      cmd = [self._executable]
+    cmd.extend(startup_args)
+    cmd.append('about:blank')
+
     self.LogStartCommand(cmd, env)
+    self.browser_options.show_stdout = False
 
     if not self.browser_options.show_stdout:
       self._tmp_output_file = tempfile.NamedTemporaryFile('w')
+      logging.info(self._tmp_output_file)
       self._proc = subprocess.Popen(
           cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
     else:
@@ -210,6 +235,11 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
               cmd, stdout=sys.__stdout__, stderr=sys.__stderr__, env=env)
       else:
         self._proc = subprocess.Popen(cmd, env=env)
+        stdout, stderr = self._proc.communicate()
+        logging.info("stdout")
+        logging.info(stdout)
+        logging.info("stderr")
+        logging.info(stderr)
 
     self.BindDevToolsClient()
     # browser is foregrounded by default on Windows and Linux, but not Mac.
