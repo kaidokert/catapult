@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f0501d9_5ac3e25f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-10T21:33:11Z",
+      "side": 1,
+      "message": "Do we want to use this feature in the future? If not, might as well delete it?",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "809ec3de_0089083a",
