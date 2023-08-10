@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52050e24_32f6372c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1423280
+      },
+      "writtenOn": "2023-08-10T20:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8f9396e_1c1c1086",
+      "range": {
+        "startLine": 169,
+        "startChar": 7,
+        "endLine": 170,
+        "endChar": 49
+      },
+      "revId": "aec59e606ca3dba47265c423465ee9f3036404da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22d5dfeb_bf09b4fc",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-10T19:10:25Z",
       "side": 1,
       "message": "We\u0027re now missing this switch on mac when START_BROWSER_WITH_DEFAULT_PRIORITY is not set.",
+      "range": {
+        "startLine": 174,
+        "startChar": 6,
+        "endLine": 174,
+        "endChar": 59
+      },
+      "revId": "aec59e606ca3dba47265c423465ee9f3036404da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7932106b_3f414be4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1423280
+      },
+      "writtenOn": "2023-08-10T20:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22d5dfeb_bf09b4fc",
       "range": {
         "startLine": 174,
         "startChar": 6,
