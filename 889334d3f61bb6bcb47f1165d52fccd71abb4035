@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad487eba_94197a0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-08-10T21:40:06Z",
+      "side": 1,
+      "message": "In a brief conversation with Dan I believe we want to move towards an architecture broken down into 3 layers: service, common pkgs, infra. If this code is isn\u0027t in use and we don\u0027t have any design docs, etc. detailing the north star, I\u0027m +1 for just removing all of it. Deleting the unused code should help us down the road when we get hands on too. +leina, thoughts?\n\n+johnchen as well in case we\u0027re missing any context here with this change.",
+      "parentUuid": "3f0501d9_5ac3e25f",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "809ec3de_0089083a",
@@ -41,6 +65,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6729ebb5_b6669e6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-08-10T21:40:06Z",
+      "side": 1,
+      "message": "+johnchen to see if we\u0027re all on board with simply deleting unused code.",
+      "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acc2069d_6573d05d",
@@ -54,6 +95,24 @@
       "writtenOn": "2023-08-10T21:35:39Z",
       "side": 1,
       "message": "there\u0027s a lot of instances where use_execution_engine is mentioned in the pinpoint job runner... should include this in all those instances too?\n\nAll instances here, some of them are unit tests.\nhttps://source.chromium.org/search?q\u003duse_execution_engine\u0026sq\u003d\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2Fdashboard%2Fdashboard%2F",
+      "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259c8e48_77815aa5",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-08-10T21:40:06Z",
+      "side": 1,
+      "message": "Ack. Leaving comment open. See thread w/ Ashwin.",
+      "parentUuid": "acc2069d_6573d05d",
       "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
