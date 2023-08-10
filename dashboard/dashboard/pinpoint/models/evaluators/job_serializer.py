@@ -16,6 +16,10 @@ from dashboard.pinpoint.models.tasks import run_test
 from six.moves import zip_longest
 
 
+# Note: All tasks, graphs and evaluators are part of an experimental effort
+# to transition from quests/graphs to a task graph that utilized Swarming
+# PubSub. THIS IS NOT USED IN PRODUCTION. See crbug/988912 and
+# crrev.com/c/1861616 for historical details.
 class Serializer(evaluators.DispatchByTaskType):
   """Serializes a task graph associated with a job.
 

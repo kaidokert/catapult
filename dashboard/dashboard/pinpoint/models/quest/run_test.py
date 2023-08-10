@@ -543,6 +543,11 @@ class _RunTestExecution(execution_module.Execution):
         }],
     }
 
+    # Note: All tasks, graphs and evaluators are part of an experimental effort
+    # to transition from quests/graphs to a task graph that utilized Swarming
+    # PubSub. THIS IS NOT USED IN PRODUCTION. See crbug/988912 and
+    # crrev.com/c/1861616 for historical details. Also see
+    # http://shortn/_3ttnuo2bEH for discussion details.
     if self._swarming_tags:
       # This means we have additional information available about the Pinpoint
       # tags, and we should add those to the Swarming Pub/Sub updates.
