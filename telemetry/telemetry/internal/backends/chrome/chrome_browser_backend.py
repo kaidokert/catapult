@@ -117,6 +117,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     try:
       devtools_port, browser_target = self._FindDevToolsPortAndTarget()
     except EnvironmentError:
+      logging.error("Received environment error")
       return None  # Port information not ready, will retry.
 
     return devtools_client_backend.GetDevToolsBackEndIfReady(
@@ -251,7 +252,12 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
       tracing_backend.FlushTracing()
 
     if self._devtools_client:
-      if "ENSURE_CLEAN_CHROME_SHUTDOWN" in os.environ:
+      # Telemetry closes Chrome by killing the Chrome process. This doesn't
+      # happen on mac because on mac, chrome is started using `open` command
+      # and telemetry only kills the 'open' command, leaving Chrome still
+      # running. Therefore force a clean shutdown on mac.
+      if ("ENSURE_CLEAN_CHROME_SHUTDOWN" in os.environ or \
+          self.browser.platform.GetOSName() == 'mac'):
         # Forces a clean shutdown by sending a command to close the browser via
         # the devtools client. Uses a long timeout as a clean shutdown can
         # sometime take a long time to complete.
