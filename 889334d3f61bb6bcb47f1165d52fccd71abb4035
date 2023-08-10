@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c44b420_b6dd8cce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-10T21:51:38Z",
+      "side": 1,
+      "message": "If we can\u0027t figure out how they designed the push scheduler with the leftover scraps then I\u0027m onboard with deleting it.",
+      "parentUuid": "ad487eba_94197a0e",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "809ec3de_0089083a",
