@@ -167,8 +167,14 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       ])
 
     cmd = [self._executable]
-    if self.browser.platform.GetOSName() == 'mac':
+    if "START_BROWSER_IN_FOREGROUND" in os.environ and \
+      self.browser.platform.GetOSName() == 'mac':
+      # Start chrome on mac using `open`, when running benchmarks
+      # so that it starts with default priority
+      cmd = ['open', '-n', '-W', '-a', self._executable, '--args']
       cmd.append('--use-mock-keychain')  # crbug.com/865247
+    else:
+      cmd = [self._executable]
     cmd.extend(startup_args)
     cmd.append('about:blank')
     env = os.environ.copy()
