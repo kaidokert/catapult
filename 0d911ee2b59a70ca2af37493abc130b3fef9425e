@@ -103,6 +103,24 @@
       "message": "What does the response look like? Can you provide a real example?",
       "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f24d324_f144ed7a",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-11T21:41:55Z",
+      "side": 1,
+      "message": "This is what the response looks like on a cabe response with just the job id. So in theory it will either list every workload or print an error message when it errors out. We do not have to capture the response here. We could also capture it via logging.debug on Pinpoint\u0027s job runner.\n\nhttps://screenshot.googleplex.com/A5jagFXwiDzTw99.png",
+      "parentUuid": "a2a7f978_476e29ae",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
