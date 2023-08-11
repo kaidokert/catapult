@@ -16,6 +16,57 @@
       "message": "PTAL.",
       "revId": "7cf784e3b0600749ee711227f9f6ef25283a2014",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "161c55df_8d484273",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-11T18:35:57Z",
+      "side": 1,
+      "message": "LGTM with nits",
+      "revId": "7cf784e3b0600749ee711227f9f6ef25283a2014",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08aa16da_1793e807",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-11T18:35:57Z",
+      "side": 1,
+      "message": "nit: is there a bug for this todo? If not, put an ldap here.",
+      "revId": "7cf784e3b0600749ee711227f9f6ef25283a2014",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2688a604_1db50605",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-11T18:35:57Z",
+      "side": 1,
+      "message": "nit: maybe str(send_email) in case it\u0027s boolean?",
+      "revId": "7cf784e3b0600749ee711227f9f6ef25283a2014",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
