@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4134ce59_a74a7a12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-11T00:00:29Z",
+      "side": 1,
+      "message": "For the record, the design for the unfinished execution engine is https://docs.google.com/document/d/1W3yIKCKuoZnz4aFdZ5lLpBLoSKpnUb0gctp-E4ubF_E/edit. Its coding is basically complete, but when the previous Speed Tooling team tried to test it, it resulted in too much resource contention and wasn\u0027t usable in large scale (running one Pinpoint job using the new engine is fine, but turning it on for all job and Pinpoint grinds to a halt.) The author of the new engine wasn\u0027t able to find a way to fix the problem.\n\nIt is a tough choice to decide what to do with the code. It is supposedly a better design than the current Pinpoint, but it will likely be enormous amount of work for us to understand and fix the code.",
+      "parentUuid": "1c44b420_b6dd8cce",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "889334d3f61bb6bcb47f1165d52fccd71abb4035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "809ec3de_0089083a",
