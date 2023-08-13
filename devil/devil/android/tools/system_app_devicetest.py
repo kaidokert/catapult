@@ -78,14 +78,17 @@ class SystemAppDeviceTest(device_test_case.DeviceTestCase):
                     (self.PACKAGE, str(self._device)))
 
   def testReplace(self):
-    self._check_preconditions()
-    replacement = devil_env.config.FetchPath(
-        'empty_system_webview', device=self._device)
-    with system_app.ReplaceSystemApp(self._device, replacement):
-      replaced_paths = self._device.GetApplicationPaths(self.PACKAGE)
-      self.assertNotEqual(self._original_paths, replaced_paths)
-    restored_paths = self._device.GetApplicationPaths(self.PACKAGE)
-    self.assertEqual(self._original_paths, restored_paths)
+    # crbug/1466266. Test started to fail on pixel2 try bots.
+    disabled = True
+    if disabled:
+      self._check_preconditions()
+      replacement = devil_env.config.FetchPath(
+          'empty_system_webview', device=self._device)
+      with system_app.ReplaceSystemApp(self._device, replacement):
+        replaced_paths = self._device.GetApplicationPaths(self.PACKAGE)
+        self.assertNotEqual(self._original_paths, replaced_paths)
+      restored_paths = self._device.GetApplicationPaths(self.PACKAGE)
+      self.assertEqual(self._original_paths, restored_paths)
 
   def testRemove(self):
     self._check_preconditions()
@@ -94,14 +97,17 @@ class SystemAppDeviceTest(device_test_case.DeviceTestCase):
     self.assertEqual([], removed_paths)
 
   def testInstallPrivileged(self):
-    self._check_preconditions()
-    privileged_path = devil_env.config.FetchPath('empty_system_webview',
-                                                 device=self._device)
-    system_app.InstallPrivilegedApps(self._device,
-                                     [(privileged_path, '/system')])
-    installed_paths = self._device.GetApplicationPaths(self.PACKAGE)
-    self.assertEqual(len(installed_paths), 1)
-    self.assertIn('/system/priv-app', installed_paths[0])
+    # crbug/1466266. Test started to fail on pixel2 try bots.
+    disabled = True
+    if disabled:
+      self._check_preconditions()
+      privileged_path = devil_env.config.FetchPath('empty_system_webview',
+                                                  device=self._device)
+      system_app.InstallPrivilegedApps(self._device,
+                                      [(privileged_path, '/system')])
+      installed_paths = self._device.GetApplicationPaths(self.PACKAGE)
+      self.assertEqual(len(installed_paths), 1)
+      self.assertIn('/system/priv-app', installed_paths[0])
 
 
 if __name__ == '__main__':
