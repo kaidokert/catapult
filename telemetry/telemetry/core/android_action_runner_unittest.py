@@ -54,7 +54,8 @@ class AndroidActionRunnerInteractionTest(tab_test_case.TabTestCase):
                                               scroll_start2.x, scroll_end2, 500)
     self.assertTrue(action_runner.EvaluateJavaScript('window.scrollY') == 0)
 
-  @decorators.Enabled('android')
+  # crbug/1466266. Test started to fail on pixel2 try bots.
+  @decorators.Disabled('all')
   def testInputText(self):
     self.Navigate('blank.html')
     self._tab.ExecuteJavaScript(
