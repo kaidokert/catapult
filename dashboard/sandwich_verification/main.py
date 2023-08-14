@@ -94,6 +94,59 @@ def PollPinpointJob(request):
 
 
 @functions_framework.http
+def GetCabeAnalysisForPinpointJobId(request):
+  """Call CABE Analysis API with only Pinpoint Job ID.
+
+  Get a CABE Analysis object from a Pinpoint Job. It'll return a list of
+  statistics for multiple workloads.
+
+  GetCabeAnalysis is used by sandwich verification workflow. Every
+  Pinpoint Try Job will call this function.
+
+  Args:
+    job_id: a valid Completed Pinpoint job id.
+  Returns:
+    A mapping of benchmark, workloads, and confidence intervals.
+    response = {benchmark: {workload: statistic}}
+  """
+
+  print('Original request: %s' % request)
+  print('Original request.content_type: %s' % request.content_type)
+  req_data = request.get_data(as_text=True)
+  print('Original request data: %s' % req_data)
+
+  request_json = request.get_json(silent=True)
+
+  print('Original params: %s' % request_json)
+
+  job_id = request_json.get('job_id')
+
+  print("CABE Analysis from Job: %s" % (job_id))
+  results = cabe_service.GetAnalysis(job_id)
+  print("CABE Analysis response: %s" % results)
+
+  response = {}
+
+  for result in results:
+    for benchmark in result.experiment_spec.analysis.benchmark:
+      response[benchmark] = {}
+      for workload in benchmark.workload:
+        # If you don't use json_format.MessageToDict here and try to
+        # pass the `statistic` raw proto object, you'll get errors
+        # saying is "is not JSON serializable"
+        statistic = json_format.MessageToDict(
+            result.statistic,
+            # This parameter tells it to use the field names as they appear
+            # in the orginal proto definition (snake_case) instead of the
+            # camelCaseNames you'd get otherwise.
+            preserving_proto_field_name=True)
+        response[benchmark].update({workload: statistic})
+  print("CABE Analysis for Job ID %s response: %s" % job_id, response)
+
+  return jsonify(response)
+
+
+@functions_framework.http
 def GetCabeAnalysis(request):
   """Call CABE Analysis API.
 
