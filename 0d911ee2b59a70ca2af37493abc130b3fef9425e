@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10fa814a_1fee3c31",
+        "filename": "dashboard/sandwich_verification/common/cabe_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-14T21:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f67c3824_1b3ccab5",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e922697_b24dbefe",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-08-14T18:34:26Z",
       "side": 1,
       "message": "`GetCabeAnalysisForPinpointJobId`?",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 26
+      },
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8366a1d_eabb99bc",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-14T21:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e922697_b24dbefe",
       "range": {
         "startLine": 97,
         "startChar": 4,
@@ -214,6 +256,24 @@
       "side": 1,
       "message": "Yes, for pinpoint A/B jobs these analysis results are probably always going to be for the same benchmark.  \n\nWaterfall testers OTOH may produce multiple benchmarks. I didn\u0027t want to exclude that use case from cabe\u0027s fundamental design assumptions, even if we don\u0027t support it today.",
       "parentUuid": "5da0b825_90a4f2cb",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d7ae61_85529495",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-14T21:09:03Z",
+      "side": 1,
+      "message": "I\u0027m not sure what I\u0027m supposed to do with this conversation. Is there a change you\u0027re recommending I make @eduardoyap?",
+      "parentUuid": "4228b3dc_265bc88a",
       "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
