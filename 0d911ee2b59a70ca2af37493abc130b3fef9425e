@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e922697_b24dbefe",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-14T18:34:26Z",
+      "side": 1,
+      "message": "`GetCabeAnalysisForPinpointJobId`?",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 26
+      },
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "709cbfab_93e802e3",
         "filename": "dashboard/sandwich_verification/main.py",
         "patchSetId": 2
@@ -84,6 +107,24 @@
       "side": 1,
       "message": "These get output to the logs.",
       "parentUuid": "28494c08_42483a65",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ffbe159_52e3bccf",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-14T18:34:26Z",
+      "side": 1,
+      "message": "You can probably remove these print statements before submitting.  I don\u0027t think they\u0027re necessary or all that useful even in `GetCabeAnalysis` at this point.",
+      "parentUuid": "ac395e7a_d66ebeb0",
       "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -155,6 +196,24 @@
       "side": 1,
       "message": "If there is a Pinpoint job that runs multiple benchmarks then this will happen. AFAIK, no such benchmark exists. I believe Sean implemented CABE that way in case it is possible in the future.",
       "parentUuid": "acea3844_83df1f19",
+      "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4228b3dc_265bc88a",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-14T18:34:26Z",
+      "side": 1,
+      "message": "Yes, for pinpoint A/B jobs these analysis results are probably always going to be for the same benchmark.  \n\nWaterfall testers OTOH may produce multiple benchmarks. I didn\u0027t want to exclude that use case from cabe\u0027s fundamental design assumptions, even if we don\u0027t support it today.",
+      "parentUuid": "5da0b825_90a4f2cb",
       "revId": "0d911ee2b59a70ca2af37493abc130b3fef9425e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
