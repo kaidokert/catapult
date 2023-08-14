@@ -107,6 +107,7 @@ class AlertGroup:
     filters = [
       ('name', '=', group_name)
     ]
+    logging.debug('Get: filters: %s', filters)
     groups = list(cls.ds_client.QueryAlertGroup(active=active, extra_filters=filters))
 
     return [g for g in groups if g.get('group_type') == group_type]
@@ -150,6 +151,7 @@ class AlertGroup:
     master_name = test_key.split('/')[0]
     benchmark_name = test_key.split('/')[2]
 
+    logging.debug('GetGroupsForAnomaly: Testkey: %s, Benchmark: %s', test_key, benchmark_name)
     existing_groups = cls.Get(benchmark_name, 0)
     result_groups = set()
     new_groups = set()
@@ -250,6 +252,7 @@ class AlertGroup:
 
       parity_results = {}
       for anomaly in ungrouped_anomalies:
+        logging.debug('Ungrouped anomaly: %s', anomaly)
         group_ids, new_ids = cls.GetGroupsForAnomaly(
           anomaly['test'].name, anomaly['start_revision'], anomaly['end_revision'],
           create_on_ungrouped=True, parity=IS_PARITY)

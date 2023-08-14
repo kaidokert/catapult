@@ -53,6 +53,7 @@ class DataStoreClient():
     filters = [('active', '=', active)]
     filters += extra_filters
 
+    logging.debug('QueryAlertGroup: filters: %s', filters)
     query = self._client.query(kind='AlertGroup', filters=filters)
 
     return query.fetch(limit=limit)
