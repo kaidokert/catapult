@@ -16,6 +16,23 @@
       "message": "Hi Matt, PTAL when you have a chance. Thank you!",
       "revId": "fdb5f94b47770b429cc93604532d3f6b86d7803e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a35d27_51218314",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2023-08-14T14:43:47Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "fdb5f94b47770b429cc93604532d3f6b86d7803e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
