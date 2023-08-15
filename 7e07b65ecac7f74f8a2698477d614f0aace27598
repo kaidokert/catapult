@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79e6bb4b_5011530a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-15T18:04:45Z",
+      "side": 1,
+      "message": "Before submitting, please deploy to staging and test that both cases return the expected output. There\u0027s instructions in the README.",
+      "revId": "7e07b65ecac7f74f8a2698477d614f0aace27598",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
