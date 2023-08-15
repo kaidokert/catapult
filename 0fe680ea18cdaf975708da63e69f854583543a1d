@@ -75,6 +75,24 @@
       "parentUuid": "255d1a1a_dc3e03ca",
       "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068a33f9_a42d0f41",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-15T17:24:40Z",
+      "side": 1,
+      "message": "Yes, we can modify the sandwich logic to handle this new return type. I can do that handling in a separate CL if you\u0027d like so that this can be unblocked.",
+      "parentUuid": "402dd3bf_c1742c49",
+      "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
