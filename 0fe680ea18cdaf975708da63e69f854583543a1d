@@ -57,6 +57,24 @@
       "parentUuid": "b188a418_fe56bca8",
       "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "402dd3bf_c1742c49",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-15T17:17:11Z",
+      "side": 1,
+      "message": "Ah I see but would that not affect sandwiching functions? Right now we\u0027re just returning \u0027statistic\u0027: statistic so I\u0027d need to update RegressionDetection in this function and the workflow. Is that what you had in mind Eduardo?",
+      "parentUuid": "255d1a1a_dc3e03ca",
+      "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
