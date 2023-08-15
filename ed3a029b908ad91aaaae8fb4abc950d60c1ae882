@@ -52,6 +52,24 @@
       "parentUuid": "e71f12c2_c1817e37",
       "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a5966d_132d9b12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-15T21:17:55Z",
+      "side": 1,
+      "message": "from offline discussion: I think we can address this concern by adding hard-coded conditionals inside the AlertGroupWorkflow logic for auto merge, issue component assignment etc to have it just no do those things if the subscription name matches the sandwich staging subscription. So sandwich staging bugs won\u0027t get issue components assigned to them, and they won\u0027t get merged with any other issues, regardless of what the sandwich staging subscription config might specify (I think the sandwich staging sheriff config *doesn\u0027t* specify those things, but these code changes just double down on that).",
+      "parentUuid": "3a232095_de681cc9",
+      "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
