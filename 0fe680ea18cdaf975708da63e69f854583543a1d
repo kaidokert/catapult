@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec3b771_ff12ceef",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-15T02:54:31Z",
+      "side": 1,
+      "message": "nit: trailing whitespace",
+      "range": {
+        "startLine": 101,
+        "startChar": 36,
+        "endLine": 102,
+        "endChar": 2
+      },
+      "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b188a418_fe56bca8",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-15T02:54:31Z",
+      "side": 1,
+      "message": "\u003csoap-box type\u003d\"feel-free-to-ignore\"\u003e\nFrom a system design perspective, I\u0027m not a big fan of allowing handlers to return completely different data structures depending on request parameters like this.  Doing so invites (one could argue that it in fact requires) clients to know more about your service\u0027s implementation details than you probably want them to.\n\u003c/soap-box\u003e",
+      "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
