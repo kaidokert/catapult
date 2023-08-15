@@ -39,6 +39,24 @@
       "message": "\u003csoap-box type\u003d\"feel-free-to-ignore\"\u003e\nFrom a system design perspective, I\u0027m not a big fan of allowing handlers to return completely different data structures depending on request parameters like this.  Doing so invites (one could argue that it in fact requires) clients to know more about your service\u0027s implementation details than you probably want them to.\n\u003c/soap-box\u003e",
       "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "255d1a1a_dc3e03ca",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-15T03:06:43Z",
+      "side": 1,
+      "message": "We can have it return the same structure, which is why I suggested to merge the functions. The return is {benchmark: {workload: statistic}}. I\u0027d argue we can even get rid of the benchmark key since it\u0027ll always be 1 benchmark.",
+      "parentUuid": "b188a418_fe56bca8",
+      "revId": "0fe680ea18cdaf975708da63e69f854583543a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
