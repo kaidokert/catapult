@@ -98,15 +98,20 @@ def GetCabeAnalysis(request):
   """Call CABE Analysis API.
 
   Get a CABE Analysis object from a Pinpoint Job. It'll return a list of
-  statistics for multiple workloads. anomaly.chart input will specify which
-  workload we're interested in.
+  statistics for multiple workloads. 
+  
+  (optional) anomaly.chart input will specify which workload
+  we're interested in.
 
   Args:
     job_id: a valid Completed Pinpoint job id.
-    anomaly: an map with the following attribute:
+    anomaly: (optional) an map with the following attribute:
       chart: workload (e.g. "AngularJS-TodoMVC")
   Returns:
-    A statistic map with upper and lower confidence intervals.
+    If anomaly is specified, a statistic map with upper and
+    lower confidence intervals.
+    Otherwise, a mapping of benchmark, workloads, and confidence intervals.
+    response = {benchmark: {workload: statistic}}
   """
 
   print('Original request: %s' % request)
@@ -118,14 +123,18 @@ def GetCabeAnalysis(request):
 
   print('Original params: %s' % request_json)
 
-  benchmark =  request_json.get('anomaly').get('benchmark')
-  measurement = request_json.get('anomaly').get('measurement')
   job_id = request_json.get('job_id')
+
+  benchmark, measurement = None, None
+  if not request_json.get('anomaly'):
+    benchmark = request_json.get('anomaly').get('benchmark')
+    measurement = request_json.get('anomaly').get('measurement')
 
   print("Getting CABE Analysis from Job: %s, %s, %s" % (job_id, benchmark, measurement))
   results = cabe_service.GetAnalysis(job_id, benchmark, measurement)
   print("CABE Analysis response: %s" % results)
 
+  response = {}
   statistic = None
 
   for result in results:
@@ -134,23 +143,25 @@ def GetCabeAnalysis(request):
           "experiment_spect.analysis returned %d benchmarks instead of 1.",
           len(result.experiment_spec.analysis.benchmark))
     for benchmark in result.experiment_spec.analysis.benchmark:
+      response[benchmark] = {}
       for workload in benchmark.workload:
-        if measurement == workload:
-          statistic = result.statistic
-  print("get_cabe_analysis statistic: %s" % statistic)
+        # If you don't use json_format.MessageToDict here and try to
+        # pass the `statistic` raw proto object, you'll get errors
+        # saying is "is not JSON serializable"
+        statistic = json_format.MessageToDict(
+            result.statistic,
+            # This parameter tells it to use the field names as they appear
+            # in the orginal proto definition (snake_case) instead of the
+            # camelCaseNames you'd get otherwise.
+            preserving_proto_field_name=True)
+        response[benchmark].update({workload: statistic})
 
-  # If you don't use json_format.MessageToDict here and try to
-  # pass the `statistic` raw proto object, you'll get errors
-  # saying is "is not JSON serializable"
-  return jsonify({
-      'statistic':
-          json_format.MessageToDict(
-              statistic,
-              # This parameter tells it to use the field names as they appear
-              # in the orginal proto definition (snake_case) instead of the
-              # camelCaseNames you'd get otherwise.
-              preserving_proto_field_name=True)
-  })
+  if measurement:
+    print("get_cabe_analysis statistic: %s" % statistic)
+    return jsonify({'statistic': statistic})
+
+  print("CABE Analysis for Job ID %s response: %s" % job_id, response)
+  return jsonify(response)
 
 
 @functions_framework.http
