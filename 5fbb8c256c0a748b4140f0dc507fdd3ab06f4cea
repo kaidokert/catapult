@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab15254_f8969b16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-15T00:19:30Z",
+      "side": 1,
+      "message": "Speedometer2 on mac-m1_mini_2020-perf runs on 128 default attempts on try jobs. However, this behavior should not repeat on try jobs.\n\n128 attempts on production: https://pinpoint-dot-chromeperf.appspot.com/job/100123f1960000\n\n10 attempts on staging: https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/1475a5b4800000",
+      "revId": "5fbb8c256c0a748b4140f0dc507fdd3ab06f4cea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
