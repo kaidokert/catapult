@@ -34,6 +34,24 @@
       "parentUuid": "07a750f6_c57d67c3",
       "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a232095_de681cc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-15T20:02:50Z",
+      "side": 1,
+      "message": "`some issues with staging subscription where it still merges and it still adds a component even if it\u0027s configured not to` - any examples you can link to, and is there a bug for this?",
+      "parentUuid": "e71f12c2_c1817e37",
+      "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
