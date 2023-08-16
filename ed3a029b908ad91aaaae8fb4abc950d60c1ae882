@@ -104,6 +104,24 @@
       "message": "PTAL? the cl that adds some defensive logic to prevent sandwich subscription alert group issues from having components, and prevents sandwich sub alert groups from being merged with non-sandwich alert groups has landed: https://chromium-review.googlesource.com/c/catapult/+/4781875",
       "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f4d780_e25bd5d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-08-16T19:45:08Z",
+      "side": 1,
+      "message": "https://crbug.com/1459035",
+      "parentUuid": "3a232095_de681cc9",
+      "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
