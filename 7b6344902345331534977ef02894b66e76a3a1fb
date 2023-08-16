@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8480af20_a42084cb",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-16T17:42:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfcf28f7_b213bec2",
+      "revId": "7b6344902345331534977ef02894b66e76a3a1fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "103432e1_eb1a25f7",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-08-16T16:46:51Z",
       "side": 1,
       "message": "Does this ordering have to do with line 452 in testing_common.py?",
+      "revId": "7b6344902345331534977ef02894b66e76a3a1fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc6f2455_b128967c",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-16T17:42:13Z",
+      "side": 1,
+      "message": "oops - no, this is unnrelated to testing_common.py. This edit was just me trying to undo a change I made while trying to do something else.\n\nThe testing_common.py change makes it so FakeIssueTrackerService actually applies changes to an issue\u0027s components. I was pulling what\u0027s left of my hair out trying to understand why AlertGroupWorkflow wasn\u0027t updating issue components in my unit tests, when in fact AlertGroupWorkflow was actually making the right call with the right parameters to the issue tracking service. The *issue tracker test fake* was the problem: when anyone called it, it was just dropping some of the issue update parameters on the floor instead of applying them to issue objects. So only some of the issue tracker calls\u0027 side effects were visible to unit test assertions.  Now, at least it\u0027s applying the component updates.",
+      "parentUuid": "103432e1_eb1a25f7",
       "revId": "7b6344902345331534977ef02894b66e76a3a1fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
