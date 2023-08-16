@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "831e1706_0103c91c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-16T16:46:51Z",
+      "side": 1,
+      "message": "LGTM with a nit+question",
+      "revId": "7b6344902345331534977ef02894b66e76a3a1fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfcf28f7_b213bec2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-16T16:46:51Z",
+      "side": 1,
+      "message": "nit: add the subscription in this logging",
+      "revId": "7b6344902345331534977ef02894b66e76a3a1fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "103432e1_eb1a25f7",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-16T16:46:51Z",
+      "side": 1,
+      "message": "Does this ordering have to do with line 452 in testing_common.py?",
+      "revId": "7b6344902345331534977ef02894b66e76a3a1fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
