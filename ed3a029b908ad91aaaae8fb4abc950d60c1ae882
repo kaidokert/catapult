@@ -70,6 +70,23 @@
       "parentUuid": "3a232095_de681cc9",
       "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf8f5c11_c6ace3f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-16T02:50:19Z",
+      "side": 1,
+      "message": "blocking this CL on tests and alert_group_workflow logic updates added in this CL: https://chromium-review.googlesource.com/c/catapult/+/4781875",
+      "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
