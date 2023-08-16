@@ -87,6 +87,23 @@
       "message": "blocking this CL on tests and alert_group_workflow logic updates added in this CL: https://chromium-review.googlesource.com/c/catapult/+/4781875",
       "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3637288f_688ad147",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-16T18:24:13Z",
+      "side": 1,
+      "message": "PTAL? the cl that adds some defensive logic to prevent sandwich subscription alert group issues from having components, and prevents sandwich sub alert groups from being merged with non-sandwich alert groups has landed: https://chromium-review.googlesource.com/c/catapult/+/4781875",
+      "revId": "ed3a029b908ad91aaaae8fb4abc950d60c1ae882",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
