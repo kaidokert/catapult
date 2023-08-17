@@ -1,0 +1,9 @@
+job:  10a9a212e60000
+Workflow execution created successfully. Run the following command to check on its progress:
+
+gcloud workflows executions describe projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/5e5f98fc-a225-457e-bfdb-4c95184ba759
+
+job:  146daefce60000
+Workflow execution created successfully. Run the following command to check on its progress:
+
+gcloud workflows executions describe projects/62121018386/locations/us-central1/workflows/sandwich-verification-workflow-prod/executions/0484b8b9-9a54-4338-97f0-2d61f9660151
