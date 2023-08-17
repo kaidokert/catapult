@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "008c8dd3_7846cb88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-17T19:31:30Z",
+      "side": 1,
+      "message": "Is the expected use case something like \"Run `sandwich.go` to start a workflow, then immediately copy the execution ID and paste it into a `sandwich.go -execution-id \u003cid\u003e` which you then repeatedly poll until the sandwich workflow completes\"?\n\nIf so, you can probably simplify this change and avoid having to write an external wrapper shell script to do the polling: add only one `-poll` flag (`flag.Bool`), and modify sandwich.go to do the polling itself using something like https://pkg.go.dev/time#Ticker \n\n[meta] We should consider moving this code into the skia.git/buildbot repo soon, either before landing this CL or before landing any changes after it.",
+      "revId": "b3916d0fd1df24ae19eaca1199d9a7cfaf4669d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
