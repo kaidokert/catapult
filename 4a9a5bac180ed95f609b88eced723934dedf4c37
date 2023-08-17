@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b43e998_9dc305e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-17T19:14:16Z",
+      "side": 1,
+      "message": "I still have shell scripts that enable me to do this in bulk... we can discuss whether those are worth putting in sandwich.go too.",
+      "revId": "4a9a5bac180ed95f609b88eced723934dedf4c37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
