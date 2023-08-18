@@ -467,6 +467,7 @@ class DeviceUtils(object):
   def __init__(self,
                device,
                enable_device_files_cache=False,
+               force_current_user=False,
                default_timeout=_DEFAULT_TIMEOUT,
                default_retries=_DEFAULT_RETRIES,
                persistent_shell=False):
@@ -477,6 +478,8 @@ class DeviceUtils(object):
         an existing AndroidCommands instance.
       enable_device_files_cache: For PushChangedFiles(), cache checksums of
         pushed files rather than recomputing them on a subsequent call.
+      force_current_user: Explicitly run applicable shell commands with current
+        active user on device.
       default_timeout: An integer containing the default number of seconds to
         wait for an operation to complete if no explicit value is provided.
       default_retries: An integer containing the default number or times an
@@ -496,6 +499,7 @@ class DeviceUtils(object):
     self._default_timeout = default_timeout
     self._default_retries = default_retries
     self._enable_device_files_cache = enable_device_files_cache
+    self._force_current_user = force_current_user
     self._cache = {}
     self._client_caches = {}
     self._cache_lock = threading.RLock()
@@ -745,6 +749,30 @@ class DeviceUtils(object):
       # So use /sdcard/Download for the app-writable path on those versions.
       return posixpath.join(self.GetExternalStoragePath(), 'Download')
     return self.GetExternalStoragePath()
+
+  def GetUserWritablePath(self, device_path, target_user):
+    """Convert a path to one that is accessible by the target_user.
+
+    For example, system user don't the permission to  access secondary user 10's
+    sdcard via the path "/sdcard". However, it can, with the root permission and
+    use the path "/mnt/user/10/emulated/10".
+
+    Returns:
+      The converted path.
+    """
+    current_user = self.GetCurrentUser(cache=True)
+    if current_user == target_user:
+      return device_path
+
+    if device_path.startswith('/sdcard'):
+      fuse_path_base = f'/mnt/user/{current_user}/emulated/{current_user}'
+      return fuse_path_base + device_path[len('/sdcard'):]
+
+    if device_path.startswith('/data/data'):
+      data_path_base = f'/data/user/{current_user}'
+      return data_path_base + device_path[len('/data/data'):]
+
+    return device_path
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetIMEI(self, timeout=None, retries=None):
@@ -1871,15 +1899,18 @@ class DeviceUtils(object):
                     retries=None):
     """Start package's activity on the device.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "am start" command applies to current user.
+
     Args:
       intent_obj: An Intent object to send.
       blocking: A boolean indicating whether we should wait for the activity to
-                finish launching.
+        finish launching.
       trace_file_name: If present, a string that both indicates that we want to
-                       profile the activity and contains the path to which the
-                       trace should be saved.
+        profile the activity and contains the path to which the trace should be
+        saved.
       force_stop: A boolean indicating whether we should stop the activity
-                  before starting it.
+        before starting it.
       timeout: timeout in seconds
       retries: number of retries
 
@@ -1895,18 +1926,22 @@ class DeviceUtils(object):
       cmd.extend(['--start-profiler', trace_file_name])
     if force_stop:
       cmd.append('-S')
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
     cmd.extend(intent_obj.am_args)
     for line in self.RunShellCommand(cmd, check_return=True):
       if line.startswith('Error:'):
         raise device_errors.CommandFailedError(line, str(self))
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def StartService(self, intent_obj, user_id=None, timeout=None, retries=None):
+  def StartService(self, intent_obj, timeout=None, retries=None):
     """Start a service on the device.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "am start-service" command applies to current user.
 
     Args:
       intent_obj: An Intent object to send describing the service to start.
-      user_id: A specific user to start the service as, defaults to current.
       timeout: Timeout in seconds.
       retries: Number of retries
 
@@ -1920,8 +1955,8 @@ class DeviceUtils(object):
     cmd = ['am', 'startservice']
     if self.build_version_sdk >= version_codes.OREO:
       cmd[1] = 'start-service'
-    if user_id:
-      cmd.extend(['--user', str(user_id)])
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
     cmd.extend(intent_obj.am_args)
     for line in self.RunShellCommand(cmd, check_return=True):
       if line.startswith('Error:'):
@@ -1935,6 +1970,24 @@ class DeviceUtils(object):
                            extras=None,
                            timeout=None,
                            retries=None):
+    """Start an instrumentation on the device.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "am instrument" command applies to current user.
+
+    Args:
+      component: The component to run the instrumentation.
+      finish: A boolean indicating if waiting for the instrumentation to finish.
+      raw: A boolean indicating if printing raw results.
+      extras: A dict mapping the testing options as key-value pairs.
+      timeout: Timeout in seconds.
+      retries: Number of retries
+
+    Raises:
+      CommandFailedError if the service could not be started.
+      CommandTimeoutError on timeout.
+      DeviceUnreachableError on missing device.
+    """
     if extras is None:
       extras = {}
 
@@ -1945,6 +1998,8 @@ class DeviceUtils(object):
       cmd.append('-r')
     for k, v in extras.items():
       cmd.extend(['-e', str(k), str(v)])
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
     cmd.append(component)
 
     # Store the package name in a shell variable to help the command stay under
@@ -1958,6 +2013,10 @@ class DeviceUtils(object):
   @decorators.WithTimeoutAndRetriesFromInstance()
   def BroadcastIntent(self, intent_obj, timeout=None, retries=None):
     """Send a broadcast intent.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "am broadcast" command applies to all users.
+    So this param won't be added even when "_force_current_user" is True.
 
     Args:
       intent: An Intent to broadcast.
@@ -2109,6 +2168,10 @@ class DeviceUtils(object):
   def ForceStop(self, package, timeout=None, retries=None):
     """Close the application.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "am force-stop" command applies to all users.
+    So this param won't be added even when "_force_current_user" is True.
+
     Args:
       package: A string containing the name of the package to stop.
       timeout: timeout in seconds
@@ -2130,6 +2193,9 @@ class DeviceUtils(object):
                             wait_for_asynchronous_intent=False):
     """Clear all state for the given package.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "pm clear" command applies to system user.
+
     Args:
       package: A string containing the name of the package to stop.
       permissions: List of permissions to set after clearing data.
@@ -2149,7 +2215,11 @@ class DeviceUtils(object):
     if ((self.build_version_sdk >= version_codes.JELLY_BEAN_MR2)
         or self._GetApplicationPathsInternal(package)):
 
-      self.RunShellCommand(['pm', 'clear', package], check_return=True)
+      cmd = ['pm', 'clear']
+      if self._force_current_user:
+        cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
+      cmd.append(package)
+      self.RunShellCommand(cmd, check_return=True)
       self.GrantPermissions(package, permissions)
 
       if wait_for_asynchronous_intent:
@@ -3478,6 +3548,9 @@ class DeviceUtils(object):
   def _GetSettings(self, namespace):
     """Return a dictionary containing global settings
 
+    Note for multi-user: when "--user" param is not specified,
+      the "settings list" command applies to current user.
+
     Args:
       namespace: Category of settings. Can be either 'system', 'global'
         or 'secure'.
@@ -3488,7 +3561,11 @@ class DeviceUtils(object):
     if namespace not in (SettingsNamespace.SECURE, SettingsNamespace.GLOBAL,
                          SettingsNamespace.SYSTEM):
       raise ValueError('Unsupported namespace: %s' % namespace)
-    output_lines = self.RunShellCommand(['settings', 'list', namespace],
+    cmd = ['settings', 'list']
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
+    cmd.append(namespace)
+    output_lines = self.RunShellCommand(cmd,
                                         check_return=True,
                                         large_output=True)
     return dict(map(lambda line: line.split('=', 1), output_lines))
@@ -4224,15 +4301,26 @@ class DeviceUtils(object):
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GrantPermissions(self, package, permissions, timeout=None, retries=None):
+    """Grant permissions to a package.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "appops set" command applies to current user.
+      the "pm grant" command applies to system user.
+    """
+
     if not permissions:
       return
+
+    user_param = ''
+    if self._force_current_user:
+      user_param = '--user {}'.format(self.GetCurrentUser(cache=True))
 
     # For Andorid-11(R), enable MANAGE_EXTERNAL_STORAGE for testing.
     # See https://bit.ly/2MBjBIM for details.
     if ('android.permission.MANAGE_EXTERNAL_STORAGE' in permissions
         and self.build_version_sdk >= version_codes.R):
       script_manage_ext_storage = [
-          'appops set {package} MANAGE_EXTERNAL_STORAGE allow',
+          'appops set {user_param} {package} MANAGE_EXTERNAL_STORAGE allow',
           'echo "{sep}MANAGE_EXTERNAL_STORAGE{sep}$?{sep}"',
       ]
     else:
@@ -4248,7 +4336,7 @@ class DeviceUtils(object):
     script_raw = [
         'p={package}',
         'for q in {permissions}',
-        'do pm grant "$p" "$q"',
+        'do pm grant {user_param} "$p" "$q"',
         'echo "{sep}$q{sep}$?{sep}"',
         'done',
     ] + script_manage_ext_storage
@@ -4257,6 +4345,7 @@ class DeviceUtils(object):
         package=cmd_helper.SingleQuote(package),
         permissions=' '.join(
             cmd_helper.SingleQuote(p) for p in sorted(permissions)),
+        user_param=user_param,
         sep=_SHELL_OUTPUT_SEPARATOR)
 
     logger.info('Setting permissions for %s.', package)
