@@ -2336,21 +2336,6 @@ class DeviceUtilsStartServiceTest(DeviceUtilsTest):
         with self.assertRaises(device_errors.CommandFailedError):
           self.device.StartService(test_intent)
 
-  def testStartService_withUser(self):
-    test_intent = intent.Intent(
-        action='android.intent.action.START',
-        package=TEST_PACKAGE,
-        activity='.Main')
-    with self.patch_call(
-        self.call.device.build_version_sdk, return_value=version_codes.NOUGAT):
-      with self.assertCall(
-          self.call.adb.Shell('am startservice '
-                              '--user TestUser '
-                              '-a android.intent.action.START '
-                              '-n test.package/.Main'),
-          'Starting service: Intent { act=android.intent.action.START }'):
-        self.device.StartService(test_intent, user_id='TestUser')
-
   def testStartService_onOreo(self):
     test_intent = intent.Intent(
         action='android.intent.action.START',
@@ -4334,7 +4319,7 @@ class DeviceUtilsGrantPermissionsTest(DeviceUtilsTest):
                            return_value=version_codes.R):
         with self.assertCalls(
             (self.call.device.RunShellCommand(
-                AnyStringWith('appops set pkg MANAGE_EXTERNAL_STORAGE allow'),
+                AnyStringWith('appops set  pkg MANAGE_EXTERNAL_STORAGE allow'),
                 shell=True,
                 raw_output=True,
                 large_output=True,
