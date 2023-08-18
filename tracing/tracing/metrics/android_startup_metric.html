@@ -77,23 +77,36 @@ tr.exportTo('tr.metrics.sh', function() {
   }
 
   function androidStartupMetric(histograms, model) {
+    console.log("androidStartupMetric");
     // Walk the browser slices, extract timestamps for the browser start,
     // message loop start.
     let messageLoopStartEvents = [];
     let applicationStartEvents = [];
     let navigationPairs = [];
 
-    function organizeBrowserEventByTitle(event, process) {
+    function organizeBrowserEventByTitle(event, browserProcess, networkProcesses) {
+      console.log("organizeBrowserEventByTitle");
       if (event.title === MESSAGE_LOOP_EVENT_NAME) {
         messageLoopStartEvents.push(event);
       } else if (event.title === APPLICATION_START_EVENT_NAME) {
         applicationStartEvents.push(event);
       } else if (event.title === NAVIGATION_EVENT_NAME) {
-        const networkEvents =
-            tr.e.chrome.EventFinderUtils.getNetworkEventsInRange(process,
+        let networkEvents =
+            tr.e.chrome.EventFinderUtils.getNetworkEventsInRange(browserProcess,
                 event.range);
+        var i=0;
+        if(networkProcesses) {
+        for (let np of networkProcesses) {
+            const networkEventsInNP =
+            tr.e.chrome.EventFinderUtils.getNetworkEventsInRange(np,
+                event.range);
+                console.log(`  np${i++} events length = ${networkEventsInNP.length}\n`);
+            networkEvents = networkEvents.concat(networkEventsInNP);
+          }
+        }
         const requestEvent = findRequestEventAfterNavigation(
             networkEvents, event.range);
+        console.log(`requestEvent = ${requestEvent}`);
         navigationPairs.push({
           'nav': event,
           'req': requestEvent,
@@ -104,9 +117,14 @@ tr.exportTo('tr.metrics.sh', function() {
     const chromeHelper =
         model.getOrCreateHelper(tr.model.helpers.ChromeModelHelper);
     if (!chromeHelper) return;
+
+    const networkProcesses = model.getAllProcesses((p)=>{
+      return p.name == "Service: network.mojom.NetworkService";
+    });
+
     for (const helper of chromeHelper.browserHelpers) {
       for (const ev of helper.mainThread.asyncSliceGroup.childEvents()) {
-        organizeBrowserEventByTitle(ev, helper.process);
+        organizeBrowserEventByTitle(ev, helper.process, networkProcesses);
       }
     }
 
