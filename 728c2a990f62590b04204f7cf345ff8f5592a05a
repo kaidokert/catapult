@@ -16,6 +16,29 @@
       "message": "I think it\u0027s worth including the alert group commit range. I believe in Skia you can specify a range for the graph. We should do specify a range that covers the group\u0027s range. This will ensure links always show the anomalies no matter how old.",
       "revId": "728c2a990f62590b04204f7cf345ff8f5592a05a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cb679ce_6f037fba",
+        "filename": "skia_bridge/application/perf_api/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-21T22:38:28Z",
+      "side": 1,
+      "message": "Should it be a GET?",
+      "range": {
+        "startLine": 40,
+        "startChar": 39,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "728c2a990f62590b04204f7cf345ff8f5592a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
