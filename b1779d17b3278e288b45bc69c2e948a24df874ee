@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49be58f2_42c4b427",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-22T04:07:53Z",
+      "side": 1,
+      "message": "This CL is needed for supporting MacOS 14 on Pinpoint. Verified with https://pinpoint-dot-chromeperf.appspot.com/job/10474d84560000 (control arm doesn\u0027t have this CL and failed, treatment arm has this CL and succeeded).",
+      "revId": "b1779d17b3278e288b45bc69c2e948a24df874ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
