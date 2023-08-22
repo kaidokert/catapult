@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a955c534_553680ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-22T01:18:54Z",
+      "side": 1,
+      "message": "I tried to test this on staging but it\u0027s rather tricky since it\u0027s hard to fetch the improvement direction from the testMetadata in staging\u0027s Datastore. What I did instead was hard code the improvement direction.\n\nHere\u0027s what it looks like normally. This job was ran by Yuan. Notice the +78 at the top:\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/14276217000000\n\nHere\u0027s what it looks like when I hard code the improvement direction. The +78 is missing:\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/145f43b4800000\n\nNote bisection does not drill further for either bisection because CL B is before CL A.",
+      "revId": "33f21a1bd76a4539516489407b585c5ce81d8b70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
