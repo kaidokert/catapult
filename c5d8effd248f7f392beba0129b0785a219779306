@@ -88,6 +88,24 @@
       "parentUuid": "6858897a_9c548664",
       "revId": "c5d8effd248f7f392beba0129b0785a219779306",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba4f32b8_069f60ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-22T18:39:22Z",
+      "side": 1,
+      "message": "This CL does not affect the creation of bisections. Any bisections created by alert_group_workflow will still go through. What this CL does is if an auto-bisect is created looking for a culprit in a regression, it will ignore any improvements\n\nSo before:\n* alert_group_workflow creates a bisection for an anomaly group\n* bisection finds an improvement\n* Pinpoint tags the owner of the improvement \n* Bug owner comes in, is confused, and closes the bug\n\nAfter the intended goal is: \n* alert_group_workflow creates a bisection for an anomaly group\n* bisection finds an improvement\n* Pinpoint closes the bug\n\nBisections that find regressions will still be WAI.",
+      "parentUuid": "7cfeeb4b_c8efda98",
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
