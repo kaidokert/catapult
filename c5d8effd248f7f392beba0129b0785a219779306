@@ -52,6 +52,24 @@
       "parentUuid": "4ac26a7b_33c7e1c2",
       "revId": "c5d8effd248f7f392beba0129b0785a219779306",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6858897a_9c548664",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-22T18:21:55Z",
+      "side": 1,
+      "message": "Unless I\u0027m not understanding you, that\u0027s what this CL is intended to address. For situations like this Pinpoint job [1], the intended outcome is Pinpoint-No-Repro, close bug. \n\n[1] https://pinpoint-dot-chromeperf.appspot.com/job/152596b2a60000",
+      "parentUuid": "151fad6c_04236820",
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
