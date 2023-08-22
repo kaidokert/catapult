@@ -30,8 +30,8 @@ class CulpritTest(test.TestCase):
   @mock.patch(
       'dashboard.services.workflow_service.GetExecution',
       mock.MagicMock(
-          return_value=FakeResponse(workflow_service.EXECUTION_STATE_SUCCEEDED,
-                                    json.dumps({'decision': False}))))
+        return_value={'state': workflow_service.EXECUTION_STATE_SUCCEEDED,
+        'result': json.dumps({'decision': False})}))
   def testCulpritVerificationAllExecutionCompletedZeroVerified(self):
     sandwich_workflow_group.SandwichWorkflowGroup(
         key=ndb.Key('SandwichWorkflowGroup', 'group1'),
@@ -52,8 +52,7 @@ class CulpritTest(test.TestCase):
   @mock.patch(
       'dashboard.services.workflow_service.GetExecution',
       mock.MagicMock(
-          return_value=FakeResponse(workflow_service.EXECUTION_STATE_FAILED,
-                                    json.dumps({'decision': False}))))
+        return_value={'state': workflow_service.EXECUTION_STATE_FAILED}))
   @mock.patch('google.appengine.ext.deferred.defer', mock.MagicMock())
   def testCulpritVerificationAllExecutionCompletedNonZeroVerified(self):
     sandwich_workflow_group.SandwichWorkflowGroup(
@@ -91,8 +90,8 @@ class CulpritTest(test.TestCase):
   @mock.patch(
       'dashboard.services.workflow_service.GetExecution',
       mock.MagicMock(
-          return_value=FakeResponse(workflow_service.EXECUTION_STATE_SUCCEEDED,
-                                    json.dumps({'decision': False}))))
+        return_value={'state': workflow_service.EXECUTION_STATE_SUCCEEDED,
+        'result': json.dumps({'decision': False})}))
   def testCulpritVerificationMultipleSandwichWorkflowGroups(self):
     sandwich_workflow_group.SandwichWorkflowGroup(
         key=ndb.Key('SandwichWorkflowGroup', 'group1'),
@@ -124,9 +123,9 @@ class CulpritTest(test.TestCase):
     self.assertEqual(updated_sandwich_workflow_group_2.active, False)
 
   @mock.patch('dashboard.services.workflow_service.GetExecution',
-              mock.MagicMock(
-                  return_value=FakeResponse(
-                      workflow_service.EXECUTION_STATE_ACTIVE, json.dumps({}))))
+    mock.MagicMock(
+        return_value={'state': workflow_service.EXECUTION_STATE_ACTIVE,
+        'result': json.dumps({})}))
   def testCulpritVerificationExecutiveActive(self):
     sandwich_workflow_group.SandwichWorkflowGroup(
         key=ndb.Key('SandwichWorkflowGroup', 'group1'),
