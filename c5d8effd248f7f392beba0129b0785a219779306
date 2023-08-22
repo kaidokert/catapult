@@ -70,6 +70,24 @@
       "parentUuid": "151fad6c_04236820",
       "revId": "c5d8effd248f7f392beba0129b0785a219779306",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cfeeb4b_c8efda98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-22T18:33:27Z",
+      "side": 1,
+      "message": "My understaing is: \n- this CL is trying to NOT creating bisects if the target anomaly is an improvement.\n- in your example, the target \"ChromiumPerf/mac-m1_mini_2020-perf/blink_perf.css/ClassInvalidation/ClassInvalidation.html\" is a regression.\nThat means, with the intent of this CL, we will still create a bisect for it.\n\nThe reason why we see +19 in the bisect is, I think, either it is a deviation, or we do have an improvement in that one of the CLs within that range. 😊",
+      "parentUuid": "6858897a_9c548664",
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
