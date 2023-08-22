@@ -106,6 +106,64 @@
       "parentUuid": "7cfeeb4b_c8efda98",
       "revId": "c5d8effd248f7f392beba0129b0785a219779306",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f78c6f_95ff47bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-22T20:13:50Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e413f6a1_93a770c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-22T20:13:50Z",
+      "side": 1,
+      "message": "Ah I see. I thought you\u0027re preventing launching a bisect. Thank you for the clarification!",
+      "parentUuid": "ba4f32b8_069f60ea",
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "971bfa80_9036a78d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-22T20:13:50Z",
+      "side": 1,
+      "message": "nit: add logs to tell it is a special handling.",
+      "range": {
+        "startLine": 395,
+        "startChar": 10,
+        "endLine": 395,
+        "endChar": 29
+      },
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
