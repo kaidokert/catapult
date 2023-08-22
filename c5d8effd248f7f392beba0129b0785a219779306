@@ -143,6 +143,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "324be4b8_b5765dae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-22T20:32:05Z",
+      "side": 1,
+      "message": "No worries - glad we could end up on the same page.",
+      "parentUuid": "e413f6a1_93a770c6",
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "971bfa80_9036a78d",
@@ -156,6 +174,30 @@
       "writtenOn": "2023-08-22T20:13:50Z",
       "side": 1,
       "message": "nit: add logs to tell it is a special handling.",
+      "range": {
+        "startLine": 395,
+        "startChar": 10,
+        "endLine": 395,
+        "endChar": 29
+      },
+      "revId": "c5d8effd248f7f392beba0129b0785a219779306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b045cc89_febfcb20",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-22T20:32:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "971bfa80_9036a78d",
       "range": {
         "startLine": 395,
         "startChar": 10,
