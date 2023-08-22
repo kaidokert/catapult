@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ab87a1e_8628aaa1",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-22T22:02:00Z",
+      "side": 1,
+      "message": "if ccs_to_add \u003d [], ccs_to_add should be consider False.",
+      "parentUuid": "427efe92_26029c76",
+      "revId": "f615670ce91a9d1642d2c1c51d897f444e6dc543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3eb464d3_9a5848ce",
         "filename": "perf_issue_service/application/clients/buganizer_client.py",
         "patchSetId": 1
@@ -65,6 +83,24 @@
       "writtenOn": "2023-08-22T21:57:43Z",
       "side": 1,
       "message": "question - how are hotlists in buganizer different from monorail labels?",
+      "revId": "f615670ce91a9d1642d2c1c51d897f444e6dc543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee6d4de_e1504919",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-22T22:02:00Z",
+      "side": 1,
+      "message": "a hotlist is a replacement in Buganizer for a label in Monorail, as there is no \u0027label\u0027 field in Buganizer.",
+      "parentUuid": "3eb464d3_9a5848ce",
       "revId": "f615670ce91a9d1642d2c1c51d897f444e6dc543",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
