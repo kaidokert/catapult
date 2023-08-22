@@ -116,6 +116,30 @@
       },
       "revId": "b3916d0fd1df24ae19eaca1199d9a7cfaf4669d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28929e7e_d89f175e",
+        "filename": "dashboard/go/src/sandwich/sandwich.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-22T20:16:41Z",
+      "side": 1,
+      "message": "Some background: The `git cl` isn\u0027t part of git itself but rather a custom subcommand written for use with chromium git repos: https://chromium.googlesource.com/chromium/tools/depot_tools.git/+/HEAD/README.git-cl.md \n\nMore specifically, the `git cl format` sub(-sub?) command \u003chttps://chromium.googlesource.com/chromium/tools/depot_tools.git/+/refs/heads/main/git_cl.py#5838\u003e doesn\u0027t know about go because it\u0027s a pass-through to `clang-format` \u003chttps://clang.llvm.org/docs/ClangFormat.html\u003e, which doesn\u0027t know about go. That\u0027s just as well, because the go toolchain has its own formatter and clang-format shouldn\u0027t try to do that job for it.\n\nWhy `clang-format` and no support for `go fmt`? Well, depot_tools (which encompasses the `git cl` set of tools) is written primarily for use with chromium source itself, which includes lots of C++, js, Rust and python, but no go. So they don\u0027t worry about formatting go. We just happen to use depot_tools for a lot of other use cases in our repos because we\u0027re closely related to chromium/src and its dependents and use a lot of the same build system pieces (which depot_tools helps us deal with), but it\u0027s really written with a focus on \"build chrome browser binaries for a particular set of hardware/OS configurations\" rather than \"build anything, including cross-platform browser executables but also go server apps that run in the cloud\"\n\n[And FWIW, I believe `git cl format --js` just formats the javascript bits of a change, if there are any]",
+      "parentUuid": "ad0bea52_4d2799e0",
+      "range": {
+        "startLine": 153,
+        "startChar": 74,
+        "endLine": 153,
+        "endChar": 75
+      },
+      "revId": "b3916d0fd1df24ae19eaca1199d9a7cfaf4669d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
