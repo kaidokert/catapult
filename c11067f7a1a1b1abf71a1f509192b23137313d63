@@ -16,6 +16,24 @@
       "message": "Isn\u0027t this getting rid of the Sandwich-Sheriff label as well?",
       "revId": "c11067f7a1a1b1abf71a1f509192b23137313d63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1108cd_3af734ae",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-22T23:54:44Z",
+      "side": 1,
+      "message": "why does it ever need to be called with more than one subscription in the first place?",
+      "parentUuid": "d7772f98_cedc3d9a",
+      "revId": "c11067f7a1a1b1abf71a1f509192b23137313d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
