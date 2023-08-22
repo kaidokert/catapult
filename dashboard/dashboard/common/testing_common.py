@@ -457,6 +457,12 @@ class FakeIssueTrackerService:
       self.issues.setdefault(issue_key, {}).update({
           'components': components
       })
+    if 'labels' in kwargs:
+      labels = kwargs.get('labels')
+      existing_labels = self.issues.get(issue_key).get('labels')
+      self.issues.setdefault(issue_key, {}).update({
+          'labels': set(labels) | set(existing_labels)
+      })
     self.calls.append({
         'method': 'AddBugComment',
         'args': args,

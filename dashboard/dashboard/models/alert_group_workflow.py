@@ -684,7 +684,9 @@ class AlertGroupWorkflow:
 
   def _ComputeBugUpdate(self, subscriptions, regressions):
     # Skip the _GetComponentsFromRegressions if subs are all sandwich staging subs.
-    if all(s.name in sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS for s in subscriptions):
+    is_sandwich_staging = all(
+      s.name in sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS for s in subscriptions)
+    if is_sandwich_staging:
       components = self._GetComponentsFromSubscriptions(subscriptions)
     else:
       components = set(self._GetComponentsFromSubscriptions(subscriptions)
@@ -694,9 +696,13 @@ class AlertGroupWorkflow:
                       components)
       cloud_metric.PublistPerfIssueInvalidComponentCount(len(components))
     cc = list(set(e for s in subscriptions for e in s.bug_cc_emails))
-    labels = list(
-        set(l for s in subscriptions for l in s.bug_labels)
-        | {'Chromeperf-Auto-Triaged'})
+    # Skip the subscription-specific labels if subs are all sandwich staging subs.
+    if is_sandwich_staging:
+      labels = list({'Chromeperf-Auto-Triaged'})
+    else:
+      labels = list(
+          set(l for s in subscriptions for l in s.bug_labels)
+          | {'Chromeperf-Auto-Triaged'})
     # We layer on some default labels if they don't conflict with any of the
     # provided ones.
     if not any(l.startswith('Pri-') for l in labels):
