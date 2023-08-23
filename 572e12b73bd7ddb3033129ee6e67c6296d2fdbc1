@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71dfffdd_2a4861bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-23T22:10:39Z",
+      "side": 1,
+      "message": "I was able to repro the error on Pinpoint staging: https://cloudlogging.app.goo.gl/uFBMS8j1mVCEHCBn9\n\nWhen you try to open the page to a bisection, it will say Error 500 on the original CL. You can observe this behavior on version leina-bisect-improve3\n\nWith the reland, deployed on leina-bisect-improve4, the error disappears: https://cloudlogging.app.goo.gl/D3hLwN8dEyudSKtE7\n\nStaging link: https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/140647a4800000",
+      "revId": "572e12b73bd7ddb3033129ee6e67c6296d2fdbc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
