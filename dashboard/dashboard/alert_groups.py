@@ -141,10 +141,15 @@ def ProcessAlertGroups():
     logging.warning('Parity logic failed in GetAllActiveAlertGroups. %s',
                     str(e))
 
-  for group in new_groups:
+  new_groups_keys = map(lambda g: g.key, new_groups)
+  logging.info('Processing alert groups: %s',
+               [key.id() for key in new_groups_keys])
+
+  new_groups_keys = list(set(new_groups_keys))
+  for group_key in new_groups_keys:
     deferred.defer(
         _ProcessAlertGroup,
-        group.key,
+        group_key,
         _queue='update-alert-group-queue',
         _retry_options=taskqueue.TaskRetryOptions(task_retry_limit=0),
     )
