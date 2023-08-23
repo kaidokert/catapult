@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89dcd66d_2891a753",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-23T17:59:44Z",
+      "side": 1,
+      "message": "hopefully we don\u0027t have to invest too much more time into revising these semi-automated tools.",
+      "revId": "23407269f7eb0ad1097780847f236aac09a08d3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3c860fd_241963f9",
