@@ -33,6 +33,24 @@
       "message": "Are there no tests that can prove this CL actually fixes the problem, or that this change doesn\u0027t break some other part of the application in the process of fixing this part of the application?",
       "revId": "306e319d91f9429cc252965183babafbf7ee1a29",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88cfddd6_1a1a2a3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-23T21:50:56Z",
+      "side": 1,
+      "message": "The function was returning list before the change in:\nhttps://chromium-review.googlesource.com/c/catapult/+/4800531\nNow convert it back to list to avoid the exception in the log complaining about using set():\n\"TypeError: Object of type set is not JSON serializable\"\n\nBut no, i don\u0027t think there is a test for catching it.",
+      "parentUuid": "672c1f71_7c9cfc95",
+      "revId": "306e319d91f9429cc252965183babafbf7ee1a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
