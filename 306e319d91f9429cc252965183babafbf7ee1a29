@@ -69,6 +69,24 @@
       "parentUuid": "88cfddd6_1a1a2a3c",
       "revId": "306e319d91f9429cc252965183babafbf7ee1a29",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4b7ef1_62dda10b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-23T22:08:28Z",
+      "side": 1,
+      "message": "Yes, that need to change two statements, on both line 688 and line 690. \nHere I\u0027m aligning the call of list() along with the other calls on cc and labels for readability. So that all of those values are converted before returned from _ComputeBugUpdate.",
+      "parentUuid": "970a18d6_988c5f46",
+      "revId": "306e319d91f9429cc252965183babafbf7ee1a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
