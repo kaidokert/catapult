@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c32f3ba_4a199ac7",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-23T22:51:14Z",
+      "side": 1,
+      "message": "Could we have a logging to tell whether duplicated records exist?",
+      "range": {
+        "startLine": 145,
+        "startChar": 16,
+        "endLine": 145,
+        "endChar": 26
+      },
+      "revId": "14301dcac71d54bf5ba172c2a51a6583143ef97f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
