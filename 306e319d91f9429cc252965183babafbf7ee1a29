@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d5932f6_701f85de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-23T21:25:29Z",
+      "side": 1,
+      "message": "Fixing a bug in https://chromium-review.googlesource.com/c/catapult/+/4800531. PTAL.",
+      "revId": "306e319d91f9429cc252965183babafbf7ee1a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
