@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0e46952_dd466a76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-23T16:52:06Z",
+      "side": 1,
+      "message": "Update the new MacOS 14 config to opt into default Pinpoint attempt count, as requested by dev. PTAL.",
+      "revId": "9df178e027f7cff2b11b42241d1e23a288fd9533",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
