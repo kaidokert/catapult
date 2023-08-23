@@ -390,6 +390,8 @@ class JobState:
             all_a_values, all_b_values)
         mean_diff = Mean(all_b_values) - Mean(all_a_values)
         # if improvement, return same
+        if getattr(self, '_improvement_direction', None):
+          self._improvement_direction = None
         if ((mean_diff > 0 and self._improvement_direction == anomaly.UP)
             or mean_diff < 0 and self._improvement_direction == anomaly.DOWN):
           logging.debug(
