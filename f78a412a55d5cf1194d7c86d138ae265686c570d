@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de01713_1f679558",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-24T16:59:26Z",
+      "side": 1,
+      "message": "The intended effect of this CL is after sandwich verification starts, the bug has \"chromeperf-auto-triaged\" as its label? What are the other labels that are in `s.bug_labels`?",
+      "revId": "f78a412a55d5cf1194d7c86d138ae265686c570d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
