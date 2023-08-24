@@ -16,6 +16,24 @@
       "message": "The intended effect of this CL is after sandwich verification starts, the bug has \"chromeperf-auto-triaged\" as its label? What are the other labels that are in `s.bug_labels`?",
       "revId": "f78a412a55d5cf1194d7c86d138ae265686c570d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "462916e9_87c29be2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-24T17:25:07Z",
+      "side": 1,
+      "message": "whatever appears in the sheriff config for that sub, e.g. https://chrome-internal.googlesource.com/infra/infra_internal/+/034a97ab817ba18195df5bd44717cc1b3a826031/infra/config/subprojects/chromeperf/sandwich-perf.cfg#10",
+      "parentUuid": "0de01713_1f679558",
+      "revId": "f78a412a55d5cf1194d7c86d138ae265686c570d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
