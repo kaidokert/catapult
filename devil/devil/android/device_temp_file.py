@@ -82,7 +82,12 @@ class DeviceTempFile(object):
 class NamedDeviceTemporaryDirectory(object):
   """A named temporary directory on a device."""
 
-  def __init__(self, adb, suffix='', prefix='tmp', dir='/data/local/tmp'):
+  def __init__(self,
+               adb,
+               suffix='',
+               prefix='tmp',
+               dir='/data/local/tmp',
+               user_id=None):
     """Find an unused temporary directory path on the device. The directory is
     not created until it is used with a 'with' statement.
 
@@ -99,6 +104,7 @@ class NamedDeviceTemporaryDirectory(object):
     self._adb = adb
     self.name = _GenerateName(prefix, suffix, dir)
     self.name_quoted = cmd_helper.SingleQuote(self.name)
+    self._user_id = user_id
 
   def close(self):
     """Deletes the temporary directory from the device."""
@@ -114,7 +120,13 @@ class NamedDeviceTemporaryDirectory(object):
         name='delete_temporary_dir(%s)' % self._adb.GetDeviceSerial()).start()
 
   def __enter__(self):
-    self._adb.Shell('mkdir -p %s' % self.name)
+    dir_path = self.name
+    if self._user_id is not None:
+      if self.name.startswith('/sdcard'):
+        dir_path = '/mnt/user/{user_id}/emulated/{user_id}'.format(
+            user_id=self._user_id)
+        dir_path += self.name[len('/sdcard'):]
+    self._adb.Shell('mkdir -p %s' % dir_path)
     return self
 
   def __exit__(self, exc_type, exc_val, exc_tb):

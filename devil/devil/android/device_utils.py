@@ -309,6 +309,11 @@ _EMULATOR_RE = re.compile(r'^(generic_|emulator64_).*$')
 # or "Package [org.chromium.trichromelibrary_425300033] (e476383):"
 _DUMPSYS_PACKAGE_RE_STR =\
     r'^\s*Package\s*\[{package}\]\s*\(\w*\):$'
+# Regular expressions for determining if a package is installed for a user
+# usuing the output of `dumpsys package`.
+# Matches lines like "User 10: ceDataInode=736318 installed=true hidden=false"
+_DUMPSYS_PACKAGE_USER_RE_STR =\
+    r'^\s+User {user_id}:.*\sinstalled=(?P<is_installed>\w+)\s'
 
 PS_COLUMNS = ('name', 'pid', 'ppid')
 ProcessInfo = collections.namedtuple('ProcessInfo', PS_COLUMNS)
@@ -319,6 +324,15 @@ ROCK960_DEVICE_LIST = [
 ]
 
 _USER_LRU_RE = re.compile(r"^\s*mUserLru:\s*\[([\d\s,]+)\]$")
+# Match user info like "UserInfo{0:Driver:813}"
+_USER_INFO_RE = re.compile(
+    r'\s*UserInfo\{(?P<id>\d+):(?P<name>.+):(?P<flags>[0-9A-Fa-f]+)\}')
+# User with administrative privileges. Such a user can create and delete users.
+_USER_FLAG_ADMIN = 0x00000002
+# Flagged as main user on the device.
+#  * on Headless System User Mode (hsum), main user is the first human user.
+#  * on non-hsum, main user is the system user (user 0)
+_USER_FLAG_MAIN = 0x00004000
 
 
 # Namespaces for settings
@@ -467,6 +481,7 @@ class DeviceUtils(object):
   def __init__(self,
                device,
                enable_device_files_cache=False,
+               force_current_user=False,
                default_timeout=_DEFAULT_TIMEOUT,
                default_retries=_DEFAULT_RETRIES,
                persistent_shell=False):
@@ -477,6 +492,8 @@ class DeviceUtils(object):
         an existing AndroidCommands instance.
       enable_device_files_cache: For PushChangedFiles(), cache checksums of
         pushed files rather than recomputing them on a subsequent call.
+      force_current_user: Explicitly run applicable shell commands with current
+        active user on device.
       default_timeout: An integer containing the default number of seconds to
         wait for an operation to complete if no explicit value is provided.
       default_retries: An integer containing the default number or times an
@@ -496,6 +513,7 @@ class DeviceUtils(object):
     self._default_timeout = default_timeout
     self._default_retries = default_retries
     self._enable_device_files_cache = enable_device_files_cache
+    self._force_current_user = force_current_user
     self._cache = {}
     self._client_caches = {}
     self._cache_lock = threading.RLock()
@@ -746,6 +764,30 @@ class DeviceUtils(object):
       return posixpath.join(self.GetExternalStoragePath(), 'Download')
     return self.GetExternalStoragePath()
 
+  def GetUserWritablePath(self, device_path, target_user):
+    """Convert a path to one that is accessible by the target_user.
+
+    For example, system user don't the permission to access secondary user 10's
+    sdcard via the path "/sdcard" or "/storage/emulated/10". However it can
+    using the path "/mnt/user/10/emulated/10" with the root permission.
+
+    Returns:
+      The converted path.
+    """
+    current_user = self.GetCurrentUser(cache=True)
+    if current_user == target_user:
+      return device_path
+
+    if device_path.startswith('/sdcard'):
+      fuse_path_base = f'/mnt/user/{current_user}/emulated/{current_user}'
+      return fuse_path_base + device_path[len('/sdcard'):]
+
+    if device_path.startswith('/data/data'):
+      data_path_base = f'/data/user/{current_user}'
+      return data_path_base + device_path[len('/data/data'):]
+
+    return device_path
+
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetIMEI(self, timeout=None, retries=None):
     """Get the device's IMEI.
@@ -796,6 +838,9 @@ class DeviceUtils(object):
                              retries=None):
     """Determines whether a particular package is installed on the device.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "pm list packages" command applies to all users.
+
     Args:
       package: Name of the package.
       library_version: Required for shared-library apks. The version of the
@@ -810,8 +855,11 @@ class DeviceUtils(object):
     if library_version is None:
       # `pm list packages` allows matching substrings, but we want exact matches
       # only.
-      matching_packages = self.RunShellCommand(
-          ['pm', 'list', 'packages', package], check_return=True)
+      cmd = ['pm', 'list', 'packages']
+      if self._force_current_user:
+        cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
+      cmd.append(package)
+      matching_packages = self.RunShellCommand(cmd, check_return=True)
       desired_line = 'package:' + package
       found_package = desired_line in matching_packages
       if found_package:
@@ -833,16 +881,33 @@ class DeviceUtils(object):
     package_with_version = package
     if library_version:
       package_with_version += '_' + str(library_version)
-    matcher = re.compile(
+    package_matcher = re.compile(
         _DUMPSYS_PACKAGE_RE_STR.format(package=re.escape(package_with_version)))
+
+    package_user_matcher = None
+    if self._force_current_user:
+      package_user_matcher = re.compile(
+          _DUMPSYS_PACKAGE_USER_RE_STR.format(user_id=self.GetCurrentUser(
+              cache=True)))
     dumpsys_output = self.RunShellCommand(
         ['dumpsys', 'package', package_with_version],
         check_return=True,
         large_output=True)
+
+    package_found = False
     for line in dumpsys_output:
-      match = matcher.match(line)
-      if match:
-        return True
+      package_match = package_matcher.match(line)
+      if package_match:
+        # Keep checking if the package is installed for the given user
+        if package_user_matcher:
+          package_found = True
+        else:
+          return True
+      if package_found and package_user_matcher:
+        package_user_match = package_user_matcher.match(line)
+        if package_user_match:
+          is_installed = package_user_match.groupdict().get('is_installed')
+          return bool(is_installed)
     return False
 
   @decorators.WithTimeoutAndRetriesFromInstance()
@@ -852,8 +917,9 @@ class DeviceUtils(object):
                               timeout=None,
                               retries=None):
     """
-    Checks the version for a mainline module to confirm if it is installed
+    Checks the version for a mainline module (apex) to confirm if it's installed
     """
+    # TODO(hypan): Support multi-user
     dumpsys_output = self.RunShellCommand(['dumpsys', 'package', package],
                                           check_return=True,
                                           large_output=True)
@@ -878,6 +944,10 @@ class DeviceUtils(object):
     return self._GetApplicationPathsInternal(package)
 
   def _GetApplicationPathsInternal(self, package, skip_cache=False):
+    """
+    Note for multi-user: Though there may be multi-users, an application will
+    only have exactly one copy on the device.
+    """
     cached_result = self._cache['package_apk_paths'].get(package)
     if cached_result is not None and not skip_cache:
       if package in self._cache['package_apk_paths_to_verify']:
@@ -992,14 +1062,16 @@ class DeviceUtils(object):
     if not self.IsApplicationInstalled(package):
       raise device_errors.CommandFailedError('%s is not installed' % package,
                                              str(self))
-    output = self._RunPipedShellCommand(
-        'pm dump %s | grep dataDir=' % cmd_helper.SingleQuote(package))
-    for line in output:
-      _, _, dataDir = line.partition('dataDir=')
-      if dataDir:
-        return dataDir
-    raise device_errors.CommandFailedError(
-        'Could not find data directory for %s' % package, str(self))
+    # The shell command "pm dump" may not always show the info for secondary
+    # users. So handcraft the path.
+    user_id = 0
+    if self._force_current_user:
+      user_id = self.GetCurrentUser(cache=True)
+    data_dir = f'/data/user/{user_id}/{package}'
+    if not self.PathExists(data_dir, as_root=True):
+      raise device_errors.CommandFailedError(
+          'Could not find data directory for %s' % package, str(self))
+    return data_dir
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetSecurityContextForPackage(self,
@@ -1011,13 +1083,19 @@ class DeviceUtils(object):
 
     Args:
       package: Name of the package.
-      encrypted: Whether to check in the encrypted data directory
-          (/data/user_de/0/) or the unencrypted data directory (/data/data/).
+      encrypted: Whether to check in
+        the encrypted data directory (/data/user_de/<user_id>/) or
+        the unencrypted data directory (/data/user/<user_id>/).
 
     Returns:
       The package's security context as a string, or None if not found.
     """
-    directory = '/data/user_de/0/' if encrypted else '/data/data/'
+    user_id = 0
+    if self._force_current_user:
+      user_id = self.GetCurrentUser(cache=True)
+    directory = f'/data/user/{user_id}'
+    if encrypted:
+      directory = f'/data/user_de/{user_id}/'
     for line in self.RunShellCommand(['ls', '-Z', directory],
                                      as_root=True,
                                      check_return=True):
@@ -1386,6 +1464,9 @@ class DeviceUtils(object):
       tmp_dir = posixpath.join(self.MODULES_TMP_DIRECTORY_PATH, package_name)
       dest_dir = self.MODULES_LOCAL_TESTING_PATH_TEMPLATE.format(package_name)
       # Always clear MODULES_LOCAL_TESTING_PATH_TEMPLATE of stale files.
+      if self._force_current_user:
+        # Convert to a path that is accessible by the system user
+        dest_dir = self.GetUserWritablePath(dest_dir, 0)
       self.RunShellCommand(['rm', '-rf', dest_dir], as_root=True)
       if not fake_modules:
         return
@@ -1878,15 +1959,18 @@ class DeviceUtils(object):
                     retries=None):
     """Start package's activity on the device.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "am start" command applies to current user.
+
     Args:
       intent_obj: An Intent object to send.
       blocking: A boolean indicating whether we should wait for the activity to
-                finish launching.
+        finish launching.
       trace_file_name: If present, a string that both indicates that we want to
-                       profile the activity and contains the path to which the
-                       trace should be saved.
+        profile the activity and contains the path to which the trace should be
+        saved.
       force_stop: A boolean indicating whether we should stop the activity
-                  before starting it.
+        before starting it.
       timeout: timeout in seconds
       retries: number of retries
 
@@ -1902,18 +1986,22 @@ class DeviceUtils(object):
       cmd.extend(['--start-profiler', trace_file_name])
     if force_stop:
       cmd.append('-S')
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
     cmd.extend(intent_obj.am_args)
     for line in self.RunShellCommand(cmd, check_return=True):
       if line.startswith('Error:'):
         raise device_errors.CommandFailedError(line, str(self))
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def StartService(self, intent_obj, user_id=None, timeout=None, retries=None):
+  def StartService(self, intent_obj, timeout=None, retries=None):
     """Start a service on the device.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "am start-service" command applies to current user.
 
     Args:
       intent_obj: An Intent object to send describing the service to start.
-      user_id: A specific user to start the service as, defaults to current.
       timeout: Timeout in seconds.
       retries: Number of retries
 
@@ -1927,8 +2015,8 @@ class DeviceUtils(object):
     cmd = ['am', 'startservice']
     if self.build_version_sdk >= version_codes.OREO:
       cmd[1] = 'start-service'
-    if user_id:
-      cmd.extend(['--user', str(user_id)])
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
     cmd.extend(intent_obj.am_args)
     for line in self.RunShellCommand(cmd, check_return=True):
       if line.startswith('Error:'):
@@ -1942,6 +2030,24 @@ class DeviceUtils(object):
                            extras=None,
                            timeout=None,
                            retries=None):
+    """Start an instrumentation on the device.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "am instrument" command applies to current user.
+
+    Args:
+      component: The component to run the instrumentation.
+      finish: A boolean indicating if waiting for the instrumentation to finish.
+      raw: A boolean indicating if printing raw results.
+      extras: A dict mapping the testing options as key-value pairs.
+      timeout: Timeout in seconds.
+      retries: Number of retries
+
+    Raises:
+      CommandFailedError if the service could not be started.
+      CommandTimeoutError on timeout.
+      DeviceUnreachableError on missing device.
+    """
     if extras is None:
       extras = {}
 
@@ -1952,6 +2058,8 @@ class DeviceUtils(object):
       cmd.append('-r')
     for k, v in extras.items():
       cmd.extend(['-e', str(k), str(v)])
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
     cmd.append(component)
 
     # Store the package name in a shell variable to help the command stay under
@@ -1965,6 +2073,10 @@ class DeviceUtils(object):
   @decorators.WithTimeoutAndRetriesFromInstance()
   def BroadcastIntent(self, intent_obj, timeout=None, retries=None):
     """Send a broadcast intent.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "am broadcast" command applies to all users.
+    This param won't be added even when "_force_current_user" is True.
 
     Args:
       intent: An Intent to broadcast.
@@ -2018,6 +2130,54 @@ class DeviceUtils(object):
         return int(user_ids[-1])
     raise device_errors.CommandFailedError(
         'mUserLru not found on dumpsys output')
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def ListUsers(self, timeout=None, retries=None):
+    """List all the users with their userinfo on the device.
+
+    Return a list of dict with the following keys:
+      * id: User id as an integer
+      * name: User name as a string
+      * flags: User flags as an integer
+    """
+    users = []
+    lines = self.RunShellCommand(['pm', 'list', 'users'], check_return=True)
+    for line in lines:
+      match = _USER_INFO_RE.match(line)
+      if match:
+        user_info = match.groupdict()
+        user_info['id'] = int(user_info['id'])
+        # flags from pm output is a hex string. Convert it to integer.
+        user_info['flags'] = int(user_info['flags'], 16)
+        users.append(user_info)
+    return users
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def GetMainUser(self, timeout=None, retries=None):
+    """Get the id of the main user on the device.
+
+    On devices with Headless System User Mode (hsum) enabled, i.e. Android
+      Automotive OS, main user is the first human user.
+    On non-hsum, main user is the system user (user 0).
+
+    Such a user will have admin permission, and should be the active user when
+    running the tests.
+    """
+    users = self.ListUsers()
+    admin_user = None
+    for user_info in sorted(users, key=lambda user: user['id']):
+      flags = user_info['flags']
+      # _USER_FLAG_MAIN is added in newer Android OS. If not present, fallback
+      # to the user with biggest id and the _USER_FLAG_ADMIN flag.
+      if flags & _USER_FLAG_MAIN:
+        return user_info['id']
+      if flags & _USER_FLAG_ADMIN:
+        admin_user = user_info
+    if admin_user:
+      return admin_user['id']
+
+    raise device_errors.CommandFailedError(
+        f'Failed to find the main user from existing users {users}')
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def SwitchUser(self, user_id, timeout=None, retries=None):
@@ -2116,6 +2276,10 @@ class DeviceUtils(object):
   def ForceStop(self, package, timeout=None, retries=None):
     """Close the application.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "am force-stop" command applies to all users.
+    This param won't be added even when "_force_current_user" is True.
+
     Args:
       package: A string containing the name of the package to stop.
       timeout: timeout in seconds
@@ -2137,6 +2301,9 @@ class DeviceUtils(object):
                             wait_for_asynchronous_intent=False):
     """Clear all state for the given package.
 
+    Note for multi-user: when "--user" param is not specified,
+      the "pm clear" command applies to system user.
+
     Args:
       package: A string containing the name of the package to stop.
       permissions: List of permissions to set after clearing data.
@@ -2156,7 +2323,11 @@ class DeviceUtils(object):
     if ((self.build_version_sdk >= version_codes.JELLY_BEAN_MR2)
         or self._GetApplicationPathsInternal(package)):
 
-      self.RunShellCommand(['pm', 'clear', package], check_return=True)
+      cmd = ['pm', 'clear']
+      if self._force_current_user:
+        cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
+      cmd.append(package)
+      self.RunShellCommand(cmd, check_return=True)
       self.GrantPermissions(package, permissions)
 
       if wait_for_asynchronous_intent:
@@ -2239,6 +2410,10 @@ class DeviceUtils(object):
     # upgrading devil's default adb beyond 1.0.39.
     # TODO(crbug.com/1020716): disabled as can result in extra directory.
     enable_push_sync = False
+
+    if self._force_current_user:
+      host_device_tuples = [(h, self.GetUserWritablePath(d, 0))
+                            for h, d in host_device_tuples]
 
     if enable_push_sync:
       try:
@@ -2432,6 +2607,7 @@ class DeviceUtils(object):
   def _ComputeDeviceChecksumsForApks(self, package_name):
     ret = self._cache['package_apk_checksums'].get(package_name)
     if ret is None:
+      # TODO(hypan): Double check for multi-user
       if self.PathExists('/data/data/' + package_name, as_root=True):
         device_paths = self._GetApplicationPathsInternal(package_name)
         file_to_checksums = md5sum.CalculateDeviceMd5Sums(device_paths, self)
@@ -3485,6 +3661,9 @@ class DeviceUtils(object):
   def _GetSettings(self, namespace):
     """Return a dictionary containing global settings
 
+    Note for multi-user: when "--user" param is not specified,
+      the "settings list" command applies to current user.
+
     Args:
       namespace: Category of settings. Can be either 'system', 'global'
         or 'secure'.
@@ -3495,7 +3674,11 @@ class DeviceUtils(object):
     if namespace not in (SettingsNamespace.SECURE, SettingsNamespace.GLOBAL,
                          SettingsNamespace.SYSTEM):
       raise ValueError('Unsupported namespace: %s' % namespace)
-    output_lines = self.RunShellCommand(['settings', 'list', namespace],
+    cmd = ['settings', 'list']
+    if self._force_current_user:
+      cmd.extend(['--user', str(self.GetCurrentUser(cache=True))])
+    cmd.append(namespace)
+    output_lines = self.RunShellCommand(cmd,
                                         check_return=True,
                                         large_output=True)
     return dict(map(lambda line: line.split('=', 1), output_lines))
@@ -4231,15 +4414,26 @@ class DeviceUtils(object):
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GrantPermissions(self, package, permissions, timeout=None, retries=None):
+    """Grant permissions to a package.
+
+    Note for multi-user: when "--user" param is not specified,
+      the "appops set" command applies to current user.
+      the "pm grant" command applies to system user.
+    """
+
     if not permissions:
       return
+
+    user_param = ''
+    if self._force_current_user:
+      user_param = '--user {}'.format(self.GetCurrentUser(cache=True))
 
     # For Andorid-11(R), enable MANAGE_EXTERNAL_STORAGE for testing.
     # See https://bit.ly/2MBjBIM for details.
     if ('android.permission.MANAGE_EXTERNAL_STORAGE' in permissions
         and self.build_version_sdk >= version_codes.R):
       script_manage_ext_storage = [
-          'appops set {package} MANAGE_EXTERNAL_STORAGE allow',
+          'appops set {user_param} {package} MANAGE_EXTERNAL_STORAGE allow',
           'echo "{sep}MANAGE_EXTERNAL_STORAGE{sep}$?{sep}"',
       ]
     else:
@@ -4255,7 +4449,7 @@ class DeviceUtils(object):
     script_raw = [
         'p={package}',
         'for q in {permissions}',
-        'do pm grant "$p" "$q"',
+        'do pm grant {user_param} "$p" "$q"',
         'echo "{sep}$q{sep}$?{sep}"',
         'done',
     ] + script_manage_ext_storage
@@ -4264,6 +4458,7 @@ class DeviceUtils(object):
         package=cmd_helper.SingleQuote(package),
         permissions=' '.join(
             cmd_helper.SingleQuote(p) for p in sorted(permissions)),
+        user_param=user_param,
         sep=_SHELL_OUTPUT_SEPARATOR)
 
     logger.info('Setting permissions for %s.', package)
