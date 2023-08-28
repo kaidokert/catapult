@@ -73,11 +73,6 @@ _CATAPULT_TESTS = [
         'path': 'dependency_manager/bin/run_tests',
     },
     {
-        'name': 'Devil Device Tests',
-        'path': 'devil/bin/run_py_devicetests',
-        'disabled': ['win', 'mac', 'linux']
-    },
-    {
         'name': 'Devil Python Tests',
         'path': 'devil/bin/run_py3_tests',
         'disabled': ['mac', 'win'],
@@ -229,6 +224,9 @@ def main(args=None):
       default=False,
       help='Run only the Perf Issue Service tests',
       action='store_true')
+  parser.add_argument(
+      '--catapult-cas-digest',
+      help='CAS digest of an uploaded version of this catapult checkout.')
   args = parser.parse_args(args)
 
   dashboard_protos_folder = os.path.join(args.api_path_checkout, 'dashboard',
@@ -307,7 +305,7 @@ def main(args=None):
     # On Android, we need to prepare the devices a bit before using them in
     # tests. These steps are not listed as tests above because they aren't
     # tests and because they must precede all tests.
-    steps.extend([
+    android_steps = [
         {
             'name':
                 'Android: Recover Devices',
@@ -335,7 +333,39 @@ def main(args=None):
                              'android', 'tools', 'device_status.py')
             ],
         },
-    ])
+        {
+            'name': 'Devil Device Tests',
+            'cmd': [
+                'vpython3',
+                os.path.join(args.api_path_checkout, 'devil', 'bin',
+                             'run_py_devicetests'),
+            ],
+        },
+    ]
+    if args.catapult_cas_digest:
+      swarming_trigger_cmd_prefix = [
+          'vpython3',
+          os.path.join(args.api_path_checkout, 'catapult_build', 'trigger_and_collect_swarming_task.py'),
+          'swarming',
+          'trigger',
+          '-S', 'chromium-swarm.appspot.com',
+          '-digest', args.catapult_cas_digest,
+          '-d', 'os=Android',
+          '-d', 'pool=chromium.tests',
+          '-d', 'device_type=walleye',
+          '-d', 'device_os=P',
+          '--realm', 'chromium:tests',
+          '--',
+      ]
+      for step in android_steps:
+        rel_path = os.path.relpath(step['cmd'][1], args.api_path_checkout)
+        steps.append({
+            'name': step['name'],
+            'cmd': swarming_trigger_cmd_prefix + [step['cmd'][0], rel_path]
+        })
+    else:
+      steps.extend(android_steps)
+
 
   tests = None
   if args.dashboard_only:
