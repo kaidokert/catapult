@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15c59da5_4d43fc86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-08-28T18:57:37Z",
+      "side": 1,
+      "message": "Thanks for the review. Glad to get a CR+1 from you in the 1st patchset 😄",
+      "parentUuid": "4fe0322b_f198955d",
+      "revId": "4499c6b3bdf71e2090c8d43a3f0306cf7769da84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cc8c881_eef2d66e",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-28T17:11:41Z",
       "side": 1,
       "message": "nit: Is this format documented anywhere on source.android.com or developer.android.com ? Would be nice to link it here if so.",
+      "range": {
+        "startLine": 322,
+        "startChar": 24,
+        "endLine": 322,
+        "endChar": 46
+      },
+      "revId": "4499c6b3bdf71e2090c8d43a3f0306cf7769da84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edcf7bb1_a5ed67b3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-08-28T18:57:37Z",
+      "side": 1,
+      "message": "Done. Thanks for the suggestion.",
+      "parentUuid": "0cc8c881_eef2d66e",
       "range": {
         "startLine": 322,
         "startChar": 24,
