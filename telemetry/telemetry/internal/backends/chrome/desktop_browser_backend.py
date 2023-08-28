@@ -171,7 +171,10 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       if int(os.environ.get('START_BROWSER_WITH_DEFAULT_PRIORITY', '0')):
         # Start chrome on mac using `open`, when running benchmarks
         # so that it starts with default priority. See crbug/1454294
-        cmd = ['open', '-n', '-W', '-a', self._executable, '--args']
+
+        # `open` expects self._executable path to end with .app
+        executable_app = re.sub(r'\.app\/.*', '.app', self._executable)
+        cmd = ['open', '-n', '-W', '-a', executable_app, '--args']
       cmd.append('--use-mock-keychain')  # crbug.com/865247
     cmd.extend(startup_args)
     cmd.append('about:blank')
