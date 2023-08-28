@@ -692,10 +692,9 @@ class DeviceUtilsGetApplicationDataDirectoryTest(DeviceUtilsTest):
   def testGetApplicationDataDirectory_exists(self):
     with self.assertCalls(
         (self.call.device.IsApplicationInstalled('foo.bar.baz'), True),
-        (self.call.device._RunPipedShellCommand(
-            'pm dump foo.bar.baz | grep dataDir='),
-         ['dataDir=/data/data/foo.bar.baz'])):
-      self.assertEqual('/data/data/foo.bar.baz',
+        (self.call.device.PathExists('/data/user/0/foo.bar.baz',
+                                     as_root=True), True)):
+      self.assertEqual('/data/user/0/foo.bar.baz',
                        self.device.GetApplicationDataDirectory('foo.bar.baz'))
 
   def testGetApplicationDataDirectory_notInstalled(self):
@@ -707,8 +706,8 @@ class DeviceUtilsGetApplicationDataDirectoryTest(DeviceUtilsTest):
   def testGetApplicationDataDirectory_notExists(self):
     with self.assertCalls(
         (self.call.device.IsApplicationInstalled('foo.bar.baz'), True),
-        (self.call.device._RunPipedShellCommand(
-            'pm dump foo.bar.baz | grep dataDir='), self.ShellError())):
+        (self.call.device.PathExists('/data/user/0/foo.bar.baz',
+                                     as_root=True), False)):
       with self.assertRaises(device_errors.CommandFailedError):
         self.device.GetApplicationDataDirectory('foo.bar.baz')
 
@@ -2335,21 +2334,6 @@ class DeviceUtilsStartServiceTest(DeviceUtilsTest):
           'Error: Failed to start test service'):
         with self.assertRaises(device_errors.CommandFailedError):
           self.device.StartService(test_intent)
-
-  def testStartService_withUser(self):
-    test_intent = intent.Intent(
-        action='android.intent.action.START',
-        package=TEST_PACKAGE,
-        activity='.Main')
-    with self.patch_call(
-        self.call.device.build_version_sdk, return_value=version_codes.NOUGAT):
-      with self.assertCall(
-          self.call.adb.Shell('am startservice '
-                              '--user TestUser '
-                              '-a android.intent.action.START '
-                              '-n test.package/.Main'),
-          'Starting service: Intent { act=android.intent.action.START }'):
-        self.device.StartService(test_intent, user_id='TestUser')
 
   def testStartService_onOreo(self):
     test_intent = intent.Intent(
@@ -4393,7 +4377,7 @@ class DeviceUtilsGrantPermissionsTest(DeviceUtilsTest):
                            return_value=version_codes.R):
         with self.assertCalls(
             (self.call.device.RunShellCommand(
-                AnyStringWith('appops set pkg MANAGE_EXTERNAL_STORAGE allow'),
+                AnyStringWith('appops set  pkg MANAGE_EXTERNAL_STORAGE allow'),
                 shell=True,
                 raw_output=True,
                 large_output=True,
