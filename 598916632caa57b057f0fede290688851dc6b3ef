@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad12ed75_ccb925bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2023-08-28T14:19:35Z",
+      "side": 1,
+      "message": "This breaks running benchmarks for me locally, see https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1473604#c22 / https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1473604#c23",
+      "revId": "598916632caa57b057f0fede290688851dc6b3ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
