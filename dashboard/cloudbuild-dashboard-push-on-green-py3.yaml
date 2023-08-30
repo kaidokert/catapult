@@ -47,6 +47,7 @@ steps:
     upload.yaml,
     pinpoint.yaml,
   ]
+# We check in the target versions to avoid unintended traffic changes.
 - name: 'gcr.io/cloud-builders/gcloud'
   dir: 'deploy-dashboard'
   args: [
