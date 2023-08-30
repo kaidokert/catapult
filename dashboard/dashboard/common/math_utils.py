@@ -61,6 +61,21 @@ def RelativeChange(before, after):
   return abs((after - before) / float(before)) if before else float('inf')
 
 
+def ScaleMagnitudes(magnitude):
+  """Given a normalized comparison magnitude, return a list of scaled
+  normalized comparison magnitudes to allow for multiple comparisons.
+
+  Scaling the magnitude and comparing multiple times is rather p-value
+  hacky, but if we confirm the regression ahead of time with regression
+  verification, then it makes sense for bisection to use a more aggressive
+  culprit finding strategy. We do not allow the comparison magnitude to
+  go to 0 to avoid bisection from becoming too zealous.
+  """
+  # descending order so that the first entry is the original magnitude
+  n = 4
+  return reversed([magnitude*i/n for i in range(1,n+1)])
+
+
 def Iqr(values):
   """Returns the interquartile range of an iterable of values.
 

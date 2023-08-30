@@ -28,6 +28,20 @@ class ComparisonResults(
   __slots__ = ()
 
 
+def ScaleMagnitudes(magnitude):
+  """Given a comparison magnitude, return a list of scaled
+  comparison magnitudes to allow for multiple comparisons.
+
+  Scaling the magnitude and comparing multiple times is rather p-value
+  hacky, but if we confirm the regression ahead of time with regression
+  verification, then it makes sense for bisection to use a more aggressive
+  culprit finding strategy. We do not allow the comparison magnitude to
+  go to 0 to avoid bisection from becoming too zealous.
+  """
+  # descending order so that the first entry is the original magnitude
+  n = 4
+  return [magnitude*i/n for i in reversed(range(1,n+1))]
+
 # TODO(https://crbug.com/1051710): Make this return all the values useful in
 # decision making (and display).
 def Compare(values_a, values_b, attempt_count, mode, magnitude):
