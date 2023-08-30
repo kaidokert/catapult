@@ -12,3 +12,4 @@ from dashboard.pinpoint.models.compare.compare import SAME
 from dashboard.pinpoint.models.compare.compare import UNKNOWN
 
 from dashboard.pinpoint.models.compare.compare import Compare
+from dashboard.pinpoint.models.compare.compare import ScaleMagnitudes

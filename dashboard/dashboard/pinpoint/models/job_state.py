@@ -377,17 +377,9 @@ class JobState:
       all_a_values = tuple(AllValues(executions_a))
       all_b_values = tuple(AllValues(executions_b))
       if all_a_values and all_b_values:
-        if getattr(self, '_comparison_magnitude', None):
-          max_iqr = max(
-              max(math_utils.Iqr(all_a_values), math_utils.Iqr(all_b_values)),
-              0.001)
-          comparison_magnitude = abs(self._comparison_magnitude / max_iqr)
-        else:
-          comparison_magnitude = 1.0
-
-        sample_count = (len(all_a_values) + len(all_b_values)) // 2
         logging.debug('BisectDebug: Comparing values: %s, %s',
             all_a_values, all_b_values)
+        # Check for improvement
         mean_diff = Mean(all_b_values) - Mean(all_a_values)
         # Pinpoint jobs that exist prior to this change will not
         # have an improvement direction. See crbug/1351167#c4
@@ -400,16 +392,26 @@ class JobState:
               'BisectDebug: Improvement found. Improvement direction: %s, mean diff: %s',
               self._improvement_direction, mean_diff)
           return compare.SAME
-        comparison, _, _, _ = compare.Compare(
-            all_a_values,
-            all_b_values,
-            sample_count,
-            PERFORMANCE,
-            comparison_magnitude,
-        )
-        logging.debug('BisectDebug: Compare result: %s', comparison)
-        if comparison == compare.DIFFERENT:
-          return compare.DIFFERENT
+        # not an improvement
+        max_iqr = max(max(math_utils.Iqr(all_a_values), math_utils.Iqr(all_b_values)), 0.001)
+        sample_count = (len(all_a_values) + len(all_b_values)) // 2
+        if getattr(self, '_comparison_magnitude', None):
+          scaled_magnitudes = compare.ScaleMagnitudes(self._comparison_magnitude/max_iqr)
+        else:
+          # no scaling if comparison_magnitude = None (implies manual bisection)
+          scaled_magnitudes = [1.0]
+        logging.debug('BisectDebug: adjusted, and scaled magnitudes: %s' % scaled_magnitudes)
+        for magnitude in scaled_magnitudes:
+          comparison, _, _, _ = compare.Compare(
+              all_a_values,
+              all_b_values,
+              sample_count,
+              PERFORMANCE,
+              magnitude,
+          )
+          logging.debug('BisectDebug: Compare result: %s', comparison)
+          if comparison == compare.DIFFERENT:
+            return compare.DIFFERENT
         if comparison == compare.UNKNOWN:
           any_unknowns = True
 

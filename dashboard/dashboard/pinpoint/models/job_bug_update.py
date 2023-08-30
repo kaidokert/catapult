@@ -16,6 +16,7 @@ import os.path
 from dashboard import update_bug_with_results
 from dashboard import sheriff_config_client
 from dashboard.common import cloud_metric
+from dashboard.common import math_utils
 from dashboard.common import utils
 from dashboard.models import histogram
 from dashboard.models import anomaly
@@ -23,6 +24,7 @@ from dashboard.services import perf_issue_service_client
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.change import patch as patch_module
+from dashboard.pinpoint.models import compare
 
 from tracing.value.diagnostics import reserved_infos
 
@@ -122,8 +124,9 @@ class DifferencesFoundBugUpdateBuilder:
     issue_update_info = builder.BuildUpdate(tags, url)
   """
 
-  def __init__(self, metric):
+  def __init__(self, metric, comparison_magnitude=1.0):
     self._metric = metric
+    self._comparison_magnitude = comparison_magnitude
     self._differences = []
     self._examined_count = None
     self._cached_ordered_diffs_by_delta = None
@@ -173,7 +176,13 @@ class DifferencesFoundBugUpdateBuilder:
       raise ValueError("BuildUpdate called with 0 differences")
     differences = self._OrderedDifferencesByDelta(improvement_dir)
     missing_values = self._DifferencesWithNoValues()
-    owner, cc_list, notify_why_text = self._PeopleToNotify(improvement_dir)
+    scaled_magnitudes = compare.ScaleMagnitudes(self._comparison_magnitude)
+
+    if differences:
+      magnitude_index, _ = differences[0].FindMagnitudeIndex(scaled_magnitudes)
+    ordered_commits = [diff.commit_info for diff in differences] + \
+                      [diff.commit_info for diff in missing_values]
+    owner, cc_list, notify_why_text = self._PeopleToNotify(ordered_commits)
     status = None
 
     # Here we're only going to consider the cases where we find differences
@@ -204,6 +213,8 @@ class DifferencesFoundBugUpdateBuilder:
           doc_links=_FormatDocumentationUrls(tags),
           examined_count=self._examined_count,
           missing_values=missing_values,
+          scaled_mag = scaled_magnitudes,
+          mag_index = magnitude_index
       )
       if tags and tags.get('auto_bisection') == 'true':
         cloud_metric.PublishAutoTriagedIssue(
@@ -269,19 +280,15 @@ class DifferencesFoundBugUpdateBuilder:
     ]
     return self._cached_commits_with_no_values
 
-  def _PeopleToNotify(self, improvement_dir):
-    """Return the people to notify for these differences.
+  def _PeopleToNotify(self, ordered_commits):
+    """Return the people to notify given a list of ordered differences.
 
-    This looks at the top commits (by absolute change), and returns a tuple of:
+    This looks at the top commits (by change and improvement direction),
+    and returns a tuple of:
       * owner (str, will be ignored if the bug is already assigned)
       * cc_list (list, authors of the top 2 commits)
       * why_text (str, text explaining why this owner was chosen)
     """
-    ordered_commits = [
-        diff.commit_info
-        for diff in self._OrderedDifferencesByDelta(improvement_dir)
-    ] + [diff.commit_info for diff in self._DifferencesWithNoValues()]
-
     # CC the folks in the top N commits.  N is scaled by the number of commits
     # (fewer than 10 means N=1, fewer than 100 means N=2, etc.)
     commits_cap = int(math.floor(math.log10(len(ordered_commits)))) + 1
@@ -335,6 +342,27 @@ class _Difference:
 
     return self._cached_commit
 
+  def FindMagnitudeIndex(self, scaled_magnitudes):
+    """Find the magnitude where significance is first detected from
+    a list of magnitudes. Return the index and the magnitude because
+    Python has a hard time comparing floats
+    """
+    max_iqr = max(max(math_utils.Iqr(self.values_a), math_utils.Iqr(self.values_b)), 0.001)
+    sample_count = (len(self.values_a) + len(self.values_b)) // 2
+    for i, magnitude in enumerate(scaled_magnitudes):
+      comparison, _, _, _ = compare.Compare(
+          self.values_a,
+          self.values_b,
+          sample_count,
+          job_state.PERFORMANCE,
+          magnitude/max_iqr,
+      )
+      logging.debug('BisectDebug: Compare result: %s', comparison)
+      if comparison == compare.DIFFERENT:
+        return i, magnitude
+
+    return 0, scaled_magnitudes[0] # in theory should not reach this line
+  
   def MeanDelta(self):
     return job_state.Mean(self.values_b) - job_state.Mean(self.values_a)
 
@@ -513,8 +541,8 @@ def UpdatePostAndMergeDeferred(bug_update_builder,
       project_name=project,
       comment=bug_update.comment_text,
       status=status,
-      cc=sorted(cc_list),
-      owner=bug_owner,
+      cc=[],
+      owner="sunxiaodi@google.com",
       labels=bug_update.labels,
       merge_issue=merge_details.get('id'))
   update_bug_with_results.UpdateMergeIssue(
