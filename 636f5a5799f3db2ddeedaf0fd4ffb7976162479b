@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "449adaa9_4788a15d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2023-08-30T15:34:24Z",
+      "side": 1,
+      "message": "I tried running `open out/gn/Chromium.app` and it also opens it in the slow, broken state I get when I prefix $PWD.",
+      "revId": "636f5a5799f3db2ddeedaf0fd4ffb7976162479b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
