@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4d63e57_a7c19f6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-30T18:12:36Z",
+      "side": 1,
+      "message": "Synced with John and decided to switch to the old method.",
+      "revId": "44b1c1ff2769f9b56df8eb3cea1fc7b9108f0a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
