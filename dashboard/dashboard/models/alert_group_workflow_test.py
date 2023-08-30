@@ -1525,6 +1525,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # - A pinpoint bisection job has been started for the alert group
     # - The issue tracker has been called to update the issue with label Chromeperf-Auto-Bisected
     # - The issue does not have components from the sandwich sheriff config assigned to it
+    # - The bisect tags include "sandwiched: True"
     feature_flags.SANDWICH_VERIFICATION = True
 
     test_name = '/'.join([
@@ -1591,6 +1592,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertNotIn('sub>should>not>set>component', self._issue_tracker.issue.get('components'))
     self.assertIsNotNone(w._group.sandwich_verification_workflow_id)
     self.assertIsNotNone(self._pinpoint.new_job_request)
+    tags = json.loads(self._pinpoint.new_job_request['tags'])
+    self.assertEqual(tags['sandwiched'], 'true')
 
     # First is a NewBug call in the test itself.
     self.assertEqual(len(self._issue_tracker.calls), 3)
