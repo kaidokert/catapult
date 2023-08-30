@@ -69,6 +69,41 @@
       "parentUuid": "801cd7bb_ed3f3cb0",
       "revId": "60bc78b745656b5db293e9946e39184bc151afd7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f66e759_d00ec325",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-30T17:37:52Z",
+      "side": 1,
+      "message": "Added some notes. While I\u0027m OK with checking in as is, I do feel uneasy about updating the threshold table format without updating the scripts that generate the tables.",
+      "revId": "60bc78b745656b5db293e9946e39184bc151afd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6984b3d_67d62d70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-08-30T17:37:52Z",
+      "side": 1,
+      "message": "While we don\u0027t have to modify the thresholds_*.py scripts now, updating the table format without updating the generation scripts creates a technical debt that will make it more difficult to adjust the threshold algorithm in the future.\n\nA few notes about the thresholds_*.py scripts:\n\n* thresholds_functional.py is broken right now, and would run forever. I suspects it\u0027s due to a change in the behavior of stats.binom function.\n\n* thresholds_performance.py takes a long time to run - its comment says 12 hours. It uses random simulation, and thus will likely generate slightly different output each time.",
+      "parentUuid": "b387bfa9_240ea93b",
+      "revId": "60bc78b745656b5db293e9946e39184bc151afd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
