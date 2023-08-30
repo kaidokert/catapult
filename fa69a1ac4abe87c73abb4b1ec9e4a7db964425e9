@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "fa69a1ac4abe87c73abb4b1ec9e4a7db964425e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6ca1fac_80589f17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-08-30T18:24:41Z",
+      "side": 1,
+      "message": "nice, pinpoint already supports tags",
+      "revId": "fa69a1ac4abe87c73abb4b1ec9e4a7db964425e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
