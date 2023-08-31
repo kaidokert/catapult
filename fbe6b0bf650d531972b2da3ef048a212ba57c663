@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16c630d5_09be4c87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-08-31T22:15:03Z",
+      "side": 1,
+      "message": "Sync\u0027d with Ashwin. Given that it is easier to track the \"DoNotNotify\" status via Pinpoint argument tags, is it worth changing the approach here instead of relying on monorail labels? Or are there other areas where we append the monorail label that I\u0027m not aware of?",
+      "revId": "fbe6b0bf650d531972b2da3ef048a212ba57c663",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "160debde_4f0b223f",
         "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
         "patchSetId": 2
