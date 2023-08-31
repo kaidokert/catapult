@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "819086f1_c184902c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-31T22:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbd83c45_b9ebe415",
+      "range": {
+        "startLine": 7,
+        "startChar": 29,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "fbe6b0bf650d531972b2da3ef048a212ba57c663",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "45037d46_7f71ab96",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -58,6 +82,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "862b936a_4dda701a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-31T22:41:24Z",
+      "side": 1,
+      "message": "I\u0027m thinking of doing both since alert grouping may also be updating the bug (eg: found another test matching the group) and it would be more tangling to have it look up the status of pinpoint job.\nLet\u0027s start with just the bug for now and if that turns out to be less reliable then we can look at the tags in this code. The bug label is just easier currently since we are already looking up bug data",
+      "parentUuid": "16c630d5_09be4c87",
+      "revId": "fbe6b0bf650d531972b2da3ef048a212ba57c663",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "160debde_4f0b223f",
@@ -81,6 +123,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "650de8d9_a2eaaf3a",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-31T22:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "160debde_4f0b223f",
+      "range": {
+        "startLine": 512,
+        "startChar": 44,
+        "endLine": 512,
+        "endChar": 45
+      },
+      "revId": "fbe6b0bf650d531972b2da3ef048a212ba57c663",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e189ef4f_752a6972",
@@ -94,6 +160,30 @@
       "writtenOn": "2023-08-31T22:06:39Z",
       "side": 1,
       "message": "side question: is this specific for chromium, or are we interested for all projects? if all, maybe project log could help here too.",
+      "range": {
+        "startLine": 516,
+        "startChar": 72,
+        "endLine": 516,
+        "endChar": 73
+      },
+      "revId": "fbe6b0bf650d531972b2da3ef048a212ba57c663",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63dc3301_425f8be4",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-08-31T22:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e189ef4f_752a6972",
       "range": {
         "startLine": 516,
         "startChar": 72,
