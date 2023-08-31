@@ -769,6 +769,7 @@ class AlertGroupWorkflow:
     }
 
   def _Archive(self):
+    logging.debug('Archiving group: %s', self._group.key)
     self._group.active = False
 
   def _TryTriage(self, now, anomalies):
