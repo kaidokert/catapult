@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b46bfc72_d98feb5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2023-08-31T16:14:00Z",
+      "side": 1,
+      "message": "This makes ijson universally available so we can run unittest on Mac as well.",
+      "revId": "43aea61cfdcd454883e4a5df63f433b822ddb8eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
