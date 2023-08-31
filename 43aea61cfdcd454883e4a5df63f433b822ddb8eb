@@ -16,6 +16,29 @@
       "message": "This makes ijson universally available so we can run unittest on Mac as well.",
       "revId": "43aea61cfdcd454883e4a5df63f433b822ddb8eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa06af4b_b90985ef",
+        "filename": "dashboard/.vpython3",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-08-31T16:58:58Z",
+      "side": 1,
+      "message": "Would you also help update the one in requirements.txt? Those are the ones used in appengine. Thanks!",
+      "range": {
+        "startLine": 255,
+        "startChar": 20,
+        "endLine": 255,
+        "endChar": 25
+      },
+      "revId": "43aea61cfdcd454883e4a5df63f433b822ddb8eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
