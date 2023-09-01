@@ -39,6 +39,30 @@
       },
       "revId": "fec83ca4dcbf7a7bf0a373625548d36ed2c61f61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1976b31e_81aa91fb",
+        "filename": "perf_issue_service/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-01T19:50:24Z",
+      "side": 1,
+      "message": "Thanks!\nI updated the cpu util target, and left the concurrent requests alone. Currently the response time from Monorail varies from hundreds of ms to 10+ seconds. It is not clear how the concurrent request count will look like.",
+      "parentUuid": "fe8a0c18_563834bc",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "fec83ca4dcbf7a7bf0a373625548d36ed2c61f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
