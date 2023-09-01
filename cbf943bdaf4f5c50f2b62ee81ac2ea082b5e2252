@@ -70,6 +70,24 @@
       "parentUuid": "e8ee1c16_05c63b25",
       "revId": "cbf943bdaf4f5c50f2b62ee81ac2ea082b5e2252",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f066e8_9472b2e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-01T17:41:34Z",
+      "side": 1,
+      "message": "In general, I\u0027m concerned about using any flags that affects performance while running perf tests, as it makes the test results not real.\n\nFor this particular case, you mentioned that the feature is behind an experimental flag, so there is a chance it will eventually be enabled on real users. If your change significantly regressed some perf tests, it will eventually affect users when this feature passes the experimental stage and is shipped to users. So it shouldn\u0027t be hidden by a command-line switch that real users will never use.",
+      "parentUuid": "54077546_a0da3b99",
+      "revId": "cbf943bdaf4f5c50f2b62ee81ac2ea082b5e2252",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
