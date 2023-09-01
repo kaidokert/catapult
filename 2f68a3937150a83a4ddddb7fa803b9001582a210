@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "249da6c8_d91bd7d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-01T21:41:59Z",
+      "side": 1,
+      "message": "This is in order to deploy https://chromium-review.googlesource.com/c/catapult/+/4823730 to prod.\n\nWithout it, Jetstream and Motionmark sandwich bugs don\u0027t actually include the sandwich workflows verification step prior to proceeding to schedule auto-bisect jobs. They just go straight to running the bisect.",
+      "revId": "2f68a3937150a83a4ddddb7fa803b9001582a210",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
