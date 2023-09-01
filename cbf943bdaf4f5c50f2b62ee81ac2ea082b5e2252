@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "060a5661_13950a8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1137015
+      },
+      "writtenOn": "2023-09-01T16:09:26Z",
+      "side": 1,
+      "message": "PTAL\n\nI\u0027m not very familiar with Catapult so please advise if this is the right location to add the switch.\n\nAlso, I\u0027m curious if there is an actual use case for backgrounding renderers? I can easily imagine a test that creates 100 tabs but only measure the performance of the active tab.",
+      "revId": "cbf943bdaf4f5c50f2b62ee81ac2ea082b5e2252",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
