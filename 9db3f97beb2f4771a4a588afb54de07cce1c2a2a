@@ -39,6 +39,30 @@
       },
       "revId": "9db3f97beb2f4771a4a588afb54de07cce1c2a2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f3212a_5a7e6ef8",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-09-01T17:27:52Z",
+      "side": 1,
+      "message": "`netstat` runs fine without root, but we get less information. As a concrete example, here\u0027s a few lines of output from my local device without root:\n\n```\nProto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program Name                                                                                                                                                                                          \ntcp6       0      0 localhost:39729         :::*                    LISTEN      -                                                                                                                                                                                                         \ntcp6       0      0 2a00:79e1:abd:9d0:39720 sea30s08-in-f2.1e:https TIME_WAIT   -                                                                                                                                                                                                         \ntcp6       0      0 2a00:79e1:abd:9d0:43136 2607:f8b0:400a:80:https ESTABLISHED - \n```\n\nand with root:\n\n```\nProto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program Name                                                                                                                                                                                          \ntcp6       0      0 localhost:38313         :::*                    LISTEN      10620/com.google.android.apps.youtube.music                                                                                                                                                               \ntcp6       0      0 :::5037                 :::*                    LISTEN      12220/adbd                                                                                                                                                                                                \ntcp6       0      0 localhost:39729         :::*                    LISTEN      8651/com.google.android.youtube\n```\n\nNote that with root, we get the PID and program name, which is very helpful for diagnosing what is eating all the ports.",
+      "parentUuid": "033ce5db_3cd67551",
+      "range": {
+        "startLine": 79,
+        "startChar": 56,
+        "endLine": 79,
+        "endChar": 68
+      },
+      "revId": "9db3f97beb2f4771a4a588afb54de07cce1c2a2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
