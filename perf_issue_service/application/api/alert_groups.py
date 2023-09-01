@@ -10,6 +10,7 @@ from application import utils
 
 alert_groups = Blueprint('alert_groups', __name__)
 
+DEFAULT_UNGROUPED_GROUPID = 'Ungrouped'
 
 @alert_groups.route('/<group_id>/duplicates', methods=['GET'])
 @utils.BearerTokenAuthorizer
@@ -67,6 +68,10 @@ def GetAllActiveGroups():
 @alert_groups.route('/ungrouped', methods=['POST'])
 @utils.BearerTokenAuthorizer
 def PostUngroupedGroupsHandler():
-  parity_results = alert_group.AlertGroup.ProcessUngroupedAlerts()
+  group_name = request.args.get('group_name')
+  if not group_name:
+    group_name = DEFAULT_UNGROUPED_GROUPID
+
+  parity_results = alert_group.AlertGroup.ProcessUngroupedAlerts(group_name)
 
   return make_response(parity_results)

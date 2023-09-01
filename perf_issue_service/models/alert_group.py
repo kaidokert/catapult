@@ -207,22 +207,24 @@ class AlertGroup:
 
 
   @classmethod
-  def _GetUngroupedGroup(cls):
-    ''' Get the "ungrouped" group
+  def _GetUngroupedGroup(cls, group_name):
+    ''' Get the "ungrouped" group having the given name
 
     The alert_group named "ungrouped" contains the alerts for further
     processing in the next iteration of of dashboard-alert-groups-update
     cron job.
 
+    Args:
+      group_name: Name of the "ungrouped" group
     Returns:
       The 'ungrouped' entity if exists, otherwise create a new entity and
       return None.
     '''
-    ungrouped_groups = cls.Get('Ungrouped', 2)
+    ungrouped_groups = cls.Get(group_name, 2)
     if not ungrouped_groups:
       # initiate when there is no active group called 'Ungrouped'.
       new_group = cls.ds_client.NewAlertGroup(
-        benchmark_name='Ungrouped',
+        benchmark_name=group_name,
         group_type=0
       )
       cls.ds_client.SaveAlertGroup(new_group)
@@ -232,16 +234,18 @@ class AlertGroup:
     ungrouped = ungrouped_groups[0]
     return ungrouped
 
-
   @classmethod
-  def ProcessUngroupedAlerts(cls):
+  def ProcessUngroupedAlerts(cls, group_name):
     """ Process each of the alert which needs a new group
 
-    This alerts are added to the 'ungrouped' group during anomaly detection
+    This alerts are added to an 'ungrouped' group during anomaly detection
     when no existing group is found to add them to.
+
+    Args:
+      group_name: Name of the 'ungrouped' group to evaluate
     """
     IS_PARITY = True
-    ungrouped = cls._GetUngroupedGroup()
+    ungrouped = cls._GetUngroupedGroup(group_name)
     if not ungrouped:
       return
 
