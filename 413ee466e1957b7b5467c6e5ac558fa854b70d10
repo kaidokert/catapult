@@ -39,6 +39,30 @@
       },
       "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3cfafb_4c8e2c71",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-01T18:38:21Z",
+      "side": 1,
+      "message": "Passing \"user\" won\u0027t be sufficient as the value of `current_user` can change by the methods like `SwitchUser` during the test run ([example from a WIP CL](https://chromium-review.googlesource.com/c/chromium/src/+/4803162/5/build/android/pylib/local/device/local_device_environment.py#198)), and also we don\u0027t know the id of the main user during the DeviceUtils creation.",
+      "parentUuid": "533b8dbf_3469c1c5",
+      "range": {
+        "startLine": 846,
+        "startChar": 34,
+        "endLine": 846,
+        "endChar": 64
+      },
+      "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
