@@ -87,6 +87,30 @@
       },
       "revId": "9db3f97beb2f4771a4a588afb54de07cce1c2a2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70aafda_ee7a76f5",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-01T17:38:13Z",
+      "side": 1,
+      "message": "Can you reasonably combine it into one call and just pass in `as_root\u003ddevice.NeedsSU()` ?",
+      "parentUuid": "19760fcf_e46f924c",
+      "range": {
+        "startLine": 79,
+        "startChar": 56,
+        "endLine": 79,
+        "endChar": 68
+      },
+      "revId": "9db3f97beb2f4771a4a588afb54de07cce1c2a2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
