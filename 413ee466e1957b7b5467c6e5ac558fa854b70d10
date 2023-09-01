@@ -16,6 +16,29 @@
       "message": "A friendly ping :) Ben, can you help review when get a chance? Thanks",
       "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533b8dbf_3469c1c5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-01T17:47:50Z",
+      "side": 1,
+      "message": "If it\u0027s going to be cached for the duration of the obj lifetime, can \"user\" be passed into DeviceUtils creation instead \"force_current_user\"?\n\nThat way we avoid having to call self.GetCurrentUser() repeatedly, at the cost of the client calling it just once during obj init.",
+      "range": {
+        "startLine": 846,
+        "startChar": 34,
+        "endLine": 846,
+        "endChar": 64
+      },
+      "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
