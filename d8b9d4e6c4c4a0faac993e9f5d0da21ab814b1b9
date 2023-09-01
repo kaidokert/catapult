@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac18038d_8036c62a",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-01T22:46:15Z",
+      "side": 1,
+      "message": "FYI this variable might not always be defined at this point in the code. We saw some errors after pushing this CL to prod briefly (rolled back after these errors started appearing): `UnboundLocalError: local variable \u0027duplicate_group_keys\u0027 referenced before assignment`\n\n https://pantheon.corp.google.com/errors/detail/CNv9pMyaqs_Uag;time\u003dP30D?project\u003dchromeperf\u0026utm_source\u003derror-reporting-notification\u0026utm_medium\u003demail\u0026utm_content\u003dnew-error\u0026e\u003d-13802955\u0026mods\u003dcomponent_inspector",
+      "range": {
+        "startLine": 266,
+        "startChar": 48,
+        "endLine": 266,
+        "endChar": 68
+      },
+      "revId": "d8b9d4e6c4c4a0faac993e9f5d0da21ab814b1b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
