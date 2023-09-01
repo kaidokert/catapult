@@ -257,10 +257,9 @@ class AlertGroupWorkflow:
       Monorail API issue json and canonical AlertGroup if any.
     """
     duplicate_groups = self._FindDuplicateGroups()
-
+    duplicate_group_keys = self._FindDuplicateGroupKeys()
     # Parity check for duplicated groups
     try:
-      duplicate_group_keys = self._FindDuplicateGroupKeys()
       original_keys = [g.key.string_id() for g in duplicate_groups]
       if sorted(duplicate_group_keys) != sorted(original_keys):
         logging.warning('Imparity found for _FindDuplicateGroups. %s, %s',
