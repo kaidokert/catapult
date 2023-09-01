@@ -9,7 +9,6 @@ from __future__ import absolute_import
 import logging
 
 from flask import make_response
-from collections import Counter
 
 from dashboard.common import cloud_metric
 from dashboard.models import alert_group
@@ -142,17 +141,10 @@ def ProcessAlertGroups():
     logging.warning('Parity logic failed in GetAllActiveAlertGroups. %s',
                     str(e))
 
-  new_groups_keys = map(lambda g: g.key, new_groups)
-  unique_groups_keys = list(set(new_groups_keys))
-  duplicate_keys = list(Counter(new_groups_keys) - Counter(unique_groups_keys))
-  if duplicate_keys:
-    logging.warning('Found duplicate alert groups keys: %s',
-                    [key.id() for key in duplicate_keys])
-
-  for group_key in unique_groups_keys:
+  for group in new_groups:
     deferred.defer(
         _ProcessAlertGroup,
-        group_key,
+        group.key,
         _queue='update-alert-group-queue',
         _retry_options=taskqueue.TaskRetryOptions(task_retry_limit=0),
     )
