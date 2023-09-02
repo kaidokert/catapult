@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8b1027_9c4d3716",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2023-09-02T00:15:22Z",
+      "side": 1,
+      "message": "`duplicate_group_keys` should be assigned here.\n\ngo/python-tips/026",
+      "range": {
+        "startLine": 271,
+        "startChar": 6,
+        "endLine": 271,
+        "endChar": 13
+      },
+      "revId": "f16ca3c78e46cefa982100444844da3fcb25390e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
