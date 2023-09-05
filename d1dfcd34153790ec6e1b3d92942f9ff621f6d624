@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10edf907_a5f5b62c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-05T17:14:32Z",
+      "side": 1,
+      "message": "Will commit when the cloud build finishes. PTAL.",
+      "revId": "d1dfcd34153790ec6e1b3d92942f9ff621f6d624",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
