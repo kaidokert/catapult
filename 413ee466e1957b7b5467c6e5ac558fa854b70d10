@@ -111,6 +111,30 @@
       },
       "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab249ae_8833c288",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-05T22:42:36Z",
+      "side": 1,
+      "message": "Done. PTAL :)",
+      "parentUuid": "858277ce_4e48ac2e",
+      "range": {
+        "startLine": 846,
+        "startChar": 34,
+        "endLine": 846,
+        "endChar": 64
+      },
+      "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
