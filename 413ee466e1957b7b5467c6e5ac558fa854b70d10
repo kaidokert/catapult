@@ -63,6 +63,30 @@
       },
       "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fc370c0_771843a3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-05T21:23:08Z",
+      "side": 1,
+      "message": "That then could be handled by SwitchUser() as well. The benefit being we offload part of the complexity here (ie calling \"GetCurrentUser()\" every time) onto the client.\n\nThat obv appeals to me since it\u0027s less complexity I have to worry about as OWNER. But I don\u0027t have much stake in the game. So should get +nate\u0027s opinion too.",
+      "parentUuid": "3c3cfafb_4c8e2c71",
+      "range": {
+        "startLine": 846,
+        "startChar": 34,
+        "endLine": 846,
+        "endChar": 64
+      },
+      "revId": "413ee466e1957b7b5467c6e5ac558fa854b70d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
