@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84db1a8f_1a3f5ccf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-05T23:58:02Z",
+      "side": 1,
+      "message": "My CL is signed off and I\u0027m running a couple of tests on staging. Will submit after the tests. Would you mind wait a bit? 😊\nhttps://chromium-review.googlesource.com/c/catapult/+/4836491",
+      "revId": "c2c3f2491aa0f42bf7cf59ed2810d27d446d978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
