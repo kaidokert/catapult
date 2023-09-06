@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7b70d8_e9adcae9",
+        "filename": "perf_issue_service/application/api/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T21:14:45Z",
+      "side": 1,
+      "message": "nit: Name instead of ID.",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5983e7e2_8e7725da",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T21:14:45Z",
+      "side": 1,
+      "message": "I believe you want test_suite_skia here if the request is from skia.",
+      "range": {
+        "startLine": 177,
+        "startChar": 55,
+        "endLine": 177,
+        "endChar": 65
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fab52ea_54aeb2ec",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T21:14:45Z",
+      "side": 1,
+      "message": "This is the group_type of the \u0027reserved\u0027 for the current \u0027ungrouped\u0027. Do you want to keep using it?",
+      "range": {
+        "startLine": 223,
+        "startChar": 42,
+        "endLine": 223,
+        "endChar": 44
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "388c2072_1518a7b3",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T21:14:45Z",
+      "side": 1,
+      "message": "Found a bug here. I will send out a CL. 😊",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 20
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab6d0b4e_3b55ad9e",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T21:14:45Z",
+      "side": 1,
+      "message": "nit: use the passed in group_name.",
+      "range": {
+        "startLine": 233,
+        "startChar": 61,
+        "endLine": 233,
+        "endChar": 72
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571c3453_71fc0aae",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T21:14:45Z",
+      "side": 1,
+      "message": "nit: use the passed in group_name.",
+      "range": {
+        "startLine": 253,
+        "startChar": 50,
+        "endLine": 253,
+        "endChar": 61
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
