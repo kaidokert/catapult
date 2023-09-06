@@ -16,6 +16,24 @@
       "message": "My CL is signed off and I\u0027m running a couple of tests on staging. Will submit after the tests. Would you mind wait a bit? 😊\nhttps://chromium-review.googlesource.com/c/catapult/+/4836491",
       "revId": "c2c3f2491aa0f42bf7cf59ed2810d27d446d978d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1e4d280_694f45df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-06T00:01:32Z",
+      "side": 1,
+      "message": "Sure.",
+      "parentUuid": "84db1a8f_1a3f5ccf",
+      "revId": "c2c3f2491aa0f42bf7cf59ed2810d27d446d978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
