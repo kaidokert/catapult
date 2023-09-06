@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d738cc_2ae927a4",
+        "filename": "perf_issue_service/application/api/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-06T22:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e7b70d8_e9adcae9",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5983e7e2_8e7725da",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35798dec_cb257855",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-06T22:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5983e7e2_8e7725da",
+      "range": {
+        "startLine": 177,
+        "startChar": 55,
+        "endLine": 177,
+        "endChar": 65
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fab52ea_54aeb2ec",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-09-06T21:14:45Z",
       "side": 1,
       "message": "This is the group_type of the \u0027reserved\u0027 for the current \u0027ungrouped\u0027. Do you want to keep using it?",
+      "range": {
+        "startLine": 223,
+        "startChar": 42,
+        "endLine": 223,
+        "endChar": 44
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e749dd8_759bfb74",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-06T22:02:42Z",
+      "side": 1,
+      "message": "Yes .. it\u0027s technically the same type, just a different name",
+      "parentUuid": "3fab52ea_54aeb2ec",
       "range": {
         "startLine": 223,
         "startChar": 42,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec02dfdf_5f8e7684",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-06T22:02:42Z",
+      "side": 1,
+      "message": "I think I have fixed it? 😊",
+      "parentUuid": "388c2072_1518a7b3",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 20
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab6d0b4e_3b55ad9e",
         "filename": "perf_issue_service/models/alert_group.py",
         "patchSetId": 1
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-06T21:14:45Z",
       "side": 1,
       "message": "nit: use the passed in group_name.",
+      "range": {
+        "startLine": 233,
+        "startChar": 61,
+        "endLine": 233,
+        "endChar": 72
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8592d6c_487f5376",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-06T22:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab6d0b4e_3b55ad9e",
       "range": {
         "startLine": 233,
         "startChar": 61,
@@ -129,6 +249,30 @@
       "writtenOn": "2023-09-06T21:14:45Z",
       "side": 1,
       "message": "nit: use the passed in group_name.",
+      "range": {
+        "startLine": 253,
+        "startChar": 50,
+        "endLine": 253,
+        "endChar": 61
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cf4a023_70f77c7b",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-06T22:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "571c3453_71fc0aae",
       "range": {
         "startLine": 253,
         "startChar": 50,
