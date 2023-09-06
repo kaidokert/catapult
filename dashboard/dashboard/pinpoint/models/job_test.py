@@ -478,6 +478,7 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         labels=mock.ANY,
         cc=['author@chromium.org'],
+        components=[],
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
     self.assertIn('Found a significant difference at 1 commit.', message)
@@ -522,6 +523,7 @@ class BugCommentTest(test.TestCase):
         owner='',  # No owner expected
         labels=mock.ANY,
         cc=[],  # No cc list expected
+        components=[],
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
     self.assertIn('Found a significant difference at 1 commit.', message)
@@ -567,6 +569,7 @@ class BugCommentTest(test.TestCase):
         status='Assigned',
         owner='author@chromium.org',
         cc=[],
+        components=[],
         labels=mock.ANY,
         merge_issue='111222')
     message = self.add_bug_comment.call_args.kwargs['comment']
@@ -627,6 +630,7 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         labels=mock.ANY,
         cc=['author@chromium.org'],
+        components=[],
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
     self.assertIn('Found a significant difference at 1 commit.', message)
@@ -705,6 +709,7 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         labels=mock.ANY,
         cc=['author@chromium.org'],
+        components=[],
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
     self.assertIn('Found a significant difference at 1 commit.', message)
@@ -745,6 +750,7 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         labels=mock.ANY,
         cc=['author@chromium.org'],
+        components=[],
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
     self.assertIn('Found a significant difference at 1 commit.', message)
@@ -788,6 +794,7 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         status=None,
         cc=['author@chromium.org', 'some-author@somewhere.org'],
+        components=[],
         labels=mock.ANY,
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
@@ -828,6 +835,7 @@ class BugCommentTest(test.TestCase):
         owner=None,
         status=None,
         cc=['author@chromium.org'],
+        components=[],
         labels=mock.ANY,
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
@@ -892,6 +900,7 @@ class BugCommentTest(test.TestCase):
         status='Assigned',
         owner='author1@chromium.org',
         cc=['author1@chromium.org'],
+        components=[],
         labels=mock.ANY,
         merge_issue=None,
     )
@@ -935,6 +944,7 @@ class BugCommentTest(test.TestCase):
         status='Assigned',
         owner='author3@chromium.org',
         cc=['author3@chromium.org'],
+        components=[],
         labels=mock.ANY,
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
@@ -1014,6 +1024,7 @@ class BugCommentTest(test.TestCase):
         status='Assigned',
         owner=expected_ccs[0],
         cc=sorted(expected_ccs),
+        components=[],
         labels=mock.ANY,
         merge_issue=None)
     labels = self.add_bug_comment.call_args[1]['labels']
@@ -1118,6 +1129,7 @@ class BugCommentTest(test.TestCase):
         status='Assigned',
         owner='sheriff@bar.com',
         cc=['chromium-autoroll@skia-public.iam.gserviceaccount.com'],
+        components=[],
         labels=mock.ANY,
         merge_issue=None)
     message = self.add_bug_comment.call_args.kwargs['comment']
@@ -1180,6 +1192,7 @@ class BugCommentTest(test.TestCase):
         status='Assigned',
         owner='sheriff@bar.com',
         cc=['chromium-autoroll@skia-public.iam.gserviceaccount.com'],
+        components=[],
         labels=mock.ANY,
         merge_issue=None)
 
