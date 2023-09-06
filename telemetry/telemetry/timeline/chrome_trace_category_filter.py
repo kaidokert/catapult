@@ -21,6 +21,7 @@ def CreateLowOverheadFilter():
       "base",
       "benchmark",
       "webkit.console",
+      "blink",
       "blink.console",
       "trace_event_overhead"
   ]
