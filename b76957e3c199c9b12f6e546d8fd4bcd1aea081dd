@@ -39,6 +39,30 @@
       },
       "revId": "b76957e3c199c9b12f6e546d8fd4bcd1aea081dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30750e0f_6b7ffde8",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-06T20:27:57Z",
+      "side": 1,
+      "message": "Good idea. Updated.",
+      "parentUuid": "a4270a3a_9d096f94",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 56
+      },
+      "revId": "b76957e3c199c9b12f6e546d8fd4bcd1aea081dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
