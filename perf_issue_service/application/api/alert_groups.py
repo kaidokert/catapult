@@ -10,7 +10,6 @@ from application import utils
 
 alert_groups = Blueprint('alert_groups', __name__)
 
-
 @alert_groups.route('/<group_id>/duplicates', methods=['GET'])
 @utils.BearerTokenAuthorizer
 def FindDuplicatesHandler(group_id):
@@ -48,9 +47,14 @@ def GetAnomaliesHandler(group_id):
 @utils.BearerTokenAuthorizer
 def GetGroupsForAnomalyHandler(test_key, start_rev, end_rev):
   try:
+    group_type = request.args.get('group_type', 0)
+    ungrouped_group_name = request.args.get('ungrouped_group_name',
+                                      alert_group.DEFAULT_UNGROUPED_GROUP_NAME)
     # TODO: remove the _ when parity is done.
     group_keys, _ = alert_group.AlertGroup.GetGroupsForAnomaly(
-      test_key, start_rev, end_rev)
+      test_key, start_rev, end_rev,
+      ungrouped_name=ungrouped_group_name,
+      group_type=group_type)
   except alert_group.SheriffConfigRequestException as e:
     return make_response(str(e), 500)
 
@@ -67,6 +71,10 @@ def GetAllActiveGroups():
 @alert_groups.route('/ungrouped', methods=['POST'])
 @utils.BearerTokenAuthorizer
 def PostUngroupedGroupsHandler():
-  parity_results = alert_group.AlertGroup.ProcessUngroupedAlerts()
+  group_name = request.args.get('group_name')
+  if not group_name:
+    group_name = alert_group.DEFAULT_UNGROUPED_GROUP_NAME
+
+  parity_results = alert_group.AlertGroup.ProcessUngroupedAlerts(group_name)
 
   return make_response(parity_results)

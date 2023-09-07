@@ -59,10 +59,16 @@ class AlertGroup(ndb.Model):
     test_suite = 0
     logical = 1
     reserved = 2
+    test_suite_skia = 3
 
   group_type = ndb.IntegerProperty(
       indexed=False,
-      choices=[Type.test_suite, Type.logical, Type.reserved],
+      choices=[
+        Type.test_suite,
+        Type.logical,
+        Type.reserved,
+        Type.test_suite_skia
+      ],
       default=Type.test_suite,
   )
   active = ndb.BooleanProperty(indexed=True)
@@ -90,6 +96,10 @@ class AlertGroup(ndb.Model):
   def GetType(cls, anomaly_entity):
     if anomaly_entity.alert_grouping:
       return cls.Type.logical
+
+    if anomaly_entity.source and anomaly_entity.source == 'skia':
+      return cls.Type.test_suite_skia
+
     return cls.Type.test_suite
 
   @classmethod
