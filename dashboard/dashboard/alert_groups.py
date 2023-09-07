@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import logging
 
-from flask import make_response
+from flask import make_response, request
 from collections import Counter
 
 from dashboard.common import cloud_metric
@@ -19,6 +19,8 @@ from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 from google.appengine.api import taskqueue
 
+DEFAULT_UNGROUPED_GROUPID = 'Ungrouped'
+
 
 def _ProcessAlertGroup(group_key):
   workflow = alert_group_workflow.AlertGroupWorkflow(group_key.get())
@@ -26,7 +28,7 @@ def _ProcessAlertGroup(group_key):
   workflow.Process()
 
 
-def _ProcessUngroupedAlerts():
+def _ProcessUngroupedAlerts(ungrouped_id: str):
   ''' Process alerts which need a new group
   '''
   # Parity
@@ -49,10 +51,10 @@ def _ProcessUngroupedAlerts():
 
   logging.info('Processing un-grouped alerts.')
   reserved = alert_group.AlertGroup.Type.reserved
-  ungrouped_list = alert_group.AlertGroup.Get('Ungrouped', reserved)
+  ungrouped_list = alert_group.AlertGroup.Get(ungrouped_id, reserved)
   if not ungrouped_list:
     alert_group.AlertGroup(
-        name='Ungrouped', group_type=reserved, active=True).put()
+        name=ungrouped_id, group_type=reserved, active=True).put()
     return
 
   ungrouped = ungrouped_list[0]
@@ -122,7 +124,7 @@ def _ProcessUngroupedAlerts():
           anomaly_entity.key, str(e))
 
 
-def ProcessAlertGroups():
+def ProcessAlertGroups(ungrouped_id:str):
   logging.info('Fetching alert groups.')
   groups = alert_group.AlertGroup.GetAll()
   logging.info('Found %s alert groups.', len(groups))
@@ -159,6 +161,7 @@ def ProcessAlertGroups():
 
   deferred.defer(
       _ProcessUngroupedAlerts,
+      ungrouped_id,
       _queue='update-alert-group-queue',
       _retry_options=taskqueue.TaskRetryOptions(task_retry_limit=0),
   )
@@ -181,9 +184,13 @@ def AlertGroupsGet():
   - Closed: Issue closed.
   """
   logging.info('Queueing task for deferred processing.')
+
+  ungrouped_id = request.args.get('ungrouped_id', DEFAULT_UNGROUPED_GROUPID)
+
   # Do not retry failed tasks.
   deferred.defer(
       ProcessAlertGroups,
+      ungrouped_id,
       _queue='update-alert-group-queue',
       _retry_options=taskqueue.TaskRetryOptions(task_retry_limit=0),
   )
