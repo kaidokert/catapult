@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a13a2432_1ffa78dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-07T21:17:38Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "ab64bd3cf9c88853058841abc914552f780e4c3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc6fe479_4b0f0169",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "I don\u0027t believe so, as it\u0027s just here so that `is_intentionally_closed` is `True` if `Open()` has never been called before.",
       "parentUuid": "fc6fe479_4b0f0169",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "ab64bd3cf9c88853058841abc914552f780e4c3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bdb22ed_fb64e403",
+        "filename": "telemetry/telemetry/internal/platform/network_controller_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-07T21:17:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9c2b7653_6ef9644b",
       "range": {
         "startLine": 59,
         "startChar": 9,
