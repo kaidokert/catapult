@@ -7,7 +7,7 @@ import logging
 from application.clients import datastore_client
 from application.clients import sheriff_config_client
 
-
+DEFAULT_UNGROUPED_GROUP_NAME = 'Ungrouped'
 class NoEntityFoundException(Exception):
   pass
 
@@ -114,7 +114,9 @@ class AlertGroup:
 
   @classmethod
   def GetGroupsForAnomaly(
-    cls, test_key, start_rev, end_rev, create_on_ungrouped=False, parity=False):
+    cls, test_key, start_rev, end_rev, create_on_ungrouped=False, parity=False,
+    ungrouped_name=DEFAULT_UNGROUPED_GROUP_NAME,
+    group_type=datastore_client.AlertGroupType.test_suite):
     ''' Find the alert groups for the anomaly.
 
     Given the test_key and revision range of an anomaly:
@@ -174,7 +176,7 @@ class AlertGroup:
             benchmark_name=benchmark_name,
             master_name=master_name,
             subscription_name=s.get('name'),
-            group_type=datastore_client.AlertGroupType.test_suite,
+            group_type=group_type,
             project_id=s.get('monorail_project_id', ''),
             start_rev=start_rev,
             end_rev=end_rev
@@ -186,7 +188,7 @@ class AlertGroup:
           result_groups.add(new_group.key.name)
         else:
           # return the id of the 'ungrouped'
-          ungrouped = cls._GetUngroupedGroup()
+          ungrouped = cls._GetUngroupedGroup(ungrouped_name)
           if ungrouped:
             result_groups.add(ungrouped.key.id)
 
@@ -207,47 +209,51 @@ class AlertGroup:
 
 
   @classmethod
-  def _GetUngroupedGroup(cls):
-    ''' Get the "ungrouped" group
+  def _GetUngroupedGroup(cls, group_name):
+    ''' Get the "ungrouped" group having the given name
 
     The alert_group named "ungrouped" contains the alerts for further
     processing in the next iteration of of dashboard-alert-groups-update
     cron job.
 
+    Args:
+      group_name: Name of the "ungrouped" group
     Returns:
       The 'ungrouped' entity if exists, otherwise create a new entity and
       return None.
     '''
-    ungrouped_groups = cls.Get('Ungrouped', datastore_client.AlertGroupType.ungrouped)
+    ungrouped_groups = cls.Get(group_name, datastore_client.AlertGroupType.ungrouped)
     if not ungrouped_groups:
       # initiate when there is no active group called 'Ungrouped'.
       new_group = cls.ds_client.NewAlertGroup(
-        benchmark_name='Ungrouped',
+        benchmark_name=group_name,
         group_type=datastore_client.AlertGroupType.ungrouped
       )
       cls.ds_client.SaveAlertGroup(new_group)
       return None
     if len(ungrouped_groups) != 1:
-      logging.warning('More than one active groups are named "Ungrouped".')
+      logging.warning('More than one active groups are named %s.', group_name)
     ungrouped = ungrouped_groups[0]
     return ungrouped
 
-
   @classmethod
-  def ProcessUngroupedAlerts(cls):
+  def ProcessUngroupedAlerts(cls, group_name):
     """ Process each of the alert which needs a new group
 
-    This alerts are added to the 'ungrouped' group during anomaly detection
+    This alerts are added to an 'ungrouped' group during anomaly detection
     when no existing group is found to add them to.
+
+    Args:
+      group_name: Name of the 'ungrouped' group to evaluate
     """
     IS_PARITY = True
-    ungrouped = cls._GetUngroupedGroup()
+    ungrouped = cls._GetUngroupedGroup(group_name)
     if not ungrouped:
       return
 
     ungrouped_anomalies = cls.ds_client.GetMultiEntitiesByKeys(dict(ungrouped).get('anomalies'))
-    logging.info('Loaded %s ungrouped alerts from "ungrouped". ID(%s)',
-                  len(ungrouped_anomalies), ungrouped.key.id)
+    logging.info('Loaded %s ungrouped alerts from %s. ID(%s)',
+                  len(ungrouped_anomalies), group_name, ungrouped.key.id)
 
     parity_results = {}
     for anomaly in ungrouped_anomalies:
