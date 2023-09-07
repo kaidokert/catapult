@@ -2627,6 +2627,10 @@ class DeviceUtils(object):
               _UNZIP_AND_CHMOD_SCRIPT.format(bin_dir=install_commands.BIN_DIR,
                                              zip_file=device_temp.name,
                                              dirs=' '.join(dirs)))
+          logger.warning('Printing: \n%s',
+              _UNZIP_AND_CHMOD_SCRIPT.format(bin_dir=install_commands.BIN_DIR,
+                                             zip_file=device_temp.name,
+                                             dirs=' '.join(dirs)))
 
           self.RunShellCommand(['source', script.name],
                                check_return=True,
