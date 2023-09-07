@@ -189,6 +189,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cfbe3e6_33900b9d",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-07T18:02:15Z",
+      "side": 1,
+      "message": "Updated with your change now",
+      "parentUuid": "ec02dfdf_5f8e7684",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 20
+      },
+      "revId": "b62d1884c94bf214d022346750f2023fed6c841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab6d0b4e_3b55ad9e",
