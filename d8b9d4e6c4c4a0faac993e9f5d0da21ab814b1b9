@@ -22,6 +22,30 @@
       },
       "revId": "d8b9d4e6c4c4a0faac993e9f5d0da21ab814b1b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46243fb7_3ca9b156",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-07T20:16:02Z",
+      "side": 1,
+      "message": "Thanks for the catch and the fix!",
+      "parentUuid": "ac18038d_8036c62a",
+      "range": {
+        "startLine": 266,
+        "startChar": 48,
+        "endLine": 266,
+        "endChar": 68
+      },
+      "revId": "d8b9d4e6c4c4a0faac993e9f5d0da21ab814b1b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
