@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb190597_ae1ae84b",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-07T18:44:48Z",
+      "side": 1,
+      "message": "nit: same id-\u003ename.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "17608bd3b37814b7ad84cee72d42ffb314a93a7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e809de31_afe97041",
+        "filename": "perf_issue_service/application/api/alert_groups.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-07T18:44:48Z",
+      "side": 1,
+      "message": "When create_on_ungrouped is false, we will put the anomalies in the group \u0027ungrouped_group_name\u0027. Here the group_type is not used.\n\nActually I feel like these two are correlated. We can use the group_type to decide the ungroup_group_name if we need to.",
+      "range": {
+        "startLine": 57,
+        "startChar": 17,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "17608bd3b37814b7ad84cee72d42ffb314a93a7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
