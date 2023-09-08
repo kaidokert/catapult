@@ -50,6 +50,24 @@
       "message": "I\u0027m not entirely sure what this NOTICE means. If the issue is that alert group workflow has access to more information than Pinpoint, something we can do is pass the information Pinpoint does not have access to in the tags part of the bisection request. \n\ni.e. https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;drc\u003df16ca3c78e46cefa982100444844da3fcb25390e;l\u003d1130",
       "revId": "222d161178d35031f8798a8ccf418b4a0c6d19e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d723b8_41fa6a94",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-08T22:26:37Z",
+      "side": 1,
+      "message": "I should have made it more clear. Updated.",
+      "parentUuid": "7de5c7fd_3f65641e",
+      "revId": "222d161178d35031f8798a8ccf418b4a0c6d19e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
