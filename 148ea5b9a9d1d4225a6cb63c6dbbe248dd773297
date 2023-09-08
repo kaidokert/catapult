@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce0054b4_dc6e9b49",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1315223
+      },
+      "writtenOn": "2023-09-08T17:41:24Z",
+      "side": 1,
+      "message": "execution from sdcard seems to have been possible while android was using `fuse`, but before `noexec,nodev,nosuid` have been introduced. the trio above appears to be the default since at least api level 21 (lollipop)\n\nfwiw, before then, the underlying filesystem (fuse is not a filesystem by itself, it\u0027s more of a proxy) was `noexec`, which makes sense (permitting execution off sdcard would make a device vulnerable)\n\n---\n\nsince the `Unzip.java` doesn\u0027t set any permissions, i would expect it to follow whatever `umask` mandates, but i\u0027m not sure whether java enoforces default mask by itself. if it does, we can look into setting these permissions directly with `unzip.java` - would that be acceptable?",
+      "parentUuid": "abf705f9_92d281ce",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "18cdf136_03d6fee5",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "Thanks for testing this! I\u0027ll mark this unresolved since we\u0027ll need a fix for this before landing.",
       "parentUuid": "18cdf136_03d6fee5",
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fb6ddae_26d46678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1315223
+      },
+      "writtenOn": "2023-09-08T17:41:24Z",
+      "side": 1,
+      "message": "hmm i just attempted this and it worked well.. i can\u0027t find any logcat for the crashpad_tests that would explain what is happening, but perhaps the test did not run at all. how do we run native tests? do we deploy them somewhere (say, \u0027/data\u0027) and run from there? do we use the same mechanism to push them?\n\nthis issue has made feel miserable (pushing 3gb over network onto test devices is no fun) for a week now. if you can offer any guidance, i would really appreciate it.\n\nmeantime i\u0027ll just keep digging, but i fear i won\u0027t be able to spend much more time on this.",
+      "parentUuid": "7e24f0eb_8bebfcdc",
       "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
