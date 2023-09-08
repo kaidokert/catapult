@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "abf705f9_92d281ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-09-08T17:09:00Z",
+      "side": 1,
+      "message": "Is this true on all OS versions? This was probably implemented a long time ago, so perhaps older OS versions behaved differently?\n\nAlso, even if the executable bit is irrelevant, maybe we still need a chmod for read/write permission for the current user.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "18cdf136_03d6fee5",
@@ -14,6 +37,24 @@
       "writtenOn": "2023-09-08T13:34:05Z",
       "side": 1,
       "message": "I tried running chromium CQ bots with this rolled in (kinda neat that you can point DEPS to a code review):\nhttps://chromium-review.googlesource.com/c/chromium/src/+/4853177?tab\u003dchecks\n\nLooks like crashpad_tests breaks with it when trying to pull a file. One guess is that in the working case, a prior PushChangedFiles() call chmod\u0027ed the file it\u0027s trying to pull because it lives in a directory where `chmod -R` was called on it. That\u0027s just speculation though.\n\nAnyways... house of cards!",
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e24f0eb_8bebfcdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-09-08T17:09:00Z",
+      "side": 1,
+      "message": "Thanks for testing this! I\u0027ll mark this unresolved since we\u0027ll need a fix for this before landing.",
+      "parentUuid": "18cdf136_03d6fee5",
       "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
