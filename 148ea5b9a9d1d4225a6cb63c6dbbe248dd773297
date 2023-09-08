@@ -96,6 +96,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "75ad2b38_b5f6e0e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1315223
+      },
+      "writtenOn": "2023-09-08T21:54:03Z",
+      "side": 1,
+      "message": "Done. \n\nsadly i can\u0027t confirm this satisfies CQ. it does work on my test devices, so something else may still be required.. \n\nhttp://crrev/c/4843800\n\ni\u0027ll update this once i figure out what else is going on..",
+      "parentUuid": "e71b87e9_7fc2ddf7",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "18cdf136_03d6fee5",

@@ -22,6 +22,30 @@
       },
       "revId": "aa4c925bd6cd5e29d884bd1f88452f64fd04f056",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dd3f05b_be0ace53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1315223
+      },
+      "writtenOn": "2023-09-08T21:54:03Z",
+      "side": 1,
+      "message": "it\u0027s a chain of terrible failures :/\n\nat some point someone started pushing `*.wpr` files onto android devices (~2.9GB of data) and because we keep a list of them, it grew to ~5.9GB of data (duplicate entries).\n\ntrying to fix *.wpr files i learned that the exclusion filters don\u0027t work because files are all within some subfolder which is added with all of its contents - so exclusions did not apply.\n\ni resolved most of that by expanding folders to files, and filtering files (so that unwanted files don\u0027t get added to zip file), but this inflated cmdline.\n\nwe run into these issues every once in a while so fixing filters would be the first step towards resolving the broader issue.\n\n... and here we are.",
+      "parentUuid": "d174b844_7760774f",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "aa4c925bd6cd5e29d884bd1f88452f64fd04f056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
