@@ -16,6 +16,40 @@
       "message": "PTAL.",
       "revId": "222d161178d35031f8798a8ccf418b4a0c6d19e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c01ca7cd_b5a791ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-09-08T21:49:41Z",
+      "side": 1,
+      "message": "Just so I understand, the goal here is instead of tagging the real benchmark owners, we",
+      "revId": "222d161178d35031f8798a8ccf418b4a0c6d19e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de5c7fd_3f65641e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-09-08T21:49:41Z",
+      "side": 1,
+      "message": "I\u0027m not entirely sure what this NOTICE means. If the issue is that alert group workflow has access to more information than Pinpoint, something we can do is pass the information Pinpoint does not have access to in the tags part of the bisection request. \n\ni.e. https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;drc\u003df16ca3c78e46cefa982100444844da3fcb25390e;l\u003d1130",
+      "revId": "222d161178d35031f8798a8ccf418b4a0c6d19e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
