@@ -229,6 +229,9 @@ def main(args=None):
       default=False,
       help='Run only the Perf Issue Service tests',
       action='store_true')
+  parser.add_argument(
+      '--catapult-cas-digest',
+      help='CAS digest of an uploaded version of this catapult checkout.')
   args = parser.parse_args(args)
 
   dashboard_protos_folder = os.path.join(args.api_path_checkout, 'dashboard',
@@ -379,8 +382,30 @@ def main(args=None):
       step['env']['CHROME_DEVEL_SANDBOX'] = '/opt/chromium/chrome_sandbox'
     if test.get('outputs_presentation_json'):
       step['outputs_presentation_json'] = True
+
     step['always_run'] = True
     steps.append(step)
+
+  if args.platform == 'android' and args.run_android_tests and args.catapult_cas_digest:
+    swarming_trigger_cmd_prefix = [
+        'vpython3',
+        os.path.join(args.api_path_checkout, 'catapult_build', 'trigger_and_collect_swarming_task.py'),
+        'swarming',
+        'trigger',
+        '-S', 'chromium-swarm.appspot.com',
+        '-digest', args.catapult_cas_digest,
+        '-d', 'os=Android',
+        #'-d', 'pool=chromium.tests',
+        #'-d', 'device_type=walleye',
+        #'-d', 'device_os=P',
+        #'--realm', 'chromium:tests',
+        '-d', 'pool=luci.flex.try',
+        '--realm', 'catapult:try',
+        '--',
+    ]
+    for step in steps:
+      new_cmd = swarming_trigger_cmd_prefix + [step['cmd'][0], rel_path] + step['cmd'][2:]
+      step['cmd'] = new_cmd
 
   with open(args.output_json, 'w') as outfile:
     json.dump(steps, outfile)
