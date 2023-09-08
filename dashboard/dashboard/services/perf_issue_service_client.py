@@ -214,14 +214,14 @@ def GetAlertGroupsForAnomaly(anomaly):
     return []
 
 
-def GetAllActiveAlertGroups():
+def GetAllActiveAlertGroups(group_type: int):
   url = _SERVICE_URL + _ALERT_GROUP_PREFIX
   url += 'all'
 
   try:
     cloud_metric.PublishPerfIssueServiceRequests('GetAllActiveAlertGroups',
                                                  'GET', url, {})
-    resp = request.RequestJson(url, method='GET')
+    resp = request.RequestJson(url, method='GET', group_type=group_type)
     return resp
   except request.RequestError as e:
     cloud_metric.PublishPerfIssueServiceRequestFailures(
@@ -244,4 +244,4 @@ def PostUngroupedAlerts():
                                                         'POST', url, {})
     logging.error('[PerfIssueService] Error updating ungrouped alerts: %s',
                   str(e))
-    return []
+    return {}
