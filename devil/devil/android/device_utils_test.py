@@ -165,6 +165,24 @@ class DeviceUtilsGetAVDsTest(mock_calls.TestCase):
         self.assertEqual(['my_android5.0'], device_utils.GetAVDs())
 
 
+class DeviceUtilsGetShellWritablePathTest(mock_calls.TestCase):
+  def testGetShellWritablePath_user0(self):
+    self.assertEqual('/system',
+                     device_utils.GetShellWritablePath('/system', 0))
+    self.assertEqual('/sdcard/foo',
+                     device_utils.GetShellWritablePath('/sdcard/foo', 0))
+    self.assertEqual('/data/data/bar',
+                     device_utils.GetShellWritablePath('/data/data/bar', 0))
+
+  def testGetShellWritablePath_user10(self):
+    self.assertEqual('/system',
+                     device_utils.GetShellWritablePath('/system', 10))
+    self.assertEqual('/data/media/10/foo',
+                     device_utils.GetShellWritablePath('/sdcard/foo', 10))
+    self.assertEqual('/data/user/10/bar',
+                     device_utils.GetShellWritablePath('/data/data/bar', 10))
+
+
 class DeviceUtilsRestartServerTest(mock_calls.TestCase):
   @mock.patch('time.sleep', mock.Mock())
   def testRestartServer_succeeds(self):
