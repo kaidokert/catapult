@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18cdf136_03d6fee5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2023-09-08T13:34:05Z",
+      "side": 1,
+      "message": "I tried running chromium CQ bots with this rolled in (kinda neat that you can point DEPS to a code review):\nhttps://chromium-review.googlesource.com/c/chromium/src/+/4853177?tab\u003dchecks\n\nLooks like crashpad_tests breaks with it when trying to pull a file. One guess is that in the working case, a prior PushChangedFiles() call chmod\u0027ed the file it\u0027s trying to pull because it lives in a directory where `chmod -R` was called on it. That\u0027s just speculation though.\n\nAnyways... house of cards!",
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
