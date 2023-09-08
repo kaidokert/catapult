@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d174b844_7760774f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-09-08T21:46:07Z",
+      "side": 1,
+      "message": "Not a blocker... but what does exceeding the commandline length have to do with pushing too many GB of data?\n\nThe long commandline would `_UNZIP_AND_CHMOD_SCRIPT` to fail (OS refuses to execute commands that are too long). When this fails, is there a fallback which repeats the data push but without filtering or something like that?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "aa4c925bd6cd5e29d884bd1f88452f64fd04f056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
