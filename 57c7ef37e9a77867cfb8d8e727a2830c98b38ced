@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cfa3b23_702b0713",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2023-09-09T01:41:48Z",
+      "side": 1,
+      "message": "nit: should remove this rationale and just say it\u0027s now built into the unzip step.",
+      "revId": "57c7ef37e9a77867cfb8d8e727a2830c98b38ced",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "61e084dd_4b06ca3a",
@@ -14,6 +31,40 @@
       "writtenOn": "2023-09-09T01:09:31Z",
       "side": 1,
       "message": "PTAL",
+      "revId": "57c7ef37e9a77867cfb8d8e727a2830c98b38ced",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8a7434_03ca085a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2023-09-09T01:41:48Z",
+      "side": 1,
+      "message": "LGTM, but not a good candidate for a late friday commit :P",
+      "revId": "57c7ef37e9a77867cfb8d8e727a2830c98b38ced",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c022c7_5c0d5c28",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2023-09-09T01:41:48Z",
+      "side": 1,
+      "message": "nit: no longer a need for a mulit-line string.",
       "revId": "57c7ef37e9a77867cfb8d8e727a2830c98b38ced",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
