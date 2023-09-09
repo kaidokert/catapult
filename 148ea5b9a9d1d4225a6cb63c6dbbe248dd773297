@@ -122,6 +122,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6231cdf7_aac8f4e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1315223
+      },
+      "writtenOn": "2023-09-09T01:09:31Z",
+      "side": 1,
+      "message": "alright! updating chromium-telemetry (update_dependencies.py)  solved this :)\n\nthis is all working and ready!!!",
+      "parentUuid": "75ad2b38_b5f6e0e4",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "148ea5b9a9d1d4225a6cb63c6dbbe248dd773297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "18cdf136_03d6fee5",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
