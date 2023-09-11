@@ -46,6 +46,30 @@
       },
       "revId": "c0cad0d545324457839923b97f39a29904dbe232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91536781_987cb546",
+        "filename": "devil/devil/android/device_temp_file.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-11T21:39:24Z",
+      "side": 1,
+      "message": "Done in patchset 8. PTAL. Thanks :)",
+      "parentUuid": "12810e0e_ffed470f",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "c0cad0d545324457839923b97f39a29904dbe232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
