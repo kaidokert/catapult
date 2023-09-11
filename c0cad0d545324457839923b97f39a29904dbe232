@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d81fc69_2006b04c",
+        "filename": "devil/devil/android/device_temp_file.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-11T21:12:46Z",
+      "side": 1,
+      "message": "GetShellWritablePath is a module-level method, which makes accessing it through a DeviceUtils obj a little weird.\n\nCan it instead be a direct member of the DeviceUtils object? Then it has access to target_user without needing it to be passed.",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "c0cad0d545324457839923b97f39a29904dbe232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
