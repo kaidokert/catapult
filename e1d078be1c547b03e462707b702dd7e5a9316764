@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c132f38_76dfacef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001299
+      },
+      "writtenOn": "2023-09-11T09:45:39Z",
+      "side": 1,
+      "message": "After crbug.com/1325411 it should be possible to use non-empty passwords in tests.",
+      "revId": "e1d078be1c547b03e462707b702dd7e5a9316764",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
