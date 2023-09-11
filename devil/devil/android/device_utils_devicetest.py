@@ -24,6 +24,7 @@ if __name__ == '__main__':
 from devil.android import device_test_case
 from devil.android import device_utils
 from devil.android.sdk import adb_wrapper
+from devil.android.sdk import version_codes
 from devil.utils import cmd_helper
 
 _OLD_CONTENTS = "foo"
@@ -129,8 +130,13 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
     cmd_helper.RunCmd(['rm', host_file_path])
     self.device.PushChangedFiles([(host_tmp_dir, _DEVICE_DIR)],
                                  delete_device_stale=True)
+    expected_list = []
+    # Before N, pushing an empty dir would not actually push it.
+    if self.device.build_version_sdk >= version_codes.NOUGAT:
+      expected_list = [os.path.basename(host_tmp_dir)]
+
     filenames = self.device.ListDirectory(_DEVICE_DIR)
-    self.assertEqual([], filenames)
+    self.assertEqual(expected_list, filenames)
 
     cmd_helper.RunCmd(['rm', '-rf', host_tmp_dir])
     self.device.RemovePath(_DEVICE_DIR, recursive=True, force=True)
