@@ -22,6 +22,30 @@
       },
       "revId": "c0cad0d545324457839923b97f39a29904dbe232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12810e0e_ffed470f",
+        "filename": "devil/devil/android/device_temp_file.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-11T21:16:54Z",
+      "side": 1,
+      "message": "Sure. Actually it was written in this way before patchset 5. Let me revert it back.",
+      "parentUuid": "3d81fc69_2006b04c",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "c0cad0d545324457839923b97f39a29904dbe232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
