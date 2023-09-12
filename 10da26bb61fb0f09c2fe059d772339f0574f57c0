@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bc5c5b8_b8dff04f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-12T18:24:01Z",
+      "side": 1,
+      "message": "Working around Catapult CQ failures on Ubuntu 22. PTAL.",
+      "revId": "10da26bb61fb0f09c2fe059d772339f0574f57c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
