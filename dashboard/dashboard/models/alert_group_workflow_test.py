@@ -1061,8 +1061,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
   def testSandwich_Allowlist_enabled(self):
     test_cases = [
-        'master/bot/test_suite/measurement/test_case',
-        'master/bot/speedometer2/Speedometer2/test_case',
+        'master/not-a-blocked-bot/test_suite/measurement/test_case',
+        'master/not-a-blocked-bot/speedometer2/Speedometer2/test_case',
         'master/win-10-perf/test_suite/measurement/test_case',
         'master/mac-m1_mini_2020-perf/jetstream2/JetStream2/test_case'
     ]
@@ -1119,10 +1119,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = True
     allowed_regressions = w._CheckSandwichAllowlist(ndb.get_multi(anomalies))
 
-    self.assertEqual(len(allowed_regressions), 1)
-    r = allowed_regressions[0]
-    self.assertEqual(r.benchmark_name, 'jetstream2')
-    self.assertEqual(r.bot_name, 'mac-m1_mini_2020-perf')
+    self.assertEqual(len(allowed_regressions), 2)
+    r1 = allowed_regressions[0]
+    self.assertEqual(r1.benchmark_name, 'speedometer2')
+    self.assertEqual(r1.bot_name, 'not-a-blocked-bot')
+    r2 = allowed_regressions[1]
+    self.assertEqual(r2.benchmark_name, 'jetstream2')
+    self.assertEqual(r2.bot_name, 'mac-m1_mini_2020-perf')
 
     feature_flags.SANDWICH_VERIFICATION = False
     allowed_regressions = w._CheckSandwichAllowlist(ndb.get_multi(anomalies))
@@ -1136,7 +1139,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
   def testSandwich_Allowlist_banned(self):
     # Test banned subscription
     test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        "master", 'linux-perf',
         sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
     ])
     anomalies = []
@@ -1191,7 +1194,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = True
 
     test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        "master", 'linux-perf',
         sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
     ])
     anomalies = [
@@ -1264,7 +1267,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = False
 
     test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        "master", 'linux-perf',
         sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
     ])
     anomalies = [
@@ -1334,7 +1337,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = True
 
     test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        "master", 'linux-perf',
         sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
     ])
     anomalies = [
@@ -1435,7 +1438,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = True
 
     test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        "master", 'linux-perf',
         sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
     ])
     anomalies = [
@@ -1534,7 +1537,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = True
 
     test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
+        "master", 'linux-perf',
         sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
     ])
 
