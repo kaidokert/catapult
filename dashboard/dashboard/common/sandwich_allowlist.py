@@ -6,33 +6,24 @@
 sandwich verification workflow. The current allowlist is based on the
 press benchmarks and the available capacity on Pinpoint."""
 
-# TODO: Implement the allowable configs as a class so that each benchmark
-# can customize its own list of allowable stories and configurations.
+
 ALLOWABLE_SUBSCRIPTIONS = [
   'Sandwich Verification Test Speedometer2',
   'Sandwich Verification Test JetStream2',
   'Sandwich Verification Test Motionmark',
   ]
 
-ALLOWABLE_BENCHMARKS = [
-  'speedometer2',
-  'jetstream2',
-  'rendering.desktop',
-  ]
+BLOCKED_BENCHMARKS = []
 
-ALLOWABLE_DEVICES = [
-    'android-pixel2-perf',
-    'android-pixel2_webview-perf',
-    'android-pixel4-perf',
-    'linux-perf',
-    'mac-laptop_high_end-perf',
-    'mac-laptop_low_end-perf',
-    'mac-m1_mini_2020-perf',
-    'win-10_amd_laptop-perf',
-    'win-10_laptop_low_end-perf',
-    'win-10-perf',
-    ]
-
+BLOCKED_DEVICES = [
+  'lacros-eve-perf',
+  'mac-m1_mini_2020-perf-pgo',
+  'mac-m1-pro-perf',
+  'mac-14-m1-pro-perf',
+  'win-10_amd-perf',
+  'Win 7 Perf',
+  'Win 7 Nvidia GPU Perf',
+]
 
 def CheckAllowlist(subscription, benchmark, cfg):
   '''Check that the subscription, benchmark, and device are
@@ -47,7 +38,7 @@ def CheckAllowlist(subscription, benchmark, cfg):
         True if allowed, False if not.
     '''
   if (subscription in ALLOWABLE_SUBSCRIPTIONS
-      and benchmark in ALLOWABLE_BENCHMARKS and cfg in ALLOWABLE_DEVICES):
+      and benchmark not in BLOCKED_BENCHMARKS and cfg not in BLOCKED_DEVICES):
     return True
 
   return False
