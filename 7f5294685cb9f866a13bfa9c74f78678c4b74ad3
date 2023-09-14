@@ -16,6 +16,69 @@
       "message": "PTAL.",
       "revId": "7f5294685cb9f866a13bfa9c74f78678c4b74ad3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31b73f83_56748aa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-14T18:22:20Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "7f5294685cb9f866a13bfa9c74f78678c4b74ad3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92ad7d97_00e157da",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-14T18:22:20Z",
+      "side": 1,
+      "message": "Would be more efficient if this is changed into a set instead of list, especially if its size increases in the future.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 25
+      },
+      "revId": "7f5294685cb9f866a13bfa9c74f78678c4b74ad3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e59df3_849048c7",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-14T18:22:20Z",
+      "side": 1,
+      "message": "Unnecessary. Result is already a set.",
+      "range": {
+        "startLine": 710,
+        "startChar": 19,
+        "endLine": 710,
+        "endChar": 22
+      },
+      "revId": "7f5294685cb9f866a13bfa9c74f78678c4b74ad3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
