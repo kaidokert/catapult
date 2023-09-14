@@ -52,6 +52,24 @@
       "parentUuid": "0ec1a558_980b3afd",
       "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a7874f9_eb7bdabb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-09-14T21:31:12Z",
+      "side": 1,
+      "message": "What I mean is the former. Let\u0027s try Sandwich on Lacros and see if any issues specific to lacros arise, before actually turning it on in prod.",
+      "parentUuid": "ea6bdd32_4eb8a7bf",
+      "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
