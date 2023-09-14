@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f729b5b1_8c7f496b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-14T16:27:59Z",
+      "side": 1,
+      "message": "eduardoyap@: Leina mentioned that you might have some background on why we didn\u0027t include the lacros-x86 devices to begin with, even though we seem to have plenty of them available. Are they just prohibitively unreliable for running pinpoint A/B jobs?",
+      "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
