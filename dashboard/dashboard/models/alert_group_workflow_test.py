@@ -2457,25 +2457,12 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         'send_email': False
     })
 
-    self.assertCountEqual(
-        self._issue_tracker.calls[3], {
-            'method': 'AddBugComment',
-            'args': (42, None),
-            'kwargs': {
-                'summary':
-                    '[%s]: %d regressions in %s' % ('sheriff', 3, 'test_suite'),
-                'labels': [
-                    'Type-Bug-Regression', 'Chromeperf-Auto-Triaged',
-                    'Restrict-View-Google', 'Pri-2'
-                ],
-                'cc': [],
-                'components': ['Foo>Bar'],
-                'project':
-                    'chromium',
-                'send_email':
-                    False
-            },
-        })
+    self.assertEqual(self._issue_tracker.calls[3]['method'], 'AddBugComment')
+    self.assertEqual(len(self._issue_tracker.calls[3]['args']), 2)
+    self.assertEqual(self._issue_tracker.calls[3]['args'][0], 42)
+    self.assertEqual(self._issue_tracker.calls[3]['args'][1], 'chromium')
+    self.assertEqual(set(self._issue_tracker.calls[3]['kwargs']['labels']),
+        set(['Type-Bug-Regression', 'Restrict-View-Google', 'Chromeperf-Auto-Triaged', 'Pri-2']))
 
     self.assertTrue(all(a.get().bug_id == 43 for a in all_anomalies))
     self.assertEqual(group.get().canonical_group, canonical_group)
@@ -2681,26 +2668,11 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(len(self._issue_tracker.calls[2]['args']), 2)
     self.assertEqual(self._issue_tracker.calls[2]['args'][0], 42)
     self.assertEqual(self._issue_tracker.calls[2]['args'][1], 'chromium')
-
-    self.assertCountEqual(
-        self._issue_tracker.calls[2], {
-            'method': 'AddBugComment',
-            'args': (42, None),
-            'kwargs': {
-                'summary':
-                    '[%s]: %d regressions in %s' % ('sheriff', 3, 'test_suite'),
-                'labels': [
-                    'Type-Bug-Regression', 'Chromeperf-Auto-Triaged',
-                    'Restrict-View-Google', 'Pri-2'
-                ],
-                'cc': [],
-                'components': ['Foo>Bar'],
-                'project':
-                    'chromium',
-                'send_email':
-                    False
-            },
-        })
+    self.assertIn(
+        ('Added %d regressions to the group' % (len(all_anomalies) - len(grouped_anomalies))),
+        self._issue_tracker.calls[2]['kwargs']['comment'])
+    self.assertEqual(set(self._issue_tracker.calls[2]['kwargs']['labels']),
+        set(['Chromeperf-Auto-Triaged', 'Type-Bug-Regression', 'Restrict-View-Google', 'Pri-2']))
 
     self.assertTrue(all(a.get().bug_id == 42 for a in all_anomalies))
 
@@ -2778,26 +2750,12 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         'send_email': False
     })
 
-    self.assertCountEqual(
-        self._issue_tracker.calls[3], {
-            'method': 'AddBugComment',
-            'args': (42, None),
-            'kwargs': {
-                'summary':
-                    '[%s]: %d regressions in %s' %
-                    ('sheriff', 3, 'regular_suite'),
-                'labels': [
-                    'Type-Bug-Regression', 'Chromeperf-Auto-Triaged',
-                    'Restrict-View-Google', 'Pri-2'
-                ],
-                'cc': [],
-                'components': ['Foo>Bar'],
-                'project':
-                    'chromium',
-                'send_email':
-                    False
-            },
-        })
+    self.assertEqual(self._issue_tracker.calls[3]['method'], 'AddBugComment')
+    self.assertEqual(len(self._issue_tracker.calls[3]['args']), 2)
+    self.assertEqual(self._issue_tracker.calls[3]['args'][0], 42)
+    self.assertEqual(self._issue_tracker.calls[3]['args'][1], 'chromium')
+    self.assertEqual(set(self._issue_tracker.calls[3]['kwargs']['labels']),
+        set(['Chromeperf-Auto-Triaged', 'Pri-2', 'Type-Bug-Regression', 'Restrict-View-Google']))
 
     self.assertEqual(all_anomalies[0].get().bug_id, 42)
     self.assertEqual(all_anomalies[1].get().bug_id, 43)
