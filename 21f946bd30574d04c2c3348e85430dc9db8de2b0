@@ -16,6 +16,24 @@
       "message": "eduardoyap@: Leina mentioned that you might have some background on why we didn\u0027t include the lacros-x86 devices to begin with, even though we seem to have plenty of them available. Are they just prohibitively unreliable for running pinpoint A/B jobs?",
       "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ec1a558_980b3afd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-09-14T19:41:59Z",
+      "side": 1,
+      "message": "They\u0027ve been prone to dying the more tasks you run on them, so having them run sandwich might exacerbate the issue. Though I\u0027m not sure how true that is anymore as the Labs team have been trying to address this issue for a while. I think it\u0027d be good to test this on Lacros.",
+      "parentUuid": "f729b5b1_8c7f496b",
+      "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
