@@ -34,6 +34,24 @@
       "parentUuid": "f729b5b1_8c7f496b",
       "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea6bdd32_4eb8a7bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-14T21:18:05Z",
+      "side": 1,
+      "message": "By `I think it\u0027d be good to test this on Lacros.` do you mean we should test it by landing this CL? Or do you mean we should test Sandwich Verification on lacros some other way first, before landing this CL?\n\nIf you meant the latter, I have tried running sandwich verification on lacros-x86-perf before, and the workflow (including the pinpoint A/B job and the cabe analysis steps) seems to have executed without any issues:\n\nhttps://pantheon.corp.google.com/workflows/workflow/us-central1/sandwich-verification-workflow-prod/execution/43b1bcc7-4cd0-4779-9fd8-f126b923ad5c?e\u003d-13802955\u0026mods\u003dcomponent_inspector\u0026project\u003dchromeperf\n\nI created that worfklow execution by running this on the cli:\n```\nbazelisk run //cabe/go/cmd/cabe -- sandwich -pinpoint-job 1181e4c2560000 -dry-run\u003dfalse\n```\n\nwhere 1181e4c2560000 was the original bisect job that chromeperf automatically ran for this regression: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1481542\n\nIn this example, the workflow was not able to reproduce the regression so it *would* have prevented chromeperf from running a bisection in the first place.",
+      "parentUuid": "0ec1a558_980b3afd",
+      "revId": "21f946bd30574d04c2c3348e85430dc9db8de2b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
