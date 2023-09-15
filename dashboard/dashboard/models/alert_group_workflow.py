@@ -99,6 +99,9 @@ _ALERT_GROUP_DEFAULT_SIGNAL_QUALITY_SCORE = 0.6
 # Emoji to set sandwich-related issue comments apart from other comments, visually.
 _SANDWICH = u'\U0001f96a'
 
+_DELAY_TRIAGE_OPTOUT_SUBS = sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS + []
+
+
 class SignalQualityScore(ndb.Model):
   score = ndb.FloatProperty()
   updated_time = ndb.DateTimeProperty()
@@ -686,12 +689,19 @@ class AlertGroupWorkflow:
       benchmarks_dict[name] = benchmark
     return list(benchmarks_dict.values())
 
-  def _ComputeBugUpdate(self, subscriptions, regressions):
+  def _ComputeBugUpdate(self, subscriptions, regressions, delay_triage=False):
     # Skip the _GetComponentsFromRegressions if subs are all sandwich staging subs.
     is_sandwich_staging = (
       self._group.subscription_name in sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS)
+    always_triage_subs = [
+        s for s in subscriptions if s.name in _DELAY_TRIAGE_OPTOUT_SUBS
+    ]
     if is_sandwich_staging:
       components = set()
+    elif delay_triage:
+      components = self._GetComponentsFromSubscriptions(always_triage_subs)
+      if not components:
+        components = [utils.DELAY_TRIAGE_PLACEHOLDER]
     else:
       components = set(self._GetComponentsFromSubscriptions(subscriptions)
       | self._GetComponentsFromRegressions(regressions))
@@ -700,16 +710,29 @@ class AlertGroupWorkflow:
                       components)
       cloud_metric.PublistPerfIssueInvalidComponentCount(len(components))
     components = list(components)
-    cc = list(set(e for s in subscriptions for e in s.bug_cc_emails))
+
+    if delay_triage:
+      cc = list(set(e for s in always_triage_subs for e in s.bug_cc_emails))
+    else:
+      cc = list(set(e for s in subscriptions for e in s.bug_cc_emails))
+
     # Only use the sandwich-sub bug labels if it's a sandwich sub alert group.
     if is_sandwich_staging:
       for s in subscriptions:
         if s.name == self._group.subscription_name:
           labels = list(set(s.bug_labels) | {'Chromeperf-Auto-Triaged'})
+    elif delay_triage:
+      if always_triage_subs:
+        labels = list(
+            set(l for s in always_triage_subs for l in s.bug_labels)
+            | {'Chromeperf-Auto-Triaged'})
+      else:
+        labels = [utils.DELAY_TRIAGE_LABEL]
     else:
       labels = list(
         set(l for s in subscriptions for l in s.bug_labels)
         | {'Chromeperf-Auto-Triaged'})
+
     # We layer on some default labels if they don't conflict with any of the
     # provided ones.
     if not any(l.startswith('Pri-') for l in labels):
@@ -1014,10 +1037,6 @@ class AlertGroupWorkflow:
     title = _TEMPLATE_ISSUE_TITLE.render(template_args)
     description = _TEMPLATE_ISSUE_CONTENT.render(template_args)
 
-    # Fetching issue labels, components and cc from subscriptions and owner
-    components, cc, labels = self._ComputeBugUpdate(subscriptions, regressions)
-    logging.info('Creating a new issue for AlertGroup %s', self._group.key)
-
     # DelayTriage: we decided to delay the triaging until we find a root cause
     # if any. The reason is: the alert group can be a false positive and thus
     # the issue created is a cannot-reproduce.
@@ -1032,16 +1051,17 @@ class AlertGroupWorkflow:
     # https://source.chromium.org/chromium/chromium/src/+/main:tools/perf/benchmarks/jetstream2.py;l=44
     # We will only add component, cc and labels based on the settings from
     # the Sheriff Config.
-    if utils.ShouldDelayIssueTriage():
+    should_delay_triage = utils.ShouldDelayIssueTriage()
+    if should_delay_triage:
       should_bisect = any(
           r.auto_bisect_enable and not r.is_improvement for r in regressions)
       logging.debug('[DelayTriage] should_bisect %s for group %s.',
                     should_bisect, self._group.key)
-      if should_bisect:
-        components = [utils.DELAY_TRIAGE_PLACEHOLDER]
-        cc = []
-        labels = [utils.DELAY_TRIAGE_LABEL]
-
+      should_delay_triage = should_delay_triage and should_bisect
+    # Fetching issue labels, components and cc from subscriptions and owner
+    components, cc, labels = self._ComputeBugUpdate(subscriptions, regressions,
+                                                    should_delay_triage)
+    logging.info('Creating a new issue for AlertGroup %s', self._group.key)
     response = perf_issue_service_client.PostIssue(
         title=title,
         description=description,
