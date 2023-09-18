@@ -52,6 +52,24 @@
       "parentUuid": "6e06aac1_4fb4cd9f",
       "revId": "cab268c9ee5defe7282d56c8ead4e9747b8a64cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f67537_2f42531a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-18T21:03:02Z",
+      "side": 1,
+      "message": "Just a follow-up: I now know why I got the mistaken impression that `mock.ANY` didn\u0027t work as expected.\n\nWhen the `assertEquals` call fails for *any* reason, it prints the entire diff of the arguments, which includes the differences between `mock.ANY` and the field values that we do not care about.  So I was overzealous in fixing something that only looked like a problem because something nearby was broken and they shared the same assertion call.\n\nExample output: https://screenshot.googleplex.com/8aH7rjVkCJK7Hr2  Here\u0027s a test that\u0027s failing (correctly) because `kwags[\u0027labels\u0027]` is wrong. However, the test diff output also makes it look like `kwargs[\u0027comment\u0027]` is wrong (by highlighting the difference between the comment text and `mock.ANY`). If you fix just the `kwags[\u0027labels\u0027]` problem, the test will pass even though the diff output would still show a difference.",
+      "parentUuid": "d3c1de7a_99e689b7",
+      "revId": "cab268c9ee5defe7282d56c8ead4e9747b8a64cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
