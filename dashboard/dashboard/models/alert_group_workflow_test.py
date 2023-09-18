@@ -29,6 +29,8 @@ from dashboard.services import workflow_service
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
 
 
+@mock.patch.object(sandwich_allowlist, 'CheckAllowlist',
+                   testing_common.CheckSandwichAllowlist)
 class AlertGroupWorkflowTest(testing_common.TestCase):
 
   def setUp(self):
@@ -256,6 +258,26 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(len(group.get().anomalies), 4)
     for a in added:
       self.assertIn(a, group.get().anomalies)
+
+  # A helper function that simulates the process of an alert group passing
+  # the Sandiwch Regression Verification phase with a successful repro of
+  # the regression, ready to proceed to bisection.
+  def _SandwichVerify(self, group, anomalies):
+    sandwich_verification_workflow_id = self._cloud_workflows.CreateExecution(
+        anomalies[0])
+    sandwich_workflow = self._cloud_workflows.GetExecution(
+        sandwich_verification_workflow_id)
+    sandwich_workflow['state'] = workflow_service.EXECUTION_STATE_SUCCEEDED
+    sandwich_workflow['result'] = '''{
+        "job_id": "pinpoint-job-id-12345",
+        "anomaly": "",
+        "statistic": "",
+        "decision": true
+    }'''
+    g = group.get()
+    g.sandwich_verification_workflow_id = sandwich_verification_workflow_id
+    g.status = alert_group.AlertGroup.Status.sandwiched
+    g.put()
 
   def testAddAnomalies_GroupTriaged_IssueOpen(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]
@@ -1034,11 +1056,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -1061,17 +1085,18 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
   def testSandwich_Allowlist_enabled(self):
     test_cases = [
-        'master/bot/test_suite/measurement/test_case',
-        'master/bot/speedometer2/Speedometer2/test_case',
+        'master/blocked-bot/test_suite/measurement/test_case',
+        'master/sandwichable-bot/blocked-benchmark/Speedometer2/test_case',
         'master/win-10-perf/test_suite/measurement/test_case',
         'master/mac-m1_mini_2020-perf/jetstream2/JetStream2/test_case'
     ]
     anomalies = []
     for test_case in test_cases:
       anomalies.append(
-          self._AddAnomaly(test=test_case,
-            ownership={'component': 'anomaly>should>not>set>component'}))
-    test_subscription = sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0]
+          self._AddAnomaly(
+              test=test_case,
+              ownership={'component': 'anomaly>cannot>set>components'}))
+    test_subscription = 'Sandwich-Allowed Subscription'
     group = self._AddAlertGroup(anomalies[0],
                                 anomalies=anomalies,
                                 subscription_name=test_subscription)
@@ -1081,16 +1106,16 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 name=test_subscription,
                 auto_triage_enable=True,
                 auto_merge_enable=True,
-                bug_components=['sub>should>not>set>component'],
+                bug_components=['sub>should>set>component'],
                 bug_labels=['sub-should-set-labels']),
             # This subscription should get ignored by Process, since it doesn't match
             # the AlertGroup's subscription_name property.
             subscription.Subscription(
-                name='non-sandwich sub',
+                name='blocked-sandwich-sub',
                 auto_triage_enable=True,
                 auto_merge_enable=True,
-                bug_components=['sub>should>not>set>component'],
-                bug_labels=['sub-should-not-set-labels'])
+                bug_components=['other>sub>cannot>set>component'],
+                bug_labels=['other-sub-can-set-labels'])
         ],
     }
     w = alert_group_workflow.AlertGroupWorkflow(
@@ -1119,29 +1144,31 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     feature_flags.SANDWICH_VERIFICATION = True
     allowed_regressions = w._CheckSandwichAllowlist(ndb.get_multi(anomalies))
 
-    self.assertEqual(len(allowed_regressions), 1)
-    r = allowed_regressions[0]
-    self.assertEqual(r.benchmark_name, 'jetstream2')
-    self.assertEqual(r.bot_name, 'mac-m1_mini_2020-perf')
+    self.assertEqual(len(allowed_regressions), 2)
+    r1 = allowed_regressions[0]
+    self.assertEqual(r1.benchmark_name, 'test_suite')
+    self.assertEqual(r1.bot_name, 'win-10-perf')
+    r2 = allowed_regressions[1]
+    self.assertEqual(r2.benchmark_name, 'jetstream2')
+    self.assertEqual(r2.bot_name, 'mac-m1_mini_2020-perf')
 
     feature_flags.SANDWICH_VERIFICATION = False
     allowed_regressions = w._CheckSandwichAllowlist(ndb.get_multi(anomalies))
 
     self.assertEqual(len(allowed_regressions), 0)
+    self.assertEqual([], sorted(self._issue_tracker.issue.get('components')))
+    self.assertIn('other-sub-can-set-labels',
+                  self._issue_tracker.issue.get('labels'))
+    self.assertIn('sub-should-set-labels',
+                  self._issue_tracker.issue.get('labels'))
 
-    self.assertEqual([], self._issue_tracker.issue.get('components'))
-    self.assertNotIn('sub-should-not-set-labels', self._issue_tracker.issue.get('labels'))
-    self.assertIn('sub-should-set-labels', self._issue_tracker.issue.get('labels'))
-
-  def testSandwich_Allowlist_banned(self):
-    # Test banned subscription
-    test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
-        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
-    ])
+  def testSandwich_Allowlist_blocked(self):
+    # Test blocked subscription
+    test_name = '/'.join(
+        ["master", 'linux-perf', 'speedometer2', 'dummy', 'metric', 'parts'])
     anomalies = []
     anomalies.append(self._AddAnomaly(test=test_name, is_improvement=True))
-    test_subscription = 'Banned subscription'
+    test_subscription = 'blocked subscription'
     group = self._AddAlertGroup(anomalies[0],
                                 anomalies=anomalies,
                                 subscription_name=test_subscription)
@@ -1190,10 +1217,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # - The issue does not have components from the sandwich sheriff config assigned to it
     feature_flags.SANDWICH_VERIFICATION = True
 
-    test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
-        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
-    ])
+    test_name = '/'.join(
+        ["master", 'linux-perf', 'speedometer2', 'dummy', 'metric', 'parts'])
     anomalies = [
         self._AddAnomaly(test=test_name, statistic="made up"),
         self._AddAnomaly(test=test_name, statistic="also made up")
@@ -1201,7 +1226,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     group = self._AddAlertGroup(
         anomalies[0],
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='Sandwich-Allowed Subscription',
         issue=self._issue_tracker.issue,
         status=alert_group.AlertGroup.Status.triaged,
     )
@@ -1209,7 +1234,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._sheriff_config.patterns = {
         '*': [
             subscription.Subscription(
-                name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+                name='Sandwich-Allowed Subscription',
                 auto_triage_enable=True,
                 auto_bisect_enable=True,
                 auto_merge_enable=True,
@@ -1263,10 +1288,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # - The issue does not have components from the sandwich sheriff config assigned to it
     feature_flags.SANDWICH_VERIFICATION = False
 
-    test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
-        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
-    ])
+    test_name = '/'.join(
+        ["master", 'linux-perf', 'speedometer2', 'dummy', 'metric', 'parts'])
     anomalies = [
         self._AddAnomaly(test=test_name, statistic="made up"),
         self._AddAnomaly(test=test_name, statistic="also made up")
@@ -1276,13 +1299,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         anomalies[0],
         issue=self._issue_tracker.issue,
         status=alert_group.AlertGroup.Status.triaged,
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='Sandwich-Allowed Subscription',
     )
     self._issue_tracker.issue.update({'state': 'open'})
     self._sheriff_config.patterns = {
         '*': [
             subscription.Subscription(
-                name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+                name='Sandwich-Allowed Subscription',
                 auto_triage_enable=True,
                 auto_bisect_enable=True,
                 bug_components=['should>not>set>component'])
@@ -1333,10 +1356,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # - The issue does not have components from the sandwich sheriff config assigned to it
     feature_flags.SANDWICH_VERIFICATION = True
 
-    test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
-        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
-    ])
+    test_name = '/'.join(
+        ["master", 'linux-perf', 'speedometer2', 'dummy', 'metric', 'parts'])
     anomalies = [
         self._AddAnomaly(test=test_name, statistic="made up"),
         self._AddAnomaly(test=test_name, statistic="also made up")
@@ -1356,7 +1377,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     }
     group = self._AddAlertGroup(
         anomalies[0],
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='Sandwich-Allowed Subscription',
         issue=self._issue_tracker.issue,
         status=alert_group.AlertGroup.Status.sandwiched,
         sandwich_verification_workflow_id=sandwich_verification_workflow_id,
@@ -1365,7 +1386,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._sheriff_config.patterns = {
         '*': [
             subscription.Subscription(
-                name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+                name='Sandwich-Allowed Subscription',
                 auto_triage_enable=True,
                 auto_bisect_enable=True,
                 bug_components=['should>not>set>component'])
@@ -1434,10 +1455,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # - The issue does not have components from the sandwich sheriff config assigned to it
     feature_flags.SANDWICH_VERIFICATION = True
 
-    test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
-        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
-    ])
+    test_name = '/'.join(
+        ["master", 'linux-perf', 'speedometer2', 'dummy', 'metric', 'parts'])
     anomalies = [
         self._AddAnomaly(test=test_name, statistic="made up"),
         self._AddAnomaly(test=test_name, statistic="also made up")
@@ -1456,7 +1475,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     }'''
     group = self._AddAlertGroup(
         anomalies[0],
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='Sandwich-Allowed Subscription',
         issue=self._issue_tracker.issue,
         status=alert_group.AlertGroup.Status.sandwiched,
         sandwich_verification_workflow_id=sandwich_verification_workflow_id,
@@ -1465,7 +1484,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._sheriff_config.patterns = {
         '*': [
             subscription.Subscription(
-                name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+                name='Sandwich-Allowed Subscription',
                 auto_triage_enable=True,
                 auto_bisect_enable=True,
                 bug_components=['should>not>set>component'])
@@ -1535,10 +1554,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # - The bisect tags include "sandwiched: True"
     feature_flags.SANDWICH_VERIFICATION = True
 
-    test_name = '/'.join([
-        "master", sandwich_allowlist.ALLOWABLE_DEVICES[0],
-        sandwich_allowlist.ALLOWABLE_BENCHMARKS[0], 'dummy', 'metric', 'parts'
-    ])
+    test_name = '/'.join(
+        ["master", 'linux-perf', 'speedometer2', 'dummy', 'metric', 'parts'])
 
     anomalies = [
         self._AddAnomaly(test=test_name, statistic="made up"),
@@ -1559,7 +1576,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     }'''
     group = self._AddAlertGroup(
         anomalies[0],
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='Sandwich-Allowed Subscription',
         issue=self._issue_tracker.issue,
         status=alert_group.AlertGroup.Status.sandwiched,
         sandwich_verification_workflow_id=sandwich_verification_workflow_id,
@@ -1569,7 +1586,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self._sheriff_config.patterns = {
         '*': [
             subscription.Subscription(
-                name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+                name='Sandwich-Allowed Subscription',
                 auto_triage_enable=True,
                 auto_bisect_enable=True,
                 bug_components=['sub>should>not>set>component'])
@@ -1625,7 +1642,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     group = self._AddAlertGroup(
         anomalies[0],
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='Sandwich-Allowed Subscription',
         issue=self._issue_tracker.issue,
         status=alert_group.AlertGroup.Status.triaged,
     )
@@ -1682,11 +1699,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -1736,11 +1755,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -1786,11 +1807,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -1833,11 +1856,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -1905,11 +1930,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -1954,11 +1981,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2002,11 +2031,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2051,11 +2082,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2100,11 +2133,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2151,11 +2186,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2199,11 +2236,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2236,11 +2275,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2273,11 +2314,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_bisect_enable=True)
         ],
     }
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
     )
     self._UpdateTwice(
         workflow=w,
@@ -2337,11 +2380,13 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     # Current implementation requires that a git hash is 40 characters of
     # hexadecimal digits.
     self._crrev.SetSuccess('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    self._SandwichVerify(group, anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
         pinpoint=self._pinpoint,
         crrev=self._crrev,
+        cloud_workflows=self._cloud_workflows,
         gitiles=self._gitiles)
     self._UpdateTwice(
         workflow=w,
@@ -2406,7 +2451,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 auto_merge_enable=True)
         ],
     }
-
+    # This allows the test to pass, but it doesn't test what
+    # we want it to test any more if we do that:
+    # sandwich_allowlist.BLOCKED_SUBSCRIPTIONS = 'sheriff'
     self._issue_tracker._bug_id_counter = 42
     duplicate_issue = self._issue_tracker.GetIssue(
         self._issue_tracker.NewBug(status='Duplicate',
@@ -2428,6 +2475,12 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         status=alert_group.AlertGroup.Status.triaged,
     )
 
+    self._SandwichVerify(group, grouped_anomalies)
+    self._SandwichVerify(canonical_group,
+                                                   grouped_anomalies)
+
+    # if both issues are now in 'sandwiched' state, we'd expect the
+    # next Workflow update to call _TryVerifyRegression on them.
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
@@ -2435,6 +2488,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             active_window=datetime.timedelta(days=7),
             triage_delay=datetime.timedelta(hours=0),
         ),
+        cloud_workflows=self._cloud_workflows,
     )
     u = alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
         now=datetime.datetime.utcnow(),
@@ -2478,7 +2532,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 'cc': [],
                 'comment':
                     None,
-                'components': ['Foo>Bar'],
+                'components': [],
                 'send_email':
                     False
             },
@@ -2554,7 +2608,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 'Type-Bug-Regression',
             ],
             'cc': [],
-            'components': ['Foo>Bar'],
+            'components': [],
             'comment':
                 mock.ANY,
             'send_email':
@@ -2624,7 +2678,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                 'Type-Bug-Regression',
             ],
             'cc': [],
-            'components': ['Foo>Bar'],
+            'components': [],
             'comment':
                 mock.ANY,
             'send_email':
@@ -2635,11 +2689,11 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertIsNone(group.get().canonical_group)
     self.assertEqual(group.get().status, alert_group.AlertGroup.Status.triaged)
 
-  def testAutoMerge_SandwichSubsNotMerged(self):
+  def testAutoMerge_SandwichSubsMerged(self):
     self._sheriff_config.patterns = {
         '*': [
             subscription.Subscription(
-                name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+                name='blocked-sheriff',
                 auto_triage_enable=True,
                 auto_merge_enable=True),
         ],
@@ -2656,7 +2710,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     all_anomalies = grouped_anomalies + [self._AddAnomaly()]
     group = self._AddAlertGroup(
         grouped_anomalies[0],
-        subscription_name=sandwich_allowlist.ALLOWABLE_SUBSCRIPTIONS[0],
+        subscription_name='blocked-sheriff',
         issue=duplicate_issue,
         anomalies=grouped_anomalies,
         status=alert_group.AlertGroup.Status.triaged,
@@ -2685,7 +2739,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     w.Process(update=u)
 
     # First two are NewBug calls in the test itself.
-    self.assertEqual(len(self._issue_tracker.calls), 3)
+    self.assertEqual(len(self._issue_tracker.calls), 4)
 
     # Create the canonical issue
     self.assertEqual(self._issue_tracker.calls[2]['method'], 'AddBugComment')
@@ -2694,12 +2748,11 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(self._issue_tracker.calls[2]['args'][1], 'chromium')
 
     self.assertEqual(
-        self._issue_tracker.calls[2], {
+        self._issue_tracker.calls[3], {
             'method': 'AddBugComment',
             'args': (42, 'chromium'),
             'kwargs': {
-                'title':
-                    '[Sandwich Verification Test Speedometer2]: 3 regressions in test_suite',
+                'title': '[blocked-sheriff]: 3 regressions in test_suite',
                 'labels': [
                     'Chromeperf-Auto-Triaged',
                     'Pri-2',
@@ -2707,18 +2760,14 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                     'Type-Bug-Regression',
                 ],
                 'cc': [],
-                'components': [],
-                'comment':
-                   mock.ANY,
-                'send_email':
-                    False
+                'components': ['Foo>Bar'],
+                'comment': mock.ANY,
+                'send_email': False
             },
         })
 
-    self.assertTrue(all(a.get().bug_id == 42 for a in all_anomalies))
-
-    # Verify that it didn't set the 'duplicate' sandwiched alert group's canonical group at all.
-    self.assertIsNone(group.get().canonical_group)
+    # Verify that it did set the 'duplicate' sandwiched alert group's canonical group.
+    self.assertIsNotNone(group.get().canonical_group)
     self.assertEqual(group.get().status, alert_group.AlertGroup.Status.closed)
 
   def testAutoMerge_SucessfulMerge_AutoMergeForOneAnomaly(self):
@@ -2757,7 +2806,9 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         issue=canonical_issue,
         status=alert_group.AlertGroup.Status.triaged,
     )
-
+    self._SandwichVerify(group, grouped_anomalies)
+    self._SandwichVerify(canonical_group,
+                                                   grouped_anomalies)
     w = alert_group_workflow.AlertGroupWorkflow(
         group.get(),
         sheriff_config=self._sheriff_config,
@@ -2765,6 +2816,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             active_window=datetime.timedelta(days=7),
             triage_delay=datetime.timedelta(hours=0),
         ),
+        cloud_workflows=self._cloud_workflows,
     )
     u = alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
         now=datetime.datetime.utcnow(),
@@ -2806,7 +2858,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                     'Type-Bug-Regression',
                 ],
                 'cc': [],
-                'components': ['Foo>Bar'],
+                'components': [],
                 'comment':
                     None,
                 'send_email':
