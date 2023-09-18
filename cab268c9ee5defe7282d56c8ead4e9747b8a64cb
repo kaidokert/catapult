@@ -16,6 +16,24 @@
       "message": "PTAL - changed the approach a bit after John Chen responded to the team chat thread about this issue.\n\nChanges since previous LGTMs: \n- started from original base commit and did a find-and-replace `assertCountEquals` -\u003e `assertEquals` in alert_group_workflow.py\n- updated the mock issue service implementation to sort issue labels before saving the recorded method call.  They were getting re-ordered randomly (I\u0027m guessing due to being converted to sets and then back to lists)\n- updated asserts to include actual formatted comment text instead of `mock.ANY` (which does not seem to work with `self.assertEquals(...)` as one may expect - the asserts always failed because `mock.ANY` wasn\u0027t considered equal to the text in the other half of the comparsion. /shrug...)",
       "revId": "cab268c9ee5defe7282d56c8ead4e9747b8a64cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e06aac1_4fb4cd9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-18T06:37:40Z",
+      "side": 1,
+      "message": "\u003e mock.ANY (which does not seem to work with self.assertEquals(...)\n\nThis is strange. mock.ANY is supposed to work with self.assertEqual. It defines a custom equal operator that always returns True (see https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/third_party/mock/mock.py;l\u003d1938).\n\nI tried the following code snippet, and it succeeded as expected:\n\n```\nimport unittest\nfrom unittest import mock\nunittest.TestCase().assertEqual({\u0027a\u0027: \u0027A\u0027, \u0027b\u0027: \u0027B\u0027}, {\u0027a\u0027: \u0027A\u0027, \u0027b\u0027: mock.ANY})\n```\n\nReplace `mock.ANY` by anything other than `\u0027B\u0027`, then the assert fails.\n\nCould you please double check?",
+      "parentUuid": "8897efae_ee092ea8",
+      "revId": "cab268c9ee5defe7282d56c8ead4e9747b8a64cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
