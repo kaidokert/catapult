@@ -22,6 +22,30 @@
       },
       "revId": "e548c9345f401404cd4b16cb6776311406da2aa8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca242ed7_aec7f71f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4583,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-19T23:22:03Z",
+      "side": 1,
+      "message": "Thanks for the input. I don\u0027t think we need a context manager for this for now. It is more like a one-time thing and won\u0027t hurt if is left in the directory.",
+      "parentUuid": "6e0461a9_5b96cc9c",
+      "range": {
+        "startLine": 4583,
+        "startChar": 6,
+        "endLine": 4583,
+        "endChar": 22
+      },
+      "revId": "e548c9345f401404cd4b16cb6776311406da2aa8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
