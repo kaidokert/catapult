@@ -33,6 +33,86 @@
       "message": "Kindly ping. (Gerrit thinks it is my turn after I ran the tests. Send it again as this CL might not show up in your dashboard.)",
       "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8586cb4_e9566b50",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T17:00:53Z",
+      "side": 1,
+      "message": "why does this need to make a copy instead of just referencing the original?",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44eb7237_ae2720c4",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T17:00:53Z",
+      "side": 1,
+      "message": "should this test (and the others) assert anything about the value of `group.status` after the `w.Process(...)` call?\n\nAssuming an AlertGroup with delayed triage isn\u0027t immediately get triaged, when *does* it get triaged?  the next time around when cron task loops through untriaged groups and calls `w.Process(...)` on it?",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "659cd6da_0556ee38",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T17:00:53Z",
+      "side": 1,
+      "message": "so this means there should be no delay?",
+      "range": {
+        "startLine": 821,
+        "startChar": 44,
+        "endLine": 821,
+        "endChar": 51
+      },
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62fd38f1_dcb4c4c5",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T17:00:53Z",
+      "side": 1,
+      "message": "FYI (I know it\u0027s out of scope for this CL, so just mentioning it in case you weren\u0027t aware): We should not be linking to test-restults.appspot.com at all any more, since it\u0027s going away in Q4 and a direct replacement already exists for linking to commit ranges with crrev.com URLs: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1473704#c5 -",
+      "range": {
+        "startLine": 885,
+        "startChar": 35,
+        "endLine": 885,
+        "endChar": 97
+      },
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
