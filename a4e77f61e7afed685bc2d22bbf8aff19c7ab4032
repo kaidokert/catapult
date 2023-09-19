@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff2d0fc1_079f7c90",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T20:57:56Z",
+      "side": 1,
+      "message": "Synced offline. The \u0027sandwich-sheriff\u0027 label is being removed and for now we don\u0027t need the optout list. I\u0027m removing it.",
+      "parentUuid": "ba712b32_7001be12",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44eb7237_ae2720c4",
         "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
         "patchSetId": 3
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "Ok that was not at all clear to me while I was reviewing this CL. Thanks for clarifying that, and I cannot LGTM this CL until there\u0027s a more distinct name. \n\nOverloading \u0027triaged\u0027 like this is like hiding a decoy or trap for anyone who comes along later to debug problems involving this code, or tries to refactor it in the future.\n\nSo yes, please by all means use a completely different term than \u0027triaged\u0027.  \u0027Processed\u0027? \u0027Initially Processed\u0027? \u0027Grouped\u0027? \u0027Reported\u0027? I don\u0027t know what the term should be.",
       "parentUuid": "8d1e7018_3bca3152",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a92efee_8db85494",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T20:57:56Z",
+      "side": 1,
+      "message": "delay-reporting will be used.",
+      "parentUuid": "71384a85_3526eeb5",
       "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -202,6 +238,30 @@
       "side": 1,
       "message": "just don\u0027t use \u0027triage\u0027 in the name if you aren\u0027t talking about `alert_group.AlertGroup.Status.triaged` specifically",
       "parentUuid": "20af8fe9_e527630d",
+      "range": {
+        "startLine": 821,
+        "startChar": 44,
+        "endLine": 821,
+        "endChar": 51
+      },
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c21b83_399731a2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T20:57:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "42eb72a0_9aa4ef2f",
       "range": {
         "startLine": 821,
         "startChar": 44,
