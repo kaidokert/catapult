@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa2de8e5_23b0ebf3",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T17:44:58Z",
+      "side": 1,
+      "message": "The purpose of the empty list is a placeholder for adding more subscription names in the future.",
+      "parentUuid": "d8586cb4_e9566b50",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44eb7237_ae2720c4",
         "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
         "patchSetId": 3
@@ -65,6 +83,24 @@
       "writtenOn": "2023-09-19T17:00:53Z",
       "side": 1,
       "message": "should this test (and the others) assert anything about the value of `group.status` after the `w.Process(...)` call?\n\nAssuming an AlertGroup with delayed triage isn\u0027t immediately get triaged, when *does* it get triaged?  the next time around when cron task loops through untriaged groups and calls `w.Process(...)` on it?",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1e7018_3bca3152",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T17:44:58Z",
+      "side": 1,
+      "message": "IIUC, the current status of \u0027triaged\u0027 means \u0027an issue is created\u0027. In the new workflow I\u0027m interpreting it as \u0027an issue was assigned to the affected domains (components, etc.)\u0027.\n\nI guess I\u0027m overloading the term \u0027triage\u0027 here. Should use another term.",
+      "parentUuid": "44eb7237_ae2720c4",
       "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -92,6 +128,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "20af8fe9_e527630d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T17:44:58Z",
+      "side": 1,
+      "message": "This triage_delay is an existing concept about how long should we wait after the group is created, in order wait for similar anomalies to be grouped before reporting the regression. The current default is 20 minutes.\n\nYes I noticed that as well which I think I could have used delay_reporting to avoid confusion. Any better ideas?",
+      "parentUuid": "659cd6da_0556ee38",
+      "range": {
+        "startLine": 821,
+        "startChar": 44,
+        "endLine": 821,
+        "endChar": 51
+      },
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "62fd38f1_dcb4c4c5",
@@ -105,6 +165,30 @@
       "writtenOn": "2023-09-19T17:00:53Z",
       "side": 1,
       "message": "FYI (I know it\u0027s out of scope for this CL, so just mentioning it in case you weren\u0027t aware): We should not be linking to test-restults.appspot.com at all any more, since it\u0027s going away in Q4 and a direct replacement already exists for linking to commit ranges with crrev.com URLs: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1473704#c5 -",
+      "range": {
+        "startLine": 885,
+        "startChar": 35,
+        "endLine": 885,
+        "endChar": 97
+      },
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f92c1b9b_135009e6",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-19T17:44:58Z",
+      "side": 1,
+      "message": "Got it. Found this only existing in a few tests for matching purposes. We should be good. Nooglers will probably consider test-results as a foo/bar thing. 😄",
+      "parentUuid": "62fd38f1_dcb4c4c5",
       "range": {
         "startLine": 885,
         "startChar": 35,
