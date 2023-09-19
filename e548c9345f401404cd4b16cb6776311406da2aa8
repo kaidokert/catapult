@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0461a9_5b96cc9c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4583,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-19T22:39:08Z",
+      "side": 1,
+      "message": "Depending on how it\u0027s used, do you think there would be value in making this a context manager like:\n```\nwith device.NomediaFile(path):\n  // do stuff\n```\n\nThat way, inside the context the file exists, then outside it gets auto rm\u0027ed. Would there be value in that? Nbd otherwise",
+      "range": {
+        "startLine": 4583,
+        "startChar": 6,
+        "endLine": 4583,
+        "endChar": 22
+      },
+      "revId": "e548c9345f401404cd4b16cb6776311406da2aa8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
