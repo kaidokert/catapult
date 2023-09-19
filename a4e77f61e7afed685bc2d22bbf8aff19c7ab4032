@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba712b32_7001be12",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T18:28:56Z",
+      "side": 1,
+      "message": "I\u0027d prefer this CL fix the problem it\u0027s supposed to fix without referring to sandwich_allowlist (or any hard-coded list at all, if you can do it with configuration data instead).\n\nsandwich_allowlist is a _temporary_ *hack*. I am switching its implementation to be a blocklist soon anyways (followed soon after by just deleting it entirely), so it\u0027s really a bad thing to depend on here, or anywhere else.",
+      "parentUuid": "fa2de8e5_23b0ebf3",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44eb7237_ae2720c4",
         "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
         "patchSetId": 3
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "IIUC, the current status of \u0027triaged\u0027 means \u0027an issue is created\u0027. In the new workflow I\u0027m interpreting it as \u0027an issue was assigned to the affected domains (components, etc.)\u0027.\n\nI guess I\u0027m overloading the term \u0027triage\u0027 here. Should use another term.",
       "parentUuid": "44eb7237_ae2720c4",
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71384a85_3526eeb5",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T18:28:56Z",
+      "side": 1,
+      "message": "Ok that was not at all clear to me while I was reviewing this CL. Thanks for clarifying that, and I cannot LGTM this CL until there\u0027s a more distinct name. \n\nOverloading \u0027triaged\u0027 like this is like hiding a decoy or trap for anyone who comes along later to debug problems involving this code, or tries to refactor it in the future.\n\nSo yes, please by all means use a completely different term than \u0027triaged\u0027.  \u0027Processed\u0027? \u0027Initially Processed\u0027? \u0027Grouped\u0027? \u0027Reported\u0027? I don\u0027t know what the term should be.",
+      "parentUuid": "8d1e7018_3bca3152",
       "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -142,6 +178,30 @@
       "side": 1,
       "message": "This triage_delay is an existing concept about how long should we wait after the group is created, in order wait for similar anomalies to be grouped before reporting the regression. The current default is 20 minutes.\n\nYes I noticed that as well which I think I could have used delay_reporting to avoid confusion. Any better ideas?",
       "parentUuid": "659cd6da_0556ee38",
+      "range": {
+        "startLine": 821,
+        "startChar": 44,
+        "endLine": 821,
+        "endChar": 51
+      },
+      "revId": "a4e77f61e7afed685bc2d22bbf8aff19c7ab4032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42eb72a0_9aa4ef2f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-19T18:28:56Z",
+      "side": 1,
+      "message": "just don\u0027t use \u0027triage\u0027 in the name if you aren\u0027t talking about `alert_group.AlertGroup.Status.triaged` specifically",
+      "parentUuid": "20af8fe9_e527630d",
       "range": {
         "startLine": 821,
         "startChar": 44,
