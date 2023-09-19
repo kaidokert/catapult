@@ -16,6 +16,23 @@
       "message": "ptal",
       "revId": "135d79bc5bb777f08b72598432bfaf7f72b3fbd5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "950ef4e2_e2696d99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2023-09-19T15:40:52Z",
+      "side": 1,
+      "message": "Thanks, this makes sense to me. +ssid FYI",
+      "revId": "135d79bc5bb777f08b72598432bfaf7f72b3fbd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
