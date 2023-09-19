@@ -4578,3 +4578,23 @@ class DeviceUtils(object):
     # Note, need to force su because chcon can fail with permission errors even
     # if the device is rooted.
     self.RunShellCommand(command, as_root=_FORCE_SU, check_return=True)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def PlaceNomediaFile(self, path, timeout=None, retries=None):
+    """Places .nomedia file in a given path.
+
+    This helps to prevent system from scanning media files inside that path.
+
+    Args:
+      path: Base path on device to place .nomedia file.
+    """
+
+    if self.target_user is not None:
+      # Convert to a path that is accessible by the system user
+      path = self.ResolveSpecialPath(path)
+    self.RunShellCommand(['mkdir', '-p', path],
+                         check_return=True,
+                         as_root=self.target_user is not None)
+    self.WriteFile('%s/.nomedia' % path,
+                   'https://crbug.com/796640',
+                   as_root=self.target_user is not None)
