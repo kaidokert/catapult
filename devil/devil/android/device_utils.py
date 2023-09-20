@@ -2436,7 +2436,7 @@ class DeviceUtils(object):
                              check_return=True,
                              run_as=run_as,
                              as_root=as_root)
-      self._PushFilesImpl(host_device_tuples, changed_files)
+      self._PushFilesImpl(host_device_tuples, changed_files, as_root=True)
     cache_commit_func()
 
   def _PushChangedFilesSync(self, host_device_tuples):
@@ -2636,7 +2636,7 @@ class DeviceUtils(object):
     ]
     return stale_apks, set(host_checksums.values())
 
-  def _PushFilesImpl(self, host_device_tuples, files):
+  def _PushFilesImpl(self, host_device_tuples, files, as_root=False):
     if not files:
       return
 
@@ -2660,7 +2660,9 @@ class DeviceUtils(object):
     # TODO(https://crbug.com/1338098): Resume directory pushing once
     # clients have switched to 1.0.36-compatible syntax.
     # pylint: disable=condition-evals-to-constant
-    if (dir_push_duration < push_duration and dir_push_duration < zip_duration
+    if as_root:
+      self._PushChangedFilesZipped(files, [d for _, d in host_device_tuples])
+    elif (dir_push_duration < push_duration and dir_push_duration < zip_duration
         and False):
       # pylint: enable=condition-evals-to-constant
       self._PushChangedFilesIndividually(host_device_tuples)
