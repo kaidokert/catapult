@@ -16,6 +16,69 @@
       "message": "PTAL.",
       "revId": "4269dca0f81ab15e93fd9f0c6ffe188e08999125",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bebb738_70c104dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-20T04:56:43Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "4269dca0f81ab15e93fd9f0c6ffe188e08999125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af057c6d_9471e1ae",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-20T04:56:43Z",
+      "side": 1,
+      "message": "I think \"IfReady\" can be removed from the method name now, since that part of the code has been moved outside of the method.",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 32
+      },
+      "revId": "4269dca0f81ab15e93fd9f0c6ffe188e08999125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db0fb5a_3414cf79",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-20T04:56:43Z",
+      "side": 1,
+      "message": "Probably no need to keep this.",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "4269dca0f81ab15e93fd9f0c6ffe188e08999125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
