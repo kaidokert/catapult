@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07fa2cf5_90cc5e34",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-20T16:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af057c6d_9471e1ae",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 32
+      },
+      "revId": "4269dca0f81ab15e93fd9f0c6ffe188e08999125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1db0fb5a_3414cf79",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-09-20T04:56:43Z",
       "side": 1,
       "message": "Probably no need to keep this.",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "4269dca0f81ab15e93fd9f0c6ffe188e08999125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ab9c9e_d2dc38ed",
+        "filename": "dashboard/dashboard/pinpoint/models/attempt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-20T16:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1db0fb5a_3414cf79",
       "range": {
         "startLine": 110,
         "startChar": 4,
