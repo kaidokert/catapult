@@ -34,6 +34,24 @@
       "parentUuid": "e4a6e05b_2b270d71",
       "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83103135_30f4ad39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1315223
+      },
+      "writtenOn": "2023-09-21T18:17:04Z",
+      "side": 1,
+      "message": "Is there any other way we could fix bots running on no longer supported android versions, rather than reintroducing 6GB of artifact data getting pushed onto test devices please?",
+      "parentUuid": "7a667de4_dc11f27d",
+      "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
