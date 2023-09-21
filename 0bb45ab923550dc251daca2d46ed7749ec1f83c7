@@ -70,6 +70,24 @@
       "parentUuid": "83103135_30f4ad39",
       "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c39eaf1_bc2afb8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2023-09-21T20:15:32Z",
+      "side": 1,
+      "message": "I\u0027m going to revert now since this is breaking cronet. I\u0027m in favor of fixing the 6GB issue, but I hope we can sort that out during a reland instead.",
+      "parentUuid": "8f3a2722_debd551c",
+      "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
