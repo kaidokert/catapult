@@ -52,6 +52,24 @@
       "parentUuid": "7a667de4_dc11f27d",
       "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3a2722_debd551c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2023-09-21T20:13:26Z",
+      "side": 1,
+      "message": "Could maybe keep the chmod logic only for L \u0026 M?\n\nAlternatively, we could have the .wpr files listed out instead of including the directory so that they will be filtered out by the existing filter logic.\n\nRegardless, better to revert if it\u0027s safe, and reland with a change.",
+      "parentUuid": "83103135_30f4ad39",
+      "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
