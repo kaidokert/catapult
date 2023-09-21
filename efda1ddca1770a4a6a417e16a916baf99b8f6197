@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cba4adb_391d7732",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-21T20:50:25Z",
+      "side": 1,
+      "message": "does it come with the \u0027chromium:\u0027 prefix?",
+      "range": {
+        "startLine": 38,
+        "startChar": 21,
+        "endLine": 38,
+        "endChar": 23
+      },
+      "revId": "efda1ddca1770a4a6a417e16a916baf99b8f6197",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
