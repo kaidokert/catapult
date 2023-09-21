@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4592c3d_07b1e35a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-21T00:40:58Z",
+      "side": 1,
+      "message": "This is to fix the permission issue during pushing changed files, e.g. https://chrome-swarming.appspot.com/task?id\u003d64cce44073ac1510",
+      "revId": "13d17a0229a2817b857d973abc27147f0b7bddc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
