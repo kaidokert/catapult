@@ -22,6 +22,30 @@
       },
       "revId": "efda1ddca1770a4a6a417e16a916baf99b8f6197",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28488cb1_df08da3e",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-21T21:05:53Z",
+      "side": 1,
+      "message": "If you just specify a number with the `-b` flag, either `git cl` or gerrit (I don\u0027t know which) interprets it to mean `chromium:` by default.\n\nAn example throwaway CL I created this way using just a bug number, no `chromium:` prefix: https://chromium-review.googlesource.com/c/catapult/+/4878010",
+      "parentUuid": "3cba4adb_391d7732",
+      "range": {
+        "startLine": 38,
+        "startChar": 21,
+        "endLine": 38,
+        "endChar": 23
+      },
+      "revId": "efda1ddca1770a4a6a417e16a916baf99b8f6197",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
