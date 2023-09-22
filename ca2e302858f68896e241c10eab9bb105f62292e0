@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63728c28_49ebe9f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-09-22T02:03:39Z",
+      "side": 1,
+      "message": "Looks like this CL causes the roll CL https://crrev.com/c/4884958 to fail, i.e. https://ci.chromium.org/ui/p/chromium/builders/try/android-12-x64-rel/531136/overview",
+      "revId": "ca2e302858f68896e241c10eab9bb105f62292e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
