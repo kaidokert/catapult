@@ -33,6 +33,41 @@
       "message": "Build failsThe build crashes both with and without my commit, so it\u0027s unclear if the crash was caused by my changes or dropped due to past changes. I can\u0027t view the build log because I don\u0027t have access to https://chrome-swarming.appspot.com . On Linux, for example, the screenshot unit test passes, so there are no problems with getting the screenshot itself: https://logs.chromium.org/logs/catapult/buildbucket/cr-buildbucket/8769348188625688721/+/u/Telemetry_Tests_with_Stable_Browser__Desktop_/stdout#L3603_0.",
       "revId": "48ff99b3899d48c9f394f08d1f72a85f111aa9a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e493958a_679ebc22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-22T05:15:59Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "48ff99b3899d48c9f394f08d1f72a85f111aa9a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba6658cb_a9365224",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-22T05:15:59Z",
+      "side": 1,
+      "message": "Don\u0027t worry about those crashes. They were kind of intentional. Our perf test infrastructure is designed to automatically take a screenshot whenever Chrome crashes during test, So I was intentionally causing a few crashes to make sure that screenshots were taking correctly in these cases.",
+      "parentUuid": "3d108651_c4b8f88b",
+      "revId": "48ff99b3899d48c9f394f08d1f72a85f111aa9a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
