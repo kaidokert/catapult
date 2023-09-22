@@ -88,6 +88,24 @@
       "parentUuid": "8f3a2722_debd551c",
       "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "016a27c6_851cb6e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1560009
+      },
+      "writtenOn": "2023-09-22T10:15:12Z",
+      "side": 1,
+      "message": "\u003e Is there any other way we could fix bots running on no longer supported android versions\n\nJust to clarify: Android L \u0026 M still are \"supported Android versions\" as far as Cronet is concerned.",
+      "parentUuid": "2c39eaf1_bc2afb8c",
+      "revId": "0bb45ab923550dc251daca2d46ed7749ec1f83c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
