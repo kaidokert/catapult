@@ -236,29 +236,6 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     workflow.Process(update=update)
     workflow.Process(update=update)
 
-  def testAddAnomalies_GroupUntriaged(self):
-    anomalies = [self._AddAnomaly(), self._AddAnomaly()]
-    added = [self._AddAnomaly(), self._AddAnomaly()]
-    group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
-    self._sheriff_config.patterns = {
-        '*': [subscription.Subscription(name='sheriff')],
-    }
-    w = alert_group_workflow.AlertGroupWorkflow(
-        group.get(),
-        sheriff_config=self._sheriff_config,
-    )
-    self._UpdateTwice(
-        workflow=w,
-        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
-            now=datetime.datetime.utcnow(),
-            anomalies=ndb.get_multi(anomalies + added),
-            issue={},
-        ))
-
-    self.assertEqual(len(group.get().anomalies), 4)
-    for a in added:
-      self.assertIn(a, group.get().anomalies)
-
   # A helper function that simulates the process of an alert group passing
   # the Sandiwch Regression Verification phase with a successful repro of
   # the regression, ready to proceed to bisection.
@@ -296,6 +273,60 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     g.sandwich_verification_workflow_id = sandwich_verification_workflow_id
     g.status = alert_group.AlertGroup.Status.sandwiched
     g.put()
+
+  def testAddAnomalies_GroupUntriaged(self):
+    anomalies = [self._AddAnomaly(), self._AddAnomaly()]
+    added = [self._AddAnomaly(), self._AddAnomaly()]
+    group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
+    self._sheriff_config.patterns = {
+        '*': [subscription.Subscription(name='sheriff')],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+    )
+    self._UpdateTwice(
+        workflow=w,
+        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies + added),
+            issue={},
+        ))
+
+    self.assertEqual(len(group.get().anomalies), 4)
+    for a in added:
+      self.assertIn(a, group.get().anomalies)
+
+  def testAddAnomalies_GroupUntriaged_ignoreDeviceChanges(self):
+    anomalies = [self._AddAnomaly(), self._AddAnomaly()]
+    added = [
+        self._AddAnomaly(
+            False,
+            bot_id_before_anomaly='device-a123',
+            bot_id_after_anomaly='device-b456',
+        ),
+        self._AddAnomaly(),
+    ]
+    group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
+    self._sheriff_config.patterns = {
+        '*': [subscription.Subscription(name='sheriff')],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+    )
+    self._UpdateTwice(
+        workflow=w,
+        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies + added),
+            issue={},
+        ))
+
+    self.assertEqual(len(group.get().anomalies), 3)
+    for a in group.get().anomalies:
+      self.assertEqual(a.get().bot_id_before_anomaly,
+                       a.get().bot_id_after_anomaly)
 
   def testAddAnomalies_GroupTriaged_IssueOpen(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]

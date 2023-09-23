@@ -871,6 +871,7 @@ class Runner(object):
             return 1
 
     def report_coverage(self):  # pragma: no cover
+        return
         self.host.print_()
         import coverage
         cov = coverage.Coverage(data_suffix=True)
