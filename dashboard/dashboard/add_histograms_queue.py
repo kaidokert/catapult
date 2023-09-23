@@ -452,6 +452,8 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
     bot_id_name = tracing_histogram.diagnostics.get(
         reserved_infos.BOT_ID.name)
     if bot_id_name:
+      # Here is one location where we have access to the ID of the bot that uploaded a data point.
+      # This value ends up in
       d['supplemental_columns']['a_bot_id'] = list(bot_id_name)
   except Exception as e: # pylint: disable=broad-except
     logging.warning('bot_id failed. Error: %s', e)

@@ -252,6 +252,17 @@ class AlertGroupWorkflow:
         anomaly.Anomaly.groups.IN([g.key for g in groups]))
     return query.fetch()
 
+  def _FilterOutDeviceChangeAnomalies(self, anomalies):
+    ret = []
+    for a in anomalies:
+      if a.bot_id_before_anomaly != a.bot_id_after_anomaly:
+        logging.error(
+            'ignoring anomaly %s, reason: device changed (before: %s, after: %s)',
+            a.key, a.bot_id_before_anomaly, a.bot_id_after_anomaly)
+        continue
+      ret.append(a)
+    return ret
+
   def _PrepareGroupUpdate(self):
     """Prepares default input for the workflow Process
 
@@ -277,6 +288,7 @@ class AlertGroupWorkflow:
         ndb.Key('AlertGroup', k).get() for k in duplicate_group_keys
     ]
     anomalies = self._FindRelatedAnomalies([self._group] + duplicate_groups)
+    anomalies = self._FilterOutDeviceChangeAnomalies(anomalies)
 
     now = datetime.datetime.utcnow()
     issue = None
@@ -313,6 +325,15 @@ class AlertGroupWorkflow:
     logging.info('Processing workflow for group %s', self._group.key)
     update = update or self._PrepareGroupUpdate()
     logging.info('%d anomalies', len(update.anomalies))
+
+    filtered_anomalies = self._FilterOutDeviceChangeAnomalies(update.anomalies)
+    # So this re-assignemnt to 'update' should look odd to you. It works around the fact
+    # that unit tests and production code paths do not share the same logic for consructing
+    # GroupUpdate instances. Unit tests always pass it as an arg, but prod always relies on
+    # _PrepareGroupUpdate(). Double-duct-taped this together here and inside _PrepareGroupUpdate
+    # to make sure we don't let bot-change "anomalies" sneak in to AlertGroups either way.
+    update = self.GroupUpdate(update.now, filtered_anomalies, update.issue,
+                              update.canonical_group)
 
     # TODO(crbug.com/1240370): understand why Datastore query may return empty
     # anomalies list.
@@ -402,6 +423,7 @@ class AlertGroupWorkflow:
 
   def _UpdateAnomalies(self, anomalies):
     added = [a for a in anomalies if a.key not in self._group.anomalies]
+    # This next line doesn't look right. TODO: double-check that it's intentionally this weird.
     self._group.anomalies = [a.key for a in anomalies]
     return added
 
