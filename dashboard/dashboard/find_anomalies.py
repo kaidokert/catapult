@@ -244,8 +244,9 @@ def GetRowsToAnalyzeAsync(test, max_num_rows):
 def _FetchRowsByStat(test_key, stat, last_alert_future, max_num_rows):
   # If stats are specified, we only want to alert on those, otherwise alert on
   # everything.
-  if stat == 'avg':
-    query = graph_data.Row.query(projection=['revision', 'timestamp', 'value'])
+  if stat == 'avg':  # Add 'a_bot_id' here?
+    query = graph_data.Row.query(
+        projection=['revision', 'timestamp', 'value', 'bot_id'])
   else:
     query = graph_data.Row.query()
 
@@ -377,6 +378,16 @@ def _GetDisplayRange(old_end, rows):
   return start_rev, end_rev
 
 
+def _GetBotIdForRevisionNumber(row_tuples, revision_number):
+  # Is revision_number going to be in row_tuples? Is row_tuples sorted? Ugh. This code is crap.
+  for _, row, _ in row_tuples:
+    print("checking for bot_id for revision %d == %d in row" %
+          (revision_number, row.revision))
+    if row.revision == revision_number:
+      return row.bot_id
+  return None
+
+
 @ndb.tasklet
 def _MakeAnomalyEntity(change_point, test, stat, rows, config, matching_sub):
   """Creates an Anomaly entity.
@@ -385,7 +396,7 @@ def _MakeAnomalyEntity(change_point, test, stat, rows, config, matching_sub):
     change_point: A find_change_points.ChangePoint object.
     test: The TestMetadata entity that the anomalies were found on.
     stat: The TestMetadata stat that the anomaly was found on.
-    rows: List of Row entities that the anomalies were found on.
+    rows: List of (revision, graph_data.Row, value) tuples that the anomalies were found on.
     config: A dict representing the anomaly detection configuration
         parameters used to produce this anomaly.
     matching_sub: A subscription to which this anomaly is associated.
@@ -398,10 +409,14 @@ def _MakeAnomalyEntity(change_point, test, stat, rows, config, matching_sub):
       change_point.extended_start, rows) + 1
   print(change_point.extended_start, change_point.extended_end)
   display_start = display_end = None
+  # Oh FFS. Conditionals with hard-coded, user-supplied input strings in them
+  # should be automatically blocked by presubmit checks.
   if test.master_name == 'ClankInternal':
     display_start, display_end = _GetDisplayRange(change_point.x_value, rows)
   median_before = change_point.median_before
   median_after = change_point.median_after
+  bot_id_before = _GetBotIdForRevisionNumber(rows, change_point.extended_start)
+  bot_id_after = _GetBotIdForRevisionNumber(rows, change_point.extended_end)
 
   suite_key = test.key.id().split('/')[:3]
   suite_key = '/'.join(suite_key)
@@ -480,6 +495,8 @@ def _MakeAnomalyEntity(change_point, test, stat, rows, config, matching_sub):
       latest_input_timestamp=latest_input_timestamp,
       anomaly_config=config,
       matching_subscription=matching_sub,
+      bot_id_before_anomaly=bot_id_before,
+      bot_id_after_anomaly=bot_id_after,
   )
   raise ndb.Return(new_anomaly)
 

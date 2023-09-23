@@ -58,6 +58,8 @@ class ChangePoint(
             # Extended possible change point range
             'extended_start',
             'extended_end',
+            # 'bot_id_before',
+            # 'bot_id_after',
         ))):
   """A ChangePoint represents a change in a series -- a potential alert."""
   _slots = None

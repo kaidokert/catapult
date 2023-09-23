@@ -356,6 +356,7 @@ class Row(ndb.Expando):
     r_: Revision such as r_webkit or r_v8. StringProperty, limited to 25
         characters, '0-9' and '.'.
     a_: Annotation such as a_chrome_bugid or a_gasp_anomaly. StringProperty.
+    # This is where a_bot_id gets its 'a_' prefix, apparently.
   """
   # Our access patterns don't generally involve the same Row being
   # accessed again and again across multiple requests. Don't put them into
@@ -395,6 +396,8 @@ class Row(ndb.Expando):
 
   # The standard deviation at this point. Optional.
   error = ndb.FloatProperty(indexed=False)
+
+  bot_id = ndb.StringProperty(indexed=True)
 
   @ndb.ComputedProperty
   def expiry(self):  # pylint: disable=invalid-name
