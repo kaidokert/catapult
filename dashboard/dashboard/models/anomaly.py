@@ -96,6 +96,8 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   # We'd like to be able to query Alerts by Master, Bot, and Benchmark names.
   master_name = ndb.ComputedProperty(
       lambda self: utils.TestPath(self.test).split('/')[0], indexed=True)
+  # This is not the "bot_name" as in "the id of the physical hardware device in the perf lab"
+  # but rather the "bot_name" as in "the name of device configuration" e.g. "win-10-perf"
   bot_name = ndb.ComputedProperty(
       lambda self: utils.TestPath(self.test).split('/')[1], indexed=True)
   benchmark_name = ndb.ComputedProperty(
@@ -126,6 +128,11 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   # The medians of the segments before and after the anomaly.
   median_before_anomaly = ndb.FloatProperty(indexed=False)
   median_after_anomaly = ndb.FloatProperty(indexed=False)
+
+  # The IDs of the bots (as in the physical devices) that
+  # reported the measurments on either side of this anomaly.
+  bot_id_before_anomaly = ndb.StringProperty(indexed=False)
+  bot_id_after_anomaly = ndb.StringProperty(indexed=False)
 
   # The standard deviation of the segments before the anomaly.
   std_dev_before_anomaly = ndb.FloatProperty(indexed=False)

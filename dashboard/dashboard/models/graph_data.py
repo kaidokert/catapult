@@ -396,6 +396,16 @@ class Row(ndb.Expando):
   # The standard deviation at this point. Optional.
   error = ndb.FloatProperty(indexed=False)
 
+  # The ID of the swarming device that reported the value in this Row.
+  # graph_data.Row sets _default_idexed = False, so a_bot_id (like other
+  # ndb.Expando properties on Row) cannot be used in ndb.Query projections.
+  # find_anomalies.py uses ndb.Query projection to read the time series for
+  # a metric, and we want its results to include this value. So we declare
+  # it explicitly as an indexed field instead of relying on ndb.Expando to
+  # infer its existence at runtime.  For more background:
+  # https://cloud.google.com/appengine/docs/legacy/standard/python/ndb/projectionqueries#Indexes_for_projections
+  a_bot_id = ndb.StringProperty(indexed=True)
+
   @ndb.ComputedProperty
   def expiry(self):  # pylint: disable=invalid-name
     if self.timestamp:
