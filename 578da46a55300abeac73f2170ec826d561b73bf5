@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5f31677_d6e3e42b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-25T22:04:37Z",
+      "side": 1,
+      "message": "I\u0027m OK with ignoring the situation when multiple bots are involved.\n\nFor android-pixel2-perf, maybe it would make sense to just turn off dynamic sharding?",
+      "parentUuid": "e6e52c1f_02efe4c7",
+      "range": {
+        "startLine": 263,
+        "startChar": 14,
+        "endLine": 263,
+        "endChar": 63
+      },
+      "revId": "578da46a55300abeac73f2170ec826d561b73bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43f1b38a_8d728047",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 7
