@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f332a47d_61944d91",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-09-25T21:55:12Z",
+      "side": 1,
+      "message": "I believe bot_id is stored internally as a list of strings, e.g., https://pantheon.corp.google.com/datastore/databases/-default-/entities;kind\u003dRow;ns\u003d__$DEFAULT$__/edit;key\u003d0%252F%257C13%252FTestContainer%257C124%252Fname%253AChromiumPerf%252Flinux-perf%252Fsystem_health.common_desktop%252FtimeToFirstContentfulPaint%252Fbrowse_search%252Fbrowse_search_google_2020%257C3%252FRow%257C10%252Fid%253A1194035?e\u003d-13802955\u0026mods\u003dcomponent_inspector\u0026project\u003dchromeperf for a row from a single bot, and https://pantheon.corp.google.com/datastore/databases/-default-/entities;kind\u003dRow;ns\u003d__$DEFAULT$__/edit;key\u003d0%252F%257C13%252FTestContainer%257C68%252Fname%253AChromiumPerf%252Flinux-perf%252Fspeedometer2%252FRunsPerMinute%252FSpeedometer2%257C3%252FRow%257C10%252Fid%253A1193090?e\u003d-13802955\u0026mods\u003dcomponent_inspector\u0026project\u003dchromeperf for a row from a large number of bots. The truncation to 3 bots happens in the UI: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/elements/chart-container.html;l\u003d2299",
+      "parentUuid": "c4cf7a0d_200cb1e6",
+      "range": {
+        "startLine": 263,
+        "startChar": 14,
+        "endLine": 263,
+        "endChar": 63
+      },
+      "revId": "578da46a55300abeac73f2170ec826d561b73bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43f1b38a_8d728047",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 7
