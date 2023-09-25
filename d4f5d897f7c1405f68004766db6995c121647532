@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "869e465c_c36eee66",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-25T19:40:17Z",
+      "side": 1,
+      "message": "Maybe update the \"state\" of the anomaly to \"ignored\" as well?",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 67
+      },
+      "revId": "d4f5d897f7c1405f68004766db6995c121647532",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664c418c_70745d06",
+        "filename": "dashboard/dashboard/models/graph_data.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-09-25T19:40:17Z",
+      "side": 1,
+      "message": "Can we do the implementation without indexing this field? Currently our index size for Row entity type is insane https://screenshot.googleplex.com/4cL9vuVF4tSwkvD.png",
+      "range": {
+        "startLine": 407,
+        "startChar": 13,
+        "endLine": 407,
+        "endChar": 45
+      },
+      "revId": "d4f5d897f7c1405f68004766db6995c121647532",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
