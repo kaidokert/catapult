@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ddbff7_379adc4f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-25T21:22:38Z",
+      "side": 1,
+      "message": "Ignoring the anomalies here is a bit trick that it would change the existing workflow (which is loosely coupled together):\n 1. find_anomaly finds a new anomaly, and \u0027ungrouped\u0027 is added to a.groups.\n 2. in _ProcessAlertGroup(), the \u0027ungrouped\u0027 is processed (here). Anomalies with \u0027ungrouped\u0027 in a.groups are loaded added to \u0027ungrouped\u0027.anomalies.\n 3. _ProcessUngroupedAlerts(), each anomaly in \u0027ungrouped\u0027 gots a new group created/assigned. \n\nWith your change, those valid anomalies should be safe. Though, the ignored anomalies will keep having \u0027ungrouped\u0027 in a.groups and will be loaded again and again in step #2.",
+      "range": {
+        "startLine": 296,
+        "startChar": 21,
+        "endLine": 296,
+        "endChar": 52
+      },
+      "revId": "b2eb409a581e5b5d40973c3d42d2093ed5aa8ecf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84fb0bdb_7eb2e457",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-25T21:22:38Z",
+      "side": 1,
+      "message": "Can we only keep this one and remove the one in _PrepareGroupUpdate()?",
+      "range": {
+        "startLine": 334,
+        "startChar": 30,
+        "endLine": 334,
+        "endChar": 61
+      },
+      "revId": "b2eb409a581e5b5d40973c3d42d2093ed5aa8ecf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
