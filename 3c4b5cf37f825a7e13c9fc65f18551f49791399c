@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd7c962_1393d257",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-25T19:29:05Z",
+      "side": 0,
+      "message": "I just moved this test method down so it\u0027s not mixed in with the helper methods.",
+      "revId": "3c4b5cf37f825a7e13c9fc65f18551f49791399c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
