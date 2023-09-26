@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec50813_4a46c1fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "I\u0027ll update the CL description to match the latest patcheset, but only after lgtm",
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

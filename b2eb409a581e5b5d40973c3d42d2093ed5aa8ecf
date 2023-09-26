@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee08071_cfc89182",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "This CL now calls anomaly.key.delete() instead of just logging and ignoring anomaly. If it comes back, who cares we\u0027ll just delete it again. \n\nLet me know if you can think of a less complicated solution to the hypothetical problem you describe here.",
+      "parentUuid": "01ddbff7_379adc4f",
+      "range": {
+        "startLine": 296,
+        "startChar": 21,
+        "endLine": 296,
+        "endChar": 52
+      },
+      "revId": "b2eb409a581e5b5d40973c3d42d2093ed5aa8ecf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84fb0bdb_7eb2e457",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-25T21:22:38Z",
       "side": 1,
       "message": "Can we only keep this one and remove the one in _PrepareGroupUpdate()?",
+      "range": {
+        "startLine": 334,
+        "startChar": 30,
+        "endLine": 334,
+        "endChar": 61
+      },
+      "revId": "b2eb409a581e5b5d40973c3d42d2093ed5aa8ecf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f9d477_2123469d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84fb0bdb_7eb2e457",
       "range": {
         "startLine": 334,
         "startChar": 30,

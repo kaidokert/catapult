@@ -96,6 +96,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d7a22f2_5d3bd956",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "John: Ok to implement this \"ignore Rows reported with multiple devices\" update I\u0027ve done the following:\n\n- Create a new indexed field on `graph_data.Row` called `swarming_bot_id` that contains exactly ONE string value, at most.  It may duplicate some data present in the un-indexed a_bot_id (ndb.Expando) field, but I don\u0027t think that\u0027s an actual problem compared to what this CL would fix.\n\n- If an uploaded blob of histogram json results in a `a_bot_id` value with a single bot ID in it (i.e. a_bot_id is a non-empty string containing no commas), then we have add_histograms_queue.py copy that single a_bot_id string value in to the `graph_data.Row.swarming_bot_id` field before storing the Row. These benchmarks/stories will benefit from noise reduction implemented here.\n\n- If on the other hand an uploaded blob of histogram data has multiple values for `a_bot_id`, they can continue to do that. In that case `add_histograms_queue.py` leaves `graph_data.Row.swarming_bot_id` unset, and nothing changes about how we handle anomalies for benchmarks/stories who choose to upload their data like that. They just won\u0027t benefit from noise reduction implemented here.",
+      "parentUuid": "d5f31677_d6e3e42b",
+      "range": {
+        "startLine": 263,
+        "startChar": 14,
+        "endLine": 263,
+        "endChar": 63
+      },
+      "revId": "578da46a55300abeac73f2170ec826d561b73bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43f1b38a_8d728047",
@@ -109,6 +133,30 @@
       "writtenOn": "2023-09-25T21:22:38Z",
       "side": 1,
       "message": "info?",
+      "range": {
+        "startLine": 264,
+        "startChar": 16,
+        "endLine": 264,
+        "endChar": 21
+      },
+      "revId": "578da46a55300abeac73f2170ec826d561b73bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62df0b3_20357937",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43f1b38a_8d728047",
       "range": {
         "startLine": 264,
         "startChar": 16,
@@ -142,6 +190,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c55cfa8_1b99e694",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "That\u0027s a fine suggestion but would make this CL more complicated than it strictly needs to be and it\u0027s already more complicated than it should have been in the first place.\n\nSomeone can add that later if they care to.",
+      "parentUuid": "14b97fed_83095bd5",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 16
+      },
+      "revId": "578da46a55300abeac73f2170ec826d561b73bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28ccb186_7ce0d06f",
@@ -155,6 +227,30 @@
       "writtenOn": "2023-09-25T21:22:38Z",
       "side": 1,
       "message": "I believe the a_bot_id should be there already as a StringProperty.",
+      "range": {
+        "startLine": 352,
+        "startChar": 2,
+        "endLine": 354,
+        "endChar": 65
+      },
+      "revId": "578da46a55300abeac73f2170ec826d561b73bf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1dcb113_28d90ee0",
+        "filename": "dashboard/dashboard/models/graph_data.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-26T20:16:32Z",
+      "side": 1,
+      "message": "obsolete, the latest patchset uses the new `swarming_bot_id` field instead of a_bot_id.",
+      "parentUuid": "28ccb186_7ce0d06f",
       "range": {
         "startLine": 352,
         "startChar": 2,
