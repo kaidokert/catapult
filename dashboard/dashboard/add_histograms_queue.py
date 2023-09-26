@@ -451,8 +451,14 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
   try:
     bot_id_name = tracing_histogram.diagnostics.get(
         reserved_infos.BOT_ID.name)
+    print('bot_id_name: %s\n' % bot_id_name)
     if bot_id_name:
-      d['supplemental_columns']['a_bot_id'] = list(bot_id_name)
+      bot_id_names = list(bot_id_name)
+      d['supplemental_columns']['a_bot_id'] = bot_id_names
+      if len(bot_id_names) == 1:
+        print("setting swarming_bot_id\n")
+        d['swarming_bot_id'] = bot_id_names[0]
+
   except Exception as e: # pylint: disable=broad-except
     logging.warning('bot_id failed. Error: %s', e)
   try:
