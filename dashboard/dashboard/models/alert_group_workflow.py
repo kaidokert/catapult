@@ -395,7 +395,7 @@ class AlertGroupWorkflow:
       sandwiched = self._TryVerifyRegression(update)
       logging.info('sandwiched: %s', sandwiched)
     elif group.status in {group.Status.sandwiched, group.Status.triaged}:
-      self._TryBisect(update)
+      self._TryBisect(update, added)
     return self._CommitGroup()
 
   def _CommitGroup(self):
@@ -914,13 +914,13 @@ class AlertGroupWorkflow:
     except request.RequestError:
       return False
 
-  def _TryBisect(self, update):
+  def _TryBisect(self, update, new_anomalies):
     if (update.issue
         and 'Chromeperf-Auto-BisectOptOut' in update.issue.get('labels')):
       return
 
     try:
-      regressions, _ = self._GetRegressions(update.anomalies)
+      regressions, _ = self._GetRegressions(new_anomalies)
       regression = self._SelectAutoBisectRegression(regressions)
 
       # Do nothing if none of the regressions should be auto-bisected.
