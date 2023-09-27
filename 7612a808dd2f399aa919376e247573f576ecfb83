@@ -39,6 +39,30 @@
       },
       "revId": "7612a808dd2f399aa919376e247573f576ecfb83",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a523c91e_c8a29612",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-27T23:24:38Z",
+      "side": 1,
+      "message": "I see. Relaxed to allow space and also allow empty tag. E.g., if user enter \u0027asd,\u0027, the \"\" after comma will not trigger alert.",
+      "parentUuid": "e07e4d11_d94e54f2",
+      "range": {
+        "startLine": 716,
+        "startChar": 43,
+        "endLine": 716,
+        "endChar": 79
+      },
+      "revId": "7612a808dd2f399aa919376e247573f576ecfb83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
