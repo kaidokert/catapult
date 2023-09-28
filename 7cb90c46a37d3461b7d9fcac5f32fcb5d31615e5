@@ -146,6 +146,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2b3abb_6d14ee62",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-28T21:31:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85088175_b04ad1a6",
+      "range": {
+        "startLine": 454,
+        "startChar": 4,
+        "endLine": 454,
+        "endChar": 44
+      },
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9b8c58f_51f2d8bc",
@@ -169,6 +193,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b9775a3_e5b0ab9b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-28T21:31:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d9b8c58f_51f2d8bc",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 67
+      },
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fececf8a_b902132c",
@@ -182,6 +230,30 @@
       "writtenOn": "2023-09-28T21:15:27Z",
       "side": 1,
       "message": "Thank you for this comment. Such clarifications are much under appreciated 😊",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 89
+      },
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ee8b1e_c0c15cb7",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-28T21:31:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fececf8a_b902132c",
       "range": {
         "startLine": 99,
         "startChar": 2,
