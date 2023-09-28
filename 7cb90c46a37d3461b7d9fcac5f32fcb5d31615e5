@@ -50,6 +50,24 @@
       "message": "Question before digging deep: if we delete the anomaly, what will happen in the next anomaly detection when it looks at the change point? Does it only look at the most recent one data point, or it will look at a few? I want to know whether it will detect the deleted anomaly again.",
       "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f44a7f4_2b59d6cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-28T20:29:35Z",
+      "side": 1,
+      "message": "if it detects the deleted anomaly again, it will delete it again",
+      "parentUuid": "a49c309c_af7faf73",
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
