@@ -16,6 +16,23 @@
       "message": "I\u0027ll update the CL description to match the latest patcheset, but only after lgtm",
       "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "623b32da_50e1664f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-28T18:40:10Z",
+      "side": 1,
+      "message": "Unfriendly ping. I would like to land this and move on.",
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
