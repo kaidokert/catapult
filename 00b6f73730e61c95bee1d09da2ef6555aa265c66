@@ -16,6 +16,23 @@
       "message": "PTAL - here is the \"don\u0027t even save the anomalies in the first place\" approach. Thanks Wenbin, for convincing me to go back and try that approach again instead of complicating alert_group_workflow even further.",
       "revId": "00b6f73730e61c95bee1d09da2ef6555aa265c66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7af7b82e_2fe0d9d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-09-28T21:44:27Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "00b6f73730e61c95bee1d09da2ef6555aa265c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
