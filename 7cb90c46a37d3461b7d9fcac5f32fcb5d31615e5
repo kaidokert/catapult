@@ -85,6 +85,24 @@
       "message": "Ashwin: I\u0027m going to go back and try to make this work by not creating the anomaly entities in the first place in find_anomalies.py - that should make the rest of issues around graph_data.Row indexes go away too.  Will ping when that\u0027s ready to review (or I learn some new cursed reason that even that approach won\u0027t work...)",
       "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fa68691_0b5f9291",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-09-28T20:57:35Z",
+      "side": 1,
+      "message": "correction: this update would *not* obviate the graph_data.Row index concern - we\u0027d still need to store the swarming_bot_id value on graph_data.Row in order to ignore anomalies in find_anomalies.py.",
+      "parentUuid": "1159f75b_30a2b10c",
+      "revId": "7cb90c46a37d3461b7d9fcac5f32fcb5d31615e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
