@@ -3224,6 +3224,22 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
           contents,
           self.device.ReadFile('/read/this/big/test/file', force_pull=True))
 
+  def testReadFile_targetUser(self):
+    with self.patch_call(self.call.device.target_user, return_value=10):
+      with self.assertCalls(
+          (self.call.device.ResolveSpecialPath('/sdcard/file'),
+           '/data/media/10/file'),
+          (self.call.device.NeedsSU(), True),
+          (self.call.device.FileSize(
+              '/data/media/10/file', as_root=True), 256),
+          (self.call.device.RunShellCommand(
+              ['cat', '/data/media/10/file'],
+              as_root=True,
+              check_return=True), ['this is a test file', 'read with su'])):
+            self.assertEqual(
+                'this is a test file\nread with su\n',
+                self.device.ReadFile('/sdcard/file'))
+
 
 class DeviceUtilsWriteFileTest(DeviceUtilsTest):
   def testWriteFileWithPush_success(self):
@@ -3269,6 +3285,22 @@ class DeviceUtilsWriteFileTest(DeviceUtilsTest):
             as_root=True,
             check_return=True)):
       self.device.WriteFile('/path/to/device/file', contents, as_root=True)
+
+  def testWriteFile_withPushAndTargetUser(self):
+    contents = 'some large contents ' * 26  # 20 * 26 = 520 chars
+    with self.patch_call(self.call.device.target_user, return_value=10):
+      with self.assertCalls(
+          (self.call.device.ResolveSpecialPath('/sdcard/file'),
+           '/data/media/10/file'),
+          (self.call.device.NeedsSU(), True),
+          (mock.call.devil.android.device_temp_file.DeviceTempFile(self.adb),
+           MockTempFile('/data/local/tmp/on.device')),
+          self.call.device._WriteFileWithPush('/data/local/tmp/on.device', contents),
+          self.call.device.RunShellCommand(
+              ['cp', '/data/local/tmp/on.device', '/data/media/10/file'],
+              as_root=True,
+              check_return=True)):
+        self.device.WriteFile('/sdcard/file', contents)
 
   def testWriteFile_withEcho(self):
     with self.assertCall(
