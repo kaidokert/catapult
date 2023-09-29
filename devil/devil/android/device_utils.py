@@ -113,6 +113,13 @@ _UNZIP_AND_CHMOD_SCRIPT = """
   done)
 """
 
+_MKDIR_SCRIPT = """
+  for dir in {dirs}
+  do
+    mkdir -p "$dir"
+  done
+"""
+
 # Not all permissions can be set.
 _PERMISSIONS_DENYLIST_RE = re.compile('|'.join(
     fnmatch.translate(p) for p in [
@@ -2437,10 +2444,17 @@ class DeviceUtils(object):
 
     if changed_files:
       if missing_dirs:
-        self.RunShellCommand(['mkdir', '-p'] + list(missing_dirs),
-                             check_return=True,
-                             run_as=run_as,
-                             as_root=as_root)
+        # Read dirs from temp file to avoid potential errors like
+        # "Argument list too long" (crbug.com/1174331) when the list
+        # is too long.
+        with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
+          script_contents = _MKDIR_SCRIPT.format(dirs=' '.join(
+              cmd_helper.SingleQuote(d) for d in missing_dirs))
+          self.WriteFile(script.name, script_contents)
+          self.RunShellCommand(['source', script.name],
+                               check_return=True,
+                               run_as=run_as,
+                               as_root=as_root)
       self._PushFilesImpl(host_device_tuples, changed_files)
     cache_commit_func()
 
@@ -2759,12 +2773,11 @@ class DeviceUtils(object):
           # Read dirs from temp file to avoid potential errors like
           # "Argument list too long" (crbug.com/1174331) when the list
           # is too long.
-          self.WriteFile(
-              script.name,
-              _UNZIP_AND_CHMOD_SCRIPT.format(bin_dir=install_commands.BIN_DIR,
-                                             zip_file=device_temp.name,
-                                             dirs=' '.join(dirs)))
-
+          script_contents = _UNZIP_AND_CHMOD_SCRIPT.format(
+              bin_dir=install_commands.BIN_DIR,
+              zip_file=device_temp.name,
+              dirs=' '.join(cmd_helper.SingleQuote(d) for d in dirs))
+          self.WriteFile(script.name, script_contents)
           self.RunShellCommand(['source', script.name],
                                check_return=True,
                                as_root=True)
