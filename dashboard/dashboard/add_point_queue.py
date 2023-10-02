@@ -341,6 +341,7 @@ def _GetOrCreateTest(name, parent_test_path, properties):
       if direction != existing.improvement_direction:
         properties['improvement_direction'] = direction
 
+  print('Before:', existing)
   # Go through the list of general properties and update if necessary.
   for prop, value in list(properties.items()):
     if (hasattr(existing, prop) and value is not None
@@ -348,6 +349,7 @@ def _GetOrCreateTest(name, parent_test_path, properties):
       setattr(existing, prop, value)
       properties_changed = True
 
+  print('After:', existing)
   if properties_changed:
     existing.UpdateSheriff()
     existing.put()
