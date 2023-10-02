@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231ff79b_ad8cf23a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-02T20:56:02Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "a3db22934f778e857154f60e14e7498b23820d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "857ae82d_ca52d23e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-02T20:56:02Z",
+      "side": 1,
+      "message": "nit: \u0027any\u0027?",
+      "range": {
+        "startLine": 1005,
+        "startChar": 35,
+        "endLine": 1005,
+        "endChar": 38
+      },
+      "revId": "a3db22934f778e857154f60e14e7498b23820d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
