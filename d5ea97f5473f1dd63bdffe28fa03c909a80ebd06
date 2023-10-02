@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a42ecd_9fa89b7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-02T20:04:31Z",
+      "side": 1,
+      "message": "Looks good in general. Recommend adding some context in the commit message behind why this logging was required?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 72
+      },
+      "revId": "d5ea97f5473f1dd63bdffe28fa03c909a80ebd06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
