@@ -22,14 +22,16 @@ from flask import request, make_response
 
 _TASK_QUEUE_NAME = 'skia-perf-upload-queue'
 
-PUBLIC_BUCKET_NAME = 'chrome-perf-public'
-INTERNAL_BUCKET_NAME = 'chrome-perf-non-public'
+CHROME_PUBLIC_BUCKET_NAME = 'chrome-perf-public'
+CHROME_INTERNAL_BUCKET_NAME = 'chrome-perf-non-public'
+WEBRTC_PUBLIC_BUCKET_NAME = 'webrtc-perf-public'
+WEBRTC_INTERNAL_BUCKET_NAME = 'webrtc-perf-non-public'
 
 
 @cloud_metric.APIMetric("chromeperf", "/skia_perf_upload")
 def SkiaPerfUploadPost():
   """
-  Upload a list of ChromePerf Rows to Skia Perf.
+  Upload a list of ChromePerf or WebRTC Rows to Skia Perf.
 
   Args:
     Rows: A list of urlsafe encoded Rows.
@@ -43,13 +45,12 @@ def SkiaPerfUploadPost():
   for row in rows:
     test_path = utils.TestPath(row.parent_test)
     try:
-      if hasattr(row, 'r_commit_pos'):
+      if hasattr(row, 'r_commit_pos') or hasattr(row, 'r_webrtc_git'):
         UploadRow(row)
         cloud_metric.PublishSkiaUploadResult(test_path, '', 'Completed')
       else:
-        cloud_metric.PublishSkiaUploadResult(test_path,
-                                             'Row has no r_commit_pos.',
-                                             'Failed')
+        cloud_metric.PublishSkiaUploadResult(
+            test_path, 'Row has no supported revision value.', 'Failed')
     except Exception as e:  # pylint: disable=broad-except
       logging.info('Failed to upload Row with Test: %s. Error: %s.', test_path,
                    str(e))
@@ -60,15 +61,15 @@ def SkiaPerfUploadPost():
 
 def UploadRow(row):
   """
-  Converts a Row entity into Skia Perf format and uploads it to Chromeperf GCS
-  Bucket.
+  Converts a Row entity into Skia Perf format and uploads it to appropriate GCS
+  Bucket. Currently supports both internal and external instances for Chromeperf and
+  WebRTC data.
 
   Documentation on the Skia Perf format can be found here:
   https://skia.googlesource.com/buildbot/+/refs/heads/main/perf/FORMAT.md
 
-  If the Row is from an internal test, it's uploaded to the
-  'chrome-perf-non-public' public. Otherwise, it's uploaded to the
-  'chrome-perf-public' bucket.
+  If the Row is from an internal test, it's uploaded to the internal bucket.
+  Otherwise, it's uploaded to both the internal and external bucket.
 
   Take for example a Row on commit position 12345 on the following public test:
   'ChromiumAndroid/android-cronet-arm-rel/resource_sizes (CronetSample.apk)/InstallSize/APK size'.
@@ -81,10 +82,9 @@ def UploadRow(row):
     row: A Row entity.
   """
 
-  # Currently, we only support rows with a Chromium commit position, as it's
-  # the only format our Skia Perf instance can support.
-  if not hasattr(row, 'r_commit_pos'):
-    raise RuntimeError('Row has no Chromium commit position')
+  # Currently, we only support rows with a Chromium commit position or WebRTC Git Hash.
+  if not hasattr(row, 'r_commit_pos') or not hasattr(row, 'r_webrtc_git'):
+    raise RuntimeError('Row has no supported revision')
 
   test_path = utils.TestPath(row.parent_test)
   test_key = utils.TestKey(test_path)
@@ -94,32 +94,57 @@ def UploadRow(row):
 
   internal_only = test.internal_only
 
-  bucket_name = INTERNAL_BUCKET_NAME if internal_only else PUBLIC_BUCKET_NAME
+  if (test.master_name
+      in ['WebRTCPerf', 'WebRTCCorpInternal', 'ExperimentalWebRTCPerf']):
+    internal_bucket_name = WEBRTC_INTERNAL_BUCKET_NAME
+    external_bucket_name = WEBRTC_PUBLIC_BUCKET_NAME
+  else:
+    internal_bucket_name = CHROME_INTERNAL_BUCKET_NAME
+    external_bucket_name = CHROME_PUBLIC_BUCKET_NAME
 
   filename = '%s/%s/%s.json' % (test_path, str(row.r_commit_pos), time.time())
-  filename = '/%s/perf/%s/%s' % (
-      bucket_name, datetime.datetime.now().strftime('%Y/%m/%d/%H'), filename)
+  internal_filename = '/%s/perf/%s/%s' % (
+      internal_bucket_name, datetime.datetime.now().strftime('%Y/%m/%d/%H'),
+      filename)
+
+  if not internal_only:
+    external_filename = '/%s/perf/%s/%s' % (
+        external_bucket_name, datetime.datetime.now().strftime('%Y/%m/%d/%H'),
+        filename)
+    gcs_file = cloudstorage.open(
+        external_filename,
+        'w',
+        content_type='application/json',
+        retry_params=cloudstorage.RetryParams(backoff_factor=1.1))
+
+    gcs_file.write(json.dumps(skia_data))
+    gcs_file.close()
+
+    logging.info('Uploaded row to %s', external_filename)
 
   gcs_file = cloudstorage.open(
-      filename,
+      internal_filename,
       'w',
       content_type='application/json',
       retry_params=cloudstorage.RetryParams(backoff_factor=1.1))
 
   gcs_file.write(json.dumps(skia_data))
-
-  logging.info('Uploaded row to %s', filename)
-
   gcs_file.close()
+
+  logging.info('Uploaded row to %s', internal_filename)
 
 
 def _ConvertRowToSkiaPerf(row, test):
 
-  commit_position = row.r_commit_pos
+  if (test.master_name
+      in ['WebRTCPerf', 'WebRTCCorpInternal', 'ExperimentalWebRTCPerf']):
+    git_hash = row.r_webrtc_git
+  else:
+    git_hash = 'CP:%s' % str(row.r_commit_pos)
 
   skia_data = {
       'version': 1,
-      'git_hash': 'CP:%s' % str(commit_position),
+      'git_hash': git_hash,
       'key': {
           'master': test.master_name,
           'bot': test.bot_name,
