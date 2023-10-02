@@ -49,3 +49,68 @@ Does all the work of the Execution. When the work is complete, it should call `s
 ### Sharing information between Executions
 
 Sometimes, a Quest's Executions don't want to run completely independently, but rather require some coordination between them. For example, maybe we want the first *Test* Execution to pick a device, and all following *Test* Executions to run on the same device. Any shared information can be stored on the Quest object and passed to the Executions via `Quest.Start()`.
+
+# Commentary on the current state of Quest api usage
+At request time, `pinpoint.handlers.new._GenerateQuests` will use the `quests` and/or `target` request parameters to choose concrete implementations from the following class hierarchy, to create an ordered list of one or more parameterized Quests to execute with a new `pinpoint.models.job.Job` entity:
+- `quest.Quest`
+  - `run_test.RunTest` "This is the only Quest/Execution where the Execution has a reference back to modify the Quest."
+    - `run_instrumentation_test.RunInstrumentationTest` "Quest for running an Android instrumentation test in Swarming."
+    - `run_browser_test.RunBrowserTest` "Quest for running a browser test in Swarming."
+    - `run_webrtc_test.RunWebRtcTest` "Quest for running WebRTC perf tests in Swarming."
+    - `run_performance_test.RunPerformanceTest` "Quest and Execution for running a performance test in Swarming."
+      - `run_gtest.RunGTest` "Quest for running a GTest in Swarming."
+      - `run_telemetry_test.RunTelemetryTest` "Quest for running a Telemetry benchmark in Swarming."
+        - `run_lacros_telemetry_test.RunLacrosTelemetryTest` "Quest for running Lacros perf tests in Swarming."
+        - `run_vr_telemetry_test.RunVrTelemetryTest` "Quest for running a VR Telemetry benchmark in Swarming."
+        - `run_web_engine_telemetry_test.RunWebEngineTelemetryTest` "Quest for running Fuchsia perf tests in Swarming."
+  - `find_isolate.FindIsolate`
+  - `read_value.ReadValue`
+  - `read_value.ReadHistogramsJsonValue` [deprecated]
+  - `read_value.ReadGraphJsonValue` [deprecated]
+
+[`pinpoint.handlers.new._GenerateQuests`](../../handlers/new.py) contains a lot of embedded knowledge about dependencies between the quest types, and how to map user-specified `target` values to sequences of `quest.Quest`s.  This logic is implemented with a block of nested condionals and a mix of named string sets and hard-coded, anonymous string literals.
+
+Unrolling it all out into a mape of which quests get run in what order for the various `target`s, we get:
+
+- `REGULAR_TELEMETRY_TESTS`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunTelemetryTest`
+  1. `quest_module.ReadValue`
+- `REGULAR_TELEMETRY_TESTS_WITH_FALLBACKS`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunTelemetryTest`
+  1. `quest_module.ReadValue`
+- `'performance_test_suite_eve' or 'performance_test_suite_octopus'` in `target`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunLacrosTelemetryTest`
+  1. `quest_module.ReadValue`
+- `'performance_web_engine_test_suite'` in `target`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunWebEngineTelemetryTest`
+  1. `quest_module.ReadValue`
+- `'vr_perf_tests'`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunVrTelemetryTest`
+  1. `quest_module.ReadValue`
+- `'browser_test' in target`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunBrowserTest`
+  1. `quest_module.ReadValue`
+- `'instrumentation_test' in target`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunInstrumentationTest`
+  1. `quest_module.ReadValue`
+- `'webrtc_perf_tests' in target`:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunWebRtcTest`
+  1. `quest_module.ReadValue`
+- everything else:
+  1. `quest_module.FindIsolate`
+  1. `quest_module.RunGTest`
+  1. `quest_module.ReadValue`
+
+A distinct pattern should be obvious at this point. Always three quests and the fist and last quests are `quest_module.FindIsolate` and `quest_module.ReadValue`, respectively. The only real variaton between these cases is the middle quest, which always runs a test of some sort. 5 of the 9 different cases run a test via `quest_module.RunTelemetryTest` or one of its subclasses, so even that level of variation is perhaps overstated here.
+
+Whatever benefits were originally intended with the general purpose Quest API, in practice they don't seem to have materialized. We have a general-pupose framework that is used in one specific way.
+
+I would suggest that any refactoring or migration work involving the Quest API seriously consider starting from scratch instead of directly porting or transliterating the Quest API use cases.
