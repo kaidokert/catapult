@@ -29,7 +29,7 @@ class SkiaBridgeServiceTest(unittest.TestCase):
   @mock.patch('dashboard.services.skia_bridge_service.SkiaServiceClient'
               '.SendSkiaBridgeRequest')
   def testSendRow(self, request_mock):
-    request_mock.return_value = {'status':'200'}, 'Ok'
+    request_mock.return_value = {'status': '200'}, 'Ok'
     rows = _CreateRows(5)
     parent_test = graph_data.TestMetadata(id='Chromeperf/skia/test')
     skia_client = skia_bridge_service.SkiaServiceClient()
