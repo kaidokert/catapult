@@ -29,7 +29,7 @@ class SkiaBridgeServiceTest(unittest.TestCase):
   @mock.patch('dashboard.services.skia_bridge_service.SkiaServiceClient'
               '.SendSkiaBridgeRequest')
   def testSendRow(self, request_mock):
-    request_mock.return_value = {'status':'200'}, 'Ok'
+    request_mock.return_value = {'status': '200'}, 'Ok'
     rows = _CreateRows(5)
     parent_test = graph_data.TestMetadata(id='Chromeperf/skia/test')
     skia_client = skia_bridge_service.SkiaServiceClient()
@@ -60,3 +60,16 @@ class SkiaBridgeServiceTest(unittest.TestCase):
     skia_client = skia_bridge_service.SkiaServiceClient()
     self.assertRaises(ValueError,
                       skia_client.AddRowsForUpload, rows, parent_test)
+
+  @mock.patch('dashboard.services.skia_bridge_service.SkiaServiceClient'
+              '.SendSkiaBridgeRequest')
+  def testWebRTCRow(self, request_mock):
+    request_mock.return_value = {'status': '200'}, 'Ok'
+    rows = _CreateRows(1)
+    delattr(rows[0], 'r_commit_pos')
+    rows[0].r_webrtc_git = 'abc'
+    parent_test = graph_data.TestMetadata(id='WebRTCPerf/skia/test')
+    skia_client = skia_bridge_service.SkiaServiceClient()
+    skia_client.AddRowsForUpload(rows, parent_test)
+    skia_client.SendRowsToSkiaBridge()
+    self.assertEqual(1, request_mock.call_count)
