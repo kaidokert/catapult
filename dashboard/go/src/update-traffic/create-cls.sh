@@ -7,11 +7,6 @@
 # Exit early if any of the commands fails
 set -e
 
-if [[ -n $(git status -s) ]]; then
-  echo 'There are uncommitted changes, please stash them before proceeding.'
-  exit 1
-fi
-
 if [[ $# -ne 1 ]] ; then
   echo "specify a deployment umbrella issue ID on the command line, e.g.:"
   echo "$0 <issue id>"
