@@ -84,18 +84,20 @@ class SkiaServiceClient:
     if rows is None or len(rows) == 0:
       raise ValueError('Rows cannot be empty')
 
+    if parent_test is None:
+      raise ValueError('Parent test cannot be None')
+
     # Take only the rows that have the r_commit_pos attribute set
     filtered_rows = []
     for row in rows:
-      if hasattr(row, 'r_commit_pos'):
+      if (hasattr(row, 'r_commit_pos') or
+          (hasattr(row, 'r_webrtc_git') and parent_test.master_name
+           in ['WebRTCPerf', 'WebRTCCorpInternal', 'ExperimentalWebRTCPerf'])):
         filtered_rows.append(row)
 
     if len(filtered_rows) == 0:
-      logging.info('No rows found with r_commit_pos attribute')
+      logging.info('No rows found with r_commit_pos or r_webrtc_git attribute')
       return
-
-    if parent_test is None:
-      raise ValueError('Parent test cannot be None')
 
     row_data = [self._ConvertRowForSkiaUpload(row, parent_test)
                 for row in filtered_rows]
