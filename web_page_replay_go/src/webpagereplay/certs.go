@@ -47,7 +47,7 @@ func getRootCert(root tls.Certificate) (*x509.Certificate, error) {
 	if err != nil {
 		return nil, err
 	}
-	root_cert.IsCA = true
+	root_cert.IsCA = false
 	root_cert.BasicConstraintsValid = true
 	return root_cert, nil
 }

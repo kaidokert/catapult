@@ -213,16 +213,28 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	// Make the external request.
 	// If RoundTrip fails, convert the response to a 500.
 	resp, err := proxy.tr.RoundTrip(req)
-	if err != nil {
-		logf("RoundTrip failed: %v", err)
-		resp = &http.Response{
-			Status:     http.StatusText(errStatus),
-			StatusCode: errStatus,
-			Proto:      req.Proto,
-			ProtoMajor: req.ProtoMajor,
-			ProtoMinor: req.ProtoMinor,
-			Body:       ioutil.NopCloser(bytes.NewReader(nil)),
+	retry := 0
+	for retry = 0; retry <= 10; retry++ {
+		if err == nil {
+			break
 		}
+		resp, err = proxy.tr.RoundTrip(req)
+		time.Sleep(100 * time.Microsecond)
+	}
+	if err != nil {
+		logf("RoundTrip failed every time: %v", err)
+			resp = &http.Response{
+				Status:     http.StatusText(errStatus),
+				StatusCode: errStatus,
+				Proto:      req.Proto,
+				ProtoMajor: req.ProtoMajor,
+				ProtoMinor: req.ProtoMinor,
+				Body:       ioutil.NopCloser(bytes.NewReader(nil)),
+		}
+	} else if retry > 0 {
+	    logf("RoundTrip failed %v time(s)", retry)
+	} else {
+		logf("No issues at all!")
 	}
 
 	// Copy the entire response body.
