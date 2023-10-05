@@ -21,7 +21,7 @@ const errStatus = http.StatusInternalServerError
 
 func makeLogger(req *http.Request, quietMode bool) func(msg string, args ...interface{}) {
 	if quietMode {
-		return func(string, ...interface{}) { }
+		return func(string, ...interface{}) {}
 	}
 	prefix := fmt.Sprintf("ServeHTTP(%s): ", req.URL)
 	return func(msg string, args ...interface{}) {
@@ -67,7 +67,7 @@ func updateDates(h http.Header, now time.Time) {
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
-	return &replayingProxy{a, scheme, transformers, quietMode }
+	return &replayingProxy{a, scheme, transformers, quietMode}
 }
 
 type replayingProxy struct {
@@ -211,8 +211,17 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	}
 
 	// Make the external request.
-	// If RoundTrip fails, convert the response to a 500.
+	// If RoundTrip fails after 10 retries, convert the response to a 500.
 	resp, err := proxy.tr.RoundTrip(req)
+	for retry := 1; retry <= 10; retry++ {
+		if err == nil {
+			break
+		}
+		logf("RoundTrip failed, retry: %v\n", retry)
+		resp, err = proxy.tr.RoundTrip(req)
+		time.Sleep(150 * time.Microsecond)
+	}
+
 	if err != nil {
 		logf("RoundTrip failed: %v", err)
 		resp = &http.Response{
