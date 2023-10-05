@@ -41,14 +41,21 @@ def InstallCommands(device):
         '%s not found. Please build chromium_commands.' %
         chromium_commands_jar_path)
 
+  as_root = False
+  if hasattr(device, 'target_user'):
+    as_root = device.target_user is not None
+
   device.RunShellCommand(['mkdir', '-p', BIN_DIR, _FRAMEWORK_DIR],
-                         check_return=True)
+                         check_return=True,
+                         as_root=as_root)
   for command, main_class in _COMMANDS.items():
     shell_command = _SHELL_COMMAND_FORMAT % (file_system.TEST_EXECUTABLE_DIR,
                                              main_class)
     shell_file = '%s/%s' % (BIN_DIR, command)
-    device.WriteFile(shell_file, shell_command)
-    device.RunShellCommand(['chmod', '755', shell_file], check_return=True)
+    device.WriteFile(shell_file, shell_command, as_root=as_root)
+    device.RunShellCommand(['chmod', '755', shell_file],
+                           check_return=True,
+                           as_root=as_root)
 
   device.adb.Push(chromium_commands_jar_path,
                   '%s/chromium_commands.jar' % _FRAMEWORK_DIR)

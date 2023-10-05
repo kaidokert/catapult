@@ -2421,9 +2421,11 @@ class DeviceUtils(object):
       CommandTimeoutError on timeout.
       DeviceUnreachableError on missing device.
     """
+    # If target_user is set, resolve the path and force to run as root.
     if self.target_user is not None:
       host_device_tuples = [(h, self.ResolveSpecialPath(d))
                             for h, d in host_device_tuples]
+      as_root = True
 
     # TODO(crbug.com/1005504): Experiment with this on physical devices after
     # upgrading devil's default adb beyond 1.0.39.
@@ -2799,7 +2801,7 @@ class DeviceUtils(object):
     """Checks whether the given path(s) exists on the device.
 
     Args:
-      device_path: A string containing the absolute path to the file on the
+      device_paths: A string containing the absolute path to the file on the
                    device, or an iterable of paths to check.
       as_root: Whether root permissions should be use to check for the existence
                of the given path(s).
@@ -2818,6 +2820,12 @@ class DeviceUtils(object):
       paths = (paths, )
     if not paths:
       return True
+
+    # If target_user is set, resolve the path and force to run as root.
+    if self.target_user is not None:
+      paths = [self.ResolveSpecialPath(p) for p in paths]
+      as_root = True
+
     cmd = ['test', '-e', paths[0]]
     for p in paths[1:]:
       cmd.extend(['-a', '-e', p])
@@ -2834,7 +2842,7 @@ class DeviceUtils(object):
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def RemovePath(self,
-                 device_path,
+                 device_paths,
                  force=False,
                  recursive=False,
                  as_root=False,
@@ -2844,7 +2852,7 @@ class DeviceUtils(object):
     """Removes the given path(s) from the device.
 
     Args:
-      device_path: A string containing the absolute path to the file on the
+      device_paths: A string containing the absolute path to the file on the
                    device, or an iterable of paths to check.
       force: Whether to remove the path(s) with force (-f).
       recursive: Whether to remove any directories in the path(s) recursively.
@@ -2868,16 +2876,21 @@ class DeviceUtils(object):
         # If it couldn't be moved, just try rm'ing the original path instead.
         return path
 
+    paths = device_paths
+    if isinstance(paths, six.string_types):
+      paths = (paths, )
+
+    # If target_user is set, resolve the path and force to run as root.
+    if self.target_user is not None:
+      paths = [self.ResolveSpecialPath(p) for p in paths]
+      as_root = True
+
     args = ['rm']
     if force:
       args.append('-f')
     if recursive:
       args.append('-r')
-    if isinstance(device_path, six.string_types):
-      args.append(device_path if not rename else _RenamePath(device_path))
-    else:
-      args.extend(
-          device_path if not rename else [_RenamePath(p) for p in device_path])
+    args.extend(paths if not rename else [_RenamePath(p) for p in paths])
     self.RunShellCommand(args, as_root=as_root, check_return=True)
 
   @contextlib.contextmanager
@@ -2926,6 +2939,12 @@ class DeviceUtils(object):
     dirname = os.path.dirname(host_path)
     if dirname and not os.path.exists(dirname):
       os.makedirs(dirname)
+
+    # If target_user is set, resolve the path and force to run as root.
+    if self.target_user is not None:
+      device_path = self.ResolveSpecialPath(device_path)
+      as_root = True
+
     if as_root and self.NeedsSU():
       if not self.PathExists(device_path, as_root=True):
         raise device_errors.CommandFailedError(
@@ -2993,6 +3012,11 @@ class DeviceUtils(object):
     def get_size(path):
       return self.FileSize(path, as_root=as_root)
 
+    # If target_user is set, resolve the path and force to run as root.
+    if self.target_user is not None:
+      device_path = self.ResolveSpecialPath(device_path)
+      as_root = True
+
     # Reading by pulling is faster than first getting the file size and cat-ing,
     # so only read by cat when we need root.
     if as_root and self.NeedsSU():
@@ -3042,6 +3066,12 @@ class DeviceUtils(object):
     """
     logger.debug('The following contents will be written to the file %s: %s',
                  device_path, contents)
+
+    # If target_user is set, resolve the path and force to run as root.
+    if self.target_user is not None:
+      device_path = self.ResolveSpecialPath(device_path)
+      as_root = True
+
     if not force_push and len(contents) < self._MAX_ADB_COMMAND_LENGTH:
       # If the contents are small, for efficieny we write the contents with
       # a shell command rather than pushing a file.
@@ -4622,12 +4652,15 @@ class DeviceUtils(object):
       device_path: Base path on device to place .nomedia file.
     """
 
+    as_root = False
+    # If target_user is set, resolve the path and force to run as root.
     if self.target_user is not None:
       device_path = self.ResolveSpecialPath(device_path)
+      as_root = True
 
     self.RunShellCommand(['mkdir', '-p', device_path],
                          check_return=True,
-                         as_root=self.target_user is not None)
+                         as_root=as_root)
     self.WriteFile('%s/.nomedia' % device_path,
                    'https://crbug.com/796640',
-                   as_root=self.target_user is not None)
+                   as_root=as_root)
