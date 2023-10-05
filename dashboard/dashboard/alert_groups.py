@@ -196,6 +196,13 @@ def ProcessAlertGroups(group_type: int):
   )
 
 
+def AlertGroupQualityGet(group_id):
+  group_key = ndb.Key('AlertGroup', group_id)
+  group = group_key.get()
+  workflow = alert_group_workflow.AlertGroupWorkflow(group)
+  return workflow.RunAlertGroupQualityCheck()
+
+
 @cloud_metric.APIMetric("chromeperf", "/alert_groups_update")
 def AlertGroupsGet():
   """Create and Update AlertGroups.

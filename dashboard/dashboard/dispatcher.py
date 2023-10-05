@@ -101,6 +101,11 @@ def AlertGroupsGet():
   return alert_groups.AlertGroupsGet()
 
 
+@flask_app.route('/alert_group_quality/<group_id>')
+def AlertGroupQualityGet(group_id):
+  return alert_groups.AlertGroupQualityGet(group_id)
+
+
 @flask_app.route('/alerts', methods=['GET'])
 def AlertsHandlerGet():
   return alerts.AlertsHandlerGet()

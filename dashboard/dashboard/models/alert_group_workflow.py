@@ -301,6 +301,73 @@ class AlertGroupWorkflow:
         canonical_group = self._FindCanonicalGroup(issue)
     return self.GroupUpdate(now, anomalies, issue, canonical_group)
 
+  def RunAlertGroupQualityCheck(self):
+    """Scan the anomalies if the group have a culprit found
+
+    We want to have quantify how the current grouping algorithm works. By
+    looking at those groups with culprit found, we can see how many anomalies
+    have the culprit revision within their revision range. If the culprit is
+    outside an anomaly's revision range, that anomaly is grouped incorrectly.
+    Steps:
+      1. look for the bisection id of a group
+      2. look for the job state of the bisection
+      3. find the difference in the job state and get the commit position
+      4. loop on the anomalies to whether the commit position is within
+         the range.
+    """
+    if self._group.status != self._group.Status.bisected:
+      logging.debug('[GroupingQuality] Skipping for group status. %s %s',
+                    self._group.key, self._group.status)
+      return 'Skipped'
+
+    job_ids = self._group.bisection_ids
+    logging.debug('[GroupingQuality] Bisect IDs for group %s: %s',
+                  self._group.key, job_ids)
+    out_of_range_found = False
+    for job_id in job_ids:
+      logging.debug('[GroupingQuality] Checking %s for group %s.', job_id,
+                    self._group.key)
+      job_key = ndb.Key('Job', int(job_id, 16))
+      bisect_job = job_key.get()
+      diffs = list(bisect_job.state.Differences())
+      if len(diffs) != 1:
+        logging.debug(
+            '[GroupingQuality] Bisect (%s) of group %s finds %s diffs. Skipping.',
+            job_id, self._group.key, len(diffs))
+        continue
+      change_b = diffs[0][1]
+      if len(change_b.commits) != 1:
+        logging.debug(
+            '[GroupingQuality] Commit cound of the change %s is not 1. Skipping.',
+            change_b.AsDict())
+        continue
+      commit = change_b.commits[0].AsDict()
+      commit_position = commit.get('commit_position', None)
+      if not commit_position:
+        logging.debug(
+            '[GroupingQuality] Cannot find commit position. Skipping.')
+        continue
+      logging.debug('[GroupingQuality] Found commit pos %s from job %s',
+                    commit_position, job_id)
+      anomalies = ndb.get_multi(self._group.anomalies)
+      logging.debug('[GroupingQuality] Anomlies %s are found in group %s',
+                    self._group.anomalies, self._group.key)
+      out_of_range_anomalies = []
+      for a in anomalies:
+        if a.start_revision > commit_position or a.end_revision < commit_position:
+          out_of_range_anomalies.append(a.key)
+      if out_of_range_anomalies:
+        out_of_range_found = True
+        message = (
+            '[GroupingQuality] The following anomalies are grouped in %s, '
+            'but their revision ranges have no overlaps with the culprit commit '
+            'potision %s, found in bisect job %s: %s')
+        logging.warning(message, self._group.key, commit_position, job_id,
+                        out_of_range_anomalies)
+    if out_of_range_found:
+      return '%s bad anomalies.' % len(out_of_range_anomalies)
+    return 'All good!'
+
   def Process(self, update=None):
     """Process the workflow.
 
@@ -318,6 +385,10 @@ class AlertGroupWorkflow:
     initialized."""
 
     logging.info('Processing workflow for group %s', self._group.key)
+    try:
+      self.RunAlertGroupQualityCheck()
+    except Exception as e:  # pylint: disable=broad-except
+      logging.warning('[GroupingQuality] Quality check failed: %s', str(e))
     update = update or self._PrepareGroupUpdate()
     logging.info('%d anomalies', len(update.anomalies))
 

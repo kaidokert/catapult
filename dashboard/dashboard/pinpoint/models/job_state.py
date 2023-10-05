@@ -266,7 +266,7 @@ class JobState:
       result = {
           'change': change.AsDict(),
       }
-      if 'INPUTS' not in options:
+      if options is None or 'INPUTS' not in options:
         result.update({
             'attempts': [
                 attempt.AsDict() for attempt in self._attempts[change]
@@ -283,7 +283,7 @@ class JobState:
 
       transformed_a, change_a = states.pop()
       transformed_b, change_b = Transform(change_b)
-      if 'INPUTS' not in options:
+      if options is None or 'INPUTS' not in options:
         comparison = self._Compare(change_a, change_b)
         transformed_a['comparisons']['next'] = comparison
         transformed_b['comparisons']['prev'] = comparison
