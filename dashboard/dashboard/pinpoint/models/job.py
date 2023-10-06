@@ -823,6 +823,17 @@ class Job(ndb.Model):
       values_b = result_values[change_b]
       bug_update_builder.AddDifference(change_b, values_a, values_b)
 
+    # Check whether the culprit change is within the ranges of the group.
+    logging.debug(
+        '[GroupingQuality] Getting grouping quality for %s on change %s.',
+        self.job_id, change_b.AsDict())
+    culprit_commit = change_b.commits[0].AsDict()
+    commit_position = culprit_commit.get('commit_position', None)
+    if commit_position:
+      resp = perf_issue_service_client.GetAlertGroupQuality(
+          self.job_id, commit_position)
+      logging.info('[GroupingQuality] Grouping quality result: %s.', resp)
+
     deferred.defer(
         job_bug_update.UpdatePostAndMergeDeferred,
         bug_update_builder,
