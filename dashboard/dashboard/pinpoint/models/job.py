@@ -823,6 +823,10 @@ class Job(ndb.Model):
       values_b = result_values[change_b]
       bug_update_builder.AddDifference(change_b, values_a, values_b)
 
+    # Check whether the culprit change is within the ranges of the group.
+    resp = perf_issue_service_client.GetAlertGroupQuality(self.job_id, change_b)
+    logging.info('[GroupingQuality] Grouping quality result: %s.', resp)
+
     deferred.defer(
         job_bug_update.UpdatePostAndMergeDeferred,
         bug_update_builder,
