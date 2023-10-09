@@ -2982,6 +2982,18 @@ class DeviceUtilsPathExistsTest(DeviceUtilsTest):
       self.assertFalse(
           self.device.PathExists('/root/path/exists', as_root=True))
 
+  def testPathExists_targetUser(self):
+    with self.patch_call(self.call.device.target_user, return_value=10):
+      with self.assertCalls(
+          (self.call.device.ResolveSpecialPath('/sdcard/path'),
+           '/data/media/10/path'), (self.call.device.RunShellCommand(
+               ['test', '-e', '/data/media/10/path'],
+               as_root=True,
+               check_return=True,
+               timeout=10,
+               retries=0), self.ShellError())):
+        self.assertFalse(self.device.PathExists('/sdcard/path'))
+
   def testFileExists_pathDoesntExist(self):
     with self.assertCall(
         self.call.device.RunShellCommand(
@@ -3028,6 +3040,16 @@ class DeviceUtilsRemovePathTest(DeviceUtilsTest):
                                          as_root=False,
                                          check_return=True), []):
       self.device.RemovePath(['eeny', 'meeny', 'miny', 'moe'])
+
+  def testRemovePath_targetUser(self):
+    with self.patch_call(self.call.device.target_user, return_value=10):
+      with self.assertCalls(
+          (self.call.device.ResolveSpecialPath('/sdcard/file'),
+           '/data/media/10/file'),
+          (self.call.device.RunShellCommand(['rm', '/data/media/10/file'],
+                                            as_root=True,
+                                            check_return=True), [])):
+        self.device.RemovePath('/sdcard/file')
 
 
 class DeviceUtilsPullFileTest(DeviceUtilsTest):
@@ -3078,6 +3100,25 @@ class DeviceUtilsPullFileTest(DeviceUtilsTest):
               '/data/app/test.file.does.not.exist',
               '/test/file/host/path',
               as_root=True)
+
+  def testPullFile_targetUser(self):
+    with mock.patch('os.path.exists', return_value=True):
+      with self.patch_call(self.call.device.target_user, return_value=10):
+        with self.assertCalls(
+            (self.call.device.ResolveSpecialPath('/sdcard/file'),
+             '/data/media/10/file'), (self.call.device.NeedsSU(), True),
+            (self.call.device.PathExists('/data/media/10/file',
+                                         as_root=True), True),
+            (mock.call.devil.android.device_temp_file.DeviceTempFile(
+                self.adb), MockTempFile('/data/local/tmp/on.device')),
+            self.call.device.RunShellCommand(
+                'SRC=/data/media/10/file DEST=/data/local/tmp/on.device;'
+                'cp "$SRC" "$DEST" && chmod 666 "$DEST"',
+                shell=True,
+                as_root=True,
+                check_return=True), (self.call.adb.Pull(
+                    '/data/local/tmp/on.device', '/test/file/host/path'))):
+          self.device.PullFile('/sdcard/file', '/test/file/host/path')
 
 
 class DeviceUtilsReadFileTest(DeviceUtilsTest):
@@ -3224,6 +3265,18 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
       self.assertEqual(
           contents,
           self.device.ReadFile('/read/this/big/test/file', force_pull=True))
+
+  def testReadFile_targetUser(self):
+    with self.patch_call(self.call.device.target_user, return_value=10):
+      with self.assertCalls(
+          (self.call.device.ResolveSpecialPath('/sdcard/file'),
+           '/data/media/10/file'), (self.call.device.NeedsSU(), True),
+          (self.call.device.FileSize('/data/media/10/file', as_root=True), 256),
+          (self.call.device.RunShellCommand(
+              ['cat', '/data/media/10/file'], as_root=True,
+              check_return=True), ['this is a test file', 'read with su'])):
+        self.assertEqual('this is a test file\nread with su\n',
+                         self.device.ReadFile('/sdcard/file'))
 
 
 class DeviceUtilsWriteFileTest(DeviceUtilsTest):
@@ -4745,14 +4798,14 @@ class DeviceUtilsPlaceNomediaFile(DeviceUtilsTest):
   def testPlaceNomediaFile_targetUser(self):
     with self.patch_call(self.call.device.target_user, return_value=10):
       with self.assertCalls(
-          (self.call.device.RunShellCommand(
-              ['mkdir', '-p', '/data/media/10/test_dir'],
-              check_return=True,
-              as_root=True)),
-          (self.call.device.WriteFile(
-              '/data/media/10/test_dir/.nomedia',
-              'https://crbug.com/796640',
-              as_root=True))):
+          (self.call.device.ResolveSpecialPath('/sdcard/test_dir'),
+           '/data/media/10/test_dir'), (self.call.device.RunShellCommand(
+               ['mkdir', '-p', '/data/media/10/test_dir'],
+               check_return=True,
+               as_root=True)),
+          (self.call.device.WriteFile('/data/media/10/test_dir/.nomedia',
+                                      'https://crbug.com/796640',
+                                      as_root=True))):
         self.device.PlaceNomediaFile('/sdcard/test_dir')
 
 
