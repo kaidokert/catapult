@@ -16,6 +16,57 @@
       "message": "PTAL.",
       "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f9001f6_05f381b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-09T18:05:17Z",
+      "side": 1,
+      "message": "Is there a bug for this issue? If there\u0027s more context it would help me. Sorry, trying to catch up on everything that\u0027s going on.",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5fbc5e_4adf67ca",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-09T18:05:17Z",
+      "side": 1,
+      "message": "Based on where this is located, we will only get the alert group quality for bisections that cannot be sandwiched (line 789). Is that intentional?",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "394d062c_20162c6b",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-09T18:05:17Z",
+      "side": 1,
+      "message": "Is it possible to unit test this with an old bisection job ID and use the commit position of that job\u0027s culprit?",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
