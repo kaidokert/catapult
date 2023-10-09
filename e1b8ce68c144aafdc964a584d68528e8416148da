@@ -54,6 +54,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c96cacd4_1c6d74c2",
+        "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-09T18:35:43Z",
+      "side": 1,
+      "message": "Add an error/warning log for this scenario",
+      "range": {
+        "startLine": 256,
+        "startChar": 2,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d54d0a8_b3e870d1",
+        "filename": "perf_issue_service/application/api/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-09T18:35:43Z",
+      "side": 1,
+      "message": "uncomment? 😊",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "394d062c_20162c6b",
         "filename": "perf_issue_service/models/alert_group.py",
         "patchSetId": 6
@@ -65,6 +111,75 @@
       "writtenOn": "2023-10-09T18:05:17Z",
       "side": 1,
       "message": "Is it possible to unit test this with an old bisection job ID and use the commit position of that job\u0027s culprit?",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc8061f_55aae3e0",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-09T18:35:43Z",
+      "side": 1,
+      "message": "Maybe make this check \"\u003d\" since it\u0027s a single job_id?",
+      "range": {
+        "startLine": 305,
+        "startChar": 30,
+        "endLine": 305,
+        "endChar": 38
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20de1fd0_c9075203",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-09T18:35:43Z",
+      "side": 1,
+      "message": "This is technically a client error. So maybe change to logging.debug instead?",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 339,
+        "endChar": 11
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3b1d5ca_23a60fcc",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-09T18:35:43Z",
+      "side": 1,
+      "message": "nit \"position\"",
+      "range": {
+        "startLine": 354,
+        "startChar": 11,
+        "endLine": 354,
+        "endChar": 19
+      },
       "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
