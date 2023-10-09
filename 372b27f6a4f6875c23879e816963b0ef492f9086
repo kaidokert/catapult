@@ -16,6 +16,24 @@
       "message": "IIUC, the index.yaml file does not deploy automatically. The current deployment script only deploy the services. \nWe can either manually run a deploy command on index.yaml, or update the deploy steps to have trigger monitoring changes on index.yaml and deploy it if needed.\nThe command is similar to what we have here:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dev_dockerfiles/docker-compose.yml;l\u003d16;bpv\u003d1",
       "revId": "372b27f6a4f6875c23879e816963b0ef492f9086",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e631733_a18f0378",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-10-09T18:14:17Z",
+      "side": 1,
+      "message": "Thanks for the pointer. I filed https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1491177 about fixing the deployment process.\n\nDo I need to add anything in particular to this CL specifically about fixing that issue, before you\u0027ll LGTM?",
+      "parentUuid": "ab9898ef_b344c286",
+      "revId": "372b27f6a4f6875c23879e816963b0ef492f9086",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
