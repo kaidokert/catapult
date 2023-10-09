@@ -34,6 +34,41 @@
       "parentUuid": "ab9898ef_b344c286",
       "revId": "372b27f6a4f6875c23879e816963b0ef492f9086",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "405c86bf_7d0086d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-09T18:33:01Z",
+      "side": 1,
+      "message": "Synced with Sean offline and confirmed that the change for the reland is adding the index.html. LGTM.",
+      "revId": "372b27f6a4f6875c23879e816963b0ef492f9086",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0febed59_7f367431",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-09T18:33:01Z",
+      "side": 1,
+      "message": "Assuming the only change from the original cl is the index.html, the cl lgtm.",
+      "parentUuid": "2e631733_a18f0378",
+      "revId": "372b27f6a4f6875c23879e816963b0ef492f9086",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
