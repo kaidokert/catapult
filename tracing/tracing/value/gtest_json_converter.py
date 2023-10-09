@@ -16,7 +16,7 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 
-def ConvertGtestJson(gtest_json):
+def ConvertGtestJson(gtest_json, label=None):
   """Convert JSON from a gtest perf test to Histograms.
 
   Incoming data is in the following format:
@@ -54,6 +54,8 @@ def ConvertGtestJson(gtest_json):
 
   hs = histogram_set.HistogramSet()
 
+  label = 'Commit 1205770 + pasko'
+
   for metric, metric_data in six.iteritems(gtest_json):
     # Maintain the same unit if we're able to find an exact match, converting
     # time units if possible. Otherwise use 'unitless'.
@@ -65,6 +67,9 @@ def ConvertGtestJson(gtest_json):
       h = histogram.Histogram(metric, unit)
       h.diagnostics[reserved_infos.STORIES.name] = generic_set.GenericSet(
           [story])
+      if label:
+        h.diagnostics[reserved_infos.LABELS.name] = generic_set.GenericSet(
+            [label])
       mean = float(story_data[0]) * multiplier
       std_dev = float(story_data[1]) * multiplier
       h.AddSample(mean)
@@ -87,7 +92,7 @@ def ConvertGtestJson(gtest_json):
 
   return hs
 
-def ConvertGtestJsonFile(filepath):
+def ConvertGtestJsonFile(filepath, label=None):
   """Convert JSON in a file from a gtest perf test to Histograms.
 
   Contents of the given file will be overwritten with the new Histograms data.
@@ -97,7 +102,7 @@ def ConvertGtestJsonFile(filepath):
   """
   with open(filepath, 'r') as f:
     data = json.load(f)
-  histograms = ConvertGtestJson(data)
+  histograms = ConvertGtestJson(data, label=label)
   with open(filepath, 'w') as f:
     json.dump(histograms.AsDicts(), f)
 
