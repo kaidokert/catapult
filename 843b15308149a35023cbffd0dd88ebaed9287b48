@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66a30901_a85852b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T22:18:48Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with the pinpoint UI. Would you add some context how the labels can help displaying the second column?",
+      "revId": "843b15308149a35023cbffd0dd88ebaed9287b48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7ddccb_56ccdb54",
+        "filename": "tracing/tracing/value/gtest_json_converter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T22:18:48Z",
+      "side": 1,
+      "message": "Does it require another CL to add a label when calling ConvertGtestJsonFile()?",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "843b15308149a35023cbffd0dd88ebaed9287b48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
