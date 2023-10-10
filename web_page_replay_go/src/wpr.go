@@ -50,7 +50,7 @@ const longUsage = `
 
 type CertConfig struct {
 	// Flags common to all commands.
-	certFile, keyFile string
+	rsaCertFile, rsaKeyFile, ecdsaCertFile, ecdsaKeyFile, certType string
 }
 
 type CommonConfig struct {
@@ -93,16 +93,34 @@ type RootCACommand struct {
 func (certCfg *CertConfig) Flags() []cli.Flag {
 	return []cli.Flag{
 		&cli.StringFlag{
-			Name:        "https_cert_file",
+			Name:        "https_rsa_cert_file",
 			Value:       "wpr_cert.pem",
 			Usage:       "File containing a PEM-encoded X509 certificate to use with SSL.",
-			Destination: &certCfg.certFile,
+			Destination: &certCfg.rsaCertFile,
 		},
 		&cli.StringFlag{
-			Name:        "https_key_file",
+			Name:        "https_rsa_key_file",
 			Value:       "wpr_key.pem",
 			Usage:       "File containing a PEM-encoded private key to use with SSL.",
-			Destination: &certCfg.keyFile,
+			Destination: &certCfg.rsaKeyFile,
+		},
+		&cli.StringFlag{
+			Name:        "https_ecdsa_cert_file",
+			Value:       "ecdsa_cert.pem",
+			Usage:       "File containing a PEM-encoded X509 certificate to use with SSL.",
+			Destination: &certCfg.ecdsaCertFile,
+		},
+		&cli.StringFlag{
+			Name:        "https_ecdsa_key_file",
+			Value:       "ecdsa_key.pem",
+			Usage:       "File containing a PEM-encoded private key to use with SSL.",
+			Destination: &certCfg.ecdsaKeyFile,
+		},
+		&cli.StringFlag{
+			Name:        "cert_type",
+			Value:       "rsa",
+			Usage:       "Certificate type used by WRP, rsa or ecdsa, default to be rsa.",
+			Destination: &certCfg.certType,
 		},
 	}
 }
@@ -157,12 +175,24 @@ func (common *CommonConfig) CheckArgs(c *cli.Context) error {
 	}
 
 	// Load common configs.
-	log.Printf("Loading cert from %v\n", common.certConfig.certFile)
-	log.Printf("Loading key from %v\n", common.certConfig.keyFile)
 	var err error
-	common.root_cert, err = tls.LoadX509KeyPair(common.certConfig.certFile, common.certConfig.keyFile)
-	if err != nil {
-		return fmt.Errorf("error opening cert or key files: %v", err)
+	switch common.certConfig.certType {
+	case "rsa":
+		log.Printf("Loading RSA cert from %v\n", common.certConfig.rsaCertFile)
+		log.Printf("Loading RSA key from %v\n", common.certConfig.rsaKeyFile)
+		common.root_cert, err = tls.LoadX509KeyPair(common.certConfig.rsaCertFile, common.certConfig.rsaKeyFile)
+		if err != nil {
+			return fmt.Errorf("error opening rsa cert or key files: %v", err)
+		}
+	case "ecdsa":
+		log.Printf("Loading ECDSA cert from %v\n", common.certConfig.ecdsaCertFile)
+		log.Printf("Loading ECDSA key from %v\n", common.certConfig.ecdsaKeyFile)
+		common.root_cert, err = tls.LoadX509KeyPair(common.certConfig.ecdsaCertFile, common.certConfig.ecdsaKeyFile)
+		if err != nil {
+			return fmt.Errorf("error opening ecdsa cert or key files: %v", err)
+		}
+	default:
+		return errors.New("cert_type must be rsa or ecdsa")
 	}
 
 	return nil
@@ -447,9 +477,21 @@ func (r *ReplayCommand) Run(c *cli.Context) error {
 }
 
 func (r *RootCACommand) Install(c *cli.Context) error {
-	if err := r.installer.InstallRoot(
-		r.certConfig.certFile, r.certConfig.keyFile); err != nil {
-		fmt.Fprintf(os.Stderr, "Install root failed: %v", err)
+	switch r.certConfig.certType {
+	case "rsa":
+		if err := r.installer.InstallRoot(
+			r.certConfig.rsaCertFile, r.certConfig.rsaKeyFile); err != nil {
+			fmt.Fprintf(os.Stderr, "Install root failed: %v", err)
+			os.Exit(1)
+		}
+	case "ecdsa":
+		if err := r.installer.InstallRoot(
+			r.certConfig.ecdsaCertFile, r.certConfig.ecdsaKeyFile); err != nil {
+			fmt.Fprintf(os.Stderr, "Install root failed: %v", err)
+			os.Exit(1)
+		}
+	default:
+		fmt.Fprintf(os.Stderr, "cert_type must be rsa or ecdsa")
 		os.Exit(1)
 	}
 	return nil
