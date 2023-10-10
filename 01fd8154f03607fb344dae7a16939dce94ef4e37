@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e7f8aa_9fff2a71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T23:14:46Z",
+      "side": 1,
+      "message": "LGTM, thanks!",
+      "revId": "01fd8154f03607fb344dae7a16939dce94ef4e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2f0721_f3f26bff",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T23:14:46Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\tUsage:       \"Certificate type used by WPR, rsa or ecdsa, default to be rsa.\",\n```",
+      "range": {
+        "startLine": 110,
+        "startChar": 42,
+        "endLine": 110,
+        "endChar": 45
+      },
+      "revId": "01fd8154f03607fb344dae7a16939dce94ef4e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
