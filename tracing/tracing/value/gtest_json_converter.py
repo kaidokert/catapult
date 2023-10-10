@@ -16,7 +16,7 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 
-def ConvertGtestJson(gtest_json):
+def ConvertGtestJson(gtest_json, label=None, story_filter=None):
   """Convert JSON from a gtest perf test to Histograms.
 
   Incoming data is in the following format:
@@ -47,6 +47,8 @@ def ConvertGtestJson(gtest_json):
 
   Args:
     gtest_json: A JSON dict containing perf output from a gtest
+    label: Label to add to all histograms generated.
+    story_filter: story to omit in generated json.
 
   Returns:
     A HistogramSet containing equivalent histograms and diagnostics
@@ -54,6 +56,8 @@ def ConvertGtestJson(gtest_json):
 
   hs = histogram_set.HistogramSet()
 
+  story_filter = 'thread_local_storage_4_threads'
+  label = 'Commit 2'
   for metric, metric_data in six.iteritems(gtest_json):
     # Maintain the same unit if we're able to find an exact match, converting
     # time units if possible. Otherwise use 'unitless'.
@@ -62,9 +66,14 @@ def ConvertGtestJson(gtest_json):
     for story, story_data in six.iteritems(metric_data['traces']):
       # We should only ever have the mean and standard deviation here.
       assert len(story_data) == 2
+      if story_filter and story_filter != story:
+        continue
       h = histogram.Histogram(metric, unit)
       h.diagnostics[reserved_infos.STORIES.name] = generic_set.GenericSet(
           [story])
+      if label:
+        h.diagnostics[reserved_infos.LABELS.name] = generic_set.GenericSet(
+            [label])
       mean = float(story_data[0]) * multiplier
       std_dev = float(story_data[1]) * multiplier
       h.AddSample(mean)
@@ -87,17 +96,19 @@ def ConvertGtestJson(gtest_json):
 
   return hs
 
-def ConvertGtestJsonFile(filepath):
+def ConvertGtestJsonFile(filepath, label=None, story_filter=None):
   """Convert JSON in a file from a gtest perf test to Histograms.
 
   Contents of the given file will be overwritten with the new Histograms data.
 
   Args:
     filepath: The filepath to the JSON file to read/write from/to.
+    label: label to add to generated histograms.
+    story_filter: story to omit in the converted file.
   """
   with open(filepath, 'r') as f:
     data = json.load(f)
-  histograms = ConvertGtestJson(data)
+  histograms = ConvertGtestJson(data, label=label, story_filter=story_filter)
   with open(filepath, 'w') as f:
     json.dump(histograms.AsDicts(), f)
 
