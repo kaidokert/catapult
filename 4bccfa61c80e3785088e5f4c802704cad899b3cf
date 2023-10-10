@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8a3d65_3cc3674e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T21:41:49Z",
+      "side": 1,
+      "message": "2HcXCSKKJS0lEXLQEWhpHUfGuojiU0tiT5gOF9LP6IQ\u003d",
+      "range": {
+        "startLine": 21,
+        "startChar": 226,
+        "endLine": 21,
+        "endChar": 270
+      },
+      "revId": "4bccfa61c80e3785088e5f4c802704cad899b3cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24436578_bdb0aec6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T21:41:49Z",
+      "side": 1,
+      "message": "Thanks for working on this! Worked for me locally on a variety of sites",
+      "revId": "4bccfa61c80e3785088e5f4c802704cad899b3cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a44e4db_a53e338c",
+        "filename": "web_page_replay_go/src/webpagereplay/certs.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T21:41:49Z",
+      "side": 1,
+      "message": "nit: did cl format change these? if so that works, otherwise can we keep existing spacing?",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 22
+      },
+      "revId": "4bccfa61c80e3785088e5f4c802704cad899b3cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8da9fdc5_8824cafe",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T21:41:49Z",
+      "side": 1,
+      "message": "I think we don\u0027t need this anymore? if we want we can add it separately but I think its more of a debugging issue.",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 0
+      },
+      "revId": "4bccfa61c80e3785088e5f4c802704cad899b3cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39b064ed_403d4483",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-10T21:41:49Z",
+      "side": 1,
+      "message": "Does any of the code should do something different with rsa vs ecdsa? Or, are we thinking you will need both?\n\nIf not, I don\u0027t think we need to do this, we can just pass in ecdsa when wanted to the existing https_key_file and https_cert_file (but maybe we change the defaults to newly included ecdsa files?\n\nIf we want new param names we need to find all the dependencies and fix those before we land this",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 34
+      },
+      "revId": "4bccfa61c80e3785088e5f4c802704cad899b3cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
