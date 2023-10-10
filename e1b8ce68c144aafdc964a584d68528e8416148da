@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b495a1aa_21cb22ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "Filed a bug for it: crbug/1491186. Thanks for pointing it out!",
+      "parentUuid": "4f9001f6_05f381b6",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b5fbc5e_4adf67ca",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8c078255_1439ff51",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "Good catch! I thought sandwich will come back here but apparently it goes to culprit.py to update the bug there. \nI made the change to move the login into job_bug_update which is called by both culprit.py and job.py.",
+      "parentUuid": "5b5fbc5e_4adf67ca",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c96cacd4_1c6d74c2",
         "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
         "patchSetId": 6
@@ -65,6 +101,30 @@
       "writtenOn": "2023-10-09T18:35:43Z",
       "side": 1,
       "message": "Add an error/warning log for this scenario",
+      "range": {
+        "startLine": 256,
+        "startChar": 2,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f224cb_d9102c44",
+        "filename": "dashboard/dashboard/services/perf_issue_service_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "c96cacd4_1c6d74c2",
       "range": {
         "startLine": 256,
         "startChar": 2,
@@ -98,6 +158,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1da0da35_170f029f",
+        "filename": "perf_issue_service/application/api/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "oops.",
+      "parentUuid": "0d54d0a8_b3e870d1",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "394d062c_20162c6b",
@@ -117,6 +201,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b1eeee9_97ee408d",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "I did similar thing in staging for testing. Though, not enough unit testing on perf-issue-service yet. 😊",
+      "parentUuid": "394d062c_20162c6b",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ecc8061f_55aae3e0",
         "filename": "perf_issue_service/models/alert_group.py",
         "patchSetId": 6
@@ -128,6 +230,30 @@
       "writtenOn": "2023-10-09T18:35:43Z",
       "side": 1,
       "message": "Maybe make this check \"\u003d\" since it\u0027s a single job_id?",
+      "range": {
+        "startLine": 305,
+        "startChar": 30,
+        "endLine": 305,
+        "endChar": 38
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95fbeae3_ba2c41f6",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "Good idea. Thanks!",
+      "parentUuid": "ecc8061f_55aae3e0",
       "range": {
         "startLine": 305,
         "startChar": 30,
@@ -161,6 +287,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04350590_a0e97b37",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20de1fd0_c9075203",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 339,
+        "endChar": 11
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3b1d5ca_23a60fcc",
@@ -174,6 +324,30 @@
       "writtenOn": "2023-10-09T18:35:43Z",
       "side": 1,
       "message": "nit \"position\"",
+      "range": {
+        "startLine": 354,
+        "startChar": 11,
+        "endLine": 354,
+        "endChar": 19
+      },
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30810f06_93646d9a",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-10T23:23:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b1d5ca_23a60fcc",
       "range": {
         "startLine": 354,
         "startChar": 11,
