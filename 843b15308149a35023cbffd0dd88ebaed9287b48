@@ -39,6 +39,30 @@
       },
       "revId": "843b15308149a35023cbffd0dd88ebaed9287b48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e66129d7_285d3c40",
+        "filename": "tracing/tracing/value/gtest_json_converter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-10-10T22:21:11Z",
+      "side": 1,
+      "message": "Yes, it requires another CL to pass the label through here: https://source.chromium.org/chromium/chromium/src/+/main:testing/scripts/run_performance_tests.py;l\u003d358;drc\u003d19f7472601b2f86ee873b97f6313ae75c31cf387",
+      "parentUuid": "3e7ddccb_56ccdb54",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "843b15308149a35023cbffd0dd88ebaed9287b48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
