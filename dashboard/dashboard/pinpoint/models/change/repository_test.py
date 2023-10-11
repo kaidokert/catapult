@@ -9,6 +9,8 @@ from __future__ import absolute_import
 from dashboard.pinpoint.models.change import repository
 from dashboard.pinpoint import test
 
+from google.appengine.ext import ndb
+
 
 class RepositoryTest(test.TestCase):
 
@@ -35,6 +37,10 @@ class RepositoryTest(test.TestCase):
     self.assertEqual(repository.RepositoryUrl('repo'), 'https://example/repo')
     self.assertEqual(repository.RepositoryName('https://example/repo'), 'repo')
 
-  def testAddRepositoryRaisesWithDuplicateName(self):
-    with self.assertRaises(AssertionError):
-      repository.RepositoryName('https://example/chromium', add_if_missing=True)
+  def testAddRepositoryExistingName(self):
+    name = repository.RepositoryName(
+        'https://example/chromium', add_if_missing=True)
+    self.assertEqual(name, 'chromium')
+
+    repo = ndb.Key(repository.Repository, name).get()
+    self.assertTrue(len(repo.urls) == 2)
