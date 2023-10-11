@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ccc68f3_5a65c648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-10-11T19:14:40Z",
+      "side": 1,
+      "message": "+ashwin@ for second pair of eyes on the change before submitting.",
+      "revId": "de6846b111a0a799b22c492fc10b37da207c1f98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43269fed_306103c5",
@@ -14,6 +31,24 @@
       "writtenOn": "2023-10-11T18:59:01Z",
       "side": 1,
       "message": "nit: this comment needs to be updated as well",
+      "revId": "de6846b111a0a799b22c492fc10b37da207c1f98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4f0ae2_b3a0cb89",
+        "filename": "dashboard/dashboard/pinpoint/models/change/repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-10-11T19:14:40Z",
+      "side": 1,
+      "message": "missed that - thanks.",
+      "parentUuid": "43269fed_306103c5",
       "revId": "de6846b111a0a799b22c492fc10b37da207c1f98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
