@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43269fed_306103c5",
+        "filename": "dashboard/dashboard/pinpoint/models/change/repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-11T18:59:01Z",
+      "side": 1,
+      "message": "nit: this comment needs to be updated as well",
+      "revId": "de6846b111a0a799b22c492fc10b37da207c1f98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
