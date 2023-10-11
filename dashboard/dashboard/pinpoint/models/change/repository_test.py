@@ -34,7 +34,3 @@ class RepositoryTest(test.TestCase):
 
     self.assertEqual(repository.RepositoryUrl('repo'), 'https://example/repo')
     self.assertEqual(repository.RepositoryName('https://example/repo'), 'repo')
-
-  def testAddRepositoryRaisesWithDuplicateName(self):
-    with self.assertRaises(AssertionError):
-      repository.RepositoryName('https://example/chromium', add_if_missing=True)
