@@ -8,6 +8,8 @@ from __future__ import absolute_import
 
 from google.appengine.ext import ndb
 
+import logging
+
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT)
 def RepositoryUrl(name):
@@ -53,9 +55,6 @@ def RepositoryName(url, add_if_missing=False):
 
   Returns:
     The short name as a string.
-
-  Raises:
-    AssertionError: add_if_missing is True and there's a name collision.
   """
   if url.endswith('.git'):
     url = url[:-4]
@@ -77,15 +76,21 @@ def _AddRepository(url):
 
   Returns:
     The short repository name.
-
-  Raises:
-    AssertionError: The default name is already in the database.
   """
   name = url.split('/')[-1]
 
-  if ndb.Key(Repository, name).get():
-    raise AssertionError("Attempted to add a repository that's already in the "
-                         'Datastore: %s: %s' % (name, url))
+  repo = ndb.Key(Repository, name).get()
+  # http://crbug.com/1491470 - If the repository exists, this used to throw an
+  # AssertionError. commit.FromDep() will call this with add_if_missing=True
+  # and there's no need to terminate the Pinpoint job for the repository
+  # already being present. The logic is being updated to return early if the
+  # urls match. Otherwise, log the issue instead of throwing the AssertionError.
+  if repo:
+    if url in repo.urls:
+      return name
+    logging.warning(
+        'Attempted to add a repository that\'s already in the '
+        'Datastore: %s: %s', name, url)
 
   Repository(id=name, urls=[url]).put()
   return name
