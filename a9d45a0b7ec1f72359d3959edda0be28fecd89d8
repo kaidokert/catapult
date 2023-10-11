@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0f2cf1_802c1eb1",
+        "filename": "dashboard/dashboard/pinpoint/models/change/repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-11T19:23:31Z",
+      "side": 1,
+      "message": "Do we know why this query did not return the repo entry if it already existed?\n\nIt actually might be because the urls field in datastore is a list and url is a string, so direct comparison between them will fail.",
+      "range": {
+        "startLine": 62,
+        "startChar": 2,
+        "endLine": 62,
+        "endChar": 65
+      },
+      "revId": "a9d45a0b7ec1f72359d3959edda0be28fecd89d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
