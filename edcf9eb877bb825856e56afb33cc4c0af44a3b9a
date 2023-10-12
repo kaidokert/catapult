@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56036a46_8eca7730",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-10-12T18:20:04Z",
+      "side": 1,
+      "message": "https://chromium.googlesource.com/catapult.git/+log/8f8e779..ec87492",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 6
+      },
+      "revId": "edcf9eb877bb825856e56afb33cc4c0af44a3b9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
