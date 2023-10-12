@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7a5881b_a6403c86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-12T18:20:18Z",
+      "side": 1,
+      "message": "Can you assign this CL to the bug then? ty",
+      "parentUuid": "b495a1aa_21cb22ba",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b5fbc5e_4adf67ca",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 6
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Good catch! I thought sandwich will come back here but apparently it goes to culprit.py to update the bug there. \nI made the change to move the login into job_bug_update which is called by both culprit.py and job.py.",
       "parentUuid": "5b5fbc5e_4adf67ca",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c8442a_1ec314fe",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-12T18:20:18Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "8c078255_1439ff51",
       "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -213,6 +249,24 @@
       "side": 1,
       "message": "I did similar thing in staging for testing. Though, not enough unit testing on perf-issue-service yet. 😊",
       "parentUuid": "394d062c_20162c6b",
+      "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57b33a22_a3fa310c",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-12T18:20:18Z",
+      "side": 1,
+      "message": "Okay if you did what you could, then let\u0027s proceed.",
+      "parentUuid": "8b1eeee9_97ee408d",
       "revId": "e1b8ce68c144aafdc964a584d68528e8416148da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
