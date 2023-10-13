@@ -51,6 +51,24 @@
       "parentUuid": "0fa39037_2d082cf4",
       "revId": "19ee302e9a81fd92ab275ac72c60331b92e36702",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a57ed6_781c2fec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-10-13T23:20:18Z",
+      "side": 1,
+      "message": "Woops - I remembered partway through writing the comment that emulator startup isn\u0027t handled by a wrapper like it is on ChromeOS. I guess the auto-saved version of the comment got posted. Thanks for the explanation, though.",
+      "parentUuid": "319a4970_9baa103e",
+      "revId": "19ee302e9a81fd92ab275ac72c60331b92e36702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
