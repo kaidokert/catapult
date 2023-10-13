@@ -16,6 +16,23 @@
       "message": "Adding Brian as the reviewer as well.",
       "revId": "19ee302e9a81fd92ab275ac72c60331b92e36702",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa39037_2d082cf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-10-13T22:56:26Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused why Telemetry needs to be aware of this at all - s",
+      "revId": "19ee302e9a81fd92ab275ac72c60331b92e36702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
