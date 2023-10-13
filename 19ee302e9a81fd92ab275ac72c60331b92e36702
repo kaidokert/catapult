@@ -33,6 +33,24 @@
       "message": "I\u0027m a bit confused why Telemetry needs to be aware of this at all - s",
       "revId": "19ee302e9a81fd92ab275ac72c60331b92e36702",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "319a4970_9baa103e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-10-13T23:13:47Z",
+      "side": 1,
+      "message": "Thanks for the review.\nThe root cause is that telemetry uses a class [AvdArgs](https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py;drc\u003d9e2d977782dcc3d14e7cb15614399f8d531c962a;l\u003d500) which mimics the parsed args from android/test_runner, and passes it to LocalEmulatorEnvironment. So it errors out when this mimic arg does not have any expected flag.",
+      "parentUuid": "0fa39037_2d082cf4",
+      "revId": "19ee302e9a81fd92ab275ac72c60331b92e36702",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
