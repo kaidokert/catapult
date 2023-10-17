@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1b62e10_b4a5df73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-17T20:35:26Z",
+      "side": 1,
+      "message": "What\u0027s the rationale for this change? I thought that once we verified the regression we would ping the component. Are verified regressions not worth alerting people on?",
+      "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
