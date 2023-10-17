@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "030bbc7217b2a4aa3c5e197d0720942e43b58723",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4549e916_ac4463f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-17T21:18:36Z",
+      "side": 1,
+      "message": "LGTM. My nit is that can you turn off tagging `speed\u003ebisection` so that we don\u0027t get swamped with emails? Maybe just cc you and whoever else is working on this.",
+      "revId": "030bbc7217b2a4aa3c5e197d0720942e43b58723",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
