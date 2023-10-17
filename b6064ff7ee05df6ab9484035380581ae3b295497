@@ -16,6 +16,23 @@
       "message": "What\u0027s the rationale for this change? I thought that once we verified the regression we would ping the component. Are verified regressions not worth alerting people on?",
       "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52ada9a3_6e766ef7",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1825,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-10-17T20:42:34Z",
+      "side": 1,
+      "message": "for https://buganizer.corp.google.com/issues/305706759 we are concerned about the case where `auto_bisect_enable\u003dFalse` - does this CL cause alertgroupworkflow to  assign components in that case, or conversely does it always cause it to not assign components in that case?",
+      "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
