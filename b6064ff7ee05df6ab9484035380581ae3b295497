@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e052a09_efe8f047",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-17T21:43:45Z",
+      "side": 1,
+      "message": "I still think there is value in tagging components once a regression has been verified, but I agree with you that it does not make sense to alert anyone until after bisection is completed. If we want to tell someone there\u0027s a regression, it would be helpful to know if the regression has a known culprit, a culprit range with no clear culprit or failed to reproduce. That change would need to take place on bisection\u0027s end. So I\u0027m okay with moving forward with this change.",
+      "parentUuid": "48a086c3_bcdcf088",
+      "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52ada9a3_6e766ef7",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "it is not able to assign right now.\n\nThe current logic tries to check whether auto_bisect is enabled:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/angle/third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d1053\n\nIf not, the should_delay_reporting is false and thus execution will go into:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/angle/third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d711\n\nThat means, in WebRTC\u0027s case, when auto_bisect is disabled, we will go into the same path as it is now, and Sandwich will bypass the components. Sandwich needs to check the auto_bisect at some point.\n\nOr, once we delay reporting at 100% of the auto_triaged issues, the Sandwich check on line 711 can be removed. Because at that point delay_reporting is false only when auto_bisect is disabled, which implies that Sandwich should not kick in anyway.",
       "parentUuid": "52ada9a3_6e766ef7",
+      "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "231a4017_61b43fe6",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1825,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-17T21:43:45Z",
+      "side": 1,
+      "message": "this sgtm",
+      "parentUuid": "c39e1805_e43edc53",
       "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
