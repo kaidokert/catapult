@@ -33,6 +33,24 @@
       "message": "The failure is on another API for the duplicate groups. The 502 error does not seem related to the grouping quality check. It could be related to the number of requests but I\u0027m not quite sure yet.\nI saw a bunch of failures around 2:54PM and back to normal after that. Is the 502 from the same time?",
       "revId": "f10fe64a53966fc5074c5f8171bcd3d50c7f0632",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1c62b7_e88d43d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-17T23:37:40Z",
+      "side": 1,
+      "message": "Okay, ty for letting me know. Yes, the 502s are from the same time. I\u0027ll check what else is in the deployment history and see what needs to be reverted.",
+      "parentUuid": "af7389d9_b66e713e",
+      "revId": "f10fe64a53966fc5074c5f8171bcd3d50c7f0632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
