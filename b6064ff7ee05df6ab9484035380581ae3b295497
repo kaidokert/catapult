@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bd0c2a9_72f741ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-17T21:10:46Z",
+      "side": 1,
+      "message": "This is a good point. Though, if bisection cannot find a culprit, we will close the issue. That makes pinging the component make no big difference for the end users when they found the issue already closed with Pinpoint-No-Repro.\nI see the label Chromeperf-Auto-Close-OptOut which seems trying to avoid closing the issue, but this label is found only in Sheriff config, but none of our code is respecting it.",
+      "parentUuid": "a1b62e10_b4a5df73",
+      "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52ada9a3_6e766ef7",
         "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-17T20:42:34Z",
       "side": 1,
       "message": "for https://buganizer.corp.google.com/issues/305706759 we are concerned about the case where `auto_bisect_enable\u003dFalse` - does this CL cause alertgroupworkflow to  assign components in that case, or conversely does it always cause it to not assign components in that case?",
+      "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c39e1805_e43edc53",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1825,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-17T21:10:46Z",
+      "side": 1,
+      "message": "it is not able to assign right now.\n\nThe current logic tries to check whether auto_bisect is enabled:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/angle/third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d1053\n\nIf not, the should_delay_reporting is false and thus execution will go into:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/angle/third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d711\n\nThat means, in WebRTC\u0027s case, when auto_bisect is disabled, we will go into the same path as it is now, and Sandwich will bypass the components. Sandwich needs to check the auto_bisect at some point.\n\nOr, once we delay reporting at 100% of the auto_triaged issues, the Sandwich check on line 711 can be removed. Because at that point delay_reporting is false only when auto_bisect is disabled, which implies that Sandwich should not kick in anyway.",
+      "parentUuid": "52ada9a3_6e766ef7",
       "revId": "b6064ff7ee05df6ab9484035380581ae3b295497",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
