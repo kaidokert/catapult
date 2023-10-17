@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "293fe9ab_fc0337a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-10-17T23:23:59Z",
+      "side": 1,
+      "message": "More context:\n\nFrom around 250pm to 310pm, we had a huge failure spike in perf_issue_service when I updated the deployment for default service [1]. Issue stopped when I rolled the deployment back. More log files here [2]\n\n[1] https://pantheon.corp.google.com/monitoring/alerting/policies/4994258286487175304?project\u003dchromeperf\u0026e\u003d-13802955\u0026mods\u003dcomponent_inspector\n[2] https://pantheon.corp.google.com/logs/query;query\u003dresource.type%3D%22gae_app%22%0Aseverity%3E%3DERROR%0Aresource.labels.version_id%3D%22cloud-build-a4060bf%22%0A%22%5BPerfIssueService%5D%22;cursorTimestamp\u003d2023-10-17T21:53:03.189124Z;startTime\u003d2023-10-17T21:53:00.975Z;endTime\u003d2023-10-17T22:03:00.975Z?project\u003dchromeperf\u0026e\u003d-13802955\u0026mods\u003dcomponent_inspector",
+      "revId": "f10fe64a53966fc5074c5f8171bcd3d50c7f0632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
