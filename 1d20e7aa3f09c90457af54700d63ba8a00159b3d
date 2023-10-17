@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17410624_be158e4c",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-17T23:32:26Z",
+      "side": 1,
+      "message": "Maybe add a \"if skia_url_internal:\" check before adding this into template_args? Same for above.",
+      "range": {
+        "startLine": 1026,
+        "startChar": 6,
+        "endLine": 1026,
+        "endChar": 65
+      },
+      "revId": "1d20e7aa3f09c90457af54700d63ba8a00159b3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5a77eb3_79a5ba4f",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-17T23:32:26Z",
+      "side": 1,
+      "message": "Now that this has gotten a little more complex, it would be good to have some unit tests for common scenarios like host/master not existing, etc.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "1d20e7aa3f09c90457af54700d63ba8a00159b3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c56413_803a4e8e",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-17T23:32:26Z",
+      "side": 1,
+      "message": "You should break from the loop after this since you\u0027ve already gotten the relevant host",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "1d20e7aa3f09c90457af54700d63ba8a00159b3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
