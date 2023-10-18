@@ -16,6 +16,24 @@
       "message": "Noticed that the ungrouped group has no anomalies in it. Those created anomalies should have been put there for further processing.",
       "revId": "f496845cb9f8db416fc711747fe8594364109465",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8898739_5661b699",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-10-18T21:29:37Z",
+      "side": 1,
+      "message": "Also double check if the anomalies have source\u003dskia. We have started pushing anomalies into datastore from skia but not yet processing them. They would go under the Ungrouped_Skia group.",
+      "parentUuid": "39d2ffa9_6605a622",
+      "revId": "f496845cb9f8db416fc711747fe8594364109465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
