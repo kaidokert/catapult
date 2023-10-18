@@ -34,6 +34,24 @@
       "parentUuid": "39d2ffa9_6605a622",
       "revId": "f496845cb9f8db416fc711747fe8594364109465",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b442e98_e95b5f33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-18T21:43:08Z",
+      "side": 1,
+      "message": "The anomalies\u0027 values of source are null or skia.\n\nAlso, the ungrouped (id: 4928842304454656) was not processed any more after 10/17 3pm. Apparently the ungrouped was ignored.",
+      "parentUuid": "a8898739_5661b699",
+      "revId": "f496845cb9f8db416fc711747fe8594364109465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
