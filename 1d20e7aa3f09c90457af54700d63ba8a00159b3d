@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f827cd1e_571aaae8",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-10-18T22:12:20Z",
+      "side": 1,
+      "message": "Don\u0027t think it\u0027s needed since GetSkiaUrlForAlertGroup cannot return None.",
+      "parentUuid": "17410624_be158e4c",
+      "range": {
+        "startLine": 1026,
+        "startChar": 6,
+        "endLine": 1026,
+        "endChar": 65
+      },
+      "revId": "1d20e7aa3f09c90457af54700d63ba8a00159b3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5a77eb3_79a5ba4f",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "979a2bb8_69c46364",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-10-18T22:12:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5a77eb3_79a5ba4f",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "1d20e7aa3f09c90457af54700d63ba8a00159b3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10c56413_803a4e8e",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-10-17T23:32:26Z",
       "side": 1,
       "message": "You should break from the loop after this since you\u0027ve already gotten the relevant host",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "1d20e7aa3f09c90457af54700d63ba8a00159b3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8769d59_d7f2bcbb",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-10-18T22:12:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10c56413_803a4e8e",
       "range": {
         "startLine": 52,
         "startChar": 6,
