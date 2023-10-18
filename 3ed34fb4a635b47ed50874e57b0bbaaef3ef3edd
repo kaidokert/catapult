@@ -33,6 +33,24 @@
       "message": "LGTM. IIUC, starting the smart session was a temporary workaround to let the test have access to `GraphicalPresenter`. Thanks for the fix!",
       "revId": "3ed34fb4a635b47ed50874e57b0bbaaef3ef3edd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b956dcf6_a65e4243",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2023-10-18T20:06:31Z",
+      "side": 1,
+      "message": "Yes, I agree. Let\u0027s see how it goes once this change rolls into the chromium.",
+      "parentUuid": "c827def8_8e997567",
+      "revId": "3ed34fb4a635b47ed50874e57b0bbaaef3ef3edd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
