@@ -131,6 +131,8 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return self._browser_process.stdout
 
   def _StartCastStreamingShell(self, startup_args):
+<<<<<<< PATCH SET (6809e2 Revert "[fuchsia][gpu][telemetry] Start the session before s)
+=======
     """Returns a stream from which browser logs can be read."""
     # Swallow the output of the session commands unless the caller wants to see
     # output.
@@ -157,6 +159,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         stdout=output,
         stderr=subprocess.STDOUT)
 
+>>>>>>> BASE      (bbb425 Reland "update chromeperf deployment for default")
     browser_cmd = [
         'test',
         'run',
