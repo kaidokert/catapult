@@ -52,6 +52,24 @@
       "parentUuid": "a8898739_5661b699",
       "revId": "f496845cb9f8db416fc711747fe8594364109465",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dd87e3d_c8341c2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-18T21:49:16Z",
+      "side": 1,
+      "message": "I believe this line filtered the ungrouped out:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/perf_issue_service/application/api/alert_groups.py;l\u003d67",
+      "parentUuid": "2b442e98_e95b5f33",
+      "revId": "f496845cb9f8db416fc711747fe8594364109465",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
