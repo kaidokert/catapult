@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "208cf815_c8859216",
+        "filename": "web_page_replay_go/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2023-10-19T17:11:55Z",
+      "side": 1,
+      "message": "I think there might be more places outside wpr that need updating?",
+      "range": {
+        "startLine": 144,
+        "startChar": 40,
+        "endLine": 144,
+        "endChar": 83
+      },
+      "revId": "2c59fed25ff2bb46700107a9af2991236782122f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
