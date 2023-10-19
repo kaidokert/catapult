@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16047e5f_dd7efc58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-19T21:02:33Z",
+      "side": 1,
+      "message": "LGTM - thanks Max",
+      "revId": "2882cd0eae65145100455c7d4b3b81b3e3a08399",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6f89eb_09db7b3e",
+        "filename": "web_page_replay_go/src/webpagereplay/certs.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-19T21:02:33Z",
+      "side": 1,
+      "message": "Could we add a unit test file for certs.go (certs_test.go)?",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 46
+      },
+      "revId": "2882cd0eae65145100455c7d4b3b81b3e3a08399",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adb15a1d_e3de67ab",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-19T21:02:33Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\tUsage:       \"File containing 1 or more comma separated PEM-encoded X509 certificates to use with SSL.\",\n```",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 81
+      },
+      "revId": "2882cd0eae65145100455c7d4b3b81b3e3a08399",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "758fb9ce_c162d435",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-19T21:02:33Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\tUsage:       \"File containing 1 or more comma separated PEM-encoded private keys to use with SSL.\",\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 3,
+        "endLine": 104,
+        "endChar": 77
+      },
+      "revId": "2882cd0eae65145100455c7d4b3b81b3e3a08399",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "801914f1_53f620c1",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-10-19T21:02:33Z",
+      "side": 1,
+      "message": "maybe we should check that these are the same length explicitly?\n\n```\nif len(certFiles) !\u003d len(keyFiles) {\nreturn fmt.Errorf(\"list of cert files given should match list of key files\")\n}\n```",
+      "range": {
+        "startLine": 174,
+        "startChar": 1,
+        "endLine": 174,
+        "endChar": 58
+      },
+      "revId": "2882cd0eae65145100455c7d4b3b81b3e3a08399",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
