@@ -22,6 +22,30 @@
       },
       "revId": "2c59fed25ff2bb46700107a9af2991236782122f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d32de6a_8b1a836d",
+        "filename": "web_page_replay_go/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1558147
+      },
+      "writtenOn": "2023-10-19T17:49:40Z",
+      "side": 1,
+      "message": "Unless ECDSA is used (only applies newly recorded archives using WprGo) the second hash is not needed, so it will not break existing tests/replay. But it\u0027s a good idea to eventually update all related files to avoid confusion, @ianstruiksma will follow up on that effort.",
+      "parentUuid": "208cf815_c8859216",
+      "range": {
+        "startLine": 144,
+        "startChar": 40,
+        "endLine": 144,
+        "endChar": 83
+      },
+      "revId": "2c59fed25ff2bb46700107a9af2991236782122f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
