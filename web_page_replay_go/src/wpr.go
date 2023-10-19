@@ -64,7 +64,7 @@ type CommonConfig struct {
 	injectScripts                            string
 
 	// Computed state.
-	root_cert    tls.Certificate
+	root_certs   []tls.Certificate
 	transformers []webpagereplay.ResponseTransformer
 }
 
@@ -103,12 +103,6 @@ func (certCfg *CertConfig) Flags() []cli.Flag {
 			Value:       "",
 			Usage:       "File containing a PEM-encoded private key to use with SSL.",
 			Destination: &certCfg.keyFile,
-		},
-		&cli.StringFlag{
-			Name:        "cert_type",
-			Value:       "rsa",
-			Usage:       "Certificate type used by WPR, rsa or ecdsa, default to be rsa.",
-			Destination: &certCfg.certType,
 		},
 	}
 }
@@ -153,16 +147,8 @@ func (common *CommonConfig) Flags() []cli.Flag {
 
 func (certCfg *CertConfig) CheckArgs(c *cli.Context) error {
 	if certCfg.certFile == "" && certCfg.keyFile == "" {
-		switch certCfg.certType {
-		case "rsa":
-			certCfg.certFile = "wpr_cert.pem"
-			certCfg.keyFile = "wpr_key.pem"
-		case "ecdsa":
-			certCfg.certFile = "ecdsa_cert.pem"
-			certCfg.keyFile = "ecdsa_key.pem"
-		default:
-			return errors.New("cert_type must be rsa or ecdsa")
-		}
+		certCfg.certFile = "wpr_cert.pem,ecdsa_cert.pem"
+		certCfg.keyFile = "wpr_key.pem,ecdsa_key.pem"
 	}
 	return nil
 }
@@ -183,12 +169,17 @@ func (common *CommonConfig) CheckArgs(c *cli.Context) error {
 		return err
 	}
 
-	// Load certs.
-	log.Printf("Loading cert from %v\n", common.certConfig.certFile)
-	log.Printf("Loading key from %v\n", common.certConfig.keyFile)
-	common.root_cert, err = tls.LoadX509KeyPair(common.certConfig.certFile, common.certConfig.keyFile)
-	if err != nil {
-		return fmt.Errorf("error opening cert or key files: %v", err)
+	// Load certFiles.
+	certFiles := strings.Split(common.certConfig.certFile, ",")
+	keyFiles := strings.Split(common.certConfig.keyFile, ",")
+	for i := 0; i < len(certFiles); i++ {
+		log.Printf("Loading cert from %v\n", certFiles[i])
+		log.Printf("Loading key from %v\n", keyFiles[i])
+		root_cert, err := tls.LoadX509KeyPair(certFiles[i], keyFiles[i])
+		if err != nil {
+			return fmt.Errorf("error opening cert or key files: %v", err)
+		}
+		common.root_certs = append(common.root_certs, root_cert)
 	}
 	return nil
 }
@@ -412,7 +403,7 @@ func (r *RecordCommand) Run(c *cli.Context) error {
 
 	httpHandler := webpagereplay.NewRecordingProxy(archive, "http", r.common.transformers)
 	httpsHandler := webpagereplay.NewRecordingProxy(archive, "https", r.common.transformers)
-	tlsconfig, err := webpagereplay.RecordTLSConfig(r.common.root_cert, archive)
+	tlsconfig, err := webpagereplay.RecordTLSConfig(r.common.root_certs, archive)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating TLSConfig: %v", err)
 		os.Exit(1)
@@ -462,7 +453,7 @@ func (r *ReplayCommand) Run(c *cli.Context) error {
 
 	httpHandler := webpagereplay.NewReplayingProxy(archive, "http", r.common.transformers, r.quietMode)
 	httpsHandler := webpagereplay.NewReplayingProxy(archive, "https", r.common.transformers, r.quietMode)
-	tlsconfig, err := webpagereplay.ReplayTLSConfig(r.common.root_cert, archive)
+	tlsconfig, err := webpagereplay.ReplayTLSConfig(r.common.root_certs, archive)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating TLSConfig: %v", err)
 		os.Exit(1)
