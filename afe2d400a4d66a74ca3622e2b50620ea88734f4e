@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58beca87_d464deed",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-10-23T20:26:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b7c5f7e_c23b2577",
+      "revId": "afe2d400a4d66a74ca3622e2b50620ea88734f4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61017c43_9def07e0",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-20T18:49:23Z",
       "side": 1,
       "message": "Would `return list(dict.fromkeys(lst))` work? \n\n In Python 3.7+, `dict` is reportedly insertion-ordered: https://stackoverflow.com/questions/480214/how-do-i-remove-duplicates-from-a-list-while-preserving-order",
+      "revId": "afe2d400a4d66a74ca3622e2b50620ea88734f4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ddf6af7_6d123962",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2023-10-23T20:26:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61017c43_9def07e0",
       "revId": "afe2d400a4d66a74ca3622e2b50620ea88734f4e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
