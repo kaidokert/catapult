@@ -12,8 +12,8 @@ import google.auth
 from google.auth.transport import grpc as google_auth_transport_grpc
 from google.auth.transport import requests as google_auth_transport_requests
 
-_CABE_SERVER_ADDRESS = 'cabe.skia.org'
-_CABE_USE_PLAINTEXT = False
+_CABE_SERVER_ADDRESS = 'localhost:50051'
+_CABE_USE_PLAINTEXT = True
 
 
 def GetAnalysis(job_id, benchmark_name=None, measurement_name=None):
