@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce33dd5b_64a22f02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2023-10-25T18:24:00Z",
+      "side": 1,
+      "message": "can you try it inside docker? not sure if there is other ways to validate the cloud build locally.",
+      "revId": "0698f771c153714ccfeae799b0558ebcca388dee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
