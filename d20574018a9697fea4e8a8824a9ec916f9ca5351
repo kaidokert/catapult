@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2fbae29_ad0f6162",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2023-10-25T16:49:12Z",
+      "side": 1,
+      "message": "Thank you Caroline for the confirmation.\n\nWe also noticed that starting up smart session on eng build is fairly unstable on all three models of the devices. Not sure if it\u0027s a known issue, or if there is a plan to improve it.\n\n.Hzj_jie",
+      "tag": "mailMessageId\u003d\u003cCAJBMYs6Dnn\u003d4wzaPrg_v+DX2WKCXOEr_bdJvV\u003d-CTSxq7L9fcQ@mail.gmail.com\u003e",
+      "revId": "d20574018a9697fea4e8a8824a9ec916f9ca5351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
