@@ -51,6 +51,24 @@
       "parentUuid": "c827def8_8e997567",
       "revId": "3ed34fb4a635b47ed50874e57b0bbaaef3ef3edd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ab02e77_2d7b227a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559142
+      },
+      "writtenOn": "2023-10-25T16:38:33Z",
+      "side": 1,
+      "message": "Catching up from OOO - this change SGTM. Thanks for doing this cleanup!\n\nIt should be noted that while Chromium should continue requesting GraphicalPresenter, it is currently offered from and served by Scene Manager. We eventually want to route GraphicalPresenter from the session instead, but even then it shouldn\u0027t be necessary to proactively start the session here -- a client (in this case, Chromium) connecting to its protocol should trigger session startup.",
+      "parentUuid": "b956dcf6_a65e4243",
+      "revId": "3ed34fb4a635b47ed50874e57b0bbaaef3ef3edd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
