@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b93a2a_35ae87c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-10-25T18:20:03Z",
+      "side": 1,
+      "message": "Since I didn\u0027t get to review this in time, I responded in https://chromium-review.googlesource.com/c/catapult/+/4977004",
+      "revId": "8bb5e49fd4ae73d0f25c795a89ff8b55e5391bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
