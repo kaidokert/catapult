@@ -519,8 +519,11 @@ class GroupReportTest(GroupReportTestBase):
 
   @mock.patch('dashboard.common.utils.ShouldDelayIssueReporting',
               mock.MagicMock(return_value=False))
-  @unittest.expectedFailure
-  def testTriageAltertsGroup_Sandwiched(self, mock_get_sheriff_client):
+  @mock.patch.object(
+      workflow_service, 'CreateExecution', return_value='fake-execution-id')
+  def testTriageAltertsGroup_Sandwiched(self, mock_workflow_service,
+                                        mock_get_sheriff_client):
+    self.assertIsNotNone(mock_workflow_service)
     self._SetUpMocks(mock_get_sheriff_client)
     mock_get_sheriff_client().Match.return_value = ([
         subscription.Subscription(
@@ -567,9 +570,11 @@ class GroupReportTest(GroupReportTestBase):
 
   @mock.patch('dashboard.common.utils.ShouldDelayIssueReporting',
               mock.MagicMock(return_value=True))
-  @unittest.expectedFailure
-  def testTriageAltertsGroup_Sandwiched_DelayReport(self,
+  @mock.patch.object(
+      workflow_service, 'CreateExecution', return_value='fake-execution-id')
+  def testTriageAltertsGroup_Sandwiched_DelayReport(self, mock_workflow_service,
                                                     mock_get_sheriff_client):
+    self.assertIsNotNone(mock_workflow_service)
     self._SetUpMocks(mock_get_sheriff_client)
     mock_get_sheriff_client().Match.return_value = ([
         subscription.Subscription(
