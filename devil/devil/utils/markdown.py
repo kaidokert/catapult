@@ -6,7 +6,7 @@
 from __future__ import print_function
 
 import argparse
-import imp
+import importlib.util
 import os
 import re
 import sys
@@ -170,9 +170,11 @@ def load_module_from_path(module_path):
     if module:
       d = module.__path__
       full_module_name += '.'
-    r = imp.find_module(package_name, d)
+    r = importlib.util.spec_from_file_location(
+        full_module_name, os.path.join(d[0], package_name + '.py'))
+    module = importlib.util.module_from_spec(r)
+    r.loader.exec_module(module)
     full_module_name += package_name
-    module = imp.load_module(full_module_name, *r)
   return module
 
 
