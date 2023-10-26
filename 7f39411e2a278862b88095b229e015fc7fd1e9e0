@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a739ad91_4082ed39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-10-26T05:54:26Z",
+      "side": 1,
+      "message": "This is exactly the rollout last week which was then reverted:\nhttps://chromium-review.googlesource.com/c/catapult/+/4953065\n\nThe fix was on the latest build.",
+      "revId": "7f39411e2a278862b88095b229e015fc7fd1e9e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
