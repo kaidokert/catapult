@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf841800_015a70b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543262
+      },
+      "writtenOn": "2023-10-26T14:35:12Z",
+      "side": 1,
+      "message": "PTAL thank you\n\nAlso, according to https://chromium.googlesource.com/catapult/+/HEAD/CONTRIBUTING.md\n\n```\nBecoming a committer\nIf you\u0027re new to the chromium-family of projects, you will also need to sign the chrome contributors license agreement. You can sign the Contributor License Agreement, which you can do online. It only takes a minute. If you are contributing on On behalf of a corporation, you must fill out the Corporate Contributor License Agreement and send it to us as described on that page.\n\nIf you‘ve never submitted code before, you must add your (or your organization’s) name and contact info to the Chromium AUTHORS file.\n\nNext, ask an admin to add you (see adding committers)\n```\n\nCan I apply to become a committer now?",
+      "revId": "67c3a8f15537ba7ba0b1f003b532159c8c2563fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
