@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6219f6_d248b8b4",
+        "filename": "devil/devil/utils/markdown.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-10-30T21:29:24Z",
+      "side": 0,
+      "message": "From the documentation https://docs.python.org/3.11/library/imp.html#imp.find_module, it seems like the correct replacement is `importlib.util.find_spec`. Is there a particular reason why you need to use `spec_from_file_location` instead?",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 23
+      },
+      "revId": "e0c9c85d41d6229ecb4d3180347c60c146df4ce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -33,6 +33,24 @@
       "message": "+Wenbin@\n\nPTAL thank you\n\nAlso, according to https://chromium.googlesource.com/catapult/+/HEAD/CONTRIBUTING.md\n\nBecoming a committer\nIf you\u0027re new to the chromium-family of projects, you will also need to sign the chrome contributors license agreement. You can sign the Contributor License Agreement, which you can do online. It only takes a minute. If you are contributing on On behalf of a corporation, you must fill out the Corporate Contributor License Agreement and send it to us as described on that page.\n\nIf you‘ve never submitted code before, you must add your (or your organization’s) name and contact info to the Chromium AUTHORS file.\n\nNext, ask an admin to add you (see adding committers)\nCan I apply to become a committer now?",
       "revId": "67c3a8f15537ba7ba0b1f003b532159c8c2563fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c779dde_1960915d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-10-30T21:29:24Z",
+      "side": 1,
+      "message": "\u003e Can I apply to become a committer now?\n\nAt a glance, it looks like you\u0027ve landed plenty of CLs, so probably. You\u0027ll need to have a committer who\u0027s familiar with your work nominate you for commitership.",
+      "parentUuid": "8954e256_c0c02958",
+      "revId": "67c3a8f15537ba7ba0b1f003b532159c8c2563fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
