@@ -16,6 +16,23 @@
       "message": "Not sure who the appropriate reviewer is for this. Added you since your in the OWNERS file. Let me know if you\u0027re not the correct person.",
       "revId": "2308e8ee2d9dcfdfc74cd1b113069d5cb2c236eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11dfcd74_0e95609f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2023-10-31T15:15:17Z",
+      "side": 1,
+      "message": "LGTM, thank you! Do you happen to know why the CSS didn\u0027t work?",
+      "revId": "2308e8ee2d9dcfdfc74cd1b113069d5cb2c236eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
