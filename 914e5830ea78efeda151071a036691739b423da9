@@ -16,6 +16,23 @@
       "message": "Hi John,\n\nThis change is just for developer ergonomics so we can have local .vscode configs.\n\nThanks,\nPeter",
       "revId": "914e5830ea78efeda151071a036691739b423da9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0125fbf_bebf0deb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2023-10-31T20:09:13Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "914e5830ea78efeda151071a036691739b423da9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
