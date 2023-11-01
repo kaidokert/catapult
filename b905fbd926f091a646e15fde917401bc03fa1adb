@@ -16,6 +16,23 @@
       "message": "Fixing the bug we discussed. PTAL.",
       "revId": "b905fbd926f091a646e15fde917401bc03fa1adb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c2d0bf_70b2fc53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-01T17:19:16Z",
+      "side": 1,
+      "message": "LGTM. Thanks!",
+      "revId": "b905fbd926f091a646e15fde917401bc03fa1adb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
