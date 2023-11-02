@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e255c99e_afa5a6c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-02T17:35:45Z",
+      "side": 1,
+      "message": "lgtm.",
+      "revId": "81f2c84fecac8baf5f7fb0913f23fc39a5ce6408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be0b5e2_012a877e",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-02T17:35:45Z",
+      "side": 1,
+      "message": "Would you help to remove abennetts? he is ex-googler.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 9
+      },
+      "revId": "81f2c84fecac8baf5f7fb0913f23fc39a5ce6408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7903bcb3_ddb0a026",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-02T17:35:45Z",
+      "side": 1,
+      "message": "Please help remove Faraz as well. Thanks!",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 9
+      },
+      "revId": "81f2c84fecac8baf5f7fb0913f23fc39a5ce6408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
