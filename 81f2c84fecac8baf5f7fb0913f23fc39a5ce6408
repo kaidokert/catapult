@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7bcc23_92a81f44",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1558147
+      },
+      "writtenOn": "2023-11-02T17:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7be0b5e2_012a877e",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 9
+      },
+      "revId": "81f2c84fecac8baf5f7fb0913f23fc39a5ce6408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7903bcb3_ddb0a026",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-02T17:35:45Z",
       "side": 1,
       "message": "Please help remove Faraz as well. Thanks!",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 9
+      },
+      "revId": "81f2c84fecac8baf5f7fb0913f23fc39a5ce6408",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "316e1c0e_5cbbb709",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1558147
+      },
+      "writtenOn": "2023-11-02T17:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7903bcb3_ddb0a026",
       "range": {
         "startLine": 4,
         "startChar": 0,
