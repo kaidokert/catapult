@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "312c8a08_d070a0df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-11-02T23:58:30Z",
+      "side": 1,
+      "message": "I tested this out on staging:\n```\ncurl -m 70 -X POST https://us-central1-chromeperf.cloudfunctions.net/get-cabe-analysis-seanmccullough -H \"Authorization: bearer $(gcloud auth print-identity-token)\" -H \"Content-Type: application/json\" -d \u0027{\n  \"job_id\": \"1687a44af60000\",\n  \"anomaly\": {\"benchmark\": \"v8.browsing_mobile\",\n  \"measurement\": \"v8:gc:cycle:main_thread:young\"}\n}\u0027\n```\n\nlogs here: https://cloudlogging.app.goo.gl/JkKNogCueY6nGC3i8 (the POST starting at 2023-11-02 16:01:01.024)",
+      "revId": "b994a3899202da4b3920c9c85af60a5a3f0b0896",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
