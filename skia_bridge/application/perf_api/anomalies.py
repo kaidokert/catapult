@@ -143,6 +143,7 @@ def AddAnomalyPostHandler():
     if not is_valid:
       return error, 400
 
+    client = datastore_client.DataStoreClient()
     test_path = data['test_path']
     test_metadata = client.GetEntity(datastore_client.EntityType.TestMetadata,
                                      test_path)
@@ -159,7 +160,6 @@ def AddAnomalyPostHandler():
           anomaly_data[optional_key] = data[optional_key]
 
       _ExtendRevisions(anomaly_data)
-      client = datastore_client.DataStoreClient()
       anomaly = client.CreateEntity(datastore_client.EntityType.Anomaly,
                                     str(uuid.uuid4()),
                                     anomaly_data)
