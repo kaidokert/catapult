@@ -22,6 +22,30 @@
       },
       "revId": "2445622d3e45a8bba4c3a7dfec3c55aa35075d6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b5d2bac_bcfe9c46",
+        "filename": "dashboard/sandwich_verification/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2023-11-07T22:03:03Z",
+      "side": 1,
+      "message": "Nope. The Sandwich Verification workflow code lives in catapult repo, and it might even be the least automated deployment process we have.  It\u0027s not even in go/berf-rotation-playbook (yet...) AFAIK.",
+      "parentUuid": "1bbe2567_eed1280e",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "2445622d3e45a8bba4c3a7dfec3c55aa35075d6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
