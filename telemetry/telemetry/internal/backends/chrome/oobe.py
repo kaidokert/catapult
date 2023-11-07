@@ -91,30 +91,6 @@ class Oobe(web_contents.WebContents):
       # Oobe context recreated after the enrollment (crrev.com/c/2144279).
       py_utils.WaitFor(lambda: not self.IsAlive(), 60)
 
-  def NavigateGaiaLogin(self, username, password,
-                        enterprise_enroll=False,
-                        for_user_triggered_enrollment=False):
-    """Logs in using the GAIA webview. |enterprise_enroll| allows for enterprise
-    enrollment. |for_user_triggered_enrollment| should be False for remora
-    enrollment."""
-    # TODO(achuith): Get rid of this call. crbug.com/804216.
-    self._ExecuteOobeApi('OobeAPI.skipToLoginForTesting')
-    if for_user_triggered_enrollment:
-      self._ExecuteOobeApi('Oobe.switchToEnterpriseEnrollmentForTesting')
-
-    url = self.EvaluateJavaScript("window.location.href")
-    if url.startswith('chrome://oobe/gaia-signin'):
-      self._ExecuteOobeApi('OobeAPI.showGaiaDialog')
-
-    py_utils.WaitFor(self._GaiaWebviewContext, 20)
-    self._NavigateWebviewLogin(username, password,
-                               wait_for_close=not enterprise_enroll)
-
-    if enterprise_enroll:
-      self.WaitForJavaScriptCondition(
-          'Oobe.isEnrollmentSuccessfulForTest()', timeout=120)
-      self._ExecuteOobeApi('Oobe.enterpriseEnrollmentDone')
-
   def _UnicornObfuscated(self, text):
     """Converts an email into an obfuscated email.
 
