@@ -16,6 +16,24 @@
       "message": "IIRC the instructions do say to place this after the `\u003chead\u003e` element, but I think they mean after the opening tag (i.e. *inside* the `\u003chead\u003e` element, before the `\u003c/head\u003e` tag).  \n\nAt least, that\u0027s what I had to do for the skia perf templates in order to get it to render properly on the server side.  That may have been just a server-side issue with sanitization features of go\u0027s `text/template/html` package though.\n\nEither way, if you haven\u0027t verified it already just be sure that this does get inserted into the document and actually executes on the client side.",
       "revId": "394bce6424de06d114380ce4184e4897bfcb473a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "960a31d7_c12a7523",
+        "filename": "dashboard/dashboard/static/group_report.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-11-08T22:30:54Z",
+      "side": 1,
+      "message": "Makes sense ... updated it now 😊",
+      "parentUuid": "25aaa202_2014e27e",
+      "revId": "394bce6424de06d114380ce4184e4897bfcb473a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
