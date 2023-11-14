@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27405073_346c5778",
+        "filename": "skia_bridge/application/perf_api/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-11-14T19:53:48Z",
+      "side": 1,
+      "message": "We may want to keep an eye on this since it can slow down the api call. A better approach will be to update the anomaly entities themselves so that we don\u0027t need to retrieve the testmetadatas every time. LGTM for now with the caveat that we\u0027ll need to update anomalies instead if this api slows down significantly.",
+      "range": {
+        "startLine": 80,
+        "startChar": 10,
+        "endLine": 84,
+        "endChar": 73
+      },
+      "revId": "48a0963d3ff2f7c7dea98c5d5fbf3daaa7699ca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
