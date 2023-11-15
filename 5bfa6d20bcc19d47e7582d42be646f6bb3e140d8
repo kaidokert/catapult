@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6df72c68_d8b4dfac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-11-15T21:42:11Z",
+      "side": 1,
+      "message": "PTAL - rolling the binary version for WPR",
+      "revId": "5bfa6d20bcc19d47e7582d42be646f6bb3e140d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
