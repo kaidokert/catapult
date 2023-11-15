@@ -22,6 +22,30 @@
       },
       "revId": "0aa05eeabe2243bd6d8c15b0a6f20700130f365c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89121974_f0e2dde0",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-11-15T22:03:52Z",
+      "side": 1,
+      "message": "In theory we should have any overlap between skia and chromeperf alert groups, so if even one is a skia anomaly then all should be. The scenario you mention would be an error case actually, but considering this label is only short term and this check will be going away within the next month or so, I\u0027d punt the reporting of the error scenario. I will be keeping a close eye on the anomalies and bugs created during this period and it should be easy to catch",
+      "parentUuid": "f7a1fe77_7304b0d9",
+      "range": {
+        "startLine": 733,
+        "startChar": 7,
+        "endLine": 733,
+        "endChar": 10
+      },
+      "revId": "0aa05eeabe2243bd6d8c15b0a6f20700130f365c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
