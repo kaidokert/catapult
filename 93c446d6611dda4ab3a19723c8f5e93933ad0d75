@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9933dc3_e0c1aabd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115876
+      },
+      "writtenOn": "2023-11-17T20:41:27Z",
+      "side": 1,
+      "message": "Hey John, PTAL -- the underlying CDP method is deprecated, and while we could just use a different one in telemetry, I\u0027ve had a look and it looks like the method isn\u0027t actually used, and it\u0027s implementation is not handling iframes properly, so perhaps a better approach would be to nuke it altogether.",
+      "revId": "93c446d6611dda4ab3a19723c8f5e93933ad0d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
