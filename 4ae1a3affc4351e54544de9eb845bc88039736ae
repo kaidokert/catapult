@@ -39,6 +39,30 @@
       },
       "revId": "4ae1a3affc4351e54544de9eb845bc88039736ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2305e3f2_c90fb393",
+        "filename": "dashboard/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-20T22:57:39Z",
+      "side": 1,
+      "message": "If we only retry once, 5 second may not be enough to avoid the peak. What about start from 30 seconds?\n\nForgot to mention in the CL (updated now) that I have reduced the interval from 10 mins to 15 mins. That would delay the next wave of requests.",
+      "parentUuid": "460949d6_61fc2cbb",
+      "range": {
+        "startLine": 36,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "4ae1a3affc4351e54544de9eb845bc88039736ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
