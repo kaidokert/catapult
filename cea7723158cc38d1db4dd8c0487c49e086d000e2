@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc2b880f_6825c6e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2023-11-20T21:36:33Z",
+      "side": 1,
+      "message": "Hi Ben,\n\nThis info helped me identify the bug, so it might be helpful for others who use adb_wrapper and are confused why their timeout isn\u0027t the one they expected.\n\nIn the meantime I\u0027ll look to see how to actually fix the bug...\n\nThanks,\nPeter",
+      "revId": "cea7723158cc38d1db4dd8c0487c49e086d000e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
