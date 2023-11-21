@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17a7e69c_b86ca92e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-21T20:59:27Z",
+      "side": 1,
+      "message": "Thanks for the update. The CL LGTM.\n(Though, I\u0027m not sure why the bug id matters when we picked the anomaly)",
+      "revId": "441014fde97b25d3963a00abd004fd925a2af7d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
