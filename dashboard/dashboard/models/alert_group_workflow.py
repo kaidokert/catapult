@@ -1110,7 +1110,7 @@ class AlertGroupWorkflow:
     # 4. is not a summary metric (has story)
     regressions = [
         r for r in regressions or []
-        if (r.auto_bisect_enable and r.bug_id > 0
+        if (r.auto_bisect_enable and r.bug_id and r.bug_id > 0
             and not set(r.pinpoint_bisects) & set(self._group.bisection_ids)
             and r.test.get().unescaped_story_name)
     ]
