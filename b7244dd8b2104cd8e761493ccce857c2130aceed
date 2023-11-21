@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3606fda6_fe10fc0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-21T18:36:11Z",
+      "side": 1,
+      "message": "The fix here makes sense as a guardrail. Though, the root cause seems related the triaging workflow: the group status is updated but the anomalies are not updated, in _TryTriage(). Do we have a bug or error?",
+      "revId": "b7244dd8b2104cd8e761493ccce857c2130aceed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
