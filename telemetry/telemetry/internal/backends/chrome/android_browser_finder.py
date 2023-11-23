@@ -291,6 +291,9 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     startup_args.append('--disable-fre')
     startup_args.append('--disable-external-intent-requests')
 
+    # Make sure finch experiment is turned off for benchmarking.
+    startup_args.append('--enable-benchmarking')
+
     # Need to specify the user profile directory for
     # --ignore-certificate-errors-spki-list to work.
     startup_args.append('--user-data-dir=' + self.profile_directory)
