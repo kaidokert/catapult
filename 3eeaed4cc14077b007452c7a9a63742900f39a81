@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b936db6_f2149730",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2023-11-24T19:00:19Z",
+      "side": 1,
+      "message": "Hi Ben,\n\nI\u0027d like to help own the devil/ library in catapult (if you think it\u0027s a good idea). I think Haiyang would be a good owner as well according to recent commits.\n\nThis also spreads OWNERS around geographically \u0026 a bit by timezones when all US PST is out. 😊\n\nThanks,\nPeter",
+      "revId": "3eeaed4cc14077b007452c7a9a63742900f39a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
