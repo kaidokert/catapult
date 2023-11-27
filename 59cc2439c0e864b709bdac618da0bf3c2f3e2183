@@ -51,6 +51,24 @@
       "message": "Could you provide more context about how the query and results will be different with this change?",
       "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e922023c_3bae1ecb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-11-27T20:24:07Z",
+      "side": 1,
+      "message": "Sure thing. When querying datastore with multiple indexes, Datastore will use composite indexes if they are defined or it will merge the indexes together [1]. Our composite indexes are defined here [2], but our query only filters for the `parent_test` and `deprecated`. Therefore, it\u0027s using a merge index. It turns out the merge index can slow down performance [3] to the point where it can time out. For example, \n\n```\n// this times out\nSELECT COUNT(*)\nFROM TestMetadata\nWHERE \n    parent_test \u003d null\n   AND deprecated\u003dfalse\n```\n\nwill time out. But the following will not time out:\n\n```\n// single indices are fine\nSELECT COUNT(*)\nFROM TestMetadata\nWHERE \n    parent_test \u003d null\n```\n\n```\n// composite indices are fine\nSELECT COUNT(*) \nFROM TestMetadata\nWHERE \n    deprecated \u003d false\n    AND parent_test \u003d null\n    AND description \u003d \"\"\n    AND internal_only\u003dtrue\n```\n\n[1] https://cloud.google.com/datastore/docs/concepts/optimize-indexes\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/index.yaml;drc\u003db9ebaddcd0d4298e8e65641a5f454f7603e90b40;l\u003d317\n[3] see slow merge-join queries https://cloud.google.com/datastore/docs/troubleshooting",
+      "parentUuid": "5201cab2_0a018d57",
+      "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
