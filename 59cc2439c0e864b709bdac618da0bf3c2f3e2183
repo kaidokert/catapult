@@ -16,6 +16,24 @@
       "message": "I tried a couple of more elegant ways to do this query but I don\u0027t think Datastore supports the OR operation. Here is the query in datastore:\n\nhttps://pantheon.corp.google.com/datastore/databases/-default-/entities;kind\u003dTestMetadata;ns\u003d__$DEFAULT$__/query/gql;gql\u003dSELECT%2520COUNT%2528*%2529%250AFROM%2520TestMetadata%250AWHERE%2520%250A%2520%2520%2520%2520deprecated%2520%253D%2520false%250A%2520%2520%2520%2520AND%2520parent_test%2520%253D%2520null%250A%2520%2520%2520%2520AND%2520description%2520!%253D%2520%2522made_up_description%2522%250A?e\u003d-13802955\u0026mods\u003dcomponent_inspector\u0026project\u003dchromeperf",
       "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "849f41ce_1d4118c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-11-27T20:00:28Z",
+      "side": 1,
+      "message": "The other thing we could try is to remove description from the composite index [1], create new composite indices, and delete the unused ones [2]. How do we deploy the index.yaml? Is it automatically or manually (like the gcloud deploy steps we use for staging)? \n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/index.yaml;drc\u003db9ebaddcd0d4298e8e65641a5f454f7603e90b40;l\u003d317\n[2] https://cloud.google.com/appengine/docs/flexible/configuring-datastore-indexes-with-index-yaml?tab\u003dpython",
+      "parentUuid": "1c4c0e83_196b519a",
+      "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
