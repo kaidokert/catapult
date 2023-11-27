@@ -16,6 +16,23 @@
       "message": "Hi Ben,\n\nI\u0027d like to help own the devil/ library in catapult (if you think it\u0027s a good idea). I think Haiyang would be a good owner as well according to recent commits.\n\nThis also spreads OWNERS around geographically \u0026 a bit by timezones when all US PST is out. 😊\n\nThanks,\nPeter",
       "revId": "3eeaed4cc14077b007452c7a9a63742900f39a81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a645766d_c380a0db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-11-27T18:56:25Z",
+      "side": 1,
+      "message": "non-owner LGTM. Thanks for adding me.",
+      "revId": "3eeaed4cc14077b007452c7a9a63742900f39a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
