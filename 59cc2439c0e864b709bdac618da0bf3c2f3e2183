@@ -34,6 +34,23 @@
       "parentUuid": "1c4c0e83_196b519a",
       "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5201cab2_0a018d57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-27T20:18:33Z",
+      "side": 1,
+      "message": "Could you provide more context about how the query and results will be different with this change?",
+      "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
