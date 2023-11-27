@@ -69,6 +69,41 @@
       "parentUuid": "5201cab2_0a018d57",
       "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b369c59_a3385ea4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-27T21:27:35Z",
+      "side": 1,
+      "message": "lgtm with possible future update.",
+      "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64d7c3cf_1433356c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-27T21:27:35Z",
+      "side": 1,
+      "message": "I see. Thanks for the info!\n\nI think this CL works. We can also consider adding another pair of composite indexes which only have deprecated and parent_test (and internal_only), That should be even more efficient.",
+      "parentUuid": "e922023c_3bae1ecb",
+      "revId": "59cc2439c0e864b709bdac618da0bf3c2f3e2183",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
