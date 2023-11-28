@@ -50,6 +50,23 @@
       "message": "Brian knows telemetry better than me, so defer to him",
       "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91d4dfa9_4282994e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-11-28T23:55:10Z",
+      "side": 1,
+      "message": "Telemetry is used for more than just performance testing, so adding this here seems like it might inadvertently affect test behavior in tests that *do* want finch flags. Is there a reason why this can\u0027t be added to the individual perf test suites that need it via something like `--extra-browser-args`?",
+      "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
