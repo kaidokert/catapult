@@ -85,6 +85,24 @@
       "parentUuid": "91d4dfa9_4282994e",
       "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73122977_205896ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-11-29T18:18:24Z",
+      "side": 1,
+      "message": "If this should be set for all perf tests, then `tools/perf/run_benchmark` sounds reasonable. That, or modify the perf-specific base classes in Telemetry [1] to automatically append the argument. See [2] for an example of a child class for a specific perf suite modifying browser args.\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/page/?q\u003d-file:%5Eout%20-file:%5Egen%20telemetry%2Fpage\n\n[2] https://source.chromium.org/chromium/chromium/src/+/main:tools/perf/benchmarks/blink_perf.py;l\u003d279",
+      "parentUuid": "bdcebaa6_846a46a3",
+      "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
