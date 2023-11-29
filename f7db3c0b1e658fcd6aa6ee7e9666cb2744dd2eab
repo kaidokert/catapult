@@ -67,6 +67,24 @@
       "message": "Telemetry is used for more than just performance testing, so adding this here seems like it might inadvertently affect test behavior in tests that *do* want finch flags. Is there a reason why this can\u0027t be added to the individual perf test suites that need it via something like `--extra-browser-args`?",
       "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdcebaa6_846a46a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2023-11-29T15:48:55Z",
+      "side": 1,
+      "message": "Makes sense, I can add it to our PGO generate_profile.py script for developing locally, though would I need to add it to all our bots individually? Do you know if there\u0027s a happy middle ground somewhere else? Would it make sense to set through all invocations of tools/perf/run_benchmark?",
+      "parentUuid": "91d4dfa9_4282994e",
+      "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
