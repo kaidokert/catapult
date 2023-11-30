@@ -35,6 +35,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "782af1bb_d842eb86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-11-30T00:41:01Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3762398e_1c02f3f1",
@@ -48,6 +65,30 @@
       "writtenOn": "2023-11-30T00:34:12Z",
       "side": 1,
       "message": "Suggestion:\n\nHOTLIST_MAP_B2CR \u003d { hotlist: label for label, hotlist in LABEL_MAP_CR2B.items() }",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 1
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "177836af_99a4cb5b",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-11-30T00:41:01Z",
+      "side": 1,
+      "message": "ditto for project map and component map",
+      "parentUuid": "3762398e_1c02f3f1",
       "range": {
         "startLine": 49,
         "startChar": 0,
