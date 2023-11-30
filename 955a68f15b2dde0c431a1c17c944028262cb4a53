@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e8b64f_b044374d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1426749
+      },
+      "writtenOn": "2023-11-30T14:42:54Z",
+      "side": 1,
+      "message": "lgtm! nice find! \n\nplease, wait for achuith@ as I might be missing something here :)",
+      "revId": "955a68f15b2dde0c431a1c17c944028262cb4a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
