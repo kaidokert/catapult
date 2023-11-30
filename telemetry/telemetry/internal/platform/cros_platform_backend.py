@@ -26,6 +26,8 @@ class CrosPlatformBackend(
       self._cri.TryLogin()
     else:
       self._cri = cros_interface.CrOSInterface()
+    # Cached data
+    self._lsb_release = None
 
   def GetDeviceId(self):
     return self._cri.hostname
@@ -112,16 +114,18 @@ class CrosPlatformBackend(
     return release_data
 
   def GetOSVersionName(self):
-    lsb_release = self._ReadReleaseFile(CROS_INFO_PATH)
-    if lsb_release and 'CHROMEOS_RELEASE_NAME' in lsb_release:
-      return lsb_release.get('CHROMEOS_RELEASE_NAME')
+    if self._lsb_release is None:
+      self._lsb_release = self._ReadReleaseFile(CROS_INFO_PATH)
+    if self._lsb_release and 'CHROMEOS_RELEASE_NAME' in self._lsb_release:
+      return self._lsb_release.get('CHROMEOS_RELEASE_NAME')
 
     raise NotImplementedError('Missing CrOS name in lsb-release')
 
   def GetOSVersionDetailString(self):
-    lsb_release = self._ReadReleaseFile(CROS_INFO_PATH)
-    if lsb_release and 'CHROMEOS_RELEASE_VERSION' in lsb_release:
-      return lsb_release.get('CHROMEOS_RELEASE_VERSION')
+    if self._lsb_release is None:
+      self._lsb_release = self._ReadReleaseFile(CROS_INFO_PATH)
+    if self._lsb_release and 'CHROMEOS_RELEASE_VERSION' in self._lsb_release:
+      return self._lsb_release.get('CHROMEOS_RELEASE_VERSION')
 
     raise NotImplementedError('Missing CrOS version in lsb-release')
 
