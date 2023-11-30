@@ -16,6 +16,92 @@
       "message": "PTAL.",
       "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9fb6def_431e7037",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-11-30T00:34:12Z",
+      "side": 1,
+      "message": "LGTM with suggestions.",
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3762398e_1c02f3f1",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-11-30T00:34:12Z",
+      "side": 1,
+      "message": "Suggestion:\n\nHOTLIST_MAP_B2CR \u003d { hotlist: label for label, hotlist in LABEL_MAP_CR2B.items() }",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 1
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "313fdbaf_272d620f",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-11-30T00:34:12Z",
+      "side": 1,
+      "message": "This looks a little strange to me. I\u0027d suggest 0 \u003c\u003d label_priority \u003c 5",
+      "range": {
+        "startLine": 195,
+        "startChar": 11,
+        "endLine": 195,
+        "endChar": 37
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e0c588_a9bfd9a4",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-11-30T00:34:12Z",
+      "side": 1,
+      "message": "Nit: line too long",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 211,
+        "endChar": 105
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
