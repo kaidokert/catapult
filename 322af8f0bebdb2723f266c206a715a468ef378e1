@@ -101,6 +101,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a99ae17_7f85e1fa",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-30T16:20:26Z",
+      "side": 1,
+      "message": "Updated the hotlist map.\nThe project-component is one to many. Will give another try later.",
+      "parentUuid": "177836af_99a4cb5b",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 1
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "313fdbaf_272d620f",
         "filename": "perf_issue_service/application/buganizer_utils.py",
         "patchSetId": 1
@@ -112,6 +136,30 @@
       "writtenOn": "2023-11-30T00:34:12Z",
       "side": 1,
       "message": "This looks a little strange to me. I\u0027d suggest 0 \u003c\u003d label_priority \u003c 5",
+      "range": {
+        "startLine": 195,
+        "startChar": 11,
+        "endLine": 195,
+        "endChar": 37
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43b3b2a7_fa75bd7b",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-30T16:20:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "313fdbaf_272d620f",
       "range": {
         "startLine": 195,
         "startChar": 11,
@@ -135,6 +183,30 @@
       "writtenOn": "2023-11-30T00:34:12Z",
       "side": 1,
       "message": "Nit: line too long",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 211,
+        "endChar": 105
+      },
+      "revId": "322af8f0bebdb2723f266c206a715a468ef378e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b541aac_7f5d688e",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-11-30T16:20:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5e0c588_a9bfd9a4",
       "range": {
         "startLine": 211,
         "startChar": 8,
