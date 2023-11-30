@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d9f700_82153be1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2023-11-30T20:02:09Z",
+      "side": 1,
+      "message": "Hi Ben,\n\nThis will be used by apk_operations.py in Chromium to fail early when the wrong ABI is installed on newer 64-bit only devices (e.g. pixel 7+): https://crrev.com/c/5074600\n\nThanks,\nPeter",
+      "revId": "dd3754824c27664f1c420868bb523b933d3d7ba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
