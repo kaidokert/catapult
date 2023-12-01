@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2367db7b_34fda5c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-12-01T21:28:03Z",
+      "side": 1,
+      "message": "Rolling out the fix of the datatype error. PTAL.",
+      "revId": "c710cffcd85046d987d804a7e59cbc7a7e9efaee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
