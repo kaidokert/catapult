@@ -16,6 +16,40 @@
       "message": "lgtm! nice find! \n\nplease, wait for achuith@ as I might be missing something here :)",
       "revId": "955a68f15b2dde0c431a1c17c944028262cb4a53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62be8e36_fbebd299",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2023-12-04T02:05:26Z",
+      "side": 1,
+      "message": "I think you just want to do this",
+      "revId": "955a68f15b2dde0c431a1c17c944028262cb4a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d841ce_20a01fa9",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2023-12-04T02:05:26Z",
+      "side": 1,
+      "message": "I think you can just add @decorators.Cache to this method and you\u0027re done",
+      "revId": "955a68f15b2dde0c431a1c17c944028262cb4a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
