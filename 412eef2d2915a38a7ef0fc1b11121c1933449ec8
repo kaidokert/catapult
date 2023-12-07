@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eb59aad_3dbc5950",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-12-07T18:42:07Z",
+      "side": 1,
+      "message": "Needs https://chromium-review.googlesource.com/c/catapult/+/5101048 to land first.",
+      "revId": "412eef2d2915a38a7ef0fc1b11121c1933449ec8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
