@@ -16,6 +16,23 @@
       "message": "Another reimplement CL with the revert. \nThe real change is in GetAlertGroupsForAnomaly().\n\nPTAL.",
       "revId": "5517c750f96cd565efebf6d5d4fb13f7d57e9ea8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8774118e_7f965bb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-12-08T23:15:42Z",
+      "side": 1,
+      "message": "I would prefer it if you reverted this [1] outside of this CL rather than try to fold it into this one.\n\n[1] https://chromium-review.googlesource.com/c/catapult/+/5097607",
+      "revId": "5517c750f96cd565efebf6d5d4fb13f7d57e9ea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
