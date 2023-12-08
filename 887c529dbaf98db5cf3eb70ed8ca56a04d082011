@@ -16,6 +16,46 @@
       "message": "Reimplemented the previous fix by passing the subscription name. PTAL.",
       "revId": "887c529dbaf98db5cf3eb70ed8ca56a04d082011",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a55266b9_3317dd3d",
+        "filename": "perf_issue_service/application/api/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-12-08T22:18:33Z",
+      "side": 1,
+      "message": "Not sure if we should use sub_name when everywhere else we call it subscription_name",
+      "range": {
+        "startLine": 47,
+        "startChar": 80,
+        "endLine": 47,
+        "endChar": 88
+      },
+      "revId": "887c529dbaf98db5cf3eb70ed8ca56a04d082011",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad7aa7d_10d2051a",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2023-12-08T22:18:33Z",
+      "side": 1,
+      "message": "Missing group_type and subscription_name",
+      "revId": "887c529dbaf98db5cf3eb70ed8ca56a04d082011",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
