@@ -188,38 +188,20 @@ def GetAnomaliesByAlertGroupID(group_id):
     return []
 
 
-def GetAlertGroupsForAnomalyById(anomaly):
-  anomaly_id = anomaly.key.id()
-
-  logging.debug('Getting groups for anomaly id: %s', anomaly_id)
-
-  url = _SERVICE_URL + _ALERT_GROUP_PREFIX
-  url += 'anomaly_id/%s' % anomaly_id
-
-  try:
-    cloud_metric.PublishPerfIssueServiceRequests('GetAlertGroupsForAnomalyById',
-                                                 'GET', url,
-                                                 {'anomaly_id': anomaly_id})
-    resp = request.RequestJson(url, method='GET')
-    return resp
-  except request.RequestError as e:
-    cloud_metric.PublishPerfIssueServiceRequestFailures(
-        'GetAlertGroupsForAnomalyById', 'GET', url, {'anomaly_id': anomaly_id})
-    logging.error(
-        '[PerfIssueService] Error requesting groups by anomaly id: %s. %s',
-        anomaly_id, str(e))
-    return []
-
-
 def GetAlertGroupsForAnomaly(anomaly):
   test_key = utils.TestPath(anomaly.test)
   start_rev = anomaly.start_revision
   end_rev = anomaly.end_revision
+  subs_name = anomaly.matching_subscription.name
 
   url = _SERVICE_URL + _ALERT_GROUP_PREFIX
   # use quote() instead of quote_plus. otherwise test_key with spaces
   # will be encoded to '+'.
-  url += 'test/%s/start/%s/end/%s' % (urllib.parse.quote(test_key), start_rev,
+  if subs_name:
+    url += 'test/%s/start/%s/end/%s/sub/%s' % (urllib.parse.quote(test_key), start_rev,
+                                      end_rev, subs_name)
+  else:
+    url += 'test/%s/start/%s/end/%s' % (urllib.parse.quote(test_key), start_rev,
                                       end_rev)
 
   try:
