@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25869da1_2e93f7ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-12-08T21:38:27Z",
+      "side": 1,
+      "message": "Changed the implementation due to crbug/1508132#c11.\nPTAL.",
+      "revId": "4d1015a2a784ee4355cabd3987a0baeb1221625e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
