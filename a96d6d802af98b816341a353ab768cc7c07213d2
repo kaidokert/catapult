@@ -16,6 +16,23 @@
       "message": "Updated. PTAL.",
       "revId": "a96d6d802af98b816341a353ab768cc7c07213d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cffa4b65_7f346e6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2023-12-11T18:14:19Z",
+      "side": 1,
+      "message": "nit: remove the `Reverts \"[Chromeperf] Find anomaly workflow finds groups using anomaly id instead of the key/revisions\"` from the commit message",
+      "revId": "a96d6d802af98b816341a353ab768cc7c07213d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
