@@ -182,7 +182,15 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   @property
   def absolute_delta(self):
     """The absolute change from before the anomaly to after."""
-    return self.median_after_anomaly - self.median_before_anomaly
+    try:
+      return self.median_after_anomaly - self.median_before_anomaly
+    except TypeError as e:
+      msg = ("Anomaly key: %s failed to calculate absolute delta. "
+             "before: %f, after: %f")
+      logging.error(
+          msg %
+          (self.key, self.median_before_anomaly, self.median_after_anomaly))
+      raise e
 
   @property
   def direction(self):
