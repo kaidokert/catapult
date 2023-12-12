@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f63347c5_ea0f7024",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-12-12T23:29:59Z",
+      "side": 1,
+      "message": "https://chromium.googlesource.com/catapult.git/+log/1ed7202..c1c223f",
+      "revId": "72dfae4c4f8797b4a19fec1aacec1258f74aa3a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
