@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b60a2d1e_284b4fd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-12-12T20:23:29Z",
+      "side": 1,
+      "message": "Please wait for a sec. I have two CLs checking in, which are needed for the buganizer migration validation.",
+      "revId": "4578541dc814ecc102d86c064490c5f653a6ad3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
