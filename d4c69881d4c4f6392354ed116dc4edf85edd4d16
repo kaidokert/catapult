@@ -16,6 +16,24 @@
       "message": "+ashwinpv@ manually deploying default to test fix against crbug/1510338 and crbug/1506113",
       "revId": "d4c69881d4c4f6392354ed116dc4edf85edd4d16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b9d887_0a1b9aed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-12-12T20:12:53Z",
+      "side": 1,
+      "message": "We actually need to update api service since the /group_report calls get routed to api",
+      "parentUuid": "18e37e03_dad79eff",
+      "revId": "d4c69881d4c4f6392354ed116dc4edf85edd4d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
