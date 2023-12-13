@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14981bf3_6d4d8f9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-12-13T19:34:07Z",
+      "side": 1,
+      "message": "LGTM. Thanks!",
+      "revId": "f1c6fc760d67bac5b31748e18f6ebde16d56c348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44eba0fe_4bd2792f",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "Good question! \n\nIt looks like either Accept-Encoding or Content-Encoding header may be sent here, so it could be something like:\n\"deflate, gzip;q\u003d1.0, *;q\u003d0.5\"\n\nthe \u0027q\u0027 is quality weight, which we don\u0027t do anything with, but I think is why this is written this way with the Contains rather than a straight switch. It should, however, be one of these items and wouldn\u0027t expect a false-positive match.\n\nAccept-Encoding: gzip\nAccept-Encoding: compress\nAccept-Encoding: deflate\nAccept-Encoding: br\nAccept-Encoding: identity\n\n(https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)\n\nThis could probably be followed up to make it more fool-proof and handle multi-compress (there is a old old TODO at line:74 about that).",
       "parentUuid": "44eba0fe_4bd2792f",
+      "range": {
+        "startLine": 163,
+        "startChar": 23,
+        "endLine": 163,
+        "endChar": 25
+      },
+      "revId": "f1c6fc760d67bac5b31748e18f6ebde16d56c348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1faed20_2c4e8636",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-12-13T19:34:07Z",
+      "side": 1,
+      "message": "I see. Thanks for the info!",
+      "parentUuid": "3e2826a6_62ba2b43",
       "range": {
         "startLine": 163,
         "startChar": 23,
