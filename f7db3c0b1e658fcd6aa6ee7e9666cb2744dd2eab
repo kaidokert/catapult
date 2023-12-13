@@ -103,6 +103,24 @@
       "parentUuid": "bdcebaa6_846a46a3",
       "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "431857b3_2585fe4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2023-12-13T21:18:37Z",
+      "side": 1,
+      "message": "This is a great question, I don\u0027t know if it should be set for all perf tests, nor how exactly `--enable-benchmarking` works. Perhaps lizeb@ knows?\n\nI\u0027ve sent http://g/chrome-pgo/Zwpis-Zv2_A to ask since presumably I\u0027m not the first to think about Finch for performance tests 😊",
+      "parentUuid": "73122977_205896ac",
+      "revId": "f7db3c0b1e658fcd6aa6ee7e9666cb2744dd2eab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
