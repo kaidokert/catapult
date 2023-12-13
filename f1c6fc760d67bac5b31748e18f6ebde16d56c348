@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36792fe0_1cebdc3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2023-12-13T08:58:20Z",
+      "side": 1,
+      "message": "PTAL - I ran into a site which has this encoding and cannot be recorded.",
+      "revId": "f1c6fc760d67bac5b31748e18f6ebde16d56c348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
