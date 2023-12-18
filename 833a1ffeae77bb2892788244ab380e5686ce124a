@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdf7cff3_0db03cd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2023-12-18T21:13:32Z",
+      "side": 1,
+      "message": "As it is a request of \u0027group_report\u0027:\n- are we getting anomalies from the same group? If not, should we query on the revisions of an alert group entity?",
+      "revId": "833a1ffeae77bb2892788244ab380e5686ce124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
