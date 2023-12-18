@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc3ba5ba_bfee0d94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2023-12-18T12:21:06Z",
+      "side": 1,
+      "message": "non-owner LGTM\n\nThank you, Haiyang!",
+      "revId": "dc5522bfb02703589b061a26d1e5e8971fd46faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
