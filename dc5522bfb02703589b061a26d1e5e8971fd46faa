@@ -16,6 +16,24 @@
       "message": "non-owner LGTM\n\nThank you, Haiyang!",
       "revId": "dc5522bfb02703589b061a26d1e5e8971fd46faa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d81da95_8b2ed9b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-12-18T18:10:14Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "parentUuid": "fc3ba5ba_bfee0d94",
+      "revId": "dc5522bfb02703589b061a26d1e5e8971fd46faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
