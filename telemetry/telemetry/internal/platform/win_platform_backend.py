@@ -163,11 +163,17 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
     key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, key_name)
     try:
       value, _ = winreg.QueryValueEx(key, 'CurrentMajorVersionNumber')
+      if value == 10:
+        # Both Windows 10 and 11 set CurrentMajorVersionNumber to 10, so we
+        # will need CurrentBuildNumber to distinguish them.
+        build, _ = winreg.QueryValueEx(key, 'CurrentBuildNumber')
     except OSError:
       value = None
     finally:
       key.Close()
     if value == 10:
+      if int(build) >= 22000:
+        return os_version_module.WIN11
       return os_version_module.WIN10
     if os_version.startswith('6.2.'):
       return os_version_module.WIN8
