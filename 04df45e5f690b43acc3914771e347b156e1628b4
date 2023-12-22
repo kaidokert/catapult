@@ -22,6 +22,30 @@
       },
       "revId": "04df45e5f690b43acc3914771e347b156e1628b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88621dc2_5db6fa73",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001299
+      },
+      "writtenOn": "2023-12-22T13:27:41Z",
+      "side": 1,
+      "message": "Yes, those tests are mocking `cri`, especially `cri.GetFileContents`. I would need to update those tests.",
+      "parentUuid": "ef06621f_7957fdde",
+      "range": {
+        "startLine": 151,
+        "startChar": 9,
+        "endLine": 151,
+        "endChar": 37
+      },
+      "revId": "04df45e5f690b43acc3914771e347b156e1628b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
