@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef06621f_7957fdde",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1426749
+      },
+      "writtenOn": "2023-12-22T10:47:25Z",
+      "side": 1,
+      "message": "Not sure why, but in failing tests:\n```\nif \u0027KnownUsers\u0027 in local_state:\n  TypeError: argument of type \u0027int\u0027 is not iterable\n```",
+      "range": {
+        "startLine": 151,
+        "startChar": 9,
+        "endLine": 151,
+        "endChar": 37
+      },
+      "revId": "04df45e5f690b43acc3914771e347b156e1628b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
