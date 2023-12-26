@@ -16,6 +16,24 @@
       "message": "As it is a request of \u0027group_report\u0027:\n- are we getting anomalies from the same group? If not, should we query on the revisions of an alert group entity?",
       "revId": "833a1ffeae77bb2892788244ab380e5686ce124a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f820e26_dfc96e92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-12-26T19:06:45Z",
+      "side": 1,
+      "message": "This is specifically a replacement for [GetAlertsAroundRevision](https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/group_report.py;l\u003d111?ss\u003dchromium%2Fchromium%2Fsrc) which only looks at anomalies. We do not intend to replace the entire group_report functionality",
+      "parentUuid": "bdf7cff3_0db03cd3",
+      "revId": "833a1ffeae77bb2892788244ab380e5686ce124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
