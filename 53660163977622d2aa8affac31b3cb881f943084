@@ -39,6 +39,30 @@
       },
       "revId": "53660163977622d2aa8affac31b3cb881f943084",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5be350ee_319b74c5",
+        "filename": "dashboard/dashboard/pinpoint/handlers/deps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-12-26T22:00:46Z",
+      "side": 1,
+      "message": "\u003e but have we looked at writing this functionality from scratch in Go?\n\nYes, we did. This was the original intent, but after trial and error the syntax of DEPS is closely tied to Python, and hence, the parsing of that file is best done in Py (Go\u0027s AST lib isn\u0027t very compatible with Py-type structured files). \n\n\u003e but we do not want this dependency long term.\n\nSince the .git repositories are planned to be removed from DEPS, we will likely require another solution anyways. We\u0027ll have to put in a request with the workflow team (that\u0027s currently working on this, see email with Josip@), to be provided with some solution that doesn\u0027t require us to re-invent the wheel with parsing DEPS (like we currently have between several other projects).\n\n\u003e skia-bridge service\n\nnoted. will move.",
+      "parentUuid": "a64bb5a3_bf4096c9",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "53660163977622d2aa8affac31b3cb881f943084",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
