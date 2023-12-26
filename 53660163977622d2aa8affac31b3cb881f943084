@@ -16,6 +16,29 @@
       "message": "This is tested on staging now:\n\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/api/deps?repository_url\u003dhttps://chromium.googlesource.com/chromium/src\u0026git_hash\u003d267b6ade976ef758a96fb797be1e7c0317a53308",
       "revId": "53660163977622d2aa8affac31b3cb881f943084",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a64bb5a3_bf4096c9",
+        "filename": "dashboard/dashboard/pinpoint/handlers/deps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2023-12-26T18:49:36Z",
+      "side": 1,
+      "message": "Not a blocker for this CL, but have we looked at writing this functionality from scratch in Go? If not possible, please look at moving this endpoint into the skia-bridge service. This adds a dependency on the legacy pinpoint service which will block deprecation of the legacy service in the future. Skia-Bridge is meant to provide integration points between the skia infra and chromeperf so it will be good to have all these apis in one location. If we will have a replacement for this in a few months that\u0027s fine but we do not want this dependency long term.",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "53660163977622d2aa8affac31b3cb881f943084",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
