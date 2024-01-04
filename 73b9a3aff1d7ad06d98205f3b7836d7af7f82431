@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b68eeb5_43b596e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-01-04T20:32:48Z",
+      "side": 1,
+      "message": "Yes, that\u0027s right.",
+      "parentUuid": "719f43af_27fde725",
+      "revId": "73b9a3aff1d7ad06d98205f3b7836d7af7f82431",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "600a5faf_ab736b03",
