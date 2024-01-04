@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "719f43af_27fde725",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-04T19:56:27Z",
+      "side": 1,
+      "message": "Is the plan to delete [1] after this lands? https://chromium.googlesource.com/catapult.git/+/65730c4295c0bcd15c0e817d7f8a1566c6342211/dashboard/dashboard/pinpoint/handlers/deps.py",
+      "revId": "73b9a3aff1d7ad06d98205f3b7836d7af7f82431",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "600a5faf_ab736b03",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-01-04T19:00:15Z",
       "side": 1,
       "message": "Please verify by running this in staging once. Skia Bridge runs in appengine flex which has it\u0027s own quirks.\n\nsimply run `gcloud --project\u003dchromeperf-stage app deploy --version \u003cversion name\u003e --no-promote skia-bridge.yaml `",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "73b9a3aff1d7ad06d98205f3b7836d7af7f82431",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3315c0d_ec4d38cd",
+        "filename": "skia_bridge/application/perf_api/clients/gitiles_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-04T19:56:27Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "600a5faf_ab736b03",
       "range": {
         "startLine": 15,
         "startChar": 0,
