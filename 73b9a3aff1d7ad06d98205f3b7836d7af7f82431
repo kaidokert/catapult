@@ -109,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "271f1163_0b9350fa",
+        "filename": "skia_bridge/application/perf_api/clients/gitiles_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-01-04T21:49:00Z",
+      "side": 1,
+      "message": "Considering everything in skia bridge is relatively short lived until the migration is done, I\u0027m fine with that. Hopefully the transitive dependencies aren\u0027t too bad to copy over.",
+      "parentUuid": "669b495a_82fe3472",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "73b9a3aff1d7ad06d98205f3b7836d7af7f82431",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2caf15bb_619f1322",
         "filename": "skia_bridge/application/perf_api/deps.py",
         "patchSetId": 1
