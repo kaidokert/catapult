@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "669b495a_82fe3472",
+        "filename": "skia_bridge/application/perf_api/clients/gitiles_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-01-04T21:44:43Z",
+      "side": 1,
+      "message": "Good call. It\u0027s not fond of the depot_tools import. I looked at how dashboard is doing it, and it seems hacky.\n\nThoughts on maintaining a copy locally in skia_bridge?",
+      "parentUuid": "b3315c0d_ec4d38cd",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "73b9a3aff1d7ad06d98205f3b7836d7af7f82431",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2caf15bb_619f1322",
         "filename": "skia_bridge/application/perf_api/deps.py",
         "patchSetId": 1
