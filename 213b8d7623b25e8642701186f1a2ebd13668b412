@@ -33,6 +33,23 @@
       "message": "lgtm, thanks (and hi paul!)",
       "revId": "213b8d7623b25e8642701186f1a2ebd13668b412",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2862a245_33c8b5ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1118499
+      },
+      "writtenOn": "2024-01-05T20:17:50Z",
+      "side": 1,
+      "message": "attempting CQ again now that crbug/1515764 is fixed",
+      "revId": "213b8d7623b25e8642701186f1a2ebd13668b412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
