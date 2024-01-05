@@ -16,6 +16,23 @@
       "message": "small bug fix for something elliot ran into. :)",
       "revId": "213b8d7623b25e8642701186f1a2ebd13668b412",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ad220fb_71433281",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2024-01-05T18:02:42Z",
+      "side": 1,
+      "message": "lgtm, thanks (and hi paul!)",
+      "revId": "213b8d7623b25e8642701186f1a2ebd13668b412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
