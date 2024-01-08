@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4739c11_c93e479d",
+        "filename": "skia_bridge/application/perf_api/clients/gitiles_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-01-08T18:01:33Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 68
+      },
+      "revId": "3af8a02cf700e5845cccc2d5ded96812269e297d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db171759_fde5a40c",
         "filename": "skia_bridge/application/perf_api/deps.py",
         "patchSetId": 5
