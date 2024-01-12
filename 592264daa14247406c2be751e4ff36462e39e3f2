@@ -22,6 +22,30 @@
       },
       "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aecb9fc_24b6078c",
+        "filename": "skia_bridge/application/perf_api/datastore_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-01-12T17:32:00Z",
+      "side": 1,
+      "message": "I think that can definitely happen. Also this api is expected to be called when somebody is loading a graph on the skia UI, which is essentially time-bound",
+      "parentUuid": "1ad7a556_658d8f69",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
