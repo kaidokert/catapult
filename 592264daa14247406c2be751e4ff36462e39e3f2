@@ -70,6 +70,30 @@
       },
       "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d74de5_94173b3c",
+        "filename": "skia_bridge/application/perf_api/datastore_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-01-12T17:41:51Z",
+      "side": 1,
+      "message": "Unfortunately the datastore api allows only one inequality filter in the query so we don\u0027t have much of an option other than doing the post query filtering. So far this hasn\u0027t created a problem in either chromeperf or skiaperf.",
+      "parentUuid": "c12ddd18_e545a07b",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
