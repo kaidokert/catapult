@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad7a556_658d8f69",
+        "filename": "skia_bridge/application/perf_api/datastore_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-12T05:53:59Z",
+      "side": 1,
+      "message": "Without the start/end time, would there be too many results for the anomalies under a certain test key?",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
