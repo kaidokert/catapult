@@ -46,6 +46,30 @@
       },
       "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c12ddd18_e545a07b",
+        "filename": "skia_bridge/application/perf_api/datastore_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-12T17:38:38Z",
+      "side": 1,
+      "message": "IIUC, the logic here loads the anomalies without the start/end time, and then filters the results using the times. That means even if the end user uses UI to have the start/end time, those values are not used in the query and we may still load many entities before we can filter them.\n\nI\u0027m not sure about how big the amount is. Maybe it is fine.",
+      "parentUuid": "4aecb9fc_24b6078c",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "592264daa14247406c2be751e4ff36462e39e3f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
