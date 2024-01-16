@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5538e5eb_af1d10e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-16T15:30:51Z",
+      "side": 1,
+      "message": "This script is for updating the Chrome used to run unit tests in Catapult repo. It is currently broken, but it will need to be fixed instead of removed.",
+      "revId": "5ad2c51388dccc9324081373a90b6f2f46535724",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
