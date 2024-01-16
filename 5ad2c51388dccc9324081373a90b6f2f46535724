@@ -33,6 +33,24 @@
       "message": "Thanks John!\n\nMy motivation is to stop building Monochrome.apk on official builders. Sounds like I can go ahead and do that, but this script will need to be updated in that regard as well. Unless there is a compelling reason why catapult needs the non-bundle monochrome.apk?",
       "revId": "5ad2c51388dccc9324081373a90b6f2f46535724",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "646d625b_f26042a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-16T15:35:29Z",
+      "side": 1,
+      "message": "I see. You can either remove reference to Monochrome.apk from the script, or leave the script as is and we\u0027ll remove the reference when we get the chance to fix the script.",
+      "parentUuid": "fc2e3e6d_ff02ba55",
+      "revId": "5ad2c51388dccc9324081373a90b6f2f46535724",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
