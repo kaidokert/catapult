@@ -16,6 +16,23 @@
       "message": "https://chromium-review.googlesource.com/c/catapult/+/5171492 was landed after the CL this is reverting, so you\u0027ll probably need to revert that at the same time.",
       "revId": "2a7c4b1c71c37792c13b4a2a08208650094f25be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d4a1a9_c8918ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001299
+      },
+      "writtenOn": "2024-01-16T12:15:20Z",
+      "side": 1,
+      "message": "Note that the https://chromium-review.googlesource.com/c/catapult/+/5200826 need to be reverted first.",
+      "revId": "2a7c4b1c71c37792c13b4a2a08208650094f25be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
