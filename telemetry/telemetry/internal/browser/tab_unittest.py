@@ -18,6 +18,21 @@ import py_utils
 def _IsDocumentVisible(tab):
   return not tab.EvaluateJavaScript('document.hidden || document.webkitHidden')
 
+def GetMilestoneNumber(browser):
+  version_info = browser.GetVersionInfo()
+  version = version_info.get('Browser', 'Chrome/0.0.0.0')
+  slash = version.find('/')
+  if slash < 0:
+    return 0
+  dot = version.find('.', slash + 2)
+  if dot < 0:
+    return 0
+  try:
+    milestone = int(version[slash + 1:dot])
+    return milestone
+  except ValueError:
+    return 0
+
 
 class TabTest(tab_test_case.TabTestCase):
   def testNavigateAndWaitForCompleteState(self):
@@ -168,3 +183,173 @@ class ServiceWorkerTabTest(tab_test_case.TabTestCase):
     self._tab.WaitForJavaScriptCondition('asyncOperationDone')
     self.assertFalse(self._tab.EvaluateJavaScript(
         'isServiceWorkerRegisteredForThisOrigin;'))
+
+
+class SharedStorageTabTest(tab_test_case.TabTestCase):
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.AppendExtraBrowserArgs([
+      '--enable-features=SharedStorageAPI,'
+      + 'FencedFrames:implementation_type/mparch,FencedFramesDefaultMode,'
+      + 'PrivacySandboxAdsAPIsOverride,DefaultAllowPrivacySandboxAttestations',
+      '--enable-privacy-sandbox-ads-apis'
+    ])
+
+  def testWaitForSharedStorageEventsStrict_Passes(self):
+    self._tab.Navigate(self.UrlOfUnittestFile('blank.html'))
+    enabled = self._tab.EvaluateJavaScript('Boolean(window.sharedStorage)')
+    if not enabled:
+      # Shared Storage is not enabled. The browser used may be too old.
+      milestone = GetMilestoneNumber(self._browser)
+      if milestone < 94:
+        return
+      version_info = str(self._browser.GetVersionInfo())
+      message = "Shared Storage is not enabled. " + version_info
+      raise exceptions.StoryActionError(message)
+    try:
+      self._tab.EnableSharedStorageNotifications()
+    except exceptions.StoryActionError as sae:
+      if "'Storage.setSharedStorageTracking' wasn't found" in str(sae):
+        # Shared Storage tracking in DevTools may not be implemented in this
+        # version of the browser.
+        milestone = GetMilestoneNumber(self._browser)
+        if milestone < 109:
+          return
+        version = str(self._browser.GetVersionInfo())
+        message = "Shared Storage DevTools tracking is not enabled. " + version
+        raise exceptions.StoryActionError(message)
+      raise sae
+    self.assertTrue(self._tab.shared_storage_notifications_enabled)
+    self._tab.EvaluateJavaScript("window.sharedStorage.set('a', 'b')",
+                               promise=True)
+    self._tab.EvaluateJavaScript("window.sharedStorage.append('c', 'd')",
+                               promise=True)
+    self._tab.EvaluateJavaScript("window.sharedStorage.delete('a')",
+                               promise=True)
+    expected_events = [{'type': 'documentSet',
+                        'params': {'key': 'a', 'value': 'b'}},
+                       {'type': 'documentAppend',
+                        'params': {'key': 'c', 'value': 'd'}},
+                       {'type': 'documentDelete'}]
+    self._tab.WaitForSharedStorageEvents(expected_events, mode='strict')
+    self._tab.DisableSharedStorageNotifications()
+    self.assertFalse(self._tab.shared_storage_notifications_enabled)
+    self._tab.ClearSharedStorageNotifications()
+
+  def testWaitForSharedStorageEventsStrict_Fails(self):
+    self._tab.Navigate(self.UrlOfUnittestFile('blank.html'))
+    enabled = self._tab.EvaluateJavaScript('Boolean(window.sharedStorage)')
+    if not enabled:
+      # Shared Storage is not enabled. The browser used may be too old.
+      milestone = GetMilestoneNumber(self._browser)
+      if milestone < 94:
+        return
+      version_info = str(self._browser.GetVersionInfo())
+      message = "Shared Storage is not enabled. " + version_info
+      raise exceptions.StoryActionError(message)
+    try:
+      self._tab.EnableSharedStorageNotifications()
+    except exceptions.StoryActionError as sae:
+      if "'Storage.setSharedStorageTracking' wasn't found" in str(sae):
+        # Shared Storage tracking in DevTools may not be implemented in this
+        # version of the browser.
+        milestone = GetMilestoneNumber(self._browser)
+        if milestone < 109:
+          return
+        version = str(self._browser.GetVersionInfo())
+        message = "Shared Storage DevTools tracking is not enabled. " + version
+        raise exceptions.StoryActionError(message)
+      raise sae
+    self.assertTrue(self._tab.shared_storage_notifications_enabled)
+    self._tab.EvaluateJavaScript("window.sharedStorage.set('a', 'b')",
+                               promise=True)
+    self._tab.EvaluateJavaScript("window.sharedStorage.delete('a')",
+                               promise=True)
+    expected_events = [{'type': 'documentDelete'},
+                       {'type': 'documentSet',
+                        'params': {'key': 'a', 'value': 'b'}}]
+    with self.assertRaises(py_utils.TimeoutException):
+      self._tab.WaitForSharedStorageEvents(expected_events, mode='strict',
+                                         timeout=10)
+    self._tab.DisableSharedStorageNotifications()
+    self.assertFalse(self._tab.shared_storage_notifications_enabled)
+    self._tab.ClearSharedStorageNotifications()
+
+  def testWaitForSharedStorageEventsRelaxed_Passes(self):
+    self._tab.Navigate(self.UrlOfUnittestFile('blank.html'))
+    enabled = self._tab.EvaluateJavaScript('Boolean(window.sharedStorage)')
+    if not enabled:
+      # Shared Storage is not enabled. The browser used may be too old.
+      milestone = GetMilestoneNumber(self._browser)
+      if milestone < 94:
+        return
+      version_info = str(self._browser.GetVersionInfo())
+      message = "Shared Storage is not enabled. " + version_info
+      raise exceptions.StoryActionError(message)
+    try:
+      self._tab.EnableSharedStorageNotifications()
+    except exceptions.StoryActionError as sae:
+      if "'Storage.setSharedStorageTracking' wasn't found" in str(sae):
+        # Shared Storage tracking in DevTools may not be implemented in this
+        # version of the browser.
+        milestone = GetMilestoneNumber(self._browser)
+        if milestone < 109:
+          return
+        version = str(self._browser.GetVersionInfo())
+        message = "Shared Storage DevTools tracking is not enabled. " + version
+        raise exceptions.StoryActionError(message)
+      raise sae
+    self.assertTrue(self._tab.shared_storage_notifications_enabled)
+    self._tab.EvaluateJavaScript("window.sharedStorage.set('a', 'b')",
+                               promise=True)
+    self._tab.EvaluateJavaScript("window.sharedStorage.append('c', 'd')",
+                               promise=True)
+    self._tab.EvaluateJavaScript("window.sharedStorage.delete('a')",
+                               promise=True)
+    expected_events = [{'type': 'documentAppend'},
+                       {'type': 'documentDelete',
+                        'params': {'key': 'a'}}]
+    self._tab.WaitForSharedStorageEvents(expected_events, mode='relaxed')
+    self._tab.DisableSharedStorageNotifications()
+    self.assertFalse(self._tab.shared_storage_notifications_enabled)
+    self._tab.ClearSharedStorageNotifications()
+
+  def testWaitForSharedStorageEventsRelaxed_Fails(self):
+    self._tab.Navigate(self.UrlOfUnittestFile('blank.html'))
+    enabled = self._tab.EvaluateJavaScript('Boolean(window.sharedStorage)')
+    if not enabled:
+      # Shared Storage is not enabled. The browser used may be too old.
+      milestone = GetMilestoneNumber(self._browser)
+      if milestone < 94:
+        return
+      version_info = str(self._browser.GetVersionInfo())
+      message = "Shared Storage is not enabled. " + version_info
+      raise exceptions.StoryActionError(message)
+    try:
+      self._tab.EnableSharedStorageNotifications()
+    except exceptions.StoryActionError as sae:
+      if "'Storage.setSharedStorageTracking' wasn't found" in str(sae):
+        # Shared Storage tracking in DevTools may not be implemented in this
+        # version of the browser.
+        milestone = GetMilestoneNumber(self._browser)
+        if milestone < 109:
+          return
+        version = str(self._browser.GetVersionInfo())
+        message = "Shared Storage DevTools tracking is not enabled. " + version
+        raise exceptions.StoryActionError(message)
+      raise sae
+    self.assertTrue(self._tab.shared_storage_notifications_enabled)
+    self._tab.EvaluateJavaScript("window.sharedStorage.set('a', 'b')",
+                               promise=True)
+    self._tab.EvaluateJavaScript("window.sharedStorage.delete('a')",
+                               promise=True)
+    expected_events = [{'type': 'documentSet',
+                        'params': {'key': 'a', 'value': 'b'}},
+                       {'type': 'documentDelete',
+                        'params': {'key': 'c'}}]
+    with self.assertRaises(py_utils.TimeoutException):
+      self._tab.WaitForSharedStorageEvents(expected_events, mode='relaxed',
+                                         timeout=10)
+    self._tab.DisableSharedStorageNotifications()
+    self.assertFalse(self._tab.shared_storage_notifications_enabled)
+    self._tab.ClearSharedStorageNotifications()
