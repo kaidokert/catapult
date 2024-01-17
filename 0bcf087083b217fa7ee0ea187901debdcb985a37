@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4ec91f_9cc40525",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-17T18:38:44Z",
+      "side": 1,
+      "message": "Okay that\u0027s unfortunate but understandable. If you have time to add unit tests please do!",
+      "parentUuid": "32539929_3f12ab01",
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6109566_d59efe4a",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Actually it should be custom_field_name:(extra_1|extra_2|extra_3). Updated.",
       "parentUuid": "e6109566_d59efe4a",
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8982a1c0_0fd8d017",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-17T18:38:44Z",
+      "side": 1,
+      "message": "ty!",
+      "parentUuid": "8b0c13ff_a7a1b9f4",
       "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
