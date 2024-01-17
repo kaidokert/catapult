@@ -4,6 +4,7 @@
 
 from __future__ import absolute_import
 import functools
+import json
 import logging
 import socket
 import sys
@@ -134,6 +135,23 @@ class InspectorBackend(six.with_metaclass(trace_event.TracedMetaClass, object)):
 
   def ClearDataForOrigin(self, url, timeout):
     self._storage.ClearDataForOrigin(url, timeout)
+
+  def EnableSharedStorageNotifications(self, timeout=60):
+    self._storage.EnableSharedStorageNotifications(timeout)
+
+  def DisableSharedStorageNotifications(self, timeout=60):
+    self._storage.DisableSharedStorageNotifications(timeout)
+
+  @property
+  def shared_storage_notifications(self):
+    return self._storage.shared_storage_notifications
+
+  def ClearSharedStorageNotifications(self):
+    self._storage.ClearSharedStorageNotifications()
+
+  @property
+  def shared_storage_notifications_enabled(self):
+    return self._storage.shared_storage_notifications_enabled
 
   def GetWebviewInspectorBackends(self):
     """Returns a list of InspectorBackend instances associated with webviews.
@@ -343,7 +361,6 @@ class InspectorBackend(six.with_metaclass(trace_event.TracedMetaClass, object)):
           sys.exc_info()[2]
       )
 
-
   def AddTimelineMarker(self, marker):
     return self.ExecuteJavaScript(
         """
@@ -351,6 +368,125 @@ class InspectorBackend(six.with_metaclass(trace_event.TracedMetaClass, object)):
         console.timeEnd({{ marker }});
         """,
         marker=str(marker))
+
+  def WaitForSharedStorageEvents(self,
+                                 expected_events,
+                                 mode='strict',
+                                 timeout=60):
+    """Wait for list of expected Shared Storage notifications to be received.
+
+    Example:
+      event_list = [
+        {'type': 'documentAppend', 'params': {'key': 'a', 'value': 'b'}},
+        {'type': 'documentDelete', 'params': {'key': 'a'}},
+      ]
+      runner.WaitForSharedStorageEvents(event_list)
+
+    Args:
+      expected_events: The expected event list, provided as a list of
+        dictionaries.
+      mode: 'strict' or 'relaxed'.
+        - 'strict': expected events must exactly match received events in terms
+          of params listed (although any unlisted parameters can differ) and
+          order
+        - 'relaxed': expected events must exactly match some sublist of received
+          events in terms of params listed (although any unlisted parameters
+          can differ) and order. Additional events are allowed to be received
+          that were not expected.
+      timeout: The timeout for waiting for event(s).
+
+    Returns:
+      A boolean denoting whether or not the expected event(s) were received
+      within the timeout.
+
+    Raises:
+      py_utils.TimeoutException
+      exceptions.StoryActionError
+      exceptions.DevtoolsTargetCrashException
+    """
+
+    if mode not in ['strict', 'relaxed']:
+      raise exceptions.StoryActionError('mode %s is unrecognized' % mode)
+
+    def AreEventsEquivalent(expected_event, actual_event):
+      # For `expected_event` and `actual_event` as dictionaries.
+      for param_key in expected_event:
+        if not param_key in actual_event:
+          return False
+        if expected_event[param_key] != actual_event[param_key]:
+          return False
+
+      # It's permitted for `actual_event` to have keys that are listed not in
+      # `expected_event`.
+      return True
+
+    def AreEventsReceivedStrict(actual_events):
+      if len(expected_events) != len(actual_events):
+        return False
+      for i, expected_event in enumerate(expected_events):
+        if not AreEventsEquivalent(expected_event, actual_events[i]):
+          return False
+      return True
+
+    def AreEventsReceivedRelaxed(actual_events):
+      if len(expected_events) > len(actual_events):
+        return False
+      actual_index = 0
+      for expected_event in expected_events:
+        while actual_index < len(actual_events) and not AreEventsEquivalent(
+            expected_event, actual_events[actual_index]):
+          actual_index += 1
+        if actual_index == len(actual_events):
+          return False
+        actual_index += 1
+      return True
+
+    def AreEventsReceived():
+      try:
+        received_events = self.shared_storage_notifications
+        if mode == 'strict':
+          return AreEventsReceivedStrict(received_events)
+        return AreEventsReceivedRelaxed(received_events)
+      except exceptions.DevtoolsTargetClosedException:
+        # Ignore errors caused by navigation.
+        return False
+
+    if not self.shared_storage_notifications_enabled:
+      try:
+        self.EnableSharedStorageNotifications(timeout=timeout)
+      except exceptions.StoryActionError as sae:
+        error_message = "".join(['Did not enable shared storage notifications:',
+                                ' ', str(sae)])
+        raise exceptions.StoryActionError(error_message)
+      except AssertionError as ae:
+        error_message = "".join(['Did not enable shared storage notifications:',
+                                 ' ', str(ae)])
+        raise exceptions.StoryActionError(error_message)
+
+    try:
+      return py_utils.WaitFor(AreEventsReceived, timeout)
+    except py_utils.TimeoutException as toe:
+      # Try to make timeouts a little more actionable by dumping console output.
+      debug_message = None
+      try:
+        debug_message = (
+            'Console output:\n%s' %
+            self.GetCurrentConsoleOutputBuffer())
+      except Exception as e: # pylint: disable=broad-except
+        debug_message = (
+            'Exception thrown when trying to capture console output: %s' %
+            repr(e))
+      # Rethrow with the original stack trace for better debugging.
+      six.reraise(
+          py_utils.TimeoutException,
+          py_utils.TimeoutException(
+              ''.join(['Timeout after %d while waiting ' % timeout,
+                       'for Shared Storage Events:\n',
+                       json.dumps(expected_events), '\n',
+                       str(toe), '\n', debug_message])
+          ),
+          sys.exc_info()[2]
+      )
 
   @_HandleInspectorWebSocketExceptions
   def EnableAllContexts(self):
