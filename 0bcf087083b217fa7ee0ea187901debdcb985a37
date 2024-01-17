@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3cec516c_fe3888de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-17T17:08:52Z",
+      "side": 1,
+      "message": "general question: why are you avoiding unit tests for `perf_issue_service`? Are we migrating this all soon so that\u0027s why it\u0027s pointless to add more tests?",
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6109566_d59efe4a",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-17T17:08:52Z",
+      "side": 1,
+      "message": "just so I understand, this eventually parses to:\n` AND custom_field_name:extra_1|extra_2|extra_3` ?",
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26205ab0_c0871e14",
         "filename": "perf_issue_service/application/clients/buganizer_client.py",
         "patchSetId": 2
