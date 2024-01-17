@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32539929_3f12ab01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-17T18:04:22Z",
+      "side": 1,
+      "message": "That\u0027s a good point. I really want to add but the tests are not there mainly because of the lack of time and the timeline from the migration is approaching.\n\nThough, the reason of the this CL is because our change landed on August when the mapping strategies were not finalized. Then recently we realize that lots of the labels do not have hot lists.",
+      "parentUuid": "3cec516c_fe3888de",
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6109566_d59efe4a",
         "filename": "perf_issue_service/application/clients/buganizer_client.py",
         "patchSetId": 2
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b0c13ff_a7a1b9f4",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-17T18:04:22Z",
+      "side": 1,
+      "message": "Actually it should be custom_field_name:(extra_1|extra_2|extra_3). Updated.",
+      "parentUuid": "e6109566_d59efe4a",
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26205ab0_c0871e14",
         "filename": "perf_issue_service/application/clients/buganizer_client.py",
         "patchSetId": 2
@@ -65,6 +101,30 @@
       "writtenOn": "2024-01-17T15:07:56Z",
       "side": 1,
       "message": "Any reason you can\u0027t use \u0027values\u0027: extra_labels?",
+      "range": {
+        "startLine": 277,
+        "startChar": 20,
+        "endLine": 277,
+        "endChar": 53
+      },
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08b923bb_85be7352",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-17T18:04:22Z",
+      "side": 1,
+      "message": "Done. Thanks!",
+      "parentUuid": "26205ab0_c0871e14",
       "range": {
         "startLine": 277,
         "startChar": 20,
@@ -98,6 +158,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46869b2b_a979de9c",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-17T18:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27a0ac53_7566e52a",
+      "range": {
+        "startLine": 447,
+        "startChar": 8,
+        "endLine": 448,
+        "endChar": 32
+      },
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7f7ec33_874bfe6c",
@@ -111,6 +195,30 @@
       "writtenOn": "2024-01-17T15:07:56Z",
       "side": 1,
       "message": "Just list(custom_labels) should work.",
+      "range": {
+        "startLine": 467,
+        "startChar": 22,
+        "endLine": 467,
+        "endChar": 62
+      },
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b557ea58_46b2f3de",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-17T18:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7f7ec33_874bfe6c",
       "range": {
         "startLine": 467,
         "startChar": 22,
