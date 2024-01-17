@@ -16,6 +16,75 @@
       "message": "PTAL.",
       "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26205ab0_c0871e14",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-17T15:07:56Z",
+      "side": 1,
+      "message": "Any reason you can\u0027t use \u0027values\u0027: extra_labels?",
+      "range": {
+        "startLine": 277,
+        "startChar": 20,
+        "endLine": 277,
+        "endChar": 53
+      },
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a0ac53_7566e52a",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-17T15:07:56Z",
+      "side": 1,
+      "message": "Nit: Unnecessary line break.",
+      "range": {
+        "startLine": 447,
+        "startChar": 8,
+        "endLine": 448,
+        "endChar": 32
+      },
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f7ec33_874bfe6c",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-17T15:07:56Z",
+      "side": 1,
+      "message": "Just list(custom_labels) should work.",
+      "range": {
+        "startLine": 467,
+        "startChar": 22,
+        "endLine": 467,
+        "endChar": 62
+      },
+      "revId": "0bcf087083b217fa7ee0ea187901debdcb985a37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
