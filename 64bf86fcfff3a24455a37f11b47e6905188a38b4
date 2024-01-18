@@ -16,6 +16,23 @@
       "message": "I\u0027m not familiar with this code. Seems reasonable to me?",
       "revId": "64bf86fcfff3a24455a37f11b47e6905188a38b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77e89b38_98cdd779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-01-18T18:15:30Z",
+      "side": 1,
+      "message": "Looks fine to me from a pure coding perspective, but handing off to John since I am horribly out of date when it comes to anything related to Telemetry for performance measurements.",
+      "revId": "64bf86fcfff3a24455a37f11b47e6905188a38b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
