@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04907ed7_abbe59d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-18T01:41:55Z",
+      "side": 1,
+      "message": "Update Telemetry to detect Windows 11. PTAL.",
+      "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
