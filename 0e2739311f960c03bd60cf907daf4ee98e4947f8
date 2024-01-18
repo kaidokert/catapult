@@ -16,6 +16,69 @@
       "message": "Update Telemetry to detect Windows 11. PTAL.",
       "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "725372da_6c22781f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-18T18:27:13Z",
+      "side": 1,
+      "message": "lgtm with nit and a question.",
+      "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "444df99a_2541acab",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-18T18:27:13Z",
+      "side": 1,
+      "message": "Out of curiosity, do we know whether python3 can load the os version from Windows 10/11 correctly now?",
+      "range": {
+        "startLine": 159,
+        "startChar": 6,
+        "endLine": 159,
+        "endChar": 53
+      },
+      "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5118c39b_3af6e010",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-18T18:27:13Z",
+      "side": 1,
+      "message": "nit: better use a constant.",
+      "range": {
+        "startLine": 175,
+        "startChar": 23,
+        "endLine": 175,
+        "endChar": 28
+      },
+      "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
