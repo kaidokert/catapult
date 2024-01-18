@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aca6e8dd_9a7c50d1",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-18T23:54:12Z",
+      "side": 1,
+      "message": "are you not interested in filtering out automatic verification jobs from user jobs?",
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
