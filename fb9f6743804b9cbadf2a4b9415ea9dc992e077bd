@@ -141,6 +141,30 @@
       },
       "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d65894_167a700b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-01-19T19:01:37Z",
+      "side": 1,
+      "message": "No .. they use the same naming as regular jobs. They just have a tag \"origin\u003dskia_perf\". Eg: https://pinpoint-dot-chromeperf.appspot.com/job/12caa4a46e0000",
+      "parentUuid": "026a587f_d74c4679",
+      "range": {
+        "startLine": 1183,
+        "startChar": 32,
+        "endLine": 1183,
+        "endChar": 36
+      },
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
