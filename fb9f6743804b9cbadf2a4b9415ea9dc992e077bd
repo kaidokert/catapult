@@ -52,6 +52,29 @@
       "parentUuid": "f33ef531_57a3ae56",
       "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa53088_1aa1270d",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-19T18:26:30Z",
+      "side": 1,
+      "message": "In _NewPinpointRequest() in alert_group_workflow.py, it could be both with Skia and Auto.",
+      "range": {
+        "startLine": 1183,
+        "startChar": 32,
+        "endLine": 1183,
+        "endChar": 36
+      },
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
