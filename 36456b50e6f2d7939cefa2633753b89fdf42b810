@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfbd303c_f2a8f272",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1324251
+      },
+      "writtenOn": "2024-01-19T21:49:28Z",
+      "side": 1,
+      "message": "Not ready for review yet. \n\nThere seems to be a Gerrit UI glitch for creating relands that kept leading to a 404 not found...so please ignore any notifications that you got so far.",
+      "revId": "36456b50e6f2d7939cefa2633753b89fdf42b810",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
