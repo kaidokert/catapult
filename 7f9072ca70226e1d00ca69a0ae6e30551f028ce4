@@ -93,6 +93,30 @@
       },
       "revId": "7f9072ca70226e1d00ca69a0ae6e30551f028ce4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21315c16_37778d09",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-19T23:54:09Z",
+      "side": 1,
+      "message": "I see. I make sense to keep the historical data. Though, Drew Shao synced with the Eng team so that the subscription is no longer needed. Just FYI.",
+      "parentUuid": "ca5b411a_2ef20c57",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "7f9072ca70226e1d00ca69a0ae6e30551f028ce4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
