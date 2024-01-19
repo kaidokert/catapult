@@ -75,6 +75,30 @@
       },
       "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3723809f_d02fce8a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-01-19T18:53:10Z",
+      "side": 1,
+      "message": "Might be okay since all \"Skia\" jobs are auto bisect. I would actually suggest changing this to \u0027[Skia]\u0027 to differentiate with regular auto bisect jobs which have \"Skia\" string in the test path",
+      "parentUuid": "0fa53088_1aa1270d",
+      "range": {
+        "startLine": 1183,
+        "startChar": 32,
+        "endLine": 1183,
+        "endChar": 36
+      },
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
