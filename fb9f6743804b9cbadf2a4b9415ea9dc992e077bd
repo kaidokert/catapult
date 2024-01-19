@@ -34,6 +34,24 @@
       "parentUuid": "aca6e8dd_9a7c50d1",
       "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e97e13bf_983d5435",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-19T01:26:38Z",
+      "side": 1,
+      "message": "Regression verification jobs don\u0027t have the name \"auto\" in them\nhttps://pinpoint-dot-chromeperf.appspot.com/job/17fedbe3ae0000\n\npresumably this holds true for culprit verification as well",
+      "parentUuid": "f33ef531_57a3ae56",
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
