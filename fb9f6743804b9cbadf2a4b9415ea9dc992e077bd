@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8db2cfdb_eafd390d",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-01-19T18:57:15Z",
+      "side": 1,
+      "message": "Thank you for the input, Regression Verification added.",
+      "parentUuid": "e97e13bf_983d5435",
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fa53088_1aa1270d",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 8
@@ -91,6 +109,30 @@
       "side": 1,
       "message": "Might be okay since all \"Skia\" jobs are auto bisect. I would actually suggest changing this to \u0027[Skia]\u0027 to differentiate with regular auto bisect jobs which have \"Skia\" string in the test path",
       "parentUuid": "0fa53088_1aa1270d",
+      "range": {
+        "startLine": 1183,
+        "startChar": 32,
+        "endLine": 1183,
+        "endChar": 36
+      },
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026a587f_d74c4679",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-01-19T18:57:15Z",
+      "side": 1,
+      "message": "thanks for the input!\nHow about the jobs manually triggered through the Skia Perf UI? Do they have \"Skia\" in the job name?",
+      "parentUuid": "3723809f_d02fce8a",
       "range": {
         "startLine": 1183,
         "startChar": 32,
