@@ -90,6 +90,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87601dd0_d89a948a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-01-19T19:30:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8db2cfdb_eafd390d",
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fa53088_1aa1270d",
@@ -175,6 +193,30 @@
       "side": 1,
       "message": "No .. they use the same naming as regular jobs. They just have a tag \"origin\u003dskia_perf\". Eg: https://pinpoint-dot-chromeperf.appspot.com/job/12caa4a46e0000",
       "parentUuid": "026a587f_d74c4679",
+      "range": {
+        "startLine": 1183,
+        "startChar": 32,
+        "endLine": 1183,
+        "endChar": 36
+      },
+      "revId": "fb9f6743804b9cbadf2a4b9415ea9dc992e077bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc58c7a6_8b84842c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-01-19T19:30:00Z",
+      "side": 1,
+      "message": "Code updated to handle the auto bisect and/or skia jobs.\nThanks for the input!",
+      "parentUuid": "97d65894_167a700b",
       "range": {
         "startLine": 1183,
         "startChar": 32,
