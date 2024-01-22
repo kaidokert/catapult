@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d0c9d9e_2b58a574",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-22T06:13:58Z",
+      "side": 1,
+      "message": "Thanks for noticing this. I ran some experiment. vpython is based on Python 2.7.18, and it correctly recognizes win 10. Looks like this has already been fixed somewhere between 2.7.0 and 2.7.18. Our vpython3 also correctly recognizes win 10.\n\nPython 3.12 can recognize win 11 (https://github.com/python/cpython/commit/de33df2), but vpython3 is still based on 3.8, which thinks win 11 is win 10. So we still have to check the build number for now. But instead of reading the build number from registry, we can now get it from os_version instead.",
+      "parentUuid": "444df99a_2541acab",
+      "range": {
+        "startLine": 159,
+        "startChar": 6,
+        "endLine": 159,
+        "endChar": 53
+      },
+      "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5118c39b_3af6e010",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-01-18T18:27:13Z",
       "side": 1,
       "message": "nit: better use a constant.",
+      "range": {
+        "startLine": 175,
+        "startChar": 23,
+        "endLine": 175,
+        "endChar": 28
+      },
+      "revId": "0e2739311f960c03bd60cf907daf4ee98e4947f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d2e8a42_e3982501",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-22T06:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5118c39b_3af6e010",
       "range": {
         "startLine": 175,
         "startChar": 23,
