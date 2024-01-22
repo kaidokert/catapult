@@ -33,6 +33,23 @@
       "message": "Several other platforms have been changed by https://chromium-review.googlesource.com/c/chromium/src/+/5184776 as well, such as pixel 4 and pixel 6 pro. Recommend fixing them all in this CL.",
       "revId": "e2036d8677b4de7d35b605d41ec0183595d2206c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8dfbad9_a445b3f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-22T21:30:22Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "e2036d8677b4de7d35b605d41ec0183595d2206c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
