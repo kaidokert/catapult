@@ -50,6 +50,24 @@
       "message": "lgtm. Thanks!",
       "revId": "e2036d8677b4de7d35b605d41ec0183595d2206c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4864e7c_a84e88df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2024-01-22T21:34:14Z",
+      "side": 1,
+      "message": "Updated the android-pixel4-perf and android-pixel6-pro-perf entries in pinpoint_request.py, but the other three configs updated by https://chromium-review.googlesource.com/c/chromium/src/+/5184776 do not have corresponding entries in pinpoint_request.py:\n\nandroid-pixel4-perf-pgo\nandroid-pixel6-perf-pgo\nandroid-pixel6-pro-perf-pgo\n\nThe above three do not appear in at all in pinpoint_request.py.  I can only assume this will cause more bugs in the future.\n\nAnd of course new-job-fab.html naturally does something wonky just for one particular configuration, and puts anything that begins with android-pixel6[.*] into the same telemetryIsolate, so all the -pgo\u0027s will get performance_test_suite_android_clank_trichrome_chrome_google_64_32_bundle even though they aren\u0027t mentioned at all in pinpoint_request.py.  Again, I expect this will cause even more issues for someone in the future.",
+      "parentUuid": "dc0184b8_8f284bfe",
+      "revId": "e2036d8677b4de7d35b605d41ec0183595d2206c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
