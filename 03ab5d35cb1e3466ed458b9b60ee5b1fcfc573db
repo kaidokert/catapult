@@ -16,6 +16,23 @@
       "message": "Remove some code that was needed to support old Python 2.",
       "revId": "03ab5d35cb1e3466ed458b9b60ee5b1fcfc573db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c5b868_91195881",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-22T06:39:24Z",
+      "side": 1,
+      "message": "lgtm. Thanks for the update!",
+      "revId": "03ab5d35cb1e3466ed458b9b60ee5b1fcfc573db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
