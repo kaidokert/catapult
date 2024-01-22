@@ -43,8 +43,8 @@ class SystemTraceConfig():
     self._enable_chrome = False
     self._enable_power = False
     self._enable_sys_stats_cpu = False
-    self._enable_ftrace_cpu = False
-    self._enable_ftrace_sched = False
+    self._enable_ftrace_cpu = True
+    self._enable_ftrace_sched = True
     self._chrome_config = None
     # Not None iff profiling (callstack sampling) is enabled.
     self._profiling_args = None
@@ -97,23 +97,28 @@ class SystemTraceConfig():
       json_config = json.dumps(
           json.dumps(json_config, sort_keys=True, separators=(",", ":")))
       text_config += """
-          data_sources: {
-              config {
-                  name: "org.chromium.trace_event"
-                  chrome_config {
-                      trace_config: %s
-                  }
-              }
-          }
-          data_sources: {
-              config {
-                  name: "org.chromium.trace_metadata"
-                  chrome_config {
-                      trace_config: %s
-                  }
-              }
-          }
-      """ % (json_config, json_config)
+          data_sources {
+  config {
+    name: "track_event"
+    track_event_config {
+      disabled_categories: "*"
+      enabled_categories: "android_webview.timeline"
+      enabled_categories: "Java"
+      enabled_categories: "android_webview"
+      enabled_categories: "toplevel"
+      enabled_categories: "toplevel.flow"
+      enabled_categories: "navigation"
+      enabled_categories: "loading"
+      enabled_categories: "benchmark"
+      enabled_categories: "input"
+      enabled_categories: "startup"
+      enabled_categories: "__metadata"
+    }
+    chrome_config {
+      trace_config: %s
+    }
+    }}
+      """ % (json_config)
 
     if self._enable_power:
       text_config += """
@@ -158,6 +163,7 @@ class SystemTraceConfig():
         text_config += """
                     ftrace_events: "power/cpu_frequency"
                     ftrace_events: "power/cpu_idle"
+                    atrace_apps: "*"
         """
 
       if self._enable_ftrace_sched:
@@ -171,6 +177,7 @@ class SystemTraceConfig():
 
       text_config += "}}}\n"
 
+    print(text_config)
     return text_config
 
   def EnableChrome(self, chrome_trace_config):
