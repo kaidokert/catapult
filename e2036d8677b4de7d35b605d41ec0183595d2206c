@@ -16,6 +16,23 @@
       "message": "In my opinion, we should burn this code to the ground and replace it with an appropriately designed config management system (e.g. we own the config schema, and client teams own their own config settings) rather than continue this doomed tradition of repeatedly layering on these flimsy bandaid fixes over and other again.",
       "revId": "e2036d8677b4de7d35b605d41ec0183595d2206c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc0184b8_8f284bfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-01-22T21:16:07Z",
+      "side": 1,
+      "message": "Several other platforms have been changed by https://chromium-review.googlesource.com/c/chromium/src/+/5184776 as well, such as pixel 4 and pixel 6 pro. Recommend fixing them all in this CL.",
+      "revId": "e2036d8677b4de7d35b605d41ec0183595d2206c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
