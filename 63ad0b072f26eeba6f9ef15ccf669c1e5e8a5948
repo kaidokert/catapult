@@ -39,6 +39,30 @@
       },
       "revId": "63ad0b072f26eeba6f9ef15ccf669c1e5e8a5948",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03aaec91_6573c67a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2024-01-23T21:55:54Z",
+      "side": 1,
+      "message": "It\u0027s not created yet but will be created once crrev.com/c/5226609 lands. And it should be ignored. The parameter is already passed in at some place.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/tools/blinkpy/web_tests/port/base.py;drc\u003d636463a79277321abef55f5f7008c09e788fc48c;l\u003d408",
+      "parentUuid": "d031e00d_f434cec2",
+      "range": {
+        "startLine": 242,
+        "startChar": 29,
+        "endLine": 242,
+        "endChar": 44
+      },
+      "revId": "63ad0b072f26eeba6f9ef15ccf669c1e5e8a5948",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
