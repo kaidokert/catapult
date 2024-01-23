@@ -16,6 +16,29 @@
       "message": "Hi Wenbin, can you help review this? Are there additional tests to run?",
       "revId": "63ad0b072f26eeba6f9ef15ccf669c1e5e8a5948",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d031e00d_f434cec2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-23T21:45:03Z",
+      "side": 1,
+      "message": "Is this parameter created on Content Shell already? E.g., when it is passed, will it be simply ignored?",
+      "range": {
+        "startLine": 242,
+        "startChar": 29,
+        "endLine": 242,
+        "endChar": 44
+      },
+      "revId": "63ad0b072f26eeba6f9ef15ccf669c1e5e8a5948",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
