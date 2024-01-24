@@ -15,5 +15,4 @@ def Create():
   app.register_blueprint(anomalies.blueprint, url_prefix='/anomalies')
   app.register_blueprint(skia_perf_upload.blueprint, url_prefix='/data')
   app.register_blueprint(alert_group.blueprint, url_prefix='/alert_group')
-  app.register_blueprint(deps.blueprint, url_prefix='/deps')
   return app
