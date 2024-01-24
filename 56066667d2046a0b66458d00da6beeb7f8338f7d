@@ -16,6 +16,23 @@
       "message": "Happy to break this down if it\u0027s too large, but seeing as there\u0027s no users I left as one for now.",
       "revId": "56066667d2046a0b66458d00da6beeb7f8338f7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed59adea_3353aac1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-01-24T23:14:17Z",
+      "side": 1,
+      "message": "Could it be easier (and maybe safer) to revert the original changes?",
+      "revId": "56066667d2046a0b66458d00da6beeb7f8338f7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
