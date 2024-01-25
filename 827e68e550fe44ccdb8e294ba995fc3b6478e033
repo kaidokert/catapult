@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9a24a2_624f85a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-01-25T23:30:38Z",
+      "side": 1,
+      "message": "PTAL.\nThe pinpoint is still running. Will check before submit.",
+      "revId": "827e68e550fe44ccdb8e294ba995fc3b6478e033",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
