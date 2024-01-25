@@ -105,13 +105,16 @@ func (cfg *Config) requestEnabled(req *http.Request, resp *http.Response) bool {
 }
 
 func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
-	return a.ForEach(func(req *http.Request, resp *http.Response) error {
+	return a.ForEach(func(req *http.Request, resp *http.Response, respTime uint32) error {
 		if !cfg.requestEnabled(req, resp) {
 			return nil
 		}
 		if printFull {
 			fmt.Fprint(os.Stdout, "----------------------------------------\n")
 			req.Write(os.Stdout)
+			fmt.Fprint(os.Stdout, "\n")
+			fmt.Fprint(os.Stdout, "\n")
+			fmt.Fprint(os.Stdout, "responseTime: %dms\n", respTime)
 			fmt.Fprint(os.Stdout, "\n")
 			err := webpagereplay.DecompressResponse(resp)
 			if err != nil {
@@ -120,7 +123,7 @@ func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
 			resp.Write(os.Stdout)
 			fmt.Fprint(os.Stdout, "\n")
 		} else {
-			fmt.Fprintf(os.Stdout, "%s %s %s %s\n", req.Method, req.Host, req.URL, resp.Status)
+			fmt.Fprintf(os.Stdout, "%s %s %s %s %dms\n", req.Method, req.Host, req.URL, resp.Status, respTime)
 		}
 		return nil
 	})

@@ -11,11 +11,11 @@ import (
 	"testing"
 )
 
-func createArchivedRequest(t *testing.T, ustr string, header http.Header) *ArchivedRequest {
+func createArchivedRequest(t *testing.T, ustr string, header http.Header, respTime uint32) *ArchivedRequest {
 	req := httptest.NewRequest("GET", ustr, nil)
 	req.Header = header
 	resp := http.Response{StatusCode: 200}
-	archivedRequest, err := serializeRequest(req, &resp)
+	archivedRequest, err := serializeRequest(req, &resp, respTime)
 	if err != nil {
 		t.Fatalf("failed serialize request %s: %v", ustr, err)
 		return nil
@@ -38,7 +38,8 @@ func TestFindRequestFuzzyMatching(t *testing.T) {
 	a := newArchive()
 	const u = "https://example.com/a/b/c/+/query?usegapi=1&foo=bar&c=d"
 	const host = "example.com"
-	req := createArchivedRequest(t, u, nil)
+	const respTime = 42
+	req := createArchivedRequest(t, u, nil, respTime)
 	a.Requests[host] = make(map[string][]*ArchivedRequest)
 	a.Requests[host][u] = []*ArchivedRequest{req}
 	prepareArchiveForReplay(&a)
@@ -46,12 +47,15 @@ func TestFindRequestFuzzyMatching(t *testing.T) {
 	const newUrl = "https://example.com/a/b/c/+/query?usegapi=1&foo=yay&c=d&a=y"
 	newReq := httptest.NewRequest("GET", newUrl, nil)
 
-	_, foundResp, err := a.FindRequest(newReq)
+	_, foundResp, foundRespTime, err := a.FindRequest(newReq)
 	if err != nil {
 		t.Fatalf("failed to find %s: %v", newUrl, err)
 	}
 	if got, want := foundResp.StatusCode, 200; got != want {
 		t.Fatalf("status codes do not match. Got: %d. Want: %d", got, want)
+	}
+	if foundRespTime != respTime {
+		t.Fatalf("expected response time %d , actual %d\n", respTime, foundRespTime)
 	}
 }
 
@@ -59,17 +63,18 @@ func TestFindRequestFuzzyMatching(t *testing.T) {
 func TestFindClosest(t *testing.T) {
 	a := newArchive()
 	const host = "example.com"
+	const respTime = 42
 	a.Requests[host] = make(map[string][]*ArchivedRequest)
 	// Store three requests. u1 and u2 match equally well. u1 is chosen because
 	// u1<u2.
 	const u1 = "https://example.com/index.html?a=f&c=e"
-	a.Requests[host][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil)}
+	a.Requests[host][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil, respTime)}
 
 	const u2 = "https://example.com/index.html?a=g&c=e"
-	a.Requests[host][u2] = []*ArchivedRequest{createArchivedRequest(t, u2, nil)}
+	a.Requests[host][u2] = []*ArchivedRequest{createArchivedRequest(t, u2, nil, respTime)}
 
 	const u3 = "https://example.com/index.html?a=b&c=d"
-	a.Requests[host][u3] = []*ArchivedRequest{createArchivedRequest(t, u3, nil)}
+	a.Requests[host][u3] = []*ArchivedRequest{createArchivedRequest(t, u3, nil, respTime)}
 
 	prepareArchiveForReplay(&a)
 
@@ -79,7 +84,7 @@ func TestFindClosest(t *testing.T) {
 	// Check that u1 is returned. FindRequest was previously non-deterministic,
 	// due to random map iteration, so run the test several times.
 	for i := 0; i < 10; i++ {
-		foundReq, foundResp, err := a.FindRequest(newReq)
+		foundReq, foundResp, foundRespTime, err := a.FindRequest(newReq)
 		if err != nil {
 			t.Fatalf("failed to find %s: %v", newUrl, err)
 		}
@@ -91,6 +96,10 @@ func TestFindClosest(t *testing.T) {
 		if query.Get("a") != "f" || query.Get("c") != "e" {
 			t.Fatalf("wrong request is matched\nexpected: %s\nactual: %s", u1, foundReq.URL)
 		}
+
+		if foundRespTime != respTime {
+			t.Fatalf("expected response time %d , actual %d\n", respTime, foundRespTime)
+		}
 	}
 }
 
@@ -99,19 +108,20 @@ func TestMatchHeaders(t *testing.T) {
 	a := newArchive()
 	const u = "https://example.com/mail/"
 	const host = "example.com"
+	const respTime = 42
 	headers := http.Header{}
 	headers.Set("Accept", "text/html")
 	headers.Set("Accept-Language", "en-Us,en;q=0.8")
 	headers.Set("Accept-Encoding", "gzip, deflate, br")
 	headers.Set("Cookie", "FOO=FOO")
 	{
-		req := createArchivedRequest(t, u, headers)
+		req := createArchivedRequest(t, u, headers, respTime)
 		a.Requests[host] = make(map[string][]*ArchivedRequest)
 		a.Requests[host][u] = []*ArchivedRequest{req}
 	}
 	{
 		headers.Set("Cookie", "FOO=BAR;SSID=XXhdfdf;LOGIN=HELLO")
-		req := createArchivedRequest(t, u, headers)
+		req := createArchivedRequest(t, u, headers, respTime)
 		a.Requests[host][u] = append(a.Requests[host][u], req)
 	}
 	prepareArchiveForReplay(&a)
@@ -119,12 +129,15 @@ func TestMatchHeaders(t *testing.T) {
 	newReq := httptest.NewRequest("GET", u, nil)
 	newReq.Header = headers
 
-	foundReq, _, err := a.FindRequest(newReq)
+	foundReq, _, foundRespTime, err := a.FindRequest(newReq)
 	if err != nil {
 		t.Fatalf("failed to find %s: %v", u, err)
 	}
 	if got, want := foundReq.Header.Get("Cookie"), headers.Get("Cookie"); got != want {
 		t.Fatalf("expected %s , actual %s\n", want, got)
+	}
+	if foundRespTime != respTime {
+		t.Fatalf("expected response time %d , actual %d\n", respTime, foundRespTime)
 	}
 }
 
@@ -135,7 +148,7 @@ func TestNoHeadersMatch(t *testing.T) {
 	const host = "example.com"
 	headers := http.Header{}
 	headers.Set("Accept-Encoding", "gzip, deflate, br")
-	req := createArchivedRequest(t, u, headers)
+	req := createArchivedRequest(t, u, headers, 0)
 	a.Requests[host] = make(map[string][]*ArchivedRequest)
 	a.Requests[host][u] = []*ArchivedRequest{req}
 	prepareArchiveForReplay(&a)
@@ -144,7 +157,7 @@ func TestNoHeadersMatch(t *testing.T) {
 	newReq.Header = headers
 	newReq.Header.Set("Accept-Encoding", "gzip, deflate")
 
-	foundReq, _, err := a.FindRequest(newReq)
+	foundReq, _, _, err := a.FindRequest(newReq)
 	if err != nil {
 		t.Fatalf("failed to find %s: %v", u, err)
 	}
@@ -160,17 +173,19 @@ func TestTieBreak(t *testing.T) {
 	const host = "example.com"
 	const header1 = "1"
 	const header2 = "2"
+	const respTime1 = 42
+	const respTime2 = 43
 	{
 		headers := http.Header{}
 		headers.Set("matched", header1)
-		req := createArchivedRequest(t, u, headers)
+		req := createArchivedRequest(t, u, headers, respTime1)
 		a.Requests[host] = make(map[string][]*ArchivedRequest)
 		a.Requests[host][u] = []*ArchivedRequest{req}
 	}
 	{
 		headers := http.Header{}
 		headers.Set("matched", header2)
-		req := createArchivedRequest(t, u, headers)
+		req := createArchivedRequest(t, u, headers, respTime2)
 		a.Requests[host][u] = append(a.Requests[host][u], req)
 	}
 	prepareArchiveForReplay(&a)
@@ -179,22 +194,28 @@ func TestTieBreak(t *testing.T) {
 	newReq.Header = http.Header{}
 
 	{
-		foundReq, _, err := a.FindRequest(newReq)
+		foundReq, _, foundRespTime, err := a.FindRequest(newReq)
 		if err != nil {
 			t.Fatalf("failed to find %s: %v", u, err)
 		}
 		if got, want := foundReq.Header.Get("matched"), header1; got != want {
 			t.Fatalf("expected %s , actual %s\n", want, got)
+		}
+		if foundRespTime != respTime1 {
+			t.Fatalf("expected response time %d , actual %d\n", respTime1, foundRespTime)
 		}
 	}
 
 	{
-		foundReq, _, err := a.FindRequest(newReq)
+		foundReq, _, foundRespTime, err := a.FindRequest(newReq)
 		if err != nil {
 			t.Fatalf("failed to find %s: %v", u, err)
 		}
 		if got, want := foundReq.Header.Get("matched"), header1; got != want {
 			t.Fatalf("expected %s , actual %s\n", want, got)
+		}
+		if foundRespTime != respTime1 {
+			t.Fatalf("expected response time %d , actual %d\n", respTime1, foundRespTime)
 		}
 	}
 }
@@ -207,17 +228,19 @@ func TestTieBreakChronologicalOrder(t *testing.T) {
 	const host = "example.com"
 	const header1 = "1"
 	const header2 = "2"
+	const respTime1 = 42
+	const respTime2 = 43
 	{
 		headers := http.Header{}
 		headers.Set("matched", header1)
-		req := createArchivedRequest(t, u, headers)
+		req := createArchivedRequest(t, u, headers, respTime1)
 		a.Requests[host] = make(map[string][]*ArchivedRequest)
 		a.Requests[host][u] = []*ArchivedRequest{req}
 	}
 	{
 		headers := http.Header{}
 		headers.Set("matched", header2)
-		req := createArchivedRequest(t, u, headers)
+		req := createArchivedRequest(t, u, headers, respTime2)
 		a.Requests[host][u] = append(a.Requests[host][u], req)
 	}
 	a.ServeResponseInChronologicalSequence = true
@@ -227,34 +250,43 @@ func TestTieBreakChronologicalOrder(t *testing.T) {
 	newReq.Header = http.Header{}
 
 	{
-		foundReq, _, err := a.FindRequest(newReq)
+		foundReq, _, foundRespTime, err := a.FindRequest(newReq)
 		if err != nil {
 			t.Fatalf("failed to find %s: %v", u, err)
 		}
 		if got, want := foundReq.Header.Get("matched"), header1; got != want {
 			t.Fatalf("expected %s , actual %s\n", want, got)
 		}
+		if foundRespTime != respTime1 {
+			t.Fatalf("expected response time %d , actual %d\n", respTime1, foundRespTime)
+		}
 	}
 
 	{
-		foundReq, _, err := a.FindRequest(newReq)
+		foundReq, _, foundRespTime, err := a.FindRequest(newReq)
 		if err != nil {
 			t.Fatalf("failed to find %s: %v", u, err)
 		}
 		if got, want := foundReq.Header.Get("matched"), header2; got != want {
 			t.Fatalf("expected %s , actual %s\n", want, got)
 		}
+		if foundRespTime != respTime2 {
+			t.Fatalf("expected response time %d , actual %d\n", respTime2, foundRespTime)
+		}
 	}
 
 	// Test starting a new replay session to reset the serving sequence.
 	{
 		a.StartNewReplaySession()
-		foundReq, _, err := a.FindRequest(newReq)
+		foundReq, _, foundRespTime, err := a.FindRequest(newReq)
 		if err != nil {
 			t.Fatalf("failed to find %s: %v", u, err)
 		}
 		if got, want := foundReq.Header.Get("matched"), header1; got != want {
 			t.Fatalf("expected %s , actual %s\n", want, got)
+		}
+		if foundRespTime != respTime1 {
+			t.Fatalf("expected response time %d , actual %d\n", respTime1, foundRespTime)
 		}
 	}
 }
@@ -268,14 +300,14 @@ func TestMerge(t *testing.T) {
 	// Create three requests with very closely matching params; only the first one
 	// is different.
 	const u1 = "https://example.com/index.html?a=AB&b=1&c=2"
-	a.Requests[host][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil)}
-	b.Requests[host][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil)}
+	a.Requests[host][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil, 0)}
+	b.Requests[host][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil, 0)}
 
 	const u2 = "https://example.com/index.html?a=A&b=1&c=2"
-	a.Requests[host][u2] = []*ArchivedRequest{createArchivedRequest(t, u2, nil)}
+	a.Requests[host][u2] = []*ArchivedRequest{createArchivedRequest(t, u2, nil, 0)}
 
 	const u3 = "https://example.com/index.html?a=B&b=1&c=2"
-	b.Requests[host][u3] = []*ArchivedRequest{createArchivedRequest(t, u3, nil)}
+	b.Requests[host][u3] = []*ArchivedRequest{createArchivedRequest(t, u3, nil, 0)}
 
 	// Merging an archive with itself should yield the same results.
 	if len(a.Requests[host]) != 2 {
@@ -425,9 +457,9 @@ func TestTrim(t *testing.T) {
 	const u1 = "https://example.com/index.html?a=A"
 	const u2 = "https://example.gov/index.html?a=A"
 	a.Requests[host1] = make(map[string][]*ArchivedRequest)
-	a.Requests[host1][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil)}
+	a.Requests[host1][u1] = []*ArchivedRequest{createArchivedRequest(t, u1, nil, 0)}
 	a.Requests[host2] = make(map[string][]*ArchivedRequest)
-	a.Requests[host2][u2] = []*ArchivedRequest{createArchivedRequest(t, u2, nil)}
+	a.Requests[host2][u2] = []*ArchivedRequest{createArchivedRequest(t, u2, nil, 0)}
 
 	validateTrim(t, func(req *http.Request, resp *http.Response) (bool, error) { return true, nil }, a, 0)
 

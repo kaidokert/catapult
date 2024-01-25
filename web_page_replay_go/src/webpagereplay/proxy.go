@@ -94,11 +94,14 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		proxy.a.StartNewReplaySession()
 		return
 	}
+
+	start := time.Now()
+
 	fixupRequestURL(req, proxy.scheme)
 	logf := makeLogger(req, proxy.quietMode)
 
 	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	_, storedResp, storedRespTime, err := proxy.a.FindRequest(req)
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -153,8 +156,35 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		w.Header()[k] = append([]string{}, v...)
 	}
 	w.WriteHeader(storedResp.StatusCode)
-	if _, err := io.Copy(w, storedResp.Body); err != nil {
-		logf("warning: client response truncated: %v", err)
+
+	// Emit the body slowly.
+	body, err := ioutil.ReadAll(storedResp.Body)
+	if err != nil {
+		panic(err)
+	}
+	chunkCount := 4
+	if len(body) <= 8192 {
+		chunkCount = 1
+	}
+	chunkTime := storedRespTime / uint32(chunkCount)
+	chunkSize := len(body) / chunkCount
+	if len(body) % chunkCount != 0 {
+		chunkSize++ // Adjust for uneven division
+	}
+
+	// Write in chunks
+	for i := 0; i < len(body); i += chunkSize {
+		if uint32(time.Since(start).Milliseconds()) < storedRespTime {
+			time.Sleep(time.Duration(chunkTime) * time.Millisecond)
+		}
+		end := i + chunkSize
+		if end > len(body) {
+			end = len(body)
+		}
+		_, err = w.Write(body[i:end])
+		if err != nil {
+			break
+		}
 	}
 }
 
@@ -214,7 +244,9 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 
 	// Make the external request.
 	// If RoundTrip fails, convert the response to a 500.
+	start := time.Now()
 	resp, err := proxy.tr.RoundTrip(req)
+
 	if err != nil {
 		logf("RoundTrip failed: %v", err)
 		resp = &http.Response{
@@ -234,12 +266,14 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	}
 	resp.Body.Close()
 
+	respTime := uint32(time.Since(start).Milliseconds())
+
 	// Restore req body (which was consumed by RoundTrip) and record original response without transformation.
 	resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	if err := proxy.a.RecordRequest(req, resp); err != nil {
+	if err := proxy.a.RecordRequest(req, resp, respTime); err != nil {
 		logf("failed recording request: %v", err)
 	}
 

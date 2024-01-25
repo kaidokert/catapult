@@ -21,6 +21,7 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/urfave/cli/v2"
 )
@@ -171,6 +172,7 @@ func (r *ConvertorConfig) Convert(c *cli.Context) {
 		httpReq.ProtoMajor = 1
 		httpReq.ProtoMinor = 1
 		var resp *http.Response
+		start := time.Now()
 		resp, err = transport.RoundTrip(&httpReq)
 		if err != nil {
 			panic(fmt.Errorf("RoundTrip failed: %v", err))
@@ -181,12 +183,13 @@ func (r *ConvertorConfig) Convert(c *cli.Context) {
 			panic(fmt.Errorf("warning: origin response truncated: %v", err))
 		}
 		resp.Body.Close()
+		responseTime := uint32(time.Since(start).Milliseconds())
 		fmt.Printf("status: %d\n", resp.StatusCode)
 		if requestBody != nil {
 			httpReq.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 		}
 		resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
-		if err := archive.RecordRequest(&httpReq, resp); err != nil {
+		if err := archive.RecordRequest(&httpReq, resp, responseTime); err != nil {
 			panic(fmt.Sprintf("failed recording request: %v", err))
 		}
 		if err := r.recordServerCert(url.Scheme, url.Host, archive); err != nil {
