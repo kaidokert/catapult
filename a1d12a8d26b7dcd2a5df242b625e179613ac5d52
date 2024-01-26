@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18aa3fda_c9b20a3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1324251
+      },
+      "writtenOn": "2024-01-26T18:58:13Z",
+      "side": 1,
+      "message": "johnchen@, I\u0027m going to try to land this again now. Added another early return escape hatch in the tests along with logging. \n\nI also added more debug information in Chrome itself when the \"shared storage is disabled\" message is displayed (https://crrev.com/c/5219891), so if any bots have issue on the autoroll again I should get more (and hopefully actionable) information. \n\nPlease take another look, thanks!",
+      "revId": "a1d12a8d26b7dcd2a5df242b625e179613ac5d52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
