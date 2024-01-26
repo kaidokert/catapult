@@ -235,6 +235,14 @@ class Tab(web_contents.WebContents):
     """
     return self._inspector_backend.shared_storage_notifications_enabled
 
+  def GetSharedStorageMetadata(self, origin, timeout=60):
+    return self._inspector_backend.GetSharedStorageMetadata(origin=origin,
+                                                  timeout=timeout)
+
+  def GetSharedStorageEntries(self, origin, timeout=60):
+    return self._inspector_backend.GetSharedStorageEntries(origin=origin,
+                                                  timeout=timeout)
+
   def WaitForSharedStorageEvents(self,
                                  expected_events,
                                  mode='strict',
