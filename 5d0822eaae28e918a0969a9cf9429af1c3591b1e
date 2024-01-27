@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e59810_7b2227e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1324251
+      },
+      "writtenOn": "2024-01-27T01:43:55Z",
+      "side": 1,
+      "message": "johnchen@, I discovered after the roll that when I implemented the DevTools methods a year ago, I had decided to send an error message upon metadata retrieval attempt if the origin wasn\u0027t found (instead of sending some default metadata object). I had forgotten about that.\n\nHere, I don\u0027t want that particular case to raise an error, so I add in a way to handle it (create a default metadata object to suit the purpose), along with tests for this case.\n\nApologies. PTAL. Thanks!",
+      "revId": "5d0822eaae28e918a0969a9cf9429af1c3591b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
