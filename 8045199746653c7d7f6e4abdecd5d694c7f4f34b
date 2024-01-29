@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883cdcb8_9a084967",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2024-01-29T19:47:13Z",
+      "side": 1,
+      "message": "PTAL - local compile and use of wpr has not been working on macOS",
+      "revId": "8045199746653c7d7f6e4abdecd5d694c7f4f34b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
