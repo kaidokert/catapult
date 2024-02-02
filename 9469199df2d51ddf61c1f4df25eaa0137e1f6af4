@@ -97,6 +97,30 @@
       },
       "revId": "9469199df2d51ddf61c1f4df25eaa0137e1f6af4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21f8e906_03213d43",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-02-02T20:06:34Z",
+      "side": 1,
+      "message": "Wait, I really applied the fix, but it did not take effect 😐 I will work on a different change to really apply the fix.",
+      "parentUuid": "f395e281_bc5dd796",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "9469199df2d51ddf61c1f4df25eaa0137e1f6af4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
