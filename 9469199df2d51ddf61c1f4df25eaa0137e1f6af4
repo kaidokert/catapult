@@ -35,6 +35,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e3882fa_dd2fe395",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-02-02T17:28:54Z",
+      "side": 1,
+      "message": "Thank you Brian.",
+      "revId": "9469199df2d51ddf61c1f4df25eaa0137e1f6af4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "467d6f62_4ad8db56",
@@ -48,6 +65,30 @@
       "writtenOn": "2024-02-02T01:03:51Z",
       "side": 1,
       "message": "Nit: Since we\u0027re on Python 3 now, it\u0027s clearer to use Python\u0027s f-strings (wow, the AI-generated suggested code was actually useful for once)\n```suggestion\n          f\u0027All browser launches within same test suite must use browsers on \u0027\n          f\u0027the same platform ({cls.platform} vs \u0027\n          f\u0027{cls._browser_to_create.platform})\u0027)\n```",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "9469199df2d51ddf61c1f4df25eaa0137e1f6af4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f395e281_bc5dd796",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-02-02T17:28:54Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "467d6f62_4ad8db56",
       "range": {
         "startLine": 112,
         "startChar": 10,
