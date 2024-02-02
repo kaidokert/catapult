@@ -63,6 +63,9 @@ COMPONENT_MAP_CR2B = {
   'UI>Browser>NewTabPage': 1457163,
   'UI>Browser>Omnibox': 1457180,
   'UI>Browser>TopChrome': 1457234,
+  # A new component is required in Buganizer after migration.
+  # This mapping is used for migration time and will be removed.
+  'Internals>Media': 1456190,
 
   # Fuchsia
   # Trackers > Fuchsia > UntriagedPerformanceAlerts
