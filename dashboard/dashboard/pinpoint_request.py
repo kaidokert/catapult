@@ -164,7 +164,7 @@ def GetIsolateTarget(bot_name, suite):
   if 'fuchsia-perf' in bot_name.lower():
     return 'performance_web_engine_test_suite'
 
-  # Each Android binary has its own target, and different bots use different
+  # Each Android binary has its own target, and different bots use differentf
   # binaries. Mapping based off of Chromium's
   # //tools/perf/core/perf_data_generator.py
   if bot_name == 'android-go-perf':
