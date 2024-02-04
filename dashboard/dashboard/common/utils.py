@@ -885,5 +885,5 @@ def ConvertBytesBeforeJsonDumps(src):
 def ShouldDelayIssueReporting():
   ''' Tells whether issue should not have the component/label/cc when created.
   '''
-  # At the beginning, we will randomly pick 50% of the issues.
-  return random.randrange(2) == 0
+  # Fully enabling along with buganizer migration.
+  return True
