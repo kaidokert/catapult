@@ -635,6 +635,7 @@ class Job(ndb.Model):
 
   def _CanSandwich(self, differences=None):
     if not self.user or 'appspot.gserviceaccount.com' not in self.user:
+      print('------ no user')
       return False
     # When a culprit is a non-chromium CL, culprit verification will use the
     # first commit in the roll, which sets up an A/A experiment. Any culprit CL
@@ -653,6 +654,9 @@ class Job(ndb.Model):
         if title:
           parts = title.split(']:')
           sandwich_subscription = parts[0].replace('[', '')
+    print('------ %s %s %s', sandwich_subscription,
+                                         self.benchmark_arguments.benchmark,
+                                         self.configuration)
     if sandwich_allowlist.CheckAllowlist(sandwich_subscription,
                                          self.benchmark_arguments.benchmark,
                                          self.configuration):
