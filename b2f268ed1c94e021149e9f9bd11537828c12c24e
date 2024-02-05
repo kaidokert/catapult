@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4ea5391_762485d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2024-02-05T20:54:33Z",
+      "side": 1,
+      "message": "+ wenbinzhang@\n\nHey,\n\nI had reached out to johnchen@ before they went OOO about having stories within a benchmark filter on OS. https://chromium-review.googlesource.com/c/chromium/src/+/5262797\n\nPart of the inspiration was seeing tools/perf/benchmarks/blink_perf.py filter to OSes, not just Platforms. Though this benchmark does it for full benchmarks.\n\nWe are looking to expand the rendering.desktop.notracing motionmark to have two stories which only work on macOS for now. In order to support this I\u0027m proposing that we notify the benchmark of the OS while it is compiling the StorySet, so it can filter on a per-story level.\n\nCould you PTAL? Thanks!",
+      "revId": "b2f268ed1c94e021149e9f9bd11537828c12c24e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
