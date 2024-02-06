@@ -160,6 +160,12 @@ class BrowserTest(browser_test_case.BrowserTestCase):
     self.assertTrue(isinstance(ui, app_ui.AppUi))
     self.assertIsNotNone(ui.WaitForUiNode(resource_id='action_bar_root'))
 
+  def testGetHistograms(self):
+    tab = self._browser.tabs[0]
+    tab.Navigate(self.UrlOfUnittestFile('blank.html'))
+    histograms = self._browser.GetHistograms(query='Paint')
+    self.assertGreater(len(histograms), 0)
+
 
 class CommandLineBrowserTest(browser_test_case.BrowserTestCase):
   @classmethod

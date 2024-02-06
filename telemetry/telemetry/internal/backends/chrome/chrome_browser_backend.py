@@ -364,6 +364,10 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
   def SetWindowBounds(self, window_id, bounds):
     self.devtools_client.SetWindowBounds(window_id, bounds)
 
+  def GetHistograms(self, query=None, delta=False, timeout=60):
+    return self.devtools_client.GetHistograms(query=query, delta=delta,
+                                               timeout=timeout)
+
   def _CreateExecutableUniqueDirectory(self, prefix):
     """Creates a semi-permanent directory unique to the browser executable.
 

@@ -385,3 +385,7 @@ class Browser(app.App):
 
   def SetWindowBounds(self, window_id, bounds):
     self._browser_backend.SetWindowBounds(window_id, bounds)
+
+  def GetHistograms(self, query=None, delta=False, timeout=60):
+    return self._browser_backend.GetHistograms(query=query, delta=delta,
+                                               timeout=timeout)

@@ -512,6 +512,11 @@ class BrowserBackend(app_backend.AppBackend):
       self, window_id, bounds): # pylint: disable=unused-argument
     raise exceptions.StoryActionError('Set Window Bounds not supported')
 
+  def GetHistograms(
+      self, query=None, delta=False, # pylint: disable=unused-argument
+      timeout=60): # pylint: disable=unused-argument
+    raise exceptions.StoryActionError('Get Histograms not supported')
+
 
 def _GetStackSummaries(symbolized_minidumps):
   """Attempts to summarize the most relevant parts of the given minidumps.

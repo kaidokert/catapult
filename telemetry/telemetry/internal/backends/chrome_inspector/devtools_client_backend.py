@@ -31,6 +31,8 @@ class TabNotFoundError(exceptions.Error):
 class UnsupportedVersionError(exceptions.Error):
   pass
 
+class GetHistogramsError(exceptions.Error):
+  pass
 
 # Only versions of Chrome from M58 and above are supported. Older versions
 # did not support many of the modern features currently in use by Telemetry.
@@ -571,6 +573,22 @@ class _DevToolsClientBackend():
     }
     self._browser_websocket.SyncRequest(request, timeout=30)
 
+  def GetHistograms(self, query=None, delta=False, timeout=60):
+    params = {'delta': delta}
+    if query:
+      params['query'] = query
+    request = {
+        'method': 'Browser.getHistograms',
+        'params': params,
+    }
+    res = self._browser_websocket.SyncRequest(request, timeout)
+    if 'error' in res:
+      raise GetHistogramsError(res['error']['message'])
+    assert len(res['result']) > 0
+    if 'histograms' not in res['result']:
+      raise GetHistogramsError("Response missing histograms: %s"
+                               + res['result'])
+    return res['result']['histograms']
 
 class _DevToolsContextMapBackend():
   def __init__(self, devtools_client):
