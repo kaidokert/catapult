@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c939203f_4aa9610f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-07T18:09:34Z",
+      "side": 1,
+      "message": "Thanks for catching it! I mean \"we will fail *to* group the anomaly into...\"\n\nI added more details as well.",
+      "parentUuid": "fff4465f_aa0d6ae5",
+      "revId": "248300e362685dd139938a42ed2240163fb44d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "80020a07_abf30c8c",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "+1 on that it\u0027s difficult to read. I had to test it on a separate IDE to figure out what it was doing.",
       "parentUuid": "3cd12a07_694e053f",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 104
+      },
+      "revId": "248300e362685dd139938a42ed2240163fb44d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "babd5687_990ac580",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-07T18:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe51c6ed_1bd61683",
       "range": {
         "startLine": 196,
         "startChar": 12,
