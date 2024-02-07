@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fff4465f_aa0d6ae5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-07T17:50:10Z",
+      "side": 1,
+      "message": "This CL description is a little confusing to me... do you mean \n\n`we will merge the anomaly into the existing chromium group` ?",
+      "revId": "248300e362685dd139938a42ed2240163fb44d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "80020a07_abf30c8c",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-02-07T17:47:40Z",
       "side": 1,
       "message": "Maybe it\u0027s just me but this condition is pretty difficult to read. We can either change it to add a clause clearly defining the condition or make the comment more verbose.\n\n```suggestion\n            ((g.get(\u0027project_id\u0027, \u0027\u0027) \u003d\u003d s.get(\u0027monorail_project_id\u0027, \u0027\u0027) or (g.get\n(\u0027project_id\u0027, \u0027\u0027) \u003d\u003d \u0027chromium\u0027) and s.get(\u0027monorail_project_id\u0027, \u0027\u0027) \u003d\u003d \u0027\u0027)\n```",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 104
+      },
+      "revId": "248300e362685dd139938a42ed2240163fb44d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe51c6ed_1bd61683",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-07T17:50:10Z",
+      "side": 1,
+      "message": "+1 on that it\u0027s difficult to read. I had to test it on a separate IDE to figure out what it was doing.",
+      "parentUuid": "3cd12a07_694e053f",
       "range": {
         "startLine": 196,
         "startChar": 12,
