@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88946001_5c4a729f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-07T20:32:24Z",
+      "side": 1,
+      "message": "Please add this CL as well. 😊\nhttps://chromium-review.googlesource.com/c/catapult/+/5276714",
+      "revId": "fb80cbfebded0e0fe25e52d7a18a1689e481576f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
