@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c707ff6c_e6fc09c6",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-07T19:02:32Z",
+      "side": 1,
+      "message": "this does not work because if the \u0027project_id\u0027 key exists but the value is \u0027\u0027, g.get(\u0027project_id\u0027, \u0027chromium\u0027) will return \u0027\u0027.\n\nE.g.:\n\u003e\u003e\u003e g \u003d {\u0027project_id\u0027: \u0027\u0027}\n\u003e\u003e\u003e g.get(\u0027project_id\u0027, \u0027chromium\u0027)\n\u0027\u0027\n\u003e\u003e\u003e g.get(\u0027project_id\u0027, \u0027\u0027) or \u0027chromium\u0027\n\u0027chromium\u0027",
+      "parentUuid": "8ccdb0c4_33079090",
+      "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fd072b0_9c55d166",
         "filename": "perf_issue_service/models/alert_group.py",
         "patchSetId": 4
@@ -48,6 +66,24 @@
       "writtenOn": "2024-02-07T18:32:19Z",
       "side": 1,
       "message": "Sorry if I\u0027m being difficult, but I\u0027m still not seeing how this logic lines up with the commit message.\n\nsay `s.get(\u0027monorail_project_id\u0027,\u0027\u0027) \u003d \u0027\u0027` then `project_id_in_sub \u003d \u0027chromium\u0027`\nand say you had `project_id_in_group \u003d \u0027chromium\u0027`\n\nthen the anomaly would get merged in right? the commit message says they should fail to merge. (I assume `has_overlapped\u003dTrue` means merge the anomaly into the group).",
+      "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0caa8b9_ed39d48b",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-07T19:02:32Z",
+      "side": 1,
+      "message": "Sorry for the confusion. The example in the commit message is about the situation without the change in this CL.",
+      "parentUuid": "f7a34c1f_f5d21962",
       "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
