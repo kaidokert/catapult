@@ -192,7 +192,8 @@ class AlertGroup:
           logging.warning('Project_id field does not exist in group: %s', g)
         if (g['domain'] == master_name and
             g['subscription_name'] == s.get('name') and
-            g.get('project_id', '') == s.get('monorail_project_id', '') and
+            # consider empty project id as the default 'chromium'
+            (g.get('project_id', '') or 'chromium') == (s.get('monorail_project_id', '') or 'chromium') and
             max(g['revision']['start'], start_rev) <= min(g['revision']['end'], end_rev) and
             (abs(g['revision']['start'] - start_rev) + abs(g['revision']['end'] - end_rev) <= 100 or g['domain'] != 'ChromiumPerf')):
           has_overlapped = True
