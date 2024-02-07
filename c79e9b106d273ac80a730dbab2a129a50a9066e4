@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5098d55f_90697b97",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-07T19:19:36Z",
+      "side": 1,
+      "message": "oh I see, ty!",
+      "parentUuid": "c707ff6c_e6fc09c6",
+      "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd072b0_9c55d166",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-02-07T18:32:19Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dba6897_a4b5cf17",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-07T19:19:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6fd072b0_9c55d166",
       "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -84,6 +120,24 @@
       "side": 1,
       "message": "Sorry for the confusion. The example in the commit message is about the situation without the change in this CL.",
       "parentUuid": "f7a34c1f_f5d21962",
+      "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6371c77c_8689b8db",
+        "filename": "perf_issue_service/models/alert_group.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-07T19:19:36Z",
+      "side": 1,
+      "message": "Oh I understand now. Ty.",
+      "parentUuid": "f0caa8b9_ed39d48b",
       "revId": "c79e9b106d273ac80a730dbab2a129a50a9066e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
