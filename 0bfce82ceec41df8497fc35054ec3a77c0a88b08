@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8be70d_b2955e64",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-02-08T17:58:39Z",
+      "side": 1,
+      "message": "If response[\u0027issueUpdates\u0027] does not exist, then this variable will be an empty string and will likely break the loop below. Maybe change this to \n\n```suggestion\n    issueUpdates \u003d response.get(\u0027issueUpdates\u0027, None)\n    if issueUpdates:\n      # the issue updates are in reverse order that index 0 is the latest.\n      # reverse the order to follow the monorail style.\n      issueUpdates.reverse()\n      comments \u003d []\n      for index, update in enumerate(issueUpdates):\n        comment \u003d {\n          \u0027id\u0027: index,\n          \u0027author\u0027: update.get(\u0027author\u0027, {}).get(\u0027emailAddress\u0027, \u0027\u0027),\n          \u0027content\u0027: update.get(\u0027issueComment\u0027, {}).get(\u0027comment\u0027, \u0027\u0027),\n          \u0027published\u0027: update.get(\u0027timestamp\u0027),\n          \u0027updates\u0027: b_utils.GetBuganizerStatusUpdate(update, status_enum) or {}\n        }\n        comments.append(comment)\n```",
+      "range": {
+        "startLine": 174,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 51
+      },
+      "revId": "0bfce82ceec41df8497fc35054ec3a77c0a88b08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
