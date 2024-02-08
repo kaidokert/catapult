@@ -401,7 +401,8 @@ class ActionRunner(ActionRunnerBase):
   def ScrollPage(self, left_start_ratio=0.5, top_start_ratio=0.5,
                  direction='down', distance=None, distance_expr=None,
                  speed_in_pixels_per_second=800, use_touch=False,
-                 synthetic_gesture_source=GESTURE_SOURCE_DEFAULT):
+                 synthetic_gesture_source=GESTURE_SOURCE_DEFAULT,
+                 vsync_offset_ms=0.0,events_per_vsync=1.0):
     """Perform scroll gesture on the page.
 
     You may specify distance or distance_expr, but not both. If
@@ -431,7 +432,8 @@ class ActionRunner(ActionRunnerBase):
         left_start_ratio=left_start_ratio, top_start_ratio=top_start_ratio,
         direction=direction, distance=distance, distance_expr=distance_expr,
         speed_in_pixels_per_second=speed_in_pixels_per_second,
-        use_touch=use_touch, synthetic_gesture_source=synthetic_gesture_source))
+        use_touch=use_touch, synthetic_gesture_source=synthetic_gesture_source,
+        vsync_offset_ms=vsync_offset_ms,events_per_vsync=events_per_vsync))
 
   def ScrollPageToElement(self, selector=None, element_function=None,
                           container_selector=None,
@@ -497,7 +499,8 @@ class ActionRunner(ActionRunnerBase):
                     left_start_ratio=0.5, top_start_ratio=0.5,
                     direction='down', distance=None, distance_expr=None,
                     speed_in_pixels_per_second=800, use_touch=False,
-                    synthetic_gesture_source=GESTURE_SOURCE_DEFAULT):
+                    synthetic_gesture_source=GESTURE_SOURCE_DEFAULT,
+                    vsync_offset_ms=0.0,events_per_vsync=1.0):
     """Perform scroll gesture on the element.
 
     The element may be selected via selector, text, or element_function.
@@ -536,7 +539,8 @@ class ActionRunner(ActionRunnerBase):
         left_start_ratio=left_start_ratio, top_start_ratio=top_start_ratio,
         direction=direction, distance=distance, distance_expr=distance_expr,
         speed_in_pixels_per_second=speed_in_pixels_per_second,
-        use_touch=use_touch, synthetic_gesture_source=synthetic_gesture_source))
+        use_touch=use_touch, synthetic_gesture_source=synthetic_gesture_source,
+        vsync_offset_ms=vsync_offset_ms,events_per_vsync=events_per_vsync))
 
   def ScrollBouncePage(self, left_start_ratio=0.5, top_start_ratio=0.5,
                        direction='down', distance=100,

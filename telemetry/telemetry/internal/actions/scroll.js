@@ -19,6 +19,8 @@
       this.direction_ = opt_options.direction;
       this.speed_ = opt_options.speed;
       this.gesture_source_type_ = opt_options.gesture_source_type;
+      this.vsync_offset_ms_ = opt_options.vsync_offset_ms;
+      this.events_per_vsync_ = opt_options.events_per_vsync;
     } else {
       this.element_ = document.scrollingElement || document.body;
       this.left_start_ratio_ = 0.5;
@@ -26,6 +28,8 @@
       this.direction_ = 'down';
       this.speed_ = 800;
       this.gesture_source_type_ = chrome.gpuBenchmarking.DEFAULT_INPUT;
+      this.vsync_offset_ms_ = 0;
+      this.events_per_vsync_ = 1;
     }
   }
 
@@ -180,7 +184,7 @@
     chrome.gpuBenchmarking.smoothScrollBy(
         distance, this.onGestureComplete_.bind(this), startLeft, startTop,
         this.options_.gesture_source_type_, this.options_.direction_,
-        speed);
+        speed, this.options_.vsync_offset_ms_, this.options_.events_per_vsync_);
   };
 
   ScrollAction.prototype.onGestureComplete_ = function() {
