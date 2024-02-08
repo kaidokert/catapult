@@ -171,13 +171,27 @@ class BuganizerClient:
     if not response:
       return []
 
-    return [{
-        'id': update.get('version'),
+    issueUpdates = response.get('issueUpdates', '')
+    issueUpdates.reverse()
+    comments = []
+    for index, update in enumerate(issueUpdates):
+      comment = {
+        'id': index,
         'author': update.get('author', {}).get('emailAddress', ''),
         'content': update.get('issueComment', {}).get('comment', ''),
         'published': update.get('timestamp'),
         'updates': b_utils.GetBuganizerStatusUpdate(update, status_enum) or {}
-    } for update in response.get('issueUpdates')]
+      }
+      comments.append(comment)
+    return comments
+
+    # return [{
+    #     'id': update.get('version'),
+    #     'author': update.get('author', {}).get('emailAddress', ''),
+    #     'content': update.get('issueComment', {}).get('comment', ''),
+    #     'published': update.get('timestamp'),
+    #     'updates': b_utils.GetBuganizerStatusUpdate(update, status_enum) or {}
+    # } for update in response.get('issueUpdates')]
 
 
   def NewIssue(self,
