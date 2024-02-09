@@ -16,6 +16,23 @@
       "message": "PTAL!",
       "revId": "a03f84a25cee2cc894894fbf7e2ef45d36d9a416",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1da24c86_c089742e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-09T19:39:59Z",
+      "side": 1,
+      "message": "The change LGTM. Not sure why the tests are failing on Macs.",
+      "revId": "a03f84a25cee2cc894894fbf7e2ef45d36d9a416",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
