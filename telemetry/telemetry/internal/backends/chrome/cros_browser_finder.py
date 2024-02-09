@@ -200,6 +200,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     vmodule = ','.join('%s=2' % pattern for pattern in [
         '*/chromeos/net/*',
         '*/chromeos/login/*',
+        'device_event_log*',
         'chrome_browser_main_posix'])
 
     startup_args.extend([
@@ -221,6 +222,8 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
         '--vmodule=%s' % vmodule,
         # Enable crash dumping.
         '--enable-crash-reporter-for-testing',
+        # Do not trigger powerwash if tests misbehave.
+        '--cryptohome-ignore-cleanup-ownership-for-testing',
     ])
 
     if self._app_type == 'lacros-chrome':
