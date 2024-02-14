@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aad82ca_ec5e17f8",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-14T22:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a14527f_fdb59529",
+      "range": {
+        "startLine": 63,
+        "startChar": 29,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "revId": "243ea4f8d493b07d595f98ba2dcade97abae3cce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bff36f4_55a11bb5",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-02-14T22:26:22Z",
       "side": 1,
       "message": "Uber nit: Add `default\u003dFalse` so that it\u0027s always a boolean.",
+      "range": {
+        "startLine": 169,
+        "startChar": 22,
+        "endLine": 169,
+        "endChar": 56
+      },
+      "revId": "243ea4f8d493b07d595f98ba2dcade97abae3cce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bead8b9b_f0b58b45",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-14T22:30:23Z",
+      "side": 1,
+      "message": "Great idea, thanks!",
+      "parentUuid": "9bff36f4_55a11bb5",
       "range": {
         "startLine": 169,
         "startChar": 22,
