@@ -16,6 +16,23 @@
       "message": "Thanks for the review! I added fixes for the unittests so I\u0027ll need another CR+1 if you don\u0027t mind. 😊",
       "revId": "265cbed54e836cdd14578c7ff3238875f5bf302f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "820274f6_dd081b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-14T22:48:50Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "265cbed54e836cdd14578c7ff3238875f5bf302f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
