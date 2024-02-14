@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d544b6_1e315e17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-14T18:56:50Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nJust making some improvements to the android telemetry scripts as I use/debug them. This came from seeing `../bin/../apks` in my output and wanting to fix that.\n\nThanks,\nPeter",
+      "revId": "0514ba42bda0e61a210dccc864550e1345e19c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
