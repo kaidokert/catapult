@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d370b36_f6f6b3ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-15T18:36:36Z",
+      "side": 1,
+      "message": "Seems like MonochromePublic.apk cannot be a webview provider.",
+      "revId": "507ee1215125b7150674fcc491ac413951beb549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
