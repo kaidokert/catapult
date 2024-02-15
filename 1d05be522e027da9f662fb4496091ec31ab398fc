@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "1d05be522e027da9f662fb4496091ec31ab398fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f3c24b9_c983aa27",
+        "filename": "tracing/third_party/devscripts/README.chromium",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1553262
+      },
+      "writtenOn": "2024-02-15T21:30:57Z",
+      "side": 1,
+      "message": "Don\u0027t have committer powers yet but LGTM",
+      "revId": "1d05be522e027da9f662fb4496091ec31ab398fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
