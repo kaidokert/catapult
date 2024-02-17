@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c74b6f_6b20cb75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-02-17T20:03:23Z",
+      "side": 1,
+      "message": "lgtm\n\nAre you planning to deploy this separately, or wait until next week?",
+      "revId": "2ec0aba8a204343ae168d9d9500ff65675d81040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
