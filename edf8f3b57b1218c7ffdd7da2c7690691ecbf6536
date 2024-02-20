@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62107de7_0bb5922b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-02-20T21:19:44Z",
+      "side": 1,
+      "message": "I think it should be \"self.command\"\n```suggestion\n        command \u003d self.command + skylab_args + self._extra_args\n```",
+      "range": {
+        "startLine": 523,
+        "startChar": 18,
+        "endLine": 523,
+        "endChar": 35
+      },
+      "revId": "edf8f3b57b1218c7ffdd7da2c7690691ecbf6536",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
