@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0b83b1_c5af9714",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-02-20T20:54:31Z",
+      "side": 1,
+      "message": "nit: update this for better readability, for example:\nif \u0027chromeos-swarming\u0027 in self._swarming_server:\n  ...\n  command \u003d self.command + skylab_args + self._extra_args\nelse:\n  command \u003d self.command + self._extra_args",
+      "range": {
+        "startLine": 524,
+        "startChar": 8,
+        "endLine": 524,
+        "endChar": 68
+      },
+      "revId": "ed4fa98a9475cb0c181eb8fabaf89b7f7d697d14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
