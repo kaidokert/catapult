@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43539a92_51f37c1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-20T23:07:14Z",
+      "side": 1,
+      "message": "LGTM but what are the threshold updates you\u0027re referring to?",
+      "revId": "138d1e11e3a58cef59b653e3dd9052aa41065688",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
