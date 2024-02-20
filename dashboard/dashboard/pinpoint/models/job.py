@@ -369,13 +369,17 @@ class Job(ndb.Model):
     if len(bots) % 2 and len(bots) != 1:
       bots.pop()
 
+    # Pull out the benchmark arguments to the top-level.
+    benchmark_arguments = BenchmarkArguments.FromArgs(args)
+
     state = job_state.JobState(
         quests,
         comparison_mode=comparison_mode,
         comparison_magnitude=comparison_magnitude,
         pin=pin,
         initial_attempt_count=GetIterationCount(initial_attempt_count,
-                                                len(bots)))
+                                                len(bots)),
+        benchmark_arguments=benchmark_arguments)
     args = arguments or {}
     job = cls(
         state=state,
@@ -395,8 +399,7 @@ class Job(ndb.Model):
         batch_id=batch_id,
         bots=bots)
 
-    # Pull out the benchmark arguments to the top-level.
-    job.benchmark_arguments = BenchmarkArguments.FromArgs(args)
+    job.benchmark_arguments = benchmark_arguments
 
     if use_execution_engine:
       # Short-circuit the process because we don't need any further processing
