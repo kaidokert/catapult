@@ -117,7 +117,7 @@ class ExplorationTest(unittest.TestCase):
     on_unknown_mock = mock.MagicMock()
     changes = [0, 5, 10]
 
-    def ChangeUnknownDetected(a, _):
+    def ChangeUnknownDetected(a, _, b, c):
       if a >= 5:
         return None
       return True
