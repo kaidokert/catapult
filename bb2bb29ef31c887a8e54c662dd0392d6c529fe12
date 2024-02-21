@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "915c1606_0cf69a2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-21T22:50:10Z",
+      "side": 1,
+      "message": "Hi Haiyang,\n\nThere\u0027s one other one that I see fail to be grant, but it is a runtime permission and should be grantable? See: https://developer.android.com/develop/ui/views/notifications/notification-permission#test\n\n```\nandroid.permission.POST_NOTIFICATIONS: java.lang.IllegalArgumentException: Unknown permission: android.permission.POST_NOTIFICATIONS\n```\n\nWDYT?\nPeter",
+      "revId": "bb2bb29ef31c887a8e54c662dd0392d6c529fe12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
