@@ -16,6 +16,23 @@
       "message": "Hi Brian,\n\nThis will make it easier for me to revert my own telemetry changes. If I get sent code reviews for code that I don\u0027t understand I\u0027ll send them to other telemetry/OWNERS. 😊\n\nThanks,\nPeter",
       "revId": "061e1c9d8e895003b46a4767b8de089d294cace6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36bae30f_01f029bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-21T18:33:11Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "061e1c9d8e895003b46a4767b8de089d294cace6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
