@@ -52,7 +52,12 @@ def _BinaryInfixTraversal(change_a, change_b, levels, midpoint, callback):
   _BinaryInfixTraversal(m, change_b, levels - 1, midpoint, callback)
 
 
-def Speculate(changes, change_detected, on_unknown, midpoint, levels=1):
+def Speculate(changes,
+              change_detected,
+              on_unknown,
+              midpoint,
+              levels=1,
+              benchmark_arguments=None):
   """Speculate on a range of changes.
 
   This function yields a list of tuples with the following form:
@@ -84,7 +89,7 @@ def Speculate(changes, change_detected, on_unknown, midpoint, levels=1):
   def Speculator(change_a_index, change_b_index):
     _, change_a = change_a_index
     index_b, change_b = change_b_index
-    result = change_detected(change_a, change_b)
+    result = change_detected(change_a, change_b, benchmark_arguments)
     if result is None:
       on_unknown(change_a, change_b)
     elif result:
