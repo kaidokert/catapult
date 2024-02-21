@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c2bf69_0e56de81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-02-21T22:28:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e0fd9141_2d4a918e",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "e06f39d68f34e986ea2a5289fccd1bbf4f06394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f92f74da_78564e8b",
@@ -72,6 +96,24 @@
       "writtenOn": "2024-02-21T20:41:29Z",
       "side": 1,
       "message": "lgtm with nit.",
+      "revId": "e06f39d68f34e986ea2a5289fccd1bbf4f06394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19d841f7_a0dc2146",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-02-21T22:28:27Z",
+      "side": 1,
+      "message": "It working well on staging so far.",
+      "parentUuid": "1be0880c_5cd787aa",
       "revId": "e06f39d68f34e986ea2a5289fccd1bbf4f06394d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
