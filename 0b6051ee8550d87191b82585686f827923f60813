@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c9be26_a84003f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-21T18:33:44Z",
+      "side": 1,
+      "message": "Thanks for the review! I\u0027ll monitor the roller this afternoon to make sure it\u0027s green.",
+      "revId": "0b6051ee8550d87191b82585686f827923f60813",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
