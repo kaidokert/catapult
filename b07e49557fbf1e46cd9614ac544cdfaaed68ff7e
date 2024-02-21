@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "944525c9_909003a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1360246
+      },
+      "writtenOn": "2024-02-21T10:25:10Z",
+      "side": 1,
+      "message": "third_party/catapult/tracing/tracing/metrics/OWNERS",
+      "revId": "b07e49557fbf1e46cd9614ac544cdfaaed68ff7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
