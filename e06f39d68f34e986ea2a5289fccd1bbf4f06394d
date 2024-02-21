@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0fd9141_2d4a918e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-21T20:41:29Z",
+      "side": 1,
+      "message": "nit: should mention the threshold change in the description as well.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "e06f39d68f34e986ea2a5289fccd1bbf4f06394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f92f74da_78564e8b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -32,6 +55,23 @@
       "side": 1,
       "message": "sure\nthanks",
       "parentUuid": "f92f74da_78564e8b",
+      "revId": "e06f39d68f34e986ea2a5289fccd1bbf4f06394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44bcdd28_e6a539db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-21T20:41:29Z",
+      "side": 1,
+      "message": "lgtm with nit.",
       "revId": "e06f39d68f34e986ea2a5289fccd1bbf4f06394d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
