@@ -364,6 +364,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       # also need to make sure the package name is allowed.
       allowed = device.GetWebViewUpdateServiceDump().get('WebViewPackages')
       should_override_webview_provider = package_name in allowed
+    else:
+      should_override_webview_provider = False
 
     if should_override_webview_provider:
       logging.warning('Setting %s as WebView implementation.', package_name)
