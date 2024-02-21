@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e3e338f_3fdc0b8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000264
+      },
+      "writtenOn": "2024-02-21T23:15:26Z",
+      "side": 1,
+      "message": "We should add a \"Bug:\" reference so that we can track what was landed for this.  I\u0027ll find an appropriate issue to use here...",
+      "revId": "23b8356546e5e685d02f034ac99cfea711606bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78780c66_70c48daa",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000264
+      },
+      "writtenOn": "2024-02-21T23:15:26Z",
+      "side": 1,
+      "message": "Can we make these \"fuchsiaIntegrationInternalRevisions\" and \"fuchsiaIntegrationPublicRevisions\"?\n\nI think \"integration\" should be in there to express that this is for the integration.git repos.  Otherwise a reader might think these are for the fuchsia.git repo (which is different).\n\nCould you also add comments to say that these are for Git commit IDs for the public and Google-internal integration.git repos?  (Even if there are no existing comments for these fields, this is a good time to start adding some. :-) )",
+      "revId": "23b8356546e5e685d02f034ac99cfea711606bf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
