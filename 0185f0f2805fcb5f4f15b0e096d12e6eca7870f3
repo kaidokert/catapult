@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "160df298_cbbbf1a5",
+        "filename": "third_party/beautifulsoup4-4.9.3/py3k/bs4/element.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-02-22T21:30:11Z",
+      "side": 0,
+      "message": "I don\u0027t think removing this is warranted. Warning the user when functionality isn\u0027t available seems reasonable.\n\nIf you do want to go through with this, you\u0027ll need to update the README.chromium file for this module to note that there have been local changes.",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "0185f0f2805fcb5f4f15b0e096d12e6eca7870f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
