@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc5e90c3_9b952d16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-22T20:08:36Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nThis should reduce log spam a bit both on bots, for devs, and during presubmit.\n\nThanks,\nPeter",
+      "revId": "ce7acc4ff5cdfa57aa4a1a5ebda09c66327832f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
