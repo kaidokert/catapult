@@ -22,7 +22,7 @@ def RunCmd(args, cwd=None, quiet=False, env=None):
     Return code from the command execution.
   """
   if not quiet:
-    logging.debug(' '.join(args) + ' ' + (cwd or ''))
+    print('RunCmd run:' + ' '.join(args) + ' ' + (cwd or ''))
   with open(os.devnull, 'w') as devnull:
     p = subprocess.Popen(
         args=args,
@@ -49,7 +49,7 @@ def GetAllCmdOutput(args, cwd=None, quiet=False, env=None):
     Prints the command's stderr to logger (which defaults to stdout).
   """
   if not quiet:
-    logging.debug(' '.join(args) + ' ' + (cwd or ''))
+    print('GetAllCmdOutput run:' + ' '.join(args) + ' ' + (cwd or ''))
   with open(os.devnull, 'w') as devnull:
     p = subprocess.Popen(
         args=args,
@@ -85,7 +85,7 @@ def StartCmd(args,
      An instance of subprocess.Popen associated with the live process.
   """
   if not quiet:
-    logging.debug(' '.join(args) + ' ' + (cwd or ''))
+    print('StartCmd run: ' + ' '.join(args) + ' ' + (cwd or ''))
   stdout = stdout or subprocess.PIPE
   stderr = stderr or subprocess.PIPE
   return subprocess.Popen(
