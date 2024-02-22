@@ -573,7 +573,6 @@ class _RunTestExecution(execution_module.Execution):
                   },
               }),
       })
-
     for d in self._dimensions:
       if d['key'] == 'id':
         self._bot_id = d['value']
