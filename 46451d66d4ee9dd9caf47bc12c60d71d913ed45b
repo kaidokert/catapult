@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222fb168_35c55f41",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000264
+      },
+      "writtenOn": "2024-02-22T18:57:13Z",
+      "side": 1,
+      "message": "Is the empty line before the comment added by an auto-formatter?\n\nIf we need/want those empty lines, how about putting these new entries after the existing list, for readability, so as not to break up the block in the middle like this?",
+      "revId": "46451d66d4ee9dd9caf47bc12c60d71d913ed45b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
