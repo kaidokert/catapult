@@ -4,10 +4,10 @@
 
 from __future__ import absolute_import
 import unittest
+from unittest import mock
 
 from telemetry.core import exceptions
 from telemetry.internal.util import binary_manager
-import mock
 
 
 class BinaryManagerTest(unittest.TestCase):
