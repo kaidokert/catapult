@@ -173,7 +173,7 @@ class LinuxBasedInterface:
     self._ssh_args = [
         '-o StrictHostKeyChecking=no', '-o KbdInteractiveAuthentication=no',
         '-o PreferredAuthentications=publickey',
-        '-o UserKnownHostsFile=/dev/null', '-o ControlMaster=no', '-F/dev/null'
+        '-o UserKnownHostsFile=/dev/null', '-o ControlMaster=no',
     ]
 
     if ssh_identity:
