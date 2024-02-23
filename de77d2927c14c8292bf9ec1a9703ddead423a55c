@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aad3ff7_e2eb7f5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-23T18:33:51Z",
+      "side": 1,
+      "message": "lgtm. Just need to be aware it is Friday. 😊",
+      "revId": "de77d2927c14c8292bf9ec1a9703ddead423a55c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
