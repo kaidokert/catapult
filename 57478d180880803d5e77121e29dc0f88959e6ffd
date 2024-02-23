@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b72d16a_bccf5029",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-02-23T01:08:09Z",
+      "side": 1,
+      "message": "I\u0027m okay with this on principle and I could see us supporting this more elegantly in the future.\n\nQQ: Does this affect the functional analysis thresholds right now?",
+      "revId": "57478d180880803d5e77121e29dc0f88959e6ffd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
