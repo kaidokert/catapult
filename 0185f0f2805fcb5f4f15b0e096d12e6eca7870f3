@@ -22,6 +22,30 @@
       },
       "revId": "0185f0f2805fcb5f4f15b0e096d12e6eca7870f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ee04744_cd8b2bd2",
+        "filename": "third_party/beautifulsoup4-4.9.3/py3k/bs4/element.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-26T17:20:25Z",
+      "side": 0,
+      "message": "Makes sense, I was just annoyed at the presubmit warning:\n\n```\n$ git cl presubmit -u\nRunning Python 3 presubmit upload checks ...\n/usr/local/google/home/wnwen/z1/src/third_party/catapult/third_party/beautifulsoup4-4.9.3/py3k/bs4/element.py:15: UserWarning: The soupsieve package is not installed. CSS selectors cannot be used.\n  warnings.warn(\n```\n\nIt\u0027s available locally and via vpython3, just not vpython... so maybe PRESUBMIT is running using vpython? Strange since it says `USE_PYTHON3 \u003d True` at the top of the file...\n\n```\n$ python3 -c \u0027import soupsieve\u0027\n$ vpython3 -c \u0027import soupsieve\u0027\n$ vpython -c \u0027import soupsieve\u0027\nTraceback (most recent call last):\n  File \"\u003cstring\u003e\", line 1, in \u003cmodule\u003e\nImportError: No module named soupsieve\n```\n\nI\u0027ve removed this file from this CL.",
+      "parentUuid": "160df298_cbbbf1a5",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "0185f0f2805fcb5f4f15b0e096d12e6eca7870f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
