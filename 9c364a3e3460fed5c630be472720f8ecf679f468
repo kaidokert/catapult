@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "278ac47c_a693dae4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-02-26T17:37:12Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nThis simplifies the logic and makes it clear that a local apk is required for most of `PossibleAndroidBrowser.UpdateExecutableIfNeeded`. Technically all of it since it\u0027s not really meaningful to have a valid _support_apk_list but no _local_apk, but in case someone does... I\u0027ll leave that assumption alone. 😄\n\nThanks,\nPeter",
+      "revId": "9c364a3e3460fed5c630be472720f8ecf679f468",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
