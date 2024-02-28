@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae5b5e4e_e25d2fb0",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2024-02-28T22:09:19Z",
+      "side": 1,
+      "message": "I wrapped this here as I think it will throw this exception that was caught earlier.",
+      "range": {
+        "startLine": 1108,
+        "startChar": 11,
+        "endLine": 1108,
+        "endChar": 46
+      },
+      "revId": "c78a0c82f08faab0f6c9aaa398ecd7854c932e32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
