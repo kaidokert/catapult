@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcddac80_c92de8f0",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-28T19:12:34Z",
+      "side": 1,
+      "message": "nit: I think we can save this request and reuse in both requests.",
+      "range": {
+        "startLine": 1108,
+        "startChar": 44,
+        "endLine": 1108,
+        "endChar": 79
+      },
+      "revId": "7f40f6761d7521137bdd0765fa7fcc91e82bdbfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace812e1_bb7705fd",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-28T19:12:34Z",
+      "side": 1,
+      "message": "nit: Pinpoint",
+      "range": {
+        "startLine": 1112,
+        "startChar": 24,
+        "endLine": 1112,
+        "endChar": 32
+      },
+      "revId": "7f40f6761d7521137bdd0765fa7fcc91e82bdbfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85f18e9d_6079585d",
+        "filename": "dashboard/dashboard/services/pinpoint_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-02-28T19:12:34Z",
+      "side": 1,
+      "message": "_PINPOINT_SKIA_URL?",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "7f40f6761d7521137bdd0765fa7fcc91e82bdbfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
