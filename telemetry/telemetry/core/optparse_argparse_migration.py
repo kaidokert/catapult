@@ -10,14 +10,56 @@ underlying implementation from optparse to argparse before finally switching
 directly to argparse.
 """
 
-import optparse  # pylint:disable=deprecated-module
-
-class ArgumentParser(optparse.OptionParser):
-  # To be filled in over time.
-  pass
+import argparse
 
 
-class ArgumentValues(optparse.Values):
+def _AddArgumentImpl(parser, *args, **kwargs):
+  if 'help' in kwargs:
+    help_str = kwargs['help']
+    help_str = help_str.replace('%default', '%(default)s')
+    kwargs['help'] = help_str
+  parser.add_argument(*args, **kwargs)
+
+
+class ArgumentParser(argparse.ArgumentParser):
+
+  def __init__(self, *args, **kwargs):
+    super().__init__(*args, **kwargs)
+    # parse_args behavior differs between optparse and argparse, so store a
+    # reference to the original implementation now before we override it later.
+    self.argparse_parse_args = self.parse_args
+
+  def parse_args(self, args=None, namespace=None):
+    """optparse-like override of argparse's parse_args.
+
+    optparse's parse_args appears to function like argparse's parse_known_args,
+    so just use that but drop support for optparse's |values| argument.
+    """
+    return self.parse_known_args(args, namespace)
+
+  def add_option(self, *args, **kwargs):
+    _AddArgumentImpl(self, *args, **kwargs)
+
+  def add_option_group(self, *args, **kwargs):
+    # We no-op since argparse's add_argument_group already associates the group
+    # with the argument parser.
+    pass
+
+  def get_default_values(self):
+    defaults = {}
+    for action in self._actions:
+      defaults[action.dest] = action.default
+    return ArgumentValues(**defaults)
+
+
+class _ArgumentGroup(argparse._ArgumentGroup):
+
+  def add_option(self, *args, **kwargs):
+    _AddArgumentImpl(self, *args, **kwargs)
+
+
+# Used by BrowserFinderOptions
+class ArgumentValues(argparse.Namespace):
   # To be filled in over time.
   pass
 
@@ -27,12 +69,14 @@ def CreateOptionGroup(parser, title, description=None):
 
   See Python's optparse.OptionGroup documentation for argument descriptions.
   """
-  return optparse.OptionGroup(parser, title, description=description)
+  # Copied from argparse's source code for add_argument_group, but using our own
+  # class.
+  group = _ArgumentGroup(parser, title, description)
+  parser._action_groups.append(group)
+  return group
 
 
-def CreateFromOptparseInputs(
-    usage='%%prog [options]',
-    description=None):
+def CreateFromOptparseInputs(usage='%prog [options]', description=None):
   """Creates an ArgumentParser using the same constructor arguments as optparse.
 
   See Python's optparse.OptionParser documentation for argument descriptions.
@@ -47,4 +91,5 @@ def CreateFromOptparseInputs(
     * prog
     * epilog
   """
+  usage = usage.replace('%prog', '%(prog)s')
   return ArgumentParser(usage=usage, description=description)
