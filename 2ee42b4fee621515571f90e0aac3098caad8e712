@@ -22,6 +22,30 @@
       },
       "revId": "2ee42b4fee621515571f90e0aac3098caad8e712",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5701805c_39668a15",
+        "filename": "dashboard/dashboard/services/pinpoint_service.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2024-02-29T17:35:42Z",
+      "side": 1,
+      "message": "chrome-perf is behind UberProxy that doesn\u0027t seem to be trivial to set up to allow OAuth. this will be one-off short term experiment, and eventually be gone.",
+      "parentUuid": "3ff8be67_c791c113",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "2ee42b4fee621515571f90e0aac3098caad8e712",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
