@@ -46,6 +46,30 @@
       },
       "revId": "2ee42b4fee621515571f90e0aac3098caad8e712",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d48faff1_e7af3488",
+        "filename": "dashboard/dashboard/services/pinpoint_service.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-02-29T17:40:27Z",
+      "side": 1,
+      "message": "https://perf.luci.app/ is the chrome public instance not behind uberproxy. We can use that one. We should keep our traffic within instances we own since we monitor these and alerts are routed appropriately.",
+      "parentUuid": "5701805c_39668a15",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "2ee42b4fee621515571f90e0aac3098caad8e712",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
