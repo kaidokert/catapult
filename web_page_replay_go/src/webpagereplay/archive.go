@@ -20,9 +20,15 @@ import (
 	"reflect"
 	"strings"
 	"sync"
+	"time"
 )
 
 var ErrNotFound = errors.New("not found")
+
+type SizeAndTime struct {
+	Size uint32 // Size in bytes
+	Time uint32 // Time in ms
+}
 
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
@@ -30,6 +36,7 @@ type ArchivedRequest struct {
 	SerializedRequest   []byte
 	SerializedResponse  []byte // if empty, the request failed
 	LastServedSessionId uint32
+	ResponseTiming      []SizeAndTime
 }
 
 // RequestMatch represents a match when querying the archive for responses to a request
@@ -51,7 +58,7 @@ func (requestMatch *RequestMatch) SetMatch(
 	requestMatch.MatchRatio = ratio
 }
 
-func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
+func serializeRequest(req *http.Request, resp *http.Response, respTiming []SizeAndTime) (*ArchivedRequest, error) {
 	ar := &ArchivedRequest{}
 	{
 		var buf bytes.Buffer
@@ -67,13 +74,14 @@ func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest,
 		}
 		ar.SerializedResponse = buf.Bytes()
 	}
+	ar.ResponseTiming = respTiming
 	return ar, nil
 }
 
-func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Response, error) {
+func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Response, []SizeAndTime, error) {
 	req, err := http.ReadRequest(bufio.NewReader(bytes.NewReader(ar.SerializedRequest)))
 	if err != nil {
-		return nil, nil, fmt.Errorf("couldn't unmarshal request: %v", err)
+		return nil, nil, nil, fmt.Errorf("couldn't unmarshal request: %v", err)
 	}
 
 	if req.URL.Host == "" {
@@ -86,9 +94,9 @@ func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Respon
 		if req.Body != nil {
 			req.Body.Close()
 		}
-		return nil, nil, fmt.Errorf("couldn't unmarshal response: %v", err)
+		return nil, nil, nil, fmt.Errorf("couldn't unmarshal response: %v", err)
 	}
-	return req, resp, nil
+	return req, resp, ar.ResponseTiming, nil
 }
 
 // Archive contains an archive of requests. Immutable except when embedded in
@@ -156,17 +164,17 @@ func OpenArchive(path string) (*Archive, error) {
 }
 
 // ForEach applies f to all requests in the archive.
-func (a *Archive) ForEach(f func(req *http.Request, resp *http.Response) error) error {
+func (a *Archive) ForEach(f func(req *http.Request, resp *http.Response, respTiming []SizeAndTime) error) error {
 	for _, urlmap := range a.Requests {
 		for urlString, requests := range urlmap {
 			fullURL, _ := url.Parse(urlString)
 			for index, archivedRequest := range requests {
-				req, resp, err := archivedRequest.unmarshal(fullURL.Scheme)
+				req, resp, respTiming, err := archivedRequest.unmarshal(fullURL.Scheme)
 				if err != nil {
 					log.Printf("Error unmarshaling request #%d for %s: %v", index, urlString, err)
 					continue
 				}
-				if err := f(req, resp); err != nil {
+				if err := f(req, resp, respTiming); err != nil {
 					return err
 				}
 			}
@@ -206,7 +214,7 @@ func assertCompleteURL(url *url.URL) {
 // (https://bugs.chromium.org/p/chromium/issues/detail?id=1215668)
 //
 // TODO: conditional requests
-func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response, error) {
+func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response, []SizeAndTime, error) {
 	// Clear the input channel on large uploads to prevent WPR
 	// from resetting the connection, and causing the upload
 	// to fail.
@@ -227,7 +235,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 
 	hostMap := a.Requests[req.Host]
 	if len(hostMap) == 0 {
-		return nil, nil, ErrNotFound
+		return nil, nil, nil, ErrNotFound
 	}
 
 	// Exact match. Note that req may be relative, but hostMap keys are always absolute.
@@ -289,7 +297,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 		log.Printf(logStr, reqUrl, len(bestURLs), strings.Join(bestURLs[:], "\n"))
 	}
 
-	return nil, nil, ErrNotFound
+	return nil, nil, nil, ErrNotFound
 }
 
 // Given an incoming request and a set of matches in the archive, identify the best match,
@@ -297,18 +305,18 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 func (a *Archive) findBestMatchInArchivedRequestSet(
 	incomingReq *http.Request,
 	archivedReqs []*ArchivedRequest) (
-	*http.Request, *http.Response, error) {
+	*http.Request, *http.Response, []SizeAndTime, error) {
 	scheme := incomingReq.URL.Scheme
 
 	if len(archivedReqs) == 0 {
-		return nil, nil, ErrNotFound
+		return nil, nil, nil, ErrNotFound
 	} else if len(archivedReqs) == 1 {
-		archivedReq, archivedResp, err := archivedReqs[0].unmarshal(scheme)
+		archivedReq, archivedResp, archivedRespTiming, err := archivedReqs[0].unmarshal(scheme)
 		if err != nil {
 			log.Println("Error unmarshaling request")
-			return nil, nil, err
+			return nil, nil, nil, err
 		}
-		return archivedReq, archivedResp, err
+		return archivedReq, archivedResp, archivedRespTiming, err
 	}
 
 	// There can be multiple requests with the same URL string. If that's the
@@ -317,7 +325,7 @@ func (a *Archive) findBestMatchInArchivedRequestSet(
 	var bestInSequenceMatch RequestMatch
 
 	for _, r := range archivedReqs {
-		archivedReq, archivedResp, err := r.unmarshal(scheme)
+		archivedReq, archivedResp, _, err := r.unmarshal(scheme)
 		if err != nil {
 			log.Println("Error unmarshaling request")
 			continue
@@ -354,13 +362,13 @@ func (a *Archive) findBestMatchInArchivedRequestSet(
 	if a.ServeResponseInChronologicalSequence &&
 		bestInSequenceMatch.Match != nil {
 		bestInSequenceMatch.Match.LastServedSessionId = a.CurrentSessionId
-		return bestInSequenceMatch.Request, bestInSequenceMatch.Response, nil
+		return bestInSequenceMatch.Request, bestInSequenceMatch.Response, bestInSequenceMatch.Match.ResponseTiming, nil
 	} else if bestMatch.Match != nil {
 		bestMatch.Match.LastServedSessionId = a.CurrentSessionId
-		return bestMatch.Request, bestMatch.Response, nil
+		return bestMatch.Request, bestMatch.Response, bestMatch.Match.ResponseTiming, nil
 	}
 
-	return nil, nil, ErrNotFound
+	return nil, nil, nil, ErrNotFound
 }
 
 type AddMode int
@@ -371,10 +379,10 @@ const (
 	AddModeSkipExisting      AddMode = 2
 )
 
-func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response, mode AddMode) error {
+func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response, respTiming []SizeAndTime, mode AddMode) error {
 	// Always use the absolute URL in this mapping.
 	assertCompleteURL(req.URL)
-	archivedRequest, err := serializeRequest(req, resp)
+	archivedRequest, err := serializeRequest(req, resp, respTiming)
 	if err != nil {
 		return err
 	}
@@ -414,7 +422,7 @@ func (a *Archive) StartNewReplaySession() {
 // The edited archive is returned, leaving the current archive is unchanged.
 func (a *Archive) Edit(edit func(req *http.Request, resp *http.Response) (*http.Request, *http.Response, error)) (*Archive, error) {
 	clone := newArchive()
-	err := a.ForEach(func(oldReq *http.Request, oldResp *http.Response) error {
+	err := a.ForEach(func(oldReq *http.Request, oldResp *http.Response, oldRespTiming []SizeAndTime) error {
 		newReq, newResp, err := edit(oldReq, oldResp)
 		if err != nil {
 			return err
@@ -425,8 +433,8 @@ func (a *Archive) Edit(edit func(req *http.Request, resp *http.Response) (*http.
 			}
 			return nil
 		}
-		// TODO: allow changing scheme or protocol?
-		return clone.addArchivedRequest(newReq, newResp, AddModeAppend)
+		// TODO: Allow changing scheme or protocol or response timing?
+		return clone.addArchivedRequest(newReq, newResp, oldRespTiming, AddModeAppend)
 	})
 	if err != nil {
 		return nil, err
@@ -438,10 +446,10 @@ func (a *Archive) Edit(edit func(req *http.Request, resp *http.Response) (*http.
 func (a *Archive) Merge(other *Archive) error {
 	var numAddedRequests = 0
 	var numSkippedRequests = 0
-	err := other.ForEach(func(req *http.Request, resp *http.Response) error {
-		foundReq, _, notFoundErr := a.FindRequest(req)
+	err := other.ForEach(func(req *http.Request, resp *http.Response, respTiming []SizeAndTime) error {
+		foundReq, _, _, notFoundErr := a.FindRequest(req)
 		if notFoundErr == ErrNotFound || req.URL.String() != foundReq.URL.String() {
-			if err := a.addArchivedRequest(req, resp, AddModeAppend); err != nil {
+			if err := a.addArchivedRequest(req, resp, respTiming, AddModeAppend); err != nil {
 				return err
 			}
 			numAddedRequests++
@@ -460,7 +468,7 @@ func (a *Archive) Merge(other *Archive) error {
 func (a *Archive) Trim(trimMatch func(req *http.Request, resp *http.Response) (bool, error)) (*Archive, error) {
 	var numRemovedRequests = 0
 	clone := newArchive()
-	err := a.ForEach(func(req *http.Request, resp *http.Response) error {
+	err := a.ForEach(func(req *http.Request, resp *http.Response, respTiming []SizeAndTime) error {
 		trimReq, err := trimMatch(req, resp)
 		if err != nil {
 			return err
@@ -468,7 +476,7 @@ func (a *Archive) Trim(trimMatch func(req *http.Request, resp *http.Response) (b
 		if trimReq {
 			numRemovedRequests++
 		} else {
-			clone.addArchivedRequest(req, resp, AddModeAppend)
+			clone.addArchivedRequest(req, resp, respTiming, AddModeAppend)
 		}
 		return nil
 	})
@@ -477,6 +485,40 @@ func (a *Archive) Trim(trimMatch func(req *http.Request, resp *http.Response) (b
 		return nil, err
 	}
 	return &clone, nil
+}
+
+const recordingProxyChunkSize = 4096 // Chunk size used when recording pages.
+func GetResponseAndTiming(req *http.Request, request func(*http.Request) (*http.Response, error)) (*http.Response, []SizeAndTime, error) {
+	var respTiming []SizeAndTime
+	var responseBody []byte
+
+	start := time.Now()
+	resp, err := request(req)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	buf := make([]byte, recordingProxyChunkSize) // Buffer to read chunks
+	for {
+		n, err := resp.Body.Read(buf)
+		responseBody = append(responseBody, buf[:n]...)
+		if err != nil && err != io.EOF {
+			// Handle error other than end of file
+			return nil, nil, err
+		}
+		chunkTime := uint32(time.Since(start).Milliseconds())
+		timing := SizeAndTime{Size: uint32(n), Time: chunkTime}
+		respTiming = append(respTiming, timing)
+		start = time.Now()
+
+		if err == io.EOF {
+			break // End of response
+		}
+	}
+
+	resp.Body.Close()
+	resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
+	return resp, respTiming, nil
 }
 
 // Add the result of a get request to the receiver.
@@ -490,7 +532,7 @@ func (a *Archive) Add(method string, urlString string, mode AddMode) error {
 	// Print a warning for duplicate requests since the replay server will only
 	// return the first found response.
 	if mode == AddModeAppend || mode == AddModeSkipExisting {
-		if foundReq, _, notFoundErr := a.FindRequest(req); notFoundErr != ErrNotFound {
+		if foundReq, _, _, notFoundErr := a.FindRequest(req); notFoundErr != ErrNotFound {
 			if foundReq.URL.String() == url.String() {
 				if mode == AddModeSkipExisting {
 					log.Printf("Skipping existing request: %s %s", req.Method, urlString)
@@ -501,12 +543,12 @@ func (a *Archive) Add(method string, urlString string, mode AddMode) error {
 		}
 	}
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, respTiming, err := GetResponseAndTiming(req, http.DefaultClient.Do)
 	if err != nil {
 		return fmt.Errorf("Error fetching url: %v", err)
 	}
 
-	if err = a.addArchivedRequest(req, resp, mode); err != nil {
+	if err = a.addArchivedRequest(req, resp, respTiming, mode); err != nil {
 		return err
 	}
 
@@ -520,6 +562,7 @@ func (a *Archive) Serialize(w io.Writer) error {
 	if err := json.NewEncoder(gz).Encode(a); err != nil {
 		return fmt.Errorf("json marshal failed: %v", err)
 	}
+
 	return gz.Close()
 }
 
@@ -542,10 +585,10 @@ func OpenWritableArchive(path string) (*WritableArchive, error) {
 }
 
 // RecordRequest records a request/response pair in the archive.
-func (a *WritableArchive) RecordRequest(req *http.Request, resp *http.Response) error {
+func (a *WritableArchive) RecordRequest(req *http.Request, resp *http.Response, respTiming []SizeAndTime) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
-	return a.addArchivedRequest(req, resp, AddModeAppend)
+	return a.addArchivedRequest(req, resp, respTiming, AddModeAppend)
 }
 
 // RecordTlsConfig records the cert used and protocol negotiated for a host.

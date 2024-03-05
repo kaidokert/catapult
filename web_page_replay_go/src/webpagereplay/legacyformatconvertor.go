@@ -170,23 +170,17 @@ func (r *ConvertorConfig) Convert(c *cli.Context) {
 		httpReq.Proto = "HTTP/1.1"
 		httpReq.ProtoMajor = 1
 		httpReq.ProtoMinor = 1
-		var resp *http.Response
-		resp, err = transport.RoundTrip(&httpReq)
+
+		resp, respTiming, err := GetResponseAndTiming(&httpReq, transport.RoundTrip)
 		if err != nil {
-			panic(fmt.Errorf("RoundTrip failed: %v", err))
+			panic(err)
 		}
 
-		responseBody, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			panic(fmt.Errorf("warning: origin response truncated: %v", err))
-		}
-		resp.Body.Close()
 		fmt.Printf("status: %d\n", resp.StatusCode)
 		if requestBody != nil {
 			httpReq.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 		}
-		resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
-		if err := archive.RecordRequest(&httpReq, resp); err != nil {
+		if err := archive.RecordRequest(&httpReq, resp, respTiming); err != nil {
 			panic(fmt.Sprintf("failed recording request: %v", err))
 		}
 		if err := r.recordServerCert(url.Scheme, url.Host, archive); err != nil {
