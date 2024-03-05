@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 from __future__ import absolute_import
 import logging
+import os
 
 from telemetry.core import platform
 from telemetry.internal.platform import device
@@ -19,7 +20,18 @@ class LinuxBasedDevice(device.Device):
     super().__init__(
         name=f'{self.OS_PROPER_NAME} with host {host_name or "localhost"}',
         guid=f'{self.GUID_NAME}:{host_name or "localhost"}')
-    self._host_name = host_name
+    self.host_name = host_name
+    if host_name == 'variable_skylab_device_hostname':
+      print('found host_name of variable_skylab_device_hostname')
+      bot_id = os.environ.get('SWARMING_BOT_ID')
+      expected_prefix = 'cros-'
+      if bot_id and bot_id.startswith(expected_prefix):
+        self.host_name = bot_id[len(expected_prefix):]
+      else:
+        print('bot_id is %s' % bot_id)
+
+    print('hostname is set to %s' % self.host_name)
+
     self._ssh_port = ssh_port
     self._ssh_identity = ssh_identity
     self._is_local = is_local
