@@ -56,6 +56,7 @@ COMPONENT_MAP_CR2B = {
   'Platform>DevTools>WebAssembly': 1456350,
   'Speed>BinarySize>Android': 1457059,
   'Speed>BinarySize>Desktop': 1456597,
+  'Speed>Dashboard': 1457390,
   'Speed>Regressions': 1457332,
   'Test>Telemetry': 1456742,
   'Speed>Tracing': 1457213,
