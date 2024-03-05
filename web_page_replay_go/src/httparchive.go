@@ -105,13 +105,19 @@ func (cfg *Config) requestEnabled(req *http.Request, resp *http.Response) bool {
 }
 
 func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
-	return a.ForEach(func(req *http.Request, resp *http.Response) error {
+	return a.ForEach(func(req *http.Request, resp *http.Response, respTiming []webpagereplay.SizeAndTime) error {
 		if !cfg.requestEnabled(req, resp) {
 			return nil
 		}
 		if printFull {
 			fmt.Fprint(os.Stdout, "----------------------------------------\n")
 			req.Write(os.Stdout)
+			fmt.Fprint(os.Stdout, "\n")
+			fmt.Fprint(os.Stdout, "\n")
+			fmt.Fprint(os.Stdout, "responseTiming:")
+			for _, sizeAndTime := range respTiming {
+				fmt.Fprintf(os.Stdout, " [%db, %dms]", sizeAndTime.Size, sizeAndTime.Time)
+			}
 			fmt.Fprint(os.Stdout, "\n")
 			err := webpagereplay.DecompressResponse(resp)
 			if err != nil {
@@ -120,7 +126,11 @@ func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
 			resp.Write(os.Stdout)
 			fmt.Fprint(os.Stdout, "\n")
 		} else {
-			fmt.Fprintf(os.Stdout, "%s %s %s %s\n", req.Method, req.Host, req.URL, resp.Status)
+			totalResponseTime := uint32(0)
+			for _, sizeAndTime := range respTiming {
+				totalResponseTime += sizeAndTime.Time
+			}
+			fmt.Fprintf(os.Stdout, "%s %s %s %s %dms\n", req.Method, req.Host, req.URL, resp.Status, totalResponseTime)
 		}
 		return nil
 	})

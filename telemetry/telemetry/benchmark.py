@@ -191,7 +191,8 @@ class Benchmark(command_line.Command):
     --extra-atrace-categories.
     """
     tbm_options = self.CreateCoreTimelineBasedMeasurementOptions()
-    if options and options.extra_chrome_categories:
+    if (options and hasattr(options, 'extra_chrome_categories') and
+        options.extra_chrome_categories):
       # If Chrome tracing categories for this benchmark are not already
       # enabled, there is probably a good reason why. Don't change whether
       # Chrome tracing is enabled.
@@ -199,7 +200,8 @@ class Benchmark(command_line.Command):
           'This benchmark does not support Chrome tracing.')
       tbm_options.config.chrome_trace_config.category_filter.AddFilterString(
           options.extra_chrome_categories)
-    if options and options.extra_atrace_categories:
+    if (options and hasattr(options, 'extra_atrace_categories') and
+        options.extra_atrace_categories):
       # Many benchmarks on Android run without atrace by default. Hopefully the
       # user understands that atrace is only supported on Android when setting
       # this option.
@@ -214,9 +216,12 @@ class Benchmark(command_line.Command):
         if category not in categories:
           categories.append(category)
       tbm_options.config.atrace_config.categories = categories
-    if options and options.enable_systrace:
+    if (options and hasattr(options, 'enable_systrace') and
+        options.enable_systrace):
       tbm_options.config.chrome_trace_config.SetEnableSystrace()
-    legacy_json_format = options and options.legacy_json_trace_format
+    legacy_json_format = (options and
+                          hasattr(options, 'legacy_json_trace_format') and
+                          options.legacy_json_trace_format)
     if legacy_json_format:
       tbm_options.config.chrome_trace_config.SetJsonTraceFormat()
     else:
@@ -227,7 +232,8 @@ class Benchmark(command_line.Command):
       tbm_options.config.enable_experimental_system_tracing = True
       tbm_options.config.system_trace_config.EnableChrome(
           chrome_trace_config=tbm_options.config.chrome_trace_config)
-    if options and options.experimental_system_data_sources:
+    if (options and hasattr(options, 'experimental_system_data_sources') and
+        options.experimental_system_data_sources):
       assert not legacy_json_format
       tbm_options.config.enable_experimental_system_tracing = True
       tbm_options.config.system_trace_config.EnablePower()
@@ -240,7 +246,8 @@ class Benchmark(command_line.Command):
                       'override PerfBenchmarkWithProfiling, if profiling is '
                       'needed.')
 
-    if options and options.force_sideload_perfetto:
+    if (options and hasattr(options, 'force_sideload_perfetto') and
+        options.force_sideload_perfetto):
       assert tbm_options.config.enable_experimental_system_tracing
       tbm_options.config.force_sideload_perfetto = True
 
