@@ -65,6 +65,52 @@ func updateDates(h http.Header, now time.Time) {
 	updateDate(h, "Expires", now, oldNow)
 }
 
+func writeResponseWithTiming(w http.ResponseWriter, body []byte, statusCode int, responseTiming []SizeAndTime) error {
+	var didWriteHeader = false
+	var n = uint32(0)
+	for i, sizeAndTime := range responseTiming {
+		var end_n = n + sizeAndTime.Size
+		if end_n > uint32(len(body)) {
+			end_n = uint32(len(body))
+		}
+
+		time.Sleep(time.Duration(sizeAndTime.Time) * time.Millisecond)
+		if !didWriteHeader {
+			w.WriteHeader(statusCode)
+			didWriteHeader = true
+		}
+		_, err := w.Write(body[n:end_n])
+		if err != nil {
+			return err
+		}
+		var isLastResponse = i == len(responseTiming)-1
+		// Explicitly flush the output after each chunk of bytes except for the
+		// last chunk, which will automatically be flushed, along with the EOF,
+		// when ServeHTTP returns. Not flushing before the last chunk lets the EOF
+		// be returned along with the last chunk.
+		if !isLastResponse {
+			if f, ok := w.(http.Flusher); ok {
+				f.Flush()
+			}
+		}
+		n = end_n
+		if n >= uint32(len(body)) {
+			break
+		}
+	}
+	if n < uint32(len(body)) {
+		if !didWriteHeader {
+			w.WriteHeader(statusCode)
+			didWriteHeader = true
+		}
+		_, err := w.Write(body[n:])
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
@@ -94,11 +140,12 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		proxy.a.StartNewReplaySession()
 		return
 	}
+
 	fixupRequestURL(req, proxy.scheme)
 	logf := makeLogger(req, proxy.quietMode)
 
 	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	_, storedResp, storedRespTiming, err := proxy.a.FindRequest(req)
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -152,8 +199,14 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	for k, v := range storedResp.Header {
 		w.Header()[k] = append([]string{}, v...)
 	}
-	w.WriteHeader(storedResp.StatusCode)
-	if _, err := io.Copy(w, storedResp.Body); err != nil {
+
+	body, err := ioutil.ReadAll(storedResp.Body)
+	if err != nil {
+		panic(err)
+	}
+
+	err = writeResponseWithTiming(w, body, storedResp.StatusCode, storedRespTiming)
+	if err != nil {
 		logf("warning: client response truncated: %v", err)
 	}
 }
@@ -214,7 +267,7 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 
 	// Make the external request.
 	// If RoundTrip fails, convert the response to a 500.
-	resp, err := proxy.tr.RoundTrip(req)
+	resp, respTiming, err := GetResponseAndTiming(req, proxy.tr.RoundTrip)
 	if err != nil {
 		logf("RoundTrip failed: %v", err)
 		resp = &http.Response{
@@ -239,7 +292,7 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	if err := proxy.a.RecordRequest(req, resp); err != nil {
+	if err := proxy.a.RecordRequest(req, resp, respTiming); err != nil {
 		logf("failed recording request: %v", err)
 	}
 
