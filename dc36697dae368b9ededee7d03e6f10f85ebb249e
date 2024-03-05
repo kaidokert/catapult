@@ -16,6 +16,29 @@
       "message": "PTAL!",
       "revId": "dc36697dae368b9ededee7d03e6f10f85ebb249e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16501910_6c4c11cd",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-05T21:55:18Z",
+      "side": 1,
+      "message": "This component does not have a buganizer mapping yet:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/perf_issue_service/application/buganizer_utils.py\n\nWe should create a component in buganizer and add the mapping in the file above.",
+      "range": {
+        "startLine": 48,
+        "startChar": 42,
+        "endLine": 48,
+        "endChar": 57
+      },
+      "revId": "dc36697dae368b9ededee7d03e6f10f85ebb249e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
