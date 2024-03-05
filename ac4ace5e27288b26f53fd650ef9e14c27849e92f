@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08e36207_43ba19a7",
+        "filename": "perf_issue_service/application/buganizer_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-05T22:34:18Z",
+      "side": 1,
+      "message": "(I know this is tedious but) we need to update the new component id in COMPONENT_MAP_B2CR and PROJECT_MAP_CR2B as well.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 18
+      },
+      "revId": "ac4ace5e27288b26f53fd650ef9e14c27849e92f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
