@@ -3,11 +3,13 @@
 # found in the LICENSE file.
 from __future__ import absolute_import
 import logging
+import os
 
 from telemetry.core import platform
 from telemetry.internal.platform import device
 from telemetry.util import cmd_util
 
+SKYLAB_DUT_HOSTNAME = 'variable_skylab_device_hostname'
 
 class LinuxBasedDevice(device.Device):
 
@@ -20,6 +22,13 @@ class LinuxBasedDevice(device.Device):
         name=f'{self.OS_PROPER_NAME} with host {host_name or "localhost"}',
         guid=f'{self.GUID_NAME}:{host_name or "localhost"}')
     self._host_name = host_name
+    if host_name == SKYLAB_DUT_HOSTNAME:
+      # In Skylab, we can extract hostname from bot ID, since
+      # bot ID is formatted as "{prefix}{hostname}".
+      bot_id = os.environ.get('SWARMING_BOT_ID')
+      if bot_id:
+        self._host_name = get_skylab_hostname_from_bot_id(bot_id)
+
     self._ssh_port = ssh_port
     self._ssh_identity = ssh_identity
     self._is_local = is_local
@@ -64,3 +73,11 @@ class LinuxBasedDevice(device.Device):
   @property
   def is_local(self):
     return self._is_local
+
+
+def get_skylab_hostname_from_bot_id(bot_id):
+  """Parse hostname from a Skylab bot id."""
+  for prefix in ['cros-', 'crossk-']:
+    if bot_id.startswith(prefix):
+      return bot_id[len(prefix):]
+  return bot_id
