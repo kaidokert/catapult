@@ -519,8 +519,8 @@ class _RunTestExecution(execution_module.Execution):
     if self.command:
       if 'chromeos-swarming' in self._swarming_server:
         skylab_args = [
-            '--remote=%s' % self._bot_id,
-            '--device=%s' % self._bot_id
+            '--remote=variable_skylab_device_hostname',
+            '--device=variable_skylab_device_hostname',
         ]
         # Replace 'variable_chromeos_device_hostname' with bot id. Magic variable
         # doesn't exist in chromeos-swarming.
