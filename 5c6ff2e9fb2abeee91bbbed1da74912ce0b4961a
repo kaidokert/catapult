@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de02fd39_267ade7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-06T22:43:22Z",
+      "side": 1,
+      "message": "Would you add the graph which is related to the example in the commit message? I\u0027m curious why the extended_start is greater than the start_rev. I thought \u0027extended\u0027 means to a wider range.",
+      "revId": "5c6ff2e9fb2abeee91bbbed1da74912ce0b4961a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
