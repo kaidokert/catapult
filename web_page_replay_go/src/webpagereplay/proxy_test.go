@@ -5,6 +5,7 @@
 package webpagereplay
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"io"
@@ -100,7 +101,7 @@ func TestDoNotSaveDeterministicJS(t *testing.T) {
 	if err != nil {
 		t.Fatalf("OpenArchive: %v", err)
 	}
-	_, recordedResp, err := replayArchive.FindRequest(req)
+	_, recordedResp, _, err := replayArchive.FindRequest(req)
 	if err != nil {
 		t.Fatalf("unexpected error : %v", err)
 	}
@@ -271,4 +272,253 @@ func TestUpdateDates(t *testing.T) {
 	if !reflect.DeepEqual(responseHeader, wantHeader) {
 		t.Errorf("got: %v\nwant: %v\n", responseHeader, wantHeader)
 	}
+}
+
+type BytesTime struct {
+	bytes []byte
+	time  uint32
+}
+type ResponseTimingTestcase struct {
+	url          string
+	bytesAndTime []BytesTime
+}
+
+func testEndToEndResponseTiming(t *testing.T, testcase ResponseTimingTestcase) {
+	archiveFile := filepath.Join(tmpdir, "TestRecordSlowResponseTime.json")
+
+	timingApproximatelyEqual := func(a uint32, b uint32) bool {
+		const responseTimeTolerance = uint32(20)
+		if a > b {
+			return a-b <= responseTimeTolerance
+		} else {
+			return b-a <= responseTimeTolerance
+		}
+	}
+
+	// We will record responses from this server.
+	origin := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		if testcase.url == req.URL.Path {
+			// Simulate writing the testcase response from the server.
+			didWriteHeader := false
+			for i, bytesAndTime := range testcase.bytesAndTime {
+				time.Sleep(time.Duration(bytesAndTime.time) * time.Millisecond)
+				if !didWriteHeader {
+					w.WriteHeader(http.StatusOK)
+					didWriteHeader = true
+				}
+				w.Write(bytesAndTime.bytes)
+				var isLastRequest = i == len(testcase.bytesAndTime)-1
+				// Explicitly flush the output after each chunk of bytes except for the
+				// last chunk, which will automatically be flushed, along with the EOF,
+				// when this function returns. Not flushing before the last chunk lets
+				// the EOF be returned along with the last chunk.
+				if !isLastRequest {
+					if f, ok := w.(http.Flusher); ok {
+						f.Flush()
+					}
+				}
+			}
+			if !didWriteHeader {
+				w.WriteHeader(http.StatusOK)
+				didWriteHeader = true
+			}
+		} else {
+			t.Fatalf("No testcase response available for url: %s", req.URL.Path)
+		}
+	}))
+	defer origin.Close()
+
+	// Start a proxy for the origin server that will construct an archive file.
+	recordArchive, err := OpenWritableArchive(archiveFile)
+	if err != nil {
+		t.Fatalf("OpenWritableArchive: %v", err)
+	}
+	var transformers []ResponseTransformer
+	recordServer := httptest.NewServer(NewRecordingProxy(recordArchive, "http", transformers))
+	recordTransport := &http.Transport{
+		Proxy: func(*http.Request) (*url.URL, error) {
+			return url.Parse(recordServer.URL)
+		},
+	}
+
+	recordResponse := func(u string, tr *http.Transport) ([]byte, error) {
+		var req *http.Request
+		var err error
+		req, err = http.NewRequest("GET", u, nil)
+		if err != nil {
+			return nil, fmt.Errorf("NewRequest(%s): %v", u, err)
+		}
+		resp, err := tr.RoundTrip(req)
+		if err != nil {
+			return nil, fmt.Errorf("RoundTrip(%s): %v", u, err)
+		}
+		defer resp.Body.Close()
+		var body []byte
+		body, err = ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("ReadBody(%s): %v", u, err)
+		}
+		return body, nil
+	}
+	_, err = recordResponse(origin.URL+testcase.url, recordTransport)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Shutdown and flush the archive.
+	recordServer.Close()
+	if err := recordArchive.Close(); err != nil {
+		t.Fatalf("CloseArchive: %v", err)
+	}
+
+	// Verify that the archive has the expected request body and timing.
+	req, _ := http.NewRequest("GET", origin.URL+testcase.url, nil)
+	_, archiveResp, archiveRespTiming, err := recordArchive.FindRequest(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(archiveRespTiming) != len(testcase.bytesAndTime) {
+		t.Fatalf("expected %s record to have response count of %d, actual %d\n", testcase.url, len(testcase.bytesAndTime), len(archiveRespTiming))
+	}
+	expectedResponseBody := []byte{}
+	for i, expectedBytesAndTime := range testcase.bytesAndTime {
+		if !timingApproximatelyEqual(archiveRespTiming[i].Time, expectedBytesAndTime.time) {
+			t.Fatalf("expected chunk %d of %s record to have timing %d, actual %d\n", i, testcase.url, expectedBytesAndTime.time, archiveRespTiming[i].Time)
+		}
+		expectedResponseBody = append(expectedResponseBody, expectedBytesAndTime.bytes...)
+	}
+	archiveBody, _ := io.ReadAll(archiveResp.Body)
+	if !reflect.DeepEqual(archiveBody, expectedResponseBody) {
+		t.Fatalf("expected replayed %s to have body %s, actual %s\n", testcase.url, expectedResponseBody, archiveBody)
+	}
+
+	recordArchive = nil
+	recordServer = nil
+	recordTransport = nil
+
+	// Open a replay server using the saved archive.
+	replayArchive, err := OpenArchive(archiveFile)
+	if err != nil {
+		t.Fatalf("OpenArchive: %v", err)
+	}
+	replayServer := httptest.NewServer(NewReplayingProxy(replayArchive, "http", transformers, false))
+	replayTransport := &http.Transport{
+		Proxy: func(*http.Request) (*url.URL, error) {
+			return url.Parse(replayServer.URL)
+		},
+	}
+
+	// Verify that the replayed response body and timing are correct.
+	start := time.Now()
+	replayedBody, err := recordResponse(origin.URL+testcase.url, replayTransport)
+	if err != nil {
+		t.Fatal(err)
+	}
+	replayedResponseTime := uint32(time.Since(start).Milliseconds())
+
+	expectedResponseTime := uint32(0)
+	expectedResponseBody = []byte{}
+	for _, bytesAndTime := range testcase.bytesAndTime {
+		expectedResponseTime = expectedResponseTime + bytesAndTime.time
+		expectedResponseBody = append(expectedResponseBody, bytesAndTime.bytes...)
+	}
+	if !timingApproximatelyEqual(replayedResponseTime, expectedResponseTime) {
+		t.Fatalf("expected replayed %s to have timing %d, actual %d\n", testcase.url, expectedResponseTime, replayedResponseTime)
+	}
+	if !reflect.DeepEqual(replayedBody, expectedResponseBody) {
+		t.Fatalf("expected replayed %s to have body %s, actual %s\n", testcase.url, expectedResponseBody, replayedBody)
+	}
+}
+
+func TestEndToEndResponseTiming(t *testing.T) {
+	const slowResponseTimeMs = uint32(100)
+	testcases := []ResponseTimingTestcase{
+		{
+			url: "/empty_slow",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: []byte{}, time: slowResponseTimeMs},
+			},
+		},
+		{
+			url: "/fast_small",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: []byte{'f'}, time: uint32(0)},
+			},
+		},
+		{
+			url: "/slow_small",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: []byte{'s'}, time: slowResponseTimeMs},
+			},
+		},
+		{
+			url: "/fast_big",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: bytes.Repeat([]byte{'f'}, recordingProxyChunkSize), time: uint32(0)},
+			},
+		},
+		{
+			url: "/slow_big",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: bytes.Repeat([]byte{'s'}, recordingProxyChunkSize), time: slowResponseTimeMs},
+			},
+		},
+		{
+			url: "/slow_fast_slow",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: bytes.Repeat([]byte{'s'}, recordingProxyChunkSize), time: slowResponseTimeMs},
+				BytesTime{bytes: bytes.Repeat([]byte{'f'}, recordingProxyChunkSize), time: uint32(0)},
+				BytesTime{bytes: bytes.Repeat([]byte{'s'}, recordingProxyChunkSize), time: slowResponseTimeMs},
+			},
+		},
+		{
+			url: "/fast_slow_fast",
+			bytesAndTime: []BytesTime{
+				BytesTime{bytes: bytes.Repeat([]byte{'f'}, recordingProxyChunkSize), time: uint32(0)},
+				BytesTime{bytes: bytes.Repeat([]byte{'s'}, recordingProxyChunkSize), time: slowResponseTimeMs},
+				BytesTime{bytes: bytes.Repeat([]byte{'f'}, recordingProxyChunkSize), time: uint32(0)},
+			},
+		},
+	}
+	for _, testcase := range testcases {
+		testEndToEndResponseTiming(t, testcase)
+	}
+}
+
+func roundTripWriteResponseWithTiming(t *testing.T, body []byte, responseTiming []SizeAndTime) {
+	w := httptest.NewRecorder()
+	var statusCode = 200
+	writeResponseWithTiming(w, body, statusCode, responseTiming)
+	resp := w.Result()
+	actualBody, _ := io.ReadAll(resp.Body)
+
+	if !bytes.Equal(actualBody, body) {
+		t.Fatalf("expected body did not round trip. Expected %s, actual %s\n", body, actualBody)
+	}
+}
+
+func TestWriteResponseWithTiming(t *testing.T) {
+	roundTripWriteResponseWithTiming(t, []byte("hello"), []SizeAndTime{
+		{Size: 3, Time: 1},
+		{Size: 2, Time: 2},
+	})
+
+	// A transformer can shrink the body without updating the response timing.
+	// Ensure that a body smaller than the expected timing still works.
+	roundTripWriteResponseWithTiming(t, []byte("hello"), []SizeAndTime{
+		{Size: 5, Time: 1},
+		{Size: 2, Time: 2},
+	})
+	roundTripWriteResponseWithTiming(t, []byte("hello"), []SizeAndTime{
+		{Size: 10, Time: 1},
+		{Size: 2, Time: 2},
+	})
+
+	// A transformer can grow the body without updating the response timing.
+	// Ensure that a body larger than the expected timing still works.
+	roundTripWriteResponseWithTiming(t, []byte("hello"), []SizeAndTime{
+		{Size: 1, Time: 1},
+		{Size: 2, Time: 2},
+	})
+	roundTripWriteResponseWithTiming(t, []byte("hello"), []SizeAndTime{})
 }
