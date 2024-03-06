@@ -116,7 +116,9 @@ func DecompressResponse(resp *http.Response) error {
 		if err != nil {
 			return err
 		}
-		resp.ContentLength = int64(len(body))
+		if resp.ContentLength >= 0 {
+			resp.ContentLength = int64(len(body))
+		}
 		resp.Body = ioutil.NopCloser(bytes.NewReader(body))
 	}
 	return nil
