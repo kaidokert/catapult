@@ -16,6 +16,24 @@
       "message": "Why does this Buganizer template CC me directly?",
       "revId": "48db310164f7ef795df8d973cc6f23f3c5a494b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba969fd9_dea5ca90",
+        "filename": "dashboard/dashboard/templates/migrate_test_names_unauthorized.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-03-07T19:05:12Z",
+      "side": 1,
+      "message": "It doesn\u0027t .. I have set it to cc the team alias",
+      "parentUuid": "74d26d78_95f0cf66",
+      "revId": "48db310164f7ef795df8d973cc6f23f3c5a494b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
