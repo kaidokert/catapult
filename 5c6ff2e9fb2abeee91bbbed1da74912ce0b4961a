@@ -34,6 +34,24 @@
       "parentUuid": "de02fd39_267ade7f",
       "revId": "5c6ff2e9fb2abeee91bbbed1da74912ce0b4961a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec99dd8d_6ec19493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-03-07T18:17:15Z",
+      "side": 1,
+      "message": "That\u0027s a good question.\n\nFor example, this anomaly happened at 1269353, it\u0027s previous point is 1269296.\nWhile the log shows: start_rev: 1269297, extended_start: 1269353, end_rev: 1269353\nSo, we should use (start_rev -1) as the point before that anomaly.\n\nPerf UI:\nhttps://chrome-perf.corp.goog/e/?queries\u003dbenchmark%3Djetstream2%26bot%3Dandroid-pixel2-perf%26stat%3Dvalue%26test%3DFlightPlanner.First_std\u0026selected\u003dcommit%3D1269296%26name%3D%252Cbenchmark%253Djetstream2%252Cbot%253Dandroid-pixel2-perf%252Cimprovement_direction%253Dup%252Cmaster%253DChromiumPerf%252Cstat%253Dvalue%252Csubtest_1%253DJetStream2%252Ctest%253DFlightPlanner.First_std%252Cunit%253Dunitless_biggerIsBetter%252C\u0026summary\u003dtrue\n\nDB entity:\nhttps://pantheon.corp.google.com/datastore/databases/-default-/entities;kind\u003dAnomaly;ns\u003d__$DEFAULT$__/edit;key\u003d0%252F%257C7%252FAnomaly%257C19%252Fid%253A5494572354240512?e\u003d-13802955\u0026mods\u003dcomponent_inspector\u0026project\u003dchromeperf",
+      "parentUuid": "de02fd39_267ade7f",
+      "revId": "5c6ff2e9fb2abeee91bbbed1da74912ce0b4961a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
