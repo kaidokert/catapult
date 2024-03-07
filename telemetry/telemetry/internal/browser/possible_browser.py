@@ -71,7 +71,7 @@ class PossibleBrowser(possible_app.PossibleApp):
     if (self.platform.CanFlushIndividualFilesFromSystemCache() and
         paths_to_flush):
       self.platform.FlushSystemCacheForDirectories(paths_to_flush)
-    elif self.platform.SupportFlushEntireSystemCache():
+    if self.platform.SupportFlushEntireSystemCache():
       self.platform.FlushEntireSystemCache()
     else:
       logging.warning(
