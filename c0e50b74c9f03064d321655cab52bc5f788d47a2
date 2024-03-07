@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "c0e50b74c9f03064d321655cab52bc5f788d47a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69448844_ab0673f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-07T20:42:46Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "c0e50b74c9f03064d321655cab52bc5f788d47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4cb51e5_f814ebb5",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-07T20:42:46Z",
+      "side": 1,
+      "message": "nit: please add some context in the comment so that people will be aware of such a behavior.",
+      "range": {
+        "startLine": 610,
+        "startChar": 8,
+        "endLine": 610,
+        "endChar": 64
+      },
+      "revId": "c0e50b74c9f03064d321655cab52bc5f788d47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
