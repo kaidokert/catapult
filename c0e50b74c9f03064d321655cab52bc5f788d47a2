@@ -56,6 +56,30 @@
       },
       "revId": "c0e50b74c9f03064d321655cab52bc5f788d47a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73a3770a_5c48dddc",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-07T20:46:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4cb51e5_f814ebb5",
+      "range": {
+        "startLine": 610,
+        "startChar": 8,
+        "endLine": 610,
+        "endChar": 64
+      },
+      "revId": "c0e50b74c9f03064d321655cab52bc5f788d47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
