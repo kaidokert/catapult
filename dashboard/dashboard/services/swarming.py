@@ -18,6 +18,7 @@ import random
 from dashboard.services import request
 
 _API_PATH = '_ah/api/swarming/v1'
+_V2_PRPC_PREFIX = 'prpc/swarming.v2'
 
 
 class Swarming:
@@ -44,6 +45,7 @@ class Bot:
     self._server = server
     self._bot_id = bot_id
 
+  # /prpc/swarming.v2.Bots.GetBot
   def Get(self):
     """Returns information about a known bot.
 
@@ -51,6 +53,16 @@ class Bot:
     task."""
     return self._Request('get')
 
+  def GetV2(self):
+    """Returns information about a known bot.
+
+    This includes its state and dimensions, and if it is currently running a
+    task."""
+    url = '%s/%s.Bots/GetBot' % (self._server, _V2_PRPC_PREFIX)
+    request_body = {'botId': self._bot_id}
+    return request.RequestJson(url, method='POST', body=request_body)
+
+  # /prpc/swarming.v2.Bots.ListBotTasks
   def Tasks(self):
     """Lists a given bot's tasks within the specified date range."""
     return self._Request('tasks')
@@ -65,6 +77,7 @@ class Bots:
   def __init__(self, server):
     self._server = server
 
+  # /prpc/swarming.v2.Bots/ListBots
   def List(self,
            cursor=None,
            dimensions=None,
@@ -85,6 +98,25 @@ class Bots:
         limit=limit,
         quarantined=quarantined)
 
+  def ListV2(self,
+             cursor=None,
+             dimensions=None,
+             is_dead=None,
+             limit=None,
+             quarantined=None):
+    """Provides list of known bots. Deleted bots will not be listed."""
+    if dimensions:
+      dimensions = [{"key": k, "value": v} for k, v in dimensions.items()]
+    url = '%s/%s.Bots/ListBots' % (self._server, _V2_PRPC_PREFIX)
+    request_body = {
+        'cursor': cursor,
+        'dimensions': dimensions,
+        'isDead': is_dead,
+        'limit': limit or 100,
+        'quarantined': quarantined,
+    }
+    return request.RequestJson(url, method='POST', body=request_body)
+
 
 class Task:
 
@@ -92,16 +124,19 @@ class Task:
     self._server = server
     self._task_id = task_id
 
+  # /prpc/swarming.v2.Tasks.CancelTask
   def Cancel(self):
     """Cancels a task.
 
     If a bot was running the task, the bot will forcibly cancel the task."""
     return self._Request('cancel', method='POST')
 
+  # /prpc/swarming.v2.Tasks.GetRequest
   def Request(self):
     """Returns the task request corresponding to a task ID."""
     return self._Request('request')
 
+  # /prpc/swarming.v2.Tasks/GetResult
   def Result(self, include_performance_stats=False):
     """Reports the result of the task corresponding to a task ID.
 
@@ -112,6 +147,20 @@ class Task:
       return self._Request('result', include_performance_stats=True)
     return self._Request('result')
 
+  def ResultV2(self, include_performance_stats=False):
+    """Reports the result of the task corresponding to a task ID.
+
+    It can be a 'run' ID specifying a specific retry or a 'summary' ID hiding
+    the fact that a task may have been retried transparently, when a bot reports
+    BOT_DIED. A summary ID ends with '0', a run ID ends with '1' or '2'."""
+    url = '%s/%s.Tasks/GetResult' % (self._server, _V2_PRPC_PREFIX)
+    request_body = {"taskId": self._task_id}
+    if include_performance_stats:
+      return request.RequestJson(
+          url, method='POST', body=request_body, include_performance_stats=True)
+    return request.RequestJson(url, method='POST', body=request_body)
+
+  # /prpc/swarming.v2.Tasks.GetStdout
   def Stdout(self):
     """Returns the output of the task corresponding to a task ID."""
     return self._Request('stdout')
@@ -126,6 +175,7 @@ class Tasks:
   def __init__(self, server):
     self._server = server
 
+  # /prpc/swarming.v2.Tasks.NewTask
   def New(self, body):
     """Creates a new task.
 
@@ -136,7 +186,17 @@ class Tasks:
     url = '%s/%s/tasks/new' % (self._server, _API_PATH)
     return request.RequestJson(url, method='POST', body=body)
 
+  def NewV2(self, body):
+    """Creates a new task.
 
+    The task will be enqueued in the tasks list and will be executed at the
+    earliest opportunity by a bot that has at least the dimensions as described
+    in the task request.
+    """
+    url = '%s/%s.Tasks/NewTask' % (self._server, _V2_PRPC_PREFIX)
+    return request.RequestJson(url, method='POST', body=body)
+
+  # /prpc/swarming.v2.Tasks.CountTasks
   def Count(self, bot_id, state, pool):
     """Count the tasks queued on a bot
 
@@ -150,6 +210,18 @@ class Tasks:
 
     return request.RequestJson(url)
 
+  def CountV2(self, bot_id, state, pool):
+    """Count the tasks queued on a bot
+
+    Returns {'count': the number of tasks, 'now': the time of the query}
+    """
+    start_time = int(
+        (datetime.datetime.now() - datetime.timedelta(days=7)).timestamp())
+    request_body = {'start': start_time, 'state': state, 'tags': [bot_id, pool]}
+    url = '%s/%s.Tasks/CountTasks' % (self._server, _V2_PRPC_PREFIX)
+
+    return request.RequestJson(url, method='POST', body=request_body)
+
 
 def _IsAlive(response):
   if response['is_dead'] or response['deleted']:
@@ -158,6 +230,13 @@ def _IsAlive(response):
     return True
   return 'No available devices' not in str(response)
 
+
+def _IsAliveV2(response):
+  if response.get('isDead', False) or response.get('deleted', False):
+    return False
+  if not response.get('quarantined', False):
+    return True
+  return 'No available devices' not in str(response)
 
 def GetAliveBotsByDimensions(dimensions, swarming_server):
   # Queries Swarming for the set of bots we can use for this test.
@@ -171,6 +250,24 @@ def GetAliveBotsByDimensions(dimensions, swarming_server):
   return []
 
 
+def GetAliveBotsByDimensionsV2(dimensions, swarming_server):
+  query_dimensions = {p['key']: p['value'] for p in dimensions}
+  results = Swarming(swarming_server).Bots().ListV2(
+      dimensions=query_dimensions, is_dead='FALSE', quarantined='FALSE')
+  if 'items' in results:
+    bots = [i['botId'] for i in results['items']]
+    random.shuffle(bots)
+    return bots
+  return []
+
+
 def IsBotAlive(bot_id, swarming_server):
   result = Swarming(swarming_server).Bot(bot_id).Get()
+
   return _IsAlive(result)
+
+
+def IsBotAliveV2(bot_id, swarming_server):
+  result = Swarming(swarming_server).Bot(bot_id).GetV2()
+
+  return _IsAliveV2(result)
