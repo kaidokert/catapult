@@ -139,25 +139,25 @@ class _RunTestExecutionTest(unittest.TestCase):
             mock.ANY,
         'priority':
             '100',
-        'pubsub_topic':
+        'pubsubTopic':
             'projects/chromeperf/topics/pinpoint-swarming-updates',
-        'pubsub_auth_token':
+        'pubsubAuthToken':
             'UNUSED',
-        'pubsub_userdata':
+        'pubsubUserdata':
             mock.ANY,
-        'service_account':
+        'serviceAccount':
             mock.ANY,
-        'task_slices': [{
-            'expiration_secs': '86400',
+        'taskSlices': [{
+            'expirationSecs': '86400',
             'properties': {
-                'inputs_ref': {
+                'inputsRef': {
                     'isolatedserver': 'isolate server',
                     'isolated': 'input isolate hash',
                 },
-                'extra_args': ['arg'],
+                'extraArgs': ['arg'],
                 'dimensions': DIMENSIONS,
-                'execution_timeout_secs': mock.ANY,
-                'io_timeout_secs': mock.ANY,
+                'executionTimeoutSecs': mock.ANY,
+                'ioTimeoutSecs': mock.ANY,
             }
         },],
     }
@@ -209,27 +209,27 @@ class RunTestFullTest(_RunTestExecutionTest):
     swarming_tasks_new.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     execution.Poll()
 
     swarming_task_result.assert_not_called()
     self.assertEqual(swarming_tasks_new.call_count, 2)
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
+            'taskSlices': [{
+                'expirationSecs': '86400',
                 'properties': {
-                    'inputs_ref': {
+                    'inputsRef': {
                         'isolatedserver': 'isolate server',
                         'isolated': 'input isolate hash'
                     },
-                    'extra_args': ['arg'],
+                    'extraArgs': ['arg'],
                     'dimensions': DIMENSIONS + [{
                         "key": "id",
                         "value": "a"
                     }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
+                    'executionTimeoutSecs': mock.ANY,
+                    'ioTimeoutSecs': mock.ANY,
                 }
             }]
         })
@@ -244,10 +244,10 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertFalse(execution.failed)
 
     swarming_task_result.return_value = {
-        'bot_id': 'a',
-        'exit_code': 0,
+        'botId': 'a',
+        'exitCode': 0,
         'failure': False,
-        'outputs_ref': {
+        'outputsRef': {
             'isolatedserver': 'output isolate server',
             'isolated': 'output isolate hash',
         },
@@ -316,7 +316,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     swarming_task_result.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     execution.Poll()
 
     swarming_task_result.assert_not_called()
@@ -324,23 +324,23 @@ class RunTestFullTest(_RunTestExecutionTest):
 
     def GetPatch(iso_hash, bot):
       return {
-          'task_slices': [{
-              'expiration_secs': '86400',
+          'taskSlices': [{
+              'expirationSecs': '86400',
               'properties': {
-                  'cas_input_root': {
-                      'cas_instance': 'cas_instance',
+                  'casInputRoot': {
+                      'casInstance': 'cas_instance',
                       'digest': {
                           'hash': iso_hash,
-                          'size_bytes': 111,
+                          'sizeBytes': 111,
                       },
                   },
-                  'extra_args': ['arg'],
+                  'extraArgs': ['arg'],
                   'dimensions': DIMENSIONS + [{
                       "key": "id",
                       "value": bot
                   }],
-                  'execution_timeout_secs': mock.ANY,
-                  'io_timeout_secs': mock.ANY,
+                  'executionTimeoutSecs': mock.ANY,
+                  'ioTimeoutSecs': mock.ANY,
               }
           }]
       }
@@ -379,7 +379,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     swarming_task_result.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     execution.Poll()
 
     swarming_task_result.assert_not_called()
@@ -414,7 +414,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     swarming_tasks_new.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     execution_b.Poll()
     execution_a.Poll()
 
@@ -422,23 +422,23 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertEqual(swarming_tasks_new.call_count, 2)
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
+            'taskSlices': [{
+                'expirationSecs': '86400',
                 'properties': {
-                    'cas_input_root': {
-                        'cas_instance': 'cas_instance',
+                    'casInputRoot': {
+                        'casInstance': 'cas_instance',
                         'digest': {
                             'hash': 'xxxxxxxx',
-                            'size_bytes': 111,
+                            'sizeBytes': 111,
                         },
                     },
-                    'extra_args': ['arg'],
+                    'extraArgs': ['arg'],
                     'dimensions': DIMENSIONS + [{
                         "key": "id",
                         "value": "a"
                     }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
+                    'executionTimeoutSecs': mock.ANY,
+                    'ioTimeoutSecs': mock.ANY,
                 }
             }]
         })
@@ -453,14 +453,14 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertFalse(execution_b.failed)
 
     swarming_task_result.return_value = {
-        'bot_id': 'a',
-        'exit_code': 0,
+        'botId': 'a',
+        'exitCode': 0,
         'failure': False,
-        'cas_output_root': {
-            'cas_instance': 'projects/x/instances/default_instance',
+        'casOutputRoot': {
+            'casInstance': 'projects/x/instances/default_instance',
             'digest': {
                 'hash': 'e3b0c44298fc1c149afbf4c8996fb',
-                'size_bytes': 1,
+                'sizeBytes': 1,
             },
         },
         'state': 'COMPLETED',
@@ -473,10 +473,10 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertEqual(
         execution_b.result_arguments, {
             'cas_root_ref': {
-                'cas_instance': 'projects/x/instances/default_instance',
+                'casInstance': 'projects/x/instances/default_instance',
                 'digest': {
                     'hash': 'e3b0c44298fc1c149afbf4c8996fb',
-                    'size_bytes': 1,
+                    'sizeBytes': 1,
                 },
             }
         })
@@ -527,7 +527,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     swarming_tasks_new.assert_not_called()
 
     # Call the first Poll() to start the swarming task.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     execution_b.Poll()
     execution_a.Poll()
 
@@ -535,23 +535,23 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertEqual(swarming_tasks_new.call_count, 2)
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
-            'task_slices': [{
-                'expiration_secs': '86400',
+            'taskSlices': [{
+                'expirationSecs': '86400',
                 'properties': {
-                    'cas_input_root': {
-                        'cas_instance': 'cas_instance',
+                    'casInputRoot': {
+                        'casInstance': 'cas_instance',
                         'digest': {
                             'hash': 'xxxxxxxx',
-                            'size_bytes': 111,
+                            'sizeBytes': 111,
                         },
                     },
-                    'extra_args': ['arg'],
+                    'extraArgs': ['arg'],
                     'dimensions': DIMENSIONS + [{
                         "key": "id",
                         "value": "a"
                     }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
+                    'executionTimeoutSecs': mock.ANY,
+                    'ioTimeoutSecs': mock.ANY,
                 }
             }]
         })
@@ -559,12 +559,12 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertFalse(execution_b.failed)
 
     swarming_task_result.return_value = {
-        'bot_id': 'a',
-        'cas_output_root': {
-            'cas_instance': 'projects/x/instances/default_instance',
+        'botId': 'a',
+        'casOutputRoot': {
+            'casInstance': 'projects/x/instances/default_instance',
             'digest': {
                 'hash': 'e3b0c44298fc1c149afbf4c8996fb',
-                'size_bytes': 1,
+                'sizeBytes': 1,
             },
         },
         'state': 'PENDING',
@@ -593,7 +593,7 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
 
   def testSwarmingError(self, swarming_task_result, swarming_tasks_new):
     swarming_task_result.return_value = {'state': 'BOT_DIED'}
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
 
     quest = run_test.RunTest('server', DIMENSIONS, ['arg'], _BASE_SWARMING_TAGS,
                              None, None)
@@ -620,16 +620,16 @@ class SwarmingTaskStatusTest(_RunTestExecutionTest):
                     swarming_tasks_new):
     swarming_task_stdout.return_value = {'output': ''}
     swarming_task_result.return_value = {
-        'bot_id': 'a',
-        'exit_code': 1,
+        'botId': 'a',
+        'exitCode': 1,
         'failure': True,
         'state': 'COMPLETED',
-        'outputs_ref': {
+        'outputsRef': {
             'isolatedserver': 'https://server',
             'isolated': 'deadc0de',
         },
     }
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
 
     quest = run_test.RunTest('server', DIMENSIONS, ['arg'], _BASE_SWARMING_TAGS,
                              None, None)
@@ -659,7 +659,7 @@ class BotIdHandlingTest(_RunTestExecutionTest):
   def testExecutionExpired(self, swarming_task_result, swarming_tasks_new):
     # If the Swarming task expires, the bots are overloaded or the dimensions
     # don't correspond to any bot. Raise an error that's fatal to the Job.
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     swarming_task_result.return_value = {'state': 'EXPIRED'}
 
     quest = run_test.RunTest('server', DIMENSIONS, ['arg'], _BASE_SWARMING_TAGS,
@@ -677,7 +677,7 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     self.assertEqual(execution_a._bot_id, 'a')
 
   def testBisectsDontUsePairing(self, swarming_task_result, swarming_tasks_new):
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     swarming_task_result.return_value = {'state': 'CANCELED'}
 
     quest = run_test.RunTest('server', DIMENSIONS, ['arg'], _BASE_SWARMING_TAGS,
@@ -708,7 +708,7 @@ class BotIdHandlingTest(_RunTestExecutionTest):
         change.Change("a", variant=1), 'input isolate server',
         'input isolate hash')
 
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
+    swarming_tasks_new.return_value = {'taskId': 'task id'}
     swarming_task_result.return_value = {'state': 'PENDING'}
     execution_1.Poll()
     execution_2.Poll()
@@ -716,10 +716,10 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     self.assertEqual(swarming_tasks_new.call_count, 2)
 
     swarming_task_result.return_value = {
-        'bot_id': 'a',
-        'exit_code': 0,
+        'botId': 'a',
+        'exitCode': 0,
         'failure': False,
-        'outputs_ref': {
+        'outputsRef': {
             'isolatedserver': 'output isolate server',
             'isolated': 'output isolate hash',
         },
