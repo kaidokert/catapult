@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74d26d78_95f0cf66",
+        "filename": "dashboard/dashboard/templates/migrate_test_names_unauthorized.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-03-07T19:02:34Z",
+      "side": 1,
+      "message": "Why does this Buganizer template CC me directly?",
+      "revId": "48db310164f7ef795df8d973cc6f23f3c5a494b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
