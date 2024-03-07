@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5fc3a8_685933bc",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-07T00:25:29Z",
+      "side": 1,
+      "message": "I\u0027m a little concerned with how this if statement is growing but LGTM.",
+      "revId": "0fedcaab4cb1b966c06f04f118f8a2341d4c40fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d0b1a08_16d657db",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-07T00:25:29Z",
+      "side": 1,
+      "message": "suggestion:\n`elif type(ci_lower) !\u003d float and type(ci_upper) !\u003d float`",
+      "revId": "0fedcaab4cb1b966c06f04f118f8a2341d4c40fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
