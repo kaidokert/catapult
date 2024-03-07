@@ -362,6 +362,9 @@ class Job(ndb.Model):
       A Job object.
     """
     bots = swarming.GetAliveBotsByDimensions(dimensions, swarming_server)
+    logging.debug('DDEBUG: bots v2: %s', bots)
+    # bots_v1 = swarming.GetAliveBotsByDimensions(dimensions, swarming_server)
+    # logging.debug('DDEBUG: bots v1: %s', bots_v1)
     if not bots:
       raise errors.SwarmingNoBots()
 
