@@ -148,16 +148,16 @@ class _RunTestExecutionTest(unittest.TestCase):
         'service_account':
             mock.ANY,
         'task_slices': [{
-            'expiration_secs': '86400',
+            'expirationSecs': '86400',
             'properties': {
-                'inputs_ref': {
+                'inputsRef': {
                     'isolatedserver': 'isolate server',
                     'isolated': 'input isolate hash',
                 },
-                'extra_args': ['arg'],
+                'extraArgs': ['arg'],
                 'dimensions': DIMENSIONS,
-                'execution_timeout_secs': mock.ANY,
-                'io_timeout_secs': mock.ANY,
+                'executionTimeoutSecs': mock.ANY,
+                'ioTimeoutSecs': mock.ANY,
             }
         },],
     }
@@ -217,19 +217,19 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
             'task_slices': [{
-                'expiration_secs': '86400',
+                'expirationSecs': '86400',
                 'properties': {
-                    'inputs_ref': {
+                    'inputsRef': {
                         'isolatedserver': 'isolate server',
                         'isolated': 'input isolate hash'
                     },
-                    'extra_args': ['arg'],
+                    'extraArgs': ['arg'],
                     'dimensions': DIMENSIONS + [{
                         "key": "id",
                         "value": "a"
                     }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
+                    'executionTimeoutSecs': mock.ANY,
+                    'ioTimeoutSecs': mock.ANY,
                 }
             }]
         })
@@ -325,7 +325,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     def GetPatch(iso_hash, bot):
       return {
           'task_slices': [{
-              'expiration_secs': '86400',
+              'expirationSecs': '86400',
               'properties': {
                   'cas_input_root': {
                       'cas_instance': 'cas_instance',
@@ -334,13 +334,13 @@ class RunTestFullTest(_RunTestExecutionTest):
                           'size_bytes': 111,
                       },
                   },
-                  'extra_args': ['arg'],
+                  'extraArgs': ['arg'],
                   'dimensions': DIMENSIONS + [{
                       "key": "id",
                       "value": bot
                   }],
-                  'execution_timeout_secs': mock.ANY,
-                  'io_timeout_secs': mock.ANY,
+                  'executionTimeoutSecs': mock.ANY,
+                  'ioTimeoutSecs': mock.ANY,
               }
           }]
       }
@@ -423,7 +423,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
             'task_slices': [{
-                'expiration_secs': '86400',
+                'expirationSecs': '86400',
                 'properties': {
                     'cas_input_root': {
                         'cas_instance': 'cas_instance',
@@ -432,13 +432,13 @@ class RunTestFullTest(_RunTestExecutionTest):
                             'size_bytes': 111,
                         },
                     },
-                    'extra_args': ['arg'],
+                    'extraArgs': ['arg'],
                     'dimensions': DIMENSIONS + [{
                         "key": "id",
                         "value": "a"
                     }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
+                    'executionTimeoutSecs': mock.ANY,
+                    'ioTimeoutSecs': mock.ANY,
                 }
             }]
         })
@@ -536,7 +536,7 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertNewTaskHasDimensions(
         swarming_tasks_new, {
             'task_slices': [{
-                'expiration_secs': '86400',
+                'expirationSecs': '86400',
                 'properties': {
                     'cas_input_root': {
                         'cas_instance': 'cas_instance',
@@ -545,13 +545,13 @@ class RunTestFullTest(_RunTestExecutionTest):
                             'size_bytes': 111,
                         },
                     },
-                    'extra_args': ['arg'],
+                    'extraArgs': ['arg'],
                     'dimensions': DIMENSIONS + [{
                         "key": "id",
                         "value": "a"
                     }],
-                    'execution_timeout_secs': mock.ANY,
-                    'io_timeout_secs': mock.ANY,
+                    'executionTimeoutSecs': mock.ANY,
+                    'ioTimeoutSecs': mock.ANY,
                 }
             }]
         })

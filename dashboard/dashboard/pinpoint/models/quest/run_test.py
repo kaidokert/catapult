@@ -349,8 +349,10 @@ class _RunTestExecution(execution_module.Execution):
     logging.debug('_RunTestExecution Polling swarming: %s', self._task_id)
     swarming_task = swarming.Swarming(self._swarming_server).Task(self._task_id)
 
-    result = swarming_task.Result()
-    logging.debug('swarming response: %s', result)
+    result = swarming_task.ResultV1()
+    logging.debug('swarming response V1: %s', result)
+    result_v2 = swarming_task.Result()
+    logging.debug('swarming response: %s', result_v2)
 
     if 'bot_id' in result:
       # For bisects, this will be set after the task is allocated to a bot.
@@ -488,27 +490,27 @@ class _RunTestExecution(execution_module.Execution):
       if instance.startswith('https://'):
         instance = _CAS_DEFAULT_INSTANCE
       input_ref = {
-          'cas_input_root': {
-              'cas_instance': instance,
+          'casInputRoot': {
+              'casInstance': instance,
               'digest': {
                   'hash': cas_hash,
-                  'size_bytes': int(cas_size),
+                  'sizeBytes': int(cas_size),
               }
           }
       }
     else:
       input_ref = {
-          'inputs_ref': {
+          'inputsRef': {
               'isolatedserver': self._isolate_server,
               'isolated': self._isolate_hash,
           }
       }
 
     properties = {
-        'extra_args': self._extra_args,
+        'extraArgs': self._extra_args,
         'dimensions': self._dimensions,
-        'execution_timeout_secs': str(self.execution_timeout_secs or 2700),
-        'io_timeout_secs': str(self.execution_timeout_secs or 2700),
+        'executionTimeoutSecs': str(self.execution_timeout_secs or 2700),
+        'ioTimeoutSecs': str(self.execution_timeout_secs or 2700),
     }
     properties.update(**input_ref)
 
@@ -531,15 +533,15 @@ class _RunTestExecution(execution_module.Execution):
       properties.update({
           # Set the relative current working directory to be the root of the
           # isolate.
-          'relative_cwd': self.relative_cwd,
+          'relativeCwd': self.relative_cwd,
 
           # Use the command provided in the creation of the execution.
           'command': command,
       })
 
       # Swarming requires that if 'command' is present in the request, that we
-      # not provide 'extra_args'.
-      del properties['extra_args']
+      # not provide 'extraArgs'.
+      del properties['extraArgs']
 
     body = {
         'realm':
@@ -550,11 +552,11 @@ class _RunTestExecution(execution_module.Execution):
             'Pinpoint',
         'priority':
             '100',
-        'service_account':
+        'serviceAccount':
             _TESTER_SERVICE_ACCOUNT,
-        'task_slices': [{
+        'taskSlices': [{
             'properties': properties,
-            'expiration_secs': '86400',  # 1 day.
+            'expirationSecs': '86400',  # 1 day.
         }],
     }
 
@@ -564,11 +566,11 @@ class _RunTestExecution(execution_module.Execution):
       body.update({
           'tags': ['%s:%s' % (k, v) for k, v in self._swarming_tags.items()],
           # TODO(dberris): Consolidate constants in environment vars?
-          'pubsub_topic':
+          'pubsubTopic':
               'projects/chromeperf/topics/pinpoint-swarming-updates',
-          'pubsub_auth_token':
+          'pubsubAuthToken':
               'UNUSED',
-          'pubsub_userdata':
+          'pubsubUserdata':
               json.dumps({
                   'job_id': self._swarming_tags.get('pinpoint_job_id'),
                   'task': {
@@ -581,4 +583,4 @@ class _RunTestExecution(execution_module.Execution):
     logging.debug('Requesting swarming task with parameters: %s', body)
     response = swarming.Swarming(self._swarming_server).Tasks().New(body)
     logging.debug('Response: %s', response)
-    self._task_id = response['task_id']
+    self._task_id = response['taskId']
