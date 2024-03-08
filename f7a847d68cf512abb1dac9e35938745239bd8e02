@@ -16,6 +16,24 @@
       "message": "There are still projects on Monorail such as ANGLE and Dawn. I believe the long-term plan is to migrate those as well, but it\u0027s probably best to keep this around until that\u0027s complete.",
       "revId": "f7a847d68cf512abb1dac9e35938745239bd8e02",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d61cc35_3413ddd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2024-03-08T01:12:39Z",
+      "side": 1,
+      "message": "I\u0027m not in a hurry to land this, but I don\u0027t have visibility into when those other trackers are migrating so I won\u0027t know when this is safe to land. Is that something you (or another catapult owner) can keep track of? Otherwise I can abandon this CL.",
+      "parentUuid": "80af30e4_622f308d",
+      "revId": "f7a847d68cf512abb1dac9e35938745239bd8e02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
