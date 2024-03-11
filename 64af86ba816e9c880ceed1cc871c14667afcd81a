@@ -16,6 +16,23 @@
       "message": "PTAL\n\nI wouldn\u0027t be surprised if something downstream breaks because of this, but a mock roll CL was happy https://chromium-review.googlesource.com/c/chromium/src/+/5345148 and a Pinpoint job with that CL applied ran without issue https://pinpoint-dot-chromeperf.appspot.com/job/15c0bb6c5e0000 so if there are any issues, I believe they should be pretty localized.",
       "revId": "64af86ba816e9c880ceed1cc871c14667afcd81a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04ffe300_6480c5e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-11T20:49:54Z",
+      "side": 1,
+      "message": "Adding John as a reviewer since Wenbin is OOO for a bit.",
+      "revId": "64af86ba816e9c880ceed1cc871c14667afcd81a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
