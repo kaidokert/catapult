@@ -14,7 +14,10 @@ class RunLacrosTelemetryTest(run_telemetry_test.RunTelemetryTest):
     command = [
         'luci-auth', 'context', '--', 'vpython3',
         'bin/run_' + arguments.get('target'),
-        '--remote=variable_chromeos_device_hostname'
     ]
+    if 'chromeos-swarming' in arguments.get('swarming_server'):
+      command.append('--fetch-cros-hostname')
+    else:
+      command.append('--remote=variable_chromeos_device_hostname')
     relative_cwd = arguments.get('relative_cwd', 'out/Release')
     return relative_cwd, command
