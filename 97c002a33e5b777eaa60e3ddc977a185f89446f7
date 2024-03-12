@@ -16,6 +16,24 @@
       "message": "Is a deployment required for this change to take effect?",
       "revId": "97c002a33e5b777eaa60e3ddc977a185f89446f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49e8724_41bda1b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-12T23:23:47Z",
+      "side": 1,
+      "message": "Likely we\u0027ll need to update Pinpoint deployment to include this change. @jeffyoon@google.com",
+      "parentUuid": "85ca60e4_f48433fa",
+      "revId": "97c002a33e5b777eaa60e3ddc977a185f89446f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
