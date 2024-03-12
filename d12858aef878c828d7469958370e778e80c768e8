@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f8b3e00_8363938c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323140
+      },
+      "writtenOn": "2024-03-12T08:21:42Z",
+      "side": 1,
+      "message": "Roll d4 on Gerrit-suggested owners for `CONTRIBUTING.md` (a d4 rather than d6 to exclude 2 OOO owners) -\u003e 4 -\u003e dproy@ to review, please.",
+      "revId": "d12858aef878c828d7469958370e778e80c768e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
