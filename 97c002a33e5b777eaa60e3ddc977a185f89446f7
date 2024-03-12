@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85ca60e4_f48433fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-03-12T21:59:35Z",
+      "side": 1,
+      "message": "Is a deployment required for this change to take effect?",
+      "revId": "97c002a33e5b777eaa60e3ddc977a185f89446f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
