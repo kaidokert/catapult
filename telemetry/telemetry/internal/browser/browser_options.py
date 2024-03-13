@@ -140,6 +140,12 @@ class BrowserFinderOptions(oam.ArgumentValues):
         default=-1,
         dest='remote_ssh_port',
         help='The SSH port of the remote ChromeOS device (requires --remote).')
+    group.add_option(
+        '--fetch-cros-remote',
+        action='store_true',
+        dest='fetch_cros_remote',
+        help='Will extract device hostname from the SWARMING_BOT_ID env var if '
+        'running on ChromeOS Swarming.')
     compat_mode_options_list = [
         compat_mode_options.NO_FIELD_TRIALS,
         compat_mode_options.IGNORE_CERTIFICATE_ERROR,
