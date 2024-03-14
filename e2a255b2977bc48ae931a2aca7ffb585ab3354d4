@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ed3806b_15049330",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-14T16:44:31Z",
+      "side": 1,
+      "message": "It would make sense that after increasing the low threshold (increasing our discovery rate) we would want to increase the number of builds allowed so the jobs can finish. But I\u0027m not confident if increasing the build number would actually fix all of these jobs.\n\nFor example, the rate at which this job was going:\nhttps://pinpoint-dot-chromeperf.appspot.com/job/1299133b5e0000\n\nIt likely would have found a difference for every commit between 1123 and 1254 so we would just hit the 50 limit and fail the bisection again. Given that this has merged already, we can wait and see.\n\nOn skia\u0027s end, we might want to solve this problem differently i.e. if a regression is much greater than other regressions in the bisection range (i.e. in the above linked job -29 \u003e 10) we can avoid diving further between two changes.",
+      "revId": "e2a255b2977bc48ae931a2aca7ffb585ab3354d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
