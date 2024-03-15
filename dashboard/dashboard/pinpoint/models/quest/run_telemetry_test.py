@@ -160,8 +160,6 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     if story_tags:
       extra_test_args += ('--story-tag-filter', story_tags)
 
-    extra_test_args += ('--pageset-repeat', '1')
-
     browser = arguments.get('browser')
     if not browser:
       raise TypeError('Missing "browser" argument.')
