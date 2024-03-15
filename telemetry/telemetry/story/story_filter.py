@@ -108,15 +108,12 @@ class StoryFilterFactory():
               '"begin-end" format. E.g., 2,4-6 means stories on index 2, 4, '
               '5 and 6. Ranges should be ordered. '+ common_story_shard_help))
     # This should be renamed to --also-run-disabled-stories.
-    group.add_option('-d', '--also-run-disabled-tests',
+    group.add_option('-d',
+                     '--also-run-disabled-tests',
                      dest='run_disabled_stories',
-                     action='store_true', default=False,
+                     action='store_true',
+                     default=False,
                      help='Ignore expectations.config disabling.')
-    # TODO(crbug.com/965158): delete this flag.
-    group.add_option(
-        '--run-full-story-set', action='store_true', default=False,
-        help='DEPRECATED. Does not do anything. Use --run-abridged-story-set '
-        'instead.')
     group.add_option(
         '--run-abridged-story-set', action='store_true', default=None,
         help='Whether to run the abridged set of stories from the benchmark '
