@@ -16,6 +16,69 @@
       "message": "I\u0027ve fixed unit tests. Please take a look again.",
       "revId": "31f320830133c004fde9016d47c7265d8ec4ddd5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09230cc2_096bc1ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-15T20:28:10Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "31f320830133c004fde9016d47c7265d8ec4ddd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a47e49fd_d3aa6c9c",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-15T20:28:10Z",
+      "side": 1,
+      "message": "is it still requires --remote? or \"requires --remote or --fetch-cros-remote\"?",
+      "range": {
+        "startLine": 142,
+        "startChar": 58,
+        "endLine": 142,
+        "endChar": 75
+      },
+      "revId": "31f320830133c004fde9016d47c7265d8ec4ddd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10bbe35a_8fe97c40",
+        "filename": "telemetry/telemetry/internal/platform/linux_based_device.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-15T20:28:10Z",
+      "side": 1,
+      "message": "nit: add \u0027_\u0027 as prefix.",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 35
+      },
+      "revId": "31f320830133c004fde9016d47c7265d8ec4ddd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
