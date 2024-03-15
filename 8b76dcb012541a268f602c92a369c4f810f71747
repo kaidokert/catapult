@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafb16ff_93460b63",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-03-15T23:28:17Z",
+      "side": 1,
+      "message": "--story doesn\u0027t expect a regular expression.",
+      "range": {
+        "startLine": 145,
+        "startChar": 37,
+        "endLine": 145,
+        "endChar": 50
+      },
+      "revId": "8b76dcb012541a268f602c92a369c4f810f71747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
