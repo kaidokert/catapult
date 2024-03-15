@@ -674,14 +674,18 @@ class FakeTimer():
 
 
 class FakeParsedArgsForStoryFilter():
-  def __init__(
-      self, story_filter=None, story_filter_exclude=None,
-      story_tag_filter=None, story_tag_filter_exclude=None,
-      story_shard_begin_index=None,
-      story_shard_end_index=None,
-      run_full_story_set=None,
-      run_abridged_story_set=None,
-      run_disabled_stories=False, stories=None, shard_indexes=None):
+
+  def __init__(self,
+               story_filter=None,
+               story_filter_exclude=None,
+               story_tag_filter=None,
+               story_tag_filter_exclude=None,
+               story_shard_begin_index=None,
+               story_shard_end_index=None,
+               run_abridged_story_set=None,
+               run_disabled_stories=False,
+               stories=None,
+               shard_indexes=None):
     self.story_filter = story_filter
     self.story_filter_exclude = story_filter_exclude
     self.story_tag_filter = story_tag_filter
@@ -691,7 +695,6 @@ class FakeParsedArgsForStoryFilter():
     self.story_shard_end_index = (
         story_shard_end_index)
     self.run_disabled_stories = run_disabled_stories
-    self.run_full_story_set = run_full_story_set
     self.run_abridged_story_set = run_abridged_story_set
     self.stories = stories
     self.story_shard_indexes = shard_indexes

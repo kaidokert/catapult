@@ -63,22 +63,11 @@ GTEST_EXECUTABLE_NAME = {
 }
 
 
-def _StoryToRegex(story_name):
-  # Telemetry's --story-filter argument takes in a regex, not a
-  # plain string. Stories can have all sorts of special characters
-  # in their names (see crbug.com/983993) which would confuse a
-  # regex. We thus keep only a small set of "safe chars"
-  # and replace all others with match-any-character regex dots.
-  return '^%s$' % _STORY_REGEX.sub('.', story_name)
-
-
 def ChangeDependentArgs(args, change):
   # For results2 to differentiate between runs, we need to add the
   # Telemetry parameter `--results-label <change>` to the runs.
   extra_args = list(args)
   extra_args += ('--results-label', str(change))
-  if '--story-filter' in extra_args:
-    extra_args.append('--run-full-story-set')
   if change.change_args:
     extra_args.extend(change.change_args)
   return extra_args
@@ -144,17 +133,7 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
 
     story = arguments.get('story')
     if story:
-      # TODO(crbug.com/982027): Note that usage of "--run-full-story-set"
-      # and "--story-filter"
-      # may be replaced with --story=<story> (no regex needed). Support
-      # for --story flag landed in
-      # https://chromium-review.googlesource.com/c/catapult/+/1869800
-      # (Oct 22, 2019)
-      # so we cannot turn this on by default until we no longer need to
-      # be able to run revisions older than that. In the meantime, the
-      # following argument plus the --run-full-story-set argument added in
-      # Start() accomplish the same thing.
-      extra_test_args += ('--story-filter', _StoryToRegex(story))
+      extra_test_args += ('--story', story)
 
     story_tags = arguments.get('story_tags')
     if story_tags:
