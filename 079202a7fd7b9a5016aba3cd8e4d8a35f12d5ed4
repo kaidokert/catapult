@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46908cfa_7cd00f14",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-18T18:24:40Z",
+      "side": 0,
+      "message": "Removing this should be safe since it was introduced in this CL [1] and is not used anywhere else [2].\n\n[1] https://chromium-review.googlesource.com/c/catapult/+/5345447\n[2] https://source.chromium.org/search?q\u003dREGRESSION_VERIFICATION_FAIL_COMPONENT",
+      "revId": "079202a7fd7b9a5016aba3cd8e4d8a35f12d5ed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
