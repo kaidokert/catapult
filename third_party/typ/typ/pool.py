@@ -15,6 +15,7 @@
 import copy
 import multiprocessing
 import pickle
+import sys
 import traceback
 
 from typ.host import Host
@@ -188,7 +189,9 @@ def _loop(request_pool, responses, host, worker_num,
                 responses.join_thread()
                 break
             assert message_type == _MessageType.Request
+            sys.__stderr__.write('ASDF got request for worker num %d\n' % worker_num)
             resp = callback(context_after_pre, args)
+            sys.__stderr__.write('ASDF done running request for worker num %d, sending response\n' % worker_num)
             responses.put((_MessageType.Response, resp))
             keep_looping = should_loop
     except KeyboardInterrupt as e:

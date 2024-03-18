@@ -709,10 +709,13 @@ class Runner(object):
                 test_input = test_inputs.pop(0)
                 stats.started += 1
                 pool.send(test_input)
+                self.print_('ASDF queuing %s\n' % test_input.name)
                 running_jobs.add(test_input.name)
                 self._print_test_started(stats, test_input)
 
+            self.print_('ASDF getting result from pool\n')
             result, should_retry_on_failure = pool.get()
+            self.print_('ASDF got result from pool\n')
             if result.is_regression:
                 stats.failed += 1
             if (self.args.typ_max_failures is not None
@@ -753,6 +756,7 @@ class Runner(object):
             self.update(test_start_msg, elide=(not self.args.verbose))
 
     def _print_test_finished(self, stats, result):
+        #self.print_('ASDF running print_test_finished\n')
         stats.add_time()
 
         assert result.actual in [ResultType.Failure, ResultType.Skip,
@@ -797,6 +801,7 @@ class Runner(object):
                     self.print_('  %s' % l)
             if self.args.verbose:
                 self.flush()
+        #self.print_('ASDF done running print_test_finished\n')
 
     def update(self, msg, elide):
         self.printer.update(msg, elide)
@@ -1086,6 +1091,8 @@ def _run_one_test(child, test_input):
             expected_results, should_retry_on_failure = {ResultType.Pass}, False
         return expected_results, should_retry_on_failure
 
+    #sys.__stderr__.write('ASDF starting _run_one_test\n')
+
     h = child.host
     pid = h.getpid()
     test_name = test_input.name
@@ -1176,11 +1183,14 @@ def _run_one_test(child, test_input):
         else:
             suite.run(test_result)
     finally:
+        #sys.__stderr__.write('ASDF run finished, restoring output\n')
         out, err = h.restore_output()
         # Clear the artifact implementation so that later tests don't try to
         # use a stale instance.
         if isinstance(test_case, TypTestCase):
+            #sys.__stderr__.write('ASDF setting artifacts to None\n')
             test_case.set_artifacts(None)
+        #sys.__stderr__.write('ASDF done running test\n')
 
     # We retrieve the expected results again since it's possible that running
     # the test changed something, e.g. restarted the browser with new browser
@@ -1217,6 +1227,7 @@ def _run_one_test(child, test_input):
                         result, child.artifact_output_dir, child.expectations,
                         test_location, test_line, child.test_name_prefix,
                         additional_tags)
+            #sys.__stderr__.write('ASDF skipped, early return\n')
             return (result, False)
         should_retry_on_failure = (should_retry_on_failure
                                    or test_case.retryOnFailure)
@@ -1229,6 +1240,7 @@ def _run_one_test(child, test_input):
                 result, child.artifact_output_dir, child.expectations,
                 test_location, test_line, child.test_name_prefix,
                 additional_tags)
+    #sys.__stderr__.write('ASDF finished _run_one_test\n')
     return (result, should_retry_on_failure)
 
 
