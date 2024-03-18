@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "740bb5a3_7ab49412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-18T18:29:07Z",
+      "side": 1,
+      "message": "Example of the noise mentioned in the CL b/329706056",
+      "revId": "3740c226912e6897f9803a7cc6cca6b70d0d34ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
