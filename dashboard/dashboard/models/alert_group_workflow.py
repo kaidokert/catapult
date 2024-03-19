@@ -898,6 +898,9 @@ class AlertGroupWorkflow:
         regression.test.get().test_path)
     chart, _ = utils.ParseStatisticNameFromChart(chart)
 
+    improvement_dir = regression.GetImprovementDirection()
+    logging.debug('Alert Group Workflow - got improvement_direction: %s',
+                  improvement_dir)
     create_exectution_req = {
         'benchmark':
             regression.benchmark_name,
@@ -911,12 +914,17 @@ class AlertGroupWorkflow:
             pinpoint_request.GetIsolateTarget(regression.bot_name,
                                               regression.benchmark_name),
         'start_git_hash':
-          start_git_hash,
+            start_git_hash,
         'end_git_hash':
-          end_git_hash,
+            end_git_hash,
         'project':
             self._group.project_id,
+        'improvement_dir':
+            improvement_dir,
     }
+    logging.debug(
+        'Alert Group Workflow - creating verification workflow with improvement direction %s',
+        improvement_dir)
 
     try:
       sandwich_execution_id = self._cloud_workflows.CreateExecution(create_exectution_req)

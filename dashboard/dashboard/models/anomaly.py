@@ -16,6 +16,7 @@ from google.appengine.ext import ndb
 from dashboard.common import timing
 from dashboard.common import utils
 from dashboard.common import datastore_hooks
+from dashboard.models import graph_data
 from dashboard.models import internal_only_model
 from dashboard.models import subscription
 
@@ -495,3 +496,16 @@ class Anomaly(internal_only_model.InternalOnlyModel):
         post_filters.append(lambda a: a.timestamp <= max_timestamp)
 
     return query, post_filters
+
+  def GetImprovementDirection(self):
+    test_path = utils.TestPath(self.test)
+    logging.debug('Anomaly Debug - got test_path: %s', test_path)
+    t = graph_data.TestMetadata.get_by_id(test_path)
+    if t is not None:
+      logging.debug('Anomaly Debug - got improvement_direction: %s',
+                    t.improvement_direction)
+      if t.improvement_direction == UP:
+        return 'UP'
+      if t.improvement_direction == DOWN:
+        return 'DOWN'
+    return 'UNKNOWN'
