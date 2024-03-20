@@ -73,6 +73,29 @@
       "message": "suggestion, turn these if statements into a helper function:\n\n```\ndef IsAlignedWithImprovementDir(control, treatment, dir)\n  if blah blah\n     return true\n  return false\n```",
       "revId": "41ca2cb6b45e871db32996ed7e8246c61eccffcf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b2df4e_3a7d6951",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-03-20T18:29:28Z",
+      "side": 1,
+      "message": "Does this mean that treatment_median and control_median can be both string and non-string?",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 41
+      },
+      "revId": "41ca2cb6b45e871db32996ed7e8246c61eccffcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
