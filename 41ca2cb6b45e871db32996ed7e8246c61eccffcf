@@ -18,6 +18,46 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "044e20f4_8f834adf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-20T18:26:32Z",
+      "side": 1,
+      "message": "While this change lgtm, it seems the current logic should have tried to filtered out the improvements already:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/alert_group_workflow.py;l\u003d885\n\nThe _GetRegressions() here should only return those are not improvement. Any idea why this does not work\u003e",
+      "revId": "41ca2cb6b45e871db32996ed7e8246c61eccffcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2581eafc_a5ae9540",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-20T18:26:32Z",
+      "side": 1,
+      "message": "nit: improvement_direction \u003d request_json.get(\u0027anomaly\u0027, {}).get(\u0027improvement_dir\u0027)",
+      "range": {
+        "startLine": 197,
+        "startChar": 2,
+        "endLine": 197,
+        "endChar": 23
+      },
+      "revId": "41ca2cb6b45e871db32996ed7e8246c61eccffcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb6d5f6f_b0efe3d5",
