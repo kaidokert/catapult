@@ -124,6 +124,7 @@ main:
                 args:
                   url: ${functionResponse.body.serviceConfig.uri}
                   body:
+                    anomaly: ${anomaly}
                     statistic: ${statistic}
                   auth:
                     type: OIDC
