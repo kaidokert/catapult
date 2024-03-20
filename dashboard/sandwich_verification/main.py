@@ -191,6 +191,27 @@ def RegressionDetection(request):
   ci_lower = statistic.get('lower')
   ci_upper = statistic.get('upper')
   p_value = statistic.get('p_value')
+  control_median = statistic.get('control_median')
+  treatment_median = statistic.get('treatment_median')
+
+  improvement_direction = None
+  if request_json.get('anomaly') and request_json.get('anomaly').get(
+      'improvement_dir'):
+    improvement_direction = request_json.get('anomaly').get('improvement_dir')
+
+  # Check improvement, improvement is not regression.
+  if (improvement_direction is not None and control_median is not None
+      and control_median != "Infinity" and treatment_median is not None
+      and treatment_median != "Infinity"):
+    if (treatment_median > control_median and improvement_direction
+        == 'UP') or (treatment_median < control_median
+                     and improvement_direction == 'DOWN'):
+      print(
+          "Found an improvement: job id - %s, anomaly - %s, statistic - %s." %
+          (request_json.get('job_id'), request_json.get('anomaly'), statistic))
+      decision = False
+      return jsonify({'decision': decision})
+
 
   if (ci_lower is None or ci_upper is None) and p_value is None:
     return ("Bad request; ci_upper: %s, ci_lower: %s, p_value: %s" %  ci_lower,
