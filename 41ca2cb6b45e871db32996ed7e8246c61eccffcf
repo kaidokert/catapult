@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9cfcb74_c88a1929",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-20T18:21:00Z",
+      "side": 1,
+      "message": "lgtm with suggestion",
+      "revId": "41ca2cb6b45e871db32996ed7e8246c61eccffcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb6d5f6f_b0efe3d5",
+        "filename": "dashboard/sandwich_verification/main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-20T18:21:00Z",
+      "side": 1,
+      "message": "suggestion, turn these if statements into a helper function:\n\n```\ndef IsAlignedWithImprovementDir(control, treatment, dir)\n  if blah blah\n     return true\n  return false\n```",
+      "revId": "41ca2cb6b45e871db32996ed7e8246c61eccffcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
