@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd8a65f3_18d6a461",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-03-20T15:43:41Z",
+      "side": 1,
+      "message": "nit: missing bug",
+      "range": {
+        "startLine": 7,
+        "startChar": 55,
+        "endLine": 7,
+        "endChar": 56
+      },
+      "revId": "26e2d450d62b58f453ffe623ece33b59424f3e7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "813656c5_62b57d25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-03-20T15:43:41Z",
+      "side": 1,
+      "message": "lgtm % nit",
+      "revId": "26e2d450d62b58f453ffe623ece33b59424f3e7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b67d89dc_316f887b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-03-20T15:43:41Z",
+      "side": 1,
+      "message": "Would it help with debugging to log the job id or bug id too?\n```suggestion\n        \u0027Pinpoint - creating verification workflow with improvement direction %s for job %s\u0027,\n        improvement_dir, self.job_id)\n```",
+      "range": {
+        "startLine": 613,
+        "startChar": 9,
+        "endLine": 613,
+        "endChar": 17
+      },
+      "revId": "26e2d450d62b58f453ffe623ece33b59424f3e7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
