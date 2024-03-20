@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c29272f_7eedf828",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-20T18:09:31Z",
+      "side": 1,
+      "message": "PTAL\n\nThe reland of the migration CL has been in for ~1 week and AFAIK there aren\u0027t any other issues with it, so starting on removing the need for the migration code at all.",
+      "revId": "40b8f61bdcc19d5776a81627bebcb902962c1d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
