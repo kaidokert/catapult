@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f27990e_27d87e67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-21T20:01:24Z",
+      "side": 1,
+      "message": "This was more troublesome than I expected. I\u0027m sorry you had to hunt down all these snake_case vs camelCase keys (I did migration of some Go code, there this problem was less noticeable due to use of proto-generated code).",
+      "revId": "9969489894eb5be7fe4ea2de4234276d5ae061f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "768580f7_ffff950a",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-03-21T19:06:32Z",
       "side": 1,
       "message": "https://source.chromium.org/chromium/infra/infra/+/main:recipes-py/recipe_proto/go.chromium.org/luci/swarming/proto/api_v2/swarming.proto;l\u003d1115\nIn the proto, this field is a google.protobuf.Timestamp, and in the rpc explorer, I was asked to input \u0027nano\u0027 and \u0027second\u0027. Though, it only works when I use it as a STRING. Please let me know if I missed anything.",
+      "range": {
+        "startLine": 219,
+        "startChar": 17,
+        "endLine": 219,
+        "endChar": 27
+      },
+      "revId": "9969489894eb5be7fe4ea2de4234276d5ae061f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93877af7_28922307",
+        "filename": "dashboard/dashboard/services/swarming.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-21T20:01:24Z",
+      "side": 1,
+      "message": "RPC Explorer is just not aware of jsonpb serialization of Timestamp. There are a bunch of \"well-known\" protos that serialize in unusual way into/from JSON https://protobuf.dev/programming-guides/proto3/#json\n\nCorrect serialization for Timestamp is RFC 3339 aka \"1972-01-01T10:00:20.021Z\" (which this code is using).",
+      "parentUuid": "768580f7_ffff950a",
       "range": {
         "startLine": 219,
         "startChar": 17,
