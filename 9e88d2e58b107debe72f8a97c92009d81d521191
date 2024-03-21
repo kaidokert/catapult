@@ -16,6 +16,29 @@
       "message": "Sorry for the all the formatting changes.\n\nSee _GetSkiaTemplateArgs at 1062 - 1110, and 532-538 in alert_group_workflow.py for the main changes. Template changes in .j2.",
       "revId": "9e88d2e58b107debe72f8a97c92009d81d521191",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "160af974_f34ef4f2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-03-21T22:40:57Z",
+      "side": 1,
+      "message": "So it will try to add both public URL and internal URL to the comments?",
+      "range": {
+        "startLine": 1070,
+        "startChar": 0,
+        "endLine": 1084,
+        "endChar": 53
+      },
+      "revId": "9e88d2e58b107debe72f8a97c92009d81d521191",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
