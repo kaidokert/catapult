@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4dff1ee_22e7f12e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-03-21T21:26:16Z",
+      "side": 1,
+      "message": "lgtm. do we have any data on the avg/max/min number of consecutive pinpoint builds run at a given time?\n\nAlthough I don\u0027t anticipate issues, increasing this number could imply longer pinpoint runs, and potentially result in an increased number of simultaneous builds/tests. Just making sure we don\u0027t hit resourcing thresholds as a result of this.",
+      "revId": "5232324af07d15e1f2952a9d17493527caf30f4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
