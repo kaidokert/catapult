@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf1f6fac_848a6598",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-03-21T21:47:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "014a8ca2_d8328118",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "2e70da7bb8e0bd1c6df46009b2647561d9e382bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a48752c7_cc4c2d8f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-21T21:43:50Z",
       "side": 1,
       "message": "Add https://chromium.googlesource.com/catapult.git/+log/21d0d05..ede8f0b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "2e70da7bb8e0bd1c6df46009b2647561d9e382bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b889ce_1836e71e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-03-21T21:47:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a48752c7_cc4c2d8f",
       "range": {
         "startLine": 9,
         "startChar": 0,
