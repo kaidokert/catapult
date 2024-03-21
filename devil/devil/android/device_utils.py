@@ -22,6 +22,7 @@ import sys
 import tempfile
 import time
 import threading
+import traceback
 import uuid
 
 import six
@@ -1373,21 +1374,29 @@ class DeviceUtils(object):
       DeviceVersionError if the device SDK level does not support instant
         apps or forcing queryable
     """
+    logging.warning('device_utils.DeviceUtils.Install(apk=%s)', apk)
+    traceback.print_stack()
     apk = apk_helper.ToHelper(apk)
+    logging.warning('apk helper: %s', apk)
     modules_set = set(modules or [])
+    logging.warning('modules_set %s', modules_set)
     fake_modules_set = set(fake_modules or [])
+    logging.warning('fake_modules_set %s', fake_modules_set)
     assert modules_set.isdisjoint(fake_modules_set), (
         'These modules overlap: %s' % (modules_set & fake_modules_set))
     all_modules = modules_set | fake_modules_set
     package_name = apk.GetPackageName()
+    logging.warning('package_name %s', package_name)
 
     with apk.GetApkPaths(self,
                          modules=all_modules,
                          additional_locales=additional_locales) as apk_paths:
+      logging.warning('apk_paths %s', apk_paths)
       if apk.SupportsSplits():
         fake_apk_paths = self._GetFakeInstallPaths(apk_paths, fake_modules)
         self._FakeInstall(fake_apk_paths, fake_modules, package_name)
         apk_paths_to_install = [p for p in apk_paths if p not in fake_apk_paths]
+        logging.warning('SupportsSplits, apk_paths_to_install %s', apk_paths_to_install)
       else:
         apk_paths_to_install = apk_paths
       self._InstallInternal(apk,
@@ -1589,6 +1598,7 @@ class DeviceUtils(object):
                        permissions=None,
                        instant_app=False,
                        force_queryable=False):
+    logging.warning('_InstallInternal(apk=%s, apk_paths=%s)', apk, apk_paths)
     if not apk_paths:
       raise device_errors.CommandFailedError('Did not get any APKs to install')
 
@@ -1603,6 +1613,8 @@ class DeviceUtils(object):
 
     package_name = apk.GetPackageName()
     device_apk_paths = self._GetApplicationPathsInternal(package_name)
+    logging.warning('package_name=%s, device_apk_paths=%s',
+                    package_name, device_apk_paths)
 
     host_checksums = None
     if not device_apk_paths:
