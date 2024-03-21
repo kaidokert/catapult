@@ -16,6 +16,29 @@
       "message": "PTAL.",
       "revId": "9969489894eb5be7fe4ea2de4234276d5ae061f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "768580f7_ffff950a",
+        "filename": "dashboard/dashboard/services/swarming.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-21T19:06:32Z",
+      "side": 1,
+      "message": "https://source.chromium.org/chromium/infra/infra/+/main:recipes-py/recipe_proto/go.chromium.org/luci/swarming/proto/api_v2/swarming.proto;l\u003d1115\nIn the proto, this field is a google.protobuf.Timestamp, and in the rpc explorer, I was asked to input \u0027nano\u0027 and \u0027second\u0027. Though, it only works when I use it as a STRING. Please let me know if I missed anything.",
+      "range": {
+        "startLine": 219,
+        "startChar": 17,
+        "endLine": 219,
+        "endChar": 27
+      },
+      "revId": "9969489894eb5be7fe4ea2de4234276d5ae061f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
