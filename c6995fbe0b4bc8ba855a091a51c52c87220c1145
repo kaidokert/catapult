@@ -16,6 +16,24 @@
       "message": "Any error log we can look at?",
       "revId": "c6995fbe0b4bc8ba855a091a51c52c87220c1145",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1f418b_b6a0333b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-03-22T21:38:46Z",
+      "side": 1,
+      "message": "Got one:\nhttps://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2024-03-22T21:14:17.180317Z;duration\u003dPT3H;query\u003dresource.type%3D%22gae_app%22%0Alog_name%3D%22projects%2Fchromeperf%2Flogs%2Fpython%22%0Aresource.labels.module_id%3D%22pinpoint%22%0A--%20severity%3DERROR%0Aresource.labels.version_id%3D%22cloud-build-cc5434c%22%0A-%22Expecting%20value%22%0A%22Retrieving%20output%22%0Atimestamp%3D%222024-03-22T21:14:17.180317Z%22%0AinsertId%3D%221e3bn9f53xj3r%22?project\u003dchromeperf\n\nIt seems only apply on some jobs, not all of them.",
+      "parentUuid": "2e9559ac_6b5adf83",
+      "revId": "c6995fbe0b4bc8ba855a091a51c52c87220c1145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
