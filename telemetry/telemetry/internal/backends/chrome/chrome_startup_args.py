@@ -40,6 +40,9 @@ def GetFromBrowserOptions(browser_options):
   # Override the need for a user gesture in order to play media.
   args.append('--autoplay-policy=no-user-gesture-required')
 
+  # Override privacy sandbox dialog feature to hide it (crbug.com/330241089).
+  args.append('--enable-features=PrivacySandboxSettings4')
+
   if browser_options.disable_background_networking:
     args.append('--disable-background-networking')
 
