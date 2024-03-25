@@ -16,6 +16,23 @@
       "message": "LGTM. Thank you for fixing this. But I don\u0027t have a power of oweners-override.",
       "revId": "a951401a221e8b837244cf1635bf3efc645f7cac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eca092f8_11b728b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1186968
+      },
+      "writtenOn": "2024-03-25T04:01:19Z",
+      "side": 1,
+      "message": "Adding all catapult owners since this fix is quite urgent to get ChromeOS LKGM fixed.",
+      "revId": "a951401a221e8b837244cf1635bf3efc645f7cac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
