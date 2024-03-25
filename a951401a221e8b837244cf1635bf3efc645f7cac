@@ -33,6 +33,29 @@
       "message": "Adding all catapult owners since this fix is quite urgent to get ChromeOS LKGM fixed.",
       "revId": "a951401a221e8b837244cf1635bf3efc645f7cac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cde4215_49f16892",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-03-25T06:17:10Z",
+      "side": 1,
+      "message": "Just to double check, this is intended to be enable-features, not disable-features?",
+      "range": {
+        "startLine": 44,
+        "startChar": 17,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "a951401a221e8b837244cf1635bf3efc645f7cac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
