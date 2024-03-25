@@ -16,6 +16,24 @@
       "message": "catapult team, how would I get this CL merged to M124?",
       "revId": "9128ec6d34905512199f953bc60ff75ca29d0cf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7cca140_39528aec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-25T21:11:17Z",
+      "side": 1,
+      "message": "You have to update the [DEPS entry](https://source.chromium.org/chromium/chromium/src/+/main:DEPS;l\u003d386) and git submodule on the branch.",
+      "parentUuid": "2cbd486d_fb971a1b",
+      "revId": "9128ec6d34905512199f953bc60ff75ca29d0cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
