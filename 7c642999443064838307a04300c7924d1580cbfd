@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f7073cd_752df14f",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-03-26T16:08:48Z",
+      "side": 1,
+      "message": "nit: don\u0027t think you need this pylint?",
+      "revId": "7c642999443064838307a04300c7924d1580cbfd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
