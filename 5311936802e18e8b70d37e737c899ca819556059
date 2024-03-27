@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d37fdb87_fb0a81e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-03-27T19:54:04Z",
+      "side": 1,
+      "message": "This CL is actually updating the \"default\" service. Update the commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "5311936802e18e8b70d37e737c899ca819556059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
