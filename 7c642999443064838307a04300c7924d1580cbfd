@@ -16,6 +16,24 @@
       "message": "nit: don\u0027t think you need this pylint?",
       "revId": "7c642999443064838307a04300c7924d1580cbfd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c70da656_e8799488",
+        "filename": "perf_issue_service/application/clients/buganizer_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-03-28T18:00:32Z",
+      "side": 1,
+      "message": "The file fails linter check because of lines \u003e 80. Sorry I missed this until now.",
+      "parentUuid": "0f7073cd_752df14f",
+      "revId": "7c642999443064838307a04300c7924d1580cbfd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
