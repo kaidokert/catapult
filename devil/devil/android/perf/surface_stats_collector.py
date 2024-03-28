@@ -213,7 +213,9 @@ def ParseFrameData(lines, parse_timestamps):
   for line in results[1:]:
     fields = line.split()
     if len(fields) != 3:
-      logging.warning('Unexpected line: %s', line)
+      # Avoid outputting empty lines and bloating stderr.
+      if line:
+        logging.warning('Unexpected line: %s', line)
       continue
     timestamp = to_long_int(fields[1])
 
