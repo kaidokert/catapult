@@ -39,6 +39,30 @@
       },
       "revId": "a9660bb0d5b456f16103e75410c2ec1b8b33b649",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c24c4ad_c7fe3937",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-03-28T18:37:04Z",
+      "side": 1,
+      "message": "I think we do want the `continue` to be hit if line is empty. I\u0027ll move it earlier then since if the line is empty then there\u0027s no fields anyways. WYDT?",
+      "parentUuid": "150bc8ed_1377f25c",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 14
+      },
+      "revId": "a9660bb0d5b456f16103e75410c2ec1b8b33b649",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
