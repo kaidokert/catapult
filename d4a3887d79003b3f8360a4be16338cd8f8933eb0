@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad3221f_b7b7aceb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-03-28T19:03:36Z",
+      "side": 1,
+      "message": "Removed the comment since it no longer made sense not being next to the logging.warning line.",
+      "revId": "d4a3887d79003b3f8360a4be16338cd8f8933eb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
