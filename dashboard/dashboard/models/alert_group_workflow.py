@@ -1173,7 +1173,10 @@ class AlertGroupWorkflow:
     # Simultaneously trigger the pinpoint job in skia.
     # We currently ignore the result, just to collect data.
     try:
-      results = self._pinpoint.NewJobInSkia(pp_request)
+      dir = self._GetImprovementDirection(regression)
+      skia_pp_request = pinpoint_service.UpdateSkiaBisectionRequest(pp_request,
+                                                                    dir)
+      results = self._pinpoint.NewJobInSkia(skia_pp_request)
       logging.info('[Pinpoint Skia] Triggering %s', results)
     except Exception as e: # pylint: disable=broad-except
       # Caught all exceptions as we only need to trigger and log the runs.
