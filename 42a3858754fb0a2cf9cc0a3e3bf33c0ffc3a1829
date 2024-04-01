@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f008d9d_4313e044",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-04-01T17:45:46Z",
+      "side": 1,
+      "message": "removing reviewers while I figure out the presubmits",
+      "revId": "42a3858754fb0a2cf9cc0a3e3bf33c0ffc3a1829",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
