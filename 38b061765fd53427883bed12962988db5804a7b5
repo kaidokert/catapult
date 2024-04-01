@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70dffb82_87972781",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-01T22:49:24Z",
+      "side": 1,
+      "message": "PTAL\n\nTested to work in swarming on Pixel 6 with T, Pixel 6 with U, S23 with U, and Moto G Power 5G with T (the problematic device that prompted this).\n\nAlso tested to work locally on Pixel 4 with R, and confirmed that the old start command is still used there.",
+      "revId": "38b061765fd53427883bed12962988db5804a7b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baa4135a_e745f007",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-01T22:49:24Z",
+      "side": 1,
+      "message": "AFAICT only one place in chromium/src uses this, so this should be removable in pretty short order.",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 73
+      },
+      "revId": "38b061765fd53427883bed12962988db5804a7b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
