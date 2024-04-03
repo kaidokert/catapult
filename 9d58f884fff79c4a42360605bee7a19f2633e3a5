@@ -16,6 +16,24 @@
       "message": "Thanks for the fix - could you also update the [corresponding unittest](https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/util/image_util_unittest.py;l\u003d75) or add a new test case so that non-square images have coverage?",
       "revId": "9d58f884fff79c4a42360605bee7a19f2633e3a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db91eaf6_6b0f8e78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1514307
+      },
+      "writtenOn": "2024-04-03T04:48:43Z",
+      "side": 1,
+      "message": "Good idea, I\u0027ve updated the test to exercise the problematic code path.",
+      "parentUuid": "d400ea2e_ae7c92fc",
+      "revId": "9d58f884fff79c4a42360605bee7a19f2633e3a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
