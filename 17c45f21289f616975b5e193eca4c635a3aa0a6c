@@ -16,6 +16,23 @@
       "message": "PTAL\n\nRoll into Chromium seems to pass without issues https://chromium-review.googlesource.com/c/chromium/src/+/5415680",
       "revId": "17c45f21289f616975b5e193eca4c635a3aa0a6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa96b80d_3bd88122",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-04-03T00:52:11Z",
+      "side": 1,
+      "message": "lgtm. Thanks!",
+      "revId": "17c45f21289f616975b5e193eca4c635a3aa0a6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
