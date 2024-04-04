@@ -16,6 +16,46 @@
       "message": "Adding Wenbin as reviewer as he\u0027s current on-call and knows more about our team\u0027s Buganizer situation.",
       "revId": "87f27a531a2166ff536f2569b9492cc2f4a5f946",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "697bc1e1_cf3110bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-04-04T18:23:38Z",
+      "side": 1,
+      "message": "lgtm with nit. Thanks!",
+      "revId": "87f27a531a2166ff536f2569b9492cc2f4a5f946",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7af2300c_10bf33ec",
+        "filename": "dashboard/dashboard/pinpoint/models/templates/differences_found.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-04-04T18:23:38Z",
+      "side": 1,
+      "message": "nit: keep the hotlist name with the hotlist ID to be more informative.",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "87f27a531a2166ff536f2569b9492cc2f4a5f946",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
