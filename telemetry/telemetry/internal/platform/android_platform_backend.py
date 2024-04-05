@@ -377,6 +377,7 @@ class AndroidPlatformBackend(
     tags = test_utils.sanitizeTypExpectationsTags(
         [self.GetOSName(), 'android-' + os_version])
     device_type_name = self.GetDeviceTypeName()
+    logging.info('Android device type name: %s', device_type_name)
     tags += test_utils.sanitizeTypExpectationsTags(
         ['android-' + _MAP_TO_USER_FRIENDLY_DEVICE_NAMES.get(
             device_type_name, device_type_name)])
