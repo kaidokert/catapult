@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "136b9da8_a4341d89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-09T20:39:41Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nAdding some dev ergonomics for VS code users. It also makes clear what these variables get set to.\n\nThanks,\nPeter",
+      "revId": "9dd2e2c479bad8a5ddda6d283ca3ad9d4f16e3c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
