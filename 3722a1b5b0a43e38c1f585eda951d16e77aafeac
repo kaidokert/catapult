@@ -16,6 +16,69 @@
       "message": "PTAL.",
       "revId": "3722a1b5b0a43e38c1f585eda951d16e77aafeac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cb19710_fac7d2fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-04-10T02:27:12Z",
+      "side": 1,
+      "message": "I checked through our datastore, and verified all url entries currently under Repository are of length 1.\n\nlgtm % nits",
+      "revId": "3722a1b5b0a43e38c1f585eda951d16e77aafeac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c7dff1e_d02bccb9",
+        "filename": "dashboard/dashboard/pinpoint/models/change/repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-04-10T02:27:12Z",
+      "side": 1,
+      "message": "Probably unlikely, but should we also check len(repository.urls) \u003e 0 so we avoid index error in the log msg below?",
+      "range": {
+        "startLine": 89,
+        "startChar": 5,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "3722a1b5b0a43e38c1f585eda951d16e77aafeac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ef0332_4446f6e6",
+        "filename": "dashboard/dashboard/pinpoint/models/change/repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-04-10T02:27:12Z",
+      "side": 1,
+      "message": "nit: maybe info?",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 19
+      },
+      "revId": "3722a1b5b0a43e38c1f585eda951d16e77aafeac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
