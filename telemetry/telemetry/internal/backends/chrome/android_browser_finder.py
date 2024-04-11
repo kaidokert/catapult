@@ -321,8 +321,10 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     """Returns True if the browser is or can be installed on the platform."""
     has_local_apks = self._local_apk and (
         not self._backend_settings.requires_embedder or self._support_apk_list)
-    return has_local_apks or self.platform.CanLaunchApplication(
-        self.settings.package)
+    logging.error('ASDF has_local_apks: %s', has_local_apks)
+    can_launch = self.platform.CanLaunchApplication(self.settings.package)
+    logging.error('ASDF can launch application: %s', can_launch)
+    return has_local_apks or can_launch
 
   @decorators.Cache
   def UpdateExecutableIfNeeded(self):
@@ -460,7 +462,9 @@ def _GetReferenceAndroidBrowser(android_platform, finder_options):
 
 def _FindAllPossibleBrowsers(finder_options, android_platform):
   """Testable version of FindAllAvailableBrowsers."""
+  logging.error('ASDF in _FindAllPossibleBrowsers, executable is %s', finder_options.browser_executable)
   if not android_platform:
+    logging.error('ASDF not an Android platform')
     return []
   possible_browsers = []
 
@@ -493,29 +497,37 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
         finder_options.browser_executable))
 
   if finder_options.IsBrowserTypeRelevant('reference'):
+    logging.error('ASDF checking for reference browser')
     reference_browser = _GetReferenceAndroidBrowser(
         android_platform, finder_options)
     if reference_browser:
+      logging.error('ASDF adding reference browser')
       possible_browsers.append(reference_browser)
 
   # Add any other known available browsers.
   for settings in ANDROID_BACKEND_SETTINGS:
     if finder_options.IsBrowserTypeRelevant(settings.browser_type):
+      logging.error('ASDF browser type %s is relevant', settings.browser_type)
       local_apk = None
       if finder_options.IsBrowserTypeReference():
         local_apk = _FetchReferenceApk(
             android_platform, finder_options.IsBrowserTypeBundle())
+      logging.error('ASDF got local APK %s', local_apk)
 
       if settings.IsWebView():
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
             local_apk=local_apk, target_os='android_webview')
       else:
+        logging.error('ASDF creating possible browser')
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
             local_apk=local_apk)
       if p_browser.IsAvailable():
+        logging.error('ASDF browser is available, adding')
         possible_browsers.append(p_browser)
+      else:
+        logging.error('ASDF browser is NOT available')
   return possible_browsers
 
 
