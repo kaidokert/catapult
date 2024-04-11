@@ -16,6 +16,23 @@
       "message": "I was digging through our logs to see how frequently this occurs, and it looks like it happens more often that I had anticipated (over 500 in the last week, spotty from April 9th onwards). However, when spot checking a few of those restarted jobs, they seem to be in limbo (ie/ https://pinpoint-dot-chromeperf.appspot.com/job/10d7833e3e0000, https://pinpoint-dot-chromeperf.appspot.com/job/173ea74e3e0000 or https://pinpoint-dot-chromeperf.appspot.com/job/12f2074abe0000 where the job looks done (by done, i mean completed or errored), but the status is now \"in queue\").\n\nBased on that, and on the premise these jobs went into a limbo state because of the missing pubsub, I think this is safe to land. LGTM mod Leina\u0027s +1",
       "revId": "540401841a8f64372a6d262f353c1946a4c16130",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0180f9_c4f12f43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-04-11T21:02:06Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure this is safe to disable. I recall Alex mentioning that the Pinpoint retry logic does not actually work. So if this cron job is generating swarming tasks there\u0027s nothing downstream to process the results.",
+      "revId": "540401841a8f64372a6d262f353c1946a4c16130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
