@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "9f6c80fb489aa45347579974b4cc19841ee0e76d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1525942_f11a54a3",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-04-15T21:49:25Z",
+      "side": 1,
+      "message": "Should this be \u0027\u003c\u0027? For example, on my Pixel Tablet, ro.build.version.release is 14, while ro.build.id is AP1A.240305.019.A1, so this code would end up adding android-a, which is not correct.",
+      "range": {
+        "startLine": 383,
+        "startChar": 31,
+        "endLine": 383,
+        "endChar": 33
+      },
+      "revId": "9f6c80fb489aa45347579974b4cc19841ee0e76d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
