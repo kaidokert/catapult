@@ -39,6 +39,30 @@
       },
       "revId": "9f6c80fb489aa45347579974b4cc19841ee0e76d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ebffd4d_bed4d1ef",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-15T21:56:28Z",
+      "side": 1,
+      "message": "Unfortunately we started using `android-u` as a tag for GPU expectations before we discovered this issue, so we can\u0027t do that right now. Once those are switched off, we could change this to `\u003c\u003d 13`.",
+      "parentUuid": "d1525942_f11a54a3",
+      "range": {
+        "startLine": 383,
+        "startChar": 31,
+        "endLine": 383,
+        "endChar": 33
+      },
+      "revId": "9f6c80fb489aa45347579974b4cc19841ee0e76d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
