@@ -102,10 +102,12 @@ def FindBrowser(options):
 
   SetTargetPlatformsBasedOnBrowserType(options)
   devices = device_finder.GetDevicesMatchingOptions(options)
+  logging.error('ASDF devices: %s', devices)
   browsers = []
   default_browsers = []
 
   browser_finders = _GetBrowserFinders(options.target_platforms)
+  logging.error('ASDF browser finders: %s', browser_finders)
 
   for device in devices:
     for finder in browser_finders:
@@ -119,6 +121,7 @@ def FindBrowser(options):
       browsers.extend(curr_browsers)
 
   if not browsers:
+    logging.error('ASDF hit this early return')
     return None
 
   if options.browser_type is None:
