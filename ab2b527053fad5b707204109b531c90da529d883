@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "ab2b527053fad5b707204109b531c90da529d883",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "923639d9_0be0eec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-04-16T14:38:40Z",
+      "side": 1,
+      "message": "LGTM with nit",
+      "revId": "ab2b527053fad5b707204109b531c90da529d883",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ca7986_cbe8f8e9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-04-16T14:38:40Z",
+      "side": 1,
+      "message": "Nit: This parameter is broken on to two lines, making it harder to read. I\u0027d suggest using the line breaks similar to the original code.\n\n```suggestion\n      raise TabUnexpectedResponseException(\n          app\u003dself._browser_backend.browser,\n          msg\u003d\u0027Received response: %s\u0027 % response) from last_exception\n```",
+      "range": {
+        "startLine": 58,
+        "startChar": 43,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "ab2b527053fad5b707204109b531c90da529d883",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
