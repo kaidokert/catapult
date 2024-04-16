@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92b6f5a6_245f9374",
+        "filename": "dashboard/cron.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1556122
+      },
+      "writtenOn": "2024-04-16T01:14:54Z",
+      "side": 1,
+      "message": "It looks like the refresh-jobs config is already there:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/dawn/third_party/catapult/dashboard/cron.yaml;l\u003d41-44;bpv\u003d1",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "dafdb93a5d589cad4bf9af820c6e3bfb34f8124d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
