@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c0f3289_1903f873",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2024-04-16T16:47:52Z",
+      "side": 1,
+      "message": "I see\n\u0027q\u0027: \u002710\u0027\nin _MAP_TO_USER_FRIENDLY_OS_NAMES (but no later letters)\nWhich makes me think the intention was to use here what we have now as \u0027android-{os_release_version}\u0027 for os_release_version\u003e\u003d10.\n\nWe wouldn\u0027t be adding android-10 twice for Q now, would we?",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 42
+      },
+      "revId": "12e53bce0326eda9bf9c1e12ef70a027a3a9c339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
