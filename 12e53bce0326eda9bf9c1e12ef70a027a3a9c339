@@ -22,6 +22,30 @@
       },
       "revId": "12e53bce0326eda9bf9c1e12ef70a027a3a9c339",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60613e80_2f30232f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-16T17:38:31Z",
+      "side": 1,
+      "message": "I believe tags eventually get put into a set, so they\u0027ll be combined, but that\u0027s something I can adjust when I make the follow-up to only include the letter for \u003c\u003d 13.",
+      "parentUuid": "7c0f3289_1903f873",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 42
+      },
+      "revId": "12e53bce0326eda9bf9c1e12ef70a027a3a9c339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
