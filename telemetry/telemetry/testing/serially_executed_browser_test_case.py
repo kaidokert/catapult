@@ -94,6 +94,7 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
     Args:
       browser_options: Browser options object for the browser we want to test.
     """
+    logging.error('ASDF in SetBrowserOptions')
     cls._browser_options = browser_options
     cls._browser_to_create = browser_finder.FindBrowser(browser_options)
     if not cls._browser_to_create:
