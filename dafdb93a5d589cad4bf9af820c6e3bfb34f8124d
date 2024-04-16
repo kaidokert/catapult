@@ -22,6 +22,30 @@
       },
       "revId": "dafdb93a5d589cad4bf9af820c6e3bfb34f8124d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee40aaa_3f22e253",
+        "filename": "dashboard/cron.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-04-16T01:27:00Z",
+      "side": 1,
+      "message": "that\u0027s not the catapult repo. the actual file is this one: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/cron.yaml",
+      "parentUuid": "92b6f5a6_245f9374",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "dafdb93a5d589cad4bf9af820c6e3bfb34f8124d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
