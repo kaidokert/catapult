@@ -73,28 +73,6 @@ class StartTest(unittest.TestCase):
         'hasfilter': '0'
     })
 
-  def testSwarmingTagsWithStoryFilter(self):
-    arguments = dict(_BASE_ARGUMENTS)
-    arguments['browser'] = 'android-webview'
-    arguments['story'] = 'sfilter'
-    quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
-    change = mock.MagicMock(spec=change_module.Change)
-    change.base_commit = mock.MagicMock(spec=commit.Commit)
-    change.base_commit.AsDict = mock.MagicMock(
-        return_value={'commit_position': 675460})
-    with mock.patch(
-        'dashboard.pinpoint.models.quest.run_test.RunTest._Start',
-        wraps=quest._Start) as internal_start:
-      execution = quest.Start(change, 'https://isolate.server', 'isolate hash')
-      self.assertIn('--run-full-story-set', internal_start.call_args[0][3])
-    self.assertEqual(
-        execution._swarming_tags, {
-            'benchmark': 'speedometer',
-            'change': str(change),
-            'hasfilter': '1',
-            'storyfilter': 'sfilter'
-        })
-
   def testExtraArgsInChange(self):
     arguments = dict(_BASE_ARGUMENTS)
     arguments['browser'] = 'android-webview'
@@ -112,7 +90,6 @@ class StartTest(unittest.TestCase):
         wraps=quest._Start) as internal_start:
       execution = quest.Start(change, 'https://isolate.server', 'isolate hash')
       call_args = internal_start.call_args[0][3]
-      self.assertIn('--run-full-story-set', call_args)
       self.assertIn('--extra-browser-args', call_args)
     self.assertEqual(
         execution._swarming_tags, {
@@ -121,22 +98,6 @@ class StartTest(unittest.TestCase):
             'hasfilter': '1',
             'storyfilter': 'sfilter'
         })
-
-  def testSwarmingTagsWithStoryFilter_RevMissingCommitPosition(self):
-    """Reproduce crbug/1051943."""
-    arguments = dict(_BASE_ARGUMENTS)
-    arguments['browser'] = 'android-webview'
-    arguments['story'] = 'sfilter'
-    quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
-    change = mock.MagicMock(spec=change_module.Change)
-    change.base_commit = mock.MagicMock(spec=commit.Commit)
-    # No 'commit_position' property in base_commit.
-    change.base_commit.AsDict = mock.MagicMock(return_value={})
-    with mock.patch(
-        'dashboard.pinpoint.models.quest.run_test.RunTest._Start',
-        wraps=quest._Start) as internal_start:
-      quest.Start(change, 'https://isolate.server', 'isolate hash')
-      self.assertIn('--run-full-story-set', internal_start.call_args[0][3])
 
   def testSwarmingTagsWithStoryTagFilter(self):
     arguments = dict(_BASE_ARGUMENTS)
