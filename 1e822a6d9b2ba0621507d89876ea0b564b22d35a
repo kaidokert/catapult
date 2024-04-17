@@ -16,6 +16,23 @@
       "message": "PTAL THANK YOU",
       "revId": "1e822a6d9b2ba0621507d89876ea0b564b22d35a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "623d43cf_43e230cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543262
+      },
+      "writtenOn": "2024-04-17T02:13:43Z",
+      "side": 1,
+      "message": "+John PTAL",
+      "revId": "1e822a6d9b2ba0621507d89876ea0b564b22d35a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
