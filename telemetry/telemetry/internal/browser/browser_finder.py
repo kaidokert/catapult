@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import
 import logging
+import time
 
 from telemetry import decorators
 from telemetry.internal.backends.chrome import android_browser_finder
@@ -101,11 +102,19 @@ def FindBrowser(options):
         '--remote requires --browser=[la]cros-chrome[-guest].')
 
   SetTargetPlatformsBasedOnBrowserType(options)
-  devices = device_finder.GetDevicesMatchingOptions(options)
+  devices = []
+  for iteration in range(6):
+    logging.error('ASDF iteration %d looking for devices', iteration)
+    devices = device_finder.GetDevicesMatchingOptions(options)
+    if devices:
+      break
+    time.sleep(10)
+  logging.error('ASDF devices: %s', devices)
   browsers = []
   default_browsers = []
 
   browser_finders = _GetBrowserFinders(options.target_platforms)
+  logging.error('ASDF browser finders: %s', browser_finders)
 
   for device in devices:
     for finder in browser_finders:
@@ -119,6 +128,7 @@ def FindBrowser(options):
       browsers.extend(curr_browsers)
 
   if not browsers:
+    logging.error('ASDF hit this early return')
     return None
 
   if options.browser_type is None:

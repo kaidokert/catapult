@@ -4388,6 +4388,7 @@ class DeviceUtils(object):
         for adb in adb_wrapper.AdbWrapper.Devices(
             persistent_shell=persistent_shell):
           serial = adb.GetDeviceSerial()
+          logging.error('ASDF found device with serial %s', serial)
           if not denylisted(serial):
             device = cls(_CreateAdbWrapper(adb), **kwargs)
             supported_abis = device.GetSupportedABIs()
@@ -4402,6 +4403,8 @@ class DeviceUtils(object):
                   "Device %s doesn't support required ABIs "
                   "(supported: %s, required: %s)", serial,
                   ','.join(supported_abis), ','.join(abis))
+        else:
+          logging.error('ASDF did not get any devices from adb wrapper')
 
       if len(devices) == 0 and not allow_no_devices:
         raise device_errors.NoDevicesError()
@@ -4422,9 +4425,11 @@ class DeviceUtils(object):
         reset_usb.reset_all_android_devices()
 
     for attempt in range(retries + 1):
+      logging.error('ASDF attempt %d getting devices', attempt)
       try:
         return _get_devices()
       except device_errors.NoDevicesError:
+        logging.error('ASDF NoDevicesError')
         if attempt == retries:
           logging.error('No devices found after exhausting all retries.')
           raise

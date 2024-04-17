@@ -5,6 +5,7 @@
 """Finds devices that can be controlled by telemetry."""
 
 from __future__ import absolute_import
+import logging
 from telemetry.internal.platform import android_device
 from telemetry.internal.platform import cast_device
 from telemetry.internal.platform import cros_device
@@ -49,10 +50,13 @@ def GetDevicesMatchingOptions(options):
   remote_platform_options = options.remote_platform_options
   if (not remote_platform_options.device or
       remote_platform_options.device == 'list'):
+    logging.error('ASDF getting all available devices 1')
     devices = _GetAllAvailableDevices(options)
   elif remote_platform_options.device == 'android':
+    logging.error('ASDF finding all Android devices')
     devices = android_device.FindAllAvailableDevices(options)
   else:
+    logging.error('ASDF getting all available devices 2')
     devices = _GetAllAvailableDevices(options)
     devices = [d for d in devices if d.guid ==
                options.remote_platform_options.device]

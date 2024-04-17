@@ -56,6 +56,7 @@ def GetDeviceSerials(denylist):
   the returned list. The arguments specify what devices to include in the list.
   """
   device_serials = _ListSerialsOfHealthyOnlineDevices(denylist)
+  logging.error('ASDF healthy device serials: %s', device_serials)
 
   preferred_device = os.environ.get('ANDROID_SERIAL')
   if preferred_device in device_serials:
@@ -135,6 +136,7 @@ def FindAllAvailableDevices(options):
   """
   # Disable Android device discovery when remote testing a CrOS device
   if options.remote:
+    logging.error('ASDF remote, returning nothing')
     return []
 
   android_platform_options = options.remote_platform_options
@@ -146,12 +148,17 @@ def FindAllAvailableDevices(options):
         denylist = device_denylist.Denylist(
             android_platform_options.android_denylist_file)
       devices = AndroidDevice.GetAllConnectedDevices(denylist)
+    else:
+      logging.error('ASDF cannot discover devices')
   finally:
     if not devices and _HasValidAdb():
+      logging.error('ASDF no devices and have adb, killing server')
       try:
         adb_wrapper.AdbWrapper.KillServer()
       except device_errors.NoAdbError as e:
         logging.warning(
             'adb reported as present, but NoAdbError thrown: %s', str(e))
+    else:
+      logging.error('ASDF not killing server. devices: %s', devices)
 
   return devices
