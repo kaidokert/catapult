@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a79ed0d_b7bad001",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-04-17T21:10:46Z",
+      "side": 1,
+      "message": "lgtm. not seeing anything alarming in https://chromium.googlesource.com/catapult/+log/221c4e4..6b996b0",
+      "revId": "5d1ae3e233457f0f8bd1d13de582ce18cc0bc837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
