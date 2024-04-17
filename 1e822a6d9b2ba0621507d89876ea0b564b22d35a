@@ -50,6 +50,24 @@
       "message": "Thanks for uploading this patch. I believe it needs to be split into two patches. The reason is changes to telemetry generally takes only a few hours to deploy, while changes to Pinpoint can take up to a week to deploy. So if this patch is submitted in its current form, in a few hours telemetry will stop accepting --run-full-story-set flag, but Pinpoint will continue to add that flag to the command line for up to a week, resulting in errors.\n\nSo please create two patches instead. The first one include changes to Pinpoint, and is checked in first. After we confirm that it is deployed, you can submit a second patch with change to telemetry.",
       "revId": "1e822a6d9b2ba0621507d89876ea0b564b22d35a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a789cc0c_a75d46f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543262
+      },
+      "writtenOn": "2024-04-17T03:35:36Z",
+      "side": 1,
+      "message": "I\u0027ve rolled back my changes to the telemetry section",
+      "parentUuid": "cc09b3a6_67041dd5",
+      "revId": "1e822a6d9b2ba0621507d89876ea0b564b22d35a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
