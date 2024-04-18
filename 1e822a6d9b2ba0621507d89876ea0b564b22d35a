@@ -68,6 +68,24 @@
       "parentUuid": "cc09b3a6_67041dd5",
       "revId": "1e822a6d9b2ba0621507d89876ea0b564b22d35a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb968453_3478eb96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-04-18T18:22:22Z",
+      "side": 1,
+      "message": "FYI, this patch has been deployed to Pinpoint, so please feel free to make the other half of the change at your convenience. Thanks!",
+      "parentUuid": "a789cc0c_a75d46f2",
+      "revId": "1e822a6d9b2ba0621507d89876ea0b564b22d35a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
