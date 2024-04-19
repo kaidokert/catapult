@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9f2e750b_e901793d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-19T20:48:36Z",
+      "side": 1,
+      "message": "I do agree that it would be good to do, as it doesn\u0027t make sense that browser_options would transitively depend on all the places that use options 😞\n\nFiled: https://crbug.com/335891661",
+      "parentUuid": "699fa463_d864effd",
+      "range": {
+        "startLine": 18,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6c4c0666_d36a9502",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
