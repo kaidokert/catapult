@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "699fa463_d864effd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-19T20:32:17Z",
+      "side": 1,
+      "message": "Ew. This sounds like something that should eventually be refactored, although I suspect doing so will be rather painful. Could you file a low priority bug and add a TODO to the place where you\u0027re using argparse.Namespace pointing to the bug?",
+      "range": {
+        "startLine": 18,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6c4c0666_d36a9502",
