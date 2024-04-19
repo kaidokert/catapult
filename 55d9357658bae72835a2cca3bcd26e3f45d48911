@@ -81,6 +81,24 @@
       "parentUuid": "6c4c0666_d36a9502",
       "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09423cea_72d08170",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-19T20:53:29Z",
+      "side": 1,
+      "message": "Nice! One difficulty I\u0027ve found with this CL is that since we use capability instead of hierarchy to distinguish subclasses of AndroidBrowserBackendSettings, it\u0027s kind of hard to add typing for it.\n\ne.g. We check IsWebView() to be True and then call GetEmbedderPackageName. Whereas it would be a lot easier for the IDE to understand `issubclass(self._backend_settings, android_browser_backend_settings.WebviewSomethingBaseClass)` and allow the call in that if block.\n\nAt the same time, it\u0027s not easy to express all the capabilities as subclass hierarchies. Maybe multiple inheritance? 😄\n\nBtw are you referring to .style.yapf? If so then it was a great addition!",
+      "parentUuid": "a12d6e81_0ff747d8",
+      "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
