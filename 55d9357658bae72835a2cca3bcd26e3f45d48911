@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c4c0666_d36a9502",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-19T20:14:17Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nI was trying to better understand android_browser_finder.py and found these type annotations to be helpful. Hopefully they\u0027ll help someone else too who\u0027s not yet familiar with this class.\n\nThanks,\nPeter",
+      "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
