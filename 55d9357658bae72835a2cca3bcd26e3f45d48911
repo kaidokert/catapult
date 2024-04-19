@@ -99,6 +99,24 @@
       "parentUuid": "a12d6e81_0ff747d8",
       "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86fb55a2_03eef7b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-19T20:56:25Z",
+      "side": 1,
+      "message": "\u003e Btw are you referring to .style.yapf? If so then it was a great addition!\n\nYes, we just moved the one that was applied to devil/ to apply to all of Catapult. I treated that as a prerequisite to type hinting since adding type hinting will probably cause a lot of lines to go over 80 characters.",
+      "parentUuid": "09423cea_72d08170",
+      "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
