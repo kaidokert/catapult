@@ -117,6 +117,24 @@
       "parentUuid": "09423cea_72d08170",
       "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1db6020_569b3f20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-19T20:59:15Z",
+      "side": 1,
+      "message": "Very neat! TIL about .yapfignore. I might shift up some of the .style.yapf files in directories I own and just add the current ones to be excluded by that instead. 😄",
+      "parentUuid": "86fb55a2_03eef7b9",
+      "revId": "55d9357658bae72835a2cca3bcd26e3f45d48911",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
