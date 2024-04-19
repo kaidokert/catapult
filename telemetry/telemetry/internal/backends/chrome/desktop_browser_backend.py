@@ -246,6 +246,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     formatted_command = format_for_logging.ShellFormat(
         command, trim=self.browser_options.trim_logs)
     logging.info('Starting Chrome: %s\n', formatted_command)
+    logging.info('Chrome inode: %d\n', os.stat(command[0]).st_ino)
     if not self.browser_options.trim_logs:
       logging.info('Chrome Env: %s', env)
 
