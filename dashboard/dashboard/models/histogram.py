@@ -11,7 +11,6 @@ import datetime
 import itertools
 import json
 import logging
-import six
 import sys
 
 from google.appengine.ext import ndb
@@ -79,7 +78,7 @@ class ErrorTolerantJsonProperty(ndb.BlobProperty):
 
   def _from_base_type(self, value):
     try:
-      if not isinstance(value, six.text_type):
+      if not isinstance(value, str):
         value = value.decode("ascii")
       return json.loads(value)
     except ValueError:
@@ -155,10 +154,10 @@ class SparseDiagnostic(JsonModel):
     for diagnostic in diagnostics:
       if diagnostic.name not in diagnostic_names:
         continue
-      if (diagnostic.name in diagnostics_by_name and diagnostic.start_revision <
-          diagnostics_by_name[diagnostic.name].start_revision):
-        # TODO(crbug.com/877809) Assert
-        continue
+      if (diagnostic.name in diagnostics_by_name and diagnostic.start_revision
+          < diagnostics_by_name[diagnostic.name].start_revision):
+        assert False, "Duplicate diagnostic name with conflicting start revisions: {}".format(
+            diagnostic.name)
       assert diagnostic.data, diagnostic
       diagnostics_by_name[diagnostic.name] = diagnostic
     raise ndb.Return({
