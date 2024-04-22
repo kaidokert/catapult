@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0de4fd7_7228e3a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-22T19:56:51Z",
+      "side": 1,
+      "message": "Simulated [Chromium roll](https://chromium-review.googlesource.com/c/chromium/src/+/5467865) and Pinpoint jobs ([1](https://pinpoint-dot-chromeperf.appspot.com/job/12a99d697e0000), [2](https://pinpoint-dot-chromeperf.appspot.com/job/152fe4847e0000)) seem happy with this, so there hopefully won\u0027t be anything broken as a result.",
+      "revId": "0bbbb19ab968c21bfba1a49bb56987878a3a9606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
