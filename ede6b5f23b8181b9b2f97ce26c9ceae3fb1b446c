@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b51380c_3d8bc85f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-22T15:50:32Z",
+      "side": 1,
+      "message": "Hi Ben,\n\nRather than building these on the bot (see [0]) pasko@ recommended uploading to BinaryManager instead since some bots that need this may not be able to build.\n\nAs a follow-up CL I\u0027ll replace the usage on the orderfile bot with BinaryManager.\n\nThanks,\nPeter\n\n[0] https://chromium-review.googlesource.com/c/chromium/src/+/5440238/comments/3355d55f_695c6d6e",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
