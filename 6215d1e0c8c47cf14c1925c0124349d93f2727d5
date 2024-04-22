@@ -16,6 +16,23 @@
       "message": "Fixed unit test, PTAL.",
       "revId": "6215d1e0c8c47cf14c1925c0124349d93f2727d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0352da_aaa39539",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-22T17:13:17Z",
+      "side": 1,
+      "message": "Thanks for the review, Brian!",
+      "revId": "6215d1e0c8c47cf14c1925c0124349d93f2727d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
