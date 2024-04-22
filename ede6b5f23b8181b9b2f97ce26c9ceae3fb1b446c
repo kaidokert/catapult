@@ -1,6 +1,63 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2db5dfb1_6967f3a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-04-22T21:01:02Z",
+      "side": 1,
+      "message": "Only things that rarely need re-compiling should be fetched via GS deps. (eg: md5sum\u0027s api isn\u0027t exactly volatile)\n\nDoes that apply to dump_syms?",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd6ee3e_28d84a0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-04-22T21:01:02Z",
+      "side": 1,
+      "message": "How would it be used? Just listing it in this file won\u0027t get it downloaded I don\u0027t think, at least in a devil context",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44899585_fbb5b849",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-04-22T21:01:02Z",
+      "side": 1,
+      "message": "The platform-arch keys correspond to the platform the binary runs on. So since this is a host binary, only use host keys. (See host_forwarder)",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 35
+      },
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3b51380c_3d8bc85f",
