@@ -16,6 +16,29 @@
       "message": "PTAL THANK YOU",
       "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d028f163_4d8650f7",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-04-22T21:05:42Z",
+      "side": 1,
+      "message": "Thanks for contributing this patch. However, I don\u0027t see any evidence that the underlying data problem has been fixed, so adding the assert now might just cause Dashboard to crash at runtime. Do you know anyone who has investigated or fixed the underlying data problem?\n\nThe removal of six looks fine.",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 160,
+        "endChar": 28
+      },
+      "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
