@@ -39,6 +39,30 @@
       },
       "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec59afa_bb542e33",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1543262
+      },
+      "writtenOn": "2024-04-23T02:06:22Z",
+      "side": 1,
+      "message": "Sorry, I saw that the issue mentioned in the todo has been marked as fixed, so I thought the problem was solved and tried to add an assertion. I will roll back the modifications here.\n\nIn addition, I want to implement onion soup (large-scale code modification) on catapult. The following is the address of the proposal.\n\nhttps://issues.chromium.org/issues/336329417",
+      "parentUuid": "d028f163_4d8650f7",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 160,
+        "endChar": 28
+      },
+      "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
