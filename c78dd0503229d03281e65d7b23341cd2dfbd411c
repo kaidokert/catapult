@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b266691_c3b7606c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-23T14:43:40Z",
+      "side": 1,
+      "message": "Hi Ben,\n\nThis CL uses the binary uploaded in https://crrev.com/c/5473542. It needs to wait for upstream to land before landing.\n\nThanks,\nPeter",
+      "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
