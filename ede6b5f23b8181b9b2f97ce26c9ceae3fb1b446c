@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e0dd2ce_d9a05283",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-23T14:42:55Z",
+      "side": 1,
+      "message": "Thanks for explaining and confirming it\u0027s a rarely re-compiled target! I\u0027ve updated the CL description.",
+      "parentUuid": "06d9b600_debb2d6f",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbd6ee3e_28d84a0a",
@@ -71,6 +89,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa5fd067_a7d069ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-23T14:42:55Z",
+      "side": 1,
+      "message": "Thanks for adding the context, Egor! I\u0027d prefer to do this in 2 CLs. One to land the binary_dependencies.json change and one to use it, that way if the one that uses it on the bots fails and needs to be reverted it won\u0027t affect this CL. The CL that uses it is here: https://crrev.com/c/5477048",
+      "parentUuid": "4d5e0b01_c59343d5",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44899585_fbb5b849",
@@ -84,6 +120,30 @@
       "writtenOn": "2024-04-22T21:01:02Z",
       "side": 1,
       "message": "The platform-arch keys correspond to the platform the binary runs on. So since this is a host binary, only use host keys. (See host_forwarder)",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 35
+      },
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2242b4a3_91f66ad6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-23T14:42:55Z",
+      "side": 1,
+      "message": "Thanks for explaining and giving the `host_forwarder` example!",
+      "parentUuid": "44899585_fbb5b849",
       "range": {
         "startLine": 12,
         "startChar": 2,
@@ -124,6 +184,24 @@
       "writtenOn": "2024-04-23T12:09:21Z",
       "side": 1,
       "message": "Thanks, Peter!\n\nfly-by responses..",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1090fa94_ff40100a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-23T14:42:55Z",
+      "side": 1,
+      "message": "Thank you Egor!",
+      "parentUuid": "49779d3f_7c918dca",
       "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
