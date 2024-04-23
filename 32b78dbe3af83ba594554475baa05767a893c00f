@@ -63,6 +63,30 @@
       },
       "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fab2ee_9d033358",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1543262
+      },
+      "writtenOn": "2024-04-23T02:07:22Z",
+      "side": 1,
+      "message": "Can my proposal get support from the catapult team?",
+      "parentUuid": "fec59afa_bb542e33",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 160,
+        "endChar": 28
+      },
+      "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
