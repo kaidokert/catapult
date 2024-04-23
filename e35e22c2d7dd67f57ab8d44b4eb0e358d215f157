@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e038fecc_326200d0",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-04-23T23:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c174bd3_979c3989",
+      "range": {
+        "startLine": 188,
+        "startChar": 49,
+        "endLine": 189,
+        "endChar": 6
+      },
+      "revId": "e35e22c2d7dd67f57ab8d44b4eb0e358d215f157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7889f85f_e39d7849",
@@ -54,6 +78,24 @@
       "writtenOn": "2024-04-23T23:02:56Z",
       "side": 1,
       "message": "nit: remove this line of comment since it\u0027s no longer true once this CL lands.",
+      "revId": "e35e22c2d7dd67f57ab8d44b4eb0e358d215f157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "787686ad_e9b6692a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-04-23T23:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7889f85f_e39d7849",
       "revId": "e35e22c2d7dd67f57ab8d44b4eb0e358d215f157",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
