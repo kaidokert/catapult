@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c174bd3_979c3989",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-04-23T23:01:47Z",
+      "side": 1,
+      "message": "nit: could join with \"and\"",
+      "range": {
+        "startLine": 188,
+        "startChar": 49,
+        "endLine": 189,
+        "endChar": 6
+      },
+      "revId": "e35e22c2d7dd67f57ab8d44b4eb0e358d215f157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
