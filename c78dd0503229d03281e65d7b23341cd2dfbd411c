@@ -33,6 +33,29 @@
       "message": "s/me/brian/ given https://chromium.googlesource.com/catapult/+/c78dd0503229d03281e65d7b23341cd2dfbd411c/telemetry/OWNERS#5",
       "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e7dc2e2_5e24cf14",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-23T23:10:14Z",
+      "side": 1,
+      "message": "Do you know:\n\n1. If this properly finds locally built versions of the binary?\n2. If `dump_syms` is correctly listed as a dependency for relevant tests?\n\nGiven that you said \"Previously it would fail to locate dump_syms in the build output directory and fail symbolization\", I suspect at least one of those isn\u0027t true.\n\nWhile it\u0027s good to have the uploaded version as a fallback, we really want to be using the local version if at all possible. IIRC, I originally added `LocalFirstBinaryManager` specifically because we had very hard to diagnose symbolization issues when using out-of-date binaries.",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 22
+      },
+      "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
