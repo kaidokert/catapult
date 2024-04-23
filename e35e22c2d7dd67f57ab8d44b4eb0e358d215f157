@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e4ad54d_e2fb9bce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-04-23T23:03:21Z",
+      "side": 1,
+      "message": "lgtm - forgot to stamp",
+      "revId": "e35e22c2d7dd67f57ab8d44b4eb0e358d215f157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c174bd3_979c3989",
