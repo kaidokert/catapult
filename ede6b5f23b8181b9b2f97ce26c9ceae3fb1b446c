@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06d9b600_debb2d6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2024-04-23T12:09:21Z",
+      "side": 1,
+      "message": "No guarantees, but I expect we would very rarely need to update this tool.\n\nThe tool extracts the symbols the same way it is done for symbolizing crashes from the field. The pipeline is based on ELF and DWARF. These formats change very infrequently because of how many things depend on them. I think if something has to change in this area, we would also need to update tools like `minidump_dump` and `minidump_stackwalk` which are already in `telemetry/binary_dependencies.json`.",
+      "parentUuid": "2db5dfb1_6967f3a0",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbd6ee3e_28d84a0a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-22T21:01:02Z",
       "side": 1,
       "message": "How would it be used? Just listing it in this file won\u0027t get it downloaded I don\u0027t think, at least in a devil context",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d5e0b01_c59343d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2024-04-23T12:09:21Z",
+      "side": 1,
+      "message": "Right, we will need to use the BinaryManager to fetch dump_syms. If I am reading correctly, the `dump_syms` is currently looked up in [1] (GetDumpSymsBinary), which only checks the build directory. The GetDumpSymsBinary() is used by `minidump_symbolizer.py` in Telemetry ([2]). I believe Telemetry tries to symbolize a minidump this way every time it suspects a browser crash.\n\n[1] GetDumpSymsBinary() in components/crash/content/tools/generate_breakpad_symbols.py:\nhttps://source.chromium.org/chromium/chromium/src/+/main:components/crash/content/tools/generate_breakpad_symbols.py;l\u003d38;drc\u003db8be952f6cd08d311fd10d4de475fdac151e33f0\n \n[2] minidump_symbolizer.py:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py;l\u003d106;drc\u003dd7e6d38fcd5feef24197e3a67679ca69d84261f8",
+      "parentUuid": "dbd6ee3e_28d84a0a",
       "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -71,6 +107,23 @@
       "writtenOn": "2024-04-22T15:50:32Z",
       "side": 1,
       "message": "Hi Ben,\n\nRather than building these on the bot (see [0]) pasko@ recommended uploading to BinaryManager instead since some bots that need this may not be able to build.\n\nAs a follow-up CL I\u0027ll replace the usage on the orderfile bot with BinaryManager.\n\nThanks,\nPeter\n\n[0] https://chromium-review.googlesource.com/c/chromium/src/+/5440238/comments/3355d55f_695c6d6e",
+      "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49779d3f_7c918dca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2024-04-23T12:09:21Z",
+      "side": 1,
+      "message": "Thanks, Peter!\n\nfly-by responses..",
       "revId": "ede6b5f23b8181b9b2f97ce26c9ceae3fb1b446c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
