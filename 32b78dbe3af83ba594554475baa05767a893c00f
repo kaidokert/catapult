@@ -135,6 +135,30 @@
       },
       "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7800016e_0b657ec5",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-04-23T15:29:06Z",
+      "side": 1,
+      "message": "While it is OK to remove six from dashboard, please be aware that there is little value in doing so. Not sure if you have visit Chrome Perf Dashboard lately, but yo may notice that some page (e.g., https://chromeperf.appspot.com/report) have already been marked as deprecated. Other pages will also likely either be deprecated or subject to major revision in the near future. For this reason, I\u0027d advice against working in dashboard directory.",
+      "parentUuid": "541a68c4_80748f27",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 160,
+        "endChar": 28
+      },
+      "revId": "32b78dbe3af83ba594554475baa05767a893c00f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
