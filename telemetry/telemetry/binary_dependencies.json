@@ -81,6 +81,16 @@
         }
       }
     },
+    "dump_syms": {
+      "cloud_storage_base_folder": "binary_dependencies",
+      "cloud_storage_bucket": "chromium-telemetry",
+      "file_info": {
+        "linux_x86_64": {
+          "cloud_storage_hash": "25a030b1ef7eef1c15213b1eac177224fc95a8bd",
+          "download_path": "bin/linux/x86_64/dump_syms"
+        }
+      }
+    },
     "gdb": {
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
