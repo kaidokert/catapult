@@ -128,6 +128,30 @@
       },
       "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9def9467_76defdff",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-24T20:14:13Z",
+      "side": 1,
+      "message": "I see! It\u0027s probably because on the orderfile bot we are compiling just `monochrome_apk` without a test target. I can see about adding `dump_syms` as a data dep for apks whenever `use_order_profiling \u003d true` is set. 🤔\n\n```\n$ gn path out/orderfile_arm64_instrumented_out/ //clank/java:monochrome_apk third_party/breakpad:dump_syms --with-data --all\nNo paths found between these two targets.\n```",
+      "parentUuid": "8a295890_b868f42c",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 22
+      },
+      "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
