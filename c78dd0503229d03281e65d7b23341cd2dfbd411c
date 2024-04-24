@@ -104,6 +104,30 @@
       },
       "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a295890_b868f42c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-24T18:44:28Z",
+      "side": 1,
+      "message": "For context, here\u0027s how the GPU Telemetry-based tests have it set up:\n\n```\nbsheedy@neuro:/usr/local/google/code/clankium/src$ gn path out/gpu //chrome/test:telemetry_gpu_integration_test third_party/breakpad:dump_syms --with-data --all\n//chrome/test:telemetry_gpu_integration_test --[data]--\u003e\n//tools/perf/chrome_telemetry_build:telemetry_chrome_test --[data]--\u003e\n//third_party/breakpad:dump_syms\n\n//chrome/test:telemetry_gpu_integration_test --[data]--\u003e\n//tools/perf/chrome_telemetry_build:telemetry_chrome_test --[data]--\u003e\n//tools/perf/chrome_telemetry_build:telemetry_chrome_test_without_chrome --[data]--\u003e\n//third_party/breakpad:dump_syms\n\n2 \"interesting\" paths found. 0 of them are public.\n```",
+      "parentUuid": "96b414c8_b28845c2",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 22
+      },
+      "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
