@@ -56,6 +56,30 @@
       },
       "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72aac8ee_e007d4fa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-24T18:28:42Z",
+      "side": 1,
+      "message": "Sorry my previous CL description can be easily misunderstood, I\u0027ve updated it. It was not that `dump_syms` is in the output directory and not found, but it\u0027s actually not being built. For bots that don\u0027t build it explicitly, `dump_syms` won\u0027t exist in their output directory and so symbolization would always fail. In those cases, where `dump_syms` isn\u0027t available locally at all, it is nice to have some symbolization than none at all.\n\nI\u0027ve verified that for my current CL, if there is a local copy of `dump_syms` in the output directory, then `LocalFirstBinaryManager` is able to find it and pass the correct path to the one in the output directory instead of downloading it to `telemetry/bin`. Thanks for adding `LocalFirstBinaryManager`.\n\nSince you recommend that we keep building it where we could, I\u0027ll abandon https://crrev.com/c/5477688 then and keep the orderfile bot building `dump_syms` explicitly.",
+      "parentUuid": "4e7dc2e2_5e24cf14",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 22
+      },
+      "revId": "c78dd0503229d03281e65d7b23341cd2dfbd411c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
