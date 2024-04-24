@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a25397_5ef8a4e1",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-04-24T17:26:24Z",
+      "side": 1,
+      "message": "if they have a chromium account they use, we may also want to include that.",
+      "revId": "aa3a7a3a46215190842024f09a14e335dde41d44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
