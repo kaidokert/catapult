@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4143a8b8_2fea1a40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323140
+      },
+      "writtenOn": "2024-04-26T02:51:19Z",
+      "side": 1,
+      "message": "Drop Ashwin (cannot cast owners vote?) -\u003e roll d4 on Gerrit-suggested owners -\u003e 3 -\u003e Eduardo to review, please.",
+      "revId": "33bad3af722d9cdef3cf6fcad948eaa3dad7efe5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
