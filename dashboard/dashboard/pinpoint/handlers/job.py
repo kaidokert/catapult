@@ -28,3 +28,17 @@ def JobHandlerGet(job_id):
 
   opts = request.args.getlist('o')
   return make_response(json.dumps(job.AsDict(opts)))
+
+def JobHandlerGetSample(job_id):
+  try:
+    job = job_module.JobFromId(job_id)
+  except ValueError:
+    return make_response(
+        json.dumps({'error': 'Invalid job id: %s' % job_id}), 400)
+
+  if not job:
+    return make_response(
+        json.dumps({'error': 'Unknown job id: %s' % job_id}), 404)
+
+  opts = request.args.getlist('o')
+  return make_response(json.dumps(job.AsDict(opts)))

@@ -42,6 +42,9 @@ def NewHandlerPost():
 def JobHandlerGet(job_id):
   return handlers.job.JobHandlerGet(job_id)
 
+@APP.route('/api/sample_job/<job_id>')
+def JobHandlerGetSample(job_id):
+  return handlers.job.JobHandlerGetSample(job_id)
 
 @APP.route('/api/queue-stats/<configuration>')
 def QueueStatsHandlerGet(configuration):
