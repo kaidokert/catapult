@@ -9,8 +9,10 @@ from __future__ import absolute_import
 import datetime
 import json
 import mock
+import os
 
 from dashboard.pinpoint import test
+from dashboard.pinpoint.handlers import job as job_handler
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import results2 as results2_module
 
@@ -36,3 +38,11 @@ class JobTest(test.TestCase):
 
     data = json.loads(self.testapp.get('/api/job/' + job.job_id).body)
     self.assertEqual(job.started_time.isoformat(), data['started_time'])
+
+class JobSampleTest(test.TestCase):
+  def testGetData(self):
+    data = job_handler.getData()
+    self.assertEqual(data["job_id"], "142784c0800000")
+
+    data = job_handler.getSampleData()
+    self.assertEqual(data["job_id"], "141a3ccc800000")
