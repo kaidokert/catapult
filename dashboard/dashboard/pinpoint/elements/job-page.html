@@ -99,7 +99,7 @@ found in the LICENSE file.
 
     <app-route route="{{route}}" pattern="/:jobId" data="{{routeData}}"></app-route>
 
-    <loading-wrapper url="/api/job/[[routeData.jobId]]?o=STATE&amp;o=ESTIMATE" response="{{job}}">
+    <loading-wrapper url="/api/sample_job/[[routeData.jobId]]?o=STATE&amp;o=ESTIMATE" response="{{job}}">
       <h1>
         <template is="dom-if" if="[[failed(job)]]">
           <span id="failed" class="badge">Error</span>
