@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c39adf5_7d4bc9ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1185214
+      },
+      "writtenOn": "2024-05-03T15:57:37Z",
+      "side": 1,
+      "message": "Does the catapult team think this is a good idea? Performance regression emails are often very confusing today, because the title changes make it hard to track which emails are updating each bug.\n\nThis might not be the best format, but I really think that arranging to have the regression count isolated is helpful.",
+      "revId": "1d7d9c5755c0db9e3f5197b8f27cd3d54d1bc9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
