@@ -51,6 +51,24 @@
       "parentUuid": "6c39adf5_7d4bc9ea",
       "revId": "1d7d9c5755c0db9e3f5197b8f27cd3d54d1bc9b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61607402_e2cf1c47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1185214
+      },
+      "writtenOn": "2024-05-03T17:20:01Z",
+      "side": 1,
+      "message": "Excellent, thank you! Yes - it seems like there are things that could be done on the buganizer side, too. I originally filed b/338585437, then I read go/gmr-faq#threading, and decided to try and fix this problem here. I think this will help, but it does seem like buganizer should try to use header metadata to enforce threading of bug udpates, even when the title changes.",
+      "parentUuid": "4b0d5aca_068bc3d7",
+      "revId": "1d7d9c5755c0db9e3f5197b8f27cd3d54d1bc9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
