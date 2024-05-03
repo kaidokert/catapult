@@ -16,6 +16,41 @@
       "message": "Does the catapult team think this is a good idea? Performance regression emails are often very confusing today, because the title changes make it hard to track which emails are updating each bug.\n\nThis might not be the best format, but I really think that arranging to have the regression count isolated is helpful.",
       "revId": "1d7d9c5755c0db9e3f5197b8f27cd3d54d1bc9b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd63d547_1f839888",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-05-03T17:16:37Z",
+      "side": 1,
+      "message": "LGTM. Thanks!",
+      "revId": "1d7d9c5755c0db9e3f5197b8f27cd3d54d1bc9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b0d5aca_068bc3d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-05-03T17:16:37Z",
+      "side": 1,
+      "message": "We are not aware of the confusion caused by the titles before. We are glad that you reported it. \n\nI think we need more details about the specific use case. I feel like we should get some input from the Buganizer team as well, as we can change titles on bugs as well and that could cause Gmail to restart the thread.\n\nFor now we can try how your change works. This could be a guidance for the future changes.",
+      "parentUuid": "6c39adf5_7d4bc9ea",
+      "revId": "1d7d9c5755c0db9e3f5197b8f27cd3d54d1bc9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
