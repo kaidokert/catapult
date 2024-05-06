@@ -142,6 +142,9 @@ found in the LICENSE file.
         </template>
         <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="/api/config" loading="{{configLoading}}" last-response="{{config}}"></iron-ajax>
         <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="{{generateChromeperfUrl('/api/test_suites')}}" loading="{{suitesLoading}}" last-response="{{testSuites}}"></iron-ajax>
+        <template is="dom-if" if="[[validConfiguration(configuration)]]">
+          <iron-ajax method="get" headers="[[client.authHeaders]]" auto url="/api/builds/{{configuration}}" last-response="{{buildCommits}}"></iron-ajax>
+        </template>
         <template is="dom-if" if="{{validBenchmark(benchmark)}}">
           <iron-ajax method="post" headers="[[client.authHeaders]]" auto url="{{generateChromeperfUrl('/api/describe')}}" params="{{describeParams(benchmark)}}" loading="{{benchmarkConfigLoading}}" last-response="{{benchmarkConfig}}"></iron-ajax>
         </template>
@@ -269,7 +272,30 @@ found in the LICENSE file.
               <span>Job Configuration</span>
             </div>
 
-            <template is="dom-if" if="[[!isBisectJob(comparisonMode)]]">
+            <paper-radio-group id="commit_source" selected="{{commitSource}}">
+              <paper-radio-button class="radio" name="commit">Specific Commit</paper-radio-button>
+              <paper-radio-button class="radio" name="builds">Recent Builds</paper-radio-button>
+            </paper-radio-group>
+            <template is="dom-if" if="[[shouldGetBuilds(commitSource, comparisonMode)]]">
+              <p class="error">Please select a bot config to load the corresponding recent builds</p>
+              <div class="horizontal">
+                <commit-details class="column rightPad"
+                                  project="{{project}}"
+                                  value="{{base_git_hash}}"
+                                  label="Base Build"
+                                  items="[[latestBuildCommits(buildCommits)]]"
+                                  headers="[[client.authHeaders]]"
+                                  required disabled="[[isBisectJob(comparisonMode)]]"></commit-details>
+                <commit-details class="column rightPad"
+                                  project="{{project}}"
+                                  value="{{end_git_hash}}"
+                                  label="Exp Build"
+                                  items="[[latestBuildCommits(buildCommits)]]"
+                                  headers="[[client.authHeaders]]"
+                                  required disabled="[[isBisectJob(comparisonMode)]]"></commit-details>
+              </div>
+            </template>
+            <template is="dom-if" if="[[!shouldGetBuilds(commitSource, comparisonMode)]]">
               <div class="horizontal">
                 <commit-details class="column rightPad"
                                 project="{{project}}"
@@ -373,6 +399,7 @@ found in the LICENSE file.
         bug_id: String,
         chart: String,
         commitsList: Object,
+        buildCommits: Object,
         commitRangeLoading: {
           type: Boolean,
           value: false
@@ -380,6 +407,10 @@ found in the LICENSE file.
         comparisonMode: {
           type: String,
           value: 'try'
+        },
+        commitSource: {
+          type: String,
+          value: 'commit'
         },
         config: Object,
         configuration: String,
@@ -451,6 +482,18 @@ found in the LICENSE file.
         return config.configurations.includes(this.configuration);
       },
 
+      shouldGetBuilds(commitSource, comparisonMode) {
+        return commitSource == 'builds' && comparisonMode == 'try'
+      },
+
+      validConfiguration(configuration) {
+        if (configuration.length > 0) {
+          return true;
+        }
+
+        return false;
+      },
+
       preSubmit(event) {
         const invalidBenchmark = !this.validBenchmark(this.benchmark);
         const invalidStory = !this.validStoryAndStoryTag(
@@ -515,6 +558,36 @@ found in the LICENSE file.
             author: cur.author,
             date: cur.created,
             commit_position: cur.commit_position,
+          });
+        }
+        return vals;
+      },
+
+      isBotSelected() {
+        if (this.configuration == null || this.configuration == undefined || this.configuration == '') {
+          return false;
+        }
+        return true;
+      },
+
+      latestBuildCommits(buildCommits) {
+        if (!buildCommits) {
+          return [];
+        }
+
+        const vals = [];
+        for (const cur of buildCommits.builds) {
+          let change = ''
+          if (cur.input.gerritChanges && cur.input.gerritChanges.length > 0) {
+            change = cur.input.gerritChanges[0].change
+          }
+          let date = new Date(Date.parse(cur.endTime))
+          vals.push({
+            message: 'Build ' + cur.number,
+            name: cur.input.gitilesCommit.id,
+            author: date.toDateString(),
+            date: cur.endTime,
+            commit_position: cur.number,
           });
         }
         return vals;

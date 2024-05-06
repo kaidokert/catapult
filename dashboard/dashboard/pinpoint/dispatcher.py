@@ -108,6 +108,10 @@ def IsolateHandler():
 def StatsHandler():
   return handlers.stats.StatsHandler()
 
+@APP.route('/api/builds/<bot_config>', methods=['GET'])
+def BuildsHander(bot_config):
+  return handlers.builds.RecentBuildsGet(bot_config)
+
 
 @APP.route('/_ah/push-handlers/task-updates', methods=['POST'])
 def TaskUpdatesHandler():
