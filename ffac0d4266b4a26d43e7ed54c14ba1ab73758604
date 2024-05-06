@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed44e03_89c21b24",
+        "filename": "dashboard/dashboard/pinpoint/handlers/builds.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-06T21:30:31Z",
+      "side": 1,
+      "message": "from here, you\u0027ll need a way to map the bot_config to the waterfall builder: https://github.com/google/skia-buildbot/blob/1c9475ad62a1cfc33655513150f9ac6882d931c8/pinpoint/go/backends/waterfall_map.go#L15\n\nI\u0027m not 100% sure but you can verify this mapping with `logging.info(\u0027Bot config ...`)` in next line",
+      "revId": "ffac0d4266b4a26d43e7ed54c14ba1ab73758604",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96bf3e89_b1100163",
+        "filename": "dashboard/dashboard/pinpoint/handlers/builds.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-06T21:30:31Z",
+      "side": 1,
+      "message": "the waterfall builder \u003d `ci`\n\nusing the waterfall builds gives two advantages:\n1. you don\u0027t have to worry about patches built on top of commits\n2. waterfall continuously builds Chrome so in theory waterfall will usually be more recent than pinpoint builds.",
+      "range": {
+        "startLine": 35,
+        "startChar": 61,
+        "endLine": 35,
+        "endChar": 64
+      },
+      "revId": "ffac0d4266b4a26d43e7ed54c14ba1ab73758604",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
