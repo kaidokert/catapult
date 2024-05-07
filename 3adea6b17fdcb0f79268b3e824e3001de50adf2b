@@ -16,6 +16,23 @@
       "message": "https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/14774d0c800000\n\nSample result of the endpoint through https://paste.googleplex.com/6505493345861632",
       "revId": "3adea6b17fdcb0f79268b3e824e3001de50adf2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa2b2499_3053b747",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-05-07T22:54:31Z",
+      "side": 1,
+      "message": "Phew!",
+      "revId": "3adea6b17fdcb0f79268b3e824e3001de50adf2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
