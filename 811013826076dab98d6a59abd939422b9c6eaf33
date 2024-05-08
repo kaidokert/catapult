@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "298d858b_0b003433",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2024-05-08T00:44:28Z",
+      "side": 1,
+      "message": "LGTM but perhaps we can remove the test altogether - not sure if there\u0027s any value that the test provides.",
+      "revId": "811013826076dab98d6a59abd939422b9c6eaf33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
