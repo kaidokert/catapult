@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09f15cd_779c15d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-05-09T00:57:53Z",
+      "side": 1,
+      "message": "tested at https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/1424f22a800000",
+      "revId": "8135582e307bc4d8bf3381b12dada1c4ad894e7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
