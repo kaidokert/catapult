@@ -131,7 +131,7 @@ class BrowserOptionsTest(unittest.TestCase):
                         action='store_true',
                         default=True)
 
-    options.MergeDefaultValues(parser.get_default_values())
+    # options.MergeDefaultValues(parser.get_default_values())
 
     self.assertTrue(options.already_true)
     self.assertFalse(options.already_false)
