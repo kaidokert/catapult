@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6d5f58b_27af22b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-14T23:16:34Z",
+      "side": 1,
+      "message": "Some feedback:\n1. error message shows by default https://screenshot.googleplex.com/5NqyV9W4W77X5rx.png\n2. If I click \"bisect\" it looks messed up: https://screenshot.googleplex.com/4YxxWft8s6u43Vb.png\n3. by default, recent builds shows -HEAD with an error message, which makes it harder to figure out how to select recent builds https://screenshot.googleplex.com/TF4HboLDBkgvXJ5.png",
+      "revId": "4dd379df26a65da6418aea407c6525e772cd877a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
