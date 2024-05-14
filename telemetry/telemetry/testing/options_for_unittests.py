@@ -73,7 +73,11 @@ def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
   story_runner.AddCommandLineArgs(parser)
   if benchmark_cls is not None:
     benchmark_cls.SetArgumentDefaults(parser)
-  options.MergeDefaultValues(parser.get_default_values())
+  # options.MergeDefaultValues(parser.get_default_values())
+  # Parse args so that |options| has attributes added for any added command
+  # line arguments.
+  #parser.parse_args([])
+  parser.ParseArgsToSetDefaults()
   if overrides:
     for name, value in overrides.items():
       if not hasattr(options, name):

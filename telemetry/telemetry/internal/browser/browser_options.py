@@ -354,11 +354,11 @@ class BrowserFinderOptions(argparse.Namespace):
 
     real_parse = parser.parse_args
     def ParseArgs(args=None):
-      defaults = parser.get_default_values()
-      for k, v in defaults.__dict__.items():
-        if k in self.__dict__ and self.__dict__[k] is not None:
-          continue
-        self.__dict__[k] = v
+      # defaults = parser.get_default_values()
+      # for k, v in defaults.__dict__.items():
+      #   if k in self.__dict__ and self.__dict__[k] is not None:
+      #     continue
+      #   self.__dict__[k] = v
       ret = real_parse(args, self)
 
       if self.chromium_output_dir:
@@ -436,7 +436,12 @@ class BrowserFinderOptions(argparse.Namespace):
       self.browser_options.UpdateFromParseResults(self)
 
       return ret
+
+    def ParseArgsToSetDefaults():
+      return real_parse([], self)
+
     parser.parse_args = ParseArgs
+    parser.ParseArgsToSetDefaults = ParseArgsToSetDefaults
     return parser
 
   def IsBrowserTypeRelevant(self, browser_type):
