@@ -50,10 +50,14 @@ class BrowserFinderOptions(argparse.Namespace):
     self.chrome_root = None  # Path to src/
     self.chromium_output_dir = None  # E.g.: out/Debug
     self.device = None
-    self.ssh_identity = None
+    #self.ssh_identity = None
 
+    # TODO: Enforce that args with defaults aren't defined here?
+    # Defaults defined in an argument parser will not apply to the namespace
+    # if the namespace already has the attribute defined. However, the value
+    # will be overwritten if the argument is actually specified.
     self.remote = None
-    self.remote_ssh_port = None
+    #self.remote_ssh_port = None
 
     self.verbosity = 0
 
@@ -62,14 +66,14 @@ class BrowserFinderOptions(argparse.Namespace):
 
     self.remote_platform_options = None
 
-    self.performance_mode = None
+    #self.performance_mode = None
 
     # TODO(crbug.com/798703): remove this
     self.no_performance_mode = False
 
-    self.interval_profiling_target = ''
-    self.interval_profiling_periods = []
-    self.interval_profiling_frequency = 1000
+    #self.interval_profiling_target = ''
+    #self.interval_profiling_periods = []
+    #self.interval_profiling_frequency = 1000
     self.interval_profiler_options = ''
 
     self.experimental_system_tracing = False
@@ -354,11 +358,11 @@ class BrowserFinderOptions(argparse.Namespace):
 
     real_parse = parser.parse_args
     def ParseArgs(args=None):
-      defaults = parser.get_default_values()
-      for k, v in defaults.__dict__.items():
-        if k in self.__dict__ and self.__dict__[k] is not None:
-          continue
-        self.__dict__[k] = v
+      # defaults = parser.get_default_values()
+      # for k, v in defaults.__dict__.items():
+      #   if k in self.__dict__ and self.__dict__[k] is not None:
+      #     continue
+      #   self.__dict__[k] = v
       ret = real_parse(args, self)
 
       if self.chromium_output_dir:
@@ -436,7 +440,12 @@ class BrowserFinderOptions(argparse.Namespace):
       self.browser_options.UpdateFromParseResults(self)
 
       return ret
+
+    def ParseArgsToSetDefaults():
+      return real_parse([], self)
+
     parser.parse_args = ParseArgs
+    parser.ParseArgsToSetDefaults = ParseArgsToSetDefaults
     return parser
 
   def IsBrowserTypeRelevant(self, browser_type):
