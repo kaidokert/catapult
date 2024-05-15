@@ -436,7 +436,19 @@ class BrowserFinderOptions(argparse.Namespace):
       self.browser_options.UpdateFromParseResults(self)
 
       return ret
+
+    # def ParseArgsToSetDefaults():
+    #   return real_parse([], self)
+    # This ideally wouldn't need to exist, but the spaghetti code left over from
+    # the use of optparse means that code exists that relies on attributes
+    # being set before argument parsing is actually done.
+    def get_default_values():
+      defaults, _ = real_parse([])
+      return defaults
+
     parser.parse_args = ParseArgs
+    #parser.ParseArgsToSetDefaults = ParseArgsToSetDefaults
+    parser.get_default_values = get_default_values
     return parser
 
   def IsBrowserTypeRelevant(self, browser_type):
