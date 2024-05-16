@@ -81,7 +81,12 @@ def JobFromId(job_id):
   Users of Job should not have to import ndb. This function maintains an
   abstraction layer that separates users from the Datastore details.
   """
-  job_key = ndb.Key('Job', int(job_id, 16))
+  try:
+    uuid_id = uuid.UUID(job_id)
+    job_key = ndb.Key('Job', str(uuid_id))
+  except Exception:
+    # not a uuid meaning it didn't come from skia, so parse normally
+    job_key = ndb.Key('Job', int(job_id, 16))
   return job_key.get()
 
 
@@ -428,6 +433,8 @@ class Job(ndb.Model):
 
   @property
   def job_id(self):
+    if isinstance(self.key.id(), str):
+      return self.key.id()
     return '%x' % self.key.id()
 
   @property
