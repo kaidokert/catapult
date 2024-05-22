@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f7bd0d_c1a24c72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-22T23:28:21Z",
+      "side": 1,
+      "message": "I made a similar change to skia\u0027s bisection. I wrote about some of the potential time savings here: https://buganizer.corp.google.com/issues/340884347#comment5\n\nI figured it was worth implementing on catapult\u0027s side since it could be a big quality of change.",
+      "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e127f2_37afefcf",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-22T23:28:21Z",
+      "side": 1,
+      "message": "Can set this number lower if we want to be more cautious. i.e. 0.05.",
+      "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
