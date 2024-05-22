@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "243dd174_b710803b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-05-22T23:37:40Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1e127f2_37afefcf",
@@ -31,6 +48,70 @@
       "writtenOn": "2024-05-22T23:28:21Z",
       "side": 1,
       "message": "Can set this number lower if we want to be more cautious. i.e. 0.05.",
+      "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc211204_b4bdb602",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-05-22T23:37:40Z",
+      "side": 1,
+      "message": "nit: Since you\u0027re ignoring the attribute value here, you can use hasattr function.",
+      "range": {
+        "startLine": 397,
+        "startChar": 12,
+        "endLine": 397,
+        "endChar": 19
+      },
+      "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4b41b2_8aac3020",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-05-22T23:37:40Z",
+      "side": 1,
+      "message": "nit: This line should indent by two more spaces, to make it visually distinct from the following line.",
+      "range": {
+        "startLine": 398,
+        "startChar": 10,
+        "endLine": 398,
+        "endChar": 89
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "478678f1_cfefcb35",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/pinpoint/models/job_state.py",
+              "range": {
+                "startLine": 398,
+                "startChar": 0,
+                "endLine": 399,
+                "endChar": 0
+              },
+              "replacement": "            and abs(mean_diff) \u003c _SMALL_REGRESSION_FILTER*abs(self._comparison_magnitude)):\n"
+            }
+          ]
+        }
+      ],
       "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
