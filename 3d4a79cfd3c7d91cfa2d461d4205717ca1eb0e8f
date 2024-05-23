@@ -52,6 +52,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc576f5a_04e0ea88",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-23T21:58:45Z",
+      "side": 1,
+      "message": "Comment clean up.",
+      "parentUuid": "f1e127f2_37afefcf",
+      "revId": "3d4a79cfd3c7d91cfa2d461d4205717ca1eb0e8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc211204_b4bdb602",
