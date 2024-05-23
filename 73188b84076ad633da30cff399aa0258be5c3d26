@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bbf8689_ff93b967",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-23T23:12:06Z",
+      "side": 1,
+      "message": "I\u0027m OOO tomorrow so if bisection breaks because of my change [1], revert this and CL [1].\n\n[1] https://chromium-review.googlesource.com/c/catapult/+/5560316",
+      "revId": "73188b84076ad633da30cff399aa0258be5c3d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
