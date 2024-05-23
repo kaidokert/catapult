@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae576e7_5441781a",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-05-23T18:10:24Z",
+      "side": 1,
+      "message": "I see. Thanks for the info!",
+      "parentUuid": "9ce6831d_1ba52c31",
+      "range": {
+        "startLine": 387,
+        "startChar": 10,
+        "endLine": 387,
+        "endChar": 30
+      },
+      "revId": "f4750a723c910c4256fddf2640df061bb8dfe3d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1726d3d0_74002733",
