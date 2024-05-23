@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce6831d_1ba52c31",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-23T16:48:18Z",
+      "side": 1,
+      "message": "For this CL, the goal is to avoid bisecting small differences relative to the original expected difference. The max iqr can vary from metric to metric so it\u0027s harder to work with. \n\nAlternatively I could set the formula to:\n`abs(mean_diff/max_iqr) \u003c _SMALL_REGRESSION_FILTER*abs(self._comparison_magnitude)`\n\nBut I wanted to avoid more nested if statements.",
+      "parentUuid": "6bd5522b_f5344067",
+      "range": {
+        "startLine": 387,
+        "startChar": 10,
+        "endLine": 387,
+        "endChar": 30
+      },
+      "revId": "f4750a723c910c4256fddf2640df061bb8dfe3d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1726d3d0_74002733",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "f4750a723c910c4256fddf2640df061bb8dfe3d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d74a710e_a19fe18e",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-05-23T16:48:18Z",
+      "side": 1,
+      "message": "Oh yeah that was sloppy my bad. I made the change after John suggested it, tested it somewhere else, and forgot to revert.",
+      "parentUuid": "1726d3d0_74002733",
+      "range": {
+        "startLine": 397,
+        "startChar": 51,
+        "endLine": 397,
+        "endChar": 55
+      },
       "revId": "f4750a723c910c4256fddf2640df061bb8dfe3d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
