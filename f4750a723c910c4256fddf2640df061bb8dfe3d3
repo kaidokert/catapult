@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bd5522b_f5344067",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-05-23T00:14:48Z",
+      "side": 1,
+      "message": "just curious: why we don\u0027t use this magnitude value?",
+      "range": {
+        "startLine": 387,
+        "startChar": 10,
+        "endLine": 387,
+        "endChar": 30
+      },
+      "revId": "f4750a723c910c4256fddf2640df061bb8dfe3d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1726d3d0_74002733",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-05-23T00:14:48Z",
+      "side": 1,
+      "message": "hasattr() does not take default. I think we will keep using getattr()?",
+      "range": {
+        "startLine": 397,
+        "startChar": 51,
+        "endLine": 397,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "579bdcd0_51ecf634",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/pinpoint/models/job_state.py",
+              "range": {
+                "startLine": 397,
+                "startChar": 0,
+                "endLine": 398,
+                "endChar": 0
+              },
+              "replacement": "        if (hasattr(self, \u0027_comparison_magnitude\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f4750a723c910c4256fddf2640df061bb8dfe3d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
