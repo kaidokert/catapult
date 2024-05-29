@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fd93895_266bcd78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2024-05-29T19:29:44Z",
+      "side": 1,
+      "message": "+khokhlov@google.com\n\nHey,\nI was looking at removing some tracing/UMA from chromium. I saw that it was still referred to in Catapult. However the stories that used the calculations were removed last year.\n\nSo I\u0027m proposing to remove the calculations. Could you PTAL? Thanks!",
+      "revId": "6a5a9a3652b24fcf0d7c8d8da8229bbc5a0bbaa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
