@@ -66,6 +66,7 @@ class BrowserTestCase(
     try:
       options = options_for_unittests.GetCopy()
       cls.CustomizeBrowserOptions(options.browser_options)
+      options.browser_options.AppendExtraBrowserArgs(['--no-sandbox'])
       cls._possible_browser = browser_finder.FindBrowser(options)
       if not cls._possible_browser:
         raise Exception('No browser found, cannot continue test.')
