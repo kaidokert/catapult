@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a515607_020c099c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-05-29T18:35:40Z",
+      "side": 1,
+      "message": "Looks like this needs to be locally patched in and `infra/config/main.star` run.",
+      "revId": "f8b242652b310ce0a384f498f5a89b62c58bdbfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
