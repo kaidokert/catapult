@@ -90,6 +90,7 @@ class DevToolsHttp():
 
     try:
       # By default, httplib avoids going through the default system proxy.
+      print('sending request to ' + self._conn.host + ":" + str(self._conn.port) + endpoint)
       self._conn.request('GET', endpoint)
       response = self._conn.getresponse()
       return response.read()

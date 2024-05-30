@@ -266,6 +266,7 @@ class _DevToolsClientBackend():
   def GetChromeMajorNumber(self):
     # Detect version information.
     resp = self.GetVersion()
+    print('Version is ' + str(resp))
     if 'Protocol-Version' in resp:
       if 'Browser' in resp:
         major_number_match = re.search(r'.+/(\d+)\.\d+\.\d+\.\d+',
@@ -284,7 +285,15 @@ class _DevToolsClientBackend():
     return 0
 
   def _ListInspectableContexts(self):
-    return self._devtools_http.RequestJson('')
+    returnObj = {}
+    print('Getting inspectable contexts')
+    try:
+      returnObj = self._devtools_http.RequestJson('')
+      print('Got contexts: ' + str(returnObj))
+    except Exception as e:
+      print("Error: " + str(e))
+    return returnObj
+
 
   def RequestNewTab(self, timeout, in_new_window=False, url=None):
     """Creates a new tab, either in new window or current window.
