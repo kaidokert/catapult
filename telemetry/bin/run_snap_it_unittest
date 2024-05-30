@@ -32,6 +32,7 @@ def RunSnapItUnittest(finder_options):
   possible_browser = browser_finder.FindBrowser(finder_options)
   with possible_browser.BrowserSession(
       finder_options.browser_options) as browser:
+    print(str(browser.tabs))
     tab = browser.tabs[0]
     tab.Navigate(_SNAP_IT_TEST_URL)
     tab.WaitForJavaScriptCondition('window.allTestDone')

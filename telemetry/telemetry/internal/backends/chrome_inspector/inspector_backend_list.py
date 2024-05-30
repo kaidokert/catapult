@@ -101,18 +101,24 @@ class InspectorBackendList(collections_abc.Sequence):
     return len(self._filtered_context_ids)
 
   def _Update(self):
+    print('Running context update')
     backends_map = self._devtools_client.GetUpdatedInspectableContexts()
     self._devtools_context_map_backend = backends_map
 
     # Clear context ids that do not appear in the inspectable contexts.
     context_ids = [context['id'] for context in backends_map.contexts]
+    print(str(len(context_ids)) + ' context ids found in backends_map')
     self._filtered_context_ids = [context_id
                                   for context_id in self._filtered_context_ids
                                   if context_id in context_ids]
+    
+    print('Filtered context ids are ' + str(len(self._filtered_context_ids)))
     # Add new context ids.
     for context in backends_map.contexts:
+      print('Checking context ' + context['id'])
       if (context['id'] not in self._filtered_context_ids and
           self.ShouldIncludeContext(context)):
+        print('Adding context id')
         self._filtered_context_ids.append(context['id'])
 
     # Clean up any backends for contexts that have gone away.
