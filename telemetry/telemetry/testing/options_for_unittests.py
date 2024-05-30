@@ -21,6 +21,8 @@ _options = []
 
 
 def Push(options):
+  if options.browser_options:
+    options.browser_options.AppendExtraBrowserArgs(['--no-sandbox'])
   _options.append(options)
 
 
