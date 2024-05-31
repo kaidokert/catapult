@@ -100,7 +100,7 @@ _CATAPULT_TESTS = [
     {
         'name': 'Snap-it Tests',
         'path': 'telemetry/bin/run_snap_it_unittest',
-        'additional_args': ['--browser=reference',],
+        'additional_args': ['--browser=system',],
         'uses_sandbox_env': True,
         'disabled': ['android'],
         'python_versions': [3],
