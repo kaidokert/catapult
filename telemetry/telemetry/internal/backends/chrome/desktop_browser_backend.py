@@ -225,9 +225,17 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self.BindDevToolsClient()
     # browser is foregrounded by default on Windows and Linux, but not Mac.
     if self.browser.platform.GetOSName() == 'mac':
-      subprocess.Popen([
+      executable_name = os.path.basename(self._executable)
+      subprocess.call([
           'osascript', '-e',
-          ('tell application "%s" to activate' % self._executable)
+          '''
+          tell application "%s" to activate
+          tell application "System Events"
+            tell application process "%s"
+              set frontmost to true
+            end tell
+          end tell
+          ''' % (self._executable, executable_name)
       ])
     if self._supports_extensions:
       self._WaitForExtensionsToLoad()
