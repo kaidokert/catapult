@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9cd04cb_f2e5e59c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-06-04T17:22:16Z",
+      "side": 1,
+      "message": "This is fine for now. I think we might still want to write to BQ someday (for example, if we are tasked with a higher burden of proof that skia bisect works just as well as catapult bisect)",
+      "revId": "de7b605e478d4ba96429a939144e4f350fa64daf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "abe72114_124471ec",
@@ -14,6 +31,24 @@
       "writtenOn": "2024-06-04T07:44:44Z",
       "side": 1,
       "message": "+leina@ - lmk what you think before I add other reviewers.",
+      "revId": "de7b605e478d4ba96429a939144e4f350fa64daf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11530fb9_3028fdd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-06-04T17:22:16Z",
+      "side": 1,
+      "message": "LGTM",
+      "parentUuid": "abe72114_124471ec",
       "revId": "de7b605e478d4ba96429a939144e4f350fa64daf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
