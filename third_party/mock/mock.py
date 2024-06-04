@@ -187,11 +187,11 @@ def _getsignature(func, skipfirst, instance=False):
         regargs = regargs[1:]
 
     if inPy3k:
-        signature = inspect.formatargspec(
+        signature = inspect.signature(
             regargs, varargs, varkw, defaults,
             kwonly, kwonlydef, ann, formatvalue=lambda value: "")
     else:
-        signature = inspect.formatargspec(
+        signature = inspect.signature(
             regargs, varargs, varkwargs, defaults,
             formatvalue=lambda value: "")
     return signature[1:-1], func
