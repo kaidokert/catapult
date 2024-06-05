@@ -16,6 +16,29 @@
       "message": "Not sure if we should just be updating mock.py to the latest version?",
       "revId": "09ce6922568e0e91ca1dc7f86c6f87a74f9b60bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba0d19c1_20cd260d",
+        "filename": "third_party/mock/mock.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1485299
+      },
+      "writtenOn": "2024-06-05T16:54:44Z",
+      "side": 1,
+      "message": "looks like you need to convert to str?",
+      "range": {
+        "startLine": 190,
+        "startChar": 20,
+        "endLine": 190,
+        "endChar": 37
+      },
+      "revId": "09ce6922568e0e91ca1dc7f86c6f87a74f9b60bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
