@@ -16,6 +16,23 @@
       "message": "+ashwinpv, +leina for reland",
       "revId": "a513bd17c98fbb05827f869cd87ca4980ee4edce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ee4dea6_dabf5e00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-06-05T00:31:45Z",
+      "side": 1,
+      "message": "Won\u0027t be deployed until next deployment cycle with bq-exporter, so I\u0027ll merge for now.",
+      "revId": "a513bd17c98fbb05827f869cd87ca4980ee4edce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
