@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e16737c_d3f52311",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-05T16:33:13Z",
+      "side": 1,
+      "message": "Not sure if we should just be updating mock.py to the latest version?",
+      "revId": "09ce6922568e0e91ca1dc7f86c6f87a74f9b60bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
