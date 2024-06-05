@@ -7,8 +7,9 @@
 import os
 import unittest
 
+from unittest import mock
+
 from py_utils import cloud_storage
-import mock
 from pyfakefs import fake_filesystem_unittest
 from pyfakefs import fake_filesystem
 from pyfakefs import fake_filesystem_glob
@@ -1546,7 +1547,7 @@ class BaseConfigTest(unittest.TestCase):
     deps_seen = []
     for dep_info in config.IterDependencyInfo():
       deps_seen.append(dep_info)
-    dep_info_mock.assert_call_args(expected_calls)
+    dep_info_mock.assert_has_calls(expected_calls)
     self.assertCountEqual(expected_dep_info, deps_seen)
 
   @mock.patch('dependency_manager.base_config.json')
