@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67b7917f_4765bc36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-05T19:11:42Z",
+      "side": 1,
+      "message": "So there are still lots of references from third_party/gustil and third_party/google_XXXX. I think those would need to be change too before this can be removed?",
+      "parentUuid": "70ccf1c4_19a9086b",
+      "revId": "8655a47e22ef5fc8fba4e1bce9e0eb739d83a955",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7b78c2c_888f39c8",
