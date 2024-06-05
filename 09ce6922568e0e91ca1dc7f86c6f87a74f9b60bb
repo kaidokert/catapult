@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8775347b_a63e2c05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-05T17:31:05Z",
+      "side": 1,
+      "message": "I think you should be able to remove the dependency entirely? AFAIK all Catapult code should be Python 3 now, and `mock`\u0027s functionality is available in Python 3 under `unittest.mock`. It should be a drop-in replacement by changing `import mock` to `from unittest import mock`.\n\nI already removed the copy that Telemetry had in https://chromium-review.googlesource.com/c/catapult/+/5330148",
+      "parentUuid": "2e16737c_d3f52311",
+      "revId": "09ce6922568e0e91ca1dc7f86c6f87a74f9b60bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba0d19c1_20cd260d",
         "filename": "third_party/mock/mock.py",
         "patchSetId": 2
