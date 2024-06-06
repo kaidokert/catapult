@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0ce8e3_f7cbc711",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2024-06-06T04:50:14Z",
+      "side": 1,
+      "message": "LGTM, thanks! I can follow up with updating the binaries.",
+      "revId": "78303272f5fee6dd2b5bcbb17a3d5715e6ff56dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
