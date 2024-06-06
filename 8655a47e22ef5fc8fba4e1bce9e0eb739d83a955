@@ -77,6 +77,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f796b44_6946604f",
+        "filename": "experimental/bisect_lib/fetch_intervening_revisions_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-06T22:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7b78c2c_888f39c8",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "8655a47e22ef5fc8fba4e1bce9e0eb739d83a955",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f7d9772_6269d10c",
+        "filename": "experimental/bisect_lib/fetch_intervening_revisions_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-06T22:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7b78c2c_888f39c8",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "8655a47e22ef5fc8fba4e1bce9e0eb739d83a955",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9794932_185512f7",
@@ -90,6 +138,54 @@
       "writtenOn": "2024-06-05T18:49:07Z",
       "side": 1,
       "message": "Ditto.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "8655a47e22ef5fc8fba4e1bce9e0eb739d83a955",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbde9d3b_e90f2f1a",
+        "filename": "experimental/bisect_lib/fetch_revision_info_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-06T22:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9794932_185512f7",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "8655a47e22ef5fc8fba4e1bce9e0eb739d83a955",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94639787_2b89eae5",
+        "filename": "experimental/bisect_lib/fetch_revision_info_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-06T22:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9794932_185512f7",
       "range": {
         "startLine": 11,
         "startChar": 0,
