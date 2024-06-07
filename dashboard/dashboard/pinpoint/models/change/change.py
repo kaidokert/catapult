@@ -338,7 +338,8 @@ def _FindMidpoints(commits_a, commits_b):
           'Changes have a different number of commits.')
 
     commit_midpoint = commit_module.Commit.Midpoint(commit_a, commit_b)
-    logging.debug("b/343229141 - commit_midpoint: %s", commit_midpoint)
+    logging.debug("b/343229141 - commit_midpoint: %s, a: %s, b: %s",
+                  commit_midpoint, commit_a, commit_b)
     commits_midpoint.append(commit_midpoint)
     if commit_a == commit_midpoint and commit_midpoint != commit_b:
       # Commits are adjacent.

@@ -81,6 +81,12 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
   def __str__(self):
     """Returns an informal short string representation of this Commit."""
     return self.repository + '@' + self.git_hash[:7]
+  
+  def __eq__(self, other): 
+      if isinstance(other, Commit): 
+          if other.repository == self.repository and other.git_hash == self.git_hash: 
+              return True
+      return False
 
   def SetRepository_url(self, repository_url):
     self._repository_url = repository_url
