@@ -40,6 +40,30 @@
       ],
       "revId": "dc0491467c09b4b6ad5708ae29be90e438faff51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f89efef_b92bd6f7",
+        "filename": "dashboard/bq_export/bq_export/bq_jobs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-06-11T19:46:30Z",
+      "side": 1,
+      "message": "I took what was set there previously for this, but sgtm \u0026 applied.",
+      "parentUuid": "cd34e058_f95e6d92",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "dc0491467c09b4b6ad5708ae29be90e438faff51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
