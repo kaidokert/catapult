@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd34e058_f95e6d92",
+        "filename": "dashboard/bq_export/bq_export/bq_jobs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-06-11T18:49:12Z",
+      "side": 1,
+      "message": "I think this should be `id()`. It will likely be None when the id is a string",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "848ee0eb_1af23e1f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/bq_export/bq_export/bq_jobs.py",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": "    entity_id \u003d entity.key.id()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc0491467c09b4b6ad5708ae29be90e438faff51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
