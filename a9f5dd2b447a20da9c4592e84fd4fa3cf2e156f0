@@ -68,6 +68,24 @@
       "parentUuid": "bbdaf6a8_ea4adc95",
       "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48cd1936_a8b2bd29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-13T18:32:06Z",
+      "side": 1,
+      "message": "Hold off for now, although if you have any input on why the regex currently [disallows spaces](https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/third_party/typ/typ/expectations_parser.py;l\u003d240?q\u003d-file:%5Eout%20-file:%5Egen%20typ%2Fexpectations_parser.py) (that predates the Blink-related substitution change), I\u0027d be interested to know.",
+      "parentUuid": "4ff0daeb_383073c4",
+      "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
