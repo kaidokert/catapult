@@ -104,6 +104,24 @@
       "parentUuid": "48cd1936_a8b2bd29",
       "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "946c25da_5c417ef1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-13T20:20:26Z",
+      "side": 1,
+      "message": "Ack - that no longer holds true, as GPU tests aren\u0027t filepaths, and it seems like that no longer holds true for some external WPT tests, as well.",
+      "parentUuid": "6608b93c_c51d1430",
+      "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
