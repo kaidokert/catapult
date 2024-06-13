@@ -50,6 +50,24 @@
       "message": "Looking at when this was added (crbug.com/40174340), it seems it was more ad-hoc than I originally thought. Enforcing lack of spaces does seem like something that should be handled Blink-side rather than here, so removing auto submit while I talk to the Blink team.",
       "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ff0daeb_383073c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-13T18:29:15Z",
+      "side": 1,
+      "message": "\u003e so removing auto submit while I talk to the Blink team\n\nSo I should hold off on reviewing this? Or do you still want me to take a look?",
+      "parentUuid": "bbdaf6a8_ea4adc95",
+      "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
