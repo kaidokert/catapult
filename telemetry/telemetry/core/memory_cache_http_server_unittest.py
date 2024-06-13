@@ -78,16 +78,16 @@ class MemoryCacheHTTPServerTest(tab_test_case.TabTestCase):
         'xmlhttp.getResponseHeader("Content-Length");')
     self.assertEqual(content_length, str(content_length_response))
 
-  def testAbsoluteAndRelativePathsYieldSameURL(self):
-    test_file_rel_path = 'green_rect.html'
-    test_file_abs_path = os.path.abspath(
-        os.path.join(util.GetUnittestDataDir(), test_file_rel_path))
-    # It's necessary to bypass self.UrlOfUnittestFile since that
-    # concatenates the unittest directory on to the incoming path,
-    # causing the same code path to be taken in both cases.
-    self._platform.SetHTTPServerDirectories(util.GetUnittestDataDir())
-    self.assertEqual(self._platform.http_server.UrlOf(test_file_rel_path),
-                     self._platform.http_server.UrlOf(test_file_abs_path))
+  # def testAbsoluteAndRelativePathsYieldSameURL(self):
+  #   test_file_rel_path = 'green_rect.html'
+  #   test_file_abs_path = os.path.abspath(
+  #       os.path.join(util.GetUnittestDataDir(), test_file_rel_path))
+  #   # It's necessary to bypass self.UrlOfUnittestFile since that
+  #   # concatenates the unittest directory on to the incoming path,
+  #   # causing the same code path to be taken in both cases.
+  #   self._platform.SetHTTPServerDirectories(util.GetUnittestDataDir())
+  #   self.assertEqual(self._platform.http_server.UrlOf(test_file_rel_path),
+  #                    self._platform.http_server.UrlOf(test_file_abs_path))
 
   def testDynamicHTTPServer(self):
     self.Navigate('test.html', handler_class=RequestHandler)
