@@ -33,6 +33,23 @@
       "message": "An alternative I think I might pursue in the future would be to support whitespace in the test name and remove the encode/decode stuff entirely. AFAICT that should just be a simple change to the regex. It looks like Blink doesn\u0027t currently have any expectations that would be affected, but I\u0027d need to double check with the team before going through with that.",
       "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbdaf6a8_ea4adc95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-13T16:19:03Z",
+      "side": 1,
+      "message": "Looking at when this was added (crbug.com/40174340), it seems it was more ad-hoc than I originally thought. Enforcing lack of spaces does seem like something that should be handled Blink-side rather than here, so removing auto submit while I talk to the Blink team.",
+      "revId": "a9f5dd2b447a20da9c4592e84fd4fa3cf2e156f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
