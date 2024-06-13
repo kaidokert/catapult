@@ -108,7 +108,7 @@ class Expectation(object):
                 and self.lineno == other.lineno
                 and self.trailing_comments == other.trailing_comments)
 
-    def _set_string_value(self):
+    def _set_string_value(self, perform_uri_encode):
         """This method will create an expectation line in string form and set the
         _string_value member variable to it. If the _raw_results lists and _raw_tags
         list are not set then the _tags list and _results set will be used to set them.
@@ -124,7 +124,8 @@ class Expectation(object):
             pattern = self._test[:-1].replace('*', '\\*') + '*'
         else:
             pattern = self._test.replace('*', '\\*')
-        pattern = uri_encode_spaces(pattern)
+        if perform_uri_encode:
+          pattern = uri_encode_spaces(pattern)
         self._string_value = ''
         if self._reason:
             self._string_value += self._reason + ' '
@@ -159,8 +160,8 @@ class Expectation(object):
                 self._raw_results.add(_RETRY_ON_FAILURE_TAG)
         return self._raw_results
 
-    def to_string(self):
-        self._set_string_value()
+    def to_string(self, perform_uri_encode=True):
+        self._set_string_value(perform_uri_encode)
         return self._string_value
 
     @property
@@ -242,13 +243,17 @@ class TaggedTestListParser(object):
     _MATCH_STRING += r'(\s+#.*)?$'  # End comment (optional).
     MATCHER = re.compile(_MATCH_STRING)
 
-    def __init__(self, raw_data, conflict_resolution=ConflictResolutionTypes.UNION):
+    def __init__(self,
+                 raw_data,
+                 conflict_resolution=ConflictResolutionTypes.UNION,
+                 perform_uri_decode=True):
         self.tag_sets = set()
         self.conflicts_allowed = False
         self.expectations = []
         self._allowed_results = set()
         self._tag_to_tag_set = {}
         self.conflict_resolution = conflict_resolution
+        self._perform_uri_decode = perform_uri_decode
         self._parse_raw_expectation_data(raw_data)
 
     def _parse_raw_expectation_data(self, raw_data):
@@ -396,8 +401,9 @@ class TaggedTestListParser(object):
         results, retry_on_failure, is_slow_test =\
             self._parse_and_validate_raw_results(lineno, raw_results)
 
-        # replace %20 in test path to ' '
-        test = uri_decode_spaces(test)
+        if self._perform_uri_decode:
+            # replace %20 in test path to ' '
+            test = uri_decode_spaces(test)
 
         # remove escapes for asterisks
         is_glob = not test.endswith('\\*') and test.endswith('*')
@@ -502,7 +508,7 @@ class TaggedTestListParser(object):
 
 class TestExpectations(object):
 
-    def __init__(self, tags=None, ignored_tags=None):
+    def __init__(self, tags=None, ignored_tags=None, perform_uri_decode=True):
         self.tag_sets = set()
         self.ignored_tags = set(ignored_tags or [])
         self.set_tags(tags or [])
@@ -514,6 +520,7 @@ class TestExpectations(object):
         self.individual_exps = OrderedDict()
         self.glob_exps = OrderedDict()
         self._conflict_resolution = ConflictResolutionTypes.UNION
+        self._perform_uri_decode = perform_uri_decode
 
     def set_tags(self, tags, raise_ex_for_bad_tags=False):
         self.validate_condition_tags(tags, raise_ex_for_bad_tags)
@@ -566,7 +573,9 @@ class TestExpectations(object):
         self._conflict_resolution = conflict_resolution
         tags_conflict = tags_conflict or _default_tags_conflict
         try:
-            parser = TaggedTestListParser(raw_data, conflict_resolution)
+            parser = TaggedTestListParser(
+                raw_data, conflict_resolution,
+                perform_uri_decode=self._perform_uri_decode)
         except ParseError as e:
             return 1, str(e)
         # If we have parsed another tagged list before, ensure that the tag sets
@@ -644,7 +653,8 @@ class TestExpectations(object):
 
         # Ensure that the given test name is in the same decoded format that
         # is used internally so that %20 is handled properly.
-        test = uri_decode_spaces(test)
+        if self._perform_uri_decode:
+          test = uri_decode_spaces(test)
         self._results = set()
         self._reasons = set()
         self._exp_tags = set()
@@ -754,7 +764,8 @@ class TestExpectations(object):
         broken_exps = []
         # Apply the same temporary encoding we do when ingesting/comparing
         # expectations.
-        test_names = [uri_decode_spaces(tn) for tn in test_names]
+        if self._perform_uri_decode:
+          test_names = [uri_decode_spaces(tn) for tn in test_names]
         test_names = set(test_names)
         for pattern, exps in self.individual_exps.items():
             if pattern not in test_names:
