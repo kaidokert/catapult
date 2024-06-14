@@ -16,6 +16,24 @@
       "message": "LGTM, although it seems like a better long-term solution would be to upgrade the version of `google-endpoints` that we have (or switch to a vpython-provided version?)",
       "revId": "80409c7befade82da2044f9632c685927f62c717",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "756171ae_8c60d0cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-14T18:18:08Z",
+      "side": 1,
+      "message": "It looks like google-endpoints was last updated in 2018. So would still need the modifications as the 6 year old version is still \"import mock\". Not to say that we shouldn\u0027t update for the sake of updating.",
+      "parentUuid": "1ac54558_7844a585",
+      "revId": "80409c7befade82da2044f9632c685927f62c717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
