@@ -34,6 +34,24 @@
       "parentUuid": "1ac54558_7844a585",
       "revId": "80409c7befade82da2044f9632c685927f62c717",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77740368_bc5cb262",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-14T18:50:47Z",
+      "side": 1,
+      "message": "That almost sounds to me like `google-endpoints` has been deprecated (or the thing we\u0027re using that relies on it has been deprecated), as AFAIK all the other Google Python libraries I\u0027ve seen are updated relatively regularly and explicitly support Python 3 (whereas `google-endpoints` only says it\u0027s tested on 2.7)",
+      "parentUuid": "756171ae_8c60d0cf",
+      "revId": "80409c7befade82da2044f9632c685927f62c717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
