@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea510da_ac129c5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-17T23:32:56Z",
+      "side": 1,
+      "message": "If we\u0027re going to make spaces work in test names for GPU tests, is there really still a need for the URI encoding for Blink tests? Could we just allow spaces in the Blink test names as well?\n\nI think in both cases you\u0027re going to have to escape \u0027]\u0027, because that\u0027ll be the delimiter that indicates that you\u0027re at the end of the test name, but apart from that, I\u0027m not sure if I know of an argument for requiring encoding for the Blink tests.\n\nI assume things like TestHaus will have to (and probably already do) support spaces and other syntactic characters in test names regardless ...",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
