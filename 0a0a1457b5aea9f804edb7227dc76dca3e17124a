@@ -16,6 +16,24 @@
       "message": "If we\u0027re going to make spaces work in test names for GPU tests, is there really still a need for the URI encoding for Blink tests? Could we just allow spaces in the Blink test names as well?\n\nI think in both cases you\u0027re going to have to escape \u0027]\u0027, because that\u0027ll be the delimiter that indicates that you\u0027re at the end of the test name, but apart from that, I\u0027m not sure if I know of an argument for requiring encoding for the Blink tests.\n\nI assume things like TestHaus will have to (and probably already do) support spaces and other syntactic characters in test names regardless ...",
       "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f7cecb_41d9004a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-17T23:49:42Z",
+      "side": 1,
+      "message": "\u003e If we\u0027re going to make spaces work in test names for GPU tests, is there really still a need for the URI encoding for Blink tests?\n\nWe don\u0027t need to support spaces for GPU tests, we just need to avoid the automatic encoding/decoding that\u0027s done right now since it doesn\u0027t play nice with some GPU test names which include URI-encoded characters, but that don\u0027t expect to be decoded.\n\nAs a concrete example from the associated bug, `webgpu:shader,execution,expression,call,builtin,workgroupUniformLoad:types:type\u003d\"array%3Cu32,%204%3E\";wgsize\u003d[16,16]` was having its `%20` automatically decoded, which we don\u0027t want.\n\nI did discuss the possibility of supporting spaces directly with Weizhong, but we came to the conclusion that there wasn\u0027t a way to do that without having *some* sort of delimiter.\n\nSimply replacing the `\\S+` in the regex for the test name with `.+` (resulting in `^(?:((?:crbug.com/|skbug.com/|webkit.org/|b/)(?:[^/]*/)?\\d+\\s)*)(?:\\[ (.+) \\] )?(.+) \\[ ([^\\[.]+) \\](\\s+#.*)?$` for the full regex) did mostly work, but it mis-parses lines that have comments specifically formatted to look like expected results, e.g.\n\n```\ncrbug.com/123 Some-test.html [ Timeout ] # [ Failure ]\n```\n\nThat doesn\u0027t seem like too bad of a tradeoff IMO since it seems very unlikely that a user would do that, but it is an unhandled edge case.\n\n\u003e I think in both cases you\u0027re going to have to escape \u0027]\u0027, because that\u0027ll be the delimiter that indicates that you\u0027re at the end of the test name\n\nThat would cause issues for some GPU tests since they include `[` and `]` in their names.",
+      "parentUuid": "eea510da_ac129c5c",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
