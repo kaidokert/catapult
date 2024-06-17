@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "383bc17a_603e0cd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-06-17T16:44:14Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nThis was the only `atexit` handler that I found under telemetry that did not use `atexit_with_log`.\n\nThanks,\nPeter",
+      "revId": "2f9df4399a893ff42f009c81a99d0e7ee3de23b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
