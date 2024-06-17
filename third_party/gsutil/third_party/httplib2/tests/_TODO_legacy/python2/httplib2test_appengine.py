@@ -1,6 +1,6 @@
 """Tests for httplib2 on Google App Engine."""
 
-import mock
+from unittest import mock
 import os
 import sys
 import unittest

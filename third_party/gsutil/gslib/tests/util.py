@@ -43,7 +43,7 @@ import crcmod
 import gslib
 from gslib.kms_api import KmsApi
 from gslib.project_id import PopulateProjectId
-import mock_storage_service  # From boto/tests/integration/s3
+from unittest import mock_storage_service  # From boto/tests/integration/s3
 
 from gslib.cloud_api import ResumableDownloadException
 from gslib.cloud_api import ResumableUploadException

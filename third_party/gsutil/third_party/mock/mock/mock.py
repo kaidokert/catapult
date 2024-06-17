@@ -75,7 +75,7 @@ from six import wraps
 __version__ = '2.0.0'
 version_info = (2, 0, 0, 'final', 0)
 
-import mock
+from unittest import mock
 
 try:
     inspectsignature = inspect.signature

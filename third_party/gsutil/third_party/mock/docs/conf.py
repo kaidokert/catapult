@@ -14,7 +14,7 @@
 import sys, os
 sys.path.insert(0, os.path.abspath('..'))
 
-import mock
+from unittest import mock
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -31,7 +31,7 @@ extensions = ['sphinx.ext.doctest']
 doctest_global_setup = """
 import os
 import sys
-import mock
+from unittest import mock
 from mock import * # yeah, I know :-/
 import unittest2
 import __main__
