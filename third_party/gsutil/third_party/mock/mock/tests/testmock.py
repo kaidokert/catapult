@@ -10,7 +10,7 @@ import tempfile
 import six
 import unittest2 as unittest
 
-import mock
+from unittest import mock
 from mock import (
     call, DEFAULT, patch, sentinel,
     MagicMock, Mock, NonCallableMock,
