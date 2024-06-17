@@ -52,6 +52,24 @@
       "parentUuid": "756171ae_8c60d0cf",
       "revId": "80409c7befade82da2044f9632c685927f62c717",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bf02488_8200e465",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-17T17:53:41Z",
+      "side": 1,
+      "message": "Yeah, documentaiton only says 2.7. https://cloud.google.com/endpoints/docs/frameworks/python/get-started-frameworks-python\n\nAnd then https://groups.google.com/g/google-cloud-endpoints/c/MnbLC95W1y4/m/nbmrUkVWBgAJ",
+      "parentUuid": "77740368_bc5cb262",
+      "revId": "80409c7befade82da2044f9632c685927f62c717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
