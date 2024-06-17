@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96cf7342_37bf47cb",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-17T23:00:49Z",
+      "side": 1,
+      "message": "Done, I originally only had the `self._encode_func` check, but that was causing a couple of Blink tests to fail. Looks like that was caused by the missed forwarding of the encoder to `TaggedTestListParser`, though.",
+      "parentUuid": "f908f811_b82e8b0b",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 57
+      },
+      "revId": "eb7ef306563ab1451045d5b4e8d45b6e88e6a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd539189_4cb7b5c2",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-06-17T21:47:15Z",
       "side": 1,
       "message": "Is this needed? Since we already checked `self.test \u003d\u003d other.test` and supposedly we are not going to compare Expectations with different encoding method?",
+      "range": {
+        "startLine": 117,
+        "startChar": 16,
+        "endLine": 117,
+        "endChar": 59
+      },
+      "revId": "eb7ef306563ab1451045d5b4e8d45b6e88e6a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6140387f_1bed5970",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-17T23:00:49Z",
+      "side": 1,
+      "message": "In normal usage, we wouldn\u0027t expect to be comparing expectations with different encoding methods, but it seemed relevant to include this in the check since two expectations with different encodings shouldn\u0027t be considered equal.\n\nI did change this to directly compare the encoder functions instead of storing `encoded_test`, though.",
+      "parentUuid": "fd539189_4cb7b5c2",
       "range": {
         "startLine": 117,
         "startChar": 16,
@@ -81,6 +129,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e37f826_39b850ca",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-17T23:00:49Z",
+      "side": 1,
+      "message": "Long-term, I believe that should be fine, However, doing that right now causes a number of tests to fail because they\u0027re creating expectations directly and comparing them to expectations created from a parser. I\u0027ve updated the TODOs to specify that the default should be `None` and usage gated by checks.",
+      "parentUuid": "b65c5799_46eb6732",
+      "revId": "eb7ef306563ab1451045d5b4e8d45b6e88e6a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bce9af4_7325f054",
@@ -94,6 +160,24 @@
       "writtenOn": "2024-06-17T21:47:15Z",
       "side": 1,
       "message": "Supposedly the encode/decode function for web tests will be passed in from outside, so we should pass them in from here?",
+      "revId": "eb7ef306563ab1451045d5b4e8d45b6e88e6a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53f4e07f_46189cd4",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-17T23:00:49Z",
+      "side": 1,
+      "message": "Yep, I missed this spot.",
+      "parentUuid": "0bce9af4_7325f054",
       "revId": "eb7ef306563ab1451045d5b4e8d45b6e88e6a05a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
