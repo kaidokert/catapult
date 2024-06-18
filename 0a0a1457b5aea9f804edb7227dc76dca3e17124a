@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "325cd4f7_b1f8b24d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T20:46:25Z",
+      "side": 1,
+      "message": "GPU tests can include `[`.",
+      "parentUuid": "d8877c4b_d4c8fa3c",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70a4289e_06a83213",
@@ -85,6 +103,24 @@
           ]
         }
       ],
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c34b4ac8_f73c5333",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T20:46:25Z",
+      "side": 1,
+      "message": "`self._encode_func` isn\u0027t called directly in this class, and all places where it can be called in other classes has a default set already. This will all be going away shortly once Blink is moved onto the hooks, anyways, as we\u0027ll just use the presence of `None` to mean do nothing.",
+      "parentUuid": "70a4289e_06a83213",
       "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -130,6 +166,24 @@
           ]
         }
       ],
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3190423b_d06b8f92",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T20:46:25Z",
+      "side": 1,
+      "message": "I do it to establish that the following `assertNotEqual` calls pass due only to the one argument that\u0027s changing. It\u0027s possible that the identical calls could return non-equal values, e.g. if the default `encode_func` was `lambda x: x` - while each expectation has functionally the same `encode_func`, the actual reference for each one would be unique.",
+      "parentUuid": "61d67de7_a76644ca",
       "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
