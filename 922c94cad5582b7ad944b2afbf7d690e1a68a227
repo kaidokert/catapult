@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9147e7e_35d14f67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T23:47:25Z",
+      "side": 1,
+      "message": "I vaguely remember running into something like this years ago, which was one of the reasons why I started preferring `unittest.mock` when possible.",
+      "revId": "922c94cad5582b7ad944b2afbf7d690e1a68a227",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
