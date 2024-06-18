@@ -16,6 +16,57 @@
       "message": "I saw Jeff synced to catapult/third_party/depot_tools and I synced to chromium/src/depot_tools. If I should use the catapult copy instead, let me know. \n\nhttps://source.chromium.org/chromium/chromium/tools/depot_tools/+/66df2a3ec70d0628d47df1fdba69838a870a1303:gclient_eval.py;l\u003d135",
       "revId": "887070156d394b1ebef2a30189c8c8bb84824a93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86ea6cc_d5b0992e",
+        "filename": "third_party/depot_tools/depot_tools/gclient_eval.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-06-18T18:48:17Z",
+      "side": 1,
+      "message": "gclient_utils doesn\u0027t exist in Catapult, so just raise Error.",
+      "range": {
+        "startLine": 482,
+        "startChar": 14,
+        "endLine": 482,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ea0c57c1_a77ce0a3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "third_party/depot_tools/depot_tools/gclient_eval.py",
+              "range": {
+                "startLine": 482,
+                "startChar": 0,
+                "endLine": 483,
+                "endChar": 0
+              },
+              "replacement": "        raise Error(str(e))\n"
+            },
+            {
+              "path": "third_party/depot_tools/depot_tools/gclient_eval.py",
+              "range": {
+                "startLine": 523,
+                "startChar": 0,
+                "endLine": 524,
+                "endChar": 0
+              },
+              "replacement": "                raise Error(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "887070156d394b1ebef2a30189c8c8bb84824a93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
