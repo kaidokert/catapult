@@ -67,6 +67,30 @@
       ],
       "revId": "887070156d394b1ebef2a30189c8c8bb84824a93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f43eb23a_4a14c702",
+        "filename": "third_party/depot_tools/depot_tools/gclient_eval.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-06-18T18:50:27Z",
+      "side": 1,
+      "message": "thanks for the catch! Done.",
+      "parentUuid": "a86ea6cc_d5b0992e",
+      "range": {
+        "startLine": 482,
+        "startChar": 14,
+        "endLine": 482,
+        "endChar": 27
+      },
+      "revId": "887070156d394b1ebef2a30189c8c8bb84824a93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
