@@ -113,16 +113,18 @@ def MarshalToAttempt(quests, change_data, legacy_attempt):
 
     digest = isolate_details.get('value', '').split('/')
     digest_url = isolate_details.get('url', '')
-    test_exec._result_arguments = {
-        'cas_root_ref': {
-            'casInstance':
-                digest_url[len(CAS_URL):].split('blobs')[0].strip('/'),
-            'digest': {
-                'sizeBytes': digest[1],
-                'hash': digest[0]
-            }
-        }
-    }
+    # when the swarming task errors, no isolate is returned.
+    if digest != '':
+      test_exec._result_arguments = {
+          'cas_root_ref': {
+              'casInstance':
+                  digest_url[len(CAS_URL):].split('blobs')[0].strip('/'),
+              'digest': {
+                  'sizeBytes': digest[1],
+                  'hash': digest[0]
+              }
+          }
+      }
     test_exec._completed = True
     return test_exec
 
