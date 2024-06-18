@@ -1,0 +1,128 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df7458c4_e10f9dab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T18:16:12Z",
+      "side": 1,
+      "message": "LGTM % nits",
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaca2805_29eb6be6",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T18:16:12Z",
+      "side": 1,
+      "message": "Uber nit: Can be simplified to a single self.assertEqual",
+      "range": {
+        "startLine": 292,
+        "startChar": 8,
+        "endLine": 298,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0d32fbd6_585329e5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "third_party/typ/typ/tests/result_sink_test.py",
+              "range": {
+                "startLine": 292,
+                "startChar": 0,
+                "endLine": 294,
+                "endChar": 0
+              },
+              "replacement": "        self.assertEqual(results, [\n"
+            },
+            {
+              "path": "third_party/typ/typ/tests/result_sink_test.py",
+              "range": {
+                "startLine": 295,
+                "startChar": 0,
+                "endLine": 297,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "third_party/typ/typ/tests/result_sink_test.py",
+              "range": {
+                "startLine": 298,
+                "startChar": 0,
+                "endLine": 299,
+                "endChar": 0
+              },
+              "replacement": "        ])\n"
+            }
+          ]
+        }
+      ],
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2facbb4a_8d8c79d7",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T18:16:12Z",
+      "side": 1,
+      "message": "Nit: Use `assertRaisesRegex` to ensure that you\u0027re failing for the expected reason.",
+      "range": {
+        "startLine": 304,
+        "startChar": 18,
+        "endLine": 304,
+        "endChar": 30
+      },
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae8dfcb4_580cfe67",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T18:16:12Z",
+      "side": 1,
+      "message": "Nit: Ditto.",
+      "range": {
+        "startLine": 345,
+        "startChar": 22,
+        "endLine": 345,
+        "endChar": 34
+      },
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
