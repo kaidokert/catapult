@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b71f3eb1_00bcaeec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-06-18T19:12:13Z",
+      "side": 1,
+      "message": "Also add a small change under dashboard/dashboard/* (maybe update a comment somewhere). Otherwise this CL will not trigger a deployment of services.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "4721510e5ed3085ca31583d7bd263abc708998f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
