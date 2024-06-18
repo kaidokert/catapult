@@ -108,6 +108,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55adf816_889b874e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-18T22:01:29Z",
+      "side": 1,
+      "message": "Okay, maybe I\u0027m confused about this patch then. If you\u0027re not going to encode the GPU tests and they have spaces in the name, won\u0027t you need to change the regexes that actually parse the line?",
+      "parentUuid": "5a8b157d_74098c20",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70a4289e_06a83213",
