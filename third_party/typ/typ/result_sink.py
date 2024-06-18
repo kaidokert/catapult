@@ -21,6 +21,7 @@ See go/resultdb and go/resultsink for more details.
 """
 
 import base64
+import contextlib
 import hashlib
 import json
 import os
@@ -72,6 +73,7 @@ class ResultSinkReporter(object):
         self._session = None
         self._chromium_src_dir = None
         self._output_file = output_file
+        self._pending_results = None
         if disable:
             return
 
@@ -264,6 +266,33 @@ class ResultSinkReporter(object):
                 test_id, status, result_is_expected, artifacts, tag_list,
                 html_summary, result.took, test_metadata, result.failure_reason)
 
+    @contextlib.contextmanager
+    def batch_results(self):
+        """Begin buffering test results, which will be uploaded on exit.
+
+        This method allows callers to report multiple test results in one
+        request. Batching results can significantly improve the performance of
+        `report_individual_test_result()`, which defaults to one result per
+        request.
+
+        Usage notes:
+          * The reporter is not threadsafe while batching is active.
+          * The returned context manager is not reentrant.
+          * The context manager will pass through an exception, but cancel the
+            upload.
+        """
+        if self._pending_results is not None:
+            raise Exception('`batch_results()` cannot be nested')
+        self._pending_results = json_results.ResultSet()
+        try:
+            yield
+            if self._pending_results.results:
+                payload = json.dumps({
+                    'testResults': self._pending_results.results,
+                })
+                self._post(self._url, payload)
+        finally:
+            self._pending_results = None
 
     def _report_result(
             self, test_id, status, expected, artifacts, tag_list, html_summary,
@@ -298,6 +327,9 @@ class ResultSinkReporter(object):
                 test_id, status, expected, artifacts, tag_list, html_summary,
                 duration, test_metadata, failure_reason)
 
+        if self._pending_results:
+            self._pending_results.add(test_result)
+            return 0
         return self._post(self._url, json.dumps({'testResults': [test_result]}))
 
     def _post(self, url, content):

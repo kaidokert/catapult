@@ -265,6 +265,72 @@ class ResultSinkReporterTest(unittest.TestCase):
                 '\n').split('\n')]
         self.assertEqual(got_results, [expected_result, expected_result])
 
+    def testBatchResults(self):
+        self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
+        rsr = ResultSinkReporterWithFakeSrc(self._host)
+        rsr._post = StubWithRetval(2)
+        with rsr.batch_results():
+            result1 = CreateResult({
+                'name': 'test_name',
+                'actual': json_results.ResultType.Timeout,
+            })
+            status1 = rsr.report_individual_test_result(
+                result1, ARTIFACT_DIR, CreateTestExpectations(), FAKE_TEST_PATH,
+                FAKE_TEST_LINE, 'test_name_prefix.')
+            self.assertEqual(status1, 0)
+
+            result2 = CreateResult({
+                'name': 'test_name',
+                'actual': json_results.ResultType.Failure,
+            })
+            status2 = rsr.report_individual_test_result(
+                result2, ARTIFACT_DIR, CreateTestExpectations(), FAKE_TEST_PATH,
+                FAKE_TEST_LINE, 'test_name_prefix.')
+            self.assertEqual(status2, 0)
+
+        results = json.loads(rsr._post.args[1])['testResults']
+        self.assertEqual(len(results), 2, results)
+        self.assertEqual(
+            CreateExpectedTestResult(status='ABORT', expected=False),
+            results[0])
+        self.assertEqual(
+            CreateExpectedTestResult(status='FAIL', expected=False),
+            results[1])
+
+    def testBatchResultsCancel(self):
+        self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
+        rsr = ResultSinkReporterWithFakeSrc(self._host)
+        rsr._post = StubWithRetval(2)
+        with self.assertRaises(ValueError):
+            with rsr.batch_results():
+                result = CreateResult({
+                    'name': 'test_name',
+                    'actual': json_results.ResultType.Timeout,
+                })
+                status = rsr.report_individual_test_result(
+                    result, ARTIFACT_DIR, CreateTestExpectations(),
+                    FAKE_TEST_PATH, FAKE_TEST_LINE, 'test_name_prefix.')
+                self.assertEqual(status, 0)
+                raise ValueError('should propagate past `batch_results()`')
+        self.assertIsNone(rsr._post.args)
+
+    def testBatchResultsNoResults(self):
+        self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
+        rsr = ResultSinkReporterWithFakeSrc(self._host)
+        rsr._post = StubWithRetval(2)
+        with rsr.batch_results():
+            pass
+        self.assertIsNone(rsr._post.args)
+
+    def testBatchResultsCannotNest(self):
+        self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
+        rsr = ResultSinkReporterWithFakeSrc(self._host)
+        rsr._post = StubWithRetval(2)
+        with rsr.batch_results():
+            with self.assertRaises(Exception):
+                with rsr.batch_results():
+                    pass
+
     def testReportIndividualTestResultFailureReason(self):
         self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
         rsr = ResultSinkReporterWithFakeSrc(self._host)
