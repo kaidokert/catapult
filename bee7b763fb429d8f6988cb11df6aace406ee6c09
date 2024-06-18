@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0d1404a_804e37cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-06-18T01:08:32Z",
+      "side": 1,
+      "message": "PTAL.\n\nHere is an example failing workflow: https://temporal-ui.skia.org/namespaces/perf-internal/workflows/fb136d38-a834-4912-a82c-58ef61886a64/9e6400d8-7b88-4c78-b323-2abd493d8065/history\n\nError log: https://pantheon.corp.google.com/logs/query;cursorTimestamp\u003d2024-06-17T17:22:56.922351Z;duration\u003dP1D;query\u003d%22Exception%20on%20%2Fapi%2Fjob%20%22%0Aseverity%3E%3DERROR%0Atimestamp%3D%222024-06-17T17:22:56.922351Z%22%0AinsertId%3D%22120t09ffdjfhdo%22?project\u003dchromeperf\n\nMissing isolate: https://screenshot.googleplex.com/B9NgUiHA4ezn6Le.png\n\nAccompanying swarming task: https://chrome-swarming.appspot.com/task?id\u003d6a3f3cc69ecd5e10",
+      "revId": "bee7b763fb429d8f6988cb11df6aace406ee6c09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
