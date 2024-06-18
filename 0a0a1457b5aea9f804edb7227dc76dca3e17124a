@@ -126,6 +126,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54478205_1be9a034",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-18T22:09:36Z",
+      "side": 1,
+      "message": "GPU tests don\u0027t have actual spaces in them. A handful of them have URI-encoded spaces in them (`%20`), but we don\u0027t want those to be interpreted as actual spaces. When typ parses an expectation, GPU tests want it to end up with a string that\u0027s identical to what\u0027s in the file.\n\nThe purpose of this patch is so that we can move the Blink-specific behavior (automatically decoding/encoding `%20` to space) out of typ and have Blink provide hooks to do that instead.",
+      "parentUuid": "55adf816_889b874e",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70a4289e_06a83213",
