@@ -79,6 +79,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46df4d8d_6b708d4d",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2024-06-18T18:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaca2805_29eb6be6",
+      "range": {
+        "startLine": 292,
+        "startChar": 8,
+        "endLine": 298,
+        "endChar": 23
+      },
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2facbb4a_8d8c79d7",
@@ -102,6 +126,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f634707_56955638",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2024-06-18T18:58:42Z",
+      "side": 1,
+      "message": "TIL. Done.",
+      "parentUuid": "2facbb4a_8d8c79d7",
+      "range": {
+        "startLine": 304,
+        "startChar": 18,
+        "endLine": 304,
+        "endChar": 30
+      },
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae8dfcb4_580cfe67",
@@ -115,6 +163,30 @@
       "writtenOn": "2024-06-18T18:16:12Z",
       "side": 1,
       "message": "Nit: Ditto.",
+      "range": {
+        "startLine": 345,
+        "startChar": 22,
+        "endLine": 345,
+        "endChar": 34
+      },
+      "revId": "acc379f553291ac216e63b37fbacf44cb31ced65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3420c467_ee964bbe",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1536918
+      },
+      "writtenOn": "2024-06-18T18:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae8dfcb4_580cfe67",
       "range": {
         "startLine": 345,
         "startChar": 22,
