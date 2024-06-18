@@ -92,8 +92,8 @@ class GClientEvalTest(unittest.TestCase):
     def test_not_whitelisted(self):
         with self.assertRaises(ValueError) as cm:
             gclient_eval._gclient_eval('[x for x in [1, 2, 3]]')
-        self.assertIn('unexpected AST node: <ast.ListComp object',
-                      str(cm.exception))
+        self.assertIn('unexpected AST node', str(cm.exception))
+        self.assertIn('ast.ListComp object', str(cm.exception))
 
     def test_dict_ordered(self):
         for test_case in itertools.permutations(range(4)):
@@ -1273,7 +1273,7 @@ class ParseTest(unittest.TestCase):
             }, local_scope)
 
     def test_fails_to_merge_same_dep_with_different_revisions(self):
-        with self.assertRaises(gclient_eval.Error) as cm:
+        with self.assertRaises(gclient_eval.gclient_utils.Error) as cm:
             gclient_eval.Parse(
                 file_join([
                     'deps = {',
