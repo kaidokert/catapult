@@ -34,6 +34,104 @@
       "parentUuid": "eea510da_ac129c5c",
       "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8877c4b_d4c8fa3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-18T20:32:43Z",
+      "side": 1,
+      "message": "Is ` [ ` safe as an ending delimiter for GPU tests?\n\nIf so, I think you could write `((?:[^ ]| [^\\[][^ ]| \\[[^ ])+)` for the test name if you adjusted the following string to not start with `\\[`.\n\nBut I didn\u0027t actually test that and I feel dirty writing it. I am no fan of complicated regexes and this one is already way too complicated. \n\nBut, if a GPU test might include ` [ ` then you\u0027re probably out of luck and need some encoding mechanism for it.",
+      "parentUuid": "d9f7cecb_41d9004a",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70a4289e_06a83213",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-18T20:32:43Z",
+      "side": 1,
+      "message": "Should this be `encode_func or uri_encode_spaces`?",
+      "fixSuggestions": [
+        {
+          "fixId": "63563093_fd573f0f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "third_party/typ/typ/expectations_parser.py",
+              "range": {
+                "startLine": 532,
+                "startChar": 0,
+                "endLine": 533,
+                "endChar": 0
+              },
+              "replacement": "        self._encode_func \u003d encode_func or uri_encode_spaces\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61d67de7_a76644ca",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-18T20:32:43Z",
+      "side": 1,
+      "message": "I wouldn\u0027t think testing for equality between two identical calls is terribly interesting?",
+      "fixSuggestions": [
+        {
+          "fixId": "0f0bcd5b_a1d575d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "third_party/typ/typ/tests/expectations_parser_test.py",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "        e \u003d self.create_expectation_with_values(reason\u003d\u0027crbug.com/2345\u0027)\n        other \u003d self.create_expectation_with_values(reason\u003d\u0027crbug.com/2345\u0027)\n"
+            },
+            {
+              "path": "third_party/typ/typ/tests/expectations_parser_test.py",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
