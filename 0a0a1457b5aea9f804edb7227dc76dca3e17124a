@@ -72,6 +72,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "440ecc4f_0db5b644",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2024-06-18T21:45:23Z",
+      "side": 1,
+      "message": "\u003e GPU tests can include `[`.\n\nYes, you said that. This may not have been obvious from reading the comment, but I wrote space-[-space, i.e., \"\\x20[\\x20\". (Which I don\u0027t think is what you were replying with)?\n\nI\u0027m not clear from the bug: will the GPU test names be encoded somehow? Or have things been working before but that was because you weren\u0027t tripping over some character in a test name?",
+      "parentUuid": "325cd4f7_b1f8b24d",
+      "revId": "0a0a1457b5aea9f804edb7227dc76dca3e17124a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70a4289e_06a83213",
