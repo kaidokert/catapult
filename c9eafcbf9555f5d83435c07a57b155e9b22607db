@@ -33,6 +33,24 @@
       "message": "Some part of my brain is saying this will cause some other weird subtle issue, but I can\u0027t point to any actual issue, so I\u0027m fine with landing this for now. Please keep an eye our for weird test behavior after this lands, though.",
       "revId": "c9eafcbf9555f5d83435c07a57b155e9b22607db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55eeb92a_29d57362",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-06-19T13:20:04Z",
+      "side": 1,
+      "message": "Thanks Brian! Initial results show that runs on android-arm64-pgo after this patch landed hasn\u0027t hit the timeout issue again, hopefully that trend continues (e.g. first build with this patch: https://ci.chromium.org/ui/p/chrome/builders/ci/android-arm64-pgo/4504/overview, I go to the failing shard, then CAS output, then the benchmark and txt log).\n\nI didn\u0027t realize there were so many reverse forwarders needing to be closed, no wonder those happening at GC can cause contention/race conditions. 😄\n\nHere\u0027s all 31 atexit_with_log registrants: https://paste.googleplex.com/5135873134034944?raw\n\n14 of them are `Forwarder object`.",
+      "parentUuid": "b4925dee_0d1d7a7a",
+      "revId": "c9eafcbf9555f5d83435c07a57b155e9b22607db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
