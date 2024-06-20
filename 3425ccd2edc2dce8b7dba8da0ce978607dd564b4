@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6788291_d8dcc0aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-20T22:15:40Z",
+      "side": 1,
+      "message": "Not sure if third_party/httplib2/python2/httplib2test_appengine.py should be changed as it has \"python2\" in its path.",
+      "revId": "3425ccd2edc2dce8b7dba8da0ce978607dd564b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
