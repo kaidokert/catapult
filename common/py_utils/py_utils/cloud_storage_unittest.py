@@ -9,7 +9,7 @@ import sys
 import tempfile
 import unittest
 
-import mock
+from unittest import mock
 from pyfakefs import fake_filesystem_unittest
 
 import py_utils
@@ -373,6 +373,7 @@ class GetIfChangedTests(BaseFakeFsUnitTest):
 
     mock_get_locked.side_effect = _FakeGetLocked
 
+
     self.CreateFiles([file_path, hash_path])
     self.assertEqual(mock_calculate_hash.call_count, 0)
     # hash_path and file_path exist, and have different hashes. This first call
@@ -385,6 +386,7 @@ class GetIfChangedTests(BaseFakeFsUnitTest):
     self.assertTrue(os.path.exists(file_path + '.fetchts'))
 
     # Subsequent invocations of GetIfChanged should not invoke CalculateHash.
+    self.assertEqual(mock_calculate_hash.call_count, 1)
     self.assertFalse(cloud_storage.GetIfChanged(file_path,
                                                 cloud_storage.PUBLIC_BUCKET))
     self.assertFalse(cloud_storage.GetIfChanged(file_path,
