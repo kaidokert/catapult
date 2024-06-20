@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bce90c8_9178a682",
+        "filename": "dashboard/dashboard/pinpoint/handlers/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-06-20T17:32:06Z",
+      "side": 1,
+      "message": "maybe we can still set casInstance and leave this logic isolated to digest? wdyt?",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 24
+      },
+      "revId": "e7559713345c5944da901c403a77f2a5035e2485",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
