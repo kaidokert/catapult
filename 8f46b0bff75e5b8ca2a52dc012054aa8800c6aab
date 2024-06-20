@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b3b3c4_9e370576",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-20T22:19:36Z",
+      "side": 1,
+      "message": "I suspect this is because `CloudStorageInfo` has no `__eq__` implemented. I believe in that case, two instances will only be considered equal if they are the same object.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 197
+      },
+      "revId": "8f46b0bff75e5b8ca2a52dc012054aa8800c6aab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d82dd8c3_2f2bb0bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-20T22:19:36Z",
+      "side": 1,
+      "message": "LGTM. Technically better to fix the equality issue, but I also don\u0027t think it\u0027s your responsibility in this case, so no need to fix it unless you\u0027re feeling ambitious.",
+      "revId": "8f46b0bff75e5b8ca2a52dc012054aa8800c6aab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
