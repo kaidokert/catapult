@@ -22,6 +22,30 @@
       },
       "revId": "e7559713345c5944da901c403a77f2a5035e2485",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85dd22d_c21835dc",
+        "filename": "dashboard/dashboard/pinpoint/handlers/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-06-20T17:38:57Z",
+      "side": 1,
+      "message": "I believe the digest URL is also nil when swarming task fails.",
+      "parentUuid": "6bce90c8_9178a682",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 24
+      },
+      "revId": "e7559713345c5944da901c403a77f2a5035e2485",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
