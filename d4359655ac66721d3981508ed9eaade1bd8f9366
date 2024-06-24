@@ -33,6 +33,24 @@
       "message": "I think the new tryserver should be renamed to \"Catapult Linux Tryserver\". (or equivalently, delete the new tryserver and change the old one to use Ubuntu-22.04.)",
       "revId": "d4359655ac66721d3981508ed9eaade1bd8f9366",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "036543d6_f2a25c5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-06-24T20:47:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec23c6c_db808c81",
+      "revId": "d4359655ac66721d3981508ed9eaade1bd8f9366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
