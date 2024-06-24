@@ -10,12 +10,11 @@ import logging
 import os
 import unittest
 
+from unittest import mock
+
 from devil import devil_env
 from devil.android.sdk import version_codes
 from devil.utils import mock_calls
-
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
-  import mock  # pylint: disable=import-error
 
 
 class _DummyAdb(object):

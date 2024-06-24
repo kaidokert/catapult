@@ -10,8 +10,7 @@ from devil import devil_env
 from devil.android import device_errors
 from devil.android import md5sum
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
-  import mock  # pylint: disable=import-error
+from unittest import mock
 
 TEST_OUT_DIR = os.path.join('test', 'out', 'directory')
 HOST_MD5_EXECUTABLE = os.path.join(TEST_OUT_DIR, 'md5sum_bin_host')

@@ -37,8 +37,7 @@ from devil.utils import mock_calls
 with devil_env.SysPath(os.path.join(devil_env.PY_UTILS_PATH)):
   from py_utils import tempfile_ext
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
-  import mock  # pylint: disable=import-error
+from unittest import mock
 
 TEST_APK_PATH = '/fake/test/app.apk'
 TEST_APEX_PATH = '/fake/test/module.apex'
