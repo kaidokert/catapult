@@ -9,8 +9,7 @@ from devil.android import device_utils
 from devil.android.perf import perf_control
 from devil.android.sdk import adb_wrapper
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
-  import mock
+from unittest import mock
 
 
 def _ShellCommandHandler(  # pylint: disable=unused-argument
