@@ -101,6 +101,14 @@ _ALERT_GROUP_DEFAULT_SIGNAL_QUALITY_SCORE = 0.6
 # visually.
 _SANDWICH = u'\U0001f96a'
 
+# Anomaly detection can detect large anomalies that are verified to be
+# small regressions. These incidents occur when anomaly detection is
+# sampling data at low sample sizes with large variance. Rather than bisect
+# these small regressions which may turn out to be false positives,
+# we block the bisection if the difference of the control and treatment
+# median is < _RELATIVE_MAGNITUDE_THRESHOLD of the original anomaly
+# detected difference.
+_RELATIVE_MAGNITUDE_THRESHOLD = 0.05
 
 class SignalQualityScore(ndb.Model):
   score = ndb.FloatProperty()
@@ -574,6 +582,19 @@ class AlertGroupWorkflow:
       else:
         raise ValueError('execution %s result is missing parameters: %s' %
                          (execution['name'], results_dict))
+      if decision and 'control_median' in results_dict and 'treatment_median' in results_dict:
+        regression_magnitude = abs(results_dict['control_median'] -
+                                   results_dict['treatment_median'])
+        relative_magnitude = regression_magnitude / abs(
+            regression.comparison_magnitude
+        ) if regression.comparison_magnitude else 1
+        if relative_magnitude < _RELATIVE_MAGNITUDE_THRESHOLD:
+          decision = false
+          logging.warning(
+              'Regression verification %s decision reversed because '
+              'regression magnitude: %s is much less than comparison magnitude %s.',
+              execution['name'], regression_magnitude,
+              regression.comparison_magnitude)
       logging.info(
           'Regression verification %s for project: %s and '
           'bug: %s succeeded with repro decision %s.', execution['name'],
