@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae98bfd_229c08db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-06-26T22:56:01Z",
+      "side": 1,
+      "message": "Realized some of our builders were still using older Ubuntu version",
+      "revId": "65b00d6bc5f3925bbd29412e94129adf9f1c2476",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
