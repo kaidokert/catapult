@@ -13,6 +13,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sync"
 	"strconv"
 	"strings"
 	"time"
@@ -68,7 +69,7 @@ func updateDates(h http.Header, now time.Time) {
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
-	return &replayingProxy{a, scheme, transformers, quietMode}
+	return &replayingProxy{a: a, scheme: scheme, transformers: transformers, quietMode: quietMode}
 }
 
 type replayingProxy struct {
@@ -76,9 +77,12 @@ type replayingProxy struct {
 	scheme       string
 	transformers []ResponseTransformer
 	quietMode    bool
+	handlerMu    sync.Mutex
 }
 
 func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	proxy.handlerMu.Lock()
+	defer proxy.handlerMu.Unlock()
 	if req.URL.Path == "/web-page-replay-generate-200" {
 		w.WriteHeader(200)
 		return
