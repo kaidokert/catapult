@@ -13,6 +13,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sync"
 	"strconv"
 	"strings"
 	"time"
@@ -68,7 +69,7 @@ func updateDates(h http.Header, now time.Time) {
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
-	return &replayingProxy{a, scheme, transformers, quietMode}
+	return &replayingProxy{a: a, scheme: scheme, transformers: transformers, quietMode: quietMode}
 }
 
 type replayingProxy struct {
@@ -76,9 +77,12 @@ type replayingProxy struct {
 	scheme       string
 	transformers []ResponseTransformer
 	quietMode    bool
+	handlerMu    sync.Mutex
 }
 
 func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	proxy.handlerMu.Lock()
+	defer proxy.handlerMu.Unlock()
 	if req.URL.Path == "/web-page-replay-generate-200" {
 		w.WriteHeader(200)
 		return
@@ -96,9 +100,12 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	}
 	fixupRequestURL(req, proxy.scheme)
 	logf := makeLogger(req, proxy.quietMode)
+	logf("start processing request")
 
 	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	_, storedResp, sequenceId, err := proxy.a.FindRequest(req)
+	logf("sequenceId %d", sequenceId)
+	// TODO: actually use sequence id - i.e. block until all? previous sequence ids have produced a response
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -162,7 +169,8 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewRecordingProxy(a *WritableArchive, scheme string, transformers []ResponseTransformer) http.Handler {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	return &recordingProxy{http.DefaultTransport.(*http.Transport), a, scheme, transformers}
+	return &recordingProxy{tr: http.DefaultTransport.(*http.Transport), a: a, scheme: scheme,
+						   transformers: transformers, sequenceId: 0}
 }
 
 type recordingProxy struct {
@@ -170,6 +178,8 @@ type recordingProxy struct {
 	a            *WritableArchive
 	scheme       string
 	transformers []ResponseTransformer
+	sequenceId uint32
+	sequenceMu sync.Mutex
 }
 
 func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -239,7 +249,11 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	if err := proxy.a.RecordRequest(req, resp); err != nil {
+	proxy.sequenceMu.Lock()
+	sequenceId := proxy.sequenceId
+	proxy.sequenceId++
+	proxy.sequenceMu.Unlock()
+	if err := proxy.a.RecordRequest(req, resp, sequenceId); err != nil {
 		logf("failed recording request: %v", err)
 	}
 
