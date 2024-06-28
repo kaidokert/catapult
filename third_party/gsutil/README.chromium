@@ -21,3 +21,7 @@ management tasks, including:
 Local Modifications:
 _ Added this file.
 _ Added BUILD.gn
+_ Modified third_party/google-auth-library-python/.kokoro/requirements.txt
+  to reference the version of certifi that is actually provided.
+_ Removed third_party/certifi to ensure that the vpython-provided version is
+  actually used.
