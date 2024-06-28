@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8de3e7_494c3ac6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-28T00:03:27Z",
+      "side": 1,
+      "message": "Trybots look happy with the updated version.\n\nElly, does this seem like a reasonable fix for the bug to you?",
+      "revId": "d1eec72b435cf4a1141d0aead3e986f51a717db0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
