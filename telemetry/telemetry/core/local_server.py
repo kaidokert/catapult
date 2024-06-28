@@ -249,11 +249,6 @@ def _LocalServerBackendMain(args):
 
 
 if __name__ == '__main__':
-  # This trick is needed because local_server.NamedPort is not the
-  # same as sys.modules['__main__'].NamedPort. The module itself is loaded
-  # twice, basically.
-  # pylint: disable=wrong-import-position
-  from telemetry.core import local_server  # pylint: disable=import-self
   sys.exit(
-      local_server._LocalServerBackendMain(  # pylint: disable=protected-access
+      _LocalServerBackendMain(  # pylint: disable=protected-access
           sys.argv[1:]))
