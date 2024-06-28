@@ -16,6 +16,24 @@
       "message": "Trybots look happy with the updated version.\n\nElly, does this seem like a reasonable fix for the bug to you?",
       "revId": "d1eec72b435cf4a1141d0aead3e986f51a717db0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba4fe7b5_af31bb73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-06-28T01:07:43Z",
+      "side": 1,
+      "message": "Thinking about this a bit more, we should probably remove all local copies of certifi to ensure that the vpython-provided one is actually being used. I\u0027ll have a new PS with that out tomorrow morning.",
+      "parentUuid": "0a8de3e7_494c3ac6",
+      "revId": "d1eec72b435cf4a1141d0aead3e986f51a717db0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
