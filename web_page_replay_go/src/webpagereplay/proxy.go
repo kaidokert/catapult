@@ -13,6 +13,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sync"
 	"strconv"
 	"strings"
 	"time"
@@ -68,7 +69,9 @@ func updateDates(h http.Header, now time.Time) {
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
-	return &replayingProxy{a, scheme, transformers, quietMode}
+	res := &replayingProxy{a: a, scheme: scheme, transformers: transformers, quietMode: quietMode}
+	res.cond = sync.NewCond(&res.handlerMu)
+	return res
 }
 
 type replayingProxy struct {
@@ -76,15 +79,36 @@ type replayingProxy struct {
 	scheme       string
 	transformers []ResponseTransformer
 	quietMode    bool
+	handlerMu    sync.Mutex
+	cond		 *sync.Cond
+	highestSequenceId uint32
+	// TODO: remove this after generating a sequences version.
+	generateSequenceId uint32
 }
 
 func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// TODO: move this down
+	proxy.handlerMu.Lock()
+	defer proxy.handlerMu.Unlock()
+
 	if req.URL.Path == "/web-page-replay-generate-200" {
 		w.WriteHeader(200)
 		return
 	}
 	if req.URL.Path == "/web-page-replay-command-exit" {
 		log.Printf("Shutting down. Received /web-page-replay-command-exit")
+		// TODO: remove this part
+		f, err := os.Create("/usr/local/google/home/kraskevich/chromium/src/third_party/crossbench/wpr_cache/archive_AsDEZ8SAYFwWLnG90MyhPA_sequence.wprgo")
+		if err == nil {
+			e := proxy.a.Serialize(f)
+			if e != nil {
+				log.Printf("Serialized failed")
+			} else {
+				log.Printf("Serialized OK")
+			}
+		} else {
+			log.Printf("File creation failed")
+		}
 		os.Exit(0)
 		return
 	}
@@ -96,9 +120,16 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	}
 	fixupRequestURL(req, proxy.scheme)
 	logf := makeLogger(req, proxy.quietMode)
+	logf("start processing request")
 
-	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	// TODO: pass 0
+	seqId := proxy.generateSequenceId
+	skip_sequence_id := strings.Contains(req.URL.Path, "dns")
+	if skip_sequence_id {
+		seqId = 0
+	}
+	logf("generatedSequenceId %d", proxy.generateSequenceId)
+	_, storedResp, sequenceId, err := proxy.a.FindRequest(req, seqId)
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -147,7 +178,18 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		t.Transform(req, storedResp)
 	}
 
-	// Forward the response.
+	logf("sequenceId %d", sequenceId)
+	/*
+	for sequenceId > proxy.highestSequenceId + 1 {
+		// sequenceId - 1 has not been served yet, so something's missing.
+		// TODO: What if Chrome never issues a previous request?
+		// Should we timeout and proceed anyway or something like this.
+		proxy.cond.Wait()
+	}
+	*/
+	// Now forward the response.
+	// Do it under the lock to make sure that the ordering is correct.
+	// Then wake up all other handlers waiting for their turn.
 	logf("serving %v response", storedResp.StatusCode)
 	for k, v := range storedResp.Header {
 		w.Header()[k] = append([]string{}, v...)
@@ -156,13 +198,21 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if _, err := io.Copy(w, storedResp.Body); err != nil {
 		logf("warning: client response truncated: %v", err)
 	}
+	if sequenceId > proxy.highestSequenceId {
+		proxy.highestSequenceId = sequenceId
+	}
+	if !skip_sequence_id && sequenceId == proxy.generateSequenceId && storedResp.StatusCode == 200 {
+		proxy.generateSequenceId++
+	}
+	proxy.cond.Broadcast()
 }
 
 // NewRecordingProxy constructs an HTTP proxy that records responses into an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewRecordingProxy(a *WritableArchive, scheme string, transformers []ResponseTransformer) http.Handler {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	return &recordingProxy{http.DefaultTransport.(*http.Transport), a, scheme, transformers}
+	return &recordingProxy{tr: http.DefaultTransport.(*http.Transport), a: a, scheme: scheme,
+						   transformers: transformers, sequenceId: 0}
 }
 
 type recordingProxy struct {
@@ -170,6 +220,8 @@ type recordingProxy struct {
 	a            *WritableArchive
 	scheme       string
 	transformers []ResponseTransformer
+	sequenceId uint32
+	sequenceMu sync.Mutex
 }
 
 func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -239,7 +291,11 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	if err := proxy.a.RecordRequest(req, resp); err != nil {
+	proxy.sequenceMu.Lock()
+	sequenceId := proxy.sequenceId
+	proxy.sequenceId++
+	proxy.sequenceMu.Unlock()
+	if err := proxy.a.RecordRequest(req, resp, sequenceId); err != nil {
 		logf("failed recording request: %v", err)
 	}
 
