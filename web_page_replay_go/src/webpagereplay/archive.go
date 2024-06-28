@@ -30,6 +30,7 @@ type ArchivedRequest struct {
 	SerializedRequest   []byte
 	SerializedResponse  []byte // if empty, the request failed
 	LastServedSessionId uint32
+	SequenceId uint32
 }
 
 // RequestMatch represents a match when querying the archive for responses to a request
@@ -38,17 +39,20 @@ type RequestMatch struct {
 	Request    *http.Request
 	Response   *http.Response
 	MatchRatio float64
+	SequenceId uint32
 }
 
 func (requestMatch *RequestMatch) SetMatch(
 	match *ArchivedRequest,
 	request *http.Request,
 	response *http.Response,
-	ratio float64) {
+	ratio float64,
+	sequenceId uint32) {
 	requestMatch.Match = match
 	requestMatch.Request = request
 	requestMatch.Response = response
 	requestMatch.MatchRatio = ratio
+	requestMatch.SequenceId = sequenceId
 }
 
 func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
@@ -206,7 +210,7 @@ func assertCompleteURL(url *url.URL) {
 // (https://bugs.chromium.org/p/chromium/issues/detail?id=1215668)
 //
 // TODO: conditional requests
-func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response, error) {
+func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response, uint32, error) {
 	// Clear the input channel on large uploads to prevent WPR
 	// from resetting the connection, and causing the upload
 	// to fail.
@@ -227,7 +231,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 
 	hostMap := a.Requests[req.Host]
 	if len(hostMap) == 0 {
-		return nil, nil, ErrNotFound
+		return nil, nil, 0, ErrNotFound
 	}
 
 	// Exact match. Note that req may be relative, but hostMap keys are always absolute.
@@ -289,7 +293,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 		log.Printf(logStr, reqUrl, len(bestURLs), strings.Join(bestURLs[:], "\n"))
 	}
 
-	return nil, nil, ErrNotFound
+	return nil, nil, 0, ErrNotFound
 }
 
 // Given an incoming request and a set of matches in the archive, identify the best match,
@@ -297,18 +301,18 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 func (a *Archive) findBestMatchInArchivedRequestSet(
 	incomingReq *http.Request,
 	archivedReqs []*ArchivedRequest) (
-	*http.Request, *http.Response, error) {
+	*http.Request, *http.Response, uint32, error) {
 	scheme := incomingReq.URL.Scheme
 
 	if len(archivedReqs) == 0 {
-		return nil, nil, ErrNotFound
+		return nil, nil, 0, ErrNotFound
 	} else if len(archivedReqs) == 1 {
 		archivedReq, archivedResp, err := archivedReqs[0].unmarshal(scheme)
 		if err != nil {
 			log.Println("Error unmarshaling request")
-			return nil, nil, err
+			return nil, nil, 0, err
 		}
-		return archivedReq, archivedResp, err
+		return archivedReq, archivedResp, archivedReqs[0].SequenceId, err
 	}
 
 	// There can be multiple requests with the same URL string. If that's the
@@ -344,23 +348,23 @@ func (a *Archive) findBestMatchInArchivedRequestSet(
 		if a.ServeResponseInChronologicalSequence &&
 			r.LastServedSessionId != a.CurrentSessionId &&
 			ratio > bestInSequenceMatch.MatchRatio {
-			bestInSequenceMatch.SetMatch(r, archivedReq, archivedResp, ratio)
+			bestInSequenceMatch.SetMatch(r, archivedReq, archivedResp, ratio, r.SequenceId)
 		}
 		if ratio > bestMatch.MatchRatio {
-			bestMatch.SetMatch(r, archivedReq, archivedResp, ratio)
+			bestMatch.SetMatch(r, archivedReq, archivedResp, ratio, r.SequenceId)
 		}
 	}
 
 	if a.ServeResponseInChronologicalSequence &&
 		bestInSequenceMatch.Match != nil {
 		bestInSequenceMatch.Match.LastServedSessionId = a.CurrentSessionId
-		return bestInSequenceMatch.Request, bestInSequenceMatch.Response, nil
+		return bestInSequenceMatch.Request, bestInSequenceMatch.Response, bestInSequenceMatch.SequenceId, nil
 	} else if bestMatch.Match != nil {
 		bestMatch.Match.LastServedSessionId = a.CurrentSessionId
-		return bestMatch.Request, bestMatch.Response, nil
+		return bestMatch.Request, bestMatch.Response, bestMatch.SequenceId, nil
 	}
 
-	return nil, nil, ErrNotFound
+	return nil, nil, 0, ErrNotFound
 }
 
 type AddMode int
@@ -371,10 +375,11 @@ const (
 	AddModeSkipExisting      AddMode = 2
 )
 
-func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response, mode AddMode) error {
+func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response, mode AddMode, sequenceId uint32) error {
 	// Always use the absolute URL in this mapping.
 	assertCompleteURL(req.URL)
 	archivedRequest, err := serializeRequest(req, resp)
+	archivedRequest.SequenceId = sequenceId
 	if err != nil {
 		return err
 	}
@@ -426,7 +431,8 @@ func (a *Archive) Edit(edit func(req *http.Request, resp *http.Response) (*http.
 			return nil
 		}
 		// TODO: allow changing scheme or protocol?
-		return clone.addArchivedRequest(newReq, newResp, AddModeAppend)
+		// TODO: handle sequence ids.
+		return clone.addArchivedRequest(newReq, newResp, AddModeAppend, 0)
 	})
 	if err != nil {
 		return nil, err
@@ -439,9 +445,10 @@ func (a *Archive) Merge(other *Archive) error {
 	var numAddedRequests = 0
 	var numSkippedRequests = 0
 	err := other.ForEach(func(req *http.Request, resp *http.Response) error {
-		foundReq, _, notFoundErr := a.FindRequest(req)
+		foundReq, _, _, notFoundErr := a.FindRequest(req)
 		if notFoundErr == ErrNotFound || req.URL.String() != foundReq.URL.String() {
-			if err := a.addArchivedRequest(req, resp, AddModeAppend); err != nil {
+			// TODO: Handle sequence ids
+			if err := a.addArchivedRequest(req, resp, AddModeAppend, 0); err != nil {
 				return err
 			}
 			numAddedRequests++
@@ -468,7 +475,8 @@ func (a *Archive) Trim(trimMatch func(req *http.Request, resp *http.Response) (b
 		if trimReq {
 			numRemovedRequests++
 		} else {
-			clone.addArchivedRequest(req, resp, AddModeAppend)
+			// TODO: handle sequence ids
+			clone.addArchivedRequest(req, resp, AddModeAppend, 0)
 		}
 		return nil
 	})
@@ -480,7 +488,7 @@ func (a *Archive) Trim(trimMatch func(req *http.Request, resp *http.Response) (b
 }
 
 // Add the result of a get request to the receiver.
-func (a *Archive) Add(method string, urlString string, mode AddMode) error {
+func (a *Archive) Add(method string, urlString string, mode AddMode, sequenceId uint32) error {
 	req, err := http.NewRequest(method, urlString, nil)
 	if err != nil {
 		return fmt.Errorf("Error creating request object: %v", err)
@@ -490,7 +498,7 @@ func (a *Archive) Add(method string, urlString string, mode AddMode) error {
 	// Print a warning for duplicate requests since the replay server will only
 	// return the first found response.
 	if mode == AddModeAppend || mode == AddModeSkipExisting {
-		if foundReq, _, notFoundErr := a.FindRequest(req); notFoundErr != ErrNotFound {
+		if foundReq, _, _, notFoundErr := a.FindRequest(req); notFoundErr != ErrNotFound {
 			if foundReq.URL.String() == url.String() {
 				if mode == AddModeSkipExisting {
 					log.Printf("Skipping existing request: %s %s", req.Method, urlString)
@@ -506,7 +514,7 @@ func (a *Archive) Add(method string, urlString string, mode AddMode) error {
 		return fmt.Errorf("Error fetching url: %v", err)
 	}
 
-	if err = a.addArchivedRequest(req, resp, mode); err != nil {
+	if err = a.addArchivedRequest(req, resp, mode, sequenceId); err != nil {
 		return err
 	}
 
@@ -542,10 +550,10 @@ func OpenWritableArchive(path string) (*WritableArchive, error) {
 }
 
 // RecordRequest records a request/response pair in the archive.
-func (a *WritableArchive) RecordRequest(req *http.Request, resp *http.Response) error {
+func (a *WritableArchive) RecordRequest(req *http.Request, resp *http.Response, sequenceId uint32) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
-	return a.addArchivedRequest(req, resp, AddModeAppend)
+	return a.addArchivedRequest(req, resp, AddModeAppend, sequenceId)
 }
 
 // RecordTlsConfig records the cert used and protocol negotiated for a host.
