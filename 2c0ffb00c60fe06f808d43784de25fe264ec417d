@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ade0de_bdfdbb50",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-01T22:57:13Z",
+      "side": 1,
+      "message": "Nit: Also remove this since it\u0027s related to the removed import.",
+      "range": {
+        "startLine": 250,
+        "startChar": 2,
+        "endLine": 253,
+        "endChar": 41
+      },
+      "revId": "2c0ffb00c60fe06f808d43784de25fe264ec417d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
