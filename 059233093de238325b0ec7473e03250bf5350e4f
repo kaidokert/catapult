@@ -16,6 +16,24 @@
       "message": "I deployed this to staging and AFAICT, there\u0027s no issues with the dashboard. We can deploy this and see if anything breaks. If not, we can delete the bower_components from the third_party/polymer2 clone. \n\nhttps://chromeperf-stage.uc.r.appspot.com/report?sid\u003d12b6b0db65088a6b9f58f90b9d1f9d2e0806504653b67724f4256eac812f9b90",
       "revId": "059233093de238325b0ec7473e03250bf5350e4f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc146153_b5a158ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-07-01T20:38:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9229ae32_09d86e73",
+      "revId": "059233093de238325b0ec7473e03250bf5350e4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
