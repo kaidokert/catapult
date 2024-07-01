@@ -424,7 +424,6 @@ func (r *ReplayCommand) Run(c *cli.Context) error {
 		os.Exit(1)
 	}
 	log.Printf("Opened archive %s", archiveFileName)
-
 	archive.ServeResponseInChronologicalSequence = r.serveResponseInChronologicalSequence
 	archive.DisableFuzzyURLMatching = r.disableFuzzyURLMatching
 	if archive.DisableFuzzyURLMatching {
