@@ -22,6 +22,30 @@
       },
       "revId": "2c0ffb00c60fe06f808d43784de25fe264ec417d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "789d6787_10d08a51",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-07-01T23:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5ade0de_bdfdbb50",
+      "range": {
+        "startLine": 250,
+        "startChar": 2,
+        "endLine": 253,
+        "endChar": 41
+      },
+      "revId": "2c0ffb00c60fe06f808d43784de25fe264ec417d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
