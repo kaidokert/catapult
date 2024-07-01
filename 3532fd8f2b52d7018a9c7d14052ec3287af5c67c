@@ -16,6 +16,23 @@
       "message": "all instances of polymer2 in catapult: https://source.chromium.org/search?q\u003dpolymer2%20file:catapult%20-file:third_party%2Fpolymer2%20\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2F\n\nthe other instances should be removed by the previous CL. Looks like code search isn\u0027t showing ToT yet.",
       "revId": "3532fd8f2b52d7018a9c7d14052ec3287af5c67c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "056fd1b9_29ca3a9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-07-01T20:46:52Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "3532fd8f2b52d7018a9c7d14052ec3287af5c67c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
