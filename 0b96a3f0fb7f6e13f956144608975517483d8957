@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a0cc7e7_632b07be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-07-08T23:53:03Z",
+      "side": 1,
+      "message": "This CL should enable Pinpoint to use crossbench to run benchmarks. It has some hard-coded info about each crossbench-based benchmark. We probably want to find a better way to store this info in the long term, but I think it\u0027s good enough for now. It\u0027s no different from what we\u0027re already doing for gtest benchmarks.\n\nPTAL.",
+      "revId": "0b96a3f0fb7f6e13f956144608975517483d8957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
