@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d059d76d_cae26eaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-07-09T19:06:58Z",
+      "side": 1,
+      "message": "Hi John,\n\nI\u0027d like to skip some consistently failing perf tests for Pixel Tablet, thus adding it to the list of tags. I\u0027ve tested locally and this tag name seems correct, but do you know where it is defined? That is, how to look up the correct tag name of a device?\n\nThanks,\nPeter",
+      "revId": "caa31f25f61b9bb40a9981b7dcacf627f2799f16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
