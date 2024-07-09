@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8ecebc_73713213",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-07-09T06:23:12Z",
+      "side": 1,
+      "message": "do we have all benchmarks in _CROSSBENCH_NAME running in cb on waterfall?",
+      "range": {
+        "startLine": 111,
+        "startChar": 51,
+        "endLine": 111,
+        "endChar": 53
+      },
+      "revId": "477091c9d34de70bcf5aa77a1df050dae7e7ceac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e3abdf_48938cbe",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-07-09T06:23:12Z",
+      "side": 1,
+      "message": "nit: this error message is the same as the one for telemetry. Maybe add a \u0027cb\u0027 to make it different for debugging purposes.",
+      "range": {
+        "startLine": 135,
+        "startChar": 23,
+        "endLine": 135,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c4e4e696_1e0afae2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "      raise TypeError(\u0027Missing \"browser\" argument for crossbench.\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "477091c9d34de70bcf5aa77a1df050dae7e7ceac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
