@@ -33,6 +33,24 @@
       "message": "Thanks for the fast review, John!",
       "revId": "caa31f25f61b9bb40a9981b7dcacf627f2799f16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5cfbeaf_27696fd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-07-09T19:51:37Z",
+      "side": 1,
+      "message": "Thanks bsheedy@ for figuring this out. For posterity, the string comes from:\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/platform/android_platform_backend.py;l\u003d394;drc\u003d886dbd9dac4ad81c3338c0c68719ab3e8477de2f\n$ adb shell getprop | grep product.model\n[ro.product.model]: [Pixel Tablet]\n[ro.product.product.model]: [Pixel Tablet]\n\nPrepending `android-` to the `product.model` prop.",
+      "parentUuid": "d059d76d_cae26eaa",
+      "revId": "caa31f25f61b9bb40a9981b7dcacf627f2799f16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
