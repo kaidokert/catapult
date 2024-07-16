@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e162a7fc_bc3dcd1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-07-16T16:56:07Z",
+      "side": 1,
+      "message": "cc\u0027ing pasthana@ for oncaller this week",
+      "revId": "65643fdd270fcf1752b5baa66943cfc8124abd8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
