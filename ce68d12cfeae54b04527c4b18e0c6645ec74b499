@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3876b144_ddff4d81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-07-18T23:56:03Z",
+      "side": 1,
+      "message": "Can also wait til Friday morning to deploy just so someone is around in case it breaks. I\u0027ll be on til about 6pm today.",
+      "revId": "ce68d12cfeae54b04527c4b18e0c6645ec74b499",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
