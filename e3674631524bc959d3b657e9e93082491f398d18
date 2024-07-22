@@ -57,6 +57,30 @@
       ],
       "revId": "e3674631524bc959d3b657e9e93082491f398d18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c8276c_06165226",
+        "filename": "telemetry/telemetry/internal/browser/extension_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115745
+      },
+      "writtenOn": "2024-07-22T22:30:21Z",
+      "side": 1,
+      "message": "That\u0027s correct.\n\nWe\u0027re going to start finch experiments for the ExtensionManifestV2Disabled feature soon and, as part of that, we add a config to fieldtrial_testing_config.json.  This, in turn, ends up enabling the feature for all try jobs (so we get coverage for the feature).  This results in breaking these telemetry tests, since they\u0027re based on MV2 extensions.\n\nYou can see a WIP CL that shows this breakage here:\nhttps://chromium-review.googlesource.com/c/chromium/src/+/5685054\n\nThis CL appends a commandline switch to force-disable the experiment for these telemetry tests so that the fieldtrial testing config entry doesn\u0027t enable it.",
+      "parentUuid": "7fe491a6_9a0438e3",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "e3674631524bc959d3b657e9e93082491f398d18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
