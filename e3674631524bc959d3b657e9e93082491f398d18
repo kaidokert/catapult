@@ -16,6 +16,47 @@
       "message": "wenbinzhang@, mind taking a look?",
       "revId": "e3674631524bc959d3b657e9e93082491f398d18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe491a6_9a0438e3",
+        "filename": "telemetry/telemetry/internal/browser/extension_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-07-22T21:46:28Z",
+      "side": 1,
+      "message": "It is disabling a \u0027disabled\u0027 feature. Is it expected? \nFrom https://source.chromium.org/chromium/chromium/src/+/main:extensions/common/extension_features.cc;l\u003d86, it looks like this feature is disabled by default.",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f6ef6639_341d2286",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "telemetry/telemetry/internal/browser/extension_unittest.py",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": "        \u0027--enable-features\u003dExtensionManifestV2\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e3674631524bc959d3b657e9e93082491f398d18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
