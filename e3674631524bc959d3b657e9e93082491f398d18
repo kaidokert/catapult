@@ -122,6 +122,30 @@
       },
       "revId": "e3674631524bc959d3b657e9e93082491f398d18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eff77d6_4409c5cf",
+        "filename": "telemetry/telemetry/internal/browser/extension_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115745
+      },
+      "writtenOn": "2024-07-22T22:39:03Z",
+      "side": 1,
+      "message": "Thanks! : )",
+      "parentUuid": "036adea1_bf213e08",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "e3674631524bc959d3b657e9e93082491f398d18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
