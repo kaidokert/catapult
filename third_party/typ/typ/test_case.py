@@ -37,6 +37,11 @@ class TestCase(unittest.TestCase):
     programmaticSkipIsExpected = False
     # Any additional key/value pairs to report through ResultDB.
     additionalTags = {}
+    # Any bugs associated with this test from test expectations. Must be passed
+    # from the test to the runner since the runner will not know which tags
+    # were generated during the test, and thus will not know which expectations
+    # apply.
+    associatedBugs = ''
 
     def set_artifacts(self, artifacts):
         # We need this setter instead of setting artifacts directly so that
