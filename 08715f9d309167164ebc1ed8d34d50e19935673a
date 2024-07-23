@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b823b1_4ce486e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-23T23:57:45Z",
+      "side": 1,
+      "message": "PTAL\n\nSample task with this in place https://chromium-swarm.appspot.com/task?id\u003d6afa67fee2194c10",
+      "revId": "08715f9d309167164ebc1ed8d34d50e19935673a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
