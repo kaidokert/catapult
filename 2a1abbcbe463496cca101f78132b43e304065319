@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff27948f_3ddafccf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-24T22:24:59Z",
+      "side": 1,
+      "message": "PTAL\n\n[Chromium](https://chromium-review.googlesource.com/c/chromium/src/+/5737258) and [Pinpoint](https://pinpoint-dot-chromeperf.appspot.com/job/17ac93c4210000) look happy with this.",
+      "revId": "2a1abbcbe463496cca101f78132b43e304065319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
