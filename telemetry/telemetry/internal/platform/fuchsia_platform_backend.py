@@ -21,12 +21,7 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
     else:
       raise Exception('ssh config file not found.')
     self._system_log_file = device.system_log_file
-    self._command_runner = CommandRunner(
-        self._ssh_config,
-        device.host,
-        device.port,
-        device.target_id)
-    self._managed_repo = device.managed_repo
+    self._command_runner = CommandRunner(device.target_id)
     self._detailed_os_version = None
     self._device_type = None
 
@@ -40,27 +35,11 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
     return telemetry_platform.Platform(FuchsiaPlatformBackend(device))
 
   @property
-  def managed_repo(self):
-    return self._managed_repo
-
-  @property
   def command_runner(self):
     return self._command_runner
 
-  @property
-  def ssh_config(self):
-    return self._ssh_config
-
   def GetSystemLog(self):
-    if not self._system_log_file:
-      return None
-    try:
-      # Since the log file can be very large, only show the last 200 lines.
-      return subprocess.check_output(
-          ['tail', '-n', '200', self._system_log_file],
-          stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as e:
-      return 'Failed to collect system log: %s\nOutput:%s' % (e, e.output)
+    return None
 
   def _CreateForwarderFactory(self):
     return fuchsia_forwarder.FuchsiaForwarderFactory(self._command_runner)
