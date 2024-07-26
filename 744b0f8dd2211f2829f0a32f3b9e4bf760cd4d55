@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da103c4a_814fa09c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-07-26T18:52:22Z",
+      "side": 1,
+      "message": "Experimental Pinpoint job https://pinpoint-dot-chromeperf.appspot.com/job/1170b77fc10000 appears to have worked well. It found a culprit using 120 iterations, while a previous Pinpoint job https://pinpoint-dot-chromeperf.appspot.com/job/1491bb80210000 with 20 iterations didn\u0027t find the culprit.",
+      "revId": "744b0f8dd2211f2829f0a32f3b9e4bf760cd4d55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
