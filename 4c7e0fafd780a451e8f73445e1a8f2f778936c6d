@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d36fa9a2_eacf4afd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-30T21:48:36Z",
+      "side": 1,
+      "message": "If you believe this will cause the roll to fail, you can pause the autoroller [here](https://autoroll.skia.org/r/catapult-autoroll) just before landing this. Then, perform a manual roll into Chromium with the additional fixes. After that, you can re-enable the autoroller.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "27478a27_d353b93c",
@@ -14,6 +37,52 @@
       "writtenOn": "2024-07-30T21:28:54Z",
       "side": 1,
       "message": "Brian, would you please take a look at this change? Thank you.",
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "950ec57a_edbf3e57",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-30T21:48:36Z",
+      "side": 1,
+      "message": "Nit: Make the error very clearly specify the issue and expected resolution, e.g. `\"Telemetry support on Fuchsia currently requires a Chromium checkout\"`",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 42
+      },
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a65c53da_7eecf77e",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-30T21:48:36Z",
+      "side": 1,
+      "message": "Instead of adding the directory to path and importing every function call, I think it would be better to do all the importing in a single location with an easy way to check. Example of what I\u0027m thinking of, placed at the top of the file alongside other imports:\n\n```\nif TEST_SCRIPTS_ROOT not in sys.path:\n  sys.path.insert(0, TEST_SCRIPTS_ROOT)\n_chromium_fuchsia_package_available \u003d False\ntry:\n  from common import run_ffx_command as ffx_run\n  ...\n  _chromium_fuchsia_package_available \u003d True\nexcept ImportError:\n  pass\n```\n\nYou can also have a helper function like\n\n```\ndef _assert_fuchsia_package_available():\n  assert _chromium_fuchsia_package_available, \"Telemetry support on Fuchsia...\"\n```\n\nand call `_assert_fuchsia_package_available()` anytime you\u0027re going to call into the package.",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 47
+      },
       "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
