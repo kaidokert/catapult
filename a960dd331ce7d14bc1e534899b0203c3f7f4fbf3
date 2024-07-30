@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ce7326e_fbe86ea1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-07-30T00:35:55Z",
+      "side": 1,
+      "message": "This CL should partially fix the low culprit detect rate problem we\u0027re currently experiencing. Perf dashboard uses a list named _LEGACY_BENCHMARKS to indicate benchmarks that shouldn\u0027t have auto-generated summary statistics, which can cause false alerts in some cases. This list is out of date (including speedometer2 but not speedometer3), causing some false alerts on dashboard. Also, the name of the list is confusing, and we should probably stop generating these statistics on all benchmarks, but for now I\u0027d like to have a quick CL to extend the list to new press benchmarks, in order to increase our culprit detect rate. PTAL.",
+      "revId": "a960dd331ce7d14bc1e534899b0203c3f7f4fbf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
