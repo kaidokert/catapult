@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2cfab8aa_20073ee2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-07-31T02:32:35Z",
+      "side": 1,
+      "message": "Let me update this section. I haven\u0027t seen the error again in the latest run. I think the dynamic loading actually hides the issue. We will see.",
+      "parentUuid": "d36fa9a2_eacf4afd",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "27478a27_d353b93c",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 12
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "751e3348_c85df8b2",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-07-31T02:32:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "950ec57a_edbf3e57",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 42
+      },
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a65c53da_7eecf77e",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-07-30T21:48:36Z",
       "side": 1,
       "message": "Instead of adding the directory to path and importing every function call, I think it would be better to do all the importing in a single location with an easy way to check. Example of what I\u0027m thinking of, placed at the top of the file alongside other imports:\n\n```\nif TEST_SCRIPTS_ROOT not in sys.path:\n  sys.path.insert(0, TEST_SCRIPTS_ROOT)\n_chromium_fuchsia_package_available \u003d False\ntry:\n  from common import run_ffx_command as ffx_run\n  ...\n  _chromium_fuchsia_package_available \u003d True\nexcept ImportError:\n  pass\n```\n\nYou can also have a helper function like\n\n```\ndef _assert_fuchsia_package_available():\n  assert _chromium_fuchsia_package_available, \"Telemetry support on Fuchsia...\"\n```\n\nand call `_assert_fuchsia_package_available()` anytime you\u0027re going to call into the package.",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 47
+      },
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e14bb9_02691902",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-07-31T02:32:35Z",
+      "side": 1,
+      "message": "I tried to avoid suppressing the import errors. But if you are OK with that, it would make the life easier.",
+      "parentUuid": "a65c53da_7eecf77e",
       "range": {
         "startLine": 45,
         "startChar": 2,
