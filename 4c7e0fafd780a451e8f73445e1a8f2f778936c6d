@@ -181,6 +181,30 @@
       },
       "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82101bd4_e3129e14",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-08-01T17:50:01Z",
+      "side": 1,
+      "message": "Talked offline, I will revert this change to function-scope import to avoid depending on fuchsia packages on other platforms.",
+      "parentUuid": "1f5fddc0_1b010e55",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 47
+      },
+      "revId": "4c7e0fafd780a451e8f73445e1a8f2f778936c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
