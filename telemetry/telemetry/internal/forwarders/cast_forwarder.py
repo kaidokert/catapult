@@ -54,9 +54,9 @@ class CastSshForwarder(forwarders.Forwarder):
         '-o', 'UserKnownHostsFile=/dev/null',
         '-l', cast_interface.SSH_USER
     ]
-    ssh_args.extend(forwarder_utils.GetForwardingArgs(
-        local_port, remote_port, self.host_ip,
-        port_forward))
+    ssh_args.extend(
+        forwarder_utils.GetForwardingArgs(local_port, remote_port,
+                                          port_forward))
 
     self._proc = pexpect.spawn('ssh %s %s' % (' '.join(ssh_args), ip_addr))
     self._proc.expect('.*password:')

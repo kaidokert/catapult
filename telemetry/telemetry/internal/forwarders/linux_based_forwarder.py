@@ -48,7 +48,7 @@ class LinuxBasedSshForwarder(forwarders.Forwarder):
         'LogLevel=INFO'
     ]
     forwarding_args.extend(
-        forwarder_utils.GetForwardingArgs(local_port, remote_port, self.host_ip,
+        forwarder_utils.GetForwardingArgs(local_port, remote_port,
                                           port_forward))
 
     # TODO(crbug.com/793256): Consider avoiding the extra tempfile and
