@@ -49,9 +49,9 @@ class FuchsiaSshForwarder(forwarders.Forwarder):
         # Ensure SSH is at least verbose enough to print the allocated port
         '-o', 'LogLevel=VERBOSE'
     ]
-    ssh_args.extend(forwarder_utils.GetForwardingArgs(
-        local_port, remote_port, self.host_ip,
-        port_forward))
+    ssh_args.extend(
+        forwarder_utils.GetForwardingArgs(local_port, remote_port,
+                                          port_forward))
 
     with tempfile.NamedTemporaryFile() as stderr_file:
       self._proc = command_runner.RunCommandPiped(ssh_args=ssh_args,

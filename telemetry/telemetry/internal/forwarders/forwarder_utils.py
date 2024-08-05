@@ -30,25 +30,23 @@ def ReadRemotePort(filename):
   with open(filename, 'r') as f:
     return py_utils.WaitFor(lambda: TryReadingPort(f), timeout=60)
 
-def GetForwardingArgs(local_port, remote_port, host_ip, port_forward):
+
+def GetForwardingArgs(local_port, remote_port, port_forward):
   """Prepare the forwarding arguments to execute for devices that connect with
   the host via ssh.
 
   Args:
     local_port: Port on the host.
     remote_port: Port on the remote device.
-    host_ip: ip of the host.
     port_forward: Direction of the connection. True if forwarding from the host.
 
   Returns:
     List of strings, the command arguments for handling port forwarding.
   """
   if port_forward:
-    arg_format = '-R{remote_port}:{host_ip}:{local_port}'
+    arg_format = '-R{remote_port}:localhost:{local_port}'
   else:
-    arg_format = '-L{local_port}:{host_ip}:{remote_port}'
+    arg_format = '-L{local_port}:localhost:{remote_port}'
   return [
-      arg_format.format(host_ip=host_ip,
-                        local_port=local_port,
-                        remote_port=remote_port or 0)
+      arg_format.format(local_port=local_port, remote_port=remote_port or 0)
   ]

@@ -28,10 +28,6 @@ class ForwarderFactory():
     """
     raise NotImplementedError()
 
-  @property
-  def host_ip(self):
-    return '127.0.0.1'
-
 
 class Forwarder():
 
@@ -48,16 +44,12 @@ class Forwarder():
 
     self._local_port = local_port
     self._remote_port = remote_port
-    logging.info('%s started between %s:%s and %s', type(self).__name__,
-                 self.host_ip, self.local_port, self.remote_port)
+    logging.info('%s started between localhost:%s and %s',
+                 type(self).__name__, self.local_port, self.remote_port)
 
   @property
   def is_forwarding(self):
     return self._local_port is not None
-
-  @property
-  def host_ip(self):
-    return '127.0.0.1'
 
   @property
   def local_port(self):
