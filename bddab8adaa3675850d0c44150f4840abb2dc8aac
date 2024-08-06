@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2487d97d_362a2cbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-06T21:22:07Z",
+      "side": 1,
+      "message": "PTAL\n\nOn an unrelated note, your Gerrit vacation message still says \"OOO until Feb 27\", which I\u0027m guessing is no longer relevant.",
+      "revId": "bddab8adaa3675850d0c44150f4840abb2dc8aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
