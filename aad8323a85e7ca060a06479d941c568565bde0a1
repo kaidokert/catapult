@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b21511_a96321eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-06T23:42:44Z",
+      "side": 1,
+      "message": "PTAL\n\nIt seems like everything was already using the vpython-provided copy. At least, the bots are happy.",
+      "revId": "aad8323a85e7ca060a06479d941c568565bde0a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
