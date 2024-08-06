@@ -16,8 +16,7 @@ https://android.googlesource.com/platform/external/perfetto/+/refs/heads/master/
 """
 
 from __future__ import absolute_import
-import encoder
-import wire_format
+from google.protobuf.internal import encoder, wire_format
 
 
 class TracePacket(object):
