@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ef70bf_714deea9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-06T23:41:51Z",
+      "side": 1,
+      "message": "+johnchen for review\n+cc khokhlov as a //common/py_trace_event owner, but they\u0027re OOO for the next week.",
+      "revId": "6af83df849c2590172bc7cc2fbdfe83665f69e67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
