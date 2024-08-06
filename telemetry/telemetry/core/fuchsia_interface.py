@@ -6,7 +6,6 @@
 from __future__ import absolute_import
 import logging
 import os
-import platform
 import subprocess
 import sys
 
@@ -97,7 +96,9 @@ class CommandRunner():
     if not ssh_args:
       ssh_args = []
 
-    # Having control master causes weird behavior in port_forwarding.
+    # Control master needs to be initialized with a command without -NT. The
+    # logic of ssh-tunnel will be moved to build/fuchsia/test/test_server.py in
+    # chromium.
     ssh_args.append('-oControlMaster=no')
     ssh_command = self._ssh_prefix + ssh_args + ['--'] + command
     logging.debug(' '.join(ssh_command))
@@ -113,11 +114,11 @@ class CommandRunner():
     return cmd_proc.returncode, stdout, stderr
 
 
-# TODO(crbug.com/40935291): Remove this function in favor of
-# ffx_integration.run_symbolizer.
+# TODO(crbug.com/40935291): This function shouldn't return None and the name
+# suffix 'IfPossible' should be removed.
 def StartSymbolizerForProcessIfPossible(input_file, output_file,
                                         build_id_files):
-  """Starts a symbolizer process if possible.
+  """Starts a symbolizer process.
 
     Args:
       input_file: Input file to be symbolized.
@@ -128,42 +129,6 @@ def StartSymbolizerForProcessIfPossible(input_file, output_file,
     Returns:
       A subprocess.Popen object for the started process, None if symbolizer
       fails to start."""
-
-  if build_id_files:
-    sdk_root = os.path.join(util.GetCatapultDir(), '..', 'fuchsia-sdk', 'sdk')
-    assert os.path.exists(sdk_root)
-
-    def _GetHostArchFromPlatform():
-      host_arch = platform.machine()
-      if host_arch in ['x86_64', 'AMD64']:
-        return 'x64'
-      if host_arch in ['arm64', 'aarch64']:
-        return 'arm64'
-      raise Exception('Unsupported host architecture: %s' % host_arch)
-
-    symbolizer = os.path.join(sdk_root, 'tools', _GetHostArchFromPlatform(),
-                              'symbolizer')
-    symbolizer_cmd = [
-        symbolizer, '--build-id-dir',
-        os.path.join(sdk_root, '.build-id')
-    ]
-
-    for build_id_file in build_id_files:
-      if not os.path.isfile(build_id_file):
-        logging.error(
-            'Symbolizer cannot be started. %s is not a file' % build_id_file)
-        return None
-      symbolizer_cmd.extend(['--ids-txt', build_id_file])
-
-    logging.debug('Running "%s".' % ' '.join(symbolizer_cmd))
-    kwargs = {
-        'stdin': input_file,
-        'stdout': output_file,
-        'stderr': subprocess.STDOUT,
-        'close_fds': True
-    }
-    if six.PY3:
-      kwargs['text'] = True
-    return subprocess.Popen(symbolizer_cmd, **kwargs)
-  logging.error('Symbolizer cannot be started.')
-  return None
+  _include_fuchsia_package()
+  from ffx_integration import run_symbolizer
+  return run_symbolizer(build_id_files, input_file, output_file)
