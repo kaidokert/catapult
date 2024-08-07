@@ -5,6 +5,7 @@
 from __future__ import absolute_import
 
 from enum import Enum
+import string
 from google.cloud import datastore
 from google.cloud.datastore.key import Key
 
@@ -41,7 +42,26 @@ class EntityType(Enum):
 class DataStoreClient:
   _client = datastore.Client()
 
-  def QueryAnomaliesAroundRevision(self, revision:int):
+  def QueryAnomaliesForKeys(self, key: str):
+    entity = self._client.GetEntity(EntityType.Anomaly, key)
+
+    subscriptions = entity.get('subscription_names')
+
+    ds_query = self._client.query(kind='Anomaly')
+
+    ds_query.add_filter('subscription_names', 'IN', subscriptions)
+
+    requested_anomalies = list(ds_query.fetch(limit=5000))
+
+    filtered_results = [
+        a for a in requested_anomalies
+        if a.get('start_revision') <= entity.get('end_revision')
+        and a.get('end_revision') >= entity.get('start_revision')
+    ]
+
+    return filtered_results
+
+  def QueryAnomaliesAroundRevision(self, revision: int):
     ds_query = self._client.query(kind='Anomaly', order=['end_revision'])
     ds_query.add_filter('end_revision', '>=', revision)
 
