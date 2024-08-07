@@ -75,6 +75,30 @@
       },
       "revId": "9128ec6d34905512199f953bc60ff75ca29d0cf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ac02cb_6f937a0c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1186968
+      },
+      "writtenOn": "2024-08-07T21:28:22Z",
+      "side": 1,
+      "message": "Is there an existing flag that could have been used to turn off the privacy dialog?",
+      "parentUuid": "ae21db00_bc8a93c1",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 62
+      },
+      "revId": "9128ec6d34905512199f953bc60ff75ca29d0cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
