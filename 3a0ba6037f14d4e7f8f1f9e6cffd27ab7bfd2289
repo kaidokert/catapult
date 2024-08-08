@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72215d63_5ffdb51f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-08T17:52:11Z",
+      "side": 1,
+      "message": "PTAL\n\nI\u0027ll stop the roller before landing this and perform the manual roll in crrev.com/c/5770824.",
+      "revId": "3a0ba6037f14d4e7f8f1f9e6cffd27ab7bfd2289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
