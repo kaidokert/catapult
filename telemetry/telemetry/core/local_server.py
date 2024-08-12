@@ -47,6 +47,7 @@ class LocalServerBackend():
 class LocalServer():
 
   def __init__(self, server_backend_class):
+    logging.info("LocalServer.__init__(%s)", server_backend_class)
     assert LocalServerBackend in server_backend_class.__bases__
     server_module_name = server_backend_class.__module__
     assert server_module_name in sys.modules, \
@@ -71,6 +72,8 @@ class LocalServer():
     server_args = self.GetBackendStartupArgs()
     server_args_as_json = json.dumps(server_args)
     server_module_name = self._server_backend_class.__module__
+    logging.info("LocalServer.Start, server_args=%s, server_module_name=%s",
+                 server_args, server_module_name)
 
     self._devnull = open(os.devnull, 'w')
     cmd = [
@@ -82,6 +85,7 @@ class LocalServer():
         self._server_backend_class.__name__,
         server_args_as_json,
     ]
+    logging.info("LocalServer cmd %s", cmd)
 
     env = os.environ.copy()
     env['PYTHONPATH'] = os.pathsep.join(sys.path)
