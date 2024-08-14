@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c42ae9_9dd3e80d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-14T21:37:45Z",
+      "side": 1,
+      "message": "+johnchen for Telemetry review\n+bpastene for Devil review",
+      "revId": "b3585c8aea6ba009ca753ca5b8eb3bb3306669c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
