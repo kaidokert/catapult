@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bce0233f_7851c085",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-19T22:49:44Z",
+      "side": 1,
+      "message": "Neither Vadim nor I are owners of the `//dashboard` component of Catapult.",
+      "revId": "d8eb2136b28311d2d6050455c18dc57430e90689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
