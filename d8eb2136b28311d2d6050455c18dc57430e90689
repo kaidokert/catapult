@@ -16,6 +16,24 @@
       "message": "Neither Vadim nor I are owners of the `//dashboard` component of Catapult.",
       "revId": "d8eb2136b28311d2d6050455c18dc57430e90689",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d0b7aa4_7c8e2eb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3355336
+      },
+      "writtenOn": "2024-08-19T22:53:33Z",
+      "side": 1,
+      "message": "thanks.  I included Vadim as he\u0027s aware of the overall work I\u0027m doing and can help identify any issues that might be caused by it.",
+      "parentUuid": "bce0233f_7851c085",
+      "revId": "d8eb2136b28311d2d6050455c18dc57430e90689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
