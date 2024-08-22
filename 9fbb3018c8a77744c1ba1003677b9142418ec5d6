@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49663c71_93eb006a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-22T21:28:24Z",
+      "side": 1,
+      "message": "This seems like the logic that should have been used since the beginning, but since it\u0027s been in for so long, I\u0027m worried things might break because of this.",
+      "revId": "9fbb3018c8a77744c1ba1003677b9142418ec5d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
