@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1766bba8_2eb930e9",
+        "filename": "dashboard/go/src/update-traffic/create-cls.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-08-23T19:15:32Z",
+      "side": 0,
+      "message": "Any reason this is removed?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 0
+      },
+      "revId": "ade2abea01765694286948002c23ca2701cbad7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
