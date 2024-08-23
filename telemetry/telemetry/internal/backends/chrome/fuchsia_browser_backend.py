@@ -35,28 +35,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         profile_directory=profile_directory,
         supports_extensions=False,
         supports_tab_control=True)
-    self._command_runner = fuchsia_platform_backend.command_runner
-    # A list of browser_type-specific ids.txt files used for symbolization.
-    self._browser_id_files = None
-    # A temporary file into which the browser's stdout/stderr are written. In
-    # case of error, the contents returned by GetStandardOutput.
-    self._browser_log_file = None
-    # A system-wide log-listener used when starting Chrome.
-    self._log_listener_proc = None
-    # The process under test; Chrome browser or a shell.
-    self._browser_process = None
-    # The symbolizer process.
-    self._symbolizer_proc = None
-    # The process that writes the unsymbolized log output to the temp file.
-    self._browser_log_writer = None
-    # Cached contents of symbolized stdout/stderr in case of error.
-    self._browser_log = ''
-    self._devtools_port = None
-    if os.environ.get('CHROMIUM_OUTPUT_DIR'):
-      self._output_dir = os.environ.get('CHROMIUM_OUTPUT_DIR')
-    else:
-      self._output_dir = os.path.abspath(
-          os.path.dirname(fuchsia_platform_backend.ssh_config))
+    fuchsia_interface.include_fuchsia_package()
+    from browser_runner import BrowserRunner
+    self._runner = BrowserRunner(self.browser_type, fuchsia_platform_backend.command_runner.target_id)
 
   @property
   def log_file_path(self):
