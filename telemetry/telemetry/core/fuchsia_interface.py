@@ -33,7 +33,6 @@ def include_fuchsia_package():
 
 
 FUCHSIA_BROWSERS = [
-    'fuchsia-chrome',
     'web-engine-shell',
     'cast-streaming-shell',
 ]
