@@ -620,7 +620,7 @@ class AdbWrapper(object):
                  check_error=True,
                  cpu_affinity=None,
                  additional_env=None):
-    if timeout:
+    if not timeout:
       remaining = timeout_retry.CurrentTimeoutThreadGroup().GetRemainingTime()
       if remaining:
         # Use a slightly smaller timeout than remaining time to ensure that we
@@ -710,7 +710,7 @@ class AdbWrapper(object):
   def _Shell(self,
              command,
              expect_status=None,
-             timeout=DEFAULT_TIMEOUT,
+             timeout=None,
              retries=DEFAULT_RETRIES):
     """Runs a shell command on the device.
 
@@ -1000,7 +1000,7 @@ class AdbWrapper(object):
   def Shell(self,
             command,
             expect_status=0,
-            timeout=DEFAULT_TIMEOUT,
+            timeout=None,
             retries=DEFAULT_RETRIES):
     """Runs a shell command on the device.
 
