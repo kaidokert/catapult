@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0be2e0_97422889",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1196069
+      },
+      "writtenOn": "2024-08-27T17:03:36Z",
+      "side": 1,
+      "message": "The stdout / stderr won\u0027t be cached here anymore.\nI think it shouldn\u0027t have noticeable impact, we are only reading several megabytes of text.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 28
+      },
+      "revId": "8e5b237edcf57b09040b2ca18db586f98a8efdfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
