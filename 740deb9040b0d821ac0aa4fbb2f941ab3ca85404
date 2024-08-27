@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42db61e1_8589c3eb",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-27T00:06:22Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this is the correct way to go about this. The Android tests are happy on crrev.com/c/5814207, but I\u0027m not sure if this should be handled here or by ensuring that any callers explicitly pass in a timeout so that the default isn\u0027t used.\n\nBen, do you have any knowledge on how different timeout mechanisms are supposed to work and interact with each other in Devil?",
+      "range": {
+        "startLine": 713,
+        "startChar": 13,
+        "endLine": 713,
+        "endChar": 26
+      },
+      "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
