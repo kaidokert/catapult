@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b254e475_0f61be54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-28T00:18:42Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "aab4704961a6b072810f520ce68dacf591ef6439",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a56411cb_3d7f9700",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-08-28T00:18:42Z",
+      "side": 1,
+      "message": "I\u0027m open to any suggestions you have regarding a simple fix if you have them. At a glance, though, everything related to BrowserFinderOptions seems like a big mess of spaghetti code, though.",
+      "range": {
+        "startLine": 75,
+        "startChar": 20,
+        "endLine": 78,
+        "endChar": 28
+      },
+      "revId": "aab4704961a6b072810f520ce68dacf591ef6439",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
