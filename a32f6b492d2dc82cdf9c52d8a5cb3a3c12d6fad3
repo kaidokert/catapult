@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0520635a_5a1e3620",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-08-28T20:57:51Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "a32f6b492d2dc82cdf9c52d8a5cb3a3c12d6fad3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca60d63_24ed954a",
+        "filename": "dashboard/dashboard/common/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-08-28T20:57:51Z",
+      "side": 1,
+      "message": "nit: should we add a log here as well to see how long the milestone thing works? It looks like it may interact with OMAHA, which I have no idea about the overhead.",
+      "range": {
+        "startLine": 316,
+        "startChar": 1,
+        "endLine": 316,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a99ee3e5_817c9c3c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/common/file_bug.py",
+              "range": {
+                "startLine": 316,
+                "startChar": 0,
+                "endLine": 316,
+                "endChar": 0
+              },
+              "replacement": "  logging.info(\u0027get milestone label\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a32f6b492d2dc82cdf9c52d8a5cb3a3c12d6fad3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
