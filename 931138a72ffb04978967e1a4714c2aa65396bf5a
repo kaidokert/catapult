@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe3721b2_3da7f86a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-05T18:31:46Z",
+      "side": 1,
+      "message": "Recent Catapult Linux Tryserver builds on Catapult CQ have been failing due to a Python version change (e.g., https://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Linux%20Tryserver/8555). This CL should fix it.",
+      "revId": "931138a72ffb04978967e1a4714c2aa65396bf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
