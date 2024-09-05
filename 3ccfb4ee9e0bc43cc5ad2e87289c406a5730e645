@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41608d45_cedc70fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-05T19:06:54Z",
+      "side": 1,
+      "message": "The previous patchset didn\u0027t work, because some our CQ bots are running Python 3.11 with an older version of library.",
+      "revId": "3ccfb4ee9e0bc43cc5ad2e87289c406a5730e645",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
