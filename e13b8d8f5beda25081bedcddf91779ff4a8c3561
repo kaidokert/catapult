@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e61d09_66c8ad15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2024-09-05T07:01:30Z",
+      "side": 1,
+      "message": "PTAL. Change for fix issue https://chromium-review.googlesource.com/c/chromium/src/+/5830451/comments/456feec5_4e99465c",
+      "revId": "e13b8d8f5beda25081bedcddf91779ff4a8c3561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
