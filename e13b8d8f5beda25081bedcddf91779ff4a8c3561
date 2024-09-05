@@ -16,6 +16,23 @@
       "message": "PTAL. Change for fix issue https://chromium-review.googlesource.com/c/chromium/src/+/5830451/comments/456feec5_4e99465c",
       "revId": "e13b8d8f5beda25081bedcddf91779ff4a8c3561",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e4e57a_116b7358",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2024-09-05T08:27:11Z",
+      "side": 1,
+      "message": "Something strange with typ unittests. This change doesn\u0027t affect typ and this unittests passed with local run:\n```\n$ vpython3 third_party/typ/run tests\nStart running tests: 2024-09-05 13:23:14.469946\n1 test passed, 0 skipped, 0 failures.                          \nStart running tests: 2024-09-05 13:23:14.690980\n1 test passed, 0 skipped, 0 failures.                          \nStart running tests: 2024-09-05 13:23:14.896227\n397 tests passed, 4 skipped, 0 failures.                      \n```\n\nBut on CI some tests fail",
+      "revId": "e13b8d8f5beda25081bedcddf91779ff4a8c3561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
