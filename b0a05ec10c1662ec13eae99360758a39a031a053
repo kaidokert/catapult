@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9942a4b7_cacd55a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-05T22:07:41Z",
+      "side": 1,
+      "message": "Pinpoint, default, api are all functioning OK on 3.9, so pushing it to the remaining services.",
+      "revId": "b0a05ec10c1662ec13eae99360758a39a031a053",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
