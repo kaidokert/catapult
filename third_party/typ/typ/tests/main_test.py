@@ -231,9 +231,14 @@ class TestCli(test_case.MainTestCase):
     def test_bad_arg(self):
         self.check(['--bad-arg'], ret=2, out='',
                    rerr='.*: error: unrecognized arguments: --bad-arg\n')
-        self.check(['-help'], ret=2, out='',
-                   rerr=(".*: error: argument -h/--help: "
-                         "ignored explicit argument 'elp'\n"))
+        # The error handling behavior of bad arg changed in Python 3.11
+        # due to https://github.com/python/cpython/issues/60346.
+        if sys.version_info >= (3, 11):
+          self.check(['-help'], ret=0, rout='^usage: ', err='')
+        else:
+          self.check(['-help'], ret=2, out='',
+                     rerr=(".*: error: argument -h/--help: "
+                           "ignored explicit argument 'elp'\n"))
 
     def test_bad_metadata(self):
         self.check(['--metadata', 'foo'], ret=2, err='',
