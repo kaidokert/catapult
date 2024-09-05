@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c366df46_c174c92d",
+        "filename": "dashboard/cloudbuild_traffic/default.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-05T19:54:08Z",
+      "side": 1,
+      "message": "There appears to be an extra line break. Not sure if it would cause any problems.",
+      "range": {
+        "startLine": 18,
+        "startChar": 22,
+        "endLine": 19,
+        "endChar": 1
+      },
+      "revId": "c3eaf32e5305cd7babaec6c909235e8c8a97aa72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
