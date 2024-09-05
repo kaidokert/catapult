@@ -33,6 +33,41 @@
       "message": "Something strange with typ unittests. This change doesn\u0027t affect typ and this unittests passed with local run:\n```\n$ vpython3 third_party/typ/run tests\nStart running tests: 2024-09-05 13:23:14.469946\n1 test passed, 0 skipped, 0 failures.                          \nStart running tests: 2024-09-05 13:23:14.690980\n1 test passed, 0 skipped, 0 failures.                          \nStart running tests: 2024-09-05 13:23:14.896227\n397 tests passed, 4 skipped, 0 failures.                      \n```\n\nBut on CI some tests fail",
       "revId": "e13b8d8f5beda25081bedcddf91779ff4a8c3561",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8894c89d_5e56a84b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-05T18:36:19Z",
+      "side": 1,
+      "message": "We recently changed the version of Python used to run tests, and the failures you saw are caused by that. It should be fixed soon. Sorry about the inconvenience.",
+      "parentUuid": "67e4e57a_116b7358",
+      "revId": "e13b8d8f5beda25081bedcddf91779ff4a8c3561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bdb88f0_3d122d5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-05T18:36:19Z",
+      "side": 1,
+      "message": "Thanks for the change!",
+      "revId": "e13b8d8f5beda25081bedcddf91779ff4a8c3561",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
