@@ -489,73 +489,93 @@ def GetBusDeviceToTTYMap():
   return result
 
 
-# This dictionary described the mapping between physical and
-# virtual ports on a Plugable 7-Port Hub (model USB2-HUB7BC).
-# Keys are the virtual ports, values are the physical port.
-# The entry 4:{1:4, 2:3, 3:2, 4:1} indicates that virtual port
-# 4 connects to another 'virtual' hub that itself has the
-# virtual-to-physical port mapping {1:4, 2:3, 3:2, 4:1}.
+def DisplayDevice(device_trees):
+  '''Display device information on each bus'''
+  logger.info('==== DEVICE DISPLAY ====')
+  for device_tree in device_trees.values():
+    device_tree.Display()
 
 
-def TestUSBTopologyScript():
-  """Test display and hub identification."""
+def DisplayTTY(device_trees):
+  '''Display TTY information about devices plugged into hubs.'''
+  logger.info('==== TTY INFORMATION ====')
+  for port_map in GetAllPhysicalPortToTTYMaps(
+      usb_hubs.ALL_HUBS, device_tree_map=device_trees):
+    logger.info('%s', port_map)
+
+
+def DisplaySerial(device_trees):
+  '''Display serial number information about devices plugged into hubs.'''
+  logger.info('==== SERIAL NUMBER INFORMATION ====')
+  for port_map in GetAllPhysicalPortToSerialMaps(
+      usb_hubs.ALL_HUBS, device_tree_map=device_trees):
+    # Sort by port in ascending order for better readability.
+    for port, serial in sorted(port_map.items(), key=lambda x: x[0]):
+      logger.info('USB device serial: %s, port number: %d', serial, port)
+
+
+def DisplayUSBTopology(display_device=True,
+                       display_tty=True,
+                       display_serial=True):
+  """Display usb and hub identification."""
   # The following makes logger.info behave pretty much like print
   # during this test script.
   logging.basicConfig(format='%(message)s', stream=sys.stdout)
   logger.setLevel(logging.INFO)
 
-  # Identification criteria for Plugable 7-Port Hub
-  logger.info('==== USB TOPOLOGY SCRIPT TEST ====')
-  logger.info('')
-
-  # Display devices
-  logger.info('==== DEVICE DISPLAY ====')
   device_trees = GetBusNumberToDeviceTreeMap()
-  for device_tree in device_trees.values():
-    device_tree.Display()
-  logger.info('')
 
-  # Display TTY information about devices plugged into hubs.
-  logger.info('==== TTY INFORMATION ====')
-  for port_map in GetAllPhysicalPortToTTYMaps(
-      usb_hubs.ALL_HUBS, device_tree_map=device_trees):
-    logger.info('%s', port_map)
-  logger.info('')
+  if display_device:
+    DisplayDevice(device_trees)
+    logger.info('')
 
-  # Display serial number information about devices plugged into hubs.
-  logger.info('==== SERIAL NUMBER INFORMATION ====')
-  for port_map in GetAllPhysicalPortToSerialMaps(
-      usb_hubs.ALL_HUBS, device_tree_map=device_trees):
-    logger.info('%s', port_map)
+  if display_tty:
+    DisplayTTY(device_trees)
+    logger.info('')
+
+  if display_serial:
+    DisplaySerial(device_trees)
+    logger.info('')
 
   return 0
 
 
-def parse_options(argv):
-  """Parses and checks the command-line options.
+def main(raw_args):
+  parser = argparse.ArgumentParser(description='Shows USB topology.')
+  parser.add_argument(
+      '--device',
+      dest='display_device',
+      action='store_true',
+      help='Display device infomation on each usb bus.')
+  parser.add_argument(
+      '--tty',
+      dest='display_tty',
+      action='store_true',
+      help='Display TTY information about devices plugged into hubs')
+  parser.add_argument(
+      '--serial',
+      dest='display_serial',
+      action='store_true',
+      help='Display serial number information about devices plugged into hubs.')
+  parser.add_argument(
+      '--all',
+      dest='display_all',
+      action='store_true',
+      help='Display all the above information about the devices.')
 
-  Returns:
-    A tuple containing the options structure and a list of categories to
-    be traced.
-  """
-  USAGE = '''./find_usb_devices [--help]
-    This script shows the mapping between USB devices and port numbers.
-    Clients are not intended to call this script from the command line.
-    Clients are intended to call the functions in this script directly.
-    For instance, GetAllPhysicalPortToSerialMaps(...)
-    Running this script with --help will display this message.
-    Running this script without --help will display information about
-    devices attached, TTY mapping, and serial number mapping,
-    for testing purposes. See design document for API documentation.
-  '''
-  parser = argparse.ArgumentParser(usage=USAGE)
-  return parser.parse_args(argv[1:])
+  if len(sys.argv) == 1:
+    parser.print_help()
+    return 1
 
-
-def main():
-  parse_options(sys.argv)
-  TestUSBTopologyScript()
+  args = parser.parse_args(raw_args)
+  display_device = args.display_all or args.display_device
+  display_tty = args.display_all or args.display_tty
+  display_serial = args.display_all or args.display_serial
+  DisplayUSBTopology(display_device=display_device,
+                     display_tty=display_tty,
+                     display_serial=display_serial)
+  return 0
 
 
 if __name__ == "__main__":
-  sys.exit(main())
+  sys.exit(main(sys.argv[1:]))
