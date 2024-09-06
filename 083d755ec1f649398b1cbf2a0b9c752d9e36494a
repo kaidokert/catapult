@@ -133,6 +133,30 @@
       },
       "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ce809f7_e7c318b1",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-06T20:47:24Z",
+      "side": 1,
+      "message": "Yeah, I think adding logs to check if there are multiple or no subscriptions or multiple or no bugs can help us identify edge cases.",
+      "parentUuid": "ca81cea6_819eb46d",
+      "range": {
+        "startLine": 381,
+        "startChar": 5,
+        "endLine": 382,
+        "endChar": 38
+      },
+      "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
