@@ -16,6 +16,63 @@
       "message": "PTAL.",
       "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02347c7_dad59977",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-06T18:34:23Z",
+      "side": 1,
+      "message": "Could we make this 0 in this CL as well. This is needed for my M1 CL of changing the colors.",
+      "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c1274ec_e9e52ac5",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-06T18:34:23Z",
+      "side": 1,
+      "message": "Why will an anomaly have multiple subscriptions? Is it always the first one that we want?",
+      "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b39d5576_fb6d600b",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-06T18:34:23Z",
+      "side": 1,
+      "message": "Does the first name in subscription_names always match the first subscription in subscriptions?",
+      "range": {
+        "startLine": 381,
+        "startChar": 5,
+        "endLine": 382,
+        "endChar": 38
+      },
+      "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
