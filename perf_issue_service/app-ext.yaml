@@ -1,0 +1,31 @@
+service: perf-issue-service-ext
+
+runtime: python
+env: flex
+
+runtime_config:
+  # As of 9/4/2024, 3.7 reached EOL and is upgraded to 3.9
+  # https://docs.python.org/3/whatsnew/3.9.html
+  operating_system: "ubuntu18"
+  runtime_version: "3.9"
+
+entrypoint: gunicorn -b:$PORT -w 8 main:APP
+
+automatic_scaling:
+  min_num_instances: 5
+  max_num_instances: 10
+  cpu_utilization:
+    target_utilization: 0.7
+
+readiness_check:
+  path: "/"
+  check_interval_sec: 60
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 600
+
+beta_settings:
+  service_account_scopes: >
+    https://www.googleapis.com/auth/userinfo.email,
+    https://www.googleapis.com/auth/buganizer,
