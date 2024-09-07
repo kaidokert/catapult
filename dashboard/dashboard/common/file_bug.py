@@ -318,7 +318,7 @@ def FileBug(owner,
   if milestone_label:
     labels.append(milestone_label)
 
-  new_bug_response = perf_issue_service_client.PostIssue(
+  new_bug_response = perf_issue_service_client.PostIssueExt(
       title=summary,
       description=description,
       project=project_id or 'chromium',
@@ -343,7 +343,7 @@ def FileBug(owner,
 
   # Add the bug comment with the service account, so that there are no
   # permissions issues.
-  perf_issue_service_client.PostIssueComment(
+  perf_issue_service_client.PostIssueCommentExt(
       bug_id, project_id, comment=comment_body)
   logging.info('bug comment added with the service account')
   template_params = {'bug_id': bug_id, 'project_id': project_id}
