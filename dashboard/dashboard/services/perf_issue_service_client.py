@@ -16,8 +16,10 @@ STATUS_DUPLICATE = 'Duplicate'
 
 if utils.IsStagingEnvironment():
   _SERVICE_URL = 'https://perf-issue-service-dot-chromeperf-stage.uc.r.appspot.com/'
+  _SERVICE_URL_EXT = 'https://perf-issue-service-ext-dot-chromeperf-stage.uc.r.appspot.com/'
 else:
   _SERVICE_URL = 'https://perf-issue-service-dot-chromeperf.appspot.com/'
+  _SERVICE_URL_EXT = 'https://perf-issue-service-ext-dot-chromeperf.appspot.com/'
 
 _ISSUES_PERFIX = 'issues/'
 _ALERT_GROUP_PREFIX = 'alert_groups/'
@@ -91,8 +93,17 @@ def GetIssueComments(issue_id, project_name='chromium'):
     return []
 
 
+def PostIssueExt(**kwargs):
+  url = _SERVICE_URL_EXT + _ISSUES_PERFIX
+  return _PostIssue(url=url, kwargs=kwargs)
+
+
 def PostIssue(**kwargs):
   url = _SERVICE_URL + _ISSUES_PERFIX
+  return _PostIssue(url=url, kwargs=kwargs)
+
+
+def _PostIssue(url, **kwargs):
   try:
     cloud_metric.PublishPerfIssueServiceRequests('PostIssue', 'POST', url,
                                                  kwargs)
@@ -106,13 +117,27 @@ def PostIssue(**kwargs):
     return []
 
 
+def PostIssueCommentExt(issue_id, project_name='chromium', **kwargs):
+  url = _SERVICE_URL_EXT + _ISSUES_PERFIX
+  url += '%s/project/%s/comments' % (issue_id, project_name)
+
+  return _PostIssueComment(
+      url=url, issue_id=issue_id, project_name=project_name, kwargs=kwargs)
+
+
 def PostIssueComment(issue_id, project_name='chromium', **kwargs):
+  url = _SERVICE_URL + _ISSUES_PERFIX
+  url += '%s/project/%s/comments' % (issue_id, project_name)
+
+  return _PostIssueComment(
+      url=url, issue_id=issue_id, project_name=project_name, kwargs=kwargs)
+
+
+def _PostIssueComment(url, issue_id, project_name='chromium', **kwargs):
   # Normalize the project_name in case it is empty or None.
   project_name = 'chromium' if project_name is None or not project_name.strip(
   ) else project_name
 
-  url = _SERVICE_URL + _ISSUES_PERFIX
-  url += '%s/project/%s/comments' % (issue_id, project_name)
   try:
     cloud_metric.PublishPerfIssueServiceRequests('PostIssueComment', 'POST',
                                                  url, kwargs)
