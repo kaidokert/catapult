@@ -274,7 +274,7 @@ def GetCommitInfoForAlert(alert, crrev=None, gitiles=None):
   return gitiles.CommitInfo(repository_url, rev)
 
 
-def AssignBugToCLAuthor(bug_id, commit_info, labels=None, project='chromium'):
+def _ExtractAuthorAndMessage(commit_info):
   """Assigns the bug to the author of the given revision."""
   author = commit_info['author']['email']
   message = commit_info['message']
@@ -285,7 +285,30 @@ def AssignBugToCLAuthor(bug_id, commit_info, labels=None, project='chromium'):
       author, message)
   author = alternative_assignee or author
 
+  return author, message
+
+
+def AssignBugToCLAuthor(bug_id, commit_info, labels=None, project='chromium'):
+  author, message = _ExtractAuthorAndMessage(commit_info=commit_info)
+
   perf_issue_service_client.PostIssueComment(
+      bug_id,
+      project,
+      comment='Assigning to %s because this is the only CL in range:\n%s' %
+      (author, message),
+      status='Assigned',
+      labels=labels,
+      owner=author,
+  )
+
+
+def AssignBugToCLAuthorExt(bug_id,
+                           commit_info,
+                           labels=None,
+                           project='chromium'):
+  author, message = _ExtractAuthorAndMessage(commit_info=commit_info)
+
+  perf_issue_service_client.PostIssueCommentExt(
       bug_id,
       project,
       comment='Assigning to %s because this is the only CL in range:\n%s' %
@@ -318,7 +341,7 @@ def FileBug(owner,
   if milestone_label:
     labels.append(milestone_label)
 
-  new_bug_response = perf_issue_service_client.PostIssue(
+  new_bug_response = perf_issue_service_client.PostIssueExt(
       title=summary,
       description=description,
       project=project_id or 'chromium',
@@ -343,7 +366,7 @@ def FileBug(owner,
 
   # Add the bug comment with the service account, so that there are no
   # permissions issues.
-  perf_issue_service_client.PostIssueComment(
+  perf_issue_service_client.PostIssueCommentExt(
       bug_id, project_id, comment=comment_body)
   logging.info('bug comment added with the service account')
   template_params = {'bug_id': bug_id, 'project_id': project_id}
@@ -354,7 +377,7 @@ def FileBug(owner,
       commit_info = GetCommitInfoForAlert(alerts[0])
       if commit_info:
         needs_bisect = False
-        AssignBugToCLAuthor(bug_id, commit_info)
+        AssignBugToCLAuthorExt(bug_id, commit_info)
     if needs_bisect:
       bisect_result = auto_bisect.StartNewBisectForBug(bug_id, project_id)
       if 'error' in bisect_result:
