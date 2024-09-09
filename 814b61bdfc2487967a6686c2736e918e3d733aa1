@@ -33,6 +33,24 @@
       "message": "lgtm % have we validated this is chromeperf-stage?",
       "revId": "814b61bdfc2487967a6686c2736e918e3d733aa1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64dc2f5d_231ba0bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-09T22:13:08Z",
+      "side": 1,
+      "message": "Yes. I tried 600 first, and then 450. Did not bother with more attempts.",
+      "parentUuid": "a9c3441a_16936910",
+      "revId": "814b61bdfc2487967a6686c2736e918e3d733aa1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
