@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66c7688c_d04851ae",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-09T23:32:54Z",
+      "side": 0,
+      "message": "nit: Add comment that -1 is reserved for invalid anomaly.",
+      "range": {
+        "startLine": 343,
+        "startChar": 4,
+        "endLine": 343,
+        "endChar": 10
+      },
+      "revId": "c282fc3e7b5112f924f5ef5885b5c0c676a017f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
