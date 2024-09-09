@@ -16,6 +16,24 @@
       "message": "How is this going to fix that bug?",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "261191bb_288f29b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-09-09T16:56:51Z",
+      "side": 1,
+      "message": "I am thinking to have the shell script calling `find_usb_devices.py --serial` to print the serial and port number.\n\nTested on a host and here is the output example:\n```\n\u003d\u003d\u003d\u003d SERIAL NUMBER INFORMATION \u003d\u003d\u003d\u003d\nUSB device serial: XXXXX, port number: 1\nUSB device serial: XXXXXX, port number: 2\n......\nUSB device serial: XXXXX, port number: 7\n```\n\nThe pro is that we don\u0027t need to maintain a separate python script which can eventually get out of sync.\nThe con is that the shell script will have one more dependency on the puppet side (WIP CL https://crrev.com/i/7654401)",
+      "parentUuid": "03a01786_e2434c3a",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
