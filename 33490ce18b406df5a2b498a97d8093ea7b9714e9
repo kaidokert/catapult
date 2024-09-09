@@ -52,6 +52,24 @@
       "parentUuid": "261191bb_288f29b8",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53526049_f64bac31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-09-09T21:55:11Z",
+      "side": 1,
+      "message": "Why it is considered as super hacky?\n\nThe android docker scripts also [call](https://source.chromium.org/chromium/infra/infra_superproject/+/main:infra/infra/services/android_docker/usb_device.py;drc\u003d2422e5007a180c55b64b042f3ee11ad97f4cd671;l\u003d85) `find_usb_devices.GetAllPhysicalPortToSerialMaps` from the vendored catapult copy to get the physical port numbers and assign to each docker container.\n\nThe shell script will do almost the same thing, but just to print the mapping out for all the android devices.",
+      "parentUuid": "57776ef8_1d21a3f5",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
