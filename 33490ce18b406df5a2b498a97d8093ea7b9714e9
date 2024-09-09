@@ -34,6 +34,24 @@
       "parentUuid": "03a01786_e2434c3a",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57776ef8_1d21a3f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-09-09T19:14:51Z",
+      "side": 1,
+      "message": "Err, I don\u0027t think the vendored copy of catapult in /opt/swarm_docker_tools should be used. That\u0027s super hacky.",
+      "parentUuid": "261191bb_288f29b8",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
