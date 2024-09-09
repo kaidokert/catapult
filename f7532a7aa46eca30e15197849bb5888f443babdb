@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bc40668_c7bafdd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-09T21:22:38Z",
+      "side": 1,
+      "message": "Hey Wenbin, John, maybe ya\u0027ll were around when this lib was introduced?\n\nPer, https://source.chromium.org/search?q\u003drequests_toolbelt%20-filepath:third_party\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2F, I don\u0027t think it\u0027s being used anymore. Thoughts?",
+      "revId": "f7532a7aa46eca30e15197849bb5888f443babdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
