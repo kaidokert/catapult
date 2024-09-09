@@ -340,7 +340,7 @@ def GetAnomalyData(anomaly_obj):
   bug_id = anomaly_obj.get('bug_id')
 
   if bug_id is None:
-    bug_id = '-1'
+    bug_id = '0'
 
   return AnomalyData(
       test_path=utils.TestPath(anomaly_obj.get('test')),
