@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b141b157_f0ef1a6f",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-09T21:43:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a4925aa_a749b18b",
+      "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c1274ec_e9e52ac5",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "I think we should only have one subscription per anomaly. Unfortunately the legacy anomaly model defines it as a list. \n\nbased on:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/find_anomalies.py;l\u003d138\n\nYes, I think we should only have one subscription per anomaly. Unfortunately the legacy anomaly model defines it as a list.",
       "parentUuid": "6c1274ec_e9e52ac5",
+      "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52907f39_833636c3",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-09T21:43:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88cfe414_12f038a7",
       "revId": "083d755ec1f649398b1cbf2a0b9c752d9e36494a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
