@@ -46,6 +46,30 @@
       },
       "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af7666c7_c30f5b6c",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-10T22:49:54Z",
+      "side": 1,
+      "message": "Sorry if my comment wasn\u0027t clear. I was referring to the way how this is actually checked. For example, my thought was that requests are usually sent with an Accept header (ie/ Accept: application/json) for the expected response type, but maybe this overcomplicates things.\n\nFor clarity, wdyt about s/json/responseType and then `if request.values.get(\u0027responseType\u0027) \u003d\u003d \u0027json\u0027:`",
+      "parentUuid": "0901f1c0_4be201f2",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
