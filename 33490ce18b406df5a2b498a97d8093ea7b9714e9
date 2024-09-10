@@ -88,6 +88,24 @@
       "parentUuid": "53526049_f64bac31",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea10f93_770ab886",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-09-10T18:26:40Z",
+      "side": 1,
+      "message": "Gotcha. This makes sense.\n\nIs the \"vendored copy\" the biggest concern? Do you see other workarounds to use `find_usb_devices.GetAllPhysicalPortToSerialMaps` here? Maybe having a checkout of `catapult`?",
+      "parentUuid": "01a12a9a_b0dce4f1",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
