@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "935236ff_a04ec642",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-10T03:00:12Z",
+      "side": 1,
+      "message": "nit: Put the description between the \u0027title\u0027 and the metadata like \u0027bug\u0027.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 68
+      },
+      "revId": "fd0601ad98fd9510a062523d8084f04722fd005e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "60f8b264_60993def",
@@ -14,6 +37,23 @@
       "writtenOn": "2024-09-09T23:32:54Z",
       "side": 1,
       "message": "lgtm % nit",
+      "revId": "fd0601ad98fd9510a062523d8084f04722fd005e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c25fe4_530541e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-10T03:00:12Z",
+      "side": 1,
+      "message": "LGTM with nit.",
       "revId": "fd0601ad98fd9510a062523d8084f04722fd005e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
