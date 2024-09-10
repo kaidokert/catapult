@@ -70,6 +70,30 @@
       },
       "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe0334de_a2dbcb34",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-10T23:29:58Z",
+      "side": 1,
+      "message": "IICU, did you mean:\n - if the request is from the chromeperf UI, which is an html form, the responseType should not be json.\n - if the request is from skia/skia-bridge, we can send it as json request.\n \nSo that we can use the responseType from the request to tell where the request is from?",
+      "parentUuid": "af7666c7_c30f5b6c",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
