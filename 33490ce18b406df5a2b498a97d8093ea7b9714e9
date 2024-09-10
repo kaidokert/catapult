@@ -106,6 +106,24 @@
       "parentUuid": "01a12a9a_b0dce4f1",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27dba075_3fe0060a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-09-10T18:49:52Z",
+      "side": 1,
+      "message": "It seems the script is also part of android-docker service, according to https://crrev.com/i/1426787 and its associated ticket?",
+      "parentUuid": "bea10f93_770ab886",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
