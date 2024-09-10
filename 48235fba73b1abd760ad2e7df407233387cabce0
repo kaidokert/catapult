@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f99cf1_0cd5389e",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-10T21:31:56Z",
+      "side": 1,
+      "message": "Don\u0027t we normally use request headers for this kind of thing?\n\nie/ Content-Type: application/json",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
