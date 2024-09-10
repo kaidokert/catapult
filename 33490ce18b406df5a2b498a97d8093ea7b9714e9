@@ -70,6 +70,24 @@
       "parentUuid": "57776ef8_1d21a3f5",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a12a9a_b0dce4f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-09-10T17:44:02Z",
+      "side": 1,
+      "message": "Because that vendored copy isn\u0027t meant to be used for anything but the android-docker service.",
+      "parentUuid": "53526049_f64bac31",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
