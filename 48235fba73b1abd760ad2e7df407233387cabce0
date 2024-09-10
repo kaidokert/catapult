@@ -118,6 +118,30 @@
       },
       "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1127c70_4e72041b",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-10T23:39:08Z",
+      "side": 1,
+      "message": "Sorry, comment cut short. That\u0027s because in its current form, it\u0027d be \u0026json\u003dtrue, but in practicality, we\u0027re requesting \u0026returnType\u003djson, which is more flexible from a API standpoint.",
+      "parentUuid": "eaff2082_a3aa4190",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
