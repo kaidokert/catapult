@@ -6,6 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import json
+
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
@@ -13,7 +15,7 @@ from dashboard.common import file_bug
 from dashboard.common import request_handler
 from dashboard.common import utils
 
-from flask import request
+from flask import request, make_response
 
 
 def FileBugHandlerGet():
@@ -38,11 +40,14 @@ def FileBugHandlerGet():
     HTML, using the template 'bug_result.html'.
   """
   if not utils.IsValidSheriffUser():
-    return request_handler.RequestHandlerRenderHtml(
-        'bug_result.html', {
-            'error': 'You must be logged in with a chromium.org account '
-                     'to file bugs.'
-        })
+    error_result_kvp = {
+        'error': 'You must be logged in with a chromium.org account '
+                 'to file bugs.'
+    }
+    if request.values.get('json'):
+      return make_response(json.dumps(error_result_kvp))
+    return request_handler.RequestHandlerRenderHtml('bug_result.html',
+                                                    error_result_kvp)
 
   summary = request.values.get('summary')
   description = request.values.get('description')
@@ -58,8 +63,12 @@ def FileBugHandlerGet():
     components = request.values.getlist('component')
     owner = request.values.get('owner', '')
     cc = request.values.get('cc', '')
-    return _CreateBug(owner, cc, summary, description, project_id, labels,
-                      components, keys)
+    create_bug_result_kvp = _CreateBug(owner, cc, summary, description,
+                                       project_id, labels, components, keys)
+    if request.values.get('json'):
+      return make_response(json.dumps(create_bug_result_kvp))
+    return request_handler.RequestHandlerRenderHtml('bug_result.html',
+                                                    create_bug_result_kvp)
   return _ShowBugDialog(summary, description, keys)
 
 
@@ -108,15 +117,13 @@ def _CreateBug(owner, cc, summary, description, project_id, labels, components,
   project_domain = '@%s.org' % project_id
   if owner and not owner.endswith(project_domain) and not owner.endswith(
       '@google.com'):
-    return request_handler.RequestHandlerRenderHtml(
-        'bug_result.html', {
-            'error':
-                'Owner email address must end with %s or @google.com.' %
-                project_domain
-        })
+    return {
+        'error':
+            'Owner email address must end with %s or @google.com.' %
+            project_domain
+    }
 
   template_params = file_bug.FileBug(owner, cc, summary, description,
                                      project_id, labels, components,
                                      urlsafe_keys.split(','))
-  return request_handler.RequestHandlerRenderHtml('bug_result.html',
-                                                  template_params)
+  return template_params

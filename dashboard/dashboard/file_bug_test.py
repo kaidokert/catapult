@@ -243,7 +243,8 @@ class FileBugTest(testing_common.TestCase):
   def _PostSampleBug(self,
                      has_commit_positions=True,
                      master='ChromiumPerf',
-                     is_single_rev=False):
+                     is_single_rev=False,
+                     return_json=False):
     if master == 'ClankInternal':
       alert_keys = self._AddSampleClankAlerts()
     else:
@@ -253,7 +254,7 @@ class FileBugTest(testing_common.TestCase):
     else:
       alert_keys = '%s,%s' % (six.ensure_str(
           alert_keys[0].urlsafe()), six.ensure_str(alert_keys[1].urlsafe()))
-    response = self.testapp.post('/file_bug', [
+    parameters = [
         ('keys', alert_keys),
         ('summary', 's'),
         ('description', 'd\n'),
@@ -261,7 +262,10 @@ class FileBugTest(testing_common.TestCase):
         ('label', 'one'),
         ('label', 'two'),
         ('component', 'Foo>Bar'),
-    ])
+    ]
+    if return_json:
+      parameters.append(('json', 'true'))
+    response = self.testapp.post('/file_bug', parameters)
     return response
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
@@ -297,6 +301,65 @@ class FileBugTest(testing_common.TestCase):
     self.assertIn('https://chromeperf.appspot.com/group_report?sid=', comment)
     self.assertIn('\n\n\nBot(s) for this bug\'s original alert(s):\n\nlinux',
                   comment)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug.file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
+  @mock.patch.object(
+      file_bug.file_bug.auto_bisect, 'StartNewBisectForBug',
+      mock.MagicMock(return_value={
+          'issue_id': 123,
+          'issue_url': 'foo.com'
+      }))
+  def testGet_WithFinish_CreatesBug_Json(self):
+    # When a POST request is sent with keys specified and with the finish
+    # parameter given, an issue will be created using the issue tracker
+    # API, and the anomalies will be updated, and a response page will
+    # be sent which indicates success.
+    self._issue_tracker_service._bug_id_counter = 277761
+    response = self._PostSampleBug(return_json=True)
+    body_json = json.loads(response.body)
+
+    # The response body in json should have the bug id.
+    self.assertEqual(277761, body_json['bug_id'])
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug.file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
+  @mock.patch.object(utils, 'IsTryjobUser', mock.MagicMock(return_value=False))
+  def testGet_WithFinish_CreatesBug_Json_InvalidUser(self):
+    self.SetCurrentUser('123@456.com')
+    # When a POST request is sent with keys specified and with the finish
+    # parameter given, an issue will be created using the issue tracker
+    # API, and the anomalies will be updated, and a response page will
+    # be sent which indicates success.
+    self._issue_tracker_service._bug_id_counter = 277761
+    response = self._PostSampleBug(return_json=True)
+    body_json = json.loads(response.body)
+
+    # The response body in json should have the auth error.
+    self.assertIn('error', body_json)
+    self.assertIn('must be logged in', body_json['error'])
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug.file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
+  def testGet_WithFinish_CreatesBug_Json_Error(self):
+    perf_issue_post_patcher = mock.patch(
+        'dashboard.services.perf_issue_service_client.PostIssue',
+        self._issue_tracker_service.NewBugError)
+    perf_issue_post_patcher.start()
+    self.addCleanup(perf_issue_post_patcher.stop)
+    # When a POST request is sent with keys specified and with the finish
+    # parameter given, an issue will be created using the issue tracker
+    # API, and the anomalies will be updated, and a response page will
+    # be sent which indicates success.
+    self._issue_tracker_service._bug_id_counter = 277761
+    response = self._PostSampleBug(return_json=True)
+    body_json = json.loads(response.body)
+
+    # The response body in json should have the mocked error.
+    self.assertIn('error', body_json)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   @mock.patch.object(file_bug.file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
