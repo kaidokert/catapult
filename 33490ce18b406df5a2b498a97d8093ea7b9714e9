@@ -124,6 +124,24 @@
       "parentUuid": "bea10f93_770ab886",
       "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c503a0_ade27733",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-09-10T21:40:37Z",
+      "side": 1,
+      "message": "No? It\u0027s a standalone script living in puppet.\n\nJust either fix the script itself, or find some way to get a shared devil onto the bot. The only reasonable way of doing the latter would be to wheel-ify devil and fetch it via vpython. Otherwise just fixing the script is prob easiest.",
+      "parentUuid": "27dba075_3fe0060a",
+      "revId": "33490ce18b406df5a2b498a97d8093ea7b9714e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
