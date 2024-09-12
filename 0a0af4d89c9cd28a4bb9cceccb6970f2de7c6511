@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3944627_781ba64e",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-09-12T22:49:52Z",
+      "side": 1,
+      "message": "I based the masters based off of what\u0027s available in the query. Not sure if there should be repeating masters between internal and public instances",
+      "revId": "0a0af4d89c9cd28a4bb9cceccb6970f2de7c6511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
