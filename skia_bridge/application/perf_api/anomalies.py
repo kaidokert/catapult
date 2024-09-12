@@ -33,7 +33,7 @@ ALLOWED_CLIENTS = [
     # Devtools-Frontend skia instance service account
     'perf-devtools-frontend@skia-infra-corp.iam.gserviceaccount.com',
 ]
-
+CHROMEPERF_HOST = 'https://chromeperf.appspot.com/'
 DATASTORE_TEST_BATCH_SIZE = 25
 
 def Serialize(value):
@@ -446,3 +446,62 @@ def _GetOrCreateUngroupedGroup(client: datastore_client.DataStoreClient):
     alert_group = alert_groups[0]
 
   return alert_group
+
+
+@blueprint.route('/file_bug', methods=['POST'], endpoint='FileBugPostHandler')
+@cloud_metric.APIMetric("skia-bridge", "/anomalies/file_bug")
+def FileBugPostHandler():
+  try:
+    is_authorized, _ = auth_helper.AuthorizeBearerToken(request,
+                                                        ALLOWED_CLIENTS)
+    if not is_authorized:
+      return 'Unauthorized', 401
+
+    try:
+      data = json.loads(request.data)
+      logging.debug('New bug request data: %s', data)
+    except json.decoder.JSONDecodeError:
+      return 'Malformed Json Request', 400
+
+    anomaly_keys = data.get('keys')
+    if not anomaly_keys:
+      return 'Anomaly keys are required in the request', 400
+
+    logging.info('Received request to file bug for anomalies with key: %s',
+                 anomaly_keys)
+
+    summary = data.get('summary', '')
+    if not summary:
+      return 'Cannot file a new bug with empty title', 400
+
+    component = data.get('component', '')
+    if not component:
+      return 'Cannot file a new bug with empty component', 400
+
+    url = CHROMEPERF_HOST + 'file_bug'
+    http = auth_helper.ServiceAccountHttp()
+
+    response = http.request(url,
+                            method='POST',
+                            headers={
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                            body=json.dumps({
+                                'finish': 'true',
+                                'keys': anomaly_keys,
+                                'summary': summary,
+                                'component': component,
+                                'description': data.get('description', ''),
+                                'project_id': 'chromium',
+                                'label': data.get('label', []),
+                                'owner': data.get('owner', ''),
+                                'cc': ','.join(data.get('cc', []))
+                            }))
+
+    if 'error' in response:
+      return 'Failed to file new bug', 500
+    return make_response(response)
+  except Exception as e:
+    logging.exception(e)
+    raise
