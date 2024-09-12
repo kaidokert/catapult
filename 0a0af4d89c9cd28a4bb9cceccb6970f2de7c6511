@@ -34,6 +34,24 @@
       "parentUuid": "a3944627_781ba64e",
       "revId": "0a0af4d89c9cd28a4bb9cceccb6970f2de7c6511",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cc414b3_dee7ea30",
+        "filename": "dashboard/dashboard/models/skia_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-09-12T23:05:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aa6f9b6f_1a41027f",
+      "revId": "0a0af4d89c9cd28a4bb9cceccb6970f2de7c6511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
