@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47401a30_7b8f271c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-13T02:54:01Z",
+      "side": 1,
+      "message": "So far as I know, we no longer use third_party/httplib2, and rely on requirements.txt in AppEngine and vpython3 on client side. Pinpoint job https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/142d01cc800000 finished without any issues, with this CL deployed to both server side and client side. PTAL.",
+      "revId": "ae633fb6833b834710cb6793014b9941bb2a42c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
