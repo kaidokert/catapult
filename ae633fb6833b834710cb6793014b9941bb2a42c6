@@ -33,6 +33,24 @@
       "message": "Is this copy used by the other third_party modules? I can see some modules such as apiclient imports httplib2.",
       "revId": "ae633fb6833b834710cb6793014b9941bb2a42c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "411553ee_e2d2aa4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2024-09-13T05:24:55Z",
+      "side": 1,
+      "message": "I believe other modules only use httplib2 provided by requirements.txt or vpython3. After https://chromium-review.googlesource.com/c/catapult/+/3717281 removed httplib2/python3/httplib2 from import path, it\u0027s now impossible for any code to find this copy of httplib2.",
+      "parentUuid": "58279efe_3405e7b2",
+      "revId": "ae633fb6833b834710cb6793014b9941bb2a42c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
