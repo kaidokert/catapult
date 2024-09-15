@@ -326,9 +326,9 @@ def FileBug(owner,
       components=components,
       owner=owner,
       cc=[email for email in cc.split(',') if email.strip()])
-  logging.info('bug created')
   if 'error' in new_bug_response:
     return {'error': new_bug_response['error']}
+  logging.info('bug created')
 
   bug_id = new_bug_response['issue_id']
   bug_data.Bug.New(bug_id=bug_id, project=project_id or 'chromium').put()
