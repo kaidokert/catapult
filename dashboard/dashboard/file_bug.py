@@ -6,6 +6,9 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+from httplib2 import http
+import json
+
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
@@ -13,7 +16,7 @@ from dashboard.common import file_bug
 from dashboard.common import request_handler
 from dashboard.common import utils
 
-from flask import request
+from flask import request, make_response
 
 
 def FileBugHandlerGet():
@@ -58,9 +61,48 @@ def FileBugHandlerGet():
     components = request.values.getlist('component')
     owner = request.values.get('owner', '')
     cc = request.values.get('cc', '')
-    return _CreateBug(owner, cc, summary, description, project_id, labels,
-                      components, keys)
+    create_bug_result = _CreateBug(owner, cc, summary, description, project_id,
+                                   labels, components, keys)
+
+    return request_handler.RequestHandlerRenderHtml('bug_result.html',
+                                                    create_bug_result)
   return _ShowBugDialog(summary, description, keys)
+
+
+def SkiaFileBugHandlerPost():
+  """Similar to FileBugHandlerGet(), with the following difference:
+     - Expect POST requests in application/json, where we need to load data
+     from request.data.
+     - No longer needs the 'finish' field, and always create a bug directly.
+     - Return json instead of html.
+  """
+  print("===== received: ", request.data)
+  if not utils.IsValidSheriffUser():
+    return make_response({
+            'error': 'You must be logged in to file bugs.'
+        }, 401)
+
+  try:
+    data = json.loads(request.data)
+  except json.JSONDecodeError as e:
+    return make_response(str(e), http.HTTPStatus.BAD_REQUEST.value)
+
+  keys = data.get('keys')
+  if not keys:
+    return make_response(
+        json.dumps({'error': 'No anomaly keys specified to add bugs to.'}))
+
+  summary = data.get('summary')
+  description = data.get('description')
+  project_id = data.get('project_id', 'chromium')
+  labels = data.get('label')
+  components = data.get('component')
+  owner = data.get('owner', '')
+  cc = data.get('cc', '')
+  create_bug_result = _CreateBug(owner, cc, summary, description, project_id,
+                                 labels, components, keys)
+
+  return make_response(json.dumps(create_bug_result))
 
 
 def _ShowBugDialog(summary, description, urlsafe_keys):
@@ -108,15 +150,13 @@ def _CreateBug(owner, cc, summary, description, project_id, labels, components,
   project_domain = '@%s.org' % project_id
   if owner and not owner.endswith(project_domain) and not owner.endswith(
       '@google.com'):
-    return request_handler.RequestHandlerRenderHtml(
-        'bug_result.html', {
-            'error':
-                'Owner email address must end with %s or @google.com.' %
-                project_domain
-        })
+    return {
+        'error':
+            'Owner email address must end with %s or @google.com.' %
+            project_domain
+    }
 
   template_params = file_bug.FileBug(owner, cc, summary, description,
                                      project_id, labels, components,
                                      urlsafe_keys.split(','))
-  return request_handler.RequestHandlerRenderHtml('bug_result.html',
-                                                  template_params)
+  return template_params
