@@ -35,6 +35,9 @@ flask_app = Flask(__name__)
 def FileBugHandlerGet():
   return file_bug.FileBugHandlerGet()
 
+@flask_app.route('/file_bug_skia', methods=['POST'])
+def SkiaFileBugHandlerPost():
+  return file_bug.SkiaFileBugHandlerPost()
 
 class FileBugTest(testing_common.TestCase):
 
@@ -243,7 +246,8 @@ class FileBugTest(testing_common.TestCase):
   def _PostSampleBug(self,
                      has_commit_positions=True,
                      master='ChromiumPerf',
-                     is_single_rev=False):
+                     is_single_rev=False,
+                     is_skia=False):
     if master == 'ClankInternal':
       alert_keys = self._AddSampleClankAlerts()
     else:
@@ -253,15 +257,26 @@ class FileBugTest(testing_common.TestCase):
     else:
       alert_keys = '%s,%s' % (six.ensure_str(
           alert_keys[0].urlsafe()), six.ensure_str(alert_keys[1].urlsafe()))
-    response = self.testapp.post('/file_bug', [
-        ('keys', alert_keys),
-        ('summary', 's'),
-        ('description', 'd\n'),
-        ('finish', 'true'),
-        ('label', 'one'),
-        ('label', 'two'),
-        ('component', 'Foo>Bar'),
-    ])
+    if is_skia:
+      response = self.testapp.post_json('/file_bug_skia', {
+          'keys': alert_keys,
+          'summary': 's',
+          'description': 'd\n',
+          'finish': 'true',
+          'label': 'one',
+          'label': 'two',
+          'component': 'Foo>Bar',
+      })
+    else:
+      response = self.testapp.post('/file_bug', [
+          ('keys', alert_keys),
+          ('summary', 's'),
+          ('description', 'd\n'),
+          ('finish', 'true'),
+          ('label', 'one'),
+          ('label', 'two'),
+          ('component', 'Foo>Bar'),
+      ])
     return response
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
@@ -279,6 +294,42 @@ class FileBugTest(testing_common.TestCase):
     # be sent which indicates success.
     self._issue_tracker_service._bug_id_counter = 277761
     response = self._PostSampleBug()
+
+    # The response page should have a bug number.
+    self.assertIn(b'277761', response.body)
+
+    # The anomaly entities should be updated.
+    for anomaly_entity in anomaly.Anomaly.query().fetch():
+      if anomaly_entity.end_revision in [112005, 112010]:
+        self.assertEqual(277761, anomaly_entity.bug_id)
+      else:
+        self.assertIsNone(anomaly_entity.bug_id)
+
+    # Two HTTP requests are made when filing a bug; only test 2nd request.
+    comment = self._issue_tracker_service.add_comment_kwargs['comment']
+    self.assertIn('https://chromeperf.appspot.com/group_report?bug_id=277761',
+                  comment)
+    self.assertIn('https://chromeperf.appspot.com/group_report?sid=', comment)
+    self.assertIn('\n\n\nBot(s) for this bug\'s original alert(s):\n\nlinux',
+                  comment)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug.file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
+  @mock.patch.object(
+      file_bug.file_bug.auto_bisect, 'StartNewBisectForBug',
+      mock.MagicMock(return_value={
+          'issue_id': 123,
+          'issue_url': 'foo.com'
+      }))
+  def testGet_WithFinish_CreatesBug_Skia(self):
+    # When a POST request is sent with keys specified and with the finish
+    # parameter given, an issue will be created using the issue tracker
+    # API, and the anomalies will be updated, and a response page will
+    # be sent which indicates success.
+    self._issue_tracker_service._bug_id_counter = 277761
+    response = self._PostSampleBug(is_skia=True)
+    print('====== test response: ', response)
 
     # The response page should have a bug number.
     self.assertIn(b'277761', response.body)
