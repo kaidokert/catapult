@@ -37,6 +37,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a34e9557_97c3699a",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-16T20:04:40Z",
+      "side": 1,
+      "message": "Keep format consistent\n\njson.dumps({\u0027error:\u0027 str(e)}),",
+      "range": {
+        "startLine": 87,
+        "startChar": 25,
+        "endLine": 87,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5e46c7c5_86328210",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/file_bug.py",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    return make_response(\n        json.dumps({\u0027error\u0027: str(e)}), http.HTTPStatus.BAD_REQUEST.value)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29c56566_9dfd7239",
         "filename": "dashboard/dashboard/file_bug.py",
         "patchSetId": 2
