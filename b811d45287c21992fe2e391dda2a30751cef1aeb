@@ -16,6 +16,114 @@
       "message": "Alternative of using the response type. PTAL.",
       "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d99896_e2a283dc",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-16T19:50:32Z",
+      "side": 1,
+      "message": "Could you add what return values we should be expecting? If I recall, we should only expect a Bug Id or an error, but maybe there\u0027s more you intend to return?",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29c56566_9dfd7239",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-16T19:50:32Z",
+      "side": 1,
+      "message": "Is there a point in sending a project_id? I think it should always be chromium no? I was planning on omitting this field in the dialog.",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0132bc_add4b352",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-16T19:50:32Z",
+      "side": 1,
+      "message": "What is this expecting? A list of strings or comma-separated values?\n\nAlso change to data.get(\u0027labels\u0027)",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53e17c38_86656737",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-16T19:50:32Z",
+      "side": 1,
+      "message": "Right now, we\u0027re using the components as given by the Subscriptions, but I recall us having a conversation of these having to be translated to Buganizer components? Is there some translation that needs to happen before filing? just checking.",
+      "range": {
+        "startLine": 99,
+        "startChar": 25,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47401c4b_b01da648",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-16T19:50:32Z",
+      "side": 1,
+      "message": "There will only be 1 component always, but I\u0027m wondering if here it\u0027s expecting a list or just a string?",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66bd4f20_5f850067",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-16T19:50:32Z",
+      "side": 1,
+      "message": "What is this expecting? A list of strings or comma-separated values?\n\nAlso change to data.get(\u0027ccs\u0027)",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
