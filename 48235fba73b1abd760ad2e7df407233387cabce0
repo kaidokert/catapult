@@ -142,6 +142,30 @@
       },
       "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9da3c74_d7279cf2",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-16T17:09:29Z",
+      "side": 1,
+      "message": "Compared to adding new \u0027if\u0027, adding a similar but separated endpoint to used for skia could be a better option. Update in:\nhttps://chromium-review.googlesource.com/c/catapult/+/5862664",
+      "parentUuid": "f1127c70_4e72041b",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "48235fba73b1abd760ad2e7df407233387cabce0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
