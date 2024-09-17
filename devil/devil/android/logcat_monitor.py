@@ -254,9 +254,10 @@ class LogcatMonitor(object):
     Should be called when finished using the logcat monitor.
     """
     with self._record_file_lock:
-      if self._record_file:
-        self._record_file.close()
-        self._record_file = None
+      # if self._record_file:
+      #   self._record_file.close()
+      #   self._record_file = None
+      logger.warning('Skip Closing Logmon!')
 
   def close(self):
     """An alias for Close.
