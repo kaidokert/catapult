@@ -22,6 +22,30 @@
       },
       "revId": "837dd8482dfd90dc6e2d3d1f9a277fd5422606fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a0c3c0_28c90c96",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T23:26:22Z",
+      "side": 1,
+      "message": "That\u0027s a good catch.\n\nCurrently because we are still going through Chromeperf, the existing workflow will still use Chromeperf\u0027s SA to create a bug, and also add the same SA in \u0027collaborators\u0027 so that we can update the bug in the future even if the bug is moved to another component. I believe it is the case even when the bug is created from UI by a user.\n\nAdding Skia\u0027s SA here require some works as we need a way from Chromeperf to tell which SA (from different instances) is creating the bug. I will create a task for it.",
+      "parentUuid": "a4f86686_3f4a4c98",
+      "range": {
+        "startLine": 135,
+        "startChar": 18,
+        "endLine": 135,
+        "endChar": 21
+      },
+      "revId": "837dd8482dfd90dc6e2d3d1f9a277fd5422606fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
