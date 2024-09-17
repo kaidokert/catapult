@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f86686_3f4a4c98",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-17T23:10:05Z",
+      "side": 1,
+      "message": "Does our SA need to be cc\u0027ed on the ticket to be able to edit it moving forward, or is that covered because our SA is the one creating it?\n\nNote: SA from catapult is likely different from SA being used in Skia, so maybe we need to be futureproof and cc Skia SA if ^ is correct.",
+      "range": {
+        "startLine": 135,
+        "startChar": 18,
+        "endLine": 135,
+        "endChar": 21
+      },
+      "revId": "837dd8482dfd90dc6e2d3d1f9a277fd5422606fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
