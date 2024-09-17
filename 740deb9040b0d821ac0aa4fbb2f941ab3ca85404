@@ -46,6 +46,30 @@
       },
       "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fd623f_7ab9eef2",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-09-17T23:29:39Z",
+      "side": 1,
+      "message": "\u003e These utils have been very stable for years and years. Why are we just now mucking with the timeout layers?\n\nAs pointed out in b/344849382#comment13, ANGLE is running into issues where `Root()` is getting stuck for 5 minutes when we would expect it to time out after 30 seconds before trying again. That prompted the original change that seems to fix an issue where `_RunAdbCmd` was not properly handling timeouts.\n\nNow that `_RunAdbCmd` is properly handling timeouts, the fact that `Shell` and `_Shell` specify default timeouts is causing issues in some Chromium code that was relying on the old/incorrect behavior.\n\nIIRC, the problematic line in Chromium was [here](https://source.chromium.org/chromium/chromium/src/+/main:build/android/pylib/local/device/local_device_gtest_run.py;l\u003d463?q\u003d-file:%5Eout%20-file:%5Egen%20local_device_gtest_run.py), which does manually specify a timeout. AFAICT that timeout is meant for the `@decorators.WithTimeoutAndRetriesFromInstance`, which means `RunShellCommand` should also get that.\n\nHowever, that timeout is not passed into `adb_wrapper.Shell` [here](https://source.chromium.org/chromium/chromium/src/+/main:third_party/angle/third_party/catapult/devil/devil/android/device_utils.py;l\u003d1824?q\u003d-file:%5Eout%20-file:%5Egen%20pushchangedfiles), so `Shell` ends up using its default of 30 seconds.\n\nWhen I originally created this reland, I didn\u0027t know if `RunShellCommand` should be passing its `timeout` argument into `Shell` or not. I was unsure if the `timeout` and `retries` arguments in `device_utils` are meant to be used anywhere, or if they\u0027re supposed to be exclusively used by the decorators.\n\nHowever, looking in `device_utils` now, there are at least a few cases where `timeout` is used such as [here](https://source.chromium.org/chromium/chromium/src/+/main:third_party/angle/third_party/catapult/devil/devil/android/device_utils.py;l\u003d2850?q\u003d-file:%5Eout%20-file:%5Egen%20pushchangedfiles). So, it\u0027s sounding like the correct fix here would be to update `RunShellCommand` to pass its `timeout` argument into `adb_wrapper.Shell`.\n\n(Thank you for being a rubber duck)",
+      "parentUuid": "afaa0220_a84bf763",
+      "range": {
+        "startLine": 713,
+        "startChar": 13,
+        "endLine": 713,
+        "endChar": 26
+      },
+      "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
