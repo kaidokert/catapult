@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa35b4d1_021085d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T22:45:56Z",
+      "side": 1,
+      "message": "fixed the issue which caused failures on skia-bridge. PTAL.",
+      "revId": "007b0f89b55b892b0c7e223e3fd3719803a980b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
