@@ -205,6 +205,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b303ed_51681f6f",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T23:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6afbdb3_1be35b46",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53e17c38_86656737",
@@ -263,6 +281,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab4660ce_fcb5759f",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T23:06:54Z",
+      "side": 1,
+      "message": "In chromeperf, we still expect the monorail component, which is from the sheriff config.",
+      "parentUuid": "53e17c38_86656737",
+      "range": {
+        "startLine": 99,
+        "startChar": 25,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66bd4f20_5f850067",
@@ -276,6 +318,24 @@
       "writtenOn": "2024-09-16T19:50:32Z",
       "side": 1,
       "message": "What is this expecting? A list of strings or comma-separated values?\n\nAlso change to data.get(\u0027ccs\u0027)",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d18bf47_c24bffed",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T23:06:54Z",
+      "side": 1,
+      "message": "Updated based on the discussion.",
+      "parentUuid": "66bd4f20_5f850067",
       "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
