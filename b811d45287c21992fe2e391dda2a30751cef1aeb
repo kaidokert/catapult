@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "080eb55a_0968678a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T21:51:39Z",
+      "side": 1,
+      "message": "Updated the logics and the request property types. Updating the tests.",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20d99896_e2a283dc",
@@ -31,6 +48,24 @@
       "writtenOn": "2024-09-16T19:50:32Z",
       "side": 1,
       "message": "Could you add what return values we should be expecting? If I recall, we should only expect a Bug Id or an error, but maybe there\u0027s more you intend to return?",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da5f9b40_11a512b7",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T21:51:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20d99896_e2a283dc",
       "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -76,6 +111,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a23a2c30_15c1e808",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T21:51:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a34e9557_97c3699a",
+      "range": {
+        "startLine": 87,
+        "startChar": 25,
+        "endLine": 87,
+        "endChar": 32
+      },
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29c56566_9dfd7239",
@@ -93,6 +152,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2a9f351_c43cd04a",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T21:51:39Z",
+      "side": 1,
+      "message": "Actually no. The Skia UI handler does not expect it so there is no need to pass it from Skia UI. \n\nHere the get() is the same as:\nproject_id \u003d \u0027chromium\u0027.\n\nTechnically the project id value will have impact on where the \u0027labels\u0027 are saved in buganizer. But in our use case, it is safe assuming \u0027chromium\u0027 is the only value. (Even if they select \u0027v8\u0027, the behavior will be the same)",
+      "parentUuid": "29c56566_9dfd7239",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc0132bc_add4b352",
@@ -106,6 +183,24 @@
       "writtenOn": "2024-09-16T19:50:32Z",
       "side": 1,
       "message": "What is this expecting? A list of strings or comma-separated values?\n\nAlso change to data.get(\u0027labels\u0027)",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6afbdb3_1be35b46",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T21:51:39Z",
+      "side": 1,
+      "message": "Updated based on recent discussion.",
+      "parentUuid": "bc0132bc_add4b352",
       "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -146,6 +241,24 @@
       "writtenOn": "2024-09-16T19:50:32Z",
       "side": 1,
       "message": "There will only be 1 component always, but I\u0027m wondering if here it\u0027s expecting a list or just a string?",
+      "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55761c9_65a235a4",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-17T21:51:39Z",
+      "side": 1,
+      "message": "it should be a string.",
+      "parentUuid": "47401c4b_b01da648",
       "revId": "b811d45287c21992fe2e391dda2a30751cef1aeb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
