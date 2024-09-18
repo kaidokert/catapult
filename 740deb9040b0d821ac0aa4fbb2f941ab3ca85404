@@ -118,6 +118,30 @@
       },
       "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d41b24de_5a8c9608",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-09-18T22:50:40Z",
+      "side": 1,
+      "message": "Looks like at least one place in the Chromium code is unhappy, will dig deeper when I have the time. It might just be a case of needing to specify a timeout in the Chromium code.",
+      "parentUuid": "1b091c67_78c6a5fa",
+      "range": {
+        "startLine": 713,
+        "startChar": 13,
+        "endLine": 713,
+        "endChar": 26
+      },
+      "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
