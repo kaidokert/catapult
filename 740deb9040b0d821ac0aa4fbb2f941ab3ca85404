@@ -70,6 +70,30 @@
       },
       "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3801bcc_5cb5b0dc",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2024-09-18T00:28:21Z",
+      "side": 1,
+      "message": "I agree it makes sense to propagate timeout values down to the lower level calls. If `RunShellCommand` has a timeout argument, then it should pass that value along to `adb_wrapper.Shell`.\n\nI think the default value for the function definitions should stay as `timeout\u003dDEFAULT_TIMEOUT`, otherwise DEFAULT_TIMEOUT isn\u0027t really the default.",
+      "parentUuid": "a3fd623f_7ab9eef2",
+      "range": {
+        "startLine": 713,
+        "startChar": 13,
+        "endLine": 713,
+        "endChar": 26
+      },
+      "revId": "740deb9040b0d821ac0aa4fbb2f941ab3ca85404",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
