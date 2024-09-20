@@ -113,8 +113,11 @@ def AlertsHandlerPost():
 
 @flask_app.route('/associate_alerts', methods=['GET', 'POST'])
 def AssociateAlertsHandlerPost():
-  return associate_alerts.AssociateAlertsHandlerPost()
+  return associate_alerts.SkiaAssociateAlertsHandlerPost()
 
+@flask_app.route('/associate_alerts_skia', methods=['POST'])
+def SkiaExistingBugHandlerPost():
+  return associate_alerts.SkiaExistingBugHandlerPost()
 
 @flask_app.route('/api/alerts', methods=['POST', 'OPTIONS'])
 def AlertsPost():
