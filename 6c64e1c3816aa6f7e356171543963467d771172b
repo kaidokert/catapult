@@ -16,6 +16,24 @@
       "message": "Unfortunate timing that you sent this out as I was leaving the office for a team event.",
       "revId": "6c64e1c3816aa6f7e356171543963467d771172b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e05131_8896ec35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-09-20T17:35:42Z",
+      "side": 1,
+      "message": "np; thanks",
+      "parentUuid": "bc7cdfb5_68868e3f",
+      "revId": "6c64e1c3816aa6f7e356171543963467d771172b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
