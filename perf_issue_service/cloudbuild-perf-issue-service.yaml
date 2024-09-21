@@ -8,7 +8,7 @@ steps:
   dir: 'perf_issue_service'
   args: [
     app, deploy, '--no-promote', '--version', 'cloud-build-${SHORT_SHA}',
-    app.yaml,
+    app.yaml, app-ext.yaml
   ]
 - name: 'gcr.io/cloud-builders/gcloud'
   id: 'Stop the newly deployed instances'
@@ -17,8 +17,14 @@ steps:
     app, versions, 'stop', '-s', 'perf-issue-service', 'cloud-build-${SHORT_SHA}'
   ]
 - name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Stop the newly deployed ext instances'
+  dir: 'perf_issue_service'
+  args: [
+    app, versions, 'stop', '-s', 'perf-issue-service-ext', 'cloud-build-${SHORT_SHA}'
+  ]
+- name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: '/bin/bash'
   args: [
     '-x', '-e', 'dashboard/dev_dockerfiles/cleanup_versions.sh',
-    '21', 'perf-issue-service'
+    '21', 'perf-issue-service', 'perf-issue-service-ext'
   ]
