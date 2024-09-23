@@ -1821,7 +1821,7 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
-      return self.adb.Shell(cmd)
+      return self.adb.Shell(cmd, timeout=timeout)
 
     def handle_check_return(cmd):
       try:
