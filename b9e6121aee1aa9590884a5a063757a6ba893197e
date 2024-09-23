@@ -16,6 +16,24 @@
       "message": "LGTM, although I\u0027m a bit confused about why this is only an issue with your CL in place, but not before.",
       "revId": "b9e6121aee1aa9590884a5a063757a6ba893197e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e1cfad_3f3664b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-09-23T22:11:21Z",
+      "side": 1,
+      "message": "Yeah I had the same thought. Maybe we make so little use of \"--browser\u003d...\" arg anywhere else?\n\nRegardless, I\u0027ll wait on the tryjobs in https://crrev.com/c/5884018 before CQ\u0027ing this. And if you can think of any optional chromium/chrome trybot to test this out on before CQing, LMK.",
+      "parentUuid": "f6add955_3ea8c3fb",
+      "revId": "b9e6121aee1aa9590884a5a063757a6ba893197e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
