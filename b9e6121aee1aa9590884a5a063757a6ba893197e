@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6add955_3ea8c3fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-09-23T22:06:58Z",
+      "side": 1,
+      "message": "LGTM, although I\u0027m a bit confused about why this is only an issue with your CL in place, but not before.",
+      "revId": "b9e6121aee1aa9590884a5a063757a6ba893197e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
