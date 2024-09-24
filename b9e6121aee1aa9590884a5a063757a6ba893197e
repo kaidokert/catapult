@@ -34,6 +34,24 @@
       "parentUuid": "f6add955_3ea8c3fb",
       "revId": "b9e6121aee1aa9590884a5a063757a6ba893197e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1bb4d65_840ce8dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-09-24T16:34:43Z",
+      "side": 1,
+      "message": "Looks like just unrelated flakes on https://crrev.com/c/5884018. So hopefully this is safe.",
+      "parentUuid": "d7e1cfad_3f3664b7",
+      "revId": "b9e6121aee1aa9590884a5a063757a6ba893197e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
