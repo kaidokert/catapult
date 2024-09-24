@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "120fa33c_7afe808b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-09-24T00:01:32Z",
+      "side": 1,
+      "message": "Alright, Android builders are finally looking happy on crrev.com/c/5882166.\n\nPTAL",
+      "revId": "086e912f3b82648eb2f877f60b827d0167de144e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
