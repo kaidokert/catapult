@@ -20,6 +20,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "022e3f22_4783543e",
+        "filename": "dashboard/dashboard/edit_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-25T18:39:53Z",
+      "side": 1,
+      "message": "As discussed in another CL, we may need to flip the order and check the revisions first.",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cb53c3d9_39b17ce1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/edit_anomalies.py",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "  if start_revision and end_revision:\n"
+            },
+            {
+              "path": "dashboard/dashboard/edit_anomalies.py",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 111,
+                "endChar": 0
+              },
+              "replacement": "  elif bug_id:\n    result \u003d ChangeBugId(alert_entities, bug_id)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b51619d_2c7fcc8e",
         "filename": "dashboard/dashboard/edit_anomalies.py",
         "patchSetId": 2
