@@ -114,6 +114,30 @@
       },
       "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e127ad6_c0a8f862",
+        "filename": "dashboard/dashboard/edit_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-09-25T22:29:41Z",
+      "side": 1,
+      "message": "Oh. If it\u0027s for the sake of consistency, I\u0027d rather not even include bug id. I think 200 / non 200 should be sufficient for indicating whether the action is successful or not.",
+      "parentUuid": "894049ff_964709d4",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 79
+      },
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
