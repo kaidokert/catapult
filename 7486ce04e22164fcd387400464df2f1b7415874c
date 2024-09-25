@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed090d4_5b549364",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-25T18:31:35Z",
+      "side": 1,
+      "message": "PTAL.",
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b51619d_2c7fcc8e",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-09-25T18:19:53Z",
       "side": 1,
       "message": "It looks start and end come from request.data, which means the user making the request should already have this information. Any reason for returning it back?",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 79
+      },
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "894049ff_964709d4",
+        "filename": "dashboard/dashboard/edit_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-25T18:31:35Z",
+      "side": 1,
+      "message": "Actually the only reason is to be consistent of the behavior of returning the bug_id. The bug_id is also part of the request and we are returning it.",
+      "parentUuid": "6b51619d_2c7fcc8e",
       "range": {
         "startLine": 110,
         "startChar": 6,
