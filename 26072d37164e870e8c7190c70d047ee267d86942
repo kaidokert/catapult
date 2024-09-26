@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2f804c_8ceb28a2",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-26T05:20:06Z",
+      "side": 1,
+      "message": "TL;DR, I don\u0027t think we need this from skia. There is a check in legacy, which I don\u0027t think matters. Even if it matters, we should handle it in Skia, but not in Chromeperf.\n\n\nThe current form works in a tricky way that uses the bug_result.html for multiple purposes:\n1. click on the \"existing bug\" button, AssociateAlertsHandlerPost() is called with no \u0027bug_id\u0027, thus _ShowCommentDialog() is called. It renders bug_result.html with \u0027bug_associate_form\u0027 as True, which is:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/templates/bug_result.html;l\u003d161\n\n2. Then we can input the bug id and such from the popup, then click submit. This sends a POST to the same endponint, associate_alerts/, with \u0027bug_id\u0027. This time, AssociateAlertsHandlerPost() is called with \u0027bug_id\u0027, and thus _AssociateAlertsWithBug() is called. Though, \u0027confirm\u0027 is not set.\n\n3. This leads to a call to _VerifyAnomaliesOverlap(), which do some checks.\nIf it returns nothing (no \u0027warning_msg\u0027), we are good, AssociateAlerts() will be called. Otherwise, a \u0027warning_msg\u0027 will trigger a call to _ShowConfirmDialog(). It is again the bug_result.html, with \u0027confirmation_required\u0027:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/templates/bug_result.html;l\u003d264\n\n4. Then if we submit, we will call associate_alerts/ again, with \u0027bug_id\u0027, and \u0027confirm\u0027. These allow us call AssociateAlerts().",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 14
+      },
+      "revId": "26072d37164e870e8c7190c70d047ee267d86942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
