@@ -162,6 +162,30 @@
       },
       "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6816d1a_d66d212d",
+        "filename": "dashboard/dashboard/edit_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2024-09-26T21:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4091e035_62a01ac0",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 79
+      },
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
