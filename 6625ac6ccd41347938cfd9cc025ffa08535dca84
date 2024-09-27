@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7841569_01786315",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-27T18:35:35Z",
+      "side": 1,
+      "message": "We need to remove this as well.",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3d78f947_5a7d3545",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/associate_alerts.py",
+              "range": {
+                "startLine": 98,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6625ac6ccd41347938cfd9cc025ffa08535dca84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d58be57_ee66bf38",
+        "filename": "dashboard/dashboard/elements/triage-dialog.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-27T18:35:35Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 224,
+        "startChar": 29,
+        "endLine": 224,
+        "endChar": 32
+      },
+      "revId": "6625ac6ccd41347938cfd9cc025ffa08535dca84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
