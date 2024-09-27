@@ -39,6 +39,30 @@
       },
       "revId": "26072d37164e870e8c7190c70d047ee267d86942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "314c2683_7696fe5a",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-09-27T18:29:54Z",
+      "side": 1,
+      "message": "Makes sense. I will remove this field, and create a warning message on Skia UI.",
+      "parentUuid": "0d2f804c_8ceb28a2",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 14
+      },
+      "revId": "26072d37164e870e8c7190c70d047ee267d86942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
