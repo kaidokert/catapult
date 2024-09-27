@@ -42,6 +42,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33572d8d_61ec7964",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-09-27T18:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7841569_01786315",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "6625ac6ccd41347938cfd9cc025ffa08535dca84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d58be57_ee66bf38",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-09-27T18:35:35Z",
       "side": 1,
       "message": "typo?",
+      "range": {
+        "startLine": 224,
+        "startChar": 29,
+        "endLine": 224,
+        "endChar": 32
+      },
+      "revId": "6625ac6ccd41347938cfd9cc025ffa08535dca84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63c284e7_d97eb0c8",
+        "filename": "dashboard/dashboard/elements/triage-dialog.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-09-27T18:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d58be57_ee66bf38",
       "range": {
         "startLine": 224,
         "startChar": 29,
