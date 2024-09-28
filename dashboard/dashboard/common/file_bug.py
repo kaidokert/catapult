@@ -305,8 +305,9 @@ def FileBug(owner,
             components,
             keys,
             needs_bisect=True,
-            keys_are_urlsafe=True):
-  logging.info('file a bug from legacy chromeperf UI')
+            keys_are_urlsafe=True,
+            skia_link=''):
+  logging.info('file a bug from UI')
   if keys_are_urlsafe:
     alert_keys = [ndb.Key(urlsafe=k) for k in keys]
   else:
@@ -344,6 +345,11 @@ def FileBug(owner,
   ndb.put_multi(alerts)
   logging.info('bug mapped to alert')
   comment_body = _AdditionalDetails(bug_id, project_id, alerts)
+
+  if skia_link:
+    comment_body += (
+        '(For debugging:) Skia alerts at time of bug-filing:\n  %s\n' %
+        skia_link)
 
   # Add the bug comment with the service account, so that there are no
   # permissions issues.

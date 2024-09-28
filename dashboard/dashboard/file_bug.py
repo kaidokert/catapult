@@ -147,7 +147,8 @@ def SkiaFileBugHandlerPost():
       labels=labels,
       components=[component],  # FileBug expects a list of components.
       urlsafe_keys='',
-      integer_keys=keys)
+      integer_keys=keys,
+      skia_link=request.referrer or '')
 
   if 'error' in create_bug_result:
     return make_response(
@@ -184,8 +185,16 @@ def _ShowBugDialog(summary, description, urlsafe_keys):
       })
 
 
-def _CreateBug(owner, cc, summary, description, project_id, labels, components,
-               urlsafe_keys, integer_keys):
+def _CreateBug(owner,
+               cc,
+               summary,
+               description,
+               project_id,
+               labels,
+               components,
+               urlsafe_keys,
+               integer_keys,
+               skia_link=''):
   """Creates a bug, associates it with the alerts, sends a HTML response.
 
   Args:
@@ -224,5 +233,6 @@ def _CreateBug(owner, cc, summary, description, project_id, labels, components,
         labels,
         components,
         integer_keys,
-        keys_are_urlsafe=False)
+        keys_are_urlsafe=False,
+        skia_link=skia_link)
   return template_params
