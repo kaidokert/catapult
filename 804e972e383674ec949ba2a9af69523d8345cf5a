@@ -129,6 +129,30 @@
       ],
       "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b476460b_4bbf0d4e",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-09-30T21:55:21Z",
+      "side": 1,
+      "message": "Thanks for the correction. Updated",
+      "parentUuid": "afa0e69f_9ae5cf77",
+      "range": {
+        "startLine": 158,
+        "startChar": 24,
+        "endLine": 158,
+        "endChar": 31
+      },
+      "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
