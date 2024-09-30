@@ -40,6 +40,71 @@
       ],
       "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1be5cc9_1e292d7b",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-30T19:16:41Z",
+      "side": 1,
+      "message": "One problem here: if the bug_id is none, int(None) will fail with TypeError.\n\nI think if the bug id is None (not in the data), we should return error.",
+      "parentUuid": "69d0ff8c_b7a5f219",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 11
+      },
+      "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afa0e69f_9ae5cf77",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-30T19:16:41Z",
+      "side": 1,
+      "message": "From the other CL in skia, the keys from Skia should be a list of integers (instead comma-separated urlsafe keys). Here we should use:\n  alert_keys \u003d [ndb.Key(\u0027Anomaly\u0027, k) for k in keys]",
+      "range": {
+        "startLine": 158,
+        "startChar": 24,
+        "endLine": 158,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f739221a_c609182a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/associate_alerts.py",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "  alert_keys \u003d [ndb.Key(\u0027Anomaly\u0027, k) for k in keys]\n"
+            }
+          ]
+        }
+      ],
+      "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
