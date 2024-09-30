@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02d5cc9_cea713af",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-30T22:46:30Z",
+      "side": 1,
+      "message": "This is a function type in python. I\u0027m not sure whether it will be handled correcly by dumps().\n\nI think we can return empty body on success, like make_response(\u0027\u0027).",
+      "range": {
+        "startLine": 166,
+        "startChar": 34,
+        "endLine": 166,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6a178cc1_c03f8d70",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/associate_alerts.py",
+              "range": {
+                "startLine": 166,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "  return make_response(\u0027\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f5711aee6f8b179a0d05bae1fbe73724ca8dc0e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
