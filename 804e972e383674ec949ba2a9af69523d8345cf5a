@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d0ff8c_b7a5f219",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-09-30T17:35:53Z",
+      "side": 1,
+      "message": "What do we return if we do not have but id?",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "446010bb_0b7251d7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/associate_alerts.py",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "    return _AssociateAlertsWithBugForSkia(bug_id, project_id, keys)\n  return make_response(\n      json.dumps({\u0027error\u0027: \u0027No bug id specified to add.\u0027}),\n      http.HTTPStatus.BAD_REQUEST.value)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
