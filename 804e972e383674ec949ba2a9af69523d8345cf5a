@@ -66,6 +66,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfb8ef9_c07dd50b",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-09-30T21:17:36Z",
+      "side": 1,
+      "message": "Ok. Added validation when the bug_id is empty, then it will return BAD_REQUEST error",
+      "parentUuid": "d1be5cc9_1e292d7b",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 11
+      },
+      "revId": "804e972e383674ec949ba2a9af69523d8345cf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afa0e69f_9ae5cf77",
