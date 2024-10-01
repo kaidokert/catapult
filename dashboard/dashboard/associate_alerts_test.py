@@ -8,9 +8,11 @@ from __future__ import absolute_import
 
 from flask import Flask
 from unittest import mock
+from httplib2 import http
 import six
 import unittest
 import webtest
+import json
 
 from dashboard import associate_alerts
 from dashboard.common import testing_common
@@ -26,6 +28,11 @@ flask_app = Flask(__name__)
 @flask_app.route('/associate_alerts', methods=['GET', 'POST'])
 def AssociateAlertsHandlerPost():
   return associate_alerts.AssociateAlertsHandlerPost()
+
+
+@flask_app.route('/associate_alerts_skia', methods=['POST'])
+def SkiaAssociateAlertsHandlerPost():
+  return associate_alerts.SkiaAssociateAlertsHandlerPost()
 
 
 class AssociateAlertsTest(testing_common.TestCase):
@@ -50,7 +57,7 @@ class AssociateAlertsTest(testing_common.TestCase):
             'ChromiumGPU/linux-release/scrolling-benchmark/mean_frame_time',
         ]))
 
-  def _AddAnomalies(self):
+  def _AddAnomalies(self, is_skia=False):
     """Adds sample Anomaly data and returns a dict of revision to key."""
     subscription = Subscription(
         name='Chromium Perf Sheriff', notification_email='sullivan@google.com')
@@ -95,6 +102,13 @@ class AssociateAlertsTest(testing_common.TestCase):
         subscription_names=[subscription.name],
     ).put()
     key_map[9997] = six.ensure_str(anomaly_key.urlsafe())
+
+    key_map_as_ints = {}
+    if is_skia:
+      for k in key_map.items():
+        key_map_as_ints = int(key_map[k])
+      return key_map_as_ints
+
     return key_map
 
   def testGet_NoKeys_ShowsError(self):
@@ -236,6 +250,177 @@ class AssociateAlertsTest(testing_common.TestCase):
       elif anomaly_entity.end_revision != 9997:
         self.assertIsNone(anomaly_entity.bug_id)
         self.assertEqual('chromium', anomaly_entity.project_id)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_WithBugId_AlertIsAssociatedWithBugId(self):
+    # When the bug ID is given and the alerts overlap, then the Anomaly
+    # entities are updated and there is a response indicating success.
+    key_map = self._AddAnomalies()
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'keys': [key_map[9996], key_map[10000]],
+            'bug_id': "12345",
+            'project_id': "test_project",
+        },
+        expect_errors=False)
+
+    # The response page should have a bug number.
+    self.assertIn(b'12345', response.body)
+    # The Anomaly entities should be updated.
+    for anomaly_entity in anomaly.Anomaly.query().fetch():
+      if anomaly_entity.end_revision in (10000, 9996):
+        self.assertEqual(12345, anomaly_entity.bug_id)
+        self.assertEqual('test_project', anomaly_entity.project_id)
+      elif anomaly_entity.end_revision != 9997:
+        self.assertIsNone(anomaly_entity.bug_id)
+        self.assertEqual('chromium', anomaly_entity.project_id)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_WithBugId_AlertIsAssociatedWithBugIdAndNoProjectId(self):
+    # When the bug ID is given and the alerts overlap, then the Anomaly
+    # entities are updated and there is a response indicating success.
+    key_map = self._AddAnomalies()
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'keys': [key_map[9996], key_map[10000]],
+            'bug_id': "12345",
+        },
+        expect_errors=True)
+
+    self.assertEqual(http.HTTPStatus.BAD_REQUEST.value, response.status_code)
+    body_json = json.loads(response.body)
+    self.assertIn('error', body_json)
+    self.assertIn('No project id specified to add.', body_json['error'])
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_WithBugId_AlertIsAssociatedWithBugIdAndMissingKeys(self):
+    # When the bug ID is given and the alerts overlap, then the Anomaly
+    # entities are updated and there is a response indicating success.
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'bug_id': "12345",
+            'project_id': "test_project",
+        },
+        expect_errors=True)
+
+    self.assertEqual(http.HTTPStatus.BAD_REQUEST.value, response.status_code)
+    body_json = json.loads(response.body)
+    self.assertIn('error', body_json)
+    self.assertIn('No skia anomaly keys specified to add.', body_json['error'])
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_AssociateAlerts_BadJson(self):
+    # When a POST request is made with some anomaly keys but the body json is not valid,
+    # A http BAD_REQUEST status errp is returned in response
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', '{"keys":"k1"', expect_errors=True)
+    self.assertEqual(http.HTTPStatus.BAD_REQUEST.value, response.status_code)
+    body_json = json.loads(response.body)
+    self.assertIn('error', body_json)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_AssociateAlerts_BadBugId(self):
+    # When a POST request is made with some anomaly keys but the body json is not valid,
+    # A http BAD_REQUEST status errp is returned in response
+    key_map = self._AddAnomalies()
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'bug_id': 111,
+            'keys': [key_map[9996], key_map[10000]],
+            'project_id': "test_project",
+        },
+        expect_errors=True)
+    self.assertEqual(http.HTTPStatus.BAD_REQUEST.value, response.status_code)
+    body_json = json.loads(response.body)
+    self.assertIn('error', body_json)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_TargetBugHasNoAlerts_DoesNotAskForConfirmation(self):
+    # Associating alert with bug ID that has no alerts is always OK.
+    key_map = self._AddAnomalies()
+    # response = self.testapp.post_json('/associate_alerts_skia?keys=%s,%s&bug_id=578' %
+    #                             (key_map[9996], key_map[10000]))
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'confirm': True,
+            'keys': [key_map[99960], key_map[10000]],
+            'project_id': "test_project",
+            'bug_id': "578",
+        },
+        expect_errors=False)
+    # The response page should have a bug number.
+    self.assertIn(b'578', response.body)
+    # The Anomaly entities should be updated.
+    self.assertEqual(
+        578,
+        anomaly.Anomaly.query(
+            anomaly.Anomaly.end_revision == 9996).get().bug_id)
+    self.assertEqual(
+        578,
+        anomaly.Anomaly.query(
+            anomaly.Anomaly.end_revision == 10000).get().bug_id)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_WithConfirm_AssociatesWithNewBugId(self):
+    # Associating alert with bug ID and with confirmed non-overlapping revision
+    # range should update alert with bug ID.
+    key_map = self._AddAnomalies()
+    # response = self.testapp.post_json(
+    #     '/associate_alerts_skia?confirm=true&keys=%s,%s&bug_id=12345&'
+    #     'project_id=test_project' % (key_map[10000], key_map[10010]))
+
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'confirm': True,
+            'keys': [key_map[10000], key_map[10010]],
+            'project_id': "test_project",
+            'bug_id': "12345",
+        },
+        expect_errors=False)
+    # The response page should have the bug number.
+    self.assertIn(b'12345', response.body)
+    # The Anomaly entities should be updated.
+    for anomaly_entity in anomaly.Anomaly.query().fetch():
+      if anomaly_entity.end_revision in (10000, 10010):
+        self.assertEqual(12345, anomaly_entity.bug_id)
+        self.assertEqual('test_project', anomaly_entity.project_id)
+      elif anomaly_entity.end_revision != 9997:
+        self.assertIsNone(anomaly_entity.bug_id)
+        self.assertEqual('chromium', anomaly_entity.project_id)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_NoBugId_ShowsDialog(self):
+    # When a POST request is made with some anomaly keys but no bug ID,
+    # A HTML form is shown for the user to input a bug number.
+    key_map = self._AddAnomalies()
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'keys': [key_map[9996], key_map[10000]],
+            'project_id': "test_project",
+        },
+        expect_errors=False)
+    # The response contains a table of recent bugs and a form.
+    self.assertIn(b'12345', response.body)
+    self.assertIn(b'13579', response.body)
+    self.assertIn(b'<form', response.body)
+
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_AssocaiteAlerts_InvalidUser(self):
+    # When a POST request is made with some anomaly keys but the user id is invalid,
+    # A http UNAUTHORIZED status error is returned in response
+    self.SetCurrentUser('@12345.com')
+    key_map = self._AddAnomalies()
+    response = self.testapp.post_json(
+        '/associate_alerts_skia', {
+            'keys': [key_map[9996], key_map[10000]],
+            'bug_id': "12345",
+            'project_id': "test_project",
+        },
+        expect_errors=True)
+    body_json = json.loads(response.body)
+    self.assertIn('error', body_json)
+    self.assertIn('must be logged in', body_json['error'])
+    self.assertEqual(http.HTTPStatus.UNAUTHORIZED.value, response.status_code)
 
   def testRevisionRangeFromSummary(self):
     # If the summary is in the expected format, a pair is returned.
