@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53c6c605_f2a98b48",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-10-01T21:03:37Z",
+      "side": 1,
+      "message": "Thanks for the correction! I\u0027ve updated the code",
+      "parentUuid": "14e23529_65202947",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "6d8a1d6efc9639973aac788904d6120c86366613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b14c92af_c534a6fe",
         "filename": "dashboard/dashboard/associate_alerts_test.py",
         "patchSetId": 17
@@ -71,6 +95,30 @@
           ]
         }
       ],
+      "revId": "6d8a1d6efc9639973aac788904d6120c86366613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c18dbb86_efa77a01",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-10-01T21:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b14c92af_c534a6fe",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 370,
+        "endChar": 71
+      },
       "revId": "6d8a1d6efc9639973aac788904d6120c86366613",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
