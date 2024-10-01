@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "246e0d730d47dde80c2df2de63e1d1e205a8ecb0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "254e6145_512d452e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2024-10-01T22:51:46Z",
+      "side": 1,
+      "message": "Thanks I think this would be great to do.\n\nI think we might need some extra plumbing for this to work in catapult, for instance an entry in https://source.chromium.org/chromium/chromium/tools/depot_tools/+/main:fetch_configs?\n\nI see in crossbench standalone checkout that `gclient sync` will add theses submodules, but that doesn\u0027t happen in chromium/src/third_party/crossbench (or when i take this change and try it in standalone or chromium/src/third_party/catapult).\n\nAm I missing some other way to do this?",
+      "revId": "246e0d730d47dde80c2df2de63e1d1e205a8ecb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
