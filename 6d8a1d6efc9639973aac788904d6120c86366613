@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e23529_65202947",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-01T20:17:48Z",
+      "side": 1,
+      "message": "key_map is a map from end_revision to urlsafe key.\n\nIn the skia case, I think we need a map from end_revision to the int key. On each assignment of key_map[xxxx], we can have:\n  key_map_as_ints[xxxx] \u003d anomaly_key.id()",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "6d8a1d6efc9639973aac788904d6120c86366613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b14c92af_c534a6fe",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-01T20:17:48Z",
+      "side": 1,
+      "message": "nit: clean up",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 370,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ab786d33_4febbcb6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/associate_alerts_test.py",
+              "range": {
+                "startLine": 341,
+                "startChar": 0,
+                "endLine": 343,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "dashboard/dashboard/associate_alerts_test.py",
+              "range": {
+                "startLine": 368,
+                "startChar": 0,
+                "endLine": 372,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6d8a1d6efc9639973aac788904d6120c86366613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
