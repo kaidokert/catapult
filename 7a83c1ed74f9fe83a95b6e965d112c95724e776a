@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc4402a_69f487b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-01T21:49:37Z",
+      "side": 1,
+      "message": "We should not need those rollouts. The only change should be limited to perf-issue-service. However, I updated the wrong requirement.txt file in the CL:\nhttps://chromium-review.googlesource.com/c/catapult/+/5880336\n\nwhich should update the requirements.txt under perf_issue_service.\n\nI\u0027ll have a CL to fix this so that perf-issue-service should be the only service needs to be updated, and I\u0027ll do it on my rotation.",
+      "revId": "7a83c1ed74f9fe83a95b6e965d112c95724e776a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
