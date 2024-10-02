@@ -69,6 +69,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acae71f6_fd89e015",
+        "filename": "dashboard/dashboard/edit_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-02T22:01:01Z",
+      "side": 1,
+      "message": "Keep the existing order as now the property is set omitempty in golang.",
+      "parentUuid": "022e3f22_4783543e",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 12
+      },
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b51619d_2c7fcc8e",
@@ -177,6 +201,30 @@
       "writtenOn": "2024-09-26T21:48:37Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "4091e035_62a01ac0",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 79
+      },
+      "revId": "7486ce04e22164fcd387400464df2f1b7415874c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44b16748_67c00e17",
+        "filename": "dashboard/dashboard/edit_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-02T22:01:01Z",
+      "side": 1,
+      "message": "Updated. Now only error will be in the response. (The success message doesn\u0027t tell a lot)",
       "parentUuid": "4091e035_62a01ac0",
       "range": {
         "startLine": 110,
