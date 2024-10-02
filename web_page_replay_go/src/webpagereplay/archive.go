@@ -24,11 +24,17 @@ import (
 
 var ErrNotFound = errors.New("not found")
 
+type TimedChunk struct {
+	TimestampUs int64
+	Bytes       []byte
+}
+
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
 type ArchivedRequest struct {
 	SerializedRequest   []byte
 	SerializedResponse  []byte // if empty, the request failed
+	ResponseChunks      []TimedChunk
 	LastServedSessionId uint32
 }
 
@@ -51,7 +57,7 @@ func (requestMatch *RequestMatch) SetMatch(
 	requestMatch.MatchRatio = ratio
 }
 
-func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
+func serializeRequest(req *http.Request, resp *http.Response, chunks []TimedChunk) (*ArchivedRequest, error) {
 	ar := &ArchivedRequest{}
 	{
 		var buf bytes.Buffer
@@ -67,13 +73,14 @@ func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest,
 		}
 		ar.SerializedResponse = buf.Bytes()
 	}
+	ar.ResponseChunks = chunks
 	return ar, nil
 }
 
-func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Response, error) {
+func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Response, []TimedChunk, error) {
 	req, err := http.ReadRequest(bufio.NewReader(bytes.NewReader(ar.SerializedRequest)))
 	if err != nil {
-		return nil, nil, fmt.Errorf("couldn't unmarshal request: %v", err)
+		return nil, nil, nil, fmt.Errorf("couldn't unmarshal request: %v", err)
 	}
 
 	if req.URL.Host == "" {
@@ -86,9 +93,10 @@ func (ar *ArchivedRequest) unmarshal(scheme string) (*http.Request, *http.Respon
 		if req.Body != nil {
 			req.Body.Close()
 		}
-		return nil, nil, fmt.Errorf("couldn't unmarshal response: %v", err)
+		return nil, nil, nil, fmt.Errorf("couldn't unmarshal response: %v", err)
 	}
-	return req, resp, nil
+
+	return req, resp, ar.ResponseChunks, nil
 }
 
 // Archive contains an archive of requests. Immutable except when embedded in
@@ -161,7 +169,8 @@ func (a *Archive) ForEach(f func(req *http.Request, resp *http.Response) error) 
 		for urlString, requests := range urlmap {
 			fullURL, _ := url.Parse(urlString)
 			for index, archivedRequest := range requests {
-				req, resp, err := archivedRequest.unmarshal(fullURL.Scheme)
+				req, resp, chunks, err := archivedRequest.unmarshal(fullURL.Scheme)
+				_ = chunks // FIXME: support chunks
 				if err != nil {
 					log.Printf("Error unmarshaling request #%d for %s: %v", index, urlString, err)
 					continue
@@ -207,6 +216,12 @@ func assertCompleteURL(url *url.URL) {
 //
 // TODO: conditional requests
 func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response, error) {
+	req, resp, chunks, err := a.FindRequest2(req)
+	_ = chunks
+	return req, resp, err
+}
+
+func (a *Archive) FindRequest2(req *http.Request) (*http.Request, *http.Response, []TimedChunk, error) {
 	// Clear the input channel on large uploads to prevent WPR
 	// from resetting the connection, and causing the upload
 	// to fail.
@@ -227,7 +242,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 
 	hostMap := a.Requests[req.Host]
 	if len(hostMap) == 0 {
-		return nil, nil, ErrNotFound
+		return nil, nil, nil, ErrNotFound
 	}
 
 	// Exact match. Note that req may be relative, but hostMap keys are always absolute.
@@ -289,7 +304,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 		log.Printf(logStr, reqUrl, len(bestURLs), strings.Join(bestURLs[:], "\n"))
 	}
 
-	return nil, nil, ErrNotFound
+	return nil, nil, nil, ErrNotFound
 }
 
 // Given an incoming request and a set of matches in the archive, identify the best match,
@@ -297,18 +312,13 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 func (a *Archive) findBestMatchInArchivedRequestSet(
 	incomingReq *http.Request,
 	archivedReqs []*ArchivedRequest) (
-	*http.Request, *http.Response, error) {
+	*http.Request, *http.Response, []TimedChunk, error) {
 	scheme := incomingReq.URL.Scheme
 
 	if len(archivedReqs) == 0 {
-		return nil, nil, ErrNotFound
+		return nil, nil, nil, ErrNotFound
 	} else if len(archivedReqs) == 1 {
-		archivedReq, archivedResp, err := archivedReqs[0].unmarshal(scheme)
-		if err != nil {
-			log.Println("Error unmarshaling request")
-			return nil, nil, err
-		}
-		return archivedReq, archivedResp, err
+		return archivedReqs[0].unmarshal(scheme)
 	}
 
 	// There can be multiple requests with the same URL string. If that's the
@@ -317,7 +327,7 @@ func (a *Archive) findBestMatchInArchivedRequestSet(
 	var bestInSequenceMatch RequestMatch
 
 	for _, r := range archivedReqs {
-		archivedReq, archivedResp, err := r.unmarshal(scheme)
+		archivedReq, archivedResp, _, err := r.unmarshal(scheme)
 		if err != nil {
 			log.Println("Error unmarshaling request")
 			continue
@@ -354,13 +364,13 @@ func (a *Archive) findBestMatchInArchivedRequestSet(
 	if a.ServeResponseInChronologicalSequence &&
 		bestInSequenceMatch.Match != nil {
 		bestInSequenceMatch.Match.LastServedSessionId = a.CurrentSessionId
-		return bestInSequenceMatch.Request, bestInSequenceMatch.Response, nil
+		return bestInSequenceMatch.Request, bestInSequenceMatch.Response, bestInSequenceMatch.Match.ResponseChunks, nil
 	} else if bestMatch.Match != nil {
 		bestMatch.Match.LastServedSessionId = a.CurrentSessionId
-		return bestMatch.Request, bestMatch.Response, nil
+		return bestMatch.Request, bestMatch.Response, bestMatch.Match.ResponseChunks, nil
 	}
 
-	return nil, nil, ErrNotFound
+	return nil, nil, nil, ErrNotFound
 }
 
 type AddMode int
@@ -374,7 +384,40 @@ const (
 func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response, mode AddMode) error {
 	// Always use the absolute URL in this mapping.
 	assertCompleteURL(req.URL)
-	archivedRequest, err := serializeRequest(req, resp)
+	archivedRequest, err := serializeRequest(req, resp, nil)
+	if err != nil {
+		return err
+	}
+
+	if a.Requests[req.Host] == nil {
+		a.Requests[req.Host] = make(map[string][]*ArchivedRequest)
+	}
+
+	urlStr := req.URL.String()
+	requests := a.Requests[req.Host][urlStr]
+	if mode == AddModeAppend {
+		requests = append(requests, archivedRequest)
+	} else if mode == AddModeOverwriteExisting {
+		log.Printf("Overwriting existing request")
+		requests = []*ArchivedRequest{archivedRequest}
+	} else if mode == AddModeSkipExisting {
+		if requests != nil {
+			log.Printf("Skipping existing request: %s", urlStr)
+			return nil
+		}
+		requests = append(requests, archivedRequest)
+	}
+	a.Requests[req.Host][urlStr] = requests
+	return nil
+}
+
+func (a *Archive) addArchivedRequestWithChunks(req *http.Request, resp *http.Response, chunks []TimedChunk, mode AddMode) error {
+	// Always use the absolute URL in this mapping.
+	assertCompleteURL(req.URL)
+	if resp.Body != nil {
+		panic("we expect addArchivedRequestWithChunks to be called with resp with nil Body (if any body, they should be in chunks)") // FIXME: make this err?
+	}
+	archivedRequest, err := serializeRequest(req, resp, chunks)
 	if err != nil {
 		return err
 	}
@@ -542,6 +585,12 @@ func OpenWritableArchive(path string) (*WritableArchive, error) {
 }
 
 // RecordRequest records a request/response pair in the archive.
+func (a *WritableArchive) RecordRequestWithChunks(req *http.Request, resp *http.Response, chunks []TimedChunk) error {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	return a.addArchivedRequestWithChunks(req, resp, chunks, AddModeAppend)
+}
+
 func (a *WritableArchive) RecordRequest(req *http.Request, resp *http.Response) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()

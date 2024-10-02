@@ -7,11 +7,13 @@ package webpagereplay
 import (
 	"bytes"
 	"crypto/tls"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/http/httptrace"
 	"os"
 	"strconv"
 	"strings"
@@ -28,6 +30,15 @@ func makeLogger(req *http.Request, quietMode bool) func(msg string, args ...inte
 	return func(msg string, args ...interface{}) {
 		log.Print(prefix + fmt.Sprintf(msg, args...))
 	}
+}
+
+func sleepUntil(t time.Time) {
+	d := time.Until(t)
+	if d <= 0 {
+		// already past
+		return
+	}
+	time.Sleep(d)
 }
 
 // fixupRequestURL adds a scheme and host to req.URL.
@@ -79,6 +90,9 @@ type replayingProxy struct {
 }
 
 func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// FIXME: this is when wprgo received the request, and our timeorigin at recording time was when we started the recording request, so there's a skew...
+	requestStart := time.Now()
+
 	if req.URL.Path == "/web-page-replay-generate-200" {
 		w.WriteHeader(200)
 		return
@@ -98,13 +112,15 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	logf := makeLogger(req, proxy.quietMode)
 
 	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	_, storedResp, chunks, err := proxy.a.FindRequest2(req)
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
-	defer storedResp.Body.Close()
+	if storedResp.Body != nil {
+		defer storedResp.Body.Close()
+	}
 
 	// Check if the stored Content-Encoding matches an encoding allowed by the client.
 	// If not, transform the response body to match the client's Accept-Encoding.
@@ -142,19 +158,38 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	// Update dates in response header.
 	updateDates(storedResp.Header, time.Now())
 
-	// Transform.
-	for _, t := range proxy.transformers {
-		t.Transform(req, storedResp)
-	}
+	/*
+		// Transform.
+		for _, t := range proxy.transformers {
+			t.Transform(req, storedResp)
+		}
+	*/
+	logf("%d transformers skipped - Chunk wpr doesn't support them", len(proxy.transformers))
 
 	// Forward the response.
-	logf("serving %v response", storedResp.StatusCode)
+	logf("serving %v response. %d chunks", storedResp.StatusCode, len(chunks))
 	for k, v := range storedResp.Header {
 		w.Header()[k] = append([]string{}, v...)
 	}
+	sleepUntil(requestStart.Add(time.Duration(chunks[0].TimestampUs) * time.Microsecond))
 	w.WriteHeader(storedResp.StatusCode)
-	if _, err := io.Copy(w, storedResp.Body); err != nil {
-		logf("warning: client response truncated: %v", err)
+
+	/*
+		if _, err := io.Copy(w, storedResp.Body); err != nil {
+			logf("warning: client response truncated: %v", err)
+		}
+	*/
+
+	for _, chunk := range chunks[1:] {
+		t := requestStart.Add(time.Duration(chunk.TimestampUs) * time.Microsecond)
+		logf("sleep %v", time.Until(t))
+		sleepUntil(t)
+
+		logf("sending timedchunk %d bytes", len(chunk.Bytes))
+		if _, err := w.Write(chunk.Bytes); err != nil {
+			logf("warning: client response truncated: %v", err)
+			break
+		}
 	}
 }
 
@@ -185,8 +220,17 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		os.Exit(0)
 		return
 	}
+
 	fixupRequestURL(req, proxy.scheme)
 	logf := makeLogger(req, false)
+
+	var respHeaderFirstByteTime time.Time
+	req = req.WithContext(httptrace.WithClientTrace(req.Context(), &httptrace.ClientTrace{
+		GotFirstResponseByte: func() {
+			respHeaderFirstByteTime = time.Now()
+		},
+	}))
+
 	// https://github.com/golang/go/issues/16036. Server requests always
 	// have non-nil body even for GET and HEAD. This prevents http.Transport
 	// from retrying requests on dead reused conns. Catapult Issue 3706.
@@ -212,6 +256,8 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
 
+	requestStart := time.Now()
+
 	// Make the external request.
 	// If RoundTrip fails, convert the response to a 500.
 	resp, err := proxy.tr.RoundTrip(req)
@@ -227,19 +273,51 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		}
 	}
 
-	// Copy the entire response body.
-	responseBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		logf("warning: origin response truncated: %v", err)
+	respHeaderCompleteTime := time.Now()
+	// FIXME: write respHeaderFirstByteTime + respHeaderCompleteTime to archive
+	logf("first header byte arrived: %v", respHeaderFirstByteTime)
+	logf("first header parse complete: %v", respHeaderCompleteTime)
+
+	var entireShouldBeRemoved bytes.Buffer
+
+	chunks := []TimedChunk{
+		// Hack: The first chunk carries the response header timestamp.
+		{TimestampUs: respHeaderCompleteTime.Sub(requestStart).Microseconds(), Bytes: nil},
 	}
+	for {
+		chunkBuf := make([]byte, 64*1024)
+		n, err := resp.Body.Read(chunkBuf)
+		if err != nil {
+			if errors.Is(err, io.EOF) {
+				logf("EOF")
+				break
+			}
+		}
+
+		chunk := TimedChunk{
+			TimestampUs: time.Since(requestStart).Microseconds(),
+			Bytes:       chunkBuf[:n],
+		}
+		chunks = append(chunks, chunk)
+		logf("new chunk %d bytes", n)
+
+		if _, err := entireShouldBeRemoved.Write(chunk.Bytes); err != nil {
+			panic(err)
+		}
+	}
+
+	/*
+		// Copy the entire response body.
+		entireShouldBeRemovedSlice, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			logf("warning: origin response truncated: %v", err)
+		}
+	*/
+	entireShouldBeRemovedSlice := entireShouldBeRemoved.Bytes()
 	resp.Body.Close()
 
-	// Restore req body (which was consumed by RoundTrip) and record original response without transformation.
-	resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
-	if req.Body != nil {
-		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
-	}
-	if err := proxy.a.RecordRequest(req, resp); err != nil {
+	resp.Body = nil
+	if err := proxy.a.RecordRequestWithChunks(req, resp, chunks); err != nil {
 		logf("failed recording request: %v", err)
 	}
 
@@ -247,7 +325,7 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if req.Body != nil {
 		req.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 	}
-	resp.Body = ioutil.NopCloser(bytes.NewReader(responseBody))
+	resp.Body = ioutil.NopCloser(bytes.NewReader(entireShouldBeRemovedSlice))
 
 	// Transform.
 	for _, t := range proxy.transformers {
@@ -268,4 +346,5 @@ func (proxy *recordingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	if n, err := io.Copy(w, bytes.NewReader(responseBodyAfterTransform)); err != nil {
 		logf("warning: client response truncated (%d/%d bytes): %v", n, len(responseBodyAfterTransform), err)
 	}
+
 }
