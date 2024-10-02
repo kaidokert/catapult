@@ -22,6 +22,30 @@
       },
       "revId": "5a0427b881a534303e1d46123f60600372125814",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a79967_9f7a4c26",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-10-02T23:25:05Z",
+      "side": 1,
+      "message": "Thanks. Using key instead of keys also trigger bad request error.",
+      "parentUuid": "1f80613a_35d1cead",
+      "range": {
+        "startLine": 298,
+        "startChar": 46,
+        "endLine": 298,
+        "endChar": 47
+      },
+      "revId": "5a0427b881a534303e1d46123f60600372125814",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
