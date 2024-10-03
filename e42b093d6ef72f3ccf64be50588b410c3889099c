@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2ec1be1_e208d310",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2024-10-03T18:35:13Z",
+      "side": 1,
+      "message": "Corresponding apk_operations.py change: \nhttps://chromium-review.googlesource.com/c/chromium/src/+/5907127",
+      "revId": "e42b093d6ef72f3ccf64be50588b410c3889099c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
