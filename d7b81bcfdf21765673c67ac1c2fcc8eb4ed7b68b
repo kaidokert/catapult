@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00736cb2_fbab1b50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-08T02:26:17Z",
+      "side": 1,
+      "message": "LGTM with a question.",
+      "revId": "d7b81bcfdf21765673c67ac1c2fcc8eb4ed7b68b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "946f3779_5dbf74f1",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-08T02:26:17Z",
+      "side": 1,
+      "message": "question: is it expected to be \u0027-\u0027 instead of \u0027_\u0027?",
+      "range": {
+        "startLine": 69,
+        "startChar": 42,
+        "endLine": 69,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bfef9b35_0030be12",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "    \u0027loadline_phone.crossbench\u0027: \u0027loadline_phone\u0027,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d7b81bcfdf21765673c67ac1c2fcc8eb4ed7b68b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
