@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b873ab74_1245d5fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2024-10-10T23:02:16Z",
+      "side": 1,
+      "message": "Thanks! looks interesting, the approach seems in general to make sense to me.\n\nDo you think it would make sense to attempt the chunking only when `resp.Header.Get(\"Transfer-Encoding\") \u003d\u003d \"chunked\" `? \n\nI would also suggest we add an argument to try this behavior to `RecordCommand ` and `ReplayCommand` in `wpr.go` for `allowHttpStream` or something similar to gate this while we work on it.",
+      "revId": "19dd71db5ac694ef761bc5f7fc3f3745f51678da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
