@@ -16,6 +16,41 @@
       "message": "Thanks! looks interesting, the approach seems in general to make sense to me.\n\nDo you think it would make sense to attempt the chunking only when `resp.Header.Get(\"Transfer-Encoding\") \u003d\u003d \"chunked\" `? \n\nI would also suggest we add an argument to try this behavior to `RecordCommand ` and `ReplayCommand` in `wpr.go` for `allowHttpStream` or something similar to gate this while we work on it.",
       "revId": "19dd71db5ac694ef761bc5f7fc3f3745f51678da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fbf9ac3_d339e1fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2024-10-15T11:54:55Z",
+      "side": 1,
+      "message": "Thanks for the feedback!",
+      "revId": "19dd71db5ac694ef761bc5f7fc3f3745f51678da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "077f5ef4_7155ae4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2024-10-15T11:54:55Z",
+      "side": 1,
+      "message": "\u003e Do you think it would make sense to attempt the chunking only when resp.Header.Get(\"Transfer-Encoding\") \u003d\u003d \"chunked\"?\n\nUnfortunately, no. The target page doesn\u0027t do `TE: chunked`, but still streams back the response.\n\n\u003e I would also suggest we add an argument to try this behavior to RecordCommand and ReplayCommand in wpr.go for allowHttpStream or something similar to gate this while we work on it.\n\nThanks. I think that also allows us to mark the archive format as experimental and make changes to it until we are sure.",
+      "parentUuid": "b873ab74_1245d5fc",
+      "revId": "19dd71db5ac694ef761bc5f7fc3f3745f51678da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
