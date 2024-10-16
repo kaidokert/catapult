@@ -16,6 +16,23 @@
       "message": "I\u0027m adding just the cmdline flag for now, to gate the feature",
       "revId": "9dd65d218cb1fefc6663ef8ab47280d5c1cfbed6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2d77dfe_053638f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2024-10-16T16:08:03Z",
+      "side": 1,
+      "message": "LGTM, Thanks!",
+      "revId": "9dd65d218cb1fefc6663ef8ab47280d5c1cfbed6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
