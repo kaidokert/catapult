@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f208ca0_b3d3dfb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-10-17T05:46:12Z",
+      "side": 1,
+      "message": "Thanks! LGTM with one question.",
+      "revId": "942d7ae7efa377ff1d14794e8c1eaa851726b2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e8e163_3f43caac",
+        "filename": "devil/devil/android/logcat_monitor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-10-17T05:46:12Z",
+      "side": 1,
+      "message": "Should we move these lines after 207 so that the trailing log can be saved?",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 200,
+        "endChar": 16
+      },
+      "revId": "942d7ae7efa377ff1d14794e8c1eaa851726b2ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
