@@ -51,6 +51,24 @@
       "parentUuid": "4a7e946f_05bc1b9d",
       "revId": "1fc909a800f47a2d95cce663908bda1ca0feb77d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be7d1ae1_8e37e1fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-10-21T21:16:13Z",
+      "side": 1,
+      "message": "Searched the source code on the android side, the `userId` is renamed to `appId` in [this line](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/core/java/com/android/server/pm/Settings.java;drc\u003ddd5ab0aa0d90f2cf1b4af0f567c0d587eba59c35;l\u003d5032) on Android \u003e\u003d U (API 34, Verified locally on emulator as well).\n\nCan you update the code accordingly?",
+      "parentUuid": "ec83673e_3ce2e8df",
+      "revId": "1fc909a800f47a2d95cce663908bda1ca0feb77d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
