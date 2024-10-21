@@ -16,6 +16,23 @@
       "message": "Hi Brian,\n\nAdding a new arg to be used in generate_profile.py. I think it can be generalized to other platforms, but I assume other platforms have faster ways to check in UpdateExecutableIfNeeded?\n\nThanks,\nPeter",
       "revId": "7cac233da6f8a6cb386b67afbfce3a02c64d8ff5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e02ceb8b_14fae871",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-10-21T19:55:10Z",
+      "side": 1,
+      "message": "Thanks for the quick review, Brian!",
+      "revId": "7cac233da6f8a6cb386b67afbfce3a02c64d8ff5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
