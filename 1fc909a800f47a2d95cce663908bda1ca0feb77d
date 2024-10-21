@@ -33,6 +33,24 @@
       "message": "Can you show me an example of the error message? It is likely that `userId` got changed to `uid` since an android version. If we can find the version number, we can fix it by adding a if else clause.",
       "revId": "1fc909a800f47a2d95cce663908bda1ca0feb77d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec83673e_3ce2e8df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-10-21T20:45:23Z",
+      "side": 1,
+      "message": "Here\u0027s what it looks like:\n\n```\n.../src/third_party/catapult/telemetry/telemetry/internal/platform/android_platform_backend.py\", line 568, in PushProfile\n    id_line \u003d next(line for line in dumpsys if \u0027userId\u003d\u0027 in line)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n```\n\nHere\u0027s the output of:\n`$ adb shell dumpsys package com.google.android.apps.chrome`\n\nhttps://paste.googleplex.com/6580683941347328?raw\n\nI\u0027m not sure when / which version it changed in though.",
+      "parentUuid": "4a7e946f_05bc1b9d",
+      "revId": "1fc909a800f47a2d95cce663908bda1ca0feb77d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
