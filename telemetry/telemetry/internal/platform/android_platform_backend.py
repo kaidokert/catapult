@@ -565,7 +565,12 @@ class AndroidPlatformBackend(
         saved_profile_location, profile_dir)
     dumpsys = self._device.RunShellCommand(
         ['dumpsys', 'package', package], check_return=True)
-    id_line = next(line for line in dumpsys if 'userId=' in line)
+    try:
+      id_line = next(line for line in dumpsys if 'userId=' in line)
+    except StopIteration:
+      # On some newer android devices, 'userId' no longer shows up in the
+      # dumpsys output and we need to use 'uid' instead.
+      id_line = next(line for line in dumpsys if 'uid=' in line)
     uid = re.search(r'\d+', id_line).group()
 
     # Generate all of the paths copied to the device, via walking through
