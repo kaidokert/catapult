@@ -16,6 +16,23 @@
       "message": "Hi Haiyang,\n\nHave you seen this on newer devices/platforms? I see this locally.\n\nThanks,\nPeter",
       "revId": "1fc909a800f47a2d95cce663908bda1ca0feb77d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a7e946f_05bc1b9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-10-21T20:38:07Z",
+      "side": 1,
+      "message": "Can you show me an example of the error message? It is likely that `userId` got changed to `uid` since an android version. If we can find the version number, we can fix it by adding a if else clause.",
+      "revId": "1fc909a800f47a2d95cce663908bda1ca0feb77d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
