@@ -153,6 +153,9 @@ def _AssociateAlertsWithBugForSkia(bug_id, keys):
   alert_keys = [ndb.Key('Anomaly', k) for k in keys]
   alert_entities = ndb.get_multi(alert_keys)
 
+  warning_msg = _VerifyAnomaliesOverlap(alert_entities, bug_id, 'chromium')
+  if warning_msg:
+    make_response(json.dumps({'warning_message': warning_msg}))
   AssociateAlertsForSkia(bug_id, alert_entities)
 
   return make_response(json.dumps({}))
