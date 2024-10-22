@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244f1958_c4c35ac0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-10-22T14:33:14Z",
+      "side": 1,
+      "message": "Thanks for the review and figuring out the root cause, Haiyang!",
+      "revId": "f2e5b16eca0cd413103983406955aa3cbc731d5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
