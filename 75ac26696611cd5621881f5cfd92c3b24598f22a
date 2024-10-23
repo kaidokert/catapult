@@ -94,6 +94,30 @@
       },
       "revId": "75ac26696611cd5621881f5cfd92c3b24598f22a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d91b61c_c0999678",
+        "filename": "tracing/tracing/value/ui/scalar_span.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-10-23T21:42:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0db81904_e1ee817d",
+      "range": {
+        "startLine": 192,
+        "startChar": 16,
+        "endLine": 192,
+        "endChar": 22
+      },
+      "revId": "75ac26696611cd5621881f5cfd92c3b24598f22a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
