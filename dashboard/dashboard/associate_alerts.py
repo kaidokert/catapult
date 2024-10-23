@@ -63,6 +63,7 @@ def SkiaAssociateAlertsHandlerPost():
 
   Returns:
   if successful, then it will return empty response {}
+  Or a string with warning message {'warning_message': warning message}
   if failed, then it will return {'error': the error message} with the http status code
   """
   if not utils.IsValidSheriffUser():
@@ -153,6 +154,9 @@ def _AssociateAlertsWithBugForSkia(bug_id, keys):
   alert_keys = [ndb.Key('Anomaly', k) for k in keys]
   alert_entities = ndb.get_multi(alert_keys)
 
+  warning_msg = _VerifyAnomaliesOverlap(alert_entities, bug_id, 'chromium')
+  if warning_msg:
+    make_response(json.dumps({'warning_message': warning_msg}))
   AssociateAlertsForSkia(bug_id, alert_entities)
 
   return make_response(json.dumps({}))
