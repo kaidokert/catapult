@@ -46,6 +46,30 @@
       },
       "revId": "75ac26696611cd5621881f5cfd92c3b24598f22a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7465e7db_b040d2dd",
+        "filename": "tracing/tracing/value/ui/scalar_span.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-23T20:24:00Z",
+      "side": 1,
+      "message": "+1 for hiding neutral icons.",
+      "parentUuid": "91159024_9f037f42",
+      "range": {
+        "startLine": 192,
+        "startChar": 16,
+        "endLine": 192,
+        "endChar": 22
+      },
+      "revId": "75ac26696611cd5621881f5cfd92c3b24598f22a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
