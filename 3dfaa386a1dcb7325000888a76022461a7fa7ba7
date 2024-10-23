@@ -40,6 +40,30 @@
       ],
       "revId": "3dfaa386a1dcb7325000888a76022461a7fa7ba7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada0c23c_36ae94ed",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-10-23T17:40:29Z",
+      "side": 1,
+      "message": "The push message was not finished when I submitted for review. Added `return`. For warning message, it will only return a warning message showing on Skia UI when there is no overlaps between anomalies when tying a bud id. \n\nI will hold the cl for now, wait until the backend is finish migration on Skia",
+      "parentUuid": "31dd9d71_c08cbf89",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 17
+      },
+      "revId": "3dfaa386a1dcb7325000888a76022461a7fa7ba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
