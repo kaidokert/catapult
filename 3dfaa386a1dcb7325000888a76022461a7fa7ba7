@@ -64,6 +64,30 @@
       },
       "revId": "3dfaa386a1dcb7325000888a76022461a7fa7ba7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c70605_d8e932d4",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-23T23:37:26Z",
+      "side": 1,
+      "message": "SG~ Please set the CL to WIP.",
+      "parentUuid": "ada0c23c_36ae94ed",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 17
+      },
+      "revId": "3dfaa386a1dcb7325000888a76022461a7fa7ba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
