@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31dd9d71_c08cbf89",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-23T05:32:43Z",
+      "side": 1,
+      "message": "make_response() makes a response type so that we can use \u0027return\u0027 to return the result in the handler function, but calling it does not send back anything:\n\nhttps://flask.palletsprojects.com/en/3.0.x/api/#flask.Flask.make_response\n\nAlso, if we add a \u0027warning_message\u0027 field here, we need to update the response type on skia side as well. It is a bit confusing that end user can see a warning when the call finishes and does not give the end user a chance to say cancel.\n\nIn general, I think it will be easier to fix when the back end is migrated to Skia. As this is a low priority bug, we can wait.",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "05a65c61_7ef52bd2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/associate_alerts.py",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "    return make_response(json.dumps({\u0027warning_message\u0027: warning_msg}))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3dfaa386a1dcb7325000888a76022461a7fa7ba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
