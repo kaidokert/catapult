@@ -371,6 +371,27 @@ class AssociateAlertsTest(testing_common.TestCase):
     self.assertIn('User @#$.com not authorized.', body_json['error'])
     self.assertEqual(http.HTTPStatus.UNAUTHORIZED.value, response.status_code)
 
+  @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  def testSkiaPost_NonOverlappingAlerts_ReturnsWarningMessage(self):
+    # Associating alert with bug ID that contains non-overlapping revision
+    # ranges should show a confirmation page.
+    key_map = self._AddAnomalies(is_skia=True)
+    response = sself.testapp.post_json(
+        '/associate_alerts_skia', {
+            'keys': [key_map[10000], key_map[10010]],
+            'bug_id': "12345",
+        },
+        expect_errors=False)
+
+    # The response should return warning message.
+    body_json = json.loads(response.body)
+    self.assertIn('warning_message', body_json)
+    # The Anomaly entities should not be updated.
+    for anomaly_entity in anomaly.Anomaly.query().fetch():
+      if anomaly_entity.end_revision != 9997:
+        self.assertIsNone(anomaly_entity.bug_id)
+        self.assertEqual('chromium', anomaly_entity.project_id)
+
   def testRevisionRangeFromSummary(self):
     # If the summary is in the expected format, a pair is returned.
     self.assertEqual((10000, 10500),
