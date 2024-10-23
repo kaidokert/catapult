@@ -70,6 +70,30 @@
       },
       "revId": "75ac26696611cd5621881f5cfd92c3b24598f22a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db81904_e1ee817d",
+        "filename": "tracing/tracing/value/ui/scalar_span.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-10-23T21:01:04Z",
+      "side": 1,
+      "message": "Okay, take a look. In the Pinpoint job you don\u0027t see any icons because there\u0027s no performance difference: https://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/146c6eb2800000\n\nIt\u0027s hard to set up a run where something will significance will show up in a quick amount of time but I can run one if it\u0027s very important to get confirmation.\n\nHere\u0027s how the SVGs look: http://shortn/_IHNVWNSfRn",
+      "parentUuid": "7465e7db_b040d2dd",
+      "range": {
+        "startLine": 192,
+        "startChar": 16,
+        "endLine": 192,
+        "endChar": 22
+      },
+      "revId": "75ac26696611cd5621881f5cfd92c3b24598f22a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
