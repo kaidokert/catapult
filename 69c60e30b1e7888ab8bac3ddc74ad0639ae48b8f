@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d07eb10a_8fb0bb47",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-10-24T01:41:12Z",
+      "side": 1,
+      "message": "this change is just to force a new pinpoint build",
+      "fixSuggestions": [
+        {
+          "fixId": "59add488_1a889651",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/pinpoint/models/job.py",
+              "range": {
+                "startLine": 79,
+                "startChar": 0,
+                "endLine": 80,
+                "endChar": 0
+              },
+              "replacement": "  The ID is just its key as a hex string. This function is used to force a new\n  pinpoint build.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "69c60e30b1e7888ab8bac3ddc74ad0639ae48b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
