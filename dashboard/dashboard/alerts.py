@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import json
+import logging
 import six
 
 from google.appengine.datastore.datastore_query import Cursor
@@ -51,10 +52,46 @@ def AlertsHandlerPost():
   Outputs:
     JSON data for an XHR request to show a table of alerts.
   """
+  anomalies, next_cursor, count, err_msg = _GetAlerts()
+
+  if err_msg:
+    return make_response(json.dumps({'error': err_msg}))
+
+  values = {
+      'anomaly_list': AnomalyDicts(anomalies),
+      'anomaly_count': count,
+      'sheriff_list': _GetSheriffList(),
+      'anomaly_cursor':
+          (six.ensure_str(next_cursor.urlsafe()) if next_cursor else None),
+      'show_more_anomalies': next_cursor != None,
+  }
+  request_handler.RequestHandlerGetDynamicVariables(values)
+  return make_response(json.dumps(values))
+
+
+def SkiaAlertsHandlerGet():
+  logging.debug('[SkiaTriage] Request for getting alerts: %s', request)
+
+  anomalies, next_cursor, _, err_msg = _GetAlerts()
+  if err_msg:
+    return make_response(json.dumps({'error': err_msg}))
+
+  values = {
+      'anomaly_list':
+          AnomalyDicts(anomalies),
+      'anomaly_cursor':
+          (six.ensure_str(next_cursor.urlsafe()) if next_cursor else ''),
+  }
+  logging.debug('[DDEBUG] --- %s', values)
+  return make_response(json.dumps(values))
+
+
+def _GetAlerts():
+  """ Helper function to load alerts.
+  """
   sheriff_name = request.values.get('sheriff', None)
   if sheriff_name and not _SheriffIsFound(sheriff_name):
-    return make_response(
-        json.dumps({'error': 'Sheriff "%s" not found.' % sheriff_name}))
+    return None, None, None, 'Sheriff "%s" not found.' % sheriff_name
 
   # Cursors are used to fetch paged queries. If none is supplied, then the
   # first 500 alerts will be returned. If a cursor is given, the next
@@ -89,17 +126,7 @@ def AlertsHandlerPost():
       count_limit=_MAX_ANOMALIES_TO_COUNT,
       limit=max_anomalies_to_show).get_result()
 
-  values = {
-      'anomaly_list': AnomalyDicts(anomalies),
-      'anomaly_count': count,
-      'sheriff_list': _GetSheriffList(),
-      'anomaly_cursor':
-          (six.ensure_str(next_cursor.urlsafe()) if next_cursor else None),
-      'show_more_anomalies': next_cursor != None,
-  }
-  request_handler.RequestHandlerGetDynamicVariables(values)
-  return make_response(json.dumps(values))
-
+  return anomalies, next_cursor, count, None
 
 def _SheriffIsFound(sheriff_name):
   """Checks whether the sheriff can be found for the current user."""
@@ -110,6 +137,9 @@ def _SheriffIsFound(sheriff_name):
 
 def _GetSheriffList():
   """Returns a list of sheriff names for all sheriffs in the datastore."""
+  if utils.IsStagingEnvironment():
+    return []
+
   client = sheriff_config_client.GetSheriffConfigClient()
   subscriptions, _ = client.List(check=True)
   return [s.name for s in subscriptions]
