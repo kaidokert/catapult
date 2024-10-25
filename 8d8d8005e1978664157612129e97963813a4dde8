@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91d7801b_1623ec7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2024-10-25T21:38:47Z",
+      "side": 1,
+      "message": "The Chromium side CL https://crrev.com/c/5963622 has been approved and is landing.",
+      "revId": "8d8d8005e1978664157612129e97963813a4dde8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
