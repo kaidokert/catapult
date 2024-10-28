@@ -16,6 +16,41 @@
       "message": "so this is currently what it looks like: https://screenshot.googleplex.com/8uXxnmpuzqEwk2e\n\nit\u0027s fine, but I imagine it could still bother some users to see these shapes slightly out of line.\n\nHere are what the new dimensions look like: https://jsfiddle.net/kn6xwv54/\n\nThe rectangles aren\u0027t part of the change but to help see how the icon fits",
       "revId": "63cbce3bb8de1c2af32d04e4f9527eafd923e82a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a18b57c6_6e5fd4a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-10-28T16:43:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7aea5a46_e76d0f17",
+      "revId": "63cbce3bb8de1c2af32d04e4f9527eafd923e82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16d37cd7_34fbbacf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2024-10-28T16:43:34Z",
+      "side": 1,
+      "message": "submitting for now - though I was hoping to also fix the color scheme issues. I think that will have to be for another time.",
+      "revId": "63cbce3bb8de1c2af32d04e4f9527eafd923e82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
