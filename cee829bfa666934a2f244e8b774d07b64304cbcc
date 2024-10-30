@@ -16,6 +16,23 @@
       "message": "@wenbinzhang I was able to set up and run the Python unit tests, but was wondering if you could help me test this by deploying to `chromeperf-stage` and confirm it works. The unit tests are just mocks.\n\nIt would be good to actually run this and confirm the service account has access to the endpoint.",
       "revId": "cee829bfa666934a2f244e8b774d07b64304cbcc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8bd010b_8e0d296d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-30T04:53:04Z",
+      "side": 1,
+      "message": "Deployed the changes in the staging environment, ran a pinpoint job, and it finished successfully:\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/1472b51a800000",
+      "revId": "cee829bfa666934a2f244e8b774d07b64304cbcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
