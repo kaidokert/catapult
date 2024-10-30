@@ -35,6 +35,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "955cd4c7_28baf549",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-10-30T22:26:49Z",
+      "side": 1,
+      "message": "Lgtm % Wenbin\u0027s nit",
+      "revId": "e990baf6550374fc5c3d75ba0d56c5b49ecd22af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99abcde5_93f2aea2",
