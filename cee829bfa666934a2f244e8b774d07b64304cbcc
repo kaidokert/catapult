@@ -33,6 +33,24 @@
       "message": "Deployed the changes in the staging environment, ran a pinpoint job, and it finished successfully:\nhttps://pinpoint-dot-chromeperf-stage.uc.r.appspot.com/job/1472b51a800000",
       "revId": "cee829bfa666934a2f244e8b774d07b64304cbcc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4acf155c_8e30e253",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-10-30T06:37:03Z",
+      "side": 1,
+      "message": "Great to hear! I can see the calls in Auth Service logs too.\n\nI will wait until my morning to trigger submit, when our working hours overlap.",
+      "parentUuid": "f8bd010b_8e0d296d",
+      "revId": "cee829bfa666934a2f244e8b774d07b64304cbcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
