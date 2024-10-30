@@ -101,6 +101,30 @@
       ],
       "revId": "e990baf6550374fc5c3d75ba0d56c5b49ecd22af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba4ddcd_7fded074",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-10-30T22:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99abcde5_93f2aea2",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "e990baf6550374fc5c3d75ba0d56c5b49ecd22af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
