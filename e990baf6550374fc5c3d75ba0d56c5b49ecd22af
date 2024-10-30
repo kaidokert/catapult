@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "badf2f79_6b70efe6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-30T22:20:23Z",
+      "side": 1,
+      "message": "lgtm. with nit.",
+      "revId": "e990baf6550374fc5c3d75ba0d56c5b49ecd22af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5caa7569_8c7eea8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-30T22:20:23Z",
+      "side": 1,
+      "message": "lgtm with nit.",
+      "revId": "e990baf6550374fc5c3d75ba0d56c5b49ecd22af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99abcde5_93f2aea2",
+        "filename": "skia_bridge/application/perf_api/anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-30T22:20:23Z",
+      "side": 1,
+      "message": "nit: put this list in the utils.py so that we don\u0027t need to copies.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d476934a_b436d704",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "skia_bridge/application/perf_api/anomalies.py",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "skia_bridge/application/perf_api/anomalies.py",
+              "range": {
+                "startLine": 236,
+                "startChar": 0,
+                "endLine": 237,
+                "endChar": 0
+              },
+              "replacement": "        internal \u003d client_email in utils.INTERNAL_CLIENTS\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e990baf6550374fc5c3d75ba0d56c5b49ecd22af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
