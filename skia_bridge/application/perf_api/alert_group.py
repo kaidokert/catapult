@@ -46,6 +46,11 @@ INTERNAL_CLIENTS = [
   'perf-fuchsia-internal@skia-infra-corp.iam.gserviceaccount.com',
   ]
 
+FUCHSIA_CLIENTS = [
+  'perf-fuchsia-internal@skia-infra-corp.iam.gserviceaccount.com',
+  'perf-fuchsia-public@skia-infra-public.iam.gserviceaccount.com',
+]
+
 class AnomalyDetail:
   anomaly_id: int
   test_path: str
@@ -55,12 +60,16 @@ class AlertGroupDetailsResponse:
   anomalies: []
   start_commit: int
   end_commit: int
+  start_commit_hash: str
+  end_commit_hash: str
 
   def ToDict(self):
     return {
       "group_id": self.group_id,
       "start_commit": self.start_commit,
       "end_commit": self.end_commit,
+      "start_commit_hash": self.start_commit_hash,
+      "end_commit_hash": self.end_commit_hash,
       "anomalies": {
         a.anomaly_id: a.test_path for a in self.anomalies
       }
@@ -123,6 +132,13 @@ def AlertGroupDetailsPostHandler():
 
         response.start_commit = start_commit
         response.end_commit = end_commit
+        if client_email in FUCHSIA_CLIENTS:
+          start_data_row = client.GetFirstRowForRevision(start_commit)
+          start_commit_hash = utils.GetFuchsiaCommitId(start_data_row, internal)
+          end_data_row = client.GetFirstRowForRevision(end_commit)
+          end_commit_hash = utils.GetFuchsiaCommitId(end_data_row, internal)
+          response.start_commit_hash = start_commit_hash
+          response.end_commit_hash = end_commit_hash
 
         return response.ToDict()
       else:

@@ -42,3 +42,11 @@ def TestPath(key: datastore.key.Key):
 
   assert key.kind == 'TestMetadata' or key.kind == 'TestContainer'
   return key.id_or_name
+
+def GetFuchsiaCommitId(row, internal):
+  if internal:
+    commit_key = 'r_fuchsia_integ_int_git'
+  else:
+    commit_key = 'r_fuchsia_integ_pub_git'
+
+  return row[commit_key]
