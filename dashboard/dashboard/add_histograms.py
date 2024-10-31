@@ -125,6 +125,20 @@ def AddHistogramsPost():
         six.raise_from(
             api_request_handler.BadRequestError(
                 'Missing or uncompressed data.'), e)
+      # check for diagnostics pointing to more than one benchmark.
+      # If so return an error
+      diagnostics = {}
+      for item in json.loads(request.get_data().decode("utf-8")):
+        if "diagnostics" in item.keys():
+          for k, v in item["diagnostics"].items():
+            if k not in diagnostics.keys():
+              diagnostics[k] = v
+              continue
+            if diagnostics[k] != v:
+              err_msg = k + " must be same for all diagnostics"
+              six.raise_from(
+              api_request_handler.BadRequestError(err_msg), e)
+
       data_str = zlib.compress(six.ensure_binary(data_str))
       logging.info('Received uncompressed data.')
 
