@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dbd73fb_33ad7ae3",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-10-31T18:40:16Z",
+      "side": 1,
+      "message": "why is this in the \"except\" block? I\u0027d assume you want this check regardless?",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 29
+      },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6292e77_5de355d5",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-10-31T18:40:16Z",
+      "side": 1,
+      "message": "You can simply reuse data_str",
+      "range": {
+        "startLine": 131,
+        "startChar": 29,
+        "endLine": 131,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4d4ec7c1_8623a4b2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 131,
+                "startChar": 0,
+                "endLine": 132,
+                "endChar": 0
+              },
+              "replacement": "      for item in json.loads(data_str):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d64f0f8_00a0f181",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-10-31T18:40:16Z",
+      "side": 1,
+      "message": "Can you give a sample of the json that is sent as input?",
+      "range": {
+        "startLine": 132,
+        "startChar": 7,
+        "endLine": 132,
+        "endChar": 40
+      },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
