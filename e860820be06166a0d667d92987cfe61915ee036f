@@ -67,6 +67,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37d02204_d68cfe34",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-10-31T20:38:42Z",
+      "side": 1,
+      "message": "I feel like we can call FindSuiteLevelSparseDiagnostics() with only the \u0027histograms\u0027 parameter: we only want to throw as needed, but do not expect any returns.",
+      "range": {
+        "startLine": 131,
+        "startChar": 6,
+        "endLine": 131,
+        "endChar": 65
+      },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d64f0f8_00a0f181",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 1
