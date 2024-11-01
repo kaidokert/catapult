@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff7e83f2_aa6d3236",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-11-01T17:27:15Z",
+      "side": 1,
+      "message": "+1, doesn\u0027t make sense to validate on error. also would prefer it being its own helper with tests.",
+      "parentUuid": "7dbd73fb_33ad7ae3",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 29
+      },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6292e77_5de355d5",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 1
@@ -107,6 +131,47 @@
         "endLine": 132,
         "endChar": 40
       },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86923f2_93579e05",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2024-11-01T17:27:15Z",
+      "side": 1,
+      "message": "error message is misleading. are you trying to say that the value must be the same for every unique key, or keys must be unique and cannot be re-used?",
+      "range": {
+        "startLine": 138,
+        "startChar": 24,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "54b20750_42df9018",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": "              err_msg \u003d k + \" must be same for all histograms\"\n"
+            }
+          ]
+        }
+      ],
       "revId": "e860820be06166a0d667d92987cfe61915ee036f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
