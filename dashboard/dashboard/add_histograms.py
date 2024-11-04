@@ -97,6 +97,14 @@ def _GetCloudStorageBucket():
     return 'chromeperf-staging-add-histograms-cache'
   return 'add-histograms-cache'
 
+def _ValidateSameDiagnosticsAccrossHistograms(hist_text):
+  histograms = histogram_set.HistogramSet()
+  s = _LoadHistogramList(hist_text)
+  histograms.ImportDicts(s)
+  # Reuse this function to check if the diagnostics are different accross
+  # histograms. If so this function throws an error
+  FindSuiteLevelSparseDiagnostics(histograms, None, 0, False)
+
 
 @api_request_handler.RequestHandlerDecoratorFactory(_CheckUser)
 def AddHistogramsPost():
@@ -118,6 +126,11 @@ def AddHistogramsPost():
       # Try to decompress at most 100 bytes from the data, only to determine
       # if we've been given compressed payload.
       zlib.decompressobj().decompress(data_str, 100)
+      # check for diagnostics pointing to more than one benchmark.
+      # If so return an error
+      decomp_str = zlib.decompressobj().decompress(data_str)
+      _ValidateSameDiagnosticsAccrossHistograms(decomp_str)
+
       logging.info('Received compressed data.')
     except zlib.error as e:
       data_str = request.form['data']
@@ -125,6 +138,10 @@ def AddHistogramsPost():
         six.raise_from(
             api_request_handler.BadRequestError(
                 'Missing or uncompressed data.'), e)
+      # check for diagnostics pointing to more than one benchmark.
+      # If so return an error
+      _ValidateSameDiagnosticsAccrossHistograms(data_str)
+
       data_str = zlib.compress(six.ensure_binary(data_str))
       logging.info('Received uncompressed data.')
 
