@@ -83,6 +83,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00b5d3ac_48f36cdd",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T21:22:16Z",
+      "side": 1,
+      "message": "Resolving after chatting offline.",
+      "parentUuid": "e33c57bc_6fb129af",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9efd1e0_19c3d495",
