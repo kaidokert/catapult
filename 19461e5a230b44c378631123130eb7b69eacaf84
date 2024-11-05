@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdc74e89_0aff3261",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T00:01:26Z",
+      "side": 1,
+      "message": "The above decompresses just 100 bytes earlier used for the purpose of checking if we\u0027ve been given compressed payload. Since we moved the logic out we\u0027ll always get compressed text. Hence will be needing this decompression as well.",
+      "parentUuid": "269bbe77_196c4328",
+      "range": {
+        "startLine": 131,
+        "startChar": 19,
+        "endLine": 131,
+        "endChar": 60
+      },
+      "revId": "19461e5a230b44c378631123130eb7b69eacaf84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "466148a2_052f0887",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-04T23:22:55Z",
       "side": 1,
       "message": "Why are we checking this again?",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 57
+      },
+      "revId": "19461e5a230b44c378631123130eb7b69eacaf84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad54da1f_0e145728",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T00:01:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "466148a2_052f0887",
       "range": {
         "startLine": 141,
         "startChar": 0,
@@ -60,6 +108,24 @@
       "writtenOn": "2024-11-04T23:22:55Z",
       "side": 1,
       "message": "I feel your check should come here after it has been validated that data_str is available. Please verify that it returns the error properly with a staging deployment",
+      "revId": "19461e5a230b44c378631123130eb7b69eacaf84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bfe5525_8987b71f",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T00:01:26Z",
+      "side": 1,
+      "message": "Works for the json mentioned in above comments above, \n\n```\n({\u0027content-type\u0027: \u0027text/html; charset\u003dutf-8\u0027, \u0027x-cloud-trace-context\u0027: \u0027c4c164637f85a4b86aa893fef1e2afb7;o\u003d1\u0027, \u0027date\u0027: \u0027Mon, 04 Nov 2024 23:49:18 GMT\u0027, \u0027server\u0027: \u0027Google Frontend\u0027, \u0027content-length\u0027: \u002771\u0027, \u0027status\u0027: \u0027400\u0027}, b\u0027{\"error\": \"benchmarks diagnostics must be the same for all histograms\"}\u0027)\n```\n\nWhen we make the benchmarks same:\n```\n({\u0027content-type\u0027: \u0027application/json; charset\u003dutf-8\u0027, \u0027vary\u0027: \u0027Accept-Encoding\u0027, \u0027x-cloud-trace-context\u0027: \u0027c724f2d2f2a5e6affd428b62a1e802dd;o\u003d1\u0027, \u0027date\u0027: \u0027Mon, 04 Nov 2024 23:52:22 GMT\u0027, \u0027server\u0027: \u0027Google Frontend\u0027, \u0027cache-control\u0027: \u0027private\u0027, \u0027transfer-encoding\u0027: \u0027chunked\u0027, \u0027status\u0027: \u0027200\u0027, \u0027content-length\u0027: \u0027138\u0027, \u0027-content-encoding\u0027: \u0027gzip\u0027}, b\u0027{\"token\": \"e2513d1a-222b-4b4d-abac-c290c37b0f2c\", \"file\": \"/chromeperf-staging-add-histograms-cache/e9f7f44b-2b3c-44b1-8b6c-50bf328d43ff\"}\u0027)\n```",
+      "parentUuid": "27a7e7d1_2f9f30fe",
       "revId": "19461e5a230b44c378631123130eb7b69eacaf84",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
