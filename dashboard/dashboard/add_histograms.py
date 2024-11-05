@@ -97,6 +97,14 @@ def _GetCloudStorageBucket():
     return 'chromeperf-staging-add-histograms-cache'
   return 'add-histograms-cache'
 
+def _ValidateSameDiagnosticsAccrossHistograms(hist_text):
+  histograms = histogram_set.HistogramSet()
+  s = _LoadHistogramList(hist_text)
+  histograms.ImportDicts(s)
+  # Reuse this function to check if the diagnostics are different accross
+  # histograms. If so this function throws an error
+  FindSuiteLevelSparseDiagnostics(histograms, None, 0, False)
+
 
 @api_request_handler.RequestHandlerDecoratorFactory(_CheckUser)
 def AddHistogramsPost():
@@ -130,6 +138,11 @@ def AddHistogramsPost():
 
   if not data_str:
     raise api_request_handler.BadRequestError('Missing "data" parameter')
+
+  # Check for diagnostics pointing to more than one benchmark.
+  # If so return an error
+  decomp_str = zlib.decompressobj().decompress(data_str)
+  _ValidateSameDiagnosticsAccrossHistograms(decomp_str)
 
   filename = uuid.uuid4()
   params = {'gcs_file_path': '/%s/%s' % (_GetCloudStorageBucket(), filename)}
