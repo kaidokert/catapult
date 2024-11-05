@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e33c57bc_6fb129af",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T20:34:25Z",
+      "side": 1,
+      "message": "Here since we have the user would have the json already they\u0027d be able to figure out why the benchmark diagnostics won\u0027t match. Hence this combination of json data and the error should suffice. Let me know if that makes sense.",
+      "parentUuid": "aa3f5dca_ad683e02",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9efd1e0_19c3d495",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 5
@@ -157,6 +181,54 @@
           ]
         }
       ],
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4527e27e_805702e0",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T20:34:25Z",
+      "side": 1,
+      "message": "We\u0027re guaranteed compressed data in this block. Resolving this as discussed offline.",
+      "parentUuid": "26afd1be_2591945d",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "053ae0c8_eccc25e4",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T20:34:25Z",
+      "side": 1,
+      "message": "Since we only want to decompress it when in compressed form we will have it here. Shifting this logic to the function would involve a round of compression and decompression which seems unnecessary.",
+      "parentUuid": "e9efd1e0_19c3d495",
+      "range": {
+        "startLine": 144,
+        "startChar": 2,
+        "endLine": 144,
+        "endChar": 56
+      },
       "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }

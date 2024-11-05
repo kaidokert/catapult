@@ -231,6 +231,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "498ec26d_79e60690",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T20:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d342add2_7666c485",
+      "range": {
+        "startLine": 132,
+        "startChar": 7,
+        "endLine": 132,
+        "endChar": 40
+      },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b86923f2_93579e05",
@@ -286,6 +310,30 @@
       "side": 1,
       "message": "Letting the FindSuiteLevelSparseDiagnostics method to handle errors",
       "parentUuid": "b86923f2_93579e05",
+      "range": {
+        "startLine": 138,
+        "startChar": 24,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "e860820be06166a0d667d92987cfe61915ee036f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80db7970_312412c1",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1545038
+      },
+      "writtenOn": "2024-11-05T20:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c779678a_0ed75f4c",
       "range": {
         "startLine": 138,
         "startChar": 24,
