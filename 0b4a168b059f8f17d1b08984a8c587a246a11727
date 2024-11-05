@@ -16,6 +16,24 @@
       "message": "Is there a way I can preview these changes to double check they do what I expect?",
       "revId": "0b4a168b059f8f17d1b08984a8c587a246a11727",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856cbafc_d88bed60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-11-05T23:21:40Z",
+      "side": 1,
+      "message": "That process is a bit painful and not worth the effort for this change tbh. It looks good to me, and we can always update if anything renders incorrectly.",
+      "parentUuid": "6290987c_1e6bd1f1",
+      "revId": "0b4a168b059f8f17d1b08984a8c587a246a11727",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
