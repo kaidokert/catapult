@@ -51,6 +51,24 @@
       ],
       "revId": "4f29712edc7a43b701f1d9f179385da707a3cdc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e29a953_b5542221",
+        "filename": "dashboard/dashboard/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-11-05T19:39:51Z",
+      "side": 1,
+      "message": "Actually this is a good catch. The bug-info section shows up only when we open the group_report with bug id. It looks like this:\nhttps://screenshot.googleplex.com/AQ9SGRibKwKtEa5\n\nI\u0027m not convinced that we need this immediately (or it is really helpful). That is the reason I didn\u0027t add those start/end_revision for now.",
+      "parentUuid": "929f4a9b_34dfb3ae",
+      "revId": "4f29712edc7a43b701f1d9f179385da707a3cdc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
