@@ -118,6 +118,47 @@
       ],
       "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26afd1be_2591945d",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1559627
+      },
+      "writtenOn": "2024-11-05T00:52:09Z",
+      "side": 1,
+      "message": "I dont think you need this. As per the comment in the code above, this is done just to check if the input was in a compressed form. You should be able to simply use data_str instead of decompressing the request",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6a1927d5_0217e1cb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 144,
+                "startChar": 0,
+                "endLine": 146,
+                "endChar": 0
+              },
+              "replacement": "  _ValidateSameDiagnosticsAccrossHistograms(data_str)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
