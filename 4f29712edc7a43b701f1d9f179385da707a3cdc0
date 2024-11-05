@@ -16,6 +16,41 @@
       "message": "PTAL.",
       "revId": "4f29712edc7a43b701f1d9f179385da707a3cdc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929f4a9b_34dfb3ae",
+        "filename": "dashboard/dashboard/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 3603693
+      },
+      "writtenOn": "2024-11-05T19:32:31Z",
+      "side": 1,
+      "message": "I think we need both start_revision and display_start, as display_start for revision-range calculation and start_revision for bug-info section",
+      "fixSuggestions": [
+        {
+          "fixId": "d689611c_8fc3c049",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/alerts.py",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 206,
+                "endChar": 0
+              },
+              "replacement": "    dct[\u0027start_revision\u0027] \u003d anomaly_entity.start_revision\n    dct[\u0027end_revision\u0027] \u003d anomaly_entity.end_revision\n    dct[\u0027display_start\u0027] \u003d anomaly_entity.display_start\n    dct[\u0027display_end\u0027] \u003d anomaly_entity.display_end\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4f29712edc7a43b701f1d9f179385da707a3cdc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
