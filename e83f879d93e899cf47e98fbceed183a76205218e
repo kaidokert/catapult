@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f09a597_c421045d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-11-05T00:46:49Z",
+      "side": 1,
+      "message": "In general lgtm. A couple of nit comments.",
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3f5dca_ad683e02",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-11-05T00:46:49Z",
+      "side": 1,
+      "message": "nit: if possible, we should catch the ValueError and add info we need for debugging. I remember the error log was not very helpful. E.g., it reported the key, \u0027benchmark\u0027, cannot be the same, but did not tell which benchmark values are put together.",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9da4c6a2_6d24dc96",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "  try:\n    FindSuiteLevelSparseDiagnostics(histograms, None, 0, False)\n  except ValueError as e:\n    raise api_request_handler.BadRequestError(\n        \u0027Error processing histograms: %s\u0027 % str(e))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9efd1e0_19c3d495",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2024-11-05T00:46:49Z",
+      "side": 1,
+      "message": "nit: hide this within the validate function().",
+      "range": {
+        "startLine": 144,
+        "startChar": 2,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3fc9cb66_22ffaecb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 100,
+                "startChar": 0,
+                "endLine": 101,
+                "endChar": 0
+              },
+              "replacement": "def _ValidateSameDiagnosticsAccrossHistograms(data_str):\n  decomp_str \u003d zlib.decompressobj().decompress(data_str)\n"
+            },
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "  s \u003d _LoadHistogramList(decomp_str)\n"
+            },
+            {
+              "path": "dashboard/dashboard/add_histograms.py",
+              "range": {
+                "startLine": 144,
+                "startChar": 0,
+                "endLine": 146,
+                "endChar": 0
+              },
+              "replacement": "  _ValidateSameDiagnosticsAccrossHistograms(data_str)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e83f879d93e899cf47e98fbceed183a76205218e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
