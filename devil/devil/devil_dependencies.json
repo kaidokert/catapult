@@ -8,6 +8,11 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "87bd288daab30624e41faa62aa2c1d5bac3e60aa",
           "download_path": "../bin/deps/linux2/x86_64/bin/aapt"
+        },
+        "darwin_arm64": {
+          "local_paths": [
+            "/Users/hypan/Library/Android/sdk/build-tools/35.0.0/aapt"
+          ]
         }
       }
     },
@@ -18,6 +23,11 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "528d0e88a0d876b0549840f0797beffca4a6a796",
           "download_path": "../bin/deps/linux2/x86_64/bin/adb"
+        },
+        "darwin_arm64": {
+          "local_paths": [
+            "/Users/hypan/Library/Android/sdk/platform-tools/adb"
+          ]
         }
       }
     },
@@ -28,6 +38,11 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "9b986774ad27288a6777ebfa9a08fd8a52003008",
           "download_path": "../bin/deps/linux2/x86_64/lib64/libc++.so"
+        },
+        "darwin_arm64": {
+          "local_paths": [
+            "/Users/hypan/Library/Android/sdk/build-tools/35.0.0/lib64/libc++.dylib"
+          ]
         }
       }
     },
@@ -48,6 +63,10 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "6efb1501c7c49e6ae84cc467648930eaf9f6a9e5",
           "download_path": "../bin/deps/linux2/x86_64/lib.java/chromium_commands.dex.jar"
+        },
+        "darwin_arm64": {
+          "cloud_storage_hash": "6efb1501c7c49e6ae84cc467648930eaf9f6a9e5",
+          "download_path": "../bin/deps/darwin/arm64/lib.java/chromium_commands.dex.jar"
         }
       }
     },
@@ -146,6 +165,11 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "f2428a52730c6593267678c75f95cdc7dffb58df",
           "download_path": "../bin/deps/linux2/x86_64/bin/md5sum_host"
+        },
+        "darwin_arm64": {
+          "local_paths": [
+            "/Users/hypan/chromium/src/out/arm64/md5sum_bin"
+          ]
         }
       }
     },
