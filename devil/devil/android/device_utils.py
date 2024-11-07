@@ -821,7 +821,7 @@ class DeviceUtils(object):
     dumpsys_output = self.RunShellCommand(
         ['dumpsys', 'package', package_with_version],
         check_return=True,
-        large_output=True)
+        large_output=False)
     for line in dumpsys_output:
       match = matcher.match(line)
       if match:
@@ -842,7 +842,7 @@ class DeviceUtils(object):
     """
     dumpsys_output = self.RunShellCommand(['dumpsys', 'package', package],
                                           check_return=True,
-                                          large_output=True)
+                                          large_output=False)
 
     expected_version_line = 'Version: %s' % version_code
 
@@ -1946,7 +1946,7 @@ class DeviceUtils(object):
     shell_snippet = 'p=%s;%s' % (package,
                                  cmd_helper.ShrinkToSnippet(cmd, 'p', package))
     return self.RunShellCommand(
-        shell_snippet, shell=True, check_return=True, large_output=True)
+        shell_snippet, shell=True, check_return=True, large_output=False)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def BroadcastIntent(self, intent_obj, timeout=None, retries=None):
@@ -2032,7 +2032,7 @@ class DeviceUtils(object):
     def is_launcher_focused():
       output = self.RunShellCommand(['dumpsys', 'activity', 'activities'],
                                     check_return=True,
-                                    large_output=True)
+                                    large_output=False)
       return any(self._RESUMED_LAUNCHER_ACTIVITY_RE.match(l) for l in output)
 
     def dismiss_popups():
@@ -3231,7 +3231,7 @@ class DeviceUtils(object):
              'cat $c 2>/dev/null||echo;'
              'echo "%s">$c &&' % token + 'getprop')
       output = self.RunShellCommand(
-          cmd, shell=True, check_return=True, large_output=True)
+          cmd, shell=True, check_return=True, large_output=False)
       # Error-checking for this existing is done in GetExternalStoragePath().
       self._cache['external_storage'] = output[0]
       self._cache['prev_token'] = output[1]
@@ -3416,7 +3416,7 @@ class DeviceUtils(object):
             '%s | grep -F %s' % (ps_cmd, cmd_helper.SingleQuote(pattern)))
       return self.RunShellCommand(ps_cmd.split(),
                                   check_return=True,
-                                  large_output=True)
+                                  large_output=False)
     except device_errors.AdbShellCommandFailedError as e:
       if e.status and isinstance(e.status, list) and not e.status[0]:
         # If ps succeeded but grep failed, there were no processes with the
@@ -3474,7 +3474,7 @@ class DeviceUtils(object):
       raise ValueError('Unsupported namespace: %s' % namespace)
     output_lines = self.RunShellCommand(['settings', 'list', namespace],
                                         check_return=True,
-                                        large_output=True)
+                                        large_output=False)
     return dict(map(lambda line: line.split('=', 1), output_lines))
 
   def _GetDumpsysOutput(self, extra_args, pattern=None):
@@ -3490,7 +3490,7 @@ class DeviceUtils(object):
         return self._RunPipedShellCommand(
             '%s | grep -F %s' % (cmd, cmd_helper.SingleQuote(pattern)))
       cmd = ['dumpsys'] + extra_args
-      return self.RunShellCommand(cmd, check_return=True, large_output=True)
+      return self.RunShellCommand(cmd, check_return=True, large_output=False)
     except device_errors.AdbShellCommandFailedError as e:
       if e.status and isinstance(e.status, list) and not e.status[0]:
         # If dumpsys succeeded but grep failed, there were no lines matching
@@ -3895,7 +3895,7 @@ class DeviceUtils(object):
       # shell command handling.
       for line in self.RunShellCommand(['dumpsys', 'window', 'windows'],
                                        check_return=True,
-                                       large_output=True):
+                                       large_output=False):
         match = re.match(_CURRENT_FOCUS_CRASH_RE, line)
         if match:
           break
@@ -4238,7 +4238,7 @@ class DeviceUtils(object):
         script,
         shell=True,
         raw_output=True,
-        large_output=True,
+        large_output=False,
         check_return=True)
     res = res.split(_SHELL_OUTPUT_SEPARATOR)
     failures = [
